@@ -8,28 +8,40 @@
 
 #import "FLCocoaUIRequired.h"
 #import "FLBreadcrumbBarView.h"
+#import "FLNavigationTitle.h"
 
 @protocol FLBreadcrumbBarViewControllerDelegate;
 
-@interface FLBreadcrumbBarViewController : FLCompatibleViewController<FLBreadcrumbBarViewDelegate, FLBarTitleStyleProvider> {
+@interface FLBreadcrumbBarViewController : FLCompatibleViewController<FLBreadcrumbBarViewDelegate> {
 @private
     __unsafe_unretained id<FLBreadcrumbBarViewControllerDelegate> _delegate;
     FLStringDisplayStyle* _titleStringStyle;
 }
 
 @property (readwrite, strong, nonatomic) FLStringDisplayStyle* titleStringStyle;
+
 @property (readwrite,assign,nonatomic) id<FLBreadcrumbBarViewControllerDelegate> delegate;
 
-- (void) addBreadcrumb:(NSString*) title;
-- (void) removeBreadcrumb:(NSString*) title;
+- (void) addNavigationTitle:(FLNavigationTitle*) title;
+- (void) removeNavigationTitleForIdentifier:(id) identifier;
 
-- (void) updateViewsAnimated:(BOOL) animated;
+- (void) updateNavigationTitlesAnimated:(BOOL) animated;
 
 @end
 
 @protocol FLBreadcrumbBarViewControllerDelegate <NSObject>
-- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsVisible:(NSString*) title;
-- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsEnabled:(NSString*) title;
-- (void) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbWasClicked:(NSString*) title;
+
+- (BOOL) titleNavigationController:(FLBreadcrumbBarViewController*) controller 
+          navigationTitleIsVisible:(FLNavigationTitle*) title;
+
+- (BOOL) titleNavigationController:(FLBreadcrumbBarViewController*) controller 
+          navigationTitleIsEnabled:(FLNavigationTitle*) title;
+          
+- (void) titleNavigationController:(FLBreadcrumbBarViewController*) controller 
+         navigationTitleWasClicked:(FLNavigationTitle*) title;
+
+- (void) titleNavigationController:(FLBreadcrumbBarViewController*) controller 
+             didAddNavigationTitle:(FLNavigationTitle*) title;
+
 @end
 

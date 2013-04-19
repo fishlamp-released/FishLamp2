@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2709A0F516EBD93200C59905 /* FLBarTitleLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */; };
-		2709A0F616EBD93200C59905 /* FLBarTitleLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */; };
-		2709A0F716EBD93200C59905 /* FLBarTitleLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */; };
-		2709A0F816EBD93200C59905 /* FLBarTitleLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */; };
-		2709A0F916EBD93200C59905 /* FLBarTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */; };
-		2709A0FA16EBD93200C59905 /* FLBarTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */; };
-		2709A0FB16EBD93200C59905 /* FLBarTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */; };
-		2709A0FC16EBD93200C59905 /* FLBarTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */; };
-		2709A0FD16EBD93200C59905 /* FLBarTitleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */; };
+		2709A0F516EBD93200C59905 /* FLNavigationTitle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLNavigationTitle.h */; };
+		2709A0F616EBD93200C59905 /* FLNavigationTitle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLNavigationTitle.h */; };
+		2709A0F716EBD93200C59905 /* FLNavigationTitle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLNavigationTitle.h */; };
+		2709A0F816EBD93200C59905 /* FLNavigationTitle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2709A0F316EBD93200C59905 /* FLNavigationTitle.h */; };
+		2709A0F916EBD93200C59905 /* FLNavigationTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLNavigationTitle.m */; };
+		2709A0FA16EBD93200C59905 /* FLNavigationTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLNavigationTitle.m */; };
+		2709A0FB16EBD93200C59905 /* FLNavigationTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLNavigationTitle.m */; };
+		2709A0FC16EBD93200C59905 /* FLNavigationTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLNavigationTitle.m */; };
+		2709A0FD16EBD93200C59905 /* FLNavigationTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2709A0F416EBD93200C59905 /* FLNavigationTitle.m */; };
 		274793EF16FE265C00DC11BE /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 274793D516FE265C00DC11BE /* FLMouseTrackingView.h */; };
 		274793F016FE265C00DC11BE /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 274793D516FE265C00DC11BE /* FLMouseTrackingView.h */; };
 		274793F116FE265C00DC11BE /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 274793D516FE265C00DC11BE /* FLMouseTrackingView.h */; };
@@ -869,8 +869,8 @@
 
 /* Begin PBXFileReference section */
 		27048EF0161CB58600C38ADA /* libFishLampCocoaUI-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBarTitleLayer.h; sourceTree = "<group>"; };
-		2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBarTitleLayer.m; sourceTree = "<group>"; };
+		2709A0F316EBD93200C59905 /* FLNavigationTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNavigationTitle.h; sourceTree = "<group>"; };
+		2709A0F416EBD93200C59905 /* FLNavigationTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNavigationTitle.m; sourceTree = "<group>"; };
 		270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoaUI-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		274793D516FE265C00DC11BE /* FLMouseTrackingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMouseTrackingView.h; sourceTree = "<group>"; };
@@ -1450,8 +1450,8 @@
 				27FD17B716A5E7EC006A9F1D /* FLBreadcrumbBarViewController.m */,
 				27FD17C216A5EB14006A9F1D /* FLBreadcrumbBarView.h */,
 				27FD17C316A5EB14006A9F1D /* FLBreadcrumbBarView.m */,
-				2709A0F316EBD93200C59905 /* FLBarTitleLayer.h */,
-				2709A0F416EBD93200C59905 /* FLBarTitleLayer.m */,
+				2709A0F316EBD93200C59905 /* FLNavigationTitle.h */,
+				2709A0F416EBD93200C59905 /* FLNavigationTitle.m */,
 				27FB507316EBEC47004FC64F /* FLBarHighlightBackgoundLayer.h */,
 				27FB507416EBEC47004FC64F /* FLBarHighlightBackgoundLayer.m */,
 			);
@@ -1564,7 +1564,7 @@
 				27493733169A175D008E8EC5 /* FishLampCocoaUI.h in Headers */,
 				27FD17B816A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h in Headers */,
 				27FD17C416A5EB14006A9F1D /* FLBreadcrumbBarView.h in Headers */,
-				2709A0F516EBD93200C59905 /* FLBarTitleLayer.h in Headers */,
+				2709A0F516EBD93200C59905 /* FLNavigationTitle.h in Headers */,
 				27FB507516EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 				276F1CCC16ED0AE6007937E9 /* FLSpinningProgressView.h in Headers */,
 				278DB49316EE75B40087374D /* FLAnimatedImageView.h in Headers */,
@@ -1655,7 +1655,7 @@
 				27493735169A175D008E8EC5 /* FishLampCocoaUI.h in Headers */,
 				27FD17BA16A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h in Headers */,
 				27FD17C616A5EB14006A9F1D /* FLBreadcrumbBarView.h in Headers */,
-				2709A0F716EBD93200C59905 /* FLBarTitleLayer.h in Headers */,
+				2709A0F716EBD93200C59905 /* FLNavigationTitle.h in Headers */,
 				27FB507716EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 				276F1CCE16ED0AE6007937E9 /* FLSpinningProgressView.h in Headers */,
 				278DB49516EE75B40087374D /* FLAnimatedImageView.h in Headers */,
@@ -1746,7 +1746,7 @@
 				27493734169A175D008E8EC5 /* FishLampCocoaUI.h in Headers */,
 				27FD17B916A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h in Headers */,
 				27FD17C516A5EB14006A9F1D /* FLBreadcrumbBarView.h in Headers */,
-				2709A0F616EBD93200C59905 /* FLBarTitleLayer.h in Headers */,
+				2709A0F616EBD93200C59905 /* FLNavigationTitle.h in Headers */,
 				27FB507616EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 				276F1CCD16ED0AE6007937E9 /* FLSpinningProgressView.h in Headers */,
 				278DB49416EE75B40087374D /* FLAnimatedImageView.h in Headers */,
@@ -1837,7 +1837,7 @@
 				27493736169A175D008E8EC5 /* FishLampCocoaUI.h in Headers */,
 				27FD17BB16A5E7EC006A9F1D /* FLBreadcrumbBarViewController.h in Headers */,
 				27FD17C716A5EB14006A9F1D /* FLBreadcrumbBarView.h in Headers */,
-				2709A0F816EBD93200C59905 /* FLBarTitleLayer.h in Headers */,
+				2709A0F816EBD93200C59905 /* FLNavigationTitle.h in Headers */,
 				27FB507816EBEC48004FC64F /* FLBarHighlightBackgoundLayer.h in Headers */,
 				276F1CCF16ED0AE6007937E9 /* FLSpinningProgressView.h in Headers */,
 				278DB49616EE75B40087374D /* FLAnimatedImageView.h in Headers */,
@@ -2135,7 +2135,7 @@
 				2753D4821694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				27FD17BD16A5E7EC006A9F1D /* FLBreadcrumbBarViewController.m in Sources */,
 				27FD17C916A5EB14006A9F1D /* FLBreadcrumbBarView.m in Sources */,
-				2709A0FA16EBD93200C59905 /* FLBarTitleLayer.m in Sources */,
+				2709A0FA16EBD93200C59905 /* FLNavigationTitle.m in Sources */,
 				27FB507A16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 				276F1CD116ED0AE6007937E9 /* FLSpinningProgressView.m in Sources */,
 				278DB49816EE75B40087374D /* FLAnimatedImageView.m in Sources */,
@@ -2221,7 +2221,7 @@
 				2753D4841694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				27FD17BF16A5E7EC006A9F1D /* FLBreadcrumbBarViewController.m in Sources */,
 				27FD17CB16A5EB14006A9F1D /* FLBreadcrumbBarView.m in Sources */,
-				2709A0FC16EBD93200C59905 /* FLBarTitleLayer.m in Sources */,
+				2709A0FC16EBD93200C59905 /* FLNavigationTitle.m in Sources */,
 				27FB507C16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 				276F1CD316ED0AE6007937E9 /* FLSpinningProgressView.m in Sources */,
 				278DB49A16EE75B40087374D /* FLAnimatedImageView.m in Sources */,
@@ -2307,7 +2307,7 @@
 				2753D4811694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				27FD17BC16A5E7EC006A9F1D /* FLBreadcrumbBarViewController.m in Sources */,
 				27FD17C816A5EB14006A9F1D /* FLBreadcrumbBarView.m in Sources */,
-				2709A0F916EBD93200C59905 /* FLBarTitleLayer.m in Sources */,
+				2709A0F916EBD93200C59905 /* FLNavigationTitle.m in Sources */,
 				27FB507916EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 				276F1CD016ED0AE6007937E9 /* FLSpinningProgressView.m in Sources */,
 				278DB49716EE75B40087374D /* FLAnimatedImageView.m in Sources */,
@@ -2393,7 +2393,7 @@
 				2753D4831694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				27FD17BE16A5E7EC006A9F1D /* FLBreadcrumbBarViewController.m in Sources */,
 				27FD17CA16A5EB14006A9F1D /* FLBreadcrumbBarView.m in Sources */,
-				2709A0FB16EBD93200C59905 /* FLBarTitleLayer.m in Sources */,
+				2709A0FB16EBD93200C59905 /* FLNavigationTitle.m in Sources */,
 				27FB507B16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 				276F1CD216ED0AE6007937E9 /* FLSpinningProgressView.m in Sources */,
 				278DB49916EE75B40087374D /* FLAnimatedImageView.m in Sources */,
@@ -2479,7 +2479,7 @@
 				2753D4851694AC1C001B8856 /* FLStatusBarViewController.m in Sources */,
 				27FD17C016A5E7EC006A9F1D /* FLBreadcrumbBarViewController.m in Sources */,
 				27FD17CC16A5EB14006A9F1D /* FLBreadcrumbBarView.m in Sources */,
-				2709A0FD16EBD93200C59905 /* FLBarTitleLayer.m in Sources */,
+				2709A0FD16EBD93200C59905 /* FLNavigationTitle.m in Sources */,
 				27FB507D16EBEC48004FC64F /* FLBarHighlightBackgoundLayer.m in Sources */,
 				276F1CD416ED0AE6007937E9 /* FLSpinningProgressView.m in Sources */,
 				278DB49B16EE75B40087374D /* FLAnimatedImageView.m in Sources */,

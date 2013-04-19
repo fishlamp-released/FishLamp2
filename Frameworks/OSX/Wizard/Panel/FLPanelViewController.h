@@ -42,18 +42,28 @@
     id<FLPanelButtons> _buttons;
     id<FLPanelHeader> _header;
     BOOL _panelFillsView;
-    BOOL _isAuthenticated;
+    BOOL _authenticated;
+    BOOL _independent;
+    BOOL _hidden;
+    BOOL _enabled;
+    id _identifier;
     __unsafe_unretained id _delegate;
 }
+@property (readwrite, strong, nonatomic) id identifier;
 
 @property (readwrite, assign, nonatomic) id delegate;
 @property (readwrite, assign, nonatomic) id wizardViewController;
 @property (readwrite, strong, nonatomic) id<FLPanelButtons> buttons;
 @property (readwrite, strong, nonatomic) id<FLPanelHeader> header;
 @property (readwrite, strong, nonatomic) NSString* prompt;
+
 @property (readwrite, assign, nonatomic) BOOL canOpenNextPanel;
 @property (readwrite, assign, nonatomic) BOOL panelFillsView;
-@property (readwrite, assign, nonatomic) BOOL isAuthenticated;
+
+@property (readwrite, assign, nonatomic, getter=isAuthenticated) BOOL authenticated;
+@property (readwrite, assign, nonatomic, getter=isIndependent) BOOL independent;
+@property (readwrite, assign, nonatomic, getter=isHidden) BOOL hidden;
+@property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;
 
 - (void) panelWillAppear;
 - (void) panelDidAppear;
@@ -78,5 +88,6 @@
 - (void) showAlertWithTitle:(NSString*) title withCaption:(NSString*) caption;
 
 @end
+
 
 

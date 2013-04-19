@@ -11,6 +11,7 @@
 #import "FLAttributedString.h"
 #import "FLMoveAnimation.h"
 #import "FLBarHighlightBackgoundLayer.h"
+#import "SDKColor+FLMoreColors.h"
 
 @interface FLBreadcrumbBarViewController ()
 @end
@@ -35,7 +36,9 @@
     [super awakeFromNib];
 
     _titleStringStyle = [[FLStringDisplayStyle alloc] init];
-    _titleStringStyle.emphasizedStyle.textColor = [SDKColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
+//    _titleStringStyle.emphasizedStyle.textColor = [SDKColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
+    _titleStringStyle.emphasizedStyle.textColor = [SDKColor darkBlueTintedGrayColor];
+    
     _titleStringStyle.enabledStyle.textColor = [SDKColor darkGrayColor];
     _titleStringStyle.disabledStyle.textColor = [SDKColor lightGrayColor];
     _titleStringStyle.highlightedStyle.textColor = [SDKColor whiteColor];
@@ -49,50 +52,55 @@
     return NO;
 }   
 
-- (void) updateViewsAnimated:(BOOL) animated {
-    for(FLBarTitleLayer* title in self.breadcrumbView.titles) {
-        title.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:title.title];
-        title.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:title.title];
+- (void) updateNavigationTitlesAnimated:(BOOL) animated {
+    for(FLNavigationTitle* title in self.breadcrumbView.titles) {
+        title.enabled = [self.delegate titleNavigationController:self navigationTitleIsEnabled:title];
+        title.emphasized = [self.delegate titleNavigationController:self navigationTitleIsVisible:title];
     }
     
     [self.breadcrumbView updateLayout:animated];
 }
 
+- (void) addNavigationTitle:(FLNavigationTitle*) title {
 
-- (void) addBreadcrumb:(NSString*) title {
+    if(title.titleStyle == nil) {
+        title.titleStyle = FLCopyWithAutorelease(_titleStringStyle);
+    }
 
-    FLAssertStringIsNotEmpty(title);
-
-    FLBarTitleLayer* titleLayer = [FLBarTitleLayer layer];
-    titleLayer.title = title;
-    titleLayer.styleProvider = self;
-    [self.breadcrumbView addTitle:titleLayer];
-    [self updateViewsAnimated:NO];
+    FLAssertStringIsNotEmpty(title.localizedTitle);
+    FLAssertNotNil(title.identifier);
+    [self.breadcrumbView addTitle:title];
+    [self updateNavigationTitlesAnimated:NO];
+    [self.delegate titleNavigationController:self didAddNavigationTitle:title];
     
     [self.view setNeedsDisplay:YES];
 }
 
-- (void) removeBreadcrumb:(NSString*) title {
+- (void) removeNavigationTitleForIdentifier:(id) identifier {
 
 }
-- (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMouseMovedInTitle:(FLBarTitleLayer*) title  mouseIn:(BOOL) mouseIn {
-    title.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:title.title];
-    title.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:title.title];
+- (void) titleNavigationController:(FLBreadcrumbBarView*) view
+           handleMouseMovedInTitle:(FLNavigationTitle*) title  
+                           mouseIn:(BOOL) mouseIn {
+                           
+    title.enabled = [self.delegate titleNavigationController:self navigationTitleIsEnabled:title];
+    title.emphasized = [self.delegate titleNavigationController:self navigationTitleIsVisible:title];
 }
 
-- (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMouseDownInTitle:(FLBarTitleLayer*) title {
-    title.enabled = [self.delegate breadcrumbBar:self breadcrumbIsEnabled:title.title];
-    title.emphasized = [self.delegate breadcrumbBar:self breadcrumbIsVisible:title.title];
+- (void) titleNavigationController:(FLBreadcrumbBarView*) view 
+            handleMouseDownInTitle:(FLNavigationTitle*) title {
+            
+    title.enabled = [self.delegate titleNavigationController:self navigationTitleIsEnabled:title];
+    title.emphasized = [self.delegate titleNavigationController:self navigationTitleIsVisible:title];
     if(title.enabled && !title.emphasized) {
-        [self.delegate breadcrumbBar:self breadcrumbWasClicked:title.title];
+        [self.delegate titleNavigationController:self navigationTitleWasClicked:title];
     }
     
-    [self updateViewsAnimated:YES];
+    [self updateNavigationTitlesAnimated:YES];
 }
 
-- (FLStringDisplayStyle*) barTitleLayerGetStringDisplayStyle:(FLBarTitleLayer*) title {
-    return _titleStringStyle;
-}
+            
+
 @end
 
 

@@ -118,6 +118,10 @@
 	return [_objectArray objectAtIndex:idx];
 }
 
+- (id) keyForIndex:(NSUInteger) aIndex {
+    return [_keys objectAtIndex:aIndex];
+}
+
 - (void) removeObjectForKey:(id) key {
     if(key) {
         ++_mutatationCount;

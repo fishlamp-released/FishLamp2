@@ -35,7 +35,7 @@
 
 - (void) updateButtonEnabledStates:(BOOL) animated {
     [self.buttonViewController updateButtons];
-    [self.navigationViewController updateViewsAnimated:animated];
+    [self.navigationViewController updateNavigationTitlesAnimated:animated];
 }
 
 - (void) showPanelsInWindow:(NSWindow*) window {
