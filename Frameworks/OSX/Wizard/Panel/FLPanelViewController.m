@@ -22,11 +22,16 @@
 @synthesize buttons = _buttons;
 @synthesize header = _header;
 @synthesize panelFillsView = _panelFillsView;
-@synthesize isAuthenticated = _isAuthenticated;
+@synthesize authenticated = _authenticated;
 @synthesize delegate = _delegate;
+@synthesize independent = _independent;
+@synthesize hidden = _hidden;
+@synthesize enabled = _enabled;
+@synthesize identifier = _identifier;
 
 #if FL_MRC
 - (void) dealloc {
+    [_identifier release];
     [_header release];
     [_buttons release];
     [_prompt release];
@@ -46,6 +51,9 @@
     [super awakeFromNib];
     self.canOpenNextPanel = NO;
     self.panelFillsView = YES;
+    self.independent = NO;
+    self.enabled = YES;
+    self.hidden = NO;
 }
 
 - (BOOL)acceptsFirstResponder {

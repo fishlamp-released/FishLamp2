@@ -45,27 +45,40 @@
 //    return YES;
 //}
 
-- (void) didAddPanel:(FLPanelViewController*) panel {
-    [self.navigationViewController addBreadcrumb:panel.title];
+- (void) panelManagerDidStart {
+    [self.navigationViewController updateNavigationTitlesAnimated:NO];
 }
 
-- (void) panelManager:(FLPanelManager*) controller didRemovePanel:(FLPanelViewController*) panel {
-    [self.navigationViewController removeBreadcrumb:panel.title];
+- (void) didAddPanel:(FLPanelViewController*) panel {
+    [self.navigationViewController addNavigationTitle:[FLNavigationTitle navigationTitle:panel.identifier localizedTitle:panel.title]];
+}
+
+- (void) didRemovePanel:(FLPanelViewController*) panel {
+    [self.navigationViewController removeNavigationTitleForIdentifier:panel.identifier];
+}
+
+- (void) panelStateDidChange:(FLPanelViewController *)panel {
+    [super panelStateDidChange:panel];
 }
 
 #pragma mark breadcrumb bar delegate
 
-- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsVisible:(id) title {
-    return [title isEqual:[self.visiblePanel title]];
+- (BOOL) titleNavigationController:(FLBreadcrumbBarViewController*) titleNavigationController navigationTitleIsVisible:(FLNavigationTitle*) title {
+    return [title.identifier isEqual:self.visiblePanelIdentifier];
 }
 
-- (BOOL) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar breadcrumbIsEnabled:(id) title {
-    return [self canOpenPanelForTitle:title];
+- (BOOL) titleNavigationController:(FLBreadcrumbBarViewController*) titleNavigationController navigationTitleIsEnabled:(FLNavigationTitle*) title {
+    return [self canOpenPanelForIdentifier:title.identifier];
 }
                 
-- (void) breadcrumbBar:(FLBreadcrumbBarViewController*) breadcrumbBar 
-    breadcrumbWasClicked:(NSString*) title {
-    [self showPanelForTitle:title animated:YES completion:nil];
+- (void) titleNavigationController:(FLBreadcrumbBarViewController*) titleNavigationController 
+    navigationTitleWasClicked:(FLNavigationTitle*) title {
+    [self showPanelForIdentifier:title.identifier animated:YES completion:nil];
 }
+
+- (void) titleNavigationController:(FLBreadcrumbBarViewController*) controller 
+             didAddNavigationTitle:(FLNavigationTitle*) title {
+             
+} 
 
 @end

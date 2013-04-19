@@ -1,45 +1,58 @@
 //
-//  FLBarTitleLayer.m
+//  FLNavigationTitle.m
 //  FishLampCocoaUI
 //
 //  Created by Mike Fullerton on 3/9/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLBarTitleLayer.h"
+#import "FLNavigationTitle.h"
 #import "FLAttributedString.h"
 #import "FLCoreText.h"
 
-@interface FLBarTitleLayer ()
+@interface FLNavigationTitle ()
 @property (readwrite, strong, nonatomic) NSAttributedString* attributedString;
+@property (readwrite, strong, nonatomic) id identifier;
 @end
 
-@implementation FLBarTitleLayer
+@implementation FLNavigationTitle
 
-
+@synthesize localizedTitle = _localizedTitle;
+@synthesize highlighted = _highlighted;
+@synthesize enabled = _enabled;
+@synthesize emphasized = _emphasized;
+@synthesize attributedString = _attributedString;
+@synthesize titleStyle = _titleStyle;
+@synthesize identifier = _identifier;
+@synthesize titleHeight = _titleHeight;
 
 + (id) layer {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-@synthesize styleProvider = _titleDelegate;
-@synthesize title = _title;
-@synthesize highlighted = _highlighted;
-@synthesize enabled = _enabled;
-@synthesize emphasized = _emphasized;
-@synthesize attributedString = _attributedString;
+- (id) initWithIdentifier:(id) identifier localizedTitle:(NSString*) localizedTitle {
+	self = [super init];
+	if(self) {
+        self.identifier = identifier;
+        self.localizedTitle = localizedTitle;
+        self.titleHeight = FLNavigationTitleDefaultHeight;
+	}
+	return self;
+}
+
++ (id) navigationTitle:(id) identifier localizedTitle:(NSString*) localizedTitle {
+    return FLAutorelease([[[self class] alloc] initWithIdentifier:identifier localizedTitle:localizedTitle]);
+}
 
 #if FL_MRC
 - (void) dealloc {
+    [_identifier release];
+    [_titleStyle release];
     [_attributedString release];
-    [_title release];
+    [_localizedTitle release];
     [super dealloc];
 }
 #endif
-
-- (FLStringDisplayStyle*) titleStyle {
-    return [self.styleProvider barTitleLayerGetStringDisplayStyle:self];
-}
 
 - (void) updateState {
     if(_willUpdate) {
@@ -76,7 +89,7 @@
             CFRelease(colorRef);
         }
         
-        self.attributedString = [NSAttributedString attributedStringWithString:self.title withTextStyle:textStyle];
+        self.attributedString = [NSAttributedString attributedStringWithString:self.localizedTitle withTextStyle:textStyle];
         
         [self setNeedsDisplay];
         _willUpdate = NO;
@@ -195,13 +208,13 @@ CGFloat GetLineHeightForFont(CTFontRef iFont)
 //
 
 #if TRACE
-    FLLog(@"draw title: %@", _title);
+    FLLog(@"draw title: %@", _localizedTitle);
 #endif    
 }
 
-- (void) setTitle:(NSString*) title {
-    if(FLStringsAreNotEqual(title, _title)) {
-        FLSetObjectWithRetain(_title, title);
+- (void) setLocalizedTitle:(NSString*) localizedTitle {
+    if(FLStringsAreNotEqual(localizedTitle, _localizedTitle)) {
+        FLSetObjectWithRetain(_localizedTitle, localizedTitle);
         [self setNeedsUpdate];
     }
 }

@@ -10,6 +10,7 @@
 #import "FLFramedView.h"
 #import "FLPanelViewController.h"
 #import "FLViewTransition.h"
+#import "FLOrderedCollection.h"
 
 @protocol FLPanelManagerDelegate;
 
@@ -17,22 +18,24 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 
 @interface FLPanelManager : NSViewController {
 @private
-    NSMutableArray* _panels;
-    NSMutableArray* _panelViews;
-    NSUInteger _currentPanel;
-    BOOL _started;
-
+    FLOrderedCollection* _panels;
+    id _visiblePanelIdentifier;
+    
     FLViewTransition* _forwardTransition;
     FLViewTransition* _backwardTransition;
     
     IBOutlet NSView* _contentEnclosure;
     IBOutlet NSView* _contentView;
     
+    BOOL _started;
+
+    NSMutableArray* _panelViews;
     NSMutableArray* _panelAreas;
 }
 
 @property (readonly, assign, nonatomic) NSUInteger panelCount;
 @property (readonly, strong, nonatomic) FLPanelViewController* visiblePanel;
+@property (readonly, strong, nonatomic) id visiblePanelIdentifier;
 
 @property (readwrite, strong, nonatomic) FLViewTransition* forwardTransition;
 @property (readwrite, strong, nonatomic) FLViewTransition* backwardTransition;
@@ -41,16 +44,15 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 
 - (void) showPanelsInView:(NSView*) window;
 
-- (void) addPanel:(FLPanelViewController*) panel;
-- (void) addPanel:(FLPanelViewController*) panel withDelegate:(id) delegate;
+- (void) addPanel:(FLPanelViewController*) panel forIdentifier:(id) identifier;
 
-- (FLPanelViewController*) panelForTitle:(id) title;
+- (void) addPanel:(FLPanelViewController*) panel forIdentifier:(id) identifier withDelegate:(id) delegate;
 
-- (void) removePanelForTitle:(id) title;
+- (FLPanelViewController*) panelForIdentifier:(id) identifier;
 
-- (BOOL) canShowPanelForPanelTitle:(id) title;
+- (void) removePanelForIdentifier:(id) identifier;
 
-- (BOOL) canOpenPanelForTitle:(id) title;
+- (BOOL) canOpenPanelForIdentifier:(id) identifier;
 
 //
 // panel switching
@@ -61,13 +63,9 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 - (void) showPreviousPanelAnimated:(BOOL) animated
                         completion:(void (^)(FLPanelViewController*)) completion;
 
-- (void) showPanelForTitle:(id) title 
-                animated:(BOOL) animated
-              completion:(FLPanelViewControllerBlock) completion;
-
-- (void) showPanelAtIndex:(NSUInteger) idx 
-                 animated:(BOOL) animated
-               completion:(FLPanelViewControllerBlock) completion;
+- (void) showPanelForIdentifier:(id) identifier 
+                       animated:(BOOL) animated
+                     completion:(FLPanelViewControllerBlock) completion;
 
 - (BOOL) isShowingFirstPanel;
 
@@ -75,7 +73,9 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 
 // panel views
 
-- (void) addPanelView:(SDKView*) panelView toView:(SDKView*) superview animated:(BOOL) animated;
+- (void) addPanelView:(SDKView*) panelView 
+               toView:(SDKView*) superview 
+             animated:(BOOL) animated;
 
 - (void) removePanelViews:(BOOL) animated;
 
@@ -90,16 +90,10 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 - (void) willHidePanel:(FLPanelViewController*) panel;
 - (void) didShowPanel:(FLPanelViewController*) panel;
 - (void) didHidePanel:(FLPanelViewController*) panel;
-
 - (void) panelStateDidChange:(FLPanelViewController*) panel;
-
 - (void) didAddPanel:(FLPanelViewController*) panel;
-
 - (void) didRemovePanel:(FLPanelViewController*) panel;
-
-
-
-
+- (void) panelManagerDidStart;
 @end
 
 @interface FLPanelManager ()

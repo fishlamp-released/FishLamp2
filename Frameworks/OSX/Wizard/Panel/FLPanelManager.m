@@ -10,13 +10,18 @@
 #import "FLWizardStyleViewTransition.h"
 
 @interface FLPanelManager ()
-@property (readonly, strong, nonatomic) NSArray* panels;
-@property (readonly, assign, nonatomic) NSUInteger currentPanelIndex;
+@property (readonly, strong, nonatomic) FLOrderedCollection* panels;
+@property (readwrite, strong, nonatomic) id visiblePanelIdentifier;
+
+- (void) showPanelAtIndex:(NSUInteger) idx 
+                 animated:(BOOL) animated
+               completion:(FLPanelViewControllerBlock) completion;
+
 @end
 
 @implementation FLPanelManager
 
-@synthesize currentPanelIndex = _currentPanel;
+@synthesize visiblePanelIdentifier = _visiblePanelIdentifier;
 @synthesize panels = _panels;
 @synthesize forwardTransition = _forwardTransition;
 @synthesize backwardTransition = _backwardTransition;
@@ -29,6 +34,7 @@
 #endif
 
 #if FL_MRC
+    [_visiblePanelIdentifier release];
     [_panelAreas release];
     [_backwardTransition release];
     [_forwardTransition release];
@@ -42,15 +48,13 @@
     [super awakeFromNib];
      
     _panelAreas = [[NSMutableArray alloc] init];
-    _panels = [[NSMutableArray alloc] init];
-    _currentPanel = 0;
+    _panels = [[FLOrderedCollection alloc] init];
     _started = NO;
     self.forwardTransition = [FLWizardStyleForwardTransition wizardStyleForwardTransition];
     self.backwardTransition = [FLWizardStyleBackwardTransition wizardStyleBackwardTransition];
     
-    self.view.autoresizesSubviews = NO;
-    
-    _contentEnclosure.autoresizesSubviews = NO;
+    self.view.autoresizesSubviews = YES;
+    _contentEnclosure.autoresizesSubviews = YES;
     _contentView.autoresizesSubviews = NO;
     
     [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
@@ -60,17 +64,24 @@
     return _panels.count;
 }
 
+- (NSUInteger) currentPanelIndex {
+    return _visiblePanelIdentifier ? [_panels indexForKey:_visiblePanelIdentifier] : NSNotFound;
+}
+
 - (void) setPanelFrame:(FLPanelViewController*) panel {
 
-    CGRect bounds = self.view.bounds;
+    CGRect bounds = _contentView.bounds;
     if(panel.panelFillsView) {
-        panel.view.frame = self.view.bounds;
+        panel.view.frame = _contentView.bounds;
     }
     else {
-        CGRect frame = FLRectCenterRectInRectHorizontally(self.view.bounds, panel.view.frame);
+        CGRect frame = FLRectCenterRectInRectHorizontally(_contentView.bounds, panel.view.frame);
         frame.origin.y = FLRectGetBottom(bounds) - frame.size.height - 60.0f; // = FLRectCenterRectInRectVertically(bounds, frame);
         panel.view.frame = FLRectOptimizedForViewLocation(frame);
     }
+    
+//    FLLog(@"panel frame view %@", NSStringFromRect(panel.view.frame));
+
 }
 
 - (void) panelDidChangeCanOpenValue:(FLPanelViewController*) panel {
@@ -80,19 +91,22 @@
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if(FLStringsAreEqual(keyPath, @"frame")) {
         [self setPanelFrame:self.visiblePanel];
+        
+//        FLLog(@"wizard view %@, encl view: %@, content view: %@", NSStringFromRect(self.view.frame), NSStringFromRect(_contentEnclosure.frame), NSStringFromRect(_contentView.frame));
     }
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
-- (void) addPanel:(FLPanelViewController*) panel withDelegate:(id) delegate {
+- (void) addPanel:(FLPanelViewController*) panel forIdentifier:(id) identifier withDelegate:(id) delegate {
     [panel view]; // make sure it's loaded from nib
 
-
+    panel.identifier = identifier;
+    
 //    panel.view.wantsLayer = YES;
     [panel didMoveToPanelManager:self];
-    [_panels addObject:panel];
+    [_panels setObject:panel forKey:identifier];
     [self didAddPanel:panel];
     [self panelStateDidChange:panel];
     
@@ -101,12 +115,12 @@
     }
 }
 
-- (void) addPanel:(FLPanelViewController*) panel {
-    [self addPanel:panel withDelegate:nil];
+- (void) addPanel:(FLPanelViewController*) panel forIdentifier:(id) identifier {
+    [self addPanel:panel forIdentifier:identifier withDelegate:nil];
 }
 
-- (void) removePanelForTitle:(id) title {
-    FLPanelViewController* panel = [self panelForTitle:title];
+- (void) removePanelForIdentifier:(id) identifier {
+    FLPanelViewController* panel = [self panelForIdentifier:identifier];
     [_panels removeObject:panel];
     [panel didMoveToPanelManager:nil];
     [self didRemovePanel:panel];
@@ -114,92 +128,118 @@
 }
 
 - (FLPanelViewController*) visiblePanel {
-    return _started ? [_panels objectAtIndex:_currentPanel] : nil;
+    return _started ? [_panels objectForKey:_visiblePanelIdentifier] : nil;
 }
 
-- (BOOL) canShowPanelForPanelTitle:(id) title {
-    
-    if(_started) {
-        for(FLPanelViewController* panel in _panels) {
-            if(panel.canOpenNextPanel == NO) {
-                return NO;
-            }
-            if([title isEqual:[panel title]]) {
-                return panel.canOpenNextPanel;
-            }
-        }
-    }
-    return NO;
-}
+//- (BOOL) canEnableTitleForPanel:(id) identifier {
+//    
+//    if(_started) {
+//        
+//        BOOL foundNo = NO;
+//        
+//        for(FLPanelViewController* panel in _panels) {
+//            if(panel.canOpenNextPanel == NO) {
+//                foundNo = YES;
+//            }
+//            if([identifier isEqual:[panel identifier]]) {
+//            
+//                if(panel.isIndependent) {
+//                    return panel.isEnabled;
+//                }
+//                else if(foundNo) {
+//                    return NO;
+//                }
+//            
+//                return panel.canOpenNextPanel;
+//            }
+//        }
+//    }
+//    return NO;
+//}
 
-- (BOOL) canOpenPanelForTitle:(id) title {
+- (BOOL) canOpenPanelForIdentifier:(id) identifier {
     if(!_started) {
         return NO;
     }
     
-//    if([self.visiblePanel.title isEqual:title]) {
-//        return YES;
-//    }
-
-    NSUInteger idx = NSNotFound;
-    for(NSUInteger i = 0; i < _panels.count; i++) {
-    
-        if([title isEqual:[[_panels objectAtIndex:i] title]]) {
-            idx = i;
-            break;
-        }
-    }
+    NSUInteger idx = [_panels indexForKey:identifier];
     if(idx == NSNotFound) {
         return NO;
     }
-    if(idx <= _currentPanel) {
-        return YES;
+    
+    FLPanelViewController* currentPanel = [_panels objectForKey:identifier];
+    if([currentPanel isHidden]) {
+        return NO;
     }
-        
-    for(NSUInteger i = _currentPanel; i < idx; i++) {
+    
+    if([currentPanel isIndependent]) {
+        return [currentPanel isEnabled];
+    }
+    
+    NSUInteger currentIdx = [self currentPanelIndex];
+    if(idx <= currentIdx) {
+        return [currentPanel isEnabled];
+    }
+       
+    for(NSUInteger i = currentIdx; i < idx; i++) {
         FLPanelViewController* panel = [_panels objectAtIndex:i];
         if(panel.canOpenNextPanel == NO) {
             return NO;
         }
     }
 
-    return YES;
+    return [currentPanel isEnabled];
 }
 
-- (FLPanelViewController*) panelForTitle:(id) title {
-    for(FLPanelViewController* panel in _panels) {
-        if([title isEqual:[panel title]]) {
-            return panel;
-        }
-    }
-    
-    return nil;
+- (FLPanelViewController*) panelForIdentifier:(id) identifier {
+    return [_panels objectForKey:identifier];
 }
 
-- (NSInteger) panelIndexForTitle:(id) title {
-    for(NSInteger i = 0; i < _panels.count; i++) {
-        if([title isEqual:[[_panels objectAtIndex:i] title]]) {
-            return i;
-        }
-    }
-    
-    return NSNotFound;
-}
+//- (NSInteger) panelIndexForTitle:(id) identifier {
+//    for(NSInteger i = 0; i < _panels.count; i++) {
+//        if([title isEqual:[[_panels objectAtIndex:i] title]]) {
+//            return i;
+//        }
+//    }
+//    
+//    return NSNotFound;
+//}
 
 - (void) showNextPanelAnimated:(BOOL) animated
-                          completion:(void (^)(FLPanelViewController*)) completion {
+                    completion:(void (^)(FLPanelViewController*)) completion {
+                    
+    NSUInteger nextIndex = [self currentPanelIndex] + 1;
+    while(nextIndex < _panels.count) {
+        
+        if(![[_panels objectAtIndex:nextIndex] isHidden]) {
+            [self showPanelAtIndex:nextIndex
+                      animated:animated 
+                    completion:completion];
+            break;
+        }
 
-    [self showPanelAtIndex:_currentPanel + 1 
-                        animated:animated 
-                      completion:completion];
+        ++nextIndex;
+    }
+
 }
 
 - (void) showPreviousPanelAnimated:(BOOL) animated
                         completion:(void (^)(FLPanelViewController*)) completion {
 
-    [self showPanelAtIndex:_currentPanel - 1 
-                        animated:animated 
-                      completion:completion];
+    NSInteger prevIndex = [self currentPanelIndex] - 1;
+    
+    while(prevIndex >= 0) {
+    
+        if(![[_panels objectAtIndex:prevIndex] isHidden]) {
+            [self showPanelAtIndex:prevIndex 
+                          animated:animated 
+                        completion:completion];
+        
+            break;
+        }
+    
+        --prevIndex;
+    }
 }       
 
 - (void) didShowPanel:(FLPanelViewController*) toShow 
@@ -210,6 +250,7 @@
         [self didHidePanel:toHide];
         [toHide panelDidDisappear];
     }
+    
     [toShow setNextResponder:self];
     [self.view.window makeFirstResponder:toShow];
 
@@ -225,6 +266,8 @@
     FLAssertNotNil(toShow);
     
     FLPanelViewController* toHide = [self visiblePanel];
+
+    // make sure they're loaded from nib.
     [toShow view];
     [toHide view];
 
@@ -246,9 +289,11 @@
     FLViewTransition* transition = nil;
 
 #if BROKEN
+    NSUInteger currentIdx = [self currentPanelIndex]
+
     CGFloat animationDuration = 0.0f;
     if(animated) {
-        if(idx > _currentPanel) {
+        if(idx > currentIdx) {
             transition = self.forwardTransition;
         }
         else {
@@ -276,8 +321,9 @@
 
     [self willShowPanel:toShow];
 
-    _currentPanel = idx;
-    [self.view addSubview:[toShow view]];
+    self.visiblePanelIdentifier = [_panels keyForIndex:idx];
+    
+    [_contentView addSubview:[toShow view]];
     [toShow panelWillAppear];
     for(id panelArea in _panelAreas) {
         FLPerformSelector1(panelArea, @selector(panelWillAppear:), toShow);
@@ -322,13 +368,18 @@
     [self showPanelAtIndex:0 animated:NO completion:nil];
 }
 
-- (void) showPanelForTitle:(id) title 
-                animated:(BOOL) animated
-              completion:(FLPanelViewControllerBlock) completion {
+- (void) showPanelForIdentifier:(id) identifier 
+                       animated:(BOOL) animated
+                     completion:(FLPanelViewControllerBlock) completion {
 
-    [self showPanelAtIndex:[self panelIndexForTitle:title] 
-                  animated:YES 
-                completion:completion];
+    NSUInteger idx = [_panels indexForKey:identifier];
+    FLAssert(idx != NSNotFound);
+    
+    if(idx != NSNotFound) {
+        [self showPanelAtIndex:idx
+                      animated:YES 
+                    completion:completion];
+    }
 }    
 
 - (BOOL) isShowingFirstPanel {
@@ -390,10 +441,18 @@
     [window setContentView:self.view];
     [self setNextResponder:window];
     [self showFirstPanel];  
+    [self panelManagerDidStart];
 }
 
 - (void) showPanelsInView:(NSView*) view {
-    
+    self.view.frame = view.bounds;
+    [view addSubview:self.view];
+    [self setNextResponder:view.window];
+    [self showFirstPanel];  
+    [self panelManagerDidStart];
+}
+
+- (void) panelManagerDidStart {
 }
 
 

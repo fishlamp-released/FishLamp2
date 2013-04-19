@@ -11,10 +11,10 @@
 #import "FLAttributedString.h"
 #import "FLOrderedCollection.h"
 #import "FLMouseTrackingView.h"
-#import "FLBarTitleLayer.h"
+#import "FLNavigationTitle.h"
 #import "FLBarHighlightBackgoundLayer.h"
 
-@class FLBarTitleLayer;
+@class FLNavigationTitle;
 @protocol FLBreadcrumbBarViewDelegate;
 
 @interface FLBreadcrumbBarView : FLMouseTrackingView  {
@@ -30,12 +30,12 @@
 
 @property (readwrite, assign, nonatomic) id<FLBreadcrumbBarViewDelegate> delegate;
 
-- (void) addTitle:(FLBarTitleLayer*) title;
+- (void) addTitle:(FLNavigationTitle*) title;
 - (void) updateLayout:(BOOL) animated;
 
 @end
 
 @protocol FLBreadcrumbBarViewDelegate <NSObject>
-- (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMouseDownInTitle:(FLBarTitleLayer*) title;
-- (void) breadcrumbBar:(FLBreadcrumbBarView*) view handleMouseMovedInTitle:(FLBarTitleLayer*) title mouseIn:(BOOL) mouseIn;
+- (void) titleNavigationController:(FLBreadcrumbBarView*) view handleMouseDownInTitle:(FLNavigationTitle*) title;
+- (void) titleNavigationController:(FLBreadcrumbBarView*) view handleMouseMovedInTitle:(FLNavigationTitle*) title mouseIn:(BOOL) mouseIn;
 @end

@@ -37,7 +37,6 @@
     [super awakeFromNib];
     _titleTop = (kTallHeight*4);
 
-    
     if(!_titles) {
         _titles = [[NSMutableArray alloc] init];
     }
@@ -58,13 +57,17 @@
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 
-    FLBarTitleLayer* highlightedTitle = nil;
+    FLNavigationTitle* highlightedTitle = nil;
 
-    CGRect frame = self.bounds;
-    frame.size.height = kTallHeight;
-    frame.origin.y = FLRectGetBottom(self.bounds) - kTallHeight;
+    CGRect bounds = self.bounds;
+    CGFloat top = FLRectGetBottom(bounds);
 
-    for(FLBarTitleLayer* title in _titles) {
+    for(FLNavigationTitle* title in _titles) {
+
+        CGRect frame = bounds;
+        frame.size.height = title.titleHeight; 
+        frame.origin.y = top - frame.size.height;
+
         if(!CGRectEqualToRect(title.frame, frame)) {
             title.frame = frame;
         }
@@ -72,7 +75,7 @@
         if(title.emphasized) {
             highlightedTitle = title;
         }
-        frame.origin.y -= frame.size.height;
+        top -= frame.size.height;
     }
 
     [CATransaction commit];
@@ -108,7 +111,7 @@
         
 }
 
-- (void) addTitle:(FLBarTitleLayer*) title {
+- (void) addTitle:(FLNavigationTitle*) title {
     [_titles addObject:title];
     [self.layer addSublayer:title];
     [title setNeedsDisplay];
@@ -118,9 +121,9 @@
 }
 
 - (void) handleMouseMoved:(CGPoint) location mouseIn:(BOOL) mouseIn mouseDown:(BOOL) mouseDown {
-    for(FLBarTitleLayer* title in _titles) {
+    for(FLNavigationTitle* title in _titles) {
         BOOL mouseInTitle = CGRectContainsPoint(title.frame, location);
-        [self.delegate breadcrumbBar:self handleMouseMovedInTitle:title mouseIn:mouseInTitle];
+        [self.delegate titleNavigationController:self handleMouseMovedInTitle:title mouseIn:mouseInTitle];
         
         if(mouseInTitle) {
             [title handleMouseMoved:location mouseIn:YES mouseDown:mouseDown];
@@ -132,9 +135,9 @@
 }
 
 - (void) handleMouseUpInside:(CGPoint) location {
-    for(FLBarTitleLayer* title in _titles) {
+    for(FLNavigationTitle* title in _titles) {
         if(CGRectContainsPoint(title.frame, location)) {
-            [self.delegate breadcrumbBar:self handleMouseDownInTitle:title];
+            [self.delegate titleNavigationController:self handleMouseDownInTitle:title];
             break;
         }
     }

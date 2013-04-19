@@ -89,7 +89,7 @@
 
 // Modules/BreadcrumbBarView
 #import "FLBarHighlightBackgoundLayer.h"
-#import "FLBarTitleLayer.h"
+#import "FLNavigationTitle.h"
 #import "FLBreadcrumbBarView.h"
 #import "FLBreadcrumbBarViewController.h"
 #import "FLBreadcrumbBarViewOld.h"

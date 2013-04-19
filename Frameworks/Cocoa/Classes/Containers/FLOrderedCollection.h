@@ -49,6 +49,7 @@
 - (id) replaceObjectAtIndex:(NSUInteger) atIndex withObject:(id) object forKey:(id) forKey;
 
 - (NSUInteger) indexForKey:(id) key;
+- (id) keyForIndex:(NSUInteger) aIndex;
 
 - (id) lastObject;
 - (id) firstObject;
