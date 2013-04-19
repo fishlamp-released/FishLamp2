@@ -19,7 +19,7 @@
 
 @property (readonly, strong, nonatomic) NSTextField* promptTextField;
 
-- (void) setPrompt:(NSString*) title animationDuration:(CGFloat) animationDuration;
-- (void) setWelcomeText:(NSString*) welcomeText;
+- (void) setPrompt:(NSString*) title animated:(BOOL) animated;
+- (void) setTextNextToLogoutButton:(NSString*) welcomeText;
 
 @end

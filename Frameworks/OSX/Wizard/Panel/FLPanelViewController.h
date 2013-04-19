@@ -87,6 +87,8 @@
 - (void) showAlertWithTitle:(NSString*) title;
 - (void) showAlertWithTitle:(NSString*) title withCaption:(NSString*) caption;
 
++ (id) defaultPanelIdentifier;
+
 @end
 
 

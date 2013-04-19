@@ -41,7 +41,6 @@
 			<object class="NSViewController" id="652440259"/>
 			<object class="NSViewController" id="650783416"/>
 			<object class="NSViewController" id="298193672"/>
-			<object class="NSViewController" id="1030609493"/>
 			<object class="NSCustomView" id="1005">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">4370</int>
@@ -75,7 +74,6 @@
 								<string key="NSFrame">{{386, 6}, {100, 32}}</string>
 								<reference key="NSSuperview" ref="1018746906"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="311563633">
 									<int key="NSCellFlags">67108864</int>
@@ -260,7 +258,7 @@
 									<object class="NSTextField" id="396995919">
 										<reference key="NSNextResponder" ref="2603366"/>
 										<int key="NSvFlags">266</int>
-										<string key="NSFrame">{{6, 3}, {175, 22}}</string>
+										<string key="NSFrame">{{5, 1}, {175, 22}}</string>
 										<reference key="NSSuperview" ref="2603366"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="113129894"/>
@@ -373,22 +371,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">_wizardPanelEnclosureViewController</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="1030609493"/>
-					</object>
-					<int key="connectionID">183</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">_panelManager</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="1030609493"/>
-					</object>
-					<int key="connectionID">184</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">_progressView</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="536510236"/>
@@ -402,6 +384,22 @@
 						<reference key="destination" ref="752423629"/>
 					</object>
 					<int key="connectionID">255</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_contentEnclosure</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="113129894"/>
+					</object>
+					<int key="connectionID">256</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_contentView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="639529674"/>
+					</object>
+					<int key="connectionID">257</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -563,14 +561,6 @@
 					</object>
 					<int key="connectionID">247</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">view</string>
-						<reference key="source" ref="1030609493"/>
-						<reference key="destination" ref="639529674"/>
-					</object>
-					<int key="connectionID">239</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -632,11 +622,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">177</int>
 						<reference key="object" ref="298193672"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">181</int>
-						<reference key="object" ref="1030609493"/>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -803,8 +788,6 @@
 				<string key="171.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="177.CustomClassName">FLBreadcrumbBarViewController</string>
 				<string key="177.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="181.CustomClassName">FLPanelManager</string>
-				<string key="181.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="188.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="192.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="241.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -814,7 +797,6 @@
 				<string key="251.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="252.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="36.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="37.CustomClassName">FLTextFieldCell</string>
 				<string key="37.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -828,7 +810,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">255</int>
+			<int key="maxID">257</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -927,14 +909,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/FLSpinningProgressView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">FLTextFieldCell</string>
-					<string key="superclassName">NSTextFieldCell</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/FLTextFieldCell.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

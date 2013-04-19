@@ -98,7 +98,7 @@
 }
 
 - (void) setLogoImage:(NSImage*) image {
-
+    _logoImageView.image = image;
 }
 
 #pragma mark panel manager 
@@ -118,6 +118,7 @@
     self.buttonViewController.nextButton.enabled = NO;
     self.buttonViewController.backButton.enabled = NO;
     self.buttonViewController.otherButton.hidden = YES;
+    [self.headerViewController setPrompt:toShow.prompt animated:YES];
     [super willShowPanel:toShow];
 }
 

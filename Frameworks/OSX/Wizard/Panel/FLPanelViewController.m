@@ -137,5 +137,9 @@
     }
 }
 
++ (id) defaultPanelIdentifier {
+    return NSStringFromClass([self class]);
+}
+
 @end
 #endif
