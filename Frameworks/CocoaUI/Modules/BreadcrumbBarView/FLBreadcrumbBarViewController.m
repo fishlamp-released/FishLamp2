@@ -37,7 +37,7 @@
 
     _titleStringStyle = [[FLStringDisplayStyle alloc] init];
 //    _titleStringStyle.emphasizedStyle.textColor = [SDKColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
-    _titleStringStyle.emphasizedStyle.textColor = [SDKColor darkBlueTintedGrayColor];
+    _titleStringStyle.emphasizedStyle.textColor = [SDKColor orangeColor];
     
     _titleStringStyle.enabledStyle.textColor = [SDKColor darkGrayColor];
     _titleStringStyle.disabledStyle.textColor = [SDKColor lightGrayColor];
