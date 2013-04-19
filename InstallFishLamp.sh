@@ -49,6 +49,10 @@ function write_paths_file() {
     
     echo "// Addons" >> "$path"
     echo "FISHLAMP_CONNECT = \$(FISHLAMP)/Connect/**" >> "$path"
+	echo "FISHLAMP_SUBMODULES = \$(FISHLAMP_RELATIVE_PATH)/Submodules/**" >> "$path"
+	echo "FISHLAMP_COCOS2D = \$(FISHLAMP)/../Submodules/cocos2d" >> "$path"
+    echo "FISHLAMP_COCOS2D_MAC = \$(FISHLAMP_COCOS2D)/cocos2d \$(FISHLAMP_COCOS2D)/cocos2d/Platforms \$((FISHLAMP_COCOS2D)/cocos2d/Platforms/Mac " >> "$path"
+    echo "FISHLAMP_ANIMATION_MAC = \$(FISHLAMP)/Animation/** \$(FISHLAMP_COCOS2D_MAC) \$(FISHLAMP_COCOS2D)/external/**" >> "$path"
     
 	verbose "Updated $path ok"
 }
