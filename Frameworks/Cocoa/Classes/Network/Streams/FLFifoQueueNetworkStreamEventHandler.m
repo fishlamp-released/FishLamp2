@@ -11,11 +11,13 @@
 
 @interface FLFifoQueueNetworkStreamEventHandler ()
 @property (readwrite, strong, nonatomic) FLFifoAsyncQueue* asyncQueue;
+@property (readwrite, strong) FLNetworkStream* stream;
 @end
 
 @implementation FLFifoQueueNetworkStreamEventHandler
 
 @synthesize asyncQueue = _asyncQueue;
+@synthesize stream = _stream;
 
 - (id) init{	
 	self = [super init];
@@ -28,6 +30,7 @@
 - (void) dealloc {
     [_asyncQueue releaseToPool];
 #if FL_MRC
+    [_stream release];
     [_asyncQueue release];
 	[super dealloc];
 #endif
@@ -42,7 +45,7 @@
 
 - (void) queueSelector:(SEL) selector withObject:(id) object {
     [self queueBlock:^{ 
-        [_stream performSelector:selector withObject:object];
+        [self.stream performSelector:selector withObject:object];
     }];
 }
 
@@ -50,10 +53,10 @@
     [self queueBlock:^{ 
     
         @try { 
-            [_stream performSelector:selector];
+            [self.stream performSelector:selector];
         }
         @catch(NSException* ex) {
-            _stream.wasTerminated = YES;
+            self.stream.wasTerminated = YES;
             FLLog(@"stream encountered secondary error: %@", [ex.error localizedDescription]);
         }
     }];
@@ -62,7 +65,10 @@
 #pragma GCC diagnostic pop
 
 - (void) queueBlock:(dispatch_block_t) block {
-    [self.asyncQueue queueBlock:block completion:nil];
+    FLRetain(self.stream);
+    [self.asyncQueue queueBlock:block completion:^(FLResult result) {
+        FLAutorelease(self.stream);
+    }];
 }
 
 - (void) handleStreamEvent:(CFStreamEventType) eventType {
@@ -70,7 +76,7 @@
 //#if TRACE
 //    FLDebugLog(@"Read Stream got event %d", eventType);
 //#endif
-    [_stream touchTimeoutTimestamp];
+    [self.stream touchTimeoutTimestamp];
 
     switch (eventType)  {
 
@@ -80,8 +86,8 @@
         break;
 
         case kCFStreamEventErrorOccurred:  
-            _stream.wasTerminated = YES;
-            [self queueSelector:@selector(encounteredError:) withObject:[_stream streamError]];
+            self.stream.wasTerminated = YES;
+            [self queueSelector:@selector(encounteredError:) withObject:[self.stream streamError]];
         break;
         
         case kCFStreamEventEndEncountered:
@@ -103,13 +109,13 @@
 }
 
 - (void) streamWillOpen:(FLNetworkStream*) stream  completion:(void (^)()) completion {
-    _stream = stream;
+    self.stream = stream;
     if(completion) completion();
 }
 
 - (void) streamDidClose:(FLNetworkStream*) stream {
-    if(_stream == stream) {
-        _stream = nil;
+    if(self.stream == stream) {
+        self.stream = nil;
     }
 }
 
