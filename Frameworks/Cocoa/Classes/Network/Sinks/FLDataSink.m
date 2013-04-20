@@ -60,7 +60,7 @@
 }
 #endif
 
-- (NSURL*) fileURL {
+- (NSString*) filePath {
     return nil;
 }
 @end
