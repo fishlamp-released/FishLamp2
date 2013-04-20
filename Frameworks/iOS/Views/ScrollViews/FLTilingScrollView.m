@@ -321,7 +321,7 @@ FLSynthesizeStructProperty(canScrollTiles, setCanScrollTiles, BOOL, _tilingScrol
 
 	if(_scrollQueue.count)
 	{
-		[self _handleScroll:[_scrollQueue popFirstObject]];
+		[self _handleScroll:[_scrollQueue removeFirstObject]];
 	}
 	else
 	{

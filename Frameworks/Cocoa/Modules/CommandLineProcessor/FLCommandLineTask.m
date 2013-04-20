@@ -31,12 +31,12 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) addOperation:(id<FLOperation>) operation {
+- (void) addOperation:(FLOperation*) operation {
     [_operations addObject:operation];
 }
 
 - (FLResult) performSynchronously {
-    for(id<FLOperation> operation in _operations) {
+    for(FLOperation* operation in _operations) {
         [self runChildSynchronously:operation];
     }
     

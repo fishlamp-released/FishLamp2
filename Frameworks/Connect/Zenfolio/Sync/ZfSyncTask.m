@@ -16,7 +16,7 @@
 //
 //@synthesize showErrorIfNoNetwork = _showErrorIfNoNetwork;
 //@synthesize wasCancelled = _wasCancelled;
-//@synthesize operationID = _actionID;
+//@synthesize identifier = _actionID;
 //@synthesize progressController = _progressController;
 //@synthesize onPrepare = _willBeginCallback;
 //@synthesize willFinishBlock = _didCompleteCallback;

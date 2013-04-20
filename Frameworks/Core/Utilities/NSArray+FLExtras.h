@@ -41,7 +41,7 @@
 
 /// Remove and return last object in list.
 
-- (id) dequeueLastObject;
+- (id) removeLastObject;
 
 /// Push object on front of the list. 
 
@@ -50,7 +50,7 @@
 
 /// Remove and returns the first object in the list.
 
-- (id) popFirstObject;
+- (id) removeFirstObject;
 
 /// Adds an object as normal, but then calls the configureObject block.
 

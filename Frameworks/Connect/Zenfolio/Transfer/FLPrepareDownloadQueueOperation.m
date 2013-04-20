@@ -84,7 +84,10 @@
         }
     }
 
-    ZFDownloadQueue* queue = [ZFDownloadQueue downloadQueue];
+//    ZFDownloadQueue* queue = [ZFDownloadQueue downloadQueue];
+    
+    NSMutableArray* queue = [NSMutableArray array];
+    
 
 //    _state.photoSetTotal = _downloadSpec.photoSets.count;
 //    _state.videoTotal = 0;

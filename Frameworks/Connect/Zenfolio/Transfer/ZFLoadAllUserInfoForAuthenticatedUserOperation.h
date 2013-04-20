@@ -7,7 +7,7 @@
 //
 
 #import "FLHttp.h"
-#import "FLOperationQueue.h"
+#import "FLSynchronousOperationQueueOperation.h"
 #import "FLCachedObjectOperation.h"
 
 #if REFACTOR

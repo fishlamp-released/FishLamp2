@@ -13,7 +13,7 @@
 #import "FLObjcRuntime.h"
 #import "FLUnitTestResult.h"
 #import "FLUnitTestResult_Internal.h"
-#import "FLOperationQueue.h"
+#import "FLSynchronousOperationQueueOperation.h"
 #import "FLAsyncQueue.h"
 
 

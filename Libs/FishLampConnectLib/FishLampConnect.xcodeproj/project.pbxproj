@@ -7,6 +7,150 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2718E34D17233525002D2C98 /* FLPrepareDownloadQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E32F17233525002D2C98 /* FLPrepareDownloadQueueOperation.h */; };
+		2718E34E17233525002D2C98 /* FLPrepareDownloadQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E32F17233525002D2C98 /* FLPrepareDownloadQueueOperation.h */; };
+		2718E34F17233525002D2C98 /* FLPrepareDownloadQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E32F17233525002D2C98 /* FLPrepareDownloadQueueOperation.h */; };
+		2718E35017233525002D2C98 /* FLPrepareDownloadQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E32F17233525002D2C98 /* FLPrepareDownloadQueueOperation.h */; };
+		2718E35117233525002D2C98 /* FLPrepareDownloadQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33017233525002D2C98 /* FLPrepareDownloadQueueOperation.m */; };
+		2718E35217233525002D2C98 /* FLPrepareDownloadQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33017233525002D2C98 /* FLPrepareDownloadQueueOperation.m */; };
+		2718E35317233525002D2C98 /* FLPrepareDownloadQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33017233525002D2C98 /* FLPrepareDownloadQueueOperation.m */; };
+		2718E35417233525002D2C98 /* FLPrepareDownloadQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33017233525002D2C98 /* FLPrepareDownloadQueueOperation.m */; };
+		2718E35517233525002D2C98 /* FLPrepareDownloadQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33017233525002D2C98 /* FLPrepareDownloadQueueOperation.m */; };
+		2718E35617233525002D2C98 /* ZFBatchDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33117233525002D2C98 /* ZFBatchDownloadSpec.h */; };
+		2718E35717233525002D2C98 /* ZFBatchDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33117233525002D2C98 /* ZFBatchDownloadSpec.h */; };
+		2718E35817233525002D2C98 /* ZFBatchDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33117233525002D2C98 /* ZFBatchDownloadSpec.h */; };
+		2718E35917233525002D2C98 /* ZFBatchDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33117233525002D2C98 /* ZFBatchDownloadSpec.h */; };
+		2718E35A17233525002D2C98 /* ZFBatchDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33217233525002D2C98 /* ZFBatchDownloadSpec.m */; };
+		2718E35B17233525002D2C98 /* ZFBatchDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33217233525002D2C98 /* ZFBatchDownloadSpec.m */; };
+		2718E35C17233525002D2C98 /* ZFBatchDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33217233525002D2C98 /* ZFBatchDownloadSpec.m */; };
+		2718E35D17233525002D2C98 /* ZFBatchDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33217233525002D2C98 /* ZFBatchDownloadSpec.m */; };
+		2718E35E17233525002D2C98 /* ZFBatchDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33217233525002D2C98 /* ZFBatchDownloadSpec.m */; };
+		2718E35F17233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33317233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h */; };
+		2718E36017233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33317233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h */; };
+		2718E36117233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33317233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h */; };
+		2718E36217233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33317233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h */; };
+		2718E36317233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33417233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m */; };
+		2718E36417233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33417233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m */; };
+		2718E36517233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33417233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m */; };
+		2718E36617233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33417233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m */; };
+		2718E36717233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33417233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m */; };
+		2718E36817233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33517233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h */; };
+		2718E36917233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33517233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h */; };
+		2718E36A17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33517233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h */; };
+		2718E36B17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33517233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h */; };
+		2718E36C17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33617233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m */; };
+		2718E36D17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33617233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m */; };
+		2718E36E17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33617233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m */; };
+		2718E36F17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33617233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m */; };
+		2718E37017233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33617233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m */; };
+		2718E37117233525002D2C98 /* ZFBatchUploadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33717233525002D2C98 /* ZFBatchUploadOperation.h */; };
+		2718E37217233525002D2C98 /* ZFBatchUploadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33717233525002D2C98 /* ZFBatchUploadOperation.h */; };
+		2718E37317233525002D2C98 /* ZFBatchUploadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33717233525002D2C98 /* ZFBatchUploadOperation.h */; };
+		2718E37417233525002D2C98 /* ZFBatchUploadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33717233525002D2C98 /* ZFBatchUploadOperation.h */; };
+		2718E37517233525002D2C98 /* ZFBatchUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33817233525002D2C98 /* ZFBatchUploadOperation.m */; };
+		2718E37617233525002D2C98 /* ZFBatchUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33817233525002D2C98 /* ZFBatchUploadOperation.m */; };
+		2718E37717233525002D2C98 /* ZFBatchUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33817233525002D2C98 /* ZFBatchUploadOperation.m */; };
+		2718E37817233525002D2C98 /* ZFBatchUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33817233525002D2C98 /* ZFBatchUploadOperation.m */; };
+		2718E37917233525002D2C98 /* ZFBatchUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33817233525002D2C98 /* ZFBatchUploadOperation.m */; };
+		2718E37A17233525002D2C98 /* ZFBatchUploadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33917233525002D2C98 /* ZFBatchUploadSpec.h */; };
+		2718E37B17233525002D2C98 /* ZFBatchUploadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33917233525002D2C98 /* ZFBatchUploadSpec.h */; };
+		2718E37C17233525002D2C98 /* ZFBatchUploadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33917233525002D2C98 /* ZFBatchUploadSpec.h */; };
+		2718E37D17233525002D2C98 /* ZFBatchUploadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33917233525002D2C98 /* ZFBatchUploadSpec.h */; };
+		2718E37E17233525002D2C98 /* ZFBatchUploadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33A17233525002D2C98 /* ZFBatchUploadSpec.m */; };
+		2718E37F17233525002D2C98 /* ZFBatchUploadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33A17233525002D2C98 /* ZFBatchUploadSpec.m */; };
+		2718E38017233525002D2C98 /* ZFBatchUploadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33A17233525002D2C98 /* ZFBatchUploadSpec.m */; };
+		2718E38117233525002D2C98 /* ZFBatchUploadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33A17233525002D2C98 /* ZFBatchUploadSpec.m */; };
+		2718E38217233525002D2C98 /* ZFBatchUploadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33A17233525002D2C98 /* ZFBatchUploadSpec.m */; };
+		2718E38317233525002D2C98 /* ZFDownloadPhotoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33B17233525002D2C98 /* ZFDownloadPhotoOperation.h */; };
+		2718E38417233525002D2C98 /* ZFDownloadPhotoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33B17233525002D2C98 /* ZFDownloadPhotoOperation.h */; };
+		2718E38517233525002D2C98 /* ZFDownloadPhotoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33B17233525002D2C98 /* ZFDownloadPhotoOperation.h */; };
+		2718E38617233525002D2C98 /* ZFDownloadPhotoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33B17233525002D2C98 /* ZFDownloadPhotoOperation.h */; };
+		2718E38717233525002D2C98 /* ZFDownloadPhotoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33C17233525002D2C98 /* ZFDownloadPhotoOperation.m */; };
+		2718E38817233525002D2C98 /* ZFDownloadPhotoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33C17233525002D2C98 /* ZFDownloadPhotoOperation.m */; };
+		2718E38917233525002D2C98 /* ZFDownloadPhotoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33C17233525002D2C98 /* ZFDownloadPhotoOperation.m */; };
+		2718E38A17233525002D2C98 /* ZFDownloadPhotoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33C17233525002D2C98 /* ZFDownloadPhotoOperation.m */; };
+		2718E38B17233525002D2C98 /* ZFDownloadPhotoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33C17233525002D2C98 /* ZFDownloadPhotoOperation.m */; };
+		2718E38C17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33D17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h */; };
+		2718E38D17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33D17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h */; };
+		2718E38E17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33D17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h */; };
+		2718E38F17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33D17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h */; };
+		2718E39017233525002D2C98 /* ZFAsyncPhotoSetDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33E17233525002D2C98 /* ZFAsyncPhotoSetDownloader.m */; };
+		2718E39117233525002D2C98 /* ZFAsyncPhotoSetDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33E17233525002D2C98 /* ZFAsyncPhotoSetDownloader.m */; };
+		2718E39217233525002D2C98 /* ZFAsyncPhotoSetDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33E17233525002D2C98 /* ZFAsyncPhotoSetDownloader.m */; };
+		2718E39317233525002D2C98 /* ZFAsyncPhotoSetDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33E17233525002D2C98 /* ZFAsyncPhotoSetDownloader.m */; };
+		2718E39417233525002D2C98 /* ZFAsyncPhotoSetDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E33E17233525002D2C98 /* ZFAsyncPhotoSetDownloader.m */; };
+		2718E39517233525002D2C98 /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33F17233525002D2C98 /* ZFDownloadPhotoSetsOperation.h */; };
+		2718E39617233525002D2C98 /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33F17233525002D2C98 /* ZFDownloadPhotoSetsOperation.h */; };
+		2718E39717233525002D2C98 /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33F17233525002D2C98 /* ZFDownloadPhotoSetsOperation.h */; };
+		2718E39817233525002D2C98 /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E33F17233525002D2C98 /* ZFDownloadPhotoSetsOperation.h */; };
+		2718E39917233525002D2C98 /* ZFDownloadPhotoSetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34017233525002D2C98 /* ZFDownloadPhotoSetsOperation.m */; };
+		2718E39A17233525002D2C98 /* ZFDownloadPhotoSetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34017233525002D2C98 /* ZFDownloadPhotoSetsOperation.m */; };
+		2718E39B17233525002D2C98 /* ZFDownloadPhotoSetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34017233525002D2C98 /* ZFDownloadPhotoSetsOperation.m */; };
+		2718E39C17233525002D2C98 /* ZFDownloadPhotoSetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34017233525002D2C98 /* ZFDownloadPhotoSetsOperation.m */; };
+		2718E39D17233525002D2C98 /* ZFDownloadPhotoSetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34017233525002D2C98 /* ZFDownloadPhotoSetsOperation.m */; };
+		2718E39E17233525002D2C98 /* ZFDownloadQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34117233525002D2C98 /* ZFDownloadQueue.h */; };
+		2718E39F17233525002D2C98 /* ZFDownloadQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34117233525002D2C98 /* ZFDownloadQueue.h */; };
+		2718E3A017233525002D2C98 /* ZFDownloadQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34117233525002D2C98 /* ZFDownloadQueue.h */; };
+		2718E3A117233525002D2C98 /* ZFDownloadQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34117233525002D2C98 /* ZFDownloadQueue.h */; };
+		2718E3A217233525002D2C98 /* ZFDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34217233525002D2C98 /* ZFDownloadQueue.m */; };
+		2718E3A317233525002D2C98 /* ZFDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34217233525002D2C98 /* ZFDownloadQueue.m */; };
+		2718E3A417233525002D2C98 /* ZFDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34217233525002D2C98 /* ZFDownloadQueue.m */; };
+		2718E3A517233525002D2C98 /* ZFDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34217233525002D2C98 /* ZFDownloadQueue.m */; };
+		2718E3A617233525002D2C98 /* ZFDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34217233525002D2C98 /* ZFDownloadQueue.m */; };
+		2718E3A717233525002D2C98 /* ZFDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34317233525002D2C98 /* ZFDownloadSpec.h */; };
+		2718E3A817233525002D2C98 /* ZFDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34317233525002D2C98 /* ZFDownloadSpec.h */; };
+		2718E3A917233525002D2C98 /* ZFDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34317233525002D2C98 /* ZFDownloadSpec.h */; };
+		2718E3AA17233525002D2C98 /* ZFDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34317233525002D2C98 /* ZFDownloadSpec.h */; };
+		2718E3AB17233525002D2C98 /* ZFDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34417233525002D2C98 /* ZFDownloadSpec.m */; };
+		2718E3AC17233525002D2C98 /* ZFDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34417233525002D2C98 /* ZFDownloadSpec.m */; };
+		2718E3AD17233525002D2C98 /* ZFDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34417233525002D2C98 /* ZFDownloadSpec.m */; };
+		2718E3AE17233525002D2C98 /* ZFDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34417233525002D2C98 /* ZFDownloadSpec.m */; };
+		2718E3AF17233525002D2C98 /* ZFDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34417233525002D2C98 /* ZFDownloadSpec.m */; };
+		2718E3B017233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34517233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */; };
+		2718E3B117233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34517233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */; };
+		2718E3B217233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34517233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */; };
+		2718E3B317233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34517233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */; };
+		2718E3B417233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34617233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */; };
+		2718E3B517233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34617233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */; };
+		2718E3B617233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34617233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */; };
+		2718E3B717233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34617233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */; };
+		2718E3B817233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34617233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */; };
+		2718E3B917233525002D2C98 /* ZFLoadGroupHierarchyOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34717233525002D2C98 /* ZFLoadGroupHierarchyOperation.h */; };
+		2718E3BA17233525002D2C98 /* ZFLoadGroupHierarchyOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34717233525002D2C98 /* ZFLoadGroupHierarchyOperation.h */; };
+		2718E3BB17233525002D2C98 /* ZFLoadGroupHierarchyOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34717233525002D2C98 /* ZFLoadGroupHierarchyOperation.h */; };
+		2718E3BC17233525002D2C98 /* ZFLoadGroupHierarchyOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34717233525002D2C98 /* ZFLoadGroupHierarchyOperation.h */; };
+		2718E3BD17233525002D2C98 /* ZFLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34817233525002D2C98 /* ZFLoadGroupHierarchyOperation.m */; };
+		2718E3BE17233525002D2C98 /* ZFLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34817233525002D2C98 /* ZFLoadGroupHierarchyOperation.m */; };
+		2718E3BF17233525002D2C98 /* ZFLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34817233525002D2C98 /* ZFLoadGroupHierarchyOperation.m */; };
+		2718E3C017233525002D2C98 /* ZFLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34817233525002D2C98 /* ZFLoadGroupHierarchyOperation.m */; };
+		2718E3C117233525002D2C98 /* ZFLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34817233525002D2C98 /* ZFLoadGroupHierarchyOperation.m */; };
+		2718E3C217233525002D2C98 /* ZFLoadGroupOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34917233525002D2C98 /* ZFLoadGroupOperation.h */; };
+		2718E3C317233525002D2C98 /* ZFLoadGroupOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34917233525002D2C98 /* ZFLoadGroupOperation.h */; };
+		2718E3C417233525002D2C98 /* ZFLoadGroupOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34917233525002D2C98 /* ZFLoadGroupOperation.h */; };
+		2718E3C517233525002D2C98 /* ZFLoadGroupOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34917233525002D2C98 /* ZFLoadGroupOperation.h */; };
+		2718E3C617233525002D2C98 /* ZFLoadGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34A17233525002D2C98 /* ZFLoadGroupOperation.m */; };
+		2718E3C717233525002D2C98 /* ZFLoadGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34A17233525002D2C98 /* ZFLoadGroupOperation.m */; };
+		2718E3C817233525002D2C98 /* ZFLoadGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34A17233525002D2C98 /* ZFLoadGroupOperation.m */; };
+		2718E3C917233525002D2C98 /* ZFLoadGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34A17233525002D2C98 /* ZFLoadGroupOperation.m */; };
+		2718E3CA17233525002D2C98 /* ZFLoadGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34A17233525002D2C98 /* ZFLoadGroupOperation.m */; };
+		2718E3CB17233525002D2C98 /* ZFTransferState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34B17233525002D2C98 /* ZFTransferState.h */; };
+		2718E3CC17233525002D2C98 /* ZFTransferState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34B17233525002D2C98 /* ZFTransferState.h */; };
+		2718E3CD17233525002D2C98 /* ZFTransferState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34B17233525002D2C98 /* ZFTransferState.h */; };
+		2718E3CE17233525002D2C98 /* ZFTransferState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E34B17233525002D2C98 /* ZFTransferState.h */; };
+		2718E3CF17233525002D2C98 /* ZFTransferState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34C17233525002D2C98 /* ZFTransferState.m */; };
+		2718E3D017233525002D2C98 /* ZFTransferState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34C17233525002D2C98 /* ZFTransferState.m */; };
+		2718E3D117233525002D2C98 /* ZFTransferState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34C17233525002D2C98 /* ZFTransferState.m */; };
+		2718E3D217233525002D2C98 /* ZFTransferState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34C17233525002D2C98 /* ZFTransferState.m */; };
+		2718E3D317233525002D2C98 /* ZFTransferState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E34C17233525002D2C98 /* ZFTransferState.m */; };
+		2718E3DA17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E3D817233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h */; };
+		2718E3DB17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E3D817233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h */; };
+		2718E3DC17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E3D817233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h */; };
+		2718E3DD17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E3D817233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h */; };
+		2718E3DE17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E3D917233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m */; };
+		2718E3DF17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E3D917233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m */; };
+		2718E3E017233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E3D917233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m */; };
+		2718E3E117233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E3D917233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m */; };
+		2718E3E217233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E3D917233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m */; };
 		275A64DA16FFB23C00B5EE4C /* FLHttpRequest+ZenfolioAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A609116FFB23300B5EE4C /* FLHttpRequest+ZenfolioAuthentication.h */; };
 		275A64DB16FFB23C00B5EE4C /* FLHttpRequest+ZenfolioAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A609116FFB23300B5EE4C /* FLHttpRequest+ZenfolioAuthentication.h */; };
 		275A64DC16FFB23C00B5EE4C /* FLHttpRequest+ZenfolioAuthentication.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A609116FFB23300B5EE4C /* FLHttpRequest+ZenfolioAuthentication.h */; };
@@ -250,42 +394,6 @@
 		275A65D316FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */; };
 		275A65D416FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */; };
 		275A65D516FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */; };
-		275A65DF16FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */; };
-		275A65E016FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */; };
-		275A65E116FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */; };
-		275A65E216FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */; };
-		275A65E316FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D316FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.m */; };
-		275A65E416FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D316FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.m */; };
-		275A65E516FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D316FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.m */; };
-		275A65E616FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D316FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.m */; };
-		275A65E716FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D316FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.m */; };
-		275A65E816FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D416FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */; };
-		275A65E916FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D416FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */; };
-		275A65EA16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D416FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */; };
-		275A65EB16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D416FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */; };
-		275A65EC16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D516FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */; };
-		275A65ED16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D516FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */; };
-		275A65EE16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D516FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */; };
-		275A65EF16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D516FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */; };
-		275A65F016FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D516FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */; };
-		275A65F116FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D616FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.h */; };
-		275A65F216FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D616FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.h */; };
-		275A65F316FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D616FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.h */; };
-		275A65F416FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D616FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.h */; };
-		275A65F516FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D716FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.m */; };
-		275A65F616FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D716FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.m */; };
-		275A65F716FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D716FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.m */; };
-		275A65F816FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D716FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.m */; };
-		275A65F916FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D716FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.m */; };
-		275A65FA16FFB23C00B5EE4C /* ZFLoadGroupOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D816FFB23300B5EE4C /* ZFLoadGroupOperation.h */; };
-		275A65FB16FFB23C00B5EE4C /* ZFLoadGroupOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D816FFB23300B5EE4C /* ZFLoadGroupOperation.h */; };
-		275A65FC16FFB23C00B5EE4C /* ZFLoadGroupOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D816FFB23300B5EE4C /* ZFLoadGroupOperation.h */; };
-		275A65FD16FFB23C00B5EE4C /* ZFLoadGroupOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60D816FFB23300B5EE4C /* ZFLoadGroupOperation.h */; };
-		275A65FE16FFB23C00B5EE4C /* ZFLoadGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D916FFB23300B5EE4C /* ZFLoadGroupOperation.m */; };
-		275A65FF16FFB23C00B5EE4C /* ZFLoadGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D916FFB23300B5EE4C /* ZFLoadGroupOperation.m */; };
-		275A660016FFB23C00B5EE4C /* ZFLoadGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D916FFB23300B5EE4C /* ZFLoadGroupOperation.m */; };
-		275A660116FFB23C00B5EE4C /* ZFLoadGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D916FFB23300B5EE4C /* ZFLoadGroupOperation.m */; };
-		275A660216FFB23C00B5EE4C /* ZFLoadGroupOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 275A60D916FFB23300B5EE4C /* ZFLoadGroupOperation.m */; };
 		275A660316FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60DB16FFB23300B5EE4C /* ZFDownloadImageHttpRequest.h */; };
 		275A660416FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60DB16FFB23300B5EE4C /* ZFDownloadImageHttpRequest.h */; };
 		275A660516FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 275A60DB16FFB23300B5EE4C /* ZFDownloadImageHttpRequest.h */; };
@@ -4925,96 +5033,6 @@
 		278AF87716FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 278AF82816FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m */; };
 		278AF87816FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 278AF82816FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m */; };
 		278AF87916FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 278AF82816FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m */; };
-		27BC8B2D17173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2517173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h */; };
-		27BC8B2E17173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2517173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h */; };
-		27BC8B2F17173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2517173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h */; };
-		27BC8B3017173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2517173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h */; };
-		27BC8B3117173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2617173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m */; };
-		27BC8B3217173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2617173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m */; };
-		27BC8B3317173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2617173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m */; };
-		27BC8B3417173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2617173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m */; };
-		27BC8B3517173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2617173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m */; };
-		27BC8B3617173FBB00ECCEA4 /* ZFBatchDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2717173FBB00ECCEA4 /* ZFBatchDownloadSpec.h */; };
-		27BC8B3717173FBB00ECCEA4 /* ZFBatchDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2717173FBB00ECCEA4 /* ZFBatchDownloadSpec.h */; };
-		27BC8B3817173FBB00ECCEA4 /* ZFBatchDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2717173FBB00ECCEA4 /* ZFBatchDownloadSpec.h */; };
-		27BC8B3917173FBB00ECCEA4 /* ZFBatchDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2717173FBB00ECCEA4 /* ZFBatchDownloadSpec.h */; };
-		27BC8B3A17173FBB00ECCEA4 /* ZFBatchDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2817173FBB00ECCEA4 /* ZFBatchDownloadSpec.m */; };
-		27BC8B3B17173FBB00ECCEA4 /* ZFBatchDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2817173FBB00ECCEA4 /* ZFBatchDownloadSpec.m */; };
-		27BC8B3C17173FBB00ECCEA4 /* ZFBatchDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2817173FBB00ECCEA4 /* ZFBatchDownloadSpec.m */; };
-		27BC8B3D17173FBB00ECCEA4 /* ZFBatchDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2817173FBB00ECCEA4 /* ZFBatchDownloadSpec.m */; };
-		27BC8B3E17173FBB00ECCEA4 /* ZFBatchDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2817173FBB00ECCEA4 /* ZFBatchDownloadSpec.m */; };
-		27BC8B3F17173FBB00ECCEA4 /* ZFBatchUploadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2917173FBB00ECCEA4 /* ZFBatchUploadOperation.h */; };
-		27BC8B4017173FBB00ECCEA4 /* ZFBatchUploadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2917173FBB00ECCEA4 /* ZFBatchUploadOperation.h */; };
-		27BC8B4117173FBB00ECCEA4 /* ZFBatchUploadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2917173FBB00ECCEA4 /* ZFBatchUploadOperation.h */; };
-		27BC8B4217173FBB00ECCEA4 /* ZFBatchUploadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2917173FBB00ECCEA4 /* ZFBatchUploadOperation.h */; };
-		27BC8B4317173FBB00ECCEA4 /* ZFBatchUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2A17173FBB00ECCEA4 /* ZFBatchUploadOperation.m */; };
-		27BC8B4417173FBB00ECCEA4 /* ZFBatchUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2A17173FBB00ECCEA4 /* ZFBatchUploadOperation.m */; };
-		27BC8B4517173FBB00ECCEA4 /* ZFBatchUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2A17173FBB00ECCEA4 /* ZFBatchUploadOperation.m */; };
-		27BC8B4617173FBB00ECCEA4 /* ZFBatchUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2A17173FBB00ECCEA4 /* ZFBatchUploadOperation.m */; };
-		27BC8B4717173FBB00ECCEA4 /* ZFBatchUploadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2A17173FBB00ECCEA4 /* ZFBatchUploadOperation.m */; };
-		27BC8B4817173FBB00ECCEA4 /* ZFBatchUploadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2B17173FBB00ECCEA4 /* ZFBatchUploadSpec.h */; };
-		27BC8B4917173FBB00ECCEA4 /* ZFBatchUploadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2B17173FBB00ECCEA4 /* ZFBatchUploadSpec.h */; };
-		27BC8B4A17173FBB00ECCEA4 /* ZFBatchUploadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2B17173FBB00ECCEA4 /* ZFBatchUploadSpec.h */; };
-		27BC8B4B17173FBB00ECCEA4 /* ZFBatchUploadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B2B17173FBB00ECCEA4 /* ZFBatchUploadSpec.h */; };
-		27BC8B4C17173FBB00ECCEA4 /* ZFBatchUploadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2C17173FBB00ECCEA4 /* ZFBatchUploadSpec.m */; };
-		27BC8B4D17173FBB00ECCEA4 /* ZFBatchUploadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2C17173FBB00ECCEA4 /* ZFBatchUploadSpec.m */; };
-		27BC8B4E17173FBB00ECCEA4 /* ZFBatchUploadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2C17173FBB00ECCEA4 /* ZFBatchUploadSpec.m */; };
-		27BC8B4F17173FBB00ECCEA4 /* ZFBatchUploadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2C17173FBB00ECCEA4 /* ZFBatchUploadSpec.m */; };
-		27BC8B5017173FBB00ECCEA4 /* ZFBatchUploadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B2C17173FBB00ECCEA4 /* ZFBatchUploadSpec.m */; };
-		27BC8B5317173FE600ECCEA4 /* ZFTransferState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B5117173FE600ECCEA4 /* ZFTransferState.h */; };
-		27BC8B5417173FE600ECCEA4 /* ZFTransferState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B5117173FE600ECCEA4 /* ZFTransferState.h */; };
-		27BC8B5517173FE600ECCEA4 /* ZFTransferState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B5117173FE600ECCEA4 /* ZFTransferState.h */; };
-		27BC8B5617173FE600ECCEA4 /* ZFTransferState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8B5117173FE600ECCEA4 /* ZFTransferState.h */; };
-		27BC8B5717173FE600ECCEA4 /* ZFTransferState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B5217173FE600ECCEA4 /* ZFTransferState.m */; };
-		27BC8B5817173FE600ECCEA4 /* ZFTransferState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B5217173FE600ECCEA4 /* ZFTransferState.m */; };
-		27BC8B5917173FE600ECCEA4 /* ZFTransferState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B5217173FE600ECCEA4 /* ZFTransferState.m */; };
-		27BC8B5A17173FE600ECCEA4 /* ZFTransferState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B5217173FE600ECCEA4 /* ZFTransferState.m */; };
-		27BC8B5B17173FE600ECCEA4 /* ZFTransferState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8B5217173FE600ECCEA4 /* ZFTransferState.m */; };
-		27D861C417220E3B00A83517 /* ZFDownloadPhotoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861C217220E3B00A83517 /* ZFDownloadPhotoOperation.h */; };
-		27D861C517220E3B00A83517 /* ZFDownloadPhotoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861C217220E3B00A83517 /* ZFDownloadPhotoOperation.h */; };
-		27D861C617220E3B00A83517 /* ZFDownloadPhotoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861C217220E3B00A83517 /* ZFDownloadPhotoOperation.h */; };
-		27D861C717220E3B00A83517 /* ZFDownloadPhotoOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861C217220E3B00A83517 /* ZFDownloadPhotoOperation.h */; };
-		27D861C817220E3B00A83517 /* ZFDownloadPhotoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861C317220E3B00A83517 /* ZFDownloadPhotoOperation.m */; };
-		27D861C917220E3B00A83517 /* ZFDownloadPhotoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861C317220E3B00A83517 /* ZFDownloadPhotoOperation.m */; };
-		27D861CA17220E3B00A83517 /* ZFDownloadPhotoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861C317220E3B00A83517 /* ZFDownloadPhotoOperation.m */; };
-		27D861CB17220E3B00A83517 /* ZFDownloadPhotoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861C317220E3B00A83517 /* ZFDownloadPhotoOperation.m */; };
-		27D861CC17220E3B00A83517 /* ZFDownloadPhotoOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861C317220E3B00A83517 /* ZFDownloadPhotoOperation.m */; };
-		27D861CF1722104400A83517 /* ZFDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861CD1722104300A83517 /* ZFDownloadSpec.h */; };
-		27D861D01722104400A83517 /* ZFDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861CD1722104300A83517 /* ZFDownloadSpec.h */; };
-		27D861D11722104400A83517 /* ZFDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861CD1722104300A83517 /* ZFDownloadSpec.h */; };
-		27D861D21722104400A83517 /* ZFDownloadSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861CD1722104300A83517 /* ZFDownloadSpec.h */; };
-		27D861D31722104400A83517 /* ZFDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861CE1722104400A83517 /* ZFDownloadSpec.m */; };
-		27D861D41722104400A83517 /* ZFDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861CE1722104400A83517 /* ZFDownloadSpec.m */; };
-		27D861D51722104400A83517 /* ZFDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861CE1722104400A83517 /* ZFDownloadSpec.m */; };
-		27D861D61722104400A83517 /* ZFDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861CE1722104400A83517 /* ZFDownloadSpec.m */; };
-		27D861D71722104400A83517 /* ZFDownloadSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861CE1722104400A83517 /* ZFDownloadSpec.m */; };
-		27D861DA1722212F00A83517 /* ZFBatchPhotoDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861D81722212D00A83517 /* ZFBatchPhotoDownloadOperation.h */; };
-		27D861DB1722212F00A83517 /* ZFBatchPhotoDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861D81722212D00A83517 /* ZFBatchPhotoDownloadOperation.h */; };
-		27D861DC1722212F00A83517 /* ZFBatchPhotoDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861D81722212D00A83517 /* ZFBatchPhotoDownloadOperation.h */; };
-		27D861DD1722212F00A83517 /* ZFBatchPhotoDownloadOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861D81722212D00A83517 /* ZFBatchPhotoDownloadOperation.h */; };
-		27D861DE1722212F00A83517 /* ZFBatchPhotoDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861D91722212E00A83517 /* ZFBatchPhotoDownloadOperation.m */; };
-		27D861DF1722212F00A83517 /* ZFBatchPhotoDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861D91722212E00A83517 /* ZFBatchPhotoDownloadOperation.m */; };
-		27D861E01722212F00A83517 /* ZFBatchPhotoDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861D91722212E00A83517 /* ZFBatchPhotoDownloadOperation.m */; };
-		27D861E11722212F00A83517 /* ZFBatchPhotoDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861D91722212E00A83517 /* ZFBatchPhotoDownloadOperation.m */; };
-		27D861E21722212F00A83517 /* ZFBatchPhotoDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861D91722212E00A83517 /* ZFBatchPhotoDownloadOperation.m */; };
-		27D861E51722216800A83517 /* FLPrepareDownloadQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861E31722216700A83517 /* FLPrepareDownloadQueueOperation.h */; };
-		27D861E61722216800A83517 /* FLPrepareDownloadQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861E31722216700A83517 /* FLPrepareDownloadQueueOperation.h */; };
-		27D861E71722216800A83517 /* FLPrepareDownloadQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861E31722216700A83517 /* FLPrepareDownloadQueueOperation.h */; };
-		27D861E81722216800A83517 /* FLPrepareDownloadQueueOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861E31722216700A83517 /* FLPrepareDownloadQueueOperation.h */; };
-		27D861E91722216800A83517 /* FLPrepareDownloadQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861E41722216800A83517 /* FLPrepareDownloadQueueOperation.m */; };
-		27D861EA1722216800A83517 /* FLPrepareDownloadQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861E41722216800A83517 /* FLPrepareDownloadQueueOperation.m */; };
-		27D861EB1722216800A83517 /* FLPrepareDownloadQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861E41722216800A83517 /* FLPrepareDownloadQueueOperation.m */; };
-		27D861EC1722216800A83517 /* FLPrepareDownloadQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861E41722216800A83517 /* FLPrepareDownloadQueueOperation.m */; };
-		27D861ED1722216800A83517 /* FLPrepareDownloadQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861E41722216800A83517 /* FLPrepareDownloadQueueOperation.m */; };
-		27D861F0172224A200A83517 /* ZFDownloadQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861EE172224A000A83517 /* ZFDownloadQueue.h */; };
-		27D861F1172224A200A83517 /* ZFDownloadQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861EE172224A000A83517 /* ZFDownloadQueue.h */; };
-		27D861F2172224A200A83517 /* ZFDownloadQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861EE172224A000A83517 /* ZFDownloadQueue.h */; };
-		27D861F3172224A200A83517 /* ZFDownloadQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D861EE172224A000A83517 /* ZFDownloadQueue.h */; };
-		27D861F4172224A200A83517 /* ZFDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861EF172224A100A83517 /* ZFDownloadQueue.m */; };
-		27D861F5172224A200A83517 /* ZFDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861EF172224A100A83517 /* ZFDownloadQueue.m */; };
-		27D861F6172224A200A83517 /* ZFDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861EF172224A100A83517 /* ZFDownloadQueue.m */; };
-		27D861F7172224A200A83517 /* ZFDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861EF172224A100A83517 /* ZFDownloadQueue.m */; };
-		27D861F8172224A200A83517 /* ZFDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D861EF172224A100A83517 /* ZFDownloadQueue.m */; };
 		27EA230616B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
 		27EA230716B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
 		27EA230816B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
@@ -5108,6 +5126,38 @@
 
 /* Begin PBXFileReference section */
 		27048EF0161CB58600C38ADA /* libFishLampConnect-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2718E32F17233525002D2C98 /* FLPrepareDownloadQueueOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPrepareDownloadQueueOperation.h; sourceTree = "<group>"; };
+		2718E33017233525002D2C98 /* FLPrepareDownloadQueueOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPrepareDownloadQueueOperation.m; sourceTree = "<group>"; };
+		2718E33117233525002D2C98 /* ZFBatchDownloadSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBatchDownloadSpec.h; sourceTree = "<group>"; };
+		2718E33217233525002D2C98 /* ZFBatchDownloadSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBatchDownloadSpec.m; sourceTree = "<group>"; };
+		2718E33317233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBatchDownloadSynchronousOperation.h; sourceTree = "<group>"; };
+		2718E33417233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBatchDownloadSynchronousOperation.m; sourceTree = "<group>"; };
+		2718E33517233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFAsyncBatchPhotoDownloader.h; sourceTree = "<group>"; };
+		2718E33617233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFAsyncBatchPhotoDownloader.m; sourceTree = "<group>"; };
+		2718E33717233525002D2C98 /* ZFBatchUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBatchUploadOperation.h; sourceTree = "<group>"; };
+		2718E33817233525002D2C98 /* ZFBatchUploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBatchUploadOperation.m; sourceTree = "<group>"; };
+		2718E33917233525002D2C98 /* ZFBatchUploadSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBatchUploadSpec.h; sourceTree = "<group>"; };
+		2718E33A17233525002D2C98 /* ZFBatchUploadSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBatchUploadSpec.m; sourceTree = "<group>"; };
+		2718E33B17233525002D2C98 /* ZFDownloadPhotoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadPhotoOperation.h; sourceTree = "<group>"; };
+		2718E33C17233525002D2C98 /* ZFDownloadPhotoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadPhotoOperation.m; sourceTree = "<group>"; };
+		2718E33D17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFAsyncPhotoSetDownloader.h; sourceTree = "<group>"; };
+		2718E33E17233525002D2C98 /* ZFAsyncPhotoSetDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFAsyncPhotoSetDownloader.m; sourceTree = "<group>"; };
+		2718E33F17233525002D2C98 /* ZFDownloadPhotoSetsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadPhotoSetsOperation.h; sourceTree = "<group>"; };
+		2718E34017233525002D2C98 /* ZFDownloadPhotoSetsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadPhotoSetsOperation.m; sourceTree = "<group>"; };
+		2718E34117233525002D2C98 /* ZFDownloadQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadQueue.h; sourceTree = "<group>"; };
+		2718E34217233525002D2C98 /* ZFDownloadQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadQueue.m; sourceTree = "<group>"; };
+		2718E34317233525002D2C98 /* ZFDownloadSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadSpec.h; sourceTree = "<group>"; };
+		2718E34417233525002D2C98 /* ZFDownloadSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadSpec.m; sourceTree = "<group>"; };
+		2718E34517233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLoadAllUserInfoForAuthenticatedUserOperation.h; sourceTree = "<group>"; };
+		2718E34617233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFLoadAllUserInfoForAuthenticatedUserOperation.m; sourceTree = "<group>"; };
+		2718E34717233525002D2C98 /* ZFLoadGroupHierarchyOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLoadGroupHierarchyOperation.h; sourceTree = "<group>"; };
+		2718E34817233525002D2C98 /* ZFLoadGroupHierarchyOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFLoadGroupHierarchyOperation.m; sourceTree = "<group>"; };
+		2718E34917233525002D2C98 /* ZFLoadGroupOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLoadGroupOperation.h; sourceTree = "<group>"; };
+		2718E34A17233525002D2C98 /* ZFLoadGroupOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFLoadGroupOperation.m; sourceTree = "<group>"; };
+		2718E34B17233525002D2C98 /* ZFTransferState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTransferState.h; sourceTree = "<group>"; };
+		2718E34C17233525002D2C98 /* ZFTransferState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTransferState.m; sourceTree = "<group>"; };
+		2718E3D817233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFAsyncGroupPhotoSetDownloader.h; sourceTree = "<group>"; };
+		2718E3D917233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFAsyncGroupPhotoSetDownloader.m; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampConnect-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2739006E16D45CFE00FC6453 /* FishLampCocoaUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoaUI.xcodeproj; path = ../FishLampCocoaUILib/FishLampCocoaUI.xcodeproj; sourceTree = "<group>"; };
 		275A609116FFB23300B5EE4C /* FLHttpRequest+ZenfolioAuthentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLHttpRequest+ZenfolioAuthentication.h"; sourceTree = "<group>"; };
@@ -5165,14 +5215,6 @@
 		275A60CB16FFB23300B5EE4C /* FLZenfolio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLZenfolio.m; sourceTree = "<group>"; };
 		275A60CD16FFB23300B5EE4C /* ZFHttpRequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFHttpRequestFactory.h; sourceTree = "<group>"; };
 		275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFHttpRequestFactory.m; sourceTree = "<group>"; };
-		275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadPhotoSetsOperation.h; sourceTree = "<group>"; };
-		275A60D316FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadPhotoSetsOperation.m; sourceTree = "<group>"; };
-		275A60D416FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLoadAllUserInfoForAuthenticatedUserOperation.h; sourceTree = "<group>"; };
-		275A60D516FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFLoadAllUserInfoForAuthenticatedUserOperation.m; sourceTree = "<group>"; };
-		275A60D616FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLoadGroupHierarchyOperation.h; sourceTree = "<group>"; };
-		275A60D716FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFLoadGroupHierarchyOperation.m; sourceTree = "<group>"; };
-		275A60D816FFB23300B5EE4C /* ZFLoadGroupOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFLoadGroupOperation.h; sourceTree = "<group>"; };
-		275A60D916FFB23300B5EE4C /* ZFLoadGroupOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFLoadGroupOperation.m; sourceTree = "<group>"; };
 		275A60DB16FFB23300B5EE4C /* ZFDownloadImageHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadImageHttpRequest.h; sourceTree = "<group>"; };
 		275A60DC16FFB23300B5EE4C /* ZFDownloadImageHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadImageHttpRequest.m; sourceTree = "<group>"; };
 		275A60DD16FFB23300B5EE4C /* ZFRandomPhotoDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFRandomPhotoDownloader.h; sourceTree = "<group>"; };
@@ -6212,27 +6254,7 @@
 		278AF82816FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZfUpdatePhotoSetOperation.m; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampConnect-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampConnect-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		27BC8B2517173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBatchDownloadSynchronousOperation.h; sourceTree = "<group>"; };
-		27BC8B2617173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBatchDownloadSynchronousOperation.m; sourceTree = "<group>"; };
-		27BC8B2717173FBB00ECCEA4 /* ZFBatchDownloadSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBatchDownloadSpec.h; sourceTree = "<group>"; };
-		27BC8B2817173FBB00ECCEA4 /* ZFBatchDownloadSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBatchDownloadSpec.m; sourceTree = "<group>"; };
-		27BC8B2917173FBB00ECCEA4 /* ZFBatchUploadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBatchUploadOperation.h; sourceTree = "<group>"; };
-		27BC8B2A17173FBB00ECCEA4 /* ZFBatchUploadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBatchUploadOperation.m; sourceTree = "<group>"; };
-		27BC8B2B17173FBB00ECCEA4 /* ZFBatchUploadSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBatchUploadSpec.h; sourceTree = "<group>"; };
-		27BC8B2C17173FBB00ECCEA4 /* ZFBatchUploadSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBatchUploadSpec.m; sourceTree = "<group>"; };
-		27BC8B5117173FE600ECCEA4 /* ZFTransferState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTransferState.h; sourceTree = "<group>"; };
-		27BC8B5217173FE600ECCEA4 /* ZFTransferState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTransferState.m; sourceTree = "<group>"; };
 		27CBC1F416768BA600753D0A /* libFishLampConnect-OSX-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-OSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		27D861C217220E3B00A83517 /* ZFDownloadPhotoOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadPhotoOperation.h; sourceTree = "<group>"; };
-		27D861C317220E3B00A83517 /* ZFDownloadPhotoOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadPhotoOperation.m; sourceTree = "<group>"; };
-		27D861CD1722104300A83517 /* ZFDownloadSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadSpec.h; sourceTree = "<group>"; };
-		27D861CE1722104400A83517 /* ZFDownloadSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadSpec.m; sourceTree = "<group>"; };
-		27D861D81722212D00A83517 /* ZFBatchPhotoDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFBatchPhotoDownloadOperation.h; sourceTree = "<group>"; };
-		27D861D91722212E00A83517 /* ZFBatchPhotoDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFBatchPhotoDownloadOperation.m; sourceTree = "<group>"; };
-		27D861E31722216700A83517 /* FLPrepareDownloadQueueOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPrepareDownloadQueueOperation.h; sourceTree = "<group>"; };
-		27D861E41722216800A83517 /* FLPrepareDownloadQueueOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPrepareDownloadQueueOperation.m; sourceTree = "<group>"; };
-		27D861EE172224A000A83517 /* ZFDownloadQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDownloadQueue.h; sourceTree = "<group>"; };
-		27D861EF172224A100A83517 /* ZFDownloadQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDownloadQueue.m; sourceTree = "<group>"; };
 		27E95851170BB75B00587A8F /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27E95852170BB75B00587A8F /* TargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-32-MRC.xcconfig"; sourceTree = "<group>"; };
 		27E95853170BB75B00587A8F /* TargetSettings-OSX-3264-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-3264-MRC.xcconfig"; sourceTree = "<group>"; };
@@ -6284,6 +6306,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2718E32E17233525002D2C98 /* Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				2718E3D7172335D0002D2C98 /* Upload */,
+				2718E3D61723358D002D2C98 /* Download */,
+				2718E3D51723354D002D2C98 /* Async */,
+				2718E3D41723352F002D2C98 /* Synchronous */,
+			);
+			path = Transfer;
+			sourceTree = "<group>";
+		};
+		2718E3D41723352F002D2C98 /* Synchronous */ = {
+			isa = PBXGroup;
+			children = (
+				2718E32F17233525002D2C98 /* FLPrepareDownloadQueueOperation.h */,
+				2718E33017233525002D2C98 /* FLPrepareDownloadQueueOperation.m */,
+				2718E33317233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h */,
+				2718E33B17233525002D2C98 /* ZFDownloadPhotoOperation.h */,
+				2718E34517233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */,
+				2718E34617233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */,
+				2718E34917233525002D2C98 /* ZFLoadGroupOperation.h */,
+				2718E34A17233525002D2C98 /* ZFLoadGroupOperation.m */,
+				2718E33C17233525002D2C98 /* ZFDownloadPhotoOperation.m */,
+				2718E33F17233525002D2C98 /* ZFDownloadPhotoSetsOperation.h */,
+				2718E34017233525002D2C98 /* ZFDownloadPhotoSetsOperation.m */,
+				2718E34717233525002D2C98 /* ZFLoadGroupHierarchyOperation.h */,
+				2718E34817233525002D2C98 /* ZFLoadGroupHierarchyOperation.m */,
+				2718E33417233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m */,
+			);
+			name = Synchronous;
+			sourceTree = "<group>";
+		};
+		2718E3D51723354D002D2C98 /* Async */ = {
+			isa = PBXGroup;
+			children = (
+				2718E33517233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h */,
+				2718E33617233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m */,
+				2718E33D17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h */,
+				2718E33E17233525002D2C98 /* ZFAsyncPhotoSetDownloader.m */,
+				2718E3D817233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h */,
+				2718E3D917233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m */,
+			);
+			name = Async;
+			sourceTree = "<group>";
+		};
+		2718E3D61723358D002D2C98 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				2718E34317233525002D2C98 /* ZFDownloadSpec.h */,
+				2718E34417233525002D2C98 /* ZFDownloadSpec.m */,
+				2718E34117233525002D2C98 /* ZFDownloadQueue.h */,
+				2718E34217233525002D2C98 /* ZFDownloadQueue.m */,
+				2718E33117233525002D2C98 /* ZFBatchDownloadSpec.h */,
+				2718E34B17233525002D2C98 /* ZFTransferState.h */,
+				2718E34C17233525002D2C98 /* ZFTransferState.m */,
+				2718E33217233525002D2C98 /* ZFBatchDownloadSpec.m */,
+			);
+			name = Download;
+			sourceTree = "<group>";
+		};
+		2718E3D7172335D0002D2C98 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				2718E33717233525002D2C98 /* ZFBatchUploadOperation.h */,
+				2718E33817233525002D2C98 /* ZFBatchUploadOperation.m */,
+				2718E33917233525002D2C98 /* ZFBatchUploadSpec.h */,
+				2718E33A17233525002D2C98 /* ZFBatchUploadSpec.m */,
+			);
+			name = Upload;
+			sourceTree = "<group>";
+		};
 		2731477B1652D2D30027850D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -6298,7 +6391,7 @@
 		275A608F16FFB23300B5EE4C /* Zenfolio */ = {
 			isa = PBXGroup;
 			children = (
-				27BC8B2417173FBB00ECCEA4 /* Transfer */,
+				2718E32E17233525002D2C98 /* Transfer */,
 				275A609016FFB23300B5EE4C /* Authentication */,
 				275A609D16FFB23300B5EE4C /* Batch */,
 				275A60AE16FFB23300B5EE4C /* Cache */,
@@ -6307,7 +6400,6 @@
 				275A60CA16FFB23300B5EE4C /* FLZenfolio.h */,
 				275A60CB16FFB23300B5EE4C /* FLZenfolio.m */,
 				275A60CC16FFB23300B5EE4C /* Http */,
-				275A60CF16FFB23300B5EE4C /* Operations */,
 				275A60DA16FFB23300B5EE4C /* PhotoDownloading */,
 				275A60DF16FFB23300B5EE4C /* PhotoUploading */,
 				275A60FE16FFB23300B5EE4C /* RefactorThese */,
@@ -6420,21 +6512,6 @@
 				275A60CE16FFB23300B5EE4C /* ZFHttpRequestFactory.m */,
 			);
 			path = Http;
-			sourceTree = "<group>";
-		};
-		275A60CF16FFB23300B5EE4C /* Operations */ = {
-			isa = PBXGroup;
-			children = (
-				275A60D216FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.h */,
-				275A60D316FFB23300B5EE4C /* ZFDownloadPhotoSetsOperation.m */,
-				275A60D416FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h */,
-				275A60D516FFB23300B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m */,
-				275A60D616FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.h */,
-				275A60D716FFB23300B5EE4C /* ZFLoadGroupHierarchyOperation.m */,
-				275A60D816FFB23300B5EE4C /* ZFLoadGroupOperation.h */,
-				275A60D916FFB23300B5EE4C /* ZFLoadGroupOperation.m */,
-			);
-			path = Operations;
 			sourceTree = "<group>";
 		};
 		275A60DA16FFB23300B5EE4C /* PhotoDownloading */ = {
@@ -7657,33 +7734,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		27BC8B2417173FBB00ECCEA4 /* Transfer */ = {
-			isa = PBXGroup;
-			children = (
-				27BC8B2517173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h */,
-				27BC8B2617173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m */,
-				27BC8B2717173FBB00ECCEA4 /* ZFBatchDownloadSpec.h */,
-				27BC8B2817173FBB00ECCEA4 /* ZFBatchDownloadSpec.m */,
-				27BC8B2917173FBB00ECCEA4 /* ZFBatchUploadOperation.h */,
-				27BC8B2A17173FBB00ECCEA4 /* ZFBatchUploadOperation.m */,
-				27BC8B2B17173FBB00ECCEA4 /* ZFBatchUploadSpec.h */,
-				27BC8B2C17173FBB00ECCEA4 /* ZFBatchUploadSpec.m */,
-				27BC8B5117173FE600ECCEA4 /* ZFTransferState.h */,
-				27BC8B5217173FE600ECCEA4 /* ZFTransferState.m */,
-				27D861C217220E3B00A83517 /* ZFDownloadPhotoOperation.h */,
-				27D861C317220E3B00A83517 /* ZFDownloadPhotoOperation.m */,
-				27D861CD1722104300A83517 /* ZFDownloadSpec.h */,
-				27D861CE1722104400A83517 /* ZFDownloadSpec.m */,
-				27D861D81722212D00A83517 /* ZFBatchPhotoDownloadOperation.h */,
-				27D861D91722212E00A83517 /* ZFBatchPhotoDownloadOperation.m */,
-				27D861E31722216700A83517 /* FLPrepareDownloadQueueOperation.h */,
-				27D861E41722216800A83517 /* FLPrepareDownloadQueueOperation.m */,
-				27D861EE172224A000A83517 /* ZFDownloadQueue.h */,
-				27D861EF172224A100A83517 /* ZFDownloadQueue.m */,
-			);
-			path = Transfer;
-			sourceTree = "<group>";
-		};
 		27E95850170BB75B00587A8F /* FishLampConnect */ = {
 			isa = PBXGroup;
 			children = (
@@ -7763,10 +7813,6 @@
 				275A65BB16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C416FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
 				275A65CD16FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */,
-				275A65DF16FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
-				275A65E816FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
-				275A65F116FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
-				275A65FA16FFB23C00B5EE4C /* ZFLoadGroupOperation.h in Headers */,
 				275A660316FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.h in Headers */,
 				275A660C16FFB23C00B5EE4C /* ZFRandomPhotoDownloader.h in Headers */,
 				275A661516FFB23C00B5EE4C /* ZFUploadImageHttpRequest.h in Headers */,
@@ -8283,16 +8329,22 @@
 				278AF87116FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.h in Headers */,
 				277D8A7C1703AC8B002D4265 /* ZFHttpController.h in Headers */,
 				277D8A921704AC90002D4265 /* ZFHttpUser.h in Headers */,
-				27BC8B2D17173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h in Headers */,
-				27BC8B3617173FBB00ECCEA4 /* ZFBatchDownloadSpec.h in Headers */,
-				27BC8B3F17173FBB00ECCEA4 /* ZFBatchUploadOperation.h in Headers */,
-				27BC8B4817173FBB00ECCEA4 /* ZFBatchUploadSpec.h in Headers */,
-				27BC8B5317173FE600ECCEA4 /* ZFTransferState.h in Headers */,
-				27D861C417220E3B00A83517 /* ZFDownloadPhotoOperation.h in Headers */,
-				27D861CF1722104400A83517 /* ZFDownloadSpec.h in Headers */,
-				27D861DA1722212F00A83517 /* ZFBatchPhotoDownloadOperation.h in Headers */,
-				27D861E51722216800A83517 /* FLPrepareDownloadQueueOperation.h in Headers */,
-				27D861F0172224A200A83517 /* ZFDownloadQueue.h in Headers */,
+				2718E34D17233525002D2C98 /* FLPrepareDownloadQueueOperation.h in Headers */,
+				2718E35617233525002D2C98 /* ZFBatchDownloadSpec.h in Headers */,
+				2718E35F17233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h in Headers */,
+				2718E36817233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h in Headers */,
+				2718E37117233525002D2C98 /* ZFBatchUploadOperation.h in Headers */,
+				2718E37A17233525002D2C98 /* ZFBatchUploadSpec.h in Headers */,
+				2718E38317233525002D2C98 /* ZFDownloadPhotoOperation.h in Headers */,
+				2718E38C17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h in Headers */,
+				2718E39517233525002D2C98 /* ZFDownloadPhotoSetsOperation.h in Headers */,
+				2718E39E17233525002D2C98 /* ZFDownloadQueue.h in Headers */,
+				2718E3A717233525002D2C98 /* ZFDownloadSpec.h in Headers */,
+				2718E3B017233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
+				2718E3B917233525002D2C98 /* ZFLoadGroupHierarchyOperation.h in Headers */,
+				2718E3C217233525002D2C98 /* ZFLoadGroupOperation.h in Headers */,
+				2718E3CB17233525002D2C98 /* ZFTransferState.h in Headers */,
+				2718E3DA17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8328,10 +8380,6 @@
 				275A65BD16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C616FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
 				275A65CF16FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */,
-				275A65E116FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
-				275A65EA16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
-				275A65F316FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
-				275A65FC16FFB23C00B5EE4C /* ZFLoadGroupOperation.h in Headers */,
 				275A660516FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.h in Headers */,
 				275A660E16FFB23C00B5EE4C /* ZFRandomPhotoDownloader.h in Headers */,
 				275A661716FFB23C00B5EE4C /* ZFUploadImageHttpRequest.h in Headers */,
@@ -8848,16 +8896,22 @@
 				278AF87316FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.h in Headers */,
 				277D8A7E1703AC8B002D4265 /* ZFHttpController.h in Headers */,
 				277D8A941704AC90002D4265 /* ZFHttpUser.h in Headers */,
-				27BC8B2F17173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h in Headers */,
-				27BC8B3817173FBB00ECCEA4 /* ZFBatchDownloadSpec.h in Headers */,
-				27BC8B4117173FBB00ECCEA4 /* ZFBatchUploadOperation.h in Headers */,
-				27BC8B4A17173FBB00ECCEA4 /* ZFBatchUploadSpec.h in Headers */,
-				27BC8B5517173FE600ECCEA4 /* ZFTransferState.h in Headers */,
-				27D861C617220E3B00A83517 /* ZFDownloadPhotoOperation.h in Headers */,
-				27D861D11722104400A83517 /* ZFDownloadSpec.h in Headers */,
-				27D861DC1722212F00A83517 /* ZFBatchPhotoDownloadOperation.h in Headers */,
-				27D861E71722216800A83517 /* FLPrepareDownloadQueueOperation.h in Headers */,
-				27D861F2172224A200A83517 /* ZFDownloadQueue.h in Headers */,
+				2718E34F17233525002D2C98 /* FLPrepareDownloadQueueOperation.h in Headers */,
+				2718E35817233525002D2C98 /* ZFBatchDownloadSpec.h in Headers */,
+				2718E36117233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h in Headers */,
+				2718E36A17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h in Headers */,
+				2718E37317233525002D2C98 /* ZFBatchUploadOperation.h in Headers */,
+				2718E37C17233525002D2C98 /* ZFBatchUploadSpec.h in Headers */,
+				2718E38517233525002D2C98 /* ZFDownloadPhotoOperation.h in Headers */,
+				2718E38E17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h in Headers */,
+				2718E39717233525002D2C98 /* ZFDownloadPhotoSetsOperation.h in Headers */,
+				2718E3A017233525002D2C98 /* ZFDownloadQueue.h in Headers */,
+				2718E3A917233525002D2C98 /* ZFDownloadSpec.h in Headers */,
+				2718E3B217233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
+				2718E3BB17233525002D2C98 /* ZFLoadGroupHierarchyOperation.h in Headers */,
+				2718E3C417233525002D2C98 /* ZFLoadGroupOperation.h in Headers */,
+				2718E3CD17233525002D2C98 /* ZFTransferState.h in Headers */,
+				2718E3DC17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8893,10 +8947,6 @@
 				275A65BC16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C516FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
 				275A65CE16FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */,
-				275A65E016FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
-				275A65E916FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
-				275A65F216FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
-				275A65FB16FFB23C00B5EE4C /* ZFLoadGroupOperation.h in Headers */,
 				275A660416FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.h in Headers */,
 				275A660D16FFB23C00B5EE4C /* ZFRandomPhotoDownloader.h in Headers */,
 				275A661616FFB23C00B5EE4C /* ZFUploadImageHttpRequest.h in Headers */,
@@ -9413,16 +9463,22 @@
 				278AF87216FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.h in Headers */,
 				277D8A7D1703AC8B002D4265 /* ZFHttpController.h in Headers */,
 				277D8A931704AC90002D4265 /* ZFHttpUser.h in Headers */,
-				27BC8B2E17173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h in Headers */,
-				27BC8B3717173FBB00ECCEA4 /* ZFBatchDownloadSpec.h in Headers */,
-				27BC8B4017173FBB00ECCEA4 /* ZFBatchUploadOperation.h in Headers */,
-				27BC8B4917173FBB00ECCEA4 /* ZFBatchUploadSpec.h in Headers */,
-				27BC8B5417173FE600ECCEA4 /* ZFTransferState.h in Headers */,
-				27D861C517220E3B00A83517 /* ZFDownloadPhotoOperation.h in Headers */,
-				27D861D01722104400A83517 /* ZFDownloadSpec.h in Headers */,
-				27D861DB1722212F00A83517 /* ZFBatchPhotoDownloadOperation.h in Headers */,
-				27D861E61722216800A83517 /* FLPrepareDownloadQueueOperation.h in Headers */,
-				27D861F1172224A200A83517 /* ZFDownloadQueue.h in Headers */,
+				2718E34E17233525002D2C98 /* FLPrepareDownloadQueueOperation.h in Headers */,
+				2718E35717233525002D2C98 /* ZFBatchDownloadSpec.h in Headers */,
+				2718E36017233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h in Headers */,
+				2718E36917233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h in Headers */,
+				2718E37217233525002D2C98 /* ZFBatchUploadOperation.h in Headers */,
+				2718E37B17233525002D2C98 /* ZFBatchUploadSpec.h in Headers */,
+				2718E38417233525002D2C98 /* ZFDownloadPhotoOperation.h in Headers */,
+				2718E38D17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h in Headers */,
+				2718E39617233525002D2C98 /* ZFDownloadPhotoSetsOperation.h in Headers */,
+				2718E39F17233525002D2C98 /* ZFDownloadQueue.h in Headers */,
+				2718E3A817233525002D2C98 /* ZFDownloadSpec.h in Headers */,
+				2718E3B117233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
+				2718E3BA17233525002D2C98 /* ZFLoadGroupHierarchyOperation.h in Headers */,
+				2718E3C317233525002D2C98 /* ZFLoadGroupOperation.h in Headers */,
+				2718E3CC17233525002D2C98 /* ZFTransferState.h in Headers */,
+				2718E3DB17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9458,10 +9514,6 @@
 				275A65BE16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.h in Headers */,
 				275A65C716FFB23C00B5EE4C /* FLZenfolio.h in Headers */,
 				275A65D016FFB23C00B5EE4C /* ZFHttpRequestFactory.h in Headers */,
-				275A65E216FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.h in Headers */,
-				275A65EB16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
-				275A65F416FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.h in Headers */,
-				275A65FD16FFB23C00B5EE4C /* ZFLoadGroupOperation.h in Headers */,
 				275A660616FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.h in Headers */,
 				275A660F16FFB23C00B5EE4C /* ZFRandomPhotoDownloader.h in Headers */,
 				275A661816FFB23C00B5EE4C /* ZFUploadImageHttpRequest.h in Headers */,
@@ -9978,16 +10030,22 @@
 				278AF87416FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.h in Headers */,
 				277D8A7F1703AC8B002D4265 /* ZFHttpController.h in Headers */,
 				277D8A951704AC90002D4265 /* ZFHttpUser.h in Headers */,
-				27BC8B3017173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.h in Headers */,
-				27BC8B3917173FBB00ECCEA4 /* ZFBatchDownloadSpec.h in Headers */,
-				27BC8B4217173FBB00ECCEA4 /* ZFBatchUploadOperation.h in Headers */,
-				27BC8B4B17173FBB00ECCEA4 /* ZFBatchUploadSpec.h in Headers */,
-				27BC8B5617173FE600ECCEA4 /* ZFTransferState.h in Headers */,
-				27D861C717220E3B00A83517 /* ZFDownloadPhotoOperation.h in Headers */,
-				27D861D21722104400A83517 /* ZFDownloadSpec.h in Headers */,
-				27D861DD1722212F00A83517 /* ZFBatchPhotoDownloadOperation.h in Headers */,
-				27D861E81722216800A83517 /* FLPrepareDownloadQueueOperation.h in Headers */,
-				27D861F3172224A200A83517 /* ZFDownloadQueue.h in Headers */,
+				2718E35017233525002D2C98 /* FLPrepareDownloadQueueOperation.h in Headers */,
+				2718E35917233525002D2C98 /* ZFBatchDownloadSpec.h in Headers */,
+				2718E36217233525002D2C98 /* ZFBatchDownloadSynchronousOperation.h in Headers */,
+				2718E36B17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.h in Headers */,
+				2718E37417233525002D2C98 /* ZFBatchUploadOperation.h in Headers */,
+				2718E37D17233525002D2C98 /* ZFBatchUploadSpec.h in Headers */,
+				2718E38617233525002D2C98 /* ZFDownloadPhotoOperation.h in Headers */,
+				2718E38F17233525002D2C98 /* ZFAsyncPhotoSetDownloader.h in Headers */,
+				2718E39817233525002D2C98 /* ZFDownloadPhotoSetsOperation.h in Headers */,
+				2718E3A117233525002D2C98 /* ZFDownloadQueue.h in Headers */,
+				2718E3AA17233525002D2C98 /* ZFDownloadSpec.h in Headers */,
+				2718E3B317233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.h in Headers */,
+				2718E3BC17233525002D2C98 /* ZFLoadGroupHierarchyOperation.h in Headers */,
+				2718E3C517233525002D2C98 /* ZFLoadGroupOperation.h in Headers */,
+				2718E3CE17233525002D2C98 /* ZFTransferState.h in Headers */,
+				2718E3DD17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10191,10 +10249,6 @@
 				275A65C016FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65C916FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
 				275A65D216FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */,
-				275A65E416FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
-				275A65ED16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
-				275A65F616FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
-				275A65FF16FFB23C00B5EE4C /* ZFLoadGroupOperation.m in Sources */,
 				275A660816FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.m in Sources */,
 				275A661116FFB23C00B5EE4C /* ZFRandomPhotoDownloader.m in Sources */,
 				275A661A16FFB23C00B5EE4C /* ZFUploadImageHttpRequest.m in Sources */,
@@ -10710,16 +10764,22 @@
 				278AF87616FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */,
 				277D8A811703AC8B002D4265 /* ZFHttpController.m in Sources */,
 				277D8A971704AC90002D4265 /* ZFHttpUser.m in Sources */,
-				27BC8B3217173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m in Sources */,
-				27BC8B3B17173FBB00ECCEA4 /* ZFBatchDownloadSpec.m in Sources */,
-				27BC8B4417173FBB00ECCEA4 /* ZFBatchUploadOperation.m in Sources */,
-				27BC8B4D17173FBB00ECCEA4 /* ZFBatchUploadSpec.m in Sources */,
-				27BC8B5817173FE600ECCEA4 /* ZFTransferState.m in Sources */,
-				27D861C917220E3B00A83517 /* ZFDownloadPhotoOperation.m in Sources */,
-				27D861D41722104400A83517 /* ZFDownloadSpec.m in Sources */,
-				27D861DF1722212F00A83517 /* ZFBatchPhotoDownloadOperation.m in Sources */,
-				27D861EA1722216800A83517 /* FLPrepareDownloadQueueOperation.m in Sources */,
-				27D861F5172224A200A83517 /* ZFDownloadQueue.m in Sources */,
+				2718E35217233525002D2C98 /* FLPrepareDownloadQueueOperation.m in Sources */,
+				2718E35B17233525002D2C98 /* ZFBatchDownloadSpec.m in Sources */,
+				2718E36417233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m in Sources */,
+				2718E36D17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m in Sources */,
+				2718E37617233525002D2C98 /* ZFBatchUploadOperation.m in Sources */,
+				2718E37F17233525002D2C98 /* ZFBatchUploadSpec.m in Sources */,
+				2718E38817233525002D2C98 /* ZFDownloadPhotoOperation.m in Sources */,
+				2718E39117233525002D2C98 /* ZFAsyncPhotoSetDownloader.m in Sources */,
+				2718E39A17233525002D2C98 /* ZFDownloadPhotoSetsOperation.m in Sources */,
+				2718E3A317233525002D2C98 /* ZFDownloadQueue.m in Sources */,
+				2718E3AC17233525002D2C98 /* ZFDownloadSpec.m in Sources */,
+				2718E3B517233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
+				2718E3BE17233525002D2C98 /* ZFLoadGroupHierarchyOperation.m in Sources */,
+				2718E3C717233525002D2C98 /* ZFLoadGroupOperation.m in Sources */,
+				2718E3D017233525002D2C98 /* ZFTransferState.m in Sources */,
+				2718E3DF17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10754,10 +10814,6 @@
 				275A65C216FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65CB16FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
 				275A65D416FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */,
-				275A65E616FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
-				275A65EF16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
-				275A65F816FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
-				275A660116FFB23C00B5EE4C /* ZFLoadGroupOperation.m in Sources */,
 				275A660A16FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.m in Sources */,
 				275A661316FFB23C00B5EE4C /* ZFRandomPhotoDownloader.m in Sources */,
 				275A661C16FFB23C00B5EE4C /* ZFUploadImageHttpRequest.m in Sources */,
@@ -11273,16 +11329,22 @@
 				278AF87816FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */,
 				277D8A831703AC8B002D4265 /* ZFHttpController.m in Sources */,
 				277D8A991704AC90002D4265 /* ZFHttpUser.m in Sources */,
-				27BC8B3417173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m in Sources */,
-				27BC8B3D17173FBB00ECCEA4 /* ZFBatchDownloadSpec.m in Sources */,
-				27BC8B4617173FBB00ECCEA4 /* ZFBatchUploadOperation.m in Sources */,
-				27BC8B4F17173FBB00ECCEA4 /* ZFBatchUploadSpec.m in Sources */,
-				27BC8B5A17173FE600ECCEA4 /* ZFTransferState.m in Sources */,
-				27D861CB17220E3B00A83517 /* ZFDownloadPhotoOperation.m in Sources */,
-				27D861D61722104400A83517 /* ZFDownloadSpec.m in Sources */,
-				27D861E11722212F00A83517 /* ZFBatchPhotoDownloadOperation.m in Sources */,
-				27D861EC1722216800A83517 /* FLPrepareDownloadQueueOperation.m in Sources */,
-				27D861F7172224A200A83517 /* ZFDownloadQueue.m in Sources */,
+				2718E35417233525002D2C98 /* FLPrepareDownloadQueueOperation.m in Sources */,
+				2718E35D17233525002D2C98 /* ZFBatchDownloadSpec.m in Sources */,
+				2718E36617233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m in Sources */,
+				2718E36F17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m in Sources */,
+				2718E37817233525002D2C98 /* ZFBatchUploadOperation.m in Sources */,
+				2718E38117233525002D2C98 /* ZFBatchUploadSpec.m in Sources */,
+				2718E38A17233525002D2C98 /* ZFDownloadPhotoOperation.m in Sources */,
+				2718E39317233525002D2C98 /* ZFAsyncPhotoSetDownloader.m in Sources */,
+				2718E39C17233525002D2C98 /* ZFDownloadPhotoSetsOperation.m in Sources */,
+				2718E3A517233525002D2C98 /* ZFDownloadQueue.m in Sources */,
+				2718E3AE17233525002D2C98 /* ZFDownloadSpec.m in Sources */,
+				2718E3B717233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
+				2718E3C017233525002D2C98 /* ZFLoadGroupHierarchyOperation.m in Sources */,
+				2718E3C917233525002D2C98 /* ZFLoadGroupOperation.m in Sources */,
+				2718E3D217233525002D2C98 /* ZFTransferState.m in Sources */,
+				2718E3E117233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11317,10 +11379,6 @@
 				275A65BF16FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65C816FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
 				275A65D116FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */,
-				275A65E316FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
-				275A65EC16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
-				275A65F516FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
-				275A65FE16FFB23C00B5EE4C /* ZFLoadGroupOperation.m in Sources */,
 				275A660716FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.m in Sources */,
 				275A661016FFB23C00B5EE4C /* ZFRandomPhotoDownloader.m in Sources */,
 				275A661916FFB23C00B5EE4C /* ZFUploadImageHttpRequest.m in Sources */,
@@ -11836,16 +11894,22 @@
 				278AF87516FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */,
 				277D8A801703AC8B002D4265 /* ZFHttpController.m in Sources */,
 				277D8A961704AC90002D4265 /* ZFHttpUser.m in Sources */,
-				27BC8B3117173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m in Sources */,
-				27BC8B3A17173FBB00ECCEA4 /* ZFBatchDownloadSpec.m in Sources */,
-				27BC8B4317173FBB00ECCEA4 /* ZFBatchUploadOperation.m in Sources */,
-				27BC8B4C17173FBB00ECCEA4 /* ZFBatchUploadSpec.m in Sources */,
-				27BC8B5717173FE600ECCEA4 /* ZFTransferState.m in Sources */,
-				27D861C817220E3B00A83517 /* ZFDownloadPhotoOperation.m in Sources */,
-				27D861D31722104400A83517 /* ZFDownloadSpec.m in Sources */,
-				27D861DE1722212F00A83517 /* ZFBatchPhotoDownloadOperation.m in Sources */,
-				27D861E91722216800A83517 /* FLPrepareDownloadQueueOperation.m in Sources */,
-				27D861F4172224A200A83517 /* ZFDownloadQueue.m in Sources */,
+				2718E35117233525002D2C98 /* FLPrepareDownloadQueueOperation.m in Sources */,
+				2718E35A17233525002D2C98 /* ZFBatchDownloadSpec.m in Sources */,
+				2718E36317233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m in Sources */,
+				2718E36C17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m in Sources */,
+				2718E37517233525002D2C98 /* ZFBatchUploadOperation.m in Sources */,
+				2718E37E17233525002D2C98 /* ZFBatchUploadSpec.m in Sources */,
+				2718E38717233525002D2C98 /* ZFDownloadPhotoOperation.m in Sources */,
+				2718E39017233525002D2C98 /* ZFAsyncPhotoSetDownloader.m in Sources */,
+				2718E39917233525002D2C98 /* ZFDownloadPhotoSetsOperation.m in Sources */,
+				2718E3A217233525002D2C98 /* ZFDownloadQueue.m in Sources */,
+				2718E3AB17233525002D2C98 /* ZFDownloadSpec.m in Sources */,
+				2718E3B417233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
+				2718E3BD17233525002D2C98 /* ZFLoadGroupHierarchyOperation.m in Sources */,
+				2718E3C617233525002D2C98 /* ZFLoadGroupOperation.m in Sources */,
+				2718E3CF17233525002D2C98 /* ZFTransferState.m in Sources */,
+				2718E3DE17233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11880,10 +11944,6 @@
 				275A65C116FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65CA16FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
 				275A65D316FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */,
-				275A65E516FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
-				275A65EE16FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
-				275A65F716FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
-				275A660016FFB23C00B5EE4C /* ZFLoadGroupOperation.m in Sources */,
 				275A660916FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.m in Sources */,
 				275A661216FFB23C00B5EE4C /* ZFRandomPhotoDownloader.m in Sources */,
 				275A661B16FFB23C00B5EE4C /* ZFUploadImageHttpRequest.m in Sources */,
@@ -12399,16 +12459,22 @@
 				278AF87716FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */,
 				277D8A821703AC8B002D4265 /* ZFHttpController.m in Sources */,
 				277D8A981704AC90002D4265 /* ZFHttpUser.m in Sources */,
-				27BC8B3317173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m in Sources */,
-				27BC8B3C17173FBB00ECCEA4 /* ZFBatchDownloadSpec.m in Sources */,
-				27BC8B4517173FBB00ECCEA4 /* ZFBatchUploadOperation.m in Sources */,
-				27BC8B4E17173FBB00ECCEA4 /* ZFBatchUploadSpec.m in Sources */,
-				27BC8B5917173FE600ECCEA4 /* ZFTransferState.m in Sources */,
-				27D861CA17220E3B00A83517 /* ZFDownloadPhotoOperation.m in Sources */,
-				27D861D51722104400A83517 /* ZFDownloadSpec.m in Sources */,
-				27D861E01722212F00A83517 /* ZFBatchPhotoDownloadOperation.m in Sources */,
-				27D861EB1722216800A83517 /* FLPrepareDownloadQueueOperation.m in Sources */,
-				27D861F6172224A200A83517 /* ZFDownloadQueue.m in Sources */,
+				2718E35317233525002D2C98 /* FLPrepareDownloadQueueOperation.m in Sources */,
+				2718E35C17233525002D2C98 /* ZFBatchDownloadSpec.m in Sources */,
+				2718E36517233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m in Sources */,
+				2718E36E17233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m in Sources */,
+				2718E37717233525002D2C98 /* ZFBatchUploadOperation.m in Sources */,
+				2718E38017233525002D2C98 /* ZFBatchUploadSpec.m in Sources */,
+				2718E38917233525002D2C98 /* ZFDownloadPhotoOperation.m in Sources */,
+				2718E39217233525002D2C98 /* ZFAsyncPhotoSetDownloader.m in Sources */,
+				2718E39B17233525002D2C98 /* ZFDownloadPhotoSetsOperation.m in Sources */,
+				2718E3A417233525002D2C98 /* ZFDownloadQueue.m in Sources */,
+				2718E3AD17233525002D2C98 /* ZFDownloadSpec.m in Sources */,
+				2718E3B617233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
+				2718E3BF17233525002D2C98 /* ZFLoadGroupHierarchyOperation.m in Sources */,
+				2718E3C817233525002D2C98 /* ZFLoadGroupOperation.m in Sources */,
+				2718E3D117233525002D2C98 /* ZFTransferState.m in Sources */,
+				2718E3E017233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12443,10 +12509,6 @@
 				275A65C316FFB23C00B5EE4C /* ZFSoapFaultUserNotificationErrorFormatter.m in Sources */,
 				275A65CC16FFB23C00B5EE4C /* FLZenfolio.m in Sources */,
 				275A65D516FFB23C00B5EE4C /* ZFHttpRequestFactory.m in Sources */,
-				275A65E716FFB23C00B5EE4C /* ZFDownloadPhotoSetsOperation.m in Sources */,
-				275A65F016FFB23C00B5EE4C /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
-				275A65F916FFB23C00B5EE4C /* ZFLoadGroupHierarchyOperation.m in Sources */,
-				275A660216FFB23C00B5EE4C /* ZFLoadGroupOperation.m in Sources */,
 				275A660B16FFB23C00B5EE4C /* ZFDownloadImageHttpRequest.m in Sources */,
 				275A661416FFB23C00B5EE4C /* ZFRandomPhotoDownloader.m in Sources */,
 				275A661D16FFB23C00B5EE4C /* ZFUploadImageHttpRequest.m in Sources */,
@@ -12962,16 +13024,22 @@
 				278AF87916FFB3BB009D38F8 /* ZfUpdatePhotoSetOperation.m in Sources */,
 				277D8A841703AC8B002D4265 /* ZFHttpController.m in Sources */,
 				277D8A9A1704AC90002D4265 /* ZFHttpUser.m in Sources */,
-				27BC8B3517173FBB00ECCEA4 /* ZFBatchDownloadSynchronousOperation.m in Sources */,
-				27BC8B3E17173FBB00ECCEA4 /* ZFBatchDownloadSpec.m in Sources */,
-				27BC8B4717173FBB00ECCEA4 /* ZFBatchUploadOperation.m in Sources */,
-				27BC8B5017173FBB00ECCEA4 /* ZFBatchUploadSpec.m in Sources */,
-				27BC8B5B17173FE600ECCEA4 /* ZFTransferState.m in Sources */,
-				27D861CC17220E3B00A83517 /* ZFDownloadPhotoOperation.m in Sources */,
-				27D861D71722104400A83517 /* ZFDownloadSpec.m in Sources */,
-				27D861E21722212F00A83517 /* ZFBatchPhotoDownloadOperation.m in Sources */,
-				27D861ED1722216800A83517 /* FLPrepareDownloadQueueOperation.m in Sources */,
-				27D861F8172224A200A83517 /* ZFDownloadQueue.m in Sources */,
+				2718E35517233525002D2C98 /* FLPrepareDownloadQueueOperation.m in Sources */,
+				2718E35E17233525002D2C98 /* ZFBatchDownloadSpec.m in Sources */,
+				2718E36717233525002D2C98 /* ZFBatchDownloadSynchronousOperation.m in Sources */,
+				2718E37017233525002D2C98 /* ZFAsyncBatchPhotoDownloader.m in Sources */,
+				2718E37917233525002D2C98 /* ZFBatchUploadOperation.m in Sources */,
+				2718E38217233525002D2C98 /* ZFBatchUploadSpec.m in Sources */,
+				2718E38B17233525002D2C98 /* ZFDownloadPhotoOperation.m in Sources */,
+				2718E39417233525002D2C98 /* ZFAsyncPhotoSetDownloader.m in Sources */,
+				2718E39D17233525002D2C98 /* ZFDownloadPhotoSetsOperation.m in Sources */,
+				2718E3A617233525002D2C98 /* ZFDownloadQueue.m in Sources */,
+				2718E3AF17233525002D2C98 /* ZFDownloadSpec.m in Sources */,
+				2718E3B817233525002D2C98 /* ZFLoadAllUserInfoForAuthenticatedUserOperation.m in Sources */,
+				2718E3C117233525002D2C98 /* ZFLoadGroupHierarchyOperation.m in Sources */,
+				2718E3CA17233525002D2C98 /* ZFLoadGroupOperation.m in Sources */,
+				2718E3D317233525002D2C98 /* ZFTransferState.m in Sources */,
+				2718E3E217233678002D2C98 /* ZFAsyncGroupPhotoSetDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

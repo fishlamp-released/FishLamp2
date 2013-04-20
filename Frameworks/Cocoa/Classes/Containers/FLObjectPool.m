@@ -47,7 +47,7 @@
 //#endif
 //
 //- (id) popOneFromPool {
-//    id object = [_objects popFirstObject];
+//    id object = [_objects removeFirstObject];
 //    if(!object && _factory) {
 //        object = _factory();
 //    }
@@ -63,7 +63,7 @@
 //        BOOL done = YES;
 //        id object = [self popOneFromPool];
 //        if(object) {
-//            FLObjectPoolBlock block = [_requests popFirstObject];
+//            FLObjectPoolBlock block = [_requests removeFirstObject];
 //            if(block) {
 //                block(object);
 //                

@@ -10,18 +10,47 @@
 #import "FLObservable.h"
 #import "FLOperationContext.h"
 #import "FLAsyncQueue.h"
+#import "FLCallback.h"
+#import "FLObjectStorage.h"
 
 @protocol FLOperation <NSObject>
+@property (readonly, strong) id identifier;
 - (void) performUntilFinished:(FLFinisher*) finisher;
-- (void) operationDidFinish;
+- (void) operationDidFinishWithResult:(FLResult) result;
+- (void) requestCancel;
+
 @end
+
+@protocol FLOperationDefaultFinishSelector <NSObject>
+@optional
+- (void) operationDidFinish:(id) operation withResult:(FLResult) result;
+@end
+
+#define FLOperationDefaultFinishedSelector @selector(operationDidFinish:withResult:)
 
 @interface FLOperation : FLObservable<FLOperation> {
 @private
     __unsafe_unretained FLOperationContext* _context;
     NSUInteger _contextID;
     id<FLAsyncQueue> _asyncQueue;
+    id<FLObjectStorage> _objectStorage;
+	id _identifier;
+    BOOL _cancelled;
+    __unsafe_unretained id _finishedDelegate;
+    SEL _finishedSelectorForDelegate;
+    SEL _finishedSelectorForObserver;
 }
+
+// finished delegate
+@property (readwrite, nonatomic, assign) id delegate;
+@property (readwrite, nonatomic, assign) SEL finishedSelectorForDelegate; // default = FLOperationDefaultFinishedSelector
+@property (readwrite, nonatomic, assign) SEL finishedSelectorForObserver; // default = FLOperationDefaultFinishedSelector 
+
+// object storage
+@property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
+
+// unique id. by default an incrementing integer number
+@property (readwrite, strong) id identifier;
 
 // id of context. 
 @property (readonly, assign) NSUInteger contextID;
@@ -33,13 +62,13 @@
 @property (readwrite, strong, nonatomic) id<FLAsyncQueue> asyncQueue;
 
 // cancel yourself, and be quick about it.
+@property (readonly, assign, getter=wasCancelled) BOOL cancelled;
 - (void) requestCancel;
 
 // run synchronously
 - (FLResult) runSynchronously;
 
 - (FLResult) runSynchronouslyInContext:(FLOperationContext*) context;
-
 
 // start async. will run in asyncQueue. 
 - (FLFinisher*) runAsynchronously;
@@ -49,12 +78,14 @@
 - (FLFinisher*) runAsynchronouslyInContext:(FLOperationContext*) context 
                                 completion:(fl_completion_block_t) completionOrNil;
 
-// these call wasStartedByParent on the child before operation
+// these call willRunInParent on the child before operation
 // is run or started.
 - (FLResult) runChildSynchronously:(FLOperation*) operation;
 
+- (FLFinisher*) runChildAsynchronously:(FLOperation*) operation;
+
 - (FLFinisher*) runChildAsynchronously:(FLOperation*) operation 
-                     completion:(fl_completion_block_t) completionOrNil;
+                            completion:(fl_completion_block_t) completionOrNil;
 
 
 // optional overides
@@ -63,10 +94,17 @@
 - (void) contextDidClose;
 - (void) contextDidOpen;
 - (void) contextDidCancel;
-- (void) operationDidFinish;
+
+- (void) operationDidFinishWithResult:(id) result;
 
 // if the child operation doesn't have a queue or a context,
 // it will inherit it from it's parent.
-- (void) wasStartedByParent:(id<FLOperation>) parent;
+- (void) willRunInParent:(id) parent;
+- (void) didFinishInParent:(id) parent withResult:(FLResult) result;
+
+- (void) willRunChildOperation:(id) childOperation;
+- (void) didRunChildOperation:(id) childOperation withResult:(FLResult) result;
 
 @end
+
+

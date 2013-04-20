@@ -18,23 +18,20 @@
     unsigned long _mutatationCount;
 }
 
+@property (readonly, strong, nonatomic) NSArray* objectArray;
+@property (readonly, assign, nonatomic) NSUInteger count;
+@property (readonly, strong, nonatomic) id firstObject;
+@property (readonly, strong, nonatomic) id lastObject;
+
+@property (readonly, strong, nonatomic) id<NSFastEnumeration> forwardKeyEnumerator;
+@property (readonly, strong, nonatomic) id<NSFastEnumeration> forwardObjectEnumerator;
+
 - (id) initWithCapacity:(NSUInteger) capacity;
 
 + (FLOrderedCollection*) orderedCollection;
 + (FLOrderedCollection*) orderedCollectionWithCapacity:(NSUInteger) capacity;
 
-@property (readonly, retain, nonatomic) NSArray* objectArray;
-//@property (readonly, retain, nonatomic) NSDictionary* objectDictionary;
-//@property (readonly, retain, nonatomic) NSArray* keys;
-//@property (readonly, retain, nonatomic) NSMutableDictionary* indexes;
-
-@property (readonly, assign, nonatomic) NSUInteger count;
-//@property (readonly, copy, nonatomic) NSArray* objectArray;
-
 // setting an object will add it to the end of the array if it's not already in collection
-
-//- (void) addOrReplaceObject:(id) object forKey:(id) key;
-
 - (void) setObject:(id) object forKey:(id) key;
 - (id) objectForKey:(id) key;
 - (id) objectAtIndex:(NSUInteger) idx;
@@ -43,7 +40,6 @@
 - (void) removeObjectAtIndex:(NSUInteger) idx;
 
 - (void) removeObject:(id) object;
-
 - (void) removeAllObjects;
 
 - (id) replaceObjectAtIndex:(NSUInteger) atIndex withObject:(id) object forKey:(id) forKey;
@@ -51,14 +47,19 @@
 - (NSUInteger) indexForKey:(id) key;
 - (id) keyForIndex:(NSUInteger) aIndex;
 
-- (id) lastObject;
-- (id) firstObject;
+- (id) removeFirstObject;
+- (id) removeLastObject;
 
-- (id<NSFastEnumeration>) forwardKeyEnumerator;
-- (id<NSFastEnumeration>) forwardObjectEnumerator;
 
 // TODO
 //- (void)sortUsingFunction:(NSInteger (*)(id, id, void *))compare context:(void *)context;
 //- (void)sortUsingSelector:(SEL)comparator;
 
 @end
+
+
+//@property (readonly, copy, nonatomic) NSArray* objectArray;
+//@property (readonly, strong, nonatomic) NSDictionary* objectDictionary;
+//@property (readonly, strong, nonatomic) NSArray* keys;
+//@property (readonly, strong, nonatomic) NSMutableDictionary* indexes;
+//- (void) addOrReplaceObject:(id) object forKey:(id) key;

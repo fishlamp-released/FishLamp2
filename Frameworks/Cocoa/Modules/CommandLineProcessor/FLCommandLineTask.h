@@ -18,6 +18,6 @@
 
 + (id) commandLineTask;
 
-- (void) addOperation:(id<FLOperation>) operation;
+- (void) addOperation:(FLOperation*) operation;
 
 @end

@@ -8,10 +8,7 @@
 
 #import "FLCallback.h"
 
-//@interface FLCallback()
-//@property (readwrite, strong, nonatomic) id target;
-//@property (readwrite, assign, nonatomic) SEL action;
-//@end
+const FLCallback_t FLCallbackZero = { nil, nil };
 
 @implementation FLCallback
 

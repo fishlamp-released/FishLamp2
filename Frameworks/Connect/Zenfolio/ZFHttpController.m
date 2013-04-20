@@ -14,6 +14,8 @@
 #import "FLDictionaryObjectStorageService.h"
 #import "FLDatabaseObjectStorageService.h"
 
+#import "ZFAsyncGroupPhotoSetDownloader.h"
+
 #define ZFHttpControllerHiddenFolderName @".downloader"
 
 @interface ZFHttpController ()
@@ -64,7 +66,7 @@
 }
 
 - (void) operation:(ZFLoadGroupHierarchyOperation*) operation downloadedRootGroup:(FLResult) result {
-    if(![result error]) {
+    if(![result error] ) {
         [self.user setRootGroup:result];
     }
 }
@@ -73,20 +75,25 @@
     ZFLoadGroupHierarchyOperation* operation = 
         [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
     operation.context = self;
-    [operation setFinishedDelegate:self action:@selector(operation:downloadedRootGroup:)];
+    operation.delegate = self;
+    operation.finishedSelectorForDelegate = @selector(operation:downloadedRootGroup:);
     return operation;
 }
 
 - (id) createAllPhotoSetsDownloader {
 
-    ZFDownloadPhotoSetsOperation* operation = 
-            [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
-    operation.context = self;
-    return operation;
+//    ZFDownloadPhotoSetsOperation* operation = 
+//            [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
+    
+    ZFAsyncGroupPhotoSetDownloader* downloader =    
+            [ZFAsyncGroupPhotoSetDownloader asyncGroupPhotoSetDownloader:self.user.rootGroup];
+    
+    downloader.context = self;
+    return downloader;
 }
 
-- (ZFBatchPhotoDownloadOperation*) createBatchDownloader:(ZFBatchDownloadSpec*) spec {
-    ZFBatchPhotoDownloadOperation* operation = [ZFBatchPhotoDownloadOperation batchPhotoDownloadOperation:spec];
+- (ZFAsyncBatchPhotoDownloader*) createBatchDownloader:(ZFBatchDownloadSpec*) spec {
+    ZFAsyncBatchPhotoDownloader* operation = [ZFAsyncBatchPhotoDownloader batchPhotoDownloadOperation:spec];
     operation.context = self;
     return operation;
 }

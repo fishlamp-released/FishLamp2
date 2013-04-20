@@ -184,6 +184,18 @@
 	return [_objectArray lastObject];
 }
 
+- (id) removeFirstObject {
+    id firstObject = FLRetainWithAutorelease([self firstObject]);
+    [self removeObjectAtIndex:0];
+    return firstObject;
+}
+
+- (id) removeLastObject {
+    id lastObject = FLRetainWithAutorelease([self lastObject]);
+    [self removeObjectAtIndex:self.count - 1];
+    return lastObject;
+}
+
 - (void) removeObject:(id) object {
 	id thekey = nil;
 	for(id key in _objectDictionary) {

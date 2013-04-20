@@ -330,7 +330,7 @@ FLAssertFailedWithComment(@"refactor this");
     
         id result = [_upgradeTaskList runChildSynchronously:context];
                 
-        if([result error]) {
+        if([result error] ) {
             // TODO: Ok, now what?
         }
         else {

@@ -9,8 +9,8 @@
 #import "FLHttpController.h"
 #import "ZFWebApi.h"
 #import "ZFLoadGroupHierarchyOperation.h"
-#import "ZFDownloadPhotoSetsOperation.h"
-#import "ZFBatchPhotoDownloadOperation.h"
+#import "ZFAsyncGroupPhotoSetDownloader.h"
+#import "ZFAsyncBatchPhotoDownloader.h"
 #import "FLDatabaseObjectStorageService.h"
 
 @protocol ZFHttpControllerDelegate;
@@ -23,8 +23,8 @@
 @property (readwrite, strong) ZFHttpUser* user;
 
 - (ZFLoadGroupHierarchyOperation*) createRootGroupDownloader;
-- (ZFDownloadPhotoSetsOperation*) createAllPhotoSetsDownloader;
-- (ZFBatchPhotoDownloadOperation*) createBatchDownloader:(ZFBatchDownloadSpec*) spec;
+- (ZFAsyncGroupPhotoSetDownloader*) createAllPhotoSetsDownloader;
+- (ZFAsyncBatchPhotoDownloader*) createBatchDownloader:(ZFBatchDownloadSpec*) spec;
 
 @end
 

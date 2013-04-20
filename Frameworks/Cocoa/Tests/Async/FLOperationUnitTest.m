@@ -8,7 +8,7 @@
 
 #import "FLOperationUnitTest.h"
 #import "FLOperation.h"
-#import "FLOperationQueue.h"
+#import "FLSynchronousOperationQueueOperation.h"
 
 @implementation FLOperation (Tests)
 
@@ -56,7 +56,7 @@
 
 - (void) testInQueue {
 
-//    FLOperationQueue* q = [FLOperationQueue operationQueue];
+//    FLSynchronousOperationQueueOperation* q = [FLSynchronousOperationQueueOperation operationQueue];
 //    [q assertNotRun];
 //    [q assertNotInQueue];
 //

@@ -21,12 +21,17 @@
     dispatch_semaphore_t _semaphore;
     id _result;
     BOOL _finished;
+    BOOL _finishOnMainThread;
+    
     fl_completion_block_t _didFinish;
 #if DEBUG
     FLStackTrace* _createdStackTrace;
     FLStackTrace* _finishedStackTrace;
 #endif    
 }
+
+// True by default.
+@property (readwrite, assign) BOOL finishOnMainThread; 
 
 @property (readonly, strong) FLResult result;
 @property (readonly, assign, getter=isFinished) BOOL finished;

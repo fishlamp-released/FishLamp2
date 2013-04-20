@@ -210,8 +210,8 @@
 //    [self updateCountsForMediaType:mediaType];
 //
 //    NSError* error = nil;
-//    if([result error]) {
-//        error = [result error];
+//    if([result error] ) {
+//        error = [result error] ;
 //        [info setObject:error forKey:ZFDownloadPhotoErrorKey];
 //    }
 //    
