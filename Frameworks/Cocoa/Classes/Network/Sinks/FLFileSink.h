@@ -10,12 +10,12 @@
 
 @interface FLFileSink : NSObject<FLInputSink>  {
 @private
-    NSURL* _fileURL;
-    NSURL* _outputURL;
+    NSString* _filePath;
+    NSString* _outputPath;
     NSOutputStream* _outputStream;
     BOOL _open;
 }
 
-- (id) initWithFileURL:(NSURL*) fileURL;
-+ (id) fileSink:(NSURL*) fileURL;
+- (id) initWithFilePath:(NSString*) filePath;
++ (id) fileSink:(NSString*) filePath;
 @end

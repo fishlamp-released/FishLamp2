@@ -10,13 +10,13 @@
 
 @interface FLHiddenFolderFileSink : FLFileSink {
 @private
-    NSURL* _folderURL;
-    NSURL* _tempFileURL;
-    NSURL* _destinationFileURL;
+    NSString* _folderPath;
+    NSString* _tempFilePath;
+    NSString* _destinationFilePath;
 }
 
-- (id) initWithFileURL:(NSURL*) fileURL folderURL:(NSURL*) folderURL;
+- (id) initWithFilePath:(NSString*) filePath folderPath:(NSString*) folderPath;
 
-+ (id) hiddenFolderFileSink:(NSURL*) fileURL folderURL:(NSURL*) folderURL;
++ (id) hiddenFolderFileSink:(NSString*) filePath folderPath:(NSString*) folderPath;
 
 @end

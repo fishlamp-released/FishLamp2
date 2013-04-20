@@ -9,40 +9,40 @@
 #import "FLHiddenFolderFileSink.h"
 
 @interface FLHiddenFolderFileSink ()
-@property (readwrite, strong, nonatomic) NSURL* folderURL;
-@property (readwrite, strong, nonatomic) NSURL* destinationFileURL;
-@property (readwrite, strong, nonatomic) NSURL* tempFileURL;
+@property (readwrite, strong, nonatomic) NSString* folderPath;
+@property (readwrite, strong, nonatomic) NSString* destinationFilePath;
+@property (readwrite, strong, nonatomic) NSString* tempFilePath;
 
 @end
 
 @implementation FLHiddenFolderFileSink
 
-@synthesize folderURL = _folderURL;
-@synthesize destinationFileURL = _destinationFileURL;
-@synthesize tempFileURL = _tempFileURL;
+@synthesize folderPath = _folderPath;
+@synthesize destinationFilePath = _destinationFilePath;
+@synthesize tempFilePath = _tempFilePath;
 
-- (id) initWithFileURL:(NSURL*) fileURL folderURL:(NSURL*) folderURL {
+- (id) initWithFilePath:(NSString*) filePath folderPath:(NSString*) folderPath {
     
-    NSURL* tempFileURL = [folderURL URLByAppendingPathComponent:[fileURL lastPathComponent]];
+    NSString* tempFilePath = [folderPath stringByAppendingPathComponent:[filePath lastPathComponent]];
 
-    self = [super initWithFileURL:tempFileURL];
+    self = [super initWithFilePath:tempFilePath];
     if(self) {
-        self.tempFileURL = tempFileURL;
-        self.destinationFileURL = fileURL;
-        self.folderURL = folderURL;
+        self.tempFilePath = tempFilePath;
+        self.destinationFilePath = filePath;
+        self.folderPath = folderPath;
     }
     return self;
 }
 
-+ (id) hiddenFolderFileSink:(NSURL*) fileURL folderURL:(NSURL*) folderURL {
-    return FLAutorelease([[[self class] alloc] initWithFileURL:fileURL folderURL:folderURL]); 
++ (id) hiddenFolderFileSink:(NSString*) filePath folderPath:(NSString*) folderPath {
+    return FLAutorelease([[[self class] alloc] initWithFilePath:filePath folderPath:folderPath]); 
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_tempFileURL release];
-    [_destinationFileURL release];
-    [_folderURL release];
+    [_tempFilePath release];
+    [_destinationFilePath release];
+    [_folderPath release];
 	[super dealloc];
 }
 #endif
@@ -50,8 +50,7 @@
 - (void) openSink {
 
     NSError* error = nil;
-    NSString* path = [self.folderURL path];
-    [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+    [[NSFileManager defaultManager] createDirectoryAtPath:self.folderPath withIntermediateDirectories:YES attributes:nil error:&error];
     FLThrowIfError(error);
 
     [super openSink];
@@ -65,7 +64,7 @@
     
     if(commit) {
         NSError* error = nil;
-        [[NSFileManager defaultManager] moveItemAtURL:self.tempFileURL toURL:self.destinationFileURL error:&error];
+        [[NSFileManager defaultManager] moveItemAtPath:self.tempFilePath toPath:self.destinationFilePath error:&error];
         
         FLThrowIfError(error);
     }

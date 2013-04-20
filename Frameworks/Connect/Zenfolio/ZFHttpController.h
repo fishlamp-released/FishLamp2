@@ -10,7 +10,7 @@
 #import "ZFWebApi.h"
 #import "ZFLoadGroupHierarchyOperation.h"
 #import "ZFDownloadPhotoSetsOperation.h"
-#import "ZFBatchDownloadOperation.h"
+#import "ZFBatchPhotoDownloadOperation.h"
 #import "FLDatabaseObjectStorageService.h"
 
 @protocol ZFHttpControllerDelegate;
@@ -24,7 +24,7 @@
 
 - (ZFLoadGroupHierarchyOperation*) createRootGroupDownloader;
 - (ZFDownloadPhotoSetsOperation*) createAllPhotoSetsDownloader;
-- (ZFBatchDownloadOperation*) createBatchDownloader:(ZFBatchDownloadSpec*) spec;
+- (ZFBatchPhotoDownloadOperation*) createBatchDownloader:(ZFBatchDownloadSpec*) spec;
 
 @end
 

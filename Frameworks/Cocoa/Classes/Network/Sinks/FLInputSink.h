@@ -12,7 +12,7 @@
 
 // results, once the stream is closed.
 @property (readonly, strong, nonatomic) NSData* data;
-@property (readonly, strong, nonatomic) NSURL* fileURL;
+@property (readonly, strong, nonatomic) NSString* filePath;
 @property (readonly, assign, nonatomic, getter=isOpen) BOOL open;
 
 - (void) openSink;

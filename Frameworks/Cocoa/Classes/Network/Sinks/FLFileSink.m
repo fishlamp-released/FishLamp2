@@ -10,44 +10,49 @@
 
 @interface FLFileSink ()
 @property (readwrite, strong, nonatomic) NSOutputStream* outputStream;
-@property (readwrite, strong, nonatomic) NSURL* fileURL;
-@property (readwrite, strong, nonatomic) NSURL* outputURL;
+@property (readwrite, strong, nonatomic) NSString* filePath;
+@property (readwrite, strong, nonatomic) NSString* outputPath;
 @end
 
 @implementation FLFileSink
 
 @synthesize outputStream = _outputStream;
-@synthesize fileURL = _fileURL;
-@synthesize outputURL = _outputURL;
+@synthesize filePath = _filePath;
+@synthesize outputPath = _outputPath;
 @synthesize open = _open;
 
-- (id) initWithFileURL:(NSURL*) fileURL {
+- (id) initWithFilePath:(NSString*) filePath {
     self = [super init];
     if(self) {
-        self.outputURL = fileURL;
+        self.outputPath = filePath;
     }
     return self;
 }
 
-+ (id) fileSink:(NSURL*) fileURL {
-    return FLAutorelease([[[self class] alloc] initWithFileURL:fileURL]);
++ (id) fileSink:(NSString*) filePath {
+    return FLAutorelease([[[self class] alloc] initWithFilePath:filePath]);
 }
 
 - (void) openSink {
     FLAssert(self.outputStream == nil);
     _open = YES;
-    self.fileURL = nil;
+    self.filePath = nil;
 }
 
 - (void) appendBytes:(const void *)bytes length:(NSUInteger)length {
     
-    FLAssertNotNil(self.outputURL);
+    FLAssertNotNil(self.outputPath);
     FLAssert(_open);
 
     // don't create the file until we actually get bytes. This prevents
     // an empty file on error or redirect or whatever.
     if(!self.outputStream) {
-        self.outputStream = [NSOutputStream outputStreamWithURL:self.outputURL append:NO];
+    
+        NSError* error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:[self.outputPath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:&error];
+        FLThrowIfError(error);
+    
+        self.outputStream = [NSOutputStream outputStreamWithURL:[NSURL fileURLWithPath:self.outputPath] append:NO];
         [self.outputStream open];
         
         FLThrowIfError(self.outputStream.streamError);
@@ -59,7 +64,7 @@
 
 - (void) deleteFile {
     NSError* fileError = nil;
-    [[NSFileManager defaultManager] removeItemAtURL:self.outputURL error:&fileError];
+    [[NSFileManager defaultManager] removeItemAtPath:self.outputPath error:&fileError];
 }
 
 - (void) closeSinkWithCommit:(BOOL) commit {
@@ -69,10 +74,10 @@
     _open = NO;
     
     if(commit) {
-        self.fileURL = self.outputURL;
+        self.filePath = self.outputPath;
     }
     else {
-        self.fileURL = nil;
+        self.filePath = nil;
     
         [self deleteFile];
 // todo: do what with error?
@@ -89,8 +94,8 @@
     }
 
 #if FL_MRC
-    [_fileURL release];
-    [_outputURL release];
+    [_filePath release];
+    [_outputPath release];
     [_outputStream release];
     [super dealloc];
 #endif
@@ -104,7 +109,7 @@
 //    FLConfirmWithComment(_outputStream == nil, @"can't get data from an open receiver");
 //    
 //    NSError* error = nil;
-//    NSData* data = [NSData dataWithContentsOfURL:self.fileURL options:nil error:&error];
+//    NSData* data = [NSData dataWithContentsOfString:self.filePath options:nil error:&error];
 //    FLThrowIfError(error);
 //    
 //    return data;

@@ -85,8 +85,8 @@
     return operation;
 }
 
-- (ZFBatchDownloadOperation*) createBatchDownloader:(ZFBatchDownloadSpec*) spec {
-    ZFBatchDownloadOperation* operation = [ZFBatchDownloadOperation downloadOperation:spec];
+- (ZFBatchPhotoDownloadOperation*) createBatchDownloader:(ZFBatchDownloadSpec*) spec {
+    ZFBatchPhotoDownloadOperation* operation = [ZFBatchPhotoDownloadOperation batchPhotoDownloadOperation:spec];
     operation.context = self;
     return operation;
 }
