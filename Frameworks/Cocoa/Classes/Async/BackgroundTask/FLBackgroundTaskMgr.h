@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-#import "FLOperationQueue.h"
+#import "FLSynchronousOperationQueueOperation.h"
 #import "FLAnswerable.h"
 
 #import "FLService.h"
@@ -54,7 +54,7 @@ typedef void (^FLObjectBlock)(id object);
 @private
 	NSMutableArray* _queue;
     NSMutableArray* _sequenceQueue;
-	FLOperationQueue* _operations;
+	FLSynchronousOperationQueueOperation* _operations;
 	NSTimeInterval _timestamp;
     BOOL _cancelling;
     BOOL _enabled;
@@ -65,7 +65,7 @@ typedef void (^FLObjectBlock)(id object);
  
     This means the actions are not automatically cancelled.
  */
-@property (readonly, strong) FLOperationQueue* operations;
+@property (readonly, strong) FLSynchronousOperationQueueOperation* operations;
 
 @property (readonly, assign) BOOL isExecutingBackgroundTask;
 

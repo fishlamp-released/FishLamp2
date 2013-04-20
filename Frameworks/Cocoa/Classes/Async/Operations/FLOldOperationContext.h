@@ -8,9 +8,9 @@
 #if REFACTOR
 
 #import "FLCocoaRequired.h"
-#import "FLOperationQueue.h"
+#import "FLSynchronousOperationQueueOperation.h"
 
-@interface FLOperationContext : FLOperationQueue
+@interface FLOperationContext : FLSynchronousOperationQueueOperation
 + (id) operationContext;
 
 @property (readonly, assign) BOOL isBusy;

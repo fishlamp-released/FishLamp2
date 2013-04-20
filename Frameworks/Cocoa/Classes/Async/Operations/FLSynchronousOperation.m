@@ -12,38 +12,12 @@
 #import "FLObjectStorage.h"
 
 @interface FLSynchronousOperation ()
-@property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
 @end
 
 @implementation FLSynchronousOperation
 
-@synthesize operationID = _operationID;
-@synthesize cancelled = _cancelled;
-@synthesize objectStorage = _objectStorage;
-
-- (id) init {
-    self = [super init];
-    if(self) {
-  		static int32_t s_counter = 0;
-        self.operationID = [NSNumber numberWithInt:FLAtomicIncrement32(s_counter)];
-    }
-    return self;
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_objectStorage release];
-    [_operationID release];
-    [super dealloc];
-}
-#endif
-
-+ (id) operation {
++ (id) synchronousOperation {
 	return FLAutorelease([[[self class] alloc] init]);
-}
-
-- (void) requestCancel {
-    self.cancelled = YES;
 }
 
 - (FLResult) performSynchronously {
@@ -51,7 +25,7 @@
 }
 
 - (void) abortIfNeeded {
-    if(self.wasCancelled) {
+    if(self.abortNeeded) {
         FLThrowError([NSError cancelError]);
     }
 }
@@ -80,18 +54,9 @@
         result = [NSError cancelError];
     }
     
-    FLPerformSelector2(_finishedDelegate, _finishedAction, self, result);
-    self.cancelled = NO;
-
-    [self operationDidFinish];
+    [self operationDidFinishWithResult:result];
     return result;
 }
-
-- (void) setFinishedDelegate:(id) target action:(SEL) action {
-    _finishedDelegate = target;
-    _finishedAction = action;
-}
-
 @end
 
 @implementation FLBatchSynchronousOperation

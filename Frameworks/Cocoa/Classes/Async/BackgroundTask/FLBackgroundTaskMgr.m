@@ -27,7 +27,7 @@ FLSynthesizeSingleton(FLBackgroundTaskMgr);
 	if((self = [super init]))
 	{
         _queue = [[NSMutableArray alloc] init];
-		_operations = [[FLOperationQueue alloc] init];
+		_operations = [[FLSynchronousOperationQueueOperation alloc] init];
 	    _sequenceQueue = [[NSMutableArray alloc] init];
 
 
@@ -333,11 +333,11 @@ FIXME("attach to user sessions....");
     }
 }
 
-- (void) operationQueue:(FLOperationQueue*) queue operationWillRun:(FLSynchronousOperation*) operation {
+- (void) operationQueue:(FLSynchronousOperationQueueOperation*) queue operationWillRun:(FLSynchronousOperation*) operation {
     [self _cancel];
 }
 
-- (void) operationQueue:(FLOperationQueue*) queue operationDidFinish:(FLSynchronousOperation*) operation {
+- (void) operationQueue:(FLSynchronousOperationQueueOperation*) queue operationDidFinish:(FLSynchronousOperation*) operation {
     [self scheduleNextBackgroundTask];
 }
 

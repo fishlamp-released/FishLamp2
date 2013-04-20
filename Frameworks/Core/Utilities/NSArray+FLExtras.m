@@ -169,7 +169,7 @@
     [self addObject:object];
 }
 
-- (id) dequeueLastObject {
+- (id) removeLastObject {
     if(self.count) {
         id object = FLAutorelease(FLRetain([self lastObject]));
         [self removeLastObject];
@@ -183,7 +183,7 @@
 	[self insertObject:object atIndex:0];
 }
 
-- (id) popFirstObject {
+- (id) removeFirstObject {
     if(self.count) {
         id object = FLAutorelease(FLRetain([self objectAtIndex:0]));
         [self removeObjectAtIndex:0];

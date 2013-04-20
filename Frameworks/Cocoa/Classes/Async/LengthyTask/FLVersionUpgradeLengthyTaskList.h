@@ -8,9 +8,9 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-#import "FLAction.h"
+#import "FLSynchronousOperation.h"
 
-@interface FLVersionUpgradeLengthyTaskList : FLAction {
+@interface FLVersionUpgradeLengthyTaskList : FLSynchronousOperation {
 @private 
 	NSString* _fromVersion;
 	NSString* _toVersion;

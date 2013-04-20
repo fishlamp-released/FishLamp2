@@ -246,7 +246,7 @@ static int s_counter = 0;
 - (void) requestDidFinishWithResult:(id) result {
         
     @try {
-        if(![result error]) {
+        if(![result error] ) {
             result = [self resultFromHttpResponse:result];
         }
     }
@@ -263,8 +263,8 @@ static int s_counter = 0;
         self.httpStream.delegate = nil;
         self.httpStream = nil;
         
-        [self operationDidFinish];
-
+        [self operationDidFinishWithResult:result];
+            
         dispatch_async(dispatch_get_main_queue(), ^{
             [self sendObservation:@selector(httpRequest:didCloseWithResult:) withObject:result];
             [finisher setFinishedWithResult:result];

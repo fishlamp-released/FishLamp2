@@ -13,7 +13,7 @@
 //
 //- (id) init {
 //	if((self = [super init])) {
-//		_taskList = [[FLOperationQueue alloc] init];
+//		_taskList = [[FLSynchronousOperationQueueOperation alloc] init];
 //	}
 //	
 //	return self;

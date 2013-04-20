@@ -8,7 +8,7 @@
 
 #import "FLSynchronousOperation.h"
 
-#import "FLOperationQueue.h"
+#import "FLSynchronousOperationQueueOperation.h"
 
 @interface FLBatchOperation : FLSynchronousOperation {
 @private

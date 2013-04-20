@@ -14,7 +14,7 @@
 @synthesize toVersion = _toVersion;
 
 - (id) initWithFromVersion:(NSString*) fromVersion toVersion:(NSString*) toVersion {
-	if((self = [super initWithActionType:FLActionTypeUpdate])) {
+	if((self = [super init])) {
 		_fromVersion = FLRetain(fromVersion);
 		_toVersion = FLRetain(toVersion);
 	}

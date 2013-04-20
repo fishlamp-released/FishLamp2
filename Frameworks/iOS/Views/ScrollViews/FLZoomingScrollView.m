@@ -535,7 +535,7 @@ FLSynthesizeStructProperty(animating, setAnimating, BOOL, _zoomingScrollViewFlag
 			[_touches addObject:[FLTouch touchWithUITouch:touch]];
 			if(_touches.count > 5)
 			{
-				[_touches popFirstObject];
+				[_touches removeFirstObject];
 			}
 
 			// the _totalDelta is used to turn off edge mode when the user stop scrolling in

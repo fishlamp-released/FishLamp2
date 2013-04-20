@@ -9,16 +9,32 @@
 #import "FLOperation.h"
 #import "FLDispatchQueue.h"
 
+
+@interface FLOperation ()
+@property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
+@end
+
 @implementation FLOperation
 
 @synthesize context = _context;
 @synthesize contextID = _contextID;
 @synthesize asyncQueue = _asyncQueue;
+@synthesize identifier = _identifier;
+@synthesize objectStorage = _objectStorage;
+@synthesize cancelled = _cancelled;
+@synthesize delegate = _finishedDelegate;
+@synthesize finishedSelectorForDelegate = _finishedSelectorForDelegate;
+@synthesize finishedSelectorForObserver = _finishedSelectorForObserver;
+
 
 - (id) init {
     self = [super init];
     if(self) {
         self.asyncQueue = [FLDispatchQueue defaultQueue];
+  		static int32_t s_counter = 0;
+        self.identifier = [NSNumber numberWithInt:FLAtomicIncrement32(s_counter)];
+        _finishedSelectorForDelegate = FLOperationDefaultFinishedSelector;
+        _finishedSelectorForObserver = FLOperationDefaultFinishedSelector;
     }
     return self;
 }
@@ -30,10 +46,11 @@
         [context removeOperation:self];
         
         FLLog(@"Operation last ditch removal from context: %@", [self description]);
-
     }
     
 #if FL_MRC
+    [_objectStorage release];
+    [_identifier release];
 	[super dealloc];
 #endif
 }
@@ -44,7 +61,7 @@
 }                      
 
 - (void) requestCancel {
-
+    self.cancelled = YES;
 }
 
 - (void) setContext:(FLOperationContext*) context {
@@ -86,7 +103,7 @@
 
 - (FLResult) runSynchronously {
     FLResult result = [FLStartOperation(self.asyncQueue, self, nil) waitUntilFinished];
-    [self operationDidFinish];
+    [self operationDidFinishWithResult:result];
     return result;
 }
 
@@ -109,7 +126,7 @@
     return [self runAsynchronously:completionOrNil];
 }
 
-- (void) wasStartedByParent:(FLOperation*) parent {
+- (void) willRunInParent:(FLOperation*) parent {
     if(self.context == nil) {
         self.context = parent.context;
     }
@@ -118,18 +135,32 @@
     }
 }
 
+- (void) didFinishInParent:(FLOperation*) parent withResult:(FLResult) result {
+    [self operationDidFinishWithResult:result];
+}
+
+- (void) willRunChildOperation:(id) childOperation {
+    [childOperation willRunInParent:self];
+}
+
+- (void) didRunChildOperation:(id) operation withResult:(FLResult) result {
+    [operation didFinishInParent:self withResult:result];
+}
+
 - (FLResult) runChildSynchronously:(FLOperation*) operation {
-    [FLRetainWithAutorelease(operation) wasStartedByParent:self];
+
+    [self willRunChildOperation:FLRetainWithAutorelease(operation)];
     
     FLResult result = nil;
     @try {
         result = [operation runSynchronously];
     }
-    @finally {
-        [operation operationDidFinish];
+    @catch(NSException* ex) {
+        result = FLRetainWithAutorelease(ex.error);
     }
-    
     FLAssertNotNilWithComment(result, @"result should not be nil");
+    
+    [self didRunChildOperation:operation withResult:result];
     
     return result;
 }
@@ -137,14 +168,32 @@
 - (FLFinisher*) runChildAsynchronously:(FLOperation*) operation 
                 completion:(fl_completion_block_t) completionOrNil {
 
-    [operation wasStartedByParent:self];
-    
-    return [operation runAsynchronously:completionOrNil];
+    [self willRunChildOperation:operation];
+    if(completionOrNil) {
+        completionOrNil = FLCopyWithAutorelease(completionOrNil);
+    }
+    return [operation runAsynchronously:^(FLResult result) {
+        [self didRunChildOperation:operation withResult:result];
+        if(completionOrNil) {
+            completionOrNil(result);
+        }
+    }];
 }
 
-- (void) operationDidFinish {
-    self.context = nil;
+- (FLFinisher*) runChildAsynchronously:(FLOperation*) operation {
+    return [self runChildAsynchronously:operation completion:nil];
 }
+
+- (void) operationDidFinishWithResult:(FLResult) result {
+    self.context = nil;
+
+    FLPerformSelector2(_finishedDelegate, _finishedSelectorForDelegate, self, result);
+    [self sendObservation:_finishedSelectorForObserver withObject:result];
+
+    self.cancelled = NO;
+}
+
+
 
 
 

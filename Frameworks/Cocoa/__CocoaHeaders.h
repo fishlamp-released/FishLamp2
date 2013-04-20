@@ -37,7 +37,7 @@
 // Classes/Async/Operations
 #import "FLBatchOperation.h"
 #import "FLOldOperationContext.h"
-#import "FLOperationQueue.h"
+#import "FLSynchronousOperationQueueOperation.h"
 #import "FLPerformSelectorOperation.h"
 #import "FLSynchronousOperation.h"
 

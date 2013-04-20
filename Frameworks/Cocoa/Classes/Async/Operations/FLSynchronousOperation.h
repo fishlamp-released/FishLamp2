@@ -9,28 +9,11 @@
 #import "FLOperation.h"
 #import "FLObjectStorage.h"
 
-typedef struct {
-    __unsafe_unretained id delegate;
-    SEL selector;
-} FLDelegateEvent;
-
 @interface FLSynchronousOperation : FLOperation {
 @private
-    id<FLObjectStorage> _objectStorage;
-	id _operationID;
-    BOOL _cancelled;
-
-    SEL _finishedAction;
-    __unsafe_unretained id _finishedDelegate;
 }
 
-@property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
-@property (readwrite, strong, nonatomic) id operationID;
-
-- (void) setFinishedDelegate:(id) target action:(SEL) action;
-
-- (id) init;
-+ (id) operation;
++ (id) synchronousOperation;
 
 /// @brief Required override point
 - (FLResult) performSynchronously;

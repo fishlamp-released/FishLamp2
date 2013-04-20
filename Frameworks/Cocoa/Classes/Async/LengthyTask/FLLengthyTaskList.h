@@ -10,11 +10,11 @@
 //#import "FishLampCore.h"
 //
 //#import "FLLengthyTask.h"
-//#import "FLOperationQueue.h"
+//#import "FLSynchronousOperationQueueOperation.h"
 //
 //@interface FLLengthyTaskList : FLSynchronousOperation<FLLengthyTaskDelegate> {
 //@private
-//    FLOperationQueue* _tasks;
+//    FLSynchronousOperationQueueOperation* _tasks;
 //	FLLengthyTask* _currentTask;
 //}
 //

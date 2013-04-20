@@ -9,46 +9,15 @@
 
 typedef id FLResult;
 
+@interface NSObject (FLResult) 
+@property (readonly, strong) NSError* error;
+@property (readonly, assign) BOOL isErrorResult;
+@end
+
+#define FLSuccessfullResult [NSNumber numberWithBool:YES] 
+#define FLFailedResult      [NSError failedResultError]
+
 @interface NSError (FLResult)
 + (id) failedResultError;
 @end
 
-@protocol FLResultObject <NSObject>
-@property (readonly, strong) NSError* error;
-@property (readonly, strong) id result;
-@property (readonly, assign) BOOL succeeded;
-@property (readonly, assign) BOOL failed;
-@end
-
-@interface FLResultObject : NSObject<FLResultObject> {
-@private
-}
-@end
-
-@interface FLSuccessfulResult : FLResultObject
-+ (id) successfullResult;
-@end
-
-@interface FLMutableResult : NSObject<FLResultObject> {
-@private
-    id _result;
-}
-
-@property (readwrite, strong) id result;
-
-- (id) initWithResult:(id) result;
-
-+ (id) mutableResultWithResult:(id) result;
-+ (id) mutableResult;
-
-@end
-
-// FLSuccessfulResult is a singleton.
-#define FLSuccessfullResult [FLSuccessfulResult successfullResult] 
-
-#define FLFailedResult      [NSError failedResultError]
-
-//#define FLConfirmResultType(__RESULT__, __EXPECTED_RESULT_TYPE__) \
-//            FLAssertObjectIsType(FLThrowIfError(__RESULT__), __EXPECTED_RESULT_TYPE__)
-
-//#define FLResultType(__TYPE__) FLResult
