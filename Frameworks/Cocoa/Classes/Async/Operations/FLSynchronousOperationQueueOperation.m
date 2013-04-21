@@ -18,7 +18,7 @@
 @synthesize currentOperation = _currentOperation;
 @synthesize operationQueue = _operationQueue;
 
-@synthesize delegate = _delegate;
+//@synthesize delegate = _delegate;
 @synthesize delegateActions = _delegateActions;
 @synthesize observerActions = _observerActions;
 

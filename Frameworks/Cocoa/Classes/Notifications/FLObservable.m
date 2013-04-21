@@ -51,6 +51,19 @@
     return [self sendObservation:selector toObserver:self.asyncObserver withObject:object1 withObject:object2];
 }
 
+- (BOOL) receiveObservation:(SEL) selector fromSender:(id) sender { 
+    return FLPerformSelectorOnMainThreadWithArgCount(self, selector, 1, sender, nil, nil);
+}
+
+- (BOOL) receiveObservation:(SEL) selector fromSender:(id) sender withObject:(id) object  {
+    return FLPerformSelectorOnMainThreadWithArgCount(self, selector, 2, sender, object, nil);
+}
+
+- (BOOL) receiveObservation:(SEL) selector fromSender:(id) sender withObject:(id) object1 withObject:(id) object2  {
+    return FLPerformSelectorOnMainThreadWithArgCount(self, selector, 3, sender, object1, object2);
+}
+
+
 - (id) asyncObserver {
     return nil;
 }

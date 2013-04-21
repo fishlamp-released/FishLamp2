@@ -90,18 +90,19 @@
 //    self.wantsLayer = YES;
 }
 
+#if TRACE
 - (void) startAnimation:(id) sender {
     [super startAnimation:sender];
     
-    FLLog(@"show animation");
+    FLTrace(@"show animation");
 }
 
 - (void) stopAnimation:(id) sender {
     [super stopAnimation:sender];
     
-    FLLog(@"stop animation");
+    FLTrace(@"stop animation");
 }
-
+#endif
 
 - (void) setRespondsToGlobalNetworkActivity {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startAnimation:) name:FLGlobalNetworkActivityShow object:[FLGlobalNetworkActivityIndicator instance]];

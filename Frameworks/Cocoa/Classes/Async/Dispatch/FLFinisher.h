@@ -30,7 +30,7 @@
 #endif    
 }
 
-// True by default.
+// NO by default.
 @property (readwrite, assign) BOOL finishOnMainThread; 
 
 @property (readonly, strong) FLResult result;

@@ -22,10 +22,18 @@
 @synthesize identifier = _identifier;
 @synthesize objectStorage = _objectStorage;
 @synthesize cancelled = _cancelled;
-@synthesize delegate = _finishedDelegate;
-@synthesize finishedSelectorForDelegate = _finishedSelectorForDelegate;
-@synthesize finishedSelectorForObserver = _finishedSelectorForObserver;
+@synthesize delegate = _delegate;
+@synthesize finishedSelector = _finishedSelector;
+@synthesize retryCount = _retryCount;
 
+#if DEBUG
+- (void) setDelegate:(id) delegate {
+    if(delegate != _delegate) {
+        FLAssertIsNil(_delegate);
+        _delegate = delegate;
+    }
+}
+#endif
 
 - (id) init {
     self = [super init];
@@ -33,8 +41,7 @@
         self.asyncQueue = [FLDispatchQueue defaultQueue];
   		static int32_t s_counter = 0;
         self.identifier = [NSNumber numberWithInt:FLAtomicIncrement32(s_counter)];
-        _finishedSelectorForDelegate = FLOperationDefaultFinishedSelector;
-        _finishedSelectorForObserver = FLOperationDefaultFinishedSelector;
+        _finishedSelector = @selector(operationDidFinish:withResult:);
     }
     return self;
 }
@@ -139,17 +146,17 @@
     [self operationDidFinishWithResult:result];
 }
 
-- (void) willRunChildOperation:(id) childOperation {
+- (void) willStartChildOperation:(id) childOperation {
     [childOperation willRunInParent:self];
 }
 
-- (void) didRunChildOperation:(id) operation withResult:(FLResult) result {
+- (void) didFinishChildOperation:(id) operation withResult:(FLResult) result {
     [operation didFinishInParent:self withResult:result];
 }
 
 - (FLResult) runChildSynchronously:(FLOperation*) operation {
 
-    [self willRunChildOperation:FLRetainWithAutorelease(operation)];
+    [self willStartChildOperation:FLRetainWithAutorelease(operation)];
     
     FLResult result = nil;
     @try {
@@ -160,7 +167,7 @@
     }
     FLAssertNotNilWithComment(result, @"result should not be nil");
     
-    [self didRunChildOperation:operation withResult:result];
+    [self didFinishChildOperation:operation withResult:result];
     
     return result;
 }
@@ -168,12 +175,13 @@
 - (FLFinisher*) runChildAsynchronously:(FLOperation*) operation 
                 completion:(fl_completion_block_t) completionOrNil {
 
-    [self willRunChildOperation:operation];
+    [self willStartChildOperation:operation];
     if(completionOrNil) {
         completionOrNil = FLCopyWithAutorelease(completionOrNil);
     }
+    
     return [operation runAsynchronously:^(FLResult result) {
-        [self didRunChildOperation:operation withResult:result];
+        [self didFinishChildOperation:operation withResult:result];
         if(completionOrNil) {
             completionOrNil(result);
         }
@@ -186,10 +194,7 @@
 
 - (void) operationDidFinishWithResult:(FLResult) result {
     self.context = nil;
-
-    FLPerformSelector2(_finishedDelegate, _finishedSelectorForDelegate, self, result);
-    [self sendObservation:_finishedSelectorForObserver withObject:result];
-
+    FLPerformSelector2(_delegate, _finishedSelector, self, result);
     self.cancelled = NO;
 }
 

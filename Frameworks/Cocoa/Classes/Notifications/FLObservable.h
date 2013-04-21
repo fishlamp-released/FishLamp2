@@ -19,6 +19,12 @@
 
 - (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object1 withObject:(id) object2;
 
+- (BOOL) receiveObservation:(SEL) messageSelector fromSender:(id) sender;
+
+- (BOOL) receiveObservation:(SEL) messageSelector fromSender:(id) sender withObject:(id) object;
+
+- (BOOL) receiveObservation:(SEL) messageSelector fromSender:(id) sender withObject:(id) object1 withObject:(id) object2;
+
 
 - (id) asyncObserver;
 
@@ -29,6 +35,8 @@
 - (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object;
 
 - (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
+
+
 
 // sending bottleneck
 - (BOOL) sendObservation:(SEL) selector toObserver:(id) observer argCount:(int) argCount withObject:(id) object1 withObject:(id) object2;

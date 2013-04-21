@@ -30,7 +30,6 @@
 @end
 
 #define FORCE_NO_SSL 1
-#define TRACE 0
 
 @implementation FLHttpRequest
 
@@ -74,9 +73,7 @@ static int s_counter = 0;
         }
     }
 
-#if TRACE
-    FLLog(@"%d created %@ http request: %@", ++s_counter, self.requestHeaders.httpMethod, [url absoluteString]);
-#endif    
+    FLTrace(@"%d created %@ http request: %@", ++s_counter, self.requestHeaders.httpMethod, [url absoluteString]);
     return self;
 }
 
@@ -91,9 +88,8 @@ static int s_counter = 0;
 }
 
 - (void) dealloc {
-#if TRACE
-    FLLog(@"%d dealloc http request: %@", --s_counter, self.requestHeaders.requestURL);
-#endif    
+    FLTrace(@"%d dealloc http request: %@", --s_counter, self.requestHeaders.requestURL);
+
     [_asyncQueueForStream releaseToPool];
 #if FL_MRC
     [_asyncQueueForStream release];
