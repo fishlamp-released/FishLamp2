@@ -1,31 +1,32 @@
 //
-//  ZFAsyncPhotoSetDownloader.m
+//  ZFPhotoSetDownloader.m
 //  FishLampConnect
 //
 //  Created by Mike Fullerton on 4/20/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "ZFAsyncPhotoSetDownloader.h"
+#import "ZFPhotoSetDownloader.h"
 
-@interface ZFAsyncPhotoSetDownloader ()
+@interface ZFPhotoSetDownloader ()
 @property (readwrite, strong, nonatomic) NSNumber* photoSetID;
 @end
 
-@implementation ZFAsyncPhotoSetDownloader
+@implementation ZFPhotoSetDownloader
 @synthesize photoSetID = _photoSetID;
 
 
-- (id) initWithPhotoSetID:(NSNumber*) photoSetID {	
+- (id) initWithPhotoSetID:(NSNumber*) photoSetID withPhotos:(BOOL) withPhotos {	
 	self = [super init];
 	if(self) {
 		self.photoSetID = photoSetID;
-	}
+        _withPhotos = withPhotos;
+    }
 	return self;
 }
 
-+ (id) downloadPhotoSet:(NSNumber*) photoSetID {
-    return FLAutorelease([[[self class] alloc] initWithPhotoSetID:photoSetID]);
++ (id) downloadPhotoSet:(NSNumber*) photoSetID withPhotos:(BOOL) withPhotos {
+    return FLAutorelease([[[self class] alloc] initWithPhotoSetID:photoSetID withPhotos:withPhotos]);
 }
 
 - (ZFPhotoSet*) loadCachedPhotoSet {
@@ -38,7 +39,7 @@
 
     FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoSetHttpRequest:_photoSetID 
                                                                      level:kZenfolioInformatonLevelFull 
-                                                             includePhotos:YES];
+                                                             includePhotos:_withPhotos];
 
     [self runChildAsynchronously:request completion:^(FLResult result) {
         if(![result isErrorResult]) {
@@ -61,7 +62,9 @@
         else {
             ZFPhotoSet* downloaded = result;
             ZFPhotoSet* cached = [self loadCachedPhotoSet];
-            if(!cached || [cached isStaleComparedToPhotoSet:downloaded]) {
+            if( !cached || 
+                [cached isStaleComparedToPhotoSet:downloaded] || 
+                (_withPhotos && !cached.photosAreDownloaded)) {
                 [self downloadLatestPhotoSet];
             }
             else {
@@ -70,7 +73,6 @@
         }
     }];
 }
-
 
 - (void) performUntilFinished:(FLFinisher*) finisher {
 
@@ -81,7 +83,7 @@
 #endif
 
     ZFPhotoSet* photoSet = [self loadCachedPhotoSet];
-    if(!photoSet) {
+    if(!photoSet || (_withPhotos && !photoSet.photosAreDownloaded)) {
         [self downloadLatestPhotoSet];
     }
     else {

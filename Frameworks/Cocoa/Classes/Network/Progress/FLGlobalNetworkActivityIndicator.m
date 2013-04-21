@@ -8,6 +8,8 @@
 
 #import "FLGlobalNetworkActivityIndicator.h"
 
+//#define TRACE 1
+
 NSString* const FLGlobalNetworkActivityShow = @"FLGlobalNetworkActivityShow";
 NSString* const FLGlobalNetworkActivityHide = @"FLGlobalNetworkActivityHide";
 
@@ -65,13 +67,13 @@ FLSynthesizeSingleton(FLGlobalNetworkActivityIndicator);
         if(([NSDate timeIntervalSinceReferenceDate] - self.lastChange) > 0.3) {
             self.busyCount = 0; // i've seen it go to -1
             self.busy = NO;
-            FLLog(@"hiding global network indicator");
+            FLTrace(@"hiding global network indicator");
             
             [[NSNotificationCenter defaultCenter] postNotificationName:FLGlobalNetworkActivityHide object:self];
         }
         else {  
         
-            FLLog(@"delaying update listeners");
+            FLTrace(@"delaying update listeners");
             
 //            [NSObject cancelPreviousPerformRequestsWithTarget:self];            
 //            [self performSelector:@selector(updateListeners) withObject:nil afterDelay:0.5 ];
@@ -83,11 +85,11 @@ FLSynthesizeSingleton(FLGlobalNetworkActivityIndicator);
     }
     else if(!self.busy && self.busyCount > 0) {
         self.busy = YES;
-        FLLog(@"showing global network indicator");
+        FLTrace(@"showing global network indicator");
         [[NSNotificationCenter defaultCenter] postNotificationName:FLGlobalNetworkActivityShow object:self];
     }
     else {
-        FLLog(@"nothing happending in update listeners");
+        FLTrace(@"nothing happending in update listeners");
     }
 }
 
@@ -96,7 +98,7 @@ FLSynthesizeSingleton(FLGlobalNetworkActivityIndicator);
     self.busyCount += (busy ? 1 : -1);
     self.lastChange = [NSDate timeIntervalSinceReferenceDate];
     
- FLLog(@"busy count: %d", self.busyCount);
+    FLTrace(@"busy count: %d", self.busyCount);
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [self updateListeners];

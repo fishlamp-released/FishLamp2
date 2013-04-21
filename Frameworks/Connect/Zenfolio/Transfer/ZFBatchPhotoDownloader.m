@@ -1,23 +1,26 @@
 //
-//  ZFAsyncBatchPhotoDownloader.m
+//  ZFBatchPhotoDownloader.m
 //  FishLampConnect
 //
 //  Created by Mike Fullerton on 4/19/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "ZFAsyncBatchPhotoDownloader.h"
+#import "ZFBatchPhotoDownloader.h"
 #import "FLPrepareDownloadQueueOperation.h"
 #import "ZFDownloadPhotoOperation.h"
-#import "FLAsyncOperationQueueOperation.h"
-#import "ZFAsyncPhotoSetDownloader.h"
+#import "FLAsyncOperationQueue.h"
+#import "ZFPhotoSetDownloader.h"
+#import "ZFBatchPhotoSetDownloader.h"
 
-@interface ZFAsyncBatchPhotoDownloader ()
+#import "FLTrace.h"
+
+@interface ZFBatchPhotoDownloader ()
 @property (readwrite, strong) ZFBatchDownloadSpec* downloadSpec; 
 @property (readwrite, strong) NSArray* downloadQueue; 
 @end
 
-@implementation ZFAsyncBatchPhotoDownloader
+@implementation ZFBatchPhotoDownloader
 
 @synthesize downloadSpec = _downloadSpec;
 @synthesize downloadQueue = _downloadQueue;
@@ -42,21 +45,22 @@
 }
 #endif
 
+- (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
+             didDownloadPhotoSet:(ZFPhotoSet*) photoSet {
+    FLTrace(@"downloaded photoset: %@", photoSet.Title);
+}             
+
+- (void) didDownloadPhotoSets:(FLResult) result {
+    FLTrace(@"downloaded photo sets");
+}
 
 - (void) performUntilFinished:(FLFinisher*) finisher {
     
     [super performUntilFinished:finisher];
     
-    FLAsyncOperationQueueOperation* loadPhotoSets = [FLAsyncOperationQueueOperation asyncOperationQueue:self.downloadSpec.photoSets.allObjects];
-    
-    loadPhotoSets.operationFactory = ^(id object) {
-        return [ZFAsyncPhotoSetDownloader downloadPhotoSet:object];
-    };
-    
+    ZFBatchPhotoSetDownloader* loadPhotoSets = [ZFBatchPhotoSetDownloader batchPhotoSetDownloader:self.downloadSpec.photoSets.allObjects withPhotos:YES];
     [self runChildAsynchronously:loadPhotoSets completion:^(FLResult result) {
-       
-        [self setFinishedWithResult:result];
-          
+        [self didDownloadPhotoSets:result];
     }];
     
     

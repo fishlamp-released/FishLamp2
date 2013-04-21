@@ -41,7 +41,6 @@
         if(completion) {
             _didFinish = [completion copy];
         }
-        _finishOnMainThread = YES;
         
         _semaphore = dispatch_semaphore_create(0);
 //        FLLog(@"created semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
@@ -135,7 +134,7 @@
 #if DEBUG
     self.finishedStackTrace = FLCreateStackTrace(YES);
 #endif
-    
+
     if(!self.finishOnMainThread || 
         [NSThread currentThread] == [NSThread mainThread] ) {
         [self notifyFinished];

@@ -9,12 +9,11 @@
 #import "ZFHttpController.h"
 #import "ZFRegisteredUserAuthenticationService.h"
 #import "ZFLoadGroupHierarchyOperation.h"
-#import "ZFDownloadPhotoSetsOperation.h"
 
 #import "FLDictionaryObjectStorageService.h"
 #import "FLDatabaseObjectStorageService.h"
 
-#import "ZFAsyncGroupPhotoSetDownloader.h"
+#import "ZFBatchPhotoSetDownloader.h"
 
 #define ZFHttpControllerHiddenFolderName @".downloader"
 
@@ -65,35 +64,67 @@
     self.user = nil;
 }
 
-- (void) operation:(ZFLoadGroupHierarchyOperation*) operation downloadedRootGroup:(FLResult) result {
-    if(![result error] ) {
-        [self.user setRootGroup:result];
-    }
-}
+//- (void) operation:(ZFLoadGroupHierarchyOperation*) operation downloadedRootGroup:(FLResult) result {
+//    if(![result error] ) {
+//        [self.user setRootGroup:result];
+//    }
+//}
 
-- (id) createRootGroupDownloader {
+- (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
+   didDownloadPhotoSetWithResult:(FLResult) result {
+
+    [downloader.asyncObserver receiveObservation:@selector(httpController:didDownloadPhotoSetForRootGroupWithResult:) 
+                                      fromSender:self 
+                                      withObject:result];
+}             
+
+
+- (FLFinisher*) beginDownloadingAllPhotoSetsForRootGroup:(id)observer
+                                           completion:(fl_completion_block_t) completion {
+    
+    ZFBatchPhotoSetDownloader* downloader =    
+            [ZFBatchPhotoSetDownloader batchPhotoSetDownloaderForGroup:self.user.rootGroup withPhotos:NO];
+    
+    downloader.context = self;
+    downloader.delegate = self;
+    downloader.asyncObserver = observer;
+
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    
+    [downloader runAsynchronously:^(FLResult result) {
+        [self.user setRootGroup:result];
+        [observer receiveObservation:@selector(httpController:didDownloadAllPhotoSetsForRootGroupWithResult:) 
+                          fromSender:self 
+                          withObject:result];
+        [finisher setFinishedWithResult:result];
+    }];
+    
+    return finisher;
+
+                                           
+}                                           
+
+- (FLFinisher*) beginDownloadingRootGroup:(id) observer 
+                               completion:(fl_completion_block_t) completion {
     ZFLoadGroupHierarchyOperation* operation = 
         [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
     operation.context = self;
-    operation.delegate = self;
-    operation.finishedSelectorForDelegate = @selector(operation:downloadedRootGroup:);
-    return operation;
+    
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    
+    [operation runAsynchronously:^(FLResult result) {
+        [self.user setRootGroup:result];
+        [observer receiveObservation:@selector(httpController:didDownloadRootGroupWithResult:) fromSender:self withObject:result];
+        [finisher setFinishedWithResult:result];
+    }];
+    
+    return finisher;
 }
 
-- (id) createAllPhotoSetsDownloader {
 
-//    ZFDownloadPhotoSetsOperation* operation = 
-//            [ZFDownloadPhotoSetsOperation downloadPhotoSetsWithGroup:self.user.rootGroup];
-    
-    ZFAsyncGroupPhotoSetDownloader* downloader =    
-            [ZFAsyncGroupPhotoSetDownloader asyncGroupPhotoSetDownloader:self.user.rootGroup];
-    
-    downloader.context = self;
-    return downloader;
-}
 
-- (ZFAsyncBatchPhotoDownloader*) createBatchDownloader:(ZFBatchDownloadSpec*) spec {
-    ZFAsyncBatchPhotoDownloader* operation = [ZFAsyncBatchPhotoDownloader batchPhotoDownloadOperation:spec];
+- (ZFBatchPhotoDownloader*) createBatchDownloader:(ZFBatchDownloadSpec*) spec {
+    ZFBatchPhotoDownloader* operation = [ZFBatchPhotoDownloader batchPhotoDownloadOperation:spec];
     operation.context = self;
     return operation;
 }

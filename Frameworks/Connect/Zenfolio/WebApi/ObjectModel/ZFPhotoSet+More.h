@@ -18,7 +18,7 @@
 
 - (ZFPhoto*) photoAtIndex:(NSUInteger) idx;
 
-- (BOOL) allPhotosAreLoaded;
+- (BOOL) photosAreDownloaded;
 
 - (BOOL) isStaleComparedTo:(int) anotherTextCn 
                photoListCn:(int) anotherPhotoListCn

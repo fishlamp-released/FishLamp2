@@ -25,17 +25,18 @@
 	[super dealloc];
 }
 #endif
-//
-//- (void) operationDidFinishWithResult:(id) result {
-//    [super operationDidFinishWithResult:result];
-//}
 
 - (void) setFinishedWithResult:(id) result {
     [self.finisher setFinishedWithResult:result];
+    self.finisher = nil;
+    [self operationDidFinishWithResult:result];
 }
 
 - (void) setFinished {
     [self.finisher setFinished];
+    id result = FLRetainWithAutorelease(self.finisher.result);
+    self.finisher = nil;
+    [self operationDidFinishWithResult:result];
 }
 
 

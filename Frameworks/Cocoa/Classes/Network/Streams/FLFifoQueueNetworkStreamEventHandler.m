@@ -73,9 +73,8 @@
 
 - (void) handleStreamEvent:(CFStreamEventType) eventType {
 
-//#if TRACE
-//    FLDebugLog(@"Read Stream got event %d", eventType);
-//#endif
+    FLTrace(@"Read Stream got event %d", eventType);
+
     [self.stream touchTimeoutTimestamp];
 
     switch (eventType)  {

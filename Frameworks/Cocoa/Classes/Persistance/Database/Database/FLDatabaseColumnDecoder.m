@@ -119,9 +119,7 @@ id FLLegacyDatabaseColumnDecoder(FLDatabase* database,
 //                [NSData base64DecodeString:object outData:&newData];
 //                object = FLAutorelease(newData);
 
-#if TRACE
-                FLDebugLog(@"converted base64encoded object");
-#endif                        
+                FLTrace(@"converted base64encoded object");
             }
         break;
         

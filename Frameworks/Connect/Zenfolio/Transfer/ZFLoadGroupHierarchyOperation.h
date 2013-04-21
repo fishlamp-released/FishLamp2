@@ -9,7 +9,6 @@
 #import "FLSynchronousOperation.h"
 #import "ZFPhotoSet.h"
 #import "FLUserLogin.h"
-#import "ZFDownloadPhotoSetsOperation.h"
 
 @interface ZFLoadGroupHierarchyOperation : FLSynchronousOperation {
 @private    

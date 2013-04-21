@@ -51,7 +51,7 @@
 - (ZFPhotoSet*) _loadCachedPhotoSetIfPossible {
 
     ZFPhotoSet* inCache = [[self.context cacheService] loadPhotoSetWithID:_photoSetID.intValue];
-	if(!inCache || ![inCache allPhotosAreLoaded]) {
+	if(!inCache || ![inCache photosAreDownloaded]) {
         return nil;
     }
     

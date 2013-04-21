@@ -7,7 +7,6 @@
 //
 
 #import "ZFLoadGroupHierarchyOperation.h"
-#import "ZFDownloadPhotoSetsOperation.h"
 #import "ZFWebApi.h"
 
 @interface ZFLoadGroupHierarchyOperation ()

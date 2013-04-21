@@ -98,7 +98,7 @@
         [self performSelectorOnAllServices:@selector(setOpen)];
         [self performSelectorOnAllServices:@selector(didOpenService)];
         FLPerformSelector1(self.delegate, _didOpenDelegateMethod, self);
-        FLLog(@"opened %@", NSStringFromClass([self class]));    
+        FLTrace(@"opened %@", NSStringFromClass([self class]));    
     }
 }
 
@@ -108,7 +108,7 @@
         [self performSelectorOnAllServices:@selector(setClosed)];
         [self performSelectorOnAllServices:@selector(didCloseService)];
         FLPerformSelector1(self.delegate, _didCloseDelegateMethod, self);
-        FLLog(@"close %@", NSStringFromClass([self class]));    
+        FLTrace(@"close %@", NSStringFromClass([self class]));    
     }
 }
 

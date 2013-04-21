@@ -1,5 +1,5 @@
 //
-//  ZFAsyncBatchPhotoDownloader.h
+//  ZFBatchPhotoDownloader.h
 //  FishLampConnect
 //
 //  Created by Mike Fullerton on 4/19/13.
@@ -11,7 +11,7 @@
 #import "ZFDownloadQueue.h"
 #import "FLDispatchQueue.h"
 
-@interface ZFAsyncBatchPhotoDownloader : FLAsyncOperation {
+@interface ZFBatchPhotoDownloader : FLAsyncOperation {
 @private
     ZFBatchDownloadSpec* _downloadSpec;
     NSArray* _downloadQueue;

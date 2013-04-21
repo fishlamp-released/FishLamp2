@@ -20,12 +20,12 @@ typedef struct {
     FLSynchronousOperation* _currentOperation;
     FLOperationQueue* _operationQueue;
     
-    __unsafe_unretained id _delegate;
+//    __unsafe_unretained id _delegate;
     FLOperationQueueActions _observerActions;
     FLOperationQueueActions _delegateActions;
 }
 
-@property (readwrite, assign, nonatomic) id delegate;
+//@property (readwrite, assign, nonatomic) id delegate;
 @property (readwrite, assign, nonatomic) FLOperationQueueActions delegateActions;
 @property (readwrite, assign, nonatomic) FLOperationQueueActions observerActions;
 

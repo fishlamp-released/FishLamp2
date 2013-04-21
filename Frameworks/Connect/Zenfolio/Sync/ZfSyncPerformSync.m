@@ -343,7 +343,7 @@
                       photoSet:(ZFGroupElementSyncInfo*) photoSet
 {
 	ZFPhotoSet* inCache = [[[self.context photoSetStorage] loadPhotoSetWithID:photoSet.syncObjectIdValue];
-	if(!inCache || ![inCache allPhotosAreLoaded])
+	if(!inCache || ![inCache photosAreDownloaded])
 	{
         [operation insertNextOperation:[self _createLoadFullPhotoSet:photoSet.syncObjectId]];
     }

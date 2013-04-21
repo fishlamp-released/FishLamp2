@@ -27,13 +27,10 @@
 #define FLDebugLogIf(__CONDITION__, __FORMAT__, ...) \
             if(__CONDITION__) FLDebugLog(__FORMAT__, ##__VA_ARGS__)
 
-#define FLTrace(__FORMAT__, ...) \
-            FLLogToLogger([FLLogLogger instance], FLLogTypeTrace, __FORMAT__, ##__VA_ARGS__)
-
-#define FLTraceIf(__CONDITION__, __FORMAT__, ...) \
-            if(__CONDITION__) FLTrace(__FORMAT__, ##__VA_ARGS__)
-
 #define FLLogIndent(__BLOCK__) [[FLLogLogger instance] indent:__BLOCK__]
+
+#define FLTrace(__FORMAT__, ...)
+#define FLTraceIf(__CONDITION__, __FORMAT__, ...)
 
 #else
 

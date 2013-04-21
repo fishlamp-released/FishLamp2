@@ -9,8 +9,8 @@
 #import "FLHttpController.h"
 #import "ZFWebApi.h"
 #import "ZFLoadGroupHierarchyOperation.h"
-#import "ZFAsyncGroupPhotoSetDownloader.h"
-#import "ZFAsyncBatchPhotoDownloader.h"
+#import "ZFBatchPhotoSetDownloader.h"
+#import "ZFBatchPhotoDownloader.h"
 #import "FLDatabaseObjectStorageService.h"
 
 @protocol ZFHttpControllerDelegate;
@@ -22,10 +22,23 @@
 
 @property (readwrite, strong) ZFHttpUser* user;
 
-- (ZFLoadGroupHierarchyOperation*) createRootGroupDownloader;
-- (ZFAsyncGroupPhotoSetDownloader*) createAllPhotoSetsDownloader;
-- (ZFAsyncBatchPhotoDownloader*) createBatchDownloader:(ZFBatchDownloadSpec*) spec;
+- (ZFBatchPhotoDownloader*) createBatchDownloader:(ZFBatchDownloadSpec*) spec;
 
+- (FLFinisher*) beginDownloadingAllPhotoSetsForRootGroup:(id)observer
+                                              completion:(fl_completion_block_t) completion;
+
+- (FLFinisher*) beginDownloadingRootGroup:(id) observer 
+                               completion:(fl_completion_block_t) completion;
+
+@end
+
+@protocol FLHttpControllerObserver <NSObject>
+@optional
+
+- (void) httpController:(ZFHttpController*) controller didDownloadRootGroupWithResult:(FLResult) result;
+
+- (void) httpController:(ZFHttpController*) controller didDownloadPhotoSetForRootGroupWithResult:(FLResult) result;
+- (void) httpController:(ZFHttpController*) controller didDownloadAllPhotoSetsForRootGroupWithResult:(FLResult) result;
 @end
 
 

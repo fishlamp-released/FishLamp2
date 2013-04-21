@@ -70,7 +70,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFPhotoSet);
 	return loadedCount;
 }
 
-- (BOOL) allPhotosAreLoaded {
+- (BOOL) photosAreDownloaded {
 	return self.Photos.count == (NSUInteger) self.PhotoCountValue;
 }
 
@@ -80,7 +80,7 @@ FLSynthesizeCachedObjectHandlerProperty(ZFPhotoSet);
                 
     return  (self.TextCnValue < anotherTextCn) ||
             (self.PhotoListCnValue < anotherPhotoListCn) ||
-            ![self allPhotosAreLoaded] || 
+            ![self photosAreDownloaded] || 
             (photoCount >=0 && self.PhotoCountValue != photoCount);
 }
 

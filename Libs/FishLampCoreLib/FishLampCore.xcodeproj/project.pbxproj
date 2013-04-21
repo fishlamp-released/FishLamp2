@@ -12,6 +12,15 @@
 		2713040A16F902FE00DA94F7 /* FLAssociatedProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713040716F902FE00DA94F7 /* FLAssociatedProperty.m */; };
 		2713040B16F902FE00DA94F7 /* FLAssociatedProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713040716F902FE00DA94F7 /* FLAssociatedProperty.m */; };
 		2713040C16F902FE00DA94F7 /* FLAssociatedProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2713040716F902FE00DA94F7 /* FLAssociatedProperty.m */; };
+		2718E3E517238462002D2C98 /* FLTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E3E317238462002D2C98 /* FLTrace.h */; };
+		2718E3E617238462002D2C98 /* FLTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E3E317238462002D2C98 /* FLTrace.h */; };
+		2718E3E717238462002D2C98 /* FLTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E3E317238462002D2C98 /* FLTrace.h */; };
+		2718E3E817238462002D2C98 /* FLTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 2718E3E317238462002D2C98 /* FLTrace.h */; };
+		2718E3E917238462002D2C98 /* FLTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E3E417238462002D2C98 /* FLTrace.m */; };
+		2718E3EA17238462002D2C98 /* FLTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E3E417238462002D2C98 /* FLTrace.m */; };
+		2718E3EB17238462002D2C98 /* FLTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E3E417238462002D2C98 /* FLTrace.m */; };
+		2718E3EC17238462002D2C98 /* FLTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E3E417238462002D2C98 /* FLTrace.m */; };
+		2718E3ED17238462002D2C98 /* FLTrace.m in Sources */ = {isa = PBXBuildFile; fileRef = 2718E3E417238462002D2C98 /* FLTrace.m */; };
 		271E3D0A16920FC800FB62C9 /* FLPrettyString.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3D0216920FC800FB62C9 /* FLPrettyString.h */; };
 		271E3D0B16920FC800FB62C9 /* FLPrettyString.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3D0216920FC800FB62C9 /* FLPrettyString.h */; };
 		271E3D0C16920FC800FB62C9 /* FLPrettyString.h in Headers */ = {isa = PBXBuildFile; fileRef = 271E3D0216920FC800FB62C9 /* FLPrettyString.h */; };
@@ -447,6 +456,8 @@
 /* Begin PBXFileReference section */
 		27048EF0161CB58600C38ADA /* libFishLampCore-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2713040716F902FE00DA94F7 /* FLAssociatedProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAssociatedProperty.m; sourceTree = "<group>"; };
+		2718E3E317238462002D2C98 /* FLTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTrace.h; sourceTree = "<group>"; };
+		2718E3E417238462002D2C98 /* FLTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTrace.m; sourceTree = "<group>"; };
 		271E3D0216920FC800FB62C9 /* FLPrettyString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPrettyString.h; sourceTree = "<group>"; };
 		271E3D0316920FC800FB62C9 /* FLPrettyString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPrettyString.m; sourceTree = "<group>"; };
 		271E3D0416920FC800FB62C9 /* FLStringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStringFormatter.h; sourceTree = "<group>"; };
@@ -668,6 +679,8 @@
 				2798CDE9166D886500A0863D /* FLPrintf.m */,
 				2798CDEA166D886500A0863D /* FLConsoleLogSink.h */,
 				2798CDEB166D886500A0863D /* FLConsoleLogSink.m */,
+				2718E3E317238462002D2C98 /* FLTrace.h */,
+				2718E3E417238462002D2C98 /* FLTrace.m */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -924,6 +937,7 @@
 				27F46F1E16FA45FE006271B4 /* NSError+FLExtras.h in Headers */,
 				27F46F3716FA4B51006271B4 /* FLAssertionFailedError.h in Headers */,
 				27F46F4216FA4B69006271B4 /* FLCancelError.h in Headers */,
+				2718E3E517238462002D2C98 /* FLTrace.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -988,6 +1002,7 @@
 				27F46F2016FA45FE006271B4 /* NSError+FLExtras.h in Headers */,
 				27F46F3916FA4B51006271B4 /* FLAssertionFailedError.h in Headers */,
 				27F46F4416FA4B69006271B4 /* FLCancelError.h in Headers */,
+				2718E3E717238462002D2C98 /* FLTrace.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1052,6 +1067,7 @@
 				27F46F1F16FA45FE006271B4 /* NSError+FLExtras.h in Headers */,
 				27F46F3816FA4B51006271B4 /* FLAssertionFailedError.h in Headers */,
 				27F46F4316FA4B69006271B4 /* FLCancelError.h in Headers */,
+				2718E3E617238462002D2C98 /* FLTrace.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1116,6 +1132,7 @@
 				27F46F2116FA45FE006271B4 /* NSError+FLExtras.h in Headers */,
 				27F46F3A16FA4B51006271B4 /* FLAssertionFailedError.h in Headers */,
 				27F46F4516FA4B69006271B4 /* FLCancelError.h in Headers */,
+				2718E3E817238462002D2C98 /* FLTrace.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1282,6 +1299,7 @@
 				27F46F2316FA45FE006271B4 /* NSError+FLExtras.m in Sources */,
 				27F46F3C16FA4B51006271B4 /* FLAssertionFailedError.m in Sources */,
 				27F46F4716FA4B69006271B4 /* FLCancelError.m in Sources */,
+				2718E3EA17238462002D2C98 /* FLTrace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1328,6 +1346,7 @@
 				27F46F2516FA45FE006271B4 /* NSError+FLExtras.m in Sources */,
 				27F46F3E16FA4B51006271B4 /* FLAssertionFailedError.m in Sources */,
 				27F46F4916FA4B69006271B4 /* FLCancelError.m in Sources */,
+				2718E3EC17238462002D2C98 /* FLTrace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1374,6 +1393,7 @@
 				27F46F2216FA45FE006271B4 /* NSError+FLExtras.m in Sources */,
 				27F46F3B16FA4B51006271B4 /* FLAssertionFailedError.m in Sources */,
 				27F46F4616FA4B69006271B4 /* FLCancelError.m in Sources */,
+				2718E3E917238462002D2C98 /* FLTrace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1420,6 +1440,7 @@
 				27F46F2416FA45FE006271B4 /* NSError+FLExtras.m in Sources */,
 				27F46F3D16FA4B51006271B4 /* FLAssertionFailedError.m in Sources */,
 				27F46F4816FA4B69006271B4 /* FLCancelError.m in Sources */,
+				2718E3EB17238462002D2C98 /* FLTrace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1466,6 +1487,7 @@
 				27F46F2616FA45FE006271B4 /* NSError+FLExtras.m in Sources */,
 				27F46F3F16FA4B51006271B4 /* FLAssertionFailedError.m in Sources */,
 				27F46F4A16FA4B69006271B4 /* FLCancelError.m in Sources */,
+				2718E3ED17238462002D2C98 /* FLTrace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

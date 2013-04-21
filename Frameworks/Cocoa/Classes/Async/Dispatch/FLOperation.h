@@ -7,11 +7,11 @@
 //
 #import "FLDispatchTypes.h"
 #import "FLFinisher.h"
-#import "FLObservable.h"
 #import "FLOperationContext.h"
 #import "FLAsyncQueue.h"
 #import "FLCallback.h"
 #import "FLObjectStorage.h"
+#import "FLObservable.h"
 
 @protocol FLOperation <NSObject>
 @property (readonly, strong) id identifier;
@@ -21,12 +21,10 @@
 
 @end
 
-@protocol FLOperationDefaultFinishSelector <NSObject>
+@protocol FLOperationDelegate <NSObject>
 @optional
 - (void) operationDidFinish:(id) operation withResult:(FLResult) result;
 @end
-
-#define FLOperationDefaultFinishedSelector @selector(operationDidFinish:withResult:)
 
 @interface FLOperation : FLObservable<FLOperation> {
 @private
@@ -36,15 +34,15 @@
     id<FLObjectStorage> _objectStorage;
 	id _identifier;
     BOOL _cancelled;
-    __unsafe_unretained id _finishedDelegate;
-    SEL _finishedSelectorForDelegate;
-    SEL _finishedSelectorForObserver;
+    __unsafe_unretained id _delegate;
+    SEL _finishedSelector;
+    NSInteger _retryCount;
 }
+@property (readwrite, assign) NSInteger retryCount;
 
 // finished delegate
 @property (readwrite, nonatomic, assign) id delegate;
-@property (readwrite, nonatomic, assign) SEL finishedSelectorForDelegate; // default = FLOperationDefaultFinishedSelector
-@property (readwrite, nonatomic, assign) SEL finishedSelectorForObserver; // default = FLOperationDefaultFinishedSelector 
+@property (readwrite, nonatomic, assign) SEL finishedSelector; // default = FLOperationDefaultFinishedSelector
 
 // object storage
 @property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
@@ -102,8 +100,8 @@
 - (void) willRunInParent:(id) parent;
 - (void) didFinishInParent:(id) parent withResult:(FLResult) result;
 
-- (void) willRunChildOperation:(id) childOperation;
-- (void) didRunChildOperation:(id) childOperation withResult:(FLResult) result;
+- (void) willStartChildOperation:(id) childOperation;
+- (void) didFinishChildOperation:(id) childOperation withResult:(FLResult) result;
 
 @end
 
