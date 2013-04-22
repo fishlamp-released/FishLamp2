@@ -13,6 +13,7 @@
 #import "FLObjectDescriber.h"
 #import "FLBase64Encoding.h"
 #import "FLSqlStatement.h"
+#import "FLModelObject.h"
 
 id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
                              FLDatabaseTable* table,
@@ -22,6 +23,12 @@ id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
     id newObject = inObject;
     
     switch(column.columnType) {
+        case FLDatabaseTypeInvalid:
+            FLAssertFailedWithComment(@"invalid column type");
+            newObject = nil;
+            break;
+            
+    
         case FLDatabaseTypeNone:
         case FLDatabaseTypeNull:
             newObject = nil;
@@ -35,9 +42,9 @@ id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
         
         case FLDatabaseTypeText:{
             FLConfirmIsKindOfClass(inObject, NSString);
-            FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] objectDescriber];
-            if(objectDescriber) {
-                FLTypeDesc* property = [objectDescriber subTypeForIdentifier:column.decodedColumnName];
+            if([[table classRepresentedByTable] isModelObject]) {
+                FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] objectDescriber];
+                FLObjectDescriber* property = [objectDescriber subTypeForIdentifier:column.decodedColumnName];
                 if(property) {
                     newObject = [property.objectClass decodeObjectWithSqliteColumnString:inObject];
                 }
@@ -73,9 +80,9 @@ id FLDefaultDatabaseColumnDecoder( FLDatabase* database,
         break;
 			           
         case FLDatabaseTypeObject: {
-            FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] objectDescriber];
-            if(objectDescriber) {
-                FLTypeDesc* property = [objectDescriber subTypeForIdentifier:column.decodedColumnName];
+            if([[table classRepresentedByTable] isModelObject]) {
+                FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] objectDescriber];
+                FLObjectDescriber* property = [objectDescriber subTypeForIdentifier:column.decodedColumnName];
                 if(property) {
                     FLConfirmIsKindOfClass(inObject, NSData);
                     newObject = [property.objectClass decodeObjectWithSqliteColumnData:inObject];

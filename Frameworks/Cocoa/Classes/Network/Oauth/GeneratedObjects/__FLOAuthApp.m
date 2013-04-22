@@ -94,24 +94,25 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setChildForIdentifier:@"appId" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"apiKey" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"consumerKey" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"consumerSecret" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"requestTokenUrl" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"accessTokenUrl" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"authorizeUrl" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"callback" withClass:[NSString class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setChildForIdentifier:@"appId" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"apiKey" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"consumerKey" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"consumerSecret" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"requestTokenUrl" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"accessTokenUrl" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"authorizeUrl" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"callback" withClass:[NSString class]];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
@@ -120,17 +121,8 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"appId" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"appId" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"apiKey" columnType:FLDatabaseTypeText columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"consumerKey" columnType:FLDatabaseTypeText columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"consumerSecret" columnType:FLDatabaseTypeText columnConstraints:nil]];

@@ -14,13 +14,17 @@
 
 @implementation ZFBatchDownloadSpec
 
+FLSynthesizeModelObjectMethods();
+
 @synthesize photoSets = _photoSets;
 @synthesize rootGroupID = _rootGroupID;
 @synthesize mediaTypes = _mediaTypes;
 @synthesize destinationPath = _destinationPath;
+@synthesize transferState = _transferState;
 
 #if FL_MRC
 - (void) dealloc {
+    [_transferState release];
     [_photoSets release];
     [_mediaTypes release];
     [_destinationPath release];
@@ -32,14 +36,14 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (id) copyWithZone:(NSZone *)zone {
-    ZFBatchDownloadSpec* spec = [[ZFBatchDownloadSpec alloc] init];
-    spec.destinationPath = self.destinationPath;
-    spec.mediaTypes = self.mediaTypes;
-    spec.rootGroupID = self.rootGroupID;
-    spec.photoSets = self.photoSets;
-    return spec;
-}
+//- (id) copyWithZone:(NSZone *)zone {
+//    ZFBatchDownloadSpec* spec = [[ZFBatchDownloadSpec alloc] init];
+//    spec.destinationPath = self.destinationPath;
+//    spec.mediaTypes = self.mediaTypes;
+//    spec.rootGroupID = self.rootGroupID;
+//    spec.photoSets = self.photoSets;
+//    return spec;
+//}
 
 + (id) batchDownloadSpecFromUserDefaults {
     

@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import "FLSynchronousOperation.h"
+#import "FLAsyncOperation.h"
 #import "ZFPhotoSet.h"
 #import "FLUserLogin.h"
 
-@interface ZFLoadGroupHierarchyOperation : FLSynchronousOperation {
+@interface ZFLoadGroupHierarchyOperation : FLAsyncOperation {
 @private    
     FLUserLogin* _userLogin;
 }

@@ -15,14 +15,14 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 
 @interface FLHttpController ()
 @property (readwrite, strong) FLUserService* userService;
-@property (readwrite, strong) id<FLObjectStorage> objectStorageService;
+@property (readwrite, strong) FLStorageService* storageService;
 @property (readwrite, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
 @property (readwrite, strong) FLService* authenticatedServices;
 @end
 
 @implementation FLHttpController
 @synthesize userService = _userLoginService;
-@synthesize objectStorageService = _objectStorageService;
+@synthesize storageService = _storageService;
 @synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
 @synthesize delegate = _delegate;
 @synthesize authenticatedServices = _authenticatedServices;
@@ -47,9 +47,9 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
         self.httpRequestAuthenticator.delegate = self;
         [self.userService addSubService:self.httpRequestAuthenticator];    
     
-        self.objectStorageService = [self createObjectStorageService];
-        FLAssertNotNil(self.objectStorageService);
-        [self.authenticatedServices addSubService:self.objectStorageService];
+        self.storageService = [self createStorageService];
+        FLAssertNotNil(self.storageService);
+        [self.authenticatedServices addSubService:self.storageService];
         
     }
     return self;
@@ -64,7 +64,7 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
     return nil;
 }
 
-- (FLObjectStorageService*) createObjectStorageService {
+- (FLStorageService*) createStorageService {
     return nil;
 }
 
@@ -87,7 +87,7 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 #if FL_MRC
 - (void) dealloc { 
     [_httpRequestAuthenticator release];
-    [_objectStorageService release];
+    [_storageService release];
     [_userLoginService release];
     [super dealloc];
 }
@@ -99,9 +99,9 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
     id object = operation; // for casting
     
 // TODO: abstract this better.    
-    if([object respondsToSelector:@selector(setObjectStorage:)]) {
-        if([object objectStorage] == nil) {
-            [object setObjectStorage:[self objectStorageService]];
+    if([object respondsToSelector:@selector(setStorageService:)]) {
+        if([object storageService] == nil) {
+            [object setStorageService:[self storageService]];
         }
     }
 

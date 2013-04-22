@@ -13,7 +13,7 @@
 //#import "FLFileSink.h"
 //#import "FLHiddenFolderFileSink.h"
 //#import "ZFDownloadSpec.h"
-//#import "ZFDownloadPhotoOperation.h"
+//#import "ZFPhotoDownloader.h"
 //
 //@interface ZFBatchDownloadSynchronousOperation ()
 //@property (readwrite, copy, nonatomic) NSString* hiddenFolderPath;

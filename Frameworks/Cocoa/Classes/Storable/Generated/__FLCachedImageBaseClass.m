@@ -132,23 +132,24 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setChildForIdentifier:@"fileName" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"url" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"imageId" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"photoUrl" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"host" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"imageVersion" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"canCacheInMemory" withClass:[FLBoolNumber class] ];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setChildForIdentifier:@"fileName" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"url" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"imageId" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"photoUrl" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"host" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"imageVersion" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"canCacheInMemory" withClass:[FLBoolNumber class] ];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
@@ -158,21 +159,12 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"fileName" columnType:FLDatabaseTypeText columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"url" columnType:FLDatabaseTypeText columnConstraints:nil]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"imageId" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"imageId" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"photoUrl" columnType:FLDatabaseTypeText columnConstraints:nil]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"host" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"host" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"host" indexProperties:FLDatabaseColumnIndexPropertyNone]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"imageVersion" columnType:FLDatabaseTypeText columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"canCacheInMemory" columnType:FLDatabaseTypeInteger columnConstraints:nil]];

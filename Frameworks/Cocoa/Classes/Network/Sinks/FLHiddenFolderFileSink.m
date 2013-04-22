@@ -56,8 +56,6 @@
     [super openSink];
 }
 
-
-
 - (void) closeSinkWithCommit:(BOOL) commit {
     
     [super closeSinkWithCommit:commit];

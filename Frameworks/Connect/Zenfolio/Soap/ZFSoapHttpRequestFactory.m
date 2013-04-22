@@ -36,7 +36,7 @@ ConcreteSubclass(ZFLoadGroupSoapRequest)
 
 #define ZFSoapHttpRequestFrom(__SUBCLASS__, __REQUEST_OBJECT_NAME__, __RESULT_OBJECT_NAME__, __RETURNED_OBJECT_NAME__) \
     [ZFSoapHttpRequestFactory soapHttpRequest:[__SUBCLASS__ class] operationDescriptor:FLAutorelease([[__REQUEST_OBJECT_NAME__ alloc] init]) \
-                                              element:[FLTypeDesc typeDesc:__RESULT_OBJECT_NAME__ class:[__RETURNED_OBJECT_NAME__ class]]]
+                                              element:[FLObjectDescriber objectDescriber:__RESULT_OBJECT_NAME__ class:[__RETURNED_OBJECT_NAME__ class]]]
 
 @implementation ZFLoadPhotoSet (NSObject)
 - (void) setRequestedResponseLevel:(NSString*) level {
@@ -58,7 +58,7 @@ ConcreteSubclass(ZFLoadGroupSoapRequest)
 @implementation ZFSoapHttpRequestFactory
 
 + (FLResult) zenfolioResultFromSoapResponse:(FLParsedItem*) parsedSoap 
-                                    element:(FLTypeDesc*) element {
+                                    element:(FLObjectDescriber*) element {
     FLAssertNotNil(parsedSoap);
     FLAssertNotNil(element);
     
@@ -80,7 +80,7 @@ ConcreteSubclass(ZFLoadGroupSoapRequest)
 
 + (FLSoapHttpRequest*) soapHttpRequest:(Class) subclass
                    operationDescriptor: (id) operationDescriptor 
-                               element:(FLTypeDesc*) element {
+                               element:(FLObjectDescriber*) element {
 
     static ZFApiSoap* s_soapServer = nil;
     static dispatch_once_t onceToken;

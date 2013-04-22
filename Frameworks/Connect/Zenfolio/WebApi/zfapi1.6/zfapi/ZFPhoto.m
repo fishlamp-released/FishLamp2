@@ -405,78 +405,61 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-	static FLObjectDescriber* s_describer = nil;
+	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
 		
-		if(!s_describer)
-		{
-			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-		}
-		[s_describer setChildForIdentifier:@"Id" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"Width" withClass:[FLUnsignedIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"Height" withClass:[FLUnsignedIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"Sequence" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"AccessDescriptor" withClass:[ZFAccessDescriptor class]];
-		[s_describer setChildForIdentifier:@"Title" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Caption" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"FileName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"UploadedOn" withClass:[NSDate class]];
-		[s_describer setChildForIdentifier:@"TakenOn" withClass:[NSDate class]];
-		[s_describer setChildForIdentifier:@"Owner" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Gallery" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"Views" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"Size" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"Rotation" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"Keyword" class:[NSString class] ], nil]];
-		[s_describer setChildForIdentifier:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"Category" class:[FLIntegerNumber class]], nil]];
-		[s_describer setChildForIdentifier:@"Flags" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"TextCn" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"PricingKey" withClass:[FLLongNumber class] ];
-		[s_describer setChildForIdentifier:@"MimeType" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"OriginalUrl" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"UrlCore" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"UrlHost" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"UrlToken" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Copyright" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"FileHash" withClass:[NSData class]];
-		[s_describer setChildForIdentifier:@"PageUrl" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"ExifTagsArray" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"ExifTags" class:[ZFExifTag class]], nil]];
-		[s_describer setChildForIdentifier:@"ShortExif" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"MailboxId" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"IsVideo" withClass:[FLBoolNumber class] ];
-		[s_describer setChildForIdentifier:@"Duration" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"categoryArray" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"parsedCategory" class:[ZFParsedCategory class]], nil]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+		[describer setChildForIdentifier:@"Id" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"Width" withClass:[FLUnsignedIntegerNumber class] ];
+		[describer setChildForIdentifier:@"Height" withClass:[FLUnsignedIntegerNumber class] ];
+		[describer setChildForIdentifier:@"Sequence" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"AccessDescriptor" withClass:[ZFAccessDescriptor class]];
+		[describer setChildForIdentifier:@"Title" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Caption" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"FileName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"UploadedOn" withClass:[NSDate class]];
+		[describer setChildForIdentifier:@"TakenOn" withClass:[NSDate class]];
+		[describer setChildForIdentifier:@"Owner" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Gallery" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"Views" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"Size" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"Rotation" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Keyword" class:[NSString class] ], nil]];
+		[describer setChildForIdentifier:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" class:[FLIntegerNumber class]], nil]];
+		[describer setChildForIdentifier:@"Flags" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"TextCn" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"PricingKey" withClass:[FLLongNumber class] ];
+		[describer setChildForIdentifier:@"MimeType" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"OriginalUrl" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"UrlCore" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"UrlHost" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"UrlToken" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Copyright" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"FileHash" withClass:[NSData class]];
+		[describer setChildForIdentifier:@"PageUrl" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"ExifTagsArray" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"ExifTags" class:[ZFExifTag class]], nil]];
+		[describer setChildForIdentifier:@"ShortExif" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"MailboxId" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"IsVideo" withClass:[FLBoolNumber class] ];
+		[describer setChildForIdentifier:@"Duration" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"categoryArray" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"parsedCategory" class:[ZFParsedCategory class]], nil]];
 	});
-	return s_describer;
+	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
-+ (FLObjectInflator*) sharedObjectInflator
-{
-	static FLObjectInflator* s_inflator = nil;
-	static dispatch_once_t pred = 0;
-	dispatch_once(&pred, ^{
-		s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] objectDescriber]];
-	});
-	return s_inflator;
-}
 
 + (FLDatabaseTable*) sharedDatabaseTable
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		FLDatabaseTable* superTable = [super sharedDatabaseTable];
-		if(superTable)
-		{
-			s_table = [superTable copy];
-			s_table.tableName = [self databaseTableName];
-		}
-		else
-		{
-			s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-		}
-		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"Id" columnType:FLDatabaseTypeInteger columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+
+		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"Id" columnType:FLDatabaseTypeInteger columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"Width" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"Height" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"Sequence" columnType:FLDatabaseTypeText columnConstraints:nil]];

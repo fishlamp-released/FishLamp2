@@ -9,16 +9,16 @@
 #import "FLJsonObjectBuilder.h"
 #import "FLBase64Encoding.h"
 #import "FLDataEncoder.h"
-#import "FLTypeDesc.h"
+#import "FLObjectDescriber.h"
 #import "FLObjectDescriber.h"
 
 @interface FLJsonObjectBuilder ()
-- (id) objectFromJSON:(id) jsonObject withTypeDesc:(FLTypeDesc*) type;
+- (id) objectFromJSON:(id) jsonObject withTypeDesc:(FLObjectDescriber*) type;
 @end
 
 @implementation NSString (FLJsonObjectBuilder)
 
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLTypeDesc*) typeDesc {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLObjectDescriber*) typeDesc {
     FLAssertNotNil(builder);
     FLAssertNotNil(typeDesc);
     
@@ -38,14 +38,14 @@
 @end
 
 @implementation NSNumber (FLJsonObjectBuilder)
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLTypeDesc*) typeDesc {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLObjectDescriber*) typeDesc {
     return self;
 }
 @end
 
 @implementation NSDictionary (FLJsonObjectBuilder)
 
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLTypeDesc*) typeDesc {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLObjectDescriber*) typeDesc {
     FLAssertNotNil(builder);
     FLAssertNotNil(typeDesc);
 
@@ -67,7 +67,11 @@
         return nil;
     }
     
-    typeDesc = [objectClass objectDescriber];
+//    if(![objectClass isModelObject]) {
+//        return nil;
+//    }
+//    
+//    typeDesc = [objectClass objectDescriber];
 
     id rootObject = FLAutorelease([[objectClass alloc] init]);
     FLAssertNotNilWithComment(rootObject, @"unable to create object of type: %@", NSStringFromClass(objectClass));
@@ -75,7 +79,7 @@
     for(id key in self) {
         id value = [self objectForKey:key];
 
-        FLTypeDesc* subType = [typeDesc subTypeForIdentifier:key];
+        FLObjectDescriber* subType = [typeDesc subTypeForIdentifier:key];
         if(!subType) {
             FLLog(@"object builder skipped missing typeDesc named: %@", key);
             continue;
@@ -103,7 +107,7 @@
 - (NSArray*) objectArrayWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder withTypeDescs:(NSArray*) arrayOfObjectDescribers {
 
 // TODO: handle hetrogenous arrays
-    FLTypeDesc* typeDesc = [arrayOfObjectDescribers firstObject];
+    FLObjectDescriber* typeDesc = [arrayOfObjectDescribers firstObject];
 
     NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:self.count];
     for(id child in self) {	
@@ -116,7 +120,7 @@
     return newArray;
 }
 
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLTypeDesc*) typeDesc {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLObjectDescriber*) typeDesc {
 
     NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:self.count];
     for(id child in self) {			
@@ -166,11 +170,11 @@
     return [jsonObject objectArrayWithJsonObjectBuilder:self withTypeDescs: arrayOfObjectDescriber];
 }
 
-- (NSArray*) arrayOfObjectsFromJSON:(id) json withTypeDesc:(FLTypeDesc*) type {
+- (NSArray*) arrayOfObjectsFromJSON:(id) json withTypeDesc:(FLObjectDescriber*) type {
     return [self arrayOfObjectsFromJSON:json withTypeDescs:[NSArray arrayWithObject:type]];
 }
 
-- (id) objectFromJSON:(id) jsonObject withTypeDesc:(FLTypeDesc*) type {
+- (id) objectFromJSON:(id) jsonObject withTypeDesc:(FLObjectDescriber*) type {
     return [jsonObject objectWithJsonObjectBuilder:self typeDesc:type];
 }
 

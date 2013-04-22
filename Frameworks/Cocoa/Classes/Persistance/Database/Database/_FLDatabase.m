@@ -34,6 +34,9 @@ NSString* FLDatabaseTypeToString(FLDatabaseType type)
 		case FLDatabaseTypeNone:
 			return nil;
             
+        case FLDatabaseTypeInvalid:
+            FLAssertFailedWithComment(@"invalid sql type");
+            break;
             
 	}
 

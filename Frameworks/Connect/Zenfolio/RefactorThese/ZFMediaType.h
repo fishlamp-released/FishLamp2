@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLModelObject.h"
 
 @class ZFPhoto;
 
@@ -27,7 +27,7 @@ typedef enum PhotoMediaTypeID
     ZFMediaTypeVideo                     
 } ZFMediaTypeID;
 
-@interface ZFMediaType : NSObject<NSCopying> {
+@interface ZFMediaType : FLIdentifiedObject<FLModelObject> {
 @private
     ZFMediaTypeID _mediaTypeID;
     CGSize _size;

@@ -7,9 +7,9 @@
 //
 
 #import "FLObjectStorage.h"
-#import "FLObjectStorageService.h"
+#import "FLStorageService.h"
 
-@interface FLDictionaryObjectStorageService : FLObjectStorageService {
+@interface FLDictionaryObjectStorageService : FLStorageService {
 @private
     NSMutableDictionary* _objectStorage;
 }

@@ -20,7 +20,7 @@
 @synthesize contextID = _contextID;
 @synthesize asyncQueue = _asyncQueue;
 @synthesize identifier = _identifier;
-@synthesize objectStorage = _objectStorage;
+@synthesize storageService = _storageService;
 @synthesize cancelled = _cancelled;
 @synthesize delegate = _delegate;
 @synthesize finishedSelector = _finishedSelector;
@@ -56,7 +56,7 @@
     }
     
 #if FL_MRC
-    [_objectStorage release];
+    [_storageService release];
     [_identifier release];
 	[super dealloc];
 #endif
@@ -198,6 +198,11 @@
     self.cancelled = NO;
 }
 
+- (void) abortIfCancelled {
+    if(self.wasCancelled) {
+        FLThrowError([NSError cancelError]);
+    }
+}
 
 
 

@@ -61,6 +61,10 @@
 		274933F2169A051E008E8EC5 /* __CoreHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933F0169A051E008E8EC5 /* __CoreHeaders.h */; };
 		274933F3169A051E008E8EC5 /* __CoreHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933F0169A051E008E8EC5 /* __CoreHeaders.h */; };
 		274933F4169A051E008E8EC5 /* __CoreHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933F0169A051E008E8EC5 /* __CoreHeaders.h */; };
+		274F1EBB1724763C006B4285 /* FishLamp.h in Headers */ = {isa = PBXBuildFile; fileRef = 274F1EBA17247634006B4285 /* FishLamp.h */; };
+		274F1EBC1724763D006B4285 /* FishLamp.h in Headers */ = {isa = PBXBuildFile; fileRef = 274F1EBA17247634006B4285 /* FishLamp.h */; };
+		274F1EBD1724763D006B4285 /* FishLamp.h in Headers */ = {isa = PBXBuildFile; fileRef = 274F1EBA17247634006B4285 /* FishLamp.h */; };
+		274F1EBE1724763E006B4285 /* FishLamp.h in Headers */ = {isa = PBXBuildFile; fileRef = 274F1EBA17247634006B4285 /* FishLamp.h */; };
 		2798D936166D886500A0863D /* FLDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDC3166D886500A0863D /* FLDebug.h */; };
 		2798D937166D886500A0863D /* FLDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDC3166D886500A0863D /* FLDebug.h */; };
 		2798D938166D886500A0863D /* FLDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CDC3166D886500A0863D /* FLDebug.h */; };
@@ -468,6 +472,7 @@
 		271E3D0916920FC800FB62C9 /* FLWhitespace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWhitespace.m; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCore-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		274933F0169A051E008E8EC5 /* __CoreHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __CoreHeaders.h; sourceTree = "<group>"; };
+		274F1EBA17247634006B4285 /* FishLamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLamp.h; sourceTree = "<group>"; };
 		2753D4C01695003D001B8856 /* FLObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjc.h; sourceTree = "<group>"; };
 		2798CDC3166D886500A0863D /* FLDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDebug.h; sourceTree = "<group>"; };
 		2798CDC4166D886500A0863D /* FLDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDebug.m; sourceTree = "<group>"; };
@@ -644,6 +649,7 @@
 				274933F0169A051E008E8EC5 /* __CoreHeaders.h */,
 				2798CDC2166D886500A0863D /* Debug */,
 				2798CDDD166D886500A0863D /* FishLampCore.h */,
+				274F1EBA17247634006B4285 /* FishLamp.h */,
 				2798CDDE166D886500A0863D /* Logger */,
 				2798CDEE166D886500A0863D /* Properties */,
 				2798CDF8166D886500A0863D /* Required */,
@@ -938,6 +944,7 @@
 				27F46F3716FA4B51006271B4 /* FLAssertionFailedError.h in Headers */,
 				27F46F4216FA4B69006271B4 /* FLCancelError.h in Headers */,
 				2718E3E517238462002D2C98 /* FLTrace.h in Headers */,
+				274F1EBE1724763E006B4285 /* FishLamp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1003,6 +1010,7 @@
 				27F46F3916FA4B51006271B4 /* FLAssertionFailedError.h in Headers */,
 				27F46F4416FA4B69006271B4 /* FLCancelError.h in Headers */,
 				2718E3E717238462002D2C98 /* FLTrace.h in Headers */,
+				274F1EBC1724763D006B4285 /* FishLamp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1068,6 +1076,7 @@
 				27F46F3816FA4B51006271B4 /* FLAssertionFailedError.h in Headers */,
 				27F46F4316FA4B69006271B4 /* FLCancelError.h in Headers */,
 				2718E3E617238462002D2C98 /* FLTrace.h in Headers */,
+				274F1EBD1724763D006B4285 /* FishLamp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1133,6 +1142,7 @@
 				27F46F3A16FA4B51006271B4 /* FLAssertionFailedError.h in Headers */,
 				27F46F4516FA4B69006271B4 /* FLCancelError.h in Headers */,
 				2718E3E817238462002D2C98 /* FLTrace.h in Headers */,
+				274F1EBB1724763C006B4285 /* FishLamp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

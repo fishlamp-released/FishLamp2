@@ -32,10 +32,11 @@
 - (BOOL) objectBuilder:(FLObjectBuilder*) builder 
          beginBuilding:(FLPropertyInflator*) propertyInflator {
                     
-    FLObjectDescriber* describer = [self objectDescriber];
-    if(!describer) {
+    if(![self isModelObject]) {
         return NO;
     }
+
+    FLObjectDescriber* describer = [self objectDescriber];
                     
 	FLPropertyType* prop = [describer propertyDescriberForPropertyName:propertyInflator.propertyName];
     

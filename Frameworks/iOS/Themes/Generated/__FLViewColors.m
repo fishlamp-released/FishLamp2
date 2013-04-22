@@ -97,20 +97,21 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"normalColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"normalColor"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"selectedColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"selectedColor"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"highlightedColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"highlightedColor"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"disabledColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"disabledColor"];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"normalColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"normalColor"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"selectedColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"selectedColor"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"highlightedColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"highlightedColor"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"disabledColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"disabledColor"];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 + (FLObjectInflator*) sharedObjectInflator
@@ -128,16 +129,7 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"normalColor" columnType:FLDatabaseTypeObject columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"selectedColor" columnType:FLDatabaseTypeObject columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"highlightedColor" columnType:FLDatabaseTypeObject columnConstraints:nil]];

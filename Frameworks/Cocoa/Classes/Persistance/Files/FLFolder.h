@@ -9,6 +9,7 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 
+
 @class FLFolder;
 
 typedef void (^FLFolderShouldDeleteFileVisitor)(NSString* fileName, BOOL* shouldDeleteFile, BOOL* stop);

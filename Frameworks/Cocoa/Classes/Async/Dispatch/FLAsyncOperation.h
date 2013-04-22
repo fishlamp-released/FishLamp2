@@ -15,5 +15,5 @@
 
 - (void) setFinishedWithResult:(id) result;
 - (void) setFinished;
-
+- (void) setFinishedWithCancelResult;
 @end

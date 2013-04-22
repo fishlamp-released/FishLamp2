@@ -17,6 +17,8 @@
 @synthesize underlined = _underlined;
 @synthesize textFont = _textFont;
 
+FLSynthesizeModelObjectMethods();
+
 - (id) init {
     self = [super init];
     if(self) {
@@ -52,14 +54,14 @@
 }
 #endif
 
-- (id) copyWithZone:(NSZone *)zone {
-    FLTextStyle* style = [[FLTextStyle alloc] init];
-    style.textColor = self.textColor;
-    style.shadowColor = self.shadowColor;
-    style.textFont = self.textFont;
-    style.underlined = self.isUnderlined;
-    return style;
-}
+//- (id) copyWithZone:(NSZone *)zone {
+//    FLTextStyle* style = [[FLTextStyle alloc] init];
+//    style.textColor = self.textColor;
+//    style.shadowColor = self.shadowColor;
+//    style.textFont = self.textFont;
+//    style.underlined = self.isUnderlined;
+//    return style;
+//}
 
 @end
 
@@ -72,6 +74,8 @@
 @synthesize hoveringStyle = _hoveringStyle;
 @synthesize selectedStyle = _selectedStyle;
 @synthesize textFont = _textFont;
+
+FLSynthesizeModelObjectMethods();
 
 + (id) stringDisplayStyle {
     return FLAutorelease([[[self class] alloc] init]);
@@ -121,17 +125,17 @@
 }
 #endif
 
-- (id) copyWithZone:(NSZone*) zone {
-    FLStringDisplayStyle* colors = [[FLStringDisplayStyle alloc] init];
-    colors.textFont = self.textFont;
-    colors.enabledStyle = self.enabledStyle;
-    colors.disabledStyle = self.disabledStyle;
-    colors.highlightedStyle = self.highlightedStyle;
-    colors.emphasizedStyle = self.emphasizedStyle;
-    colors.hoveringStyle = self.hoveringStyle;
-    colors.selectedStyle = self.selectedStyle;
-    return colors;
-}
+//- (id) copyWithZone:(NSZone*) zone {
+//    FLStringDisplayStyle* colors = [[FLStringDisplayStyle alloc] init];
+//    colors.textFont = self.textFont;
+//    colors.enabledStyle = self.enabledStyle;
+//    colors.disabledStyle = self.disabledStyle;
+//    colors.highlightedStyle = self.highlightedStyle;
+//    colors.emphasizedStyle = self.emphasizedStyle;
+//    colors.hoveringStyle = self.hoveringStyle;
+//    colors.selectedStyle = self.selectedStyle;
+//    return colors;
+//}
 
 - (void) visitStyles:(void (^)(FLTextStyle* style)) visitor {
     visitor(self.selectedStyle);

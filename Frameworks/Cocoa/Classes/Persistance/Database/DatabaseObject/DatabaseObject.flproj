@@ -7,7 +7,7 @@
     <objects>
         <object typeName="FLDatabaseObject" protocols="NSCopying, NSCoding">
             <properties>
-                <property type="string" name="uid">
+                <property type="string" name="identifier">
                     <storageOptions isPrimaryKey="YES"/>
                 </property>
             </properties>

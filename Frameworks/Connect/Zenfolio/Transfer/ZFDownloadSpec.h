@@ -12,19 +12,17 @@
 @private
     NSInteger _photoSetID;
     NSInteger _rootGroupID;
-    NSString* _destinationPath;
+    NSString* _fullPathToFile;
     ZFPhoto* _photo;
     ZFMediaType* _mediaType;
-    NSString* _downloadFolderPath;
-    NSString* _fileName;
+    NSString* _tempFolder;
 }
 @property (readwrite, assign, nonatomic) NSInteger rootGroupID;
 @property (readwrite, assign, nonatomic) NSInteger photoSetID;
-@property (readwrite, strong, nonatomic) NSString* destinationPath;
-@property (readwrite, strong, nonatomic) NSString* hiddenFolderPath;
+@property (readwrite, strong, nonatomic) NSString* fullPathToFile;
+@property (readwrite, strong, nonatomic) NSString* tempFolder;
 @property (readwrite, strong, nonatomic) ZFPhoto* photo;
 @property (readwrite, strong, nonatomic) ZFMediaType* mediaType;
-@property (readwrite, strong, nonatomic) NSString* fileName;
 
 - (id) initWithPhoto:(ZFPhoto*) photo;
 + (id) downloadSpec:(ZFPhoto*) photo;

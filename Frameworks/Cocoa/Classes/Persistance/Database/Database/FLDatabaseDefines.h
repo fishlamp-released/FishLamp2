@@ -26,6 +26,8 @@
 
 // helpful enums that are the same as the SQL defines
 typedef enum {
+    FLDatabaseTypeInvalid = 0, 
+    
 	FLDatabaseTypeInteger	= SQLITE_INTEGER,
 	FLDatabaseTypeBlob	= SQLITE_BLOB,
 	FLDatabaseTypeFloat	= SQLITE_FLOAT,

@@ -12,11 +12,13 @@
 @implementation NSObject (FLXmlSerialization)
 
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-                typeDesc:(FLTypeDesc*) parentObject {
+                typeDesc:(FLObjectDescriber*) parentObject {
       
-	FLTypeDesc* typeDesc = [[self class] objectDescriber];
-	if(typeDesc) {
-        for(FLTypeDesc* property in [typeDesc.subtypes objectEnumerator]) {
+	if([[self class] isModelObject]) {
+      	FLObjectDescriber* typeDesc = [[self class] objectDescriber];
+        for(NSUInteger i = 0; i < typeDesc.subTypeCount; i++) {
+            FLObjectDescriber* property = [typeDesc subTypeForIndex:i];
+    
             if(property.objectEncoder) {
                 id object = [self valueForKey:property.identifier];
                 if(object) {
@@ -40,23 +42,23 @@
 @implementation NSArray (FLXmlSerialization)
 
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-                typeDesc:(FLTypeDesc*) typeDesc {
+                typeDesc:(FLObjectDescriber*) typeDesc {
     
 	if(typeDesc && self.count) {
-		NSDictionary* arrayTypes = typeDesc.subtypes;
-		      
-		if(arrayTypes.count == 1) {
-			FLTypeDesc* elementDesc = [[arrayTypes allValues] lastObject];
+		if(typeDesc.subTypeCount == 1) {
+			FLObjectDescriber* elementDesc = [typeDesc subTypeForIndex:0];
 
 			for(id obj in self){
                 [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.identifier typeDesc:elementDesc]];
 			}
 		}
 		else {
+            NSArray* subTypes = [typeDesc subTypesCopy];
+        
 			for(id obj in self) {
 				// hmm. expensive. need to decide for each item.
-				
-				for(FLTypeDesc* subType in [arrayTypes objectEnumerator]) {
+				                
+                for(FLObjectDescriber* subType in subTypes) {
 					if([obj isKindOfClass:subType.objectClass]) {
                         [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:subType.identifier typeDesc:subType]];
 						break;

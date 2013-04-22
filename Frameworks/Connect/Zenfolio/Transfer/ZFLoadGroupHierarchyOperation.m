@@ -33,21 +33,20 @@
     return FLAutorelease([[[self class] alloc] initWithCredentials:userLogin]);
 }
 
-- (FLResult) performSynchronously {
+- (void) performUntilFinished:(FLFinisher*) finisher {
 
-    FLAssertNotNil(self.objectStorage);
+    FLAssertNotNil(self.storageService);
 
     FLHttpRequest* request = [ZFHttpRequestFactory loadGroupHierarchyHttpRequest:_userLogin.userName];
     FLAssertNotNil(request);
 
-    [self abortIfNeeded];
-
-    id group = [self runChildSynchronously:request];
-    FLThrowIfError(group);
-    
-    [self.objectStorage writeObject:group];
-
-    return group;
+    [self runChildAsynchronously:request completion:^(FLResult result) {
+        if(![result error]) {
+            [self.storageService writeObject:result];
+        }
+        
+        [self setFinishedWithResult:result];
+    }];
 }
 
 @end

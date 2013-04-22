@@ -35,6 +35,8 @@
 
 @implementation ZFMediaType 
 
+FLSynthesizeModelObjectMethods();
+
 @synthesize localizedDisplayName = _localizedDisplayName;
 @synthesize mediaTypeID = _mediaTypeID;
 @synthesize size = _size;
@@ -353,10 +355,6 @@
                         nil
                 ];
     );
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
 }
 
 - (BOOL) isImage {

@@ -143,24 +143,25 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"normalGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"normalGradientEnum"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"selectedGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"selectedGradientEnum"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"highlightedGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"highlightedGradientEnum"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"disabledGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"disabledGradientEnum"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"normalGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"normalGradient"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"selectedGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"selectedGradient"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"highlightedGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"highlightedGradient"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"disabledGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"disabledGradient"];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"normalGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"normalGradientEnum"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"selectedGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"selectedGradientEnum"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"highlightedGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"highlightedGradientEnum"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"disabledGradientEnum" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"disabledGradientEnum"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"normalGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"normalGradient"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"selectedGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"selectedGradient"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"highlightedGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"highlightedGradient"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"disabledGradient" objectClass:[FLColorRange class] objectDescriber:FLDataTypeObject] forPropertyName:@"disabledGradient"];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 + (FLObjectInflator*) sharedObjectInflator
@@ -178,16 +179,7 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"normalGradientEnum" columnType:FLDatabaseTypeText columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"selectedGradientEnum" columnType:FLDatabaseTypeText columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"highlightedGradientEnum" columnType:FLDatabaseTypeText columnConstraints:nil]];

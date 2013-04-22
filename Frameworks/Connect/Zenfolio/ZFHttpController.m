@@ -27,7 +27,7 @@
     return [FLUserService userService];
 }
 
-- (FLObjectStorageService*) createObjectStorageService {
+- (FLStorageService*) createStorageService {
     return [FLDictionaryObjectStorageService dictionaryObjectStorageService];
 }
 
@@ -109,6 +109,7 @@
     ZFLoadGroupHierarchyOperation* operation = 
         [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
     operation.context = self;
+    operation.delegate = self;
     
     FLFinisher* finisher = [FLFinisher finisher:completion];
     

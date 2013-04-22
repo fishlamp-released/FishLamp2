@@ -33,11 +33,16 @@
 }
 
 - (void) setFinished {
-    [self.finisher setFinished];
-    id result = FLRetainWithAutorelease(self.finisher.result);
-    self.finisher = nil;
-    [self operationDidFinishWithResult:result];
+    [self setFinishedWithResult:FLSuccessfullResult];
 }
 
+- (void) setFinishedWithCancelResult {
+    [self setFinishedWithResult:[NSError cancelError]];
+}
+
+//- (void) requestCancel {
+//    [super requestCancel];
+//    [self setFinishedWithCancelResult];
+//}
 
 @end

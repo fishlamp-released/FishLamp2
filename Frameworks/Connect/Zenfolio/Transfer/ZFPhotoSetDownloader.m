@@ -32,7 +32,7 @@
 - (ZFPhotoSet*) loadCachedPhotoSet {
     ZFPhotoSet* inputPhotoSet = [ZFPhotoSet photoSet];
     inputPhotoSet.IdValue = _photoSetID; 
-    return [self.objectStorage readObject:inputPhotoSet];
+    return [self.storageService readObject:inputPhotoSet];
 }
 
 - (void) downloadLatestPhotoSet {
@@ -43,7 +43,7 @@
 
     [self runChildAsynchronously:request completion:^(FLResult result) {
         if(![result isErrorResult]) {
-            [self.objectStorage writeObject:result];
+            [self.storageService writeObject:result];
         }
 
         [self setFinishedWithResult:result];

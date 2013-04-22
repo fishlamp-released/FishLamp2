@@ -1,23 +1,23 @@
 //
-//  ZFDownloadPhotoOperation.m
+//  ZFPhotoDownloader.m
 //  FishLampConnect
 //
 //  Created by Mike Fullerton on 4/19/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "ZFDownloadPhotoOperation.h"
+#import "ZFPhotoDownloader.h"
 #import "FLHttpRequest.h"
 #import "FLHiddenFolderFileSink.h"
 
-@interface ZFDownloadPhotoOperation ()
+@interface ZFPhotoDownloader ()
 @property (readwrite, assign) unsigned long long downloadedByteCount;
 @property (readwrite, assign) NSTimeInterval startTime;
 @property (readwrite, assign) NSTimeInterval lastTime;
 @property (readwrite, strong) ZFDownloadSpec* downloadSpec; 
 @end
 
-@implementation ZFDownloadPhotoOperation
+@implementation ZFPhotoDownloader
 
 @synthesize downloadedByteCount = _downloadedByteCount;
 @synthesize downloadSpec = _downloadSpec;
@@ -33,25 +33,29 @@
 	return self;
 }
 
-+ (id) downloadPhotoOperation:(ZFDownloadSpec*) downloadSpec {
++ (id) photoDownloader:(ZFDownloadSpec*) downloadSpec {
     return FLAutorelease([[[self class] alloc] initWithDownloadSpec:downloadSpec]);
 }
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount {
     self.downloadedByteCount += [amount longLongValue];
     self.lastTime = [NSDate timeIntervalSinceReferenceDate]; 
+    
+    FLPerformSelector2(self.delegate, @selector(photoDownloader:didReadBytes:), self, amount);
 }
 
 - (NSTimeInterval) elapsedTime {
     return self.lastTime - self.startTime;
 }
 
-- (FLResult) performSynchronously { 
+- (void) performUntilFinished:(FLFinisher*) finisher { 
+    [super performUntilFinished:finisher];
     
-    if([[NSFileManager defaultManager] fileExistsAtPath:self.downloadSpec.destinationPath]) {
-//        [self mediaExists:media 
-//                 forPhoto:photo 
-//                 filePath:[imageFolder pathForFile:fileName]];
+    NSString* filePath = _downloadSpec.fullPathToFile;
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        FLPerformSelector1(self.delegate, @selector(photoDownloaderDidSkipPhoto:), self);
+        [self setFinished];
     }
     else {
         FLHttpRequest* request = 
@@ -60,18 +64,20 @@
         self.startTime = [NSDate timeIntervalSinceReferenceDate];
 
     // TODO: abstract which sink is used    
-        request.inputSink = [FLHiddenFolderFileSink hiddenFolderFileSink:self.downloadSpec.destinationPath 
-                                                               folderPath:self.downloadSpec.hiddenFolderPath]; 
+        request.inputSink = [FLHiddenFolderFileSink hiddenFolderFileSink:filePath
+                                                              folderPath:self.downloadSpec.tempFolder]; 
 
-        request.asyncObserver = self;
+        request.delegate = self;
                          
-        FLResult result = [self runChildSynchronously:request];
-        
-        self.lastTime = [NSDate timeIntervalSinceReferenceDate]; 
-        
-        return result;
+        [self runChildAsynchronously:request completion:^(FLResult result) {
+            self.lastTime = [NSDate timeIntervalSinceReferenceDate]; 
+            
+            if(![result error]) {
+                FLPerformSelector1(self.delegate, @selector(photoDownloaderDidDownloadPhoto:), self);
+            }
+            
+            [self setFinishedWithResult:result];
+        }];
     }
-
-    return FLSuccessfullResult;
 }
 @end

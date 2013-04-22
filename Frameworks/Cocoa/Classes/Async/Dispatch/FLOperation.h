@@ -10,7 +10,6 @@
 #import "FLOperationContext.h"
 #import "FLAsyncQueue.h"
 #import "FLCallback.h"
-#import "FLObjectStorage.h"
 #import "FLObservable.h"
 
 @protocol FLOperation <NSObject>
@@ -31,7 +30,7 @@
     __unsafe_unretained FLOperationContext* _context;
     NSUInteger _contextID;
     id<FLAsyncQueue> _asyncQueue;
-    id<FLObjectStorage> _objectStorage;
+    id _storageService;
 	id _identifier;
     BOOL _cancelled;
     __unsafe_unretained id _delegate;
@@ -44,8 +43,8 @@
 @property (readwrite, nonatomic, assign) id delegate;
 @property (readwrite, nonatomic, assign) SEL finishedSelector; // default = FLOperationDefaultFinishedSelector
 
-// object storage
-@property (readwrite, strong, nonatomic) id<FLObjectStorage> objectStorage;
+// object storage - this can be anything as appropriate for subclass
+@property (readwrite, strong, nonatomic) id storageService;
 
 // unique id. by default an incrementing integer number
 @property (readwrite, strong) id identifier;
@@ -102,6 +101,8 @@
 
 - (void) willStartChildOperation:(id) childOperation;
 - (void) didFinishChildOperation:(id) childOperation withResult:(FLResult) result;
+
+- (void) abortIfCancelled; // throws cancelError
 
 @end
 

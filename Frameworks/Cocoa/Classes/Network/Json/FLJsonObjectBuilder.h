@@ -7,7 +7,7 @@
 //
 
 #import "FLDataDecoding.h"
-#import "FLTypeDesc.h"
+#import "FLObjectDescriber.h"
 
 @interface FLJsonObjectBuilder : NSObject {
 @private

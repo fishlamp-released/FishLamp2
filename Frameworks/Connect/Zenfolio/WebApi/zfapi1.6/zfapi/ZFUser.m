@@ -339,72 +339,55 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-	static FLObjectDescriber* s_describer = nil;
+	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
 		
-		if(!s_describer)
-		{
-			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-		}
-		[s_describer setChildForIdentifier:@"LoginName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"DisplayName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"FirstName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"LastName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"PrimaryEmail" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"BioPhoto" withClass:[ZFFile class]];
-		[s_describer setChildForIdentifier:@"Bio" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Views" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"GalleryCount" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"CollectionCount" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"PhotoCount" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"PhotoBytes" withClass:[FLLongNumber class] ];
-		[s_describer setChildForIdentifier:@"UserSince" withClass:[NSDate class]];
-		[s_describer setChildForIdentifier:@"LastUpdated" withClass:[NSDate class]];
-		[s_describer setChildForIdentifier:@"PublicAddress" withClass:[ZFAddress class]];
-		[s_describer setChildForIdentifier:@"PersonalAddress" withClass:[ZFAddress class]];
-		[s_describer setChildForIdentifier:@"RecentPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
-		[s_describer setChildForIdentifier:@"FeaturedPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
-		[s_describer setChildForIdentifier:@"RootGroup" withClass:[ZFGroup class]];
-		[s_describer setChildForIdentifier:@"ReferralCode" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"ExpiresOn" withClass:[NSDate class]];
-		[s_describer setChildForIdentifier:@"Balance" withClass:[FLDoubleNumber class] ];
-		[s_describer setChildForIdentifier:@"DomainName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"StorageQuota" withClass:[FLLongNumber class] ];
-		[s_describer setChildForIdentifier:@"PhotoBytesQuota" withClass:[FLLongNumber class] ];
-		[s_describer setChildForIdentifier:@"VideoBytesQuota" withClass:[FLLongNumber class] ];
-		[s_describer setChildForIdentifier:@"VideoDurationQuota" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"HierarchyCn" withClass:[FLIntegerNumber class] ];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+		[describer setChildForIdentifier:@"LoginName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"DisplayName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"FirstName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"LastName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"PrimaryEmail" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"BioPhoto" withClass:[ZFFile class]];
+		[describer setChildForIdentifier:@"Bio" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Views" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"GalleryCount" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"CollectionCount" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"PhotoCount" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"PhotoBytes" withClass:[FLLongNumber class] ];
+		[describer setChildForIdentifier:@"UserSince" withClass:[NSDate class]];
+		[describer setChildForIdentifier:@"LastUpdated" withClass:[NSDate class]];
+		[describer setChildForIdentifier:@"PublicAddress" withClass:[ZFAddress class]];
+		[describer setChildForIdentifier:@"PersonalAddress" withClass:[ZFAddress class]];
+		[describer setChildForIdentifier:@"RecentPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
+		[describer setChildForIdentifier:@"FeaturedPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
+		[describer setChildForIdentifier:@"RootGroup" withClass:[ZFGroup class]];
+		[describer setChildForIdentifier:@"ReferralCode" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"ExpiresOn" withClass:[NSDate class]];
+		[describer setChildForIdentifier:@"Balance" withClass:[FLDoubleNumber class] ];
+		[describer setChildForIdentifier:@"DomainName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"StorageQuota" withClass:[FLLongNumber class] ];
+		[describer setChildForIdentifier:@"PhotoBytesQuota" withClass:[FLLongNumber class] ];
+		[describer setChildForIdentifier:@"VideoBytesQuota" withClass:[FLLongNumber class] ];
+		[describer setChildForIdentifier:@"VideoDurationQuota" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"HierarchyCn" withClass:[FLIntegerNumber class] ];
 	});
-	return s_describer;
+	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
-+ (FLObjectInflator*) sharedObjectInflator
-{
-	static FLObjectInflator* s_inflator = nil;
-	static dispatch_once_t pred = 0;
-	dispatch_once(&pred, ^{
-		s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] objectDescriber]];
-	});
-	return s_inflator;
-}
 
 + (FLDatabaseTable*) sharedDatabaseTable
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		FLDatabaseTable* superTable = [super sharedDatabaseTable];
-		if(superTable)
-		{
-			s_table = [superTable copy];
-			s_table.tableName = [self databaseTableName];
-		}
-		else
-		{
-			s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-		}
-		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"LoginName" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+
+		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"LoginName" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"DisplayName" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"FirstName" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"LastName" columnType:FLDatabaseTypeText columnConstraints:nil]];

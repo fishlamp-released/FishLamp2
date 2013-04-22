@@ -9,10 +9,11 @@
 #import "FLXmlDocumentBuilder.h"
 #import "FLObjectEncoder.h"
 #import "FLCoreTypes.h"
+#import "FLModelObject.h"
 
 @interface FLObjectEncoder (FLXmlSerialization)
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
-                typeDesc:(FLTypeDesc*) description
+                typeDesc:(FLObjectDescriber*) description
                    value:(id) value;
 @end
 

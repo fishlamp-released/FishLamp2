@@ -210,58 +210,41 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-	static FLObjectDescriber* s_describer = nil;
+	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
 		
-		if(!s_describer)
-		{
-			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-		}
-		[s_describer setChildForIdentifier:@"FirstName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"LastName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"CompanyName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Street" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Street2" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"City" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Zip" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"State" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Country" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Phone" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Phone2" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Fax" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Url" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Email" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"Other" withClass:[NSString class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+		[describer setChildForIdentifier:@"FirstName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"LastName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"CompanyName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Street" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Street2" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"City" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Zip" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"State" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Country" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Phone" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Phone2" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Fax" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Url" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Email" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"Other" withClass:[NSString class]];
 	});
-	return s_describer;
+	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
-+ (FLObjectInflator*) sharedObjectInflator
-{
-	static FLObjectInflator* s_inflator = nil;
-	static dispatch_once_t pred = 0;
-	dispatch_once(&pred, ^{
-		s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] objectDescriber]];
-	});
-	return s_inflator;
-}
 
 + (FLDatabaseTable*) sharedDatabaseTable
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		FLDatabaseTable* superTable = [super sharedDatabaseTable];
-		if(superTable)
-		{
-			s_table = [superTable copy];
-			s_table.tableName = [self databaseTableName];
-		}
-		else
-		{
-			s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-		}
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"FirstName" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"LastName" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"CompanyName" columnType:FLDatabaseTypeText columnConstraints:nil]];

@@ -85,19 +85,19 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-	static FLObjectDescriber* s_describer = nil;
+	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
 		
-		if(!s_describer)
-		{
-			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-		}
-		[s_describer setChildForIdentifier:@"lastSyncDate" withClass:[NSDate class]];
-		[s_describer setChildForIdentifier:@"isSynced" withClass:[FLBoolNumber class]];
-		[s_describer setChildForIdentifier:@"syncObjectId" withClass:[FLIntegerNumber class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+		[describer setChildForIdentifier:@"lastSyncDate" withClass:[NSDate class]];
+		[describer setChildForIdentifier:@"isSynced" withClass:[FLBoolNumber class]];
+		[describer setChildForIdentifier:@"syncObjectId" withClass:[FLIntegerNumber class]];
 	});
-	return s_describer;
+	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
@@ -106,19 +106,11 @@
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		FLDatabaseTable* superTable = [super sharedDatabaseTable];
-		if(superTable)
-		{
-			s_table = [superTable copy];
-			s_table.tableName = [self databaseTableName];
-		}
-		else
-		{
-			s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-		}
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"lastSyncDate" columnType:FLDatabaseTypeDate columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"isSynced" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
-		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"syncObjectId" columnType:FLDatabaseTypeInteger columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
+		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"syncObjectId" columnType:FLDatabaseTypeInteger columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
 	});
 	return s_table;
 }

@@ -90,46 +90,29 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-	static FLObjectDescriber* s_describer = nil;
+	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
 		
-		if(!s_describer)
-		{
-			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-		}
-		[s_describer setChildForIdentifier:@"keyring" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"realmId" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"password" withClass:[NSString class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+		[describer setChildForIdentifier:@"keyring" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"realmId" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"password" withClass:[NSString class]];
 	});
-	return s_describer;
+	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
-+ (FLObjectInflator*) sharedObjectInflator
-{
-	static FLObjectInflator* s_inflator = nil;
-	static dispatch_once_t pred = 0;
-	dispatch_once(&pred, ^{
-		s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] objectDescriber]];
-	});
-	return s_inflator;
-}
 
 + (FLDatabaseTable*) sharedDatabaseTable
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		FLDatabaseTable* superTable = [super sharedDatabaseTable];
-		if(superTable)
-		{
-			s_table = [superTable copy];
-			s_table.tableName = [self databaseTableName];
-		}
-		else
-		{
-			s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-		}
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"keyring" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"realmId" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"password" columnType:FLDatabaseTypeText columnConstraints:nil]];

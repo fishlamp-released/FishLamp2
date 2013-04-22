@@ -130,50 +130,33 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-	static FLObjectDescriber* s_describer = nil;
+	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
 		
-		if(!s_describer)
-		{
-			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-		}
-		[s_describer setChildForIdentifier:@"Id" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"Width" withClass:[FLUnsignedIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"Height" withClass:[FLUnsignedIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"Sequence" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"MimeType" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"UrlCore" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"UrlHost" withClass:[NSString class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+		[describer setChildForIdentifier:@"Id" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"Width" withClass:[FLUnsignedIntegerNumber class] ];
+		[describer setChildForIdentifier:@"Height" withClass:[FLUnsignedIntegerNumber class] ];
+		[describer setChildForIdentifier:@"Sequence" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"MimeType" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"UrlCore" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"UrlHost" withClass:[NSString class]];
 	});
-	return s_describer;
+	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
-+ (FLObjectInflator*) sharedObjectInflator
-{
-	static FLObjectInflator* s_inflator = nil;
-	static dispatch_once_t pred = 0;
-	dispatch_once(&pred, ^{
-		s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] objectDescriber]];
-	});
-	return s_inflator;
-}
 
 + (FLDatabaseTable*) sharedDatabaseTable
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		FLDatabaseTable* superTable = [super sharedDatabaseTable];
-		if(superTable)
-		{
-			s_table = [superTable copy];
-			s_table.tableName = [self databaseTableName];
-		}
-		else
-		{
-			s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-		}
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"Id" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"Width" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"Height" columnType:FLDatabaseTypeInteger columnConstraints:nil]];

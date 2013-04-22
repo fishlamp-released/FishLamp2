@@ -7,6 +7,7 @@
 //
 
 #import "FishLampCocoa.h"
+#import "FLModelObject.h"
 
 typedef struct {
     NSUInteger videoCount;
@@ -18,18 +19,40 @@ typedef struct {
     unsigned long long byteTotal;
     unsigned long long byteCount;
     NSTimeInterval startedTime;
-    
     NSTimeInterval transferTime;
     unsigned long long transferredBytes;
     unsigned long long currentPhotoBytes;
 } ZFTransferState_t;
 
-@interface ZFTransferState : NSObject<NSCopying> {
+@interface ZFTransferState : FLIdentifiedObject<FLModelObject> {
 @private
-    ZFTransferState_t _values;
+    NSUInteger videoCount;
+    NSUInteger videoTotal;
+    NSUInteger photoCount;
+    NSUInteger photoTotal;
+    NSUInteger photoSetCount;
+    NSUInteger photoSetTotal;
+    unsigned long long byteTotal;
+    unsigned long long byteCount;
+    NSTimeInterval startedTime;
+    NSTimeInterval transferTime;
+    unsigned long long transferredBytes;
+    unsigned long long currentPhotoBytes;
 }
 + (id) transferState;
-+ (id) transferState:(ZFTransferState_t) state;
 
-@property (readonly, assign, nonatomic) ZFTransferState_t values;
+@property (readwrite, strong) id identifier;
+@property (readwrite, assign) NSUInteger videoCount;
+@property (readwrite, assign) NSUInteger videoTotal;
+@property (readwrite, assign) NSUInteger photoCount;
+@property (readwrite, assign) NSUInteger photoTotal;
+@property (readwrite, assign) NSUInteger photoSetCount;
+@property (readwrite, assign) NSUInteger photoSetTotal;
+@property (readwrite, assign) unsigned long long byteTotal;
+@property (readwrite, assign) unsigned long long byteCount;
+@property (readwrite, assign) NSTimeInterval startedTime;
+@property (readwrite, assign) NSTimeInterval transferTime;
+@property (readwrite, assign) unsigned long long transferredBytes;
+@property (readwrite, assign) unsigned long long currentPhotoBytes;
+
 @end

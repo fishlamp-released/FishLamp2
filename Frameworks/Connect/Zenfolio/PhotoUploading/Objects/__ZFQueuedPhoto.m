@@ -122,49 +122,34 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-	static FLObjectDescriber* s_describer = nil;
+	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
 		
-		if(!s_describer)
-		{
-			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-		}
-		[s_describer setChildForIdentifier:@"accessDescriptor" withClass:[ZFAccessDescriptor class]];
-		[s_describer setChildForIdentifier:@"categoryArray" withClass:[NSMutableArray class]];
-		[s_describer setChildForIdentifier:@"zenfolioCategories" withClass:[NSMutableArray class]];
-		[s_describer setChildForIdentifier:@"scaledUploadSize" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"saveToDeviceBeforeUpload" withClass:[FLBoolNumber class] ];
-		[s_describer setChildForIdentifier:@"wasSavedToDeviceBeforeUpload" withClass:[FLBoolNumber class] ];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+        
+
+		[describer setChildForIdentifier:@"accessDescriptor" withClass:[ZFAccessDescriptor class]];
+		[describer setChildForIdentifier:@"categoryArray" withClass:[NSMutableArray class]];
+		[describer setChildForIdentifier:@"zenfolioCategories" withClass:[NSMutableArray class]];
+		[describer setChildForIdentifier:@"scaledUploadSize" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"saveToDeviceBeforeUpload" withClass:[FLBoolNumber class] ];
+		[describer setChildForIdentifier:@"wasSavedToDeviceBeforeUpload" withClass:[FLBoolNumber class] ];
 	});
-	return s_describer;
+	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
-+ (FLObjectInflator*) sharedObjectInflator
-{
-	static FLObjectInflator* s_inflator = nil;
-	static dispatch_once_t pred = 0;
-	dispatch_once(&pred, ^{
-		s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] objectDescriber]];
-	});
-	return s_inflator;
-}
 
 + (FLDatabaseTable*) sharedDatabaseTable
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		FLDatabaseTable* superTable = [super sharedDatabaseTable];
-		if(superTable)
-		{
-			s_table = [superTable copy];
-			s_table.tableName = [self databaseTableName];
-		}
-		else
-		{
-			s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-		}
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"accessDescriptor" columnType:FLDatabaseTypeObject columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"categoryArray" columnType:FLDatabaseTypeObject columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"zenfolioCategories" columnType:FLDatabaseTypeObject columnConstraints:nil]];

@@ -171,27 +171,27 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-	static FLObjectDescriber* s_describer = nil;
+	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
 		
-		if(!s_describer)
-		{
-			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+			describer = [FLObjectDescriber objectDescriber:[self class]];
 		}
-		[s_describer setChildForIdentifier:@"packetType" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"protocol" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"sessionId" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"hostId" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"hostIdFallbackTimeout" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"errorCode" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"errorContext" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"replyURL" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"received" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"acceptEncoding" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"receivedContentRange" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"packetType" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"protocol" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"sessionId" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"hostId" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"hostIdFallbackTimeout" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"errorCode" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"errorContext" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"replyURL" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"received" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"acceptEncoding" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"receivedContentRange" withClass:[NSString class]];
 	});
-	return s_describer;
+	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
@@ -200,16 +200,8 @@
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		FLDatabaseTable* superTable = [super sharedDatabaseTable];
-		if(superTable)
-		{
-			s_table = [superTable copy];
-			s_table.tableName = [self databaseTableName];
-		}
-		else
-		{
-			s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-		}
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"packetType" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"protocol" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"sessionId" columnType:FLDatabaseTypeText columnConstraints:nil]];

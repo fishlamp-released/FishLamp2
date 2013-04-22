@@ -321,7 +321,7 @@
 
     [self willShowPanel:toShow];
 
-    self.visiblePanelIdentifier = [_panels keyForIndex:idx];
+    self.visiblePanelIdentifier = [_panels keyAtIndex:idx];
     
     [_contentView addSubview:[toShow view]];
     [toShow panelWillAppear];

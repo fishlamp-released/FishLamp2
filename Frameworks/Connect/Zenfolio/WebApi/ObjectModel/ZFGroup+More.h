@@ -27,6 +27,8 @@ typedef void (^FLGroupElementVisitor)(ZFGroupElement* element, BOOL* stop);
 - (void) addGroupElement:(ZFGroupElement*) element;
 - (BOOL) replaceElement:(ZFGroupElement*) replacingElement;
 
+- (NSString*) relativePathForElement:(ZFGroupElement*) element;
+
 //// not needed anymore?
 //- (void) addGroupElement:(ZFGroupElement*) element parentId:(unsigned long) parentId;
 //- (void) removeGroupElement:(ZFGroupElement*) removeThisElement parentId:(unsigned long) parentId;;

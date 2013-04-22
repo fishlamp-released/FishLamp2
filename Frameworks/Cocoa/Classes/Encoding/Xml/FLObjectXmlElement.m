@@ -11,7 +11,7 @@
 
 @interface FLObjectXmlElement ()
 @property (readwrite, strong, nonatomic) id object;
-@property (readwrite, strong, nonatomic) FLTypeDesc* objectTypeDesc;
+@property (readwrite, strong, nonatomic) FLObjectDescriber* objectTypeDesc;
 @end
 
 @implementation FLObjectXmlElement
@@ -50,7 +50,7 @@
 
 - (id) initWithObject:(id) object
           xmlElementTag:(NSString*) xmlElementTag
-          typeDesc:(FLTypeDesc*) typeDesc {
+          typeDesc:(FLObjectDescriber*) typeDesc {
     
     self = [self initWithObject:object xmlElementTag:xmlElementTag];
     if(self) {
@@ -62,7 +62,7 @@
 
 + (id) objectXmlElement:(id) object 
           xmlElementTag:(NSString*) xmlElementTag
-          typeDesc:(FLTypeDesc*) typeDesc {
+          typeDesc:(FLObjectDescriber*) typeDesc {
     
     return FLAutorelease([[[self class] alloc] initWithObject:object 
                                                 xmlElementTag:xmlElementTag 

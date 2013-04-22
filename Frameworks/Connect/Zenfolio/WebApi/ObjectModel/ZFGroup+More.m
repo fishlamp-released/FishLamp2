@@ -494,6 +494,17 @@ FLSynthesizeCachedObjectHandlerProperty(ZFGroup);
     return NO;
 }
 
+- (NSString*) relativePathForElement:(ZFGroupElement*) theElement {
+    
+    NSArray* path = [self pathComponentsToGroupElement:theElement];
+    NSString* pathString = @"";
+    for(id element in path) {
+        pathString = [pathString stringByAppendingPathComponent:[element Title]];
+    }
+
+    return pathString;
+}
+
 
 //- (NSUInteger) elementCountWithFilter:(NSDictionary*) filter;
 //- (ZFGroupElement*) elementAtIndex:(NSInteger) index withFilter:(NSDictionary*) filter;

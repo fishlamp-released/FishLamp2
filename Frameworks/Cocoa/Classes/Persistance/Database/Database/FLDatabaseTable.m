@@ -12,12 +12,14 @@
 #import "FLObjcRuntime.h"
 #import "FLSqlStatement.h"
 #import "FLPropertyAttributes.h"
+#import "FLObjectDescriber.h"
+#import "FLObjectDescriber.h"
+#import "FLModelObject.h"
 
 @interface FLDatabaseColumn (Internal)
 - (void) setIndexed:(BOOL) isIndexed;
 @property (readwrite, strong, nonatomic) NSArray* primaryKeyColumns;
 @property (readwrite, strong, nonatomic) NSArray* indexedColumns;
-
 @end
 
 @implementation FLDatabaseTable
@@ -46,6 +48,26 @@
 	return self;
 }
 
+- (id) initWithClass:(Class) aClass {
+	if((self = [self initWithTableName:[aClass databaseTableName]])) {
+        [aClass databaseTableWillAddColumns:self];
+        
+        if([aClass isModelObject]) {
+            FLObjectDescriber* objectDescriber = [aClass objectDescriber];
+            [self addColumnsWithTypeDesc:objectDescriber forClass:aClass];
+        }
+
+        [aClass databaseTableDidAddColumns:self];
+        [aClass databaseTableWasCreated:self];
+	}
+	
+	return self;
+}
+
++ (id) databaseTableWithClass:(Class) aClass {
+	return FLAutorelease([[FLDatabaseTable alloc] initWithClass:aClass]);
+}
+
 + (FLDatabaseTable*) databaseTableWithTableName:(NSString*) tableName {
 	return FLAutorelease([[FLDatabaseTable alloc] initWithTableName:tableName]);
 }
@@ -55,7 +77,7 @@
         NSMutableArray* cols = [[NSMutableArray alloc] init];
     
         for(FLDatabaseColumn* col in _columns.objectEnumerator) {
-            if(col.isPrimaryKey) {
+            if(col.hasPrimaryKeyConstraint) {
                 [cols addObject:col];
             }
         }
@@ -71,7 +93,7 @@
         NSMutableArray* cols = [[NSMutableArray alloc] init];
     
         for(FLDatabaseColumn* col in _columns.objectEnumerator) {
-            if(col.isIndexed) {
+            if(col.hasPrimaryKeyConstraint) {
                 [cols addObject:col];
             }
         }
@@ -163,61 +185,24 @@
 	return [_columns objectForKey:name];
 }
 
-- (void) addColumnsForClass:(Class) class {
+//- (void) addPrimaryKey:(SEL) primaryKey {
+//    FLDatabaseColumn* col = [self columnByName:NSStringFromSelector(primaryKey)];
+//    [col ]
+//}
 
-	if(class == [NSObject class]) {
-		return;
-	}
+- (void) addColumnsWithTypeDesc:(FLObjectDescriber*) describer forClass:(Class) aClass {
 
-	Class superclass = class_getSuperclass(class);
-	if(superclass) 	{
-		[self addColumnsForClass:superclass];
-	}
+    for(NSUInteger i = 0; i < describer.subTypeCount; i++) {
+        FLObjectDescriber* property = [describer subTypeForIndex:i];
 
-	unsigned int propertyCount = 0;
-	objc_property_t* properties = class_copyPropertyList(class, &propertyCount);
+        FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:property.identifier
+            columnType:[property.objectClass sqlType] 
+            columnConstraints:nil]; 
 
-	for(unsigned int i = 0; i < propertyCount; i++)	{
-  
-// TODO: refactor this into object describer?     
-        
-//        FLPropertyAttributes_t attributes = FLPropertyAttributesMake(properties[i], NO);
-    
-    
-//		char* className = copyTypeNameFromProperty(properties[i]);
-//	//	printf("name: %s, attributes %s\n",name, attributes);
-//		
-//		if(className) {
-//			Class c = objc_getClass(className);
-//			
-//			FLAssertIsNotNil(c);
-//			   
-//			const char* propertyName = property_getName(properties[i]);
-//			FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:[NSString stringWithCString:propertyName encoding:NSASCIIStringEncoding]
-//				columnType:[c sqlType] 
-//				columnConstraints:nil];
-//				
-//			[self addColumn:col];
-//							 
-//			free(className);
-//	
-//		//	printf("\tname: %s, value: '%s'\n", attrList[j].name, attrList[j].value);
-//		}
-	}
+        [aClass databaseTable:self willAddDatabaseColumn:col];            
 
-    free(properties);
-}
-
-- (id) initWithClass:(Class) aClass {
-	if((self = [self initWithTableName:NSStringFromClass(aClass)])) {
-		[self addColumnsForClass:aClass];
-	}
-	
-	return self;
-}
-
-- (id) databaseTableWithClass:(Class) aClass {
-	return FLAutorelease([[FLDatabaseTable alloc] initWithClass:aClass]);
+        [self addColumn:col];
+    }
 }
 
 - (id) copyWithZone:(NSZone *)zone {
@@ -227,8 +212,28 @@
 	return table;
 }
 
-- (NSDictionary*) filterColumnsForObject:(id) object
-                                  filter:(void (^)(FLDatabaseColumn* column, BOOL* useIt, BOOL* cancel)) filter {
+- (NSDictionary*) valuesForColumns:(NSArray*) columns inObject:(id) object {
+                                
+    NSMutableDictionary* outDictionary = nil;
+    for(FLDatabaseColumn* col in columns) {
+        
+        id data = [object valueForKey:col.decodedColumnName];
+        if(data) {
+            if(!outDictionary) {
+                outDictionary = [NSMutableDictionary dictionary];
+            }
+            
+            [outDictionary setObject:data forKey:col.columnName];
+        }
+    }
+
+    return outDictionary;
+                        
+}
+
+- (NSDictionary*) propertyValuesForObject:(id) object
+                         withColumnFilter:(void (^)(FLDatabaseColumn* column, BOOL* useIt, BOOL* cancel)) filter {
+                         
     NSMutableDictionary* values = nil;
     
     BOOL cancel = NO;
@@ -287,22 +292,17 @@
     return [[self class] sharedDatabaseTable];
 }
 
-- (NSDictionary*) valuesForColumns:(NSArray*) arrayOfColumns {
-                        
-    NSMutableDictionary* outDictionary = nil;
-    for(FLDatabaseColumn* col in arrayOfColumns) {
-        
-        id data = [self valueForKey:col.decodedColumnName];
-        if(data) {
-            if(!outDictionary) {
-                outDictionary = [NSMutableDictionary dictionary];
-            }
-            
-            [outDictionary setObject:data forKey:col.columnName];
-        }
-    }
++ (void) databaseTableWillAddColumns:(FLDatabaseTable*) table {
+}
 
-    return outDictionary;
++ (void) databaseTable:(FLDatabaseTable*) table willAddDatabaseColumn:(FLDatabaseColumn*) column {
+}
+
++ (void) databaseTableDidAddColumns:(FLDatabaseTable*) table {
+}
+
++ (void) databaseTableWasCreated:(FLDatabaseTable*) table {
+
 }
 
 
@@ -332,9 +332,10 @@
 
     FLDatabaseTable* table = [[object class] sharedDatabaseTable];
 
-    NSDictionary* searchValues = [object valuesForColumns:table.primaryKeyColumns];
+    NSDictionary* searchValues = [table valuesForColumns:table.primaryKeyColumns inObject:object];
+    
     if(!searchValues) {
-        searchValues = [object valuesForColumns:table.indexedColumns];
+        searchValues = [table valuesForColumns:table.indexedColumns inObject:object];
     }
     else {
         return NO;

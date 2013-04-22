@@ -152,9 +152,9 @@ static int s_counter = 0;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:FLNetworkActivityStartedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self forKey:FLNetworkActivitySenderKey]];
-        
-        [self sendObservation:@selector(httpRequestWillOpen:)];
     });
+    
+    FLPerformSelector1(self.delegate, @selector(httpRequestWillOpen:), self);
         
     [self willSendHttpRequest]; // this may set requestURL so needs to be before createStreamOpenerWithURL
 
@@ -214,13 +214,14 @@ static int s_counter = 0;
     }
 
     if(self.authenticator && !self.disableAuthenticator) {
-        [self sendObservation:@selector(httpRequestWillAuthenticate:)];
+        FLPerformSelector1(self.delegate, @selector(httpRequestWillAuthenticate:), self);
+
         [self willAuthenticate];
             
         [self.authenticator authenticateHttpRequest:self];
         
         [self didAuthenticate];
-        [self sendObservation:@selector(httpRequestDidAuthenticate:)];
+        FLPerformSelector1(self.delegate, @selector(httpRequestDidAuthenticate:), self);
     }
 
     [self openStreamWithURL:url];
@@ -232,11 +233,11 @@ static int s_counter = 0;
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
-    [self sendObservation:@selector(httpRequestDidOpen:)];
+    FLPerformSelector1(self.delegate, @selector(httpRequestDidOpen:), self);
 }
 
 - (void) networkStream:(FLHttpStream*) stream didReadBytes:(NSNumber*) amountRead {
-    [self sendObservation:@selector(httpRequest:didReadBytes:) withObject:amountRead];
+    FLPerformSelector2(self.delegate, @selector(httpRequest:didReadBytes:), self, amountRead);
 }
 
 - (void) requestDidFinishWithResult:(id) result {
@@ -260,14 +261,13 @@ static int s_counter = 0;
         self.httpStream = nil;
         
         [self operationDidFinishWithResult:result];
+        
+        FLPerformSelector2(self.delegate, @selector(httpRequest:didCloseWithResult:), self, result);
+        [finisher setFinishedWithResult:result];
             
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self sendObservation:@selector(httpRequest:didCloseWithResult:) withObject:result];
-            [finisher setFinishedWithResult:result];
-            
             [[NSNotificationCenter defaultCenter] postNotificationName:FLNetworkActivityStoppedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self forKey:FLNetworkActivitySenderKey]];
         });
-        
     }
 }
 

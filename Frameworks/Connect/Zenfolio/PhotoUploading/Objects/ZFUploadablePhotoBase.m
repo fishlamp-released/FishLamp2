@@ -228,60 +228,43 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-	static FLObjectDescriber* s_describer = nil;
+	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
 		
-		if(!s_describer)
-		{
-			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-		}
-		[s_describer setChildForIdentifier:@"photoDataFileName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"uploadFileId" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"sortId" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"uploadGallery" withClass:[ZFUploadGallery class]];
-		[s_describer setChildForIdentifier:@"uploadSize" withClass:[FLUnsignedLongNumber class] ];
-		[s_describer setChildForIdentifier:@"accessDescriptor" withClass:[ZFAccessDescriptor class]];
-		[s_describer setChildForIdentifier:@"saveToPhoneGalleryOnUpload" withClass:[FLBoolNumber class] ];
-		[s_describer setChildForIdentifier:@"wasSavedToPhotoGallery" withClass:[FLBoolNumber class] ];
-		[s_describer setChildForIdentifier:@"isCameraImage" withClass:[FLBoolNumber class] ];
-		[s_describer setChildForIdentifier:@"loginName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"originalFileName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"categoryArray" withClass:[NSMutableArray class]];
-		[s_describer setChildForIdentifier:@"uploadedPhotoId" withClass:[FLUnsignedLongNumber class] ];
-		[s_describer setChildForIdentifier:@"dimensions" withClass:[FLGeometrySize class] ];
-		[s_describer setChildForIdentifier:@"uploaded" withClass:[FLBoolNumber class] ];
-		[s_describer setChildForIdentifier:@"takenDate" withClass:[NSDate class]];
-		[s_describer setChildForIdentifier:@"modifiedDate" withClass:[NSDate class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+		[describer setChildForIdentifier:@"photoDataFileName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"uploadFileId" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"sortId" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"uploadGallery" withClass:[ZFUploadGallery class]];
+		[describer setChildForIdentifier:@"uploadSize" withClass:[FLUnsignedLongNumber class] ];
+		[describer setChildForIdentifier:@"accessDescriptor" withClass:[ZFAccessDescriptor class]];
+		[describer setChildForIdentifier:@"saveToPhoneGalleryOnUpload" withClass:[FLBoolNumber class] ];
+		[describer setChildForIdentifier:@"wasSavedToPhotoGallery" withClass:[FLBoolNumber class] ];
+		[describer setChildForIdentifier:@"isCameraImage" withClass:[FLBoolNumber class] ];
+		[describer setChildForIdentifier:@"loginName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"originalFileName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"categoryArray" withClass:[NSMutableArray class]];
+		[describer setChildForIdentifier:@"uploadedPhotoId" withClass:[FLUnsignedLongNumber class] ];
+		[describer setChildForIdentifier:@"dimensions" withClass:[FLGeometrySize class] ];
+		[describer setChildForIdentifier:@"uploaded" withClass:[FLBoolNumber class] ];
+		[describer setChildForIdentifier:@"takenDate" withClass:[NSDate class]];
+		[describer setChildForIdentifier:@"modifiedDate" withClass:[NSDate class]];
 	});
-	return s_describer;
+	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
-+ (FLObjectInflator*) sharedObjectInflator
-{
-	static FLObjectInflator* s_inflator = nil;
-	static dispatch_once_t pred = 0;
-	dispatch_once(&pred, ^{
-		s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] objectDescriber]];
-	});
-	return s_inflator;
-}
 
 + (FLDatabaseTable*) sharedDatabaseTable
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		FLDatabaseTable* superTable = [super sharedDatabaseTable];
-		if(superTable)
-		{
-			s_table = [superTable copy];
-			s_table.tableName = [self databaseTableName];
-		}
-		else
-		{
-			s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-		}
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"photoDataFileName" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"uploadFileId" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"sortId" columnType:FLDatabaseTypeInteger columnConstraints:nil]];

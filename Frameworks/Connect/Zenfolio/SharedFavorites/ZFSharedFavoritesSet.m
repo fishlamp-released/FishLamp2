@@ -130,51 +130,34 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-	static FLObjectDescriber* s_describer = nil;
+	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
 		
-		if(!s_describer)
-		{
-			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-		}
-		[s_describer setChildForIdentifier:@"sharedFavoritesSetId" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"sharerName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"sharerMessage" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"sharerEmail" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"photographerLogin" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"favoritesSetName" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"photoIds" withClass:[NSMutableSet class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+		[describer setChildForIdentifier:@"sharedFavoritesSetId" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"sharerName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"sharerMessage" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"sharerEmail" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"photographerLogin" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"favoritesSetName" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"photoIds" withClass:[NSMutableSet class]];
 	});
-	return s_describer;
+	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
-+ (FLObjectInflator*) sharedObjectInflator
-{
-	static FLObjectInflator* s_inflator = nil;
-	static dispatch_once_t pred = 0;
-	dispatch_once(&pred, ^{
-		s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] objectDescriber]];
-	});
-	return s_inflator;
-}
 
 + (FLDatabaseTable*) sharedDatabaseTable
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		FLDatabaseTable* superTable = [super sharedDatabaseTable];
-		if(superTable)
-		{
-			s_table = [superTable copy];
-			s_table.tableName = [self databaseTableName];
-		}
-		else
-		{
-			s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-		}
-		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"sharedFavoritesSetId" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+
+		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"sharedFavoritesSetId" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"sharerName" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"sharerMessage" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"sharerEmail" columnType:FLDatabaseTypeText columnConstraints:nil]];

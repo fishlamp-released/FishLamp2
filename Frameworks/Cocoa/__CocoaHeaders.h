@@ -327,7 +327,7 @@
 // Classes/Persistance
 #import "FLDictionaryObjectStorageService.h"
 #import "FLObjectStorage.h"
-#import "FLObjectStorageService.h"
+#import "FLStorageService.h"
 
 // Classes/Relationships
 #import "FLDeallocNotifier.h"

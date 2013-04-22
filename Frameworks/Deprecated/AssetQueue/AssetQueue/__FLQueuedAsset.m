@@ -273,37 +273,38 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setChildForIdentifier:@"queueUID" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"assetUID" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"assetURL" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"assetType" withClass:[FLIntegerNumber class] ];
-        [s_describer setChildForIdentifier:@"positionInQueue" withClass:[FLIntegerNumber class] ];
-        [s_describer setChildForIdentifier:@"assetState" withClass:[FLIntegerNumber class] ];
-        [s_describer setChildForIdentifier:@"queuedDate" withClass:[NSDate class]];
-        [s_describer setChildForIdentifier:@"createdDate" withClass:[NSDate class]];
-        [s_describer setChildForIdentifier:@"modifiedDate" withClass:[NSDate class]];
-        [s_describer setChildForIdentifier:@"uploadedAssetURL" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"uploadedAssetId" withClass:[FLLongNumber class] ];
-        [s_describer setChildForIdentifier:@"uploadDestinationId" withClass:[FLLongNumber class] ];
-        [s_describer setChildForIdentifier:@"uploadDestinationName" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"uploadDestinationURL" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"assetSize" withClass:[FLLongNumber class] ];
-        [s_describer setChildForIdentifier:@"assetName" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"assetDescription" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"assetFileName" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"copyright" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"keywords" withClass:[NSMutableArray class]];
-        [s_describer setChildForIdentifier:@"assetObject" withClass:[FLAsset class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setChildForIdentifier:@"queueUID" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"assetUID" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"assetURL" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"assetType" withClass:[FLIntegerNumber class] ];
+        [describer setChildForIdentifier:@"positionInQueue" withClass:[FLIntegerNumber class] ];
+        [describer setChildForIdentifier:@"assetState" withClass:[FLIntegerNumber class] ];
+        [describer setChildForIdentifier:@"queuedDate" withClass:[NSDate class]];
+        [describer setChildForIdentifier:@"createdDate" withClass:[NSDate class]];
+        [describer setChildForIdentifier:@"modifiedDate" withClass:[NSDate class]];
+        [describer setChildForIdentifier:@"uploadedAssetURL" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"uploadedAssetId" withClass:[FLLongNumber class] ];
+        [describer setChildForIdentifier:@"uploadDestinationId" withClass:[FLLongNumber class] ];
+        [describer setChildForIdentifier:@"uploadDestinationName" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"uploadDestinationURL" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"assetSize" withClass:[FLLongNumber class] ];
+        [describer setChildForIdentifier:@"assetName" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"assetDescription" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"assetFileName" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"copyright" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"keywords" withClass:[NSMutableArray class]];
+        [describer setChildForIdentifier:@"assetObject" withClass:[FLAsset class]];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
@@ -312,31 +313,22 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"queueUID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"queueUID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"queueUID" indexProperties:FLDatabaseColumnIndexPropertyNone]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetUID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetURL" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetUID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetURL" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"assetURL" indexProperties:FLDatabaseColumnIndexPropertyNone]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetType" columnType:FLDatabaseTypeInteger columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetType" columnType:FLDatabaseTypeInteger columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"assetType" indexProperties:FLDatabaseColumnIndexPropertyNone]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"positionInQueue" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"positionInQueue" indexProperties:FLDatabaseColumnIndexPropertyNone]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetState" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"queuedDate" columnType:FLDatabaseTypeDate columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"queuedDate" columnType:FLDatabaseTypeDate columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"queuedDate" indexProperties:FLDatabaseColumnIndexPropertyNone]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"createdDate" columnType:FLDatabaseTypeDate columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"createdDate" columnType:FLDatabaseTypeDate columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"createdDate" indexProperties:FLDatabaseColumnIndexPropertyNone]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"modifiedDate" columnType:FLDatabaseTypeDate columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"modifiedDate" columnType:FLDatabaseTypeDate columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"modifiedDate" indexProperties:FLDatabaseColumnIndexPropertyNone]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"uploadedAssetURL" columnType:FLDatabaseTypeText columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"uploadedAssetId" columnType:FLDatabaseTypeInteger columnConstraints:nil]];

@@ -112,21 +112,22 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setChildForIdentifier:@"queueUID" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"sortOrder" withClass:[FLIntegerNumber class] ];
-        [s_describer setChildForIdentifier:@"totalAssetsAdded" withClass:[FLLongNumber class] ];
-        [s_describer setChildForIdentifier:@"firstQueuePosition" withClass:[FLIntegerNumber class] ];
-        [s_describer setChildForIdentifier:@"lastQueuePosition" withClass:[FLIntegerNumber class] ];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setChildForIdentifier:@"queueUID" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"sortOrder" withClass:[FLIntegerNumber class] ];
+        [describer setChildForIdentifier:@"totalAssetsAdded" withClass:[FLLongNumber class] ];
+        [describer setChildForIdentifier:@"firstQueuePosition" withClass:[FLIntegerNumber class] ];
+        [describer setChildForIdentifier:@"lastQueuePosition" withClass:[FLIntegerNumber class] ];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
@@ -136,17 +137,8 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"queueUID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"queueUID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"sortOrder" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"totalAssetsAdded" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"firstQueuePosition" columnType:FLDatabaseTypeInteger columnConstraints:nil]];

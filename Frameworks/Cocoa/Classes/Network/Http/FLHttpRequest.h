@@ -92,7 +92,7 @@
 
 @end
 
-@protocol FLHttpRequestObserver <NSObject>
+@protocol FLHttpRequestDelegate <NSObject>
 @optional
 
 - (void) httpRequestWillAuthenticate:(FLHttpRequest*) httpRequest;

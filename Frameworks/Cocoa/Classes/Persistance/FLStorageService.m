@@ -1,20 +1,24 @@
 //
-//  FLObjectStorageService.m
+//  FLStorageService.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 2/19/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjectStorageService.h"
+#import "FLStorageService.h"
 
 
-@interface FLObjectStorageService ()
+@interface FLStorageService ()
 @end
 
-@implementation FLObjectStorageService 
+@implementation FLStorageService 
 
 - (id<FLObjectStorage>) objectStorage {
+    return nil;
+}
+
+- (id<FLBlobStorage>) blobStorage {
     return nil;
 }
 

@@ -224,59 +224,42 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-	static FLObjectDescriber* s_describer = nil;
+	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
 		
-		if(!s_describer)
-		{
-			s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-		}
-		[s_describer setChildForIdentifier:@"Caption" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"CreatedOn" withClass:[NSDate class]];
-		[s_describer setChildForIdentifier:@"ModifiedOn" withClass:[NSDate class]];
-		[s_describer setChildForIdentifier:@"CollectionCount" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"SubGroupCount" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"GalleryCount" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"PhotoCount" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"ImageCount" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"VideoCount" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"Id" class:[FLIntegerNumber class]], nil]];
-		[s_describer setChildForIdentifier:@"Elements" withArrayTypes:[NSArray arrayWithObjects:[FLTypeDesc typeDesc:@"Group" class:[ZFGroup class]], [FLTypeDesc typeDesc:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
-		[s_describer setChildForIdentifier:@"PageUrl" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"TitlePhoto" withClass:[ZFPhoto class]];
-		[s_describer setChildForIdentifier:@"MailboxId" withClass:[NSString class]];
-		[s_describer setChildForIdentifier:@"TextCn" withClass:[FLIntegerNumber class] ];
-		[s_describer setChildForIdentifier:@"ImmediateChildrenCount" withClass:[FLIntegerNumber class] ];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+		[describer setChildForIdentifier:@"Caption" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"CreatedOn" withClass:[NSDate class]];
+		[describer setChildForIdentifier:@"ModifiedOn" withClass:[NSDate class]];
+		[describer setChildForIdentifier:@"CollectionCount" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"SubGroupCount" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"GalleryCount" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"PhotoCount" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"ImageCount" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"VideoCount" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Id" class:[FLIntegerNumber class]], nil]];
+		[describer setChildForIdentifier:@"Elements" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Group" class:[ZFGroup class]], [FLObjectDescriber objectDescriber:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
+		[describer setChildForIdentifier:@"PageUrl" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"TitlePhoto" withClass:[ZFPhoto class]];
+		[describer setChildForIdentifier:@"MailboxId" withClass:[NSString class]];
+		[describer setChildForIdentifier:@"TextCn" withClass:[FLIntegerNumber class] ];
+		[describer setChildForIdentifier:@"ImmediateChildrenCount" withClass:[FLIntegerNumber class] ];
 	});
-	return s_describer;
+	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
-+ (FLObjectInflator*) sharedObjectInflator
-{
-	static FLObjectInflator* s_inflator = nil;
-	static dispatch_once_t pred = 0;
-	dispatch_once(&pred, ^{
-		s_inflator = [[FLObjectInflator alloc] initWithObjectDescriber:[[self class] objectDescriber]];
-	});
-	return s_inflator;
-}
 
 + (FLDatabaseTable*) sharedDatabaseTable
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		FLDatabaseTable* superTable = [super sharedDatabaseTable];
-		if(superTable)
-		{
-			s_table = [superTable copy];
-			s_table.tableName = [self databaseTableName];
-		}
-		else
-		{
-			s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-		}
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"Caption" columnType:FLDatabaseTypeText columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"CreatedOn" columnType:FLDatabaseTypeDate columnConstraints:nil]];
 		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"ModifiedOn" columnType:FLDatabaseTypeDate columnConstraints:nil]];

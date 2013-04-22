@@ -12,11 +12,10 @@
 
 @synthesize rootGroupID = _rootGroupID;
 @synthesize photoSetID = _photoSetID;
-@synthesize destinationPath = _destinationPath;
+@synthesize fullPathToFile = _fullPathToFile;
 @synthesize photo = _photo;
 @synthesize mediaType = _mediaType;
-@synthesize hiddenFolderPath = _hiddenFolderPath;
-@synthesize fileName = _fileName;
+@synthesize tempFolder = _tempFolder;
 
 - (id) initWithPhoto:(ZFPhoto*) photo {
     self = [super init];
@@ -32,11 +31,10 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_fileName release];
-	[_destinationPath release];
+	[_fullPathToFile release];
     [_photo release];
     [_mediaType release];
-    [_hiddenFolderPath release];
+    [_tempFolder release];
     [super dealloc];
 }
 #endif

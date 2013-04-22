@@ -187,29 +187,30 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setChildForIdentifier:@"queueUID" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"uploadedAssetUID" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"assetType" withClass:[FLIntegerNumber class] ];
-        [s_describer setChildForIdentifier:@"assetURL" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"assetUID" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"uploadedAssetURL" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"uploadedAssetId" withClass:[FLLongNumber class] ];
-        [s_describer setChildForIdentifier:@"uploadDestinationId" withClass:[FLLongNumber class] ];
-        [s_describer setChildForIdentifier:@"uploadDestinationName" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"uploadDestinationURL" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"assetName" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"thumbnail" withClass:[SDKImage class]];
-        [s_describer setChildForIdentifier:@"uploadedDate" withClass:[NSDate class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setChildForIdentifier:@"queueUID" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"uploadedAssetUID" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"assetType" withClass:[FLIntegerNumber class] ];
+        [describer setChildForIdentifier:@"assetURL" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"assetUID" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"uploadedAssetURL" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"uploadedAssetId" withClass:[FLLongNumber class] ];
+        [describer setChildForIdentifier:@"uploadDestinationId" withClass:[FLLongNumber class] ];
+        [describer setChildForIdentifier:@"uploadDestinationName" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"uploadDestinationURL" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"assetName" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"thumbnail" withClass:[SDKImage class]];
+        [describer setChildForIdentifier:@"uploadedDate" withClass:[NSDate class]];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
@@ -218,22 +219,13 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"queueUID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"queueUID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"queueUID" indexProperties:FLDatabaseColumnIndexPropertyNone]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"uploadedAssetUID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetType" columnType:FLDatabaseTypeInteger columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"uploadedAssetUID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetType" columnType:FLDatabaseTypeInteger columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"assetType" indexProperties:FLDatabaseColumnIndexPropertyNone]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetURL" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetURL" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"assetURL" indexProperties:FLDatabaseColumnIndexPropertyNone]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetUID" columnType:FLDatabaseTypeText columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"uploadedAssetURL" columnType:FLDatabaseTypeText columnConstraints:nil]];
