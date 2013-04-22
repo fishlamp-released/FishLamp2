@@ -152,25 +152,26 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureDevicePosition" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureDevicePosition"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureFlashMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureFlashMode"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureTorchMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureTorchMode"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureFocusMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureFocusMode"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureWhiteBalanceMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureWhiteBalanceMode"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"showGuidelines" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"showGuidelines"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"showStabityTracker" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"showStabityTracker"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"showZoom" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"showZoom"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"foo" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"foo"];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureDevicePosition" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureDevicePosition"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureFlashMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureFlashMode"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureTorchMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureTorchMode"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureFocusMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureFocusMode"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"captureWhiteBalanceMode" objectClass:[NSNumber class] objectDescriber:FLDataTypeNSInteger] forPropertyName:@"captureWhiteBalanceMode"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"showGuidelines" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"showGuidelines"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"showStabityTracker" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"showStabityTracker"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"showZoom" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"showZoom"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"foo" objectClass:[NSNumber class] objectDescriber:FLDataTypeBool] forPropertyName:@"foo"];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 + (FLObjectInflator*) sharedObjectInflator
@@ -188,16 +189,7 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"captureDevicePosition" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"captureFlashMode" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"captureTorchMode" columnType:FLDatabaseTypeInteger columnConstraints:nil]];

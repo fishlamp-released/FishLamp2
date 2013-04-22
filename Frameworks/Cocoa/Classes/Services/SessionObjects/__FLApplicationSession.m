@@ -82,18 +82,19 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setChildForIdentifier:@"sessionId" withClass:[FLIntegerNumber class] ];
-        [s_describer setChildForIdentifier:@"userGuid" withClass:[NSString class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setChildForIdentifier:@"sessionId" withClass:[FLIntegerNumber class] ];
+        [describer setChildForIdentifier:@"userGuid" withClass:[NSString class]];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 + (FLDatabaseTable*) sharedDatabaseTable
@@ -101,17 +102,8 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"sessionId" columnType:FLDatabaseTypeInteger columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"sessionId" columnType:FLDatabaseTypeInteger columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"userGuid" columnType:FLDatabaseTypeText columnConstraints:nil]];
     });
     return s_table;

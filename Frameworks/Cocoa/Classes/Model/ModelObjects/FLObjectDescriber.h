@@ -1,3 +1,5 @@
+
+
 //
 //  FLObjectDescriber.h
 //  PackMule
@@ -6,36 +8,56 @@
 //  Copyright 2011 GreenTongue Software, LLC. All rights reserved.
 //
 
-#import "FLCocoaRequired.h"
-#import "FLTypeDesc.h"
-#import "FLObjcRuntime.h"
-#import "FLPropertyAttributes.h"
+#import "FishLamp.h"
+#import "FLCoreTypes.h"
 
-@interface FLObjectDescriber : FLTypeDesc 
+@class FLObjectEncoder;
+@class FLObjectDescriber;
+@class FLOrderedCollection;
 
-+ (id) objectDescriber:(Class) aClass;
+@protocol FLDescribable <NSObject>
+@optional
++ (FLObjectDescriber*) objectDescriber;
+- (FLObjectDescriber*) objectDescriber;
 
-// deprecated
-- (void) setChildForIdentifier:(NSString*) name withClass:(Class) objectClass;
-- (void) setChildForIdentifier:(NSString*) name withArrayTypes:(NSArray*) types;
-
++ (void) objectDescriberWasCreated:(FLObjectDescriber*) describer;
 @end
 
 @interface NSObject (FLObjectDescriber)
-+ (FLObjectDescriber*) objectDescriber;
-- (FLObjectDescriber*) objectDescriber;
++ (void) objectDescriberWasCreated:(FLObjectDescriber*) describer;
 @end
 
-typedef enum {
-	FLMergeModePreserveDestination,		//! always keep dest value, even if src has value.
-	FLMergeModeSourceWins,				//! if src has value, overwrite dest value.
-} FLMergeMode;
+@interface FLObjectDescriber : NSObject {
+@private
+    NSString* _identifier;
+    Class _objectClass;
+    FLOrderedCollection* _subtypes;
+    FLObjectEncoder* _objectEncoder;
+}
+@property (readonly, assign) Class objectClass;
+@property (readonly, strong) NSString* identifier;
+@property (readonly, strong) FLObjectEncoder* objectEncoder;
+@property (readonly, assign) NSUInteger subTypeCount;
 
+@property (readonly, copy) NSArray* subTypesCopy;
 
-// this only works for objects with valid describers.
-extern void FLMergeObjects(id dest, id src, FLMergeMode mergeMode);
-extern void FLMergeObjectArrays(NSMutableArray* dest, NSArray* src, FLMergeMode mergeMode, NSArray* arrayItemTypes);
+- (FLObjectDescriber*) subTypeForIdentifier:(NSString*) identifier;
+- (FLObjectDescriber*) subTypeForIndex:(NSUInteger) idx;
+- (NSString*) identifierForIndex:(NSUInteger) idx;
 
-
-@interface FLSelfDescribingObject : NSObject
++ (id) objectDescriber:(Class) aClass;
++ (id) objectDescriber:(NSString*) identifier class:(Class) aClass;
 @end
+            
+@interface FLObjectDescriber (FLObjectDescriberTypeDefinition)
+
++ (void) registerClass:(Class) aClass;
+- (void) setSubtypeClass:(Class) aClass forIdentifier:(NSString*) identifier;
+- (void) setSubtypeArrayTypes:(NSArray*) arrayTypes forIdentifier:(NSString*) identifier;
+- (void) addSubtype:(FLObjectDescriber*) subtype;
+
+// deprecated
+- (id) initWithClass:(Class) aClass;
+- (void) setChildForIdentifier:(NSString*) name withClass:(Class) objectClass;
+- (void) setChildForIdentifier:(NSString*) name withArrayTypes:(NSArray*) types;
+@end            

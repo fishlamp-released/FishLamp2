@@ -9,89 +9,109 @@
 #import "FLDatabaseColumn.h"
 #import "FLDatabase_Internal.h"
 
+@interface FLDatabaseColumn ()
+@property (readwrite, strong, nonatomic) NSString* columnName;
+@property (readwrite, strong, nonatomic) NSString* decodedColumnName;
+@property (readwrite, strong, nonatomic) NSSet* columnConstraints;
+@property (readwrite, assign, nonatomic) FLDatabaseType columnType;
+@end
 
 @implementation FLDatabaseColumn
 
-FLSynthesizeStructProperty(columnType, setColumnType, FLDatabaseType, _state); 
-FLSynthesizeStructProperty(isIndexed, setIndexed, BOOL, _state); 
-FLSynthesizeStructProperty(isPrimaryKey, setPrimaryKey, BOOL, _state); 
-
 @synthesize columnName = _name;
-@synthesize columnConstraints = _constraints;
+@synthesize columnConstraints = _columnConstraints;
 @synthesize decodedColumnName = _decodedColumnName;
-
-- (void) setColumnName:(NSString*) columnName {
-	FLSetObjectWithRetain(_name, FLDatabaseNameEncode(columnName));
-	FLSetObjectWithRetain(_decodedColumnName, FLDatabaseNameDecode(columnName));
-}
-
-- (void) dealloc {
-	FLRelease(_decodedColumnName);
-	FLRelease(_constraints);
-	FLRelease(_name);
-	FLSuperDealloc();
-}
-
-- (BOOL) hasPrimaryKeyConstraint {
-	for(NSString* constraint in _constraints) {
-		if(FLStringsAreEqual(constraint, [FLDatabaseColumn primaryKeyConstraint])) {
-			return YES;
-		}
-	}
-	
-	return NO;
-}
+@synthesize columnType = _columnType;
+@synthesize hasPrimaryKeyConstraint = _hasPrimaryKeyConstraint;
 
 - (id) initWithColumnName:(NSString*) name 
-	columnType:(FLDatabaseType) columnType  
-	columnConstraints:(NSArray*) constraints {
+               columnType:(FLDatabaseType) columnType  {
+
+    FLAssertStringIsNotEmpty(name);
+    FLAssert(columnType != FLDatabaseTypeInvalid);
+
 	if((self = [super init])) {
-		FLSetObjectWithRetain(_constraints, constraints);
-		_state.isPrimaryKey = self.hasPrimaryKeyConstraint;
-		_state.isIndexed = _state.isPrimaryKey;
 		self.columnName = name;
 		self.columnType = columnType;
 	}
 	return self;
 }
 
-- (id) copyWithZone:(NSZone *)zone {
-	FLDatabaseColumn* column = [[FLDatabaseColumn alloc] initWithColumnName:self.columnName columnType:self.columnType columnConstraints:FLAutorelease([self.columnConstraints copy])];
-	return column;
+- (id) initWithColumnName:(NSString*) name 
+               columnType:(FLDatabaseType) columnType  
+        columnConstraints:(NSArray*) constraints {
+
+	if((self = [self initWithColumnName:name columnType:columnType])) {
+        for(id constraint in constraints) {
+            [self addColumnConstraint:constraint];
+        }
+    }
+	return self;
 }
 
-+ (FLDatabaseColumn*) databaseColumnWithName:(NSString*) name columnType:(FLDatabaseType) columnType  columnConstraints:(NSArray*) columnConstraints {
+- (id) init {
+    return [self initWithColumnName:nil columnType:FLDatabaseTypeInvalid];
+}
+
+
++ (FLDatabaseColumn*) databaseColumnWithName:(NSString*) name 
+                                  columnType:(FLDatabaseType) columnType {
+                           
+	return FLAutorelease([[FLDatabaseColumn alloc] initWithColumnName:name columnType:columnType]);
+}
+
++ (FLDatabaseColumn*) databaseColumnWithName:(NSString*) name 
+                                  columnType:(FLDatabaseType) columnType  
+                           columnConstraints:(NSArray*) columnConstraints {
+                           
 	return FLAutorelease([[FLDatabaseColumn alloc] initWithColumnName:name columnType:columnType columnConstraints:columnConstraints]);
 }
 
-NSString* _FLSqlConflictActionString(FLDatabaseOnConflictAction action) {
-	switch(action) {
-		case FLDatabaseOnConflictActionAbort: // this is default. 
-			return @"";
-			
-		case FLDatabaseOnConflictActionRollback:
-			return @" ON CONFLICT ROLLBACK";
-			
-		case FLDatabaseOnConflictActionFail:
-			return @" ON CONFLICT FAIL";
-		
-		case FLDatabaseOnConflictActionIgnore:
-			return @" ON CONFLICT IGNORE";
-			
-		case FLDatabaseOnConflictActionReplace:
-			return @" ON CONFLICT REPLACE";
-	}
+- (void) setColumnName:(NSString*) columnName {
+	FLSetObjectWithRetain(_name, FLDatabaseNameEncode(columnName));
+	FLSetObjectWithRetain(_decodedColumnName, FLDatabaseNameDecode(columnName));
+}
 
-	return nil;
+#if FL_MRC
+- (void) dealloc {
+	[_decodedColumnName release];
+    [_columnConstraints release];
+    [_name release];
+    [super dealloc];
+}
+#endif
+
+- (void) addColumnConstraint:(FLDatabaseColumnConstraint*) constraint {
+    if(!_columnConstraints) {
+        _columnConstraints = [[NSMutableSet alloc] init];
+    }
+    
+    if([constraint isKindOfClass:[FLPrimaryKeyConstraint class]]) {
+        _hasPrimaryKeyConstraint = YES;
+    }
+
+    [_columnConstraints addObject:constraint];
+}
+
+
+- (id) copyWithZone:(NSZone *)zone {
+	FLDatabaseColumn* column = [[FLDatabaseColumn alloc] initWithColumnName:self.columnName 
+                                                                 columnType:self.columnType];
+                                                          
+    for(id constraint in _columnConstraints) {
+        [column addColumnConstraint:constraint];
+    }
+                                                          
+	return column;
 }
 
 - (NSString*) columnConstraintsAsString {
-	if(_constraints && _constraints.count) {
+	if(_columnConstraints && _columnConstraints.count) {
 		NSMutableString* str = [NSMutableString string];
 		
-		for(NSString* constraint in _constraints) {
+		for(id constraint in _columnConstraints) {
 			if(str.length) {
-				[str appendFormat:@" %@", constraint];
+				[str appendFormat:@" %@", [constraint sqlString]];
 			}
 			else {
 				[str appendString:constraint];
@@ -102,34 +122,6 @@ NSString* _FLSqlConflictActionString(FLDatabaseOnConflictAction action) {
 	}
 	
 	return @"";
-}
-
-+ (NSString*) primaryKeyConstraint {
-	return @"PRIMARY KEY ASC NOT NULL";
-}
-
-+ (NSString*) primaryKeyConstraintWithSortOrder:(FLDatabaseSortOrder) sortOrder 
-	conflictAction:(FLDatabaseOnConflictAction) conflictAction 
-	autoIncrement:(BOOL) autoIncrement {
-	return [NSString stringWithFormat:@"PRIMARY KEY %@ NOT NULL %@%@", 
-		sortOrder == FLDatabaseSortOrderAsc ? @"ASC" : @"DESC",
-		_FLSqlConflictActionString(conflictAction),
-		autoIncrement ? @" AUTOINCREMENT" : @""];
-}
-+ (NSString*) uniqueConstraintWithConflictAction:(FLDatabaseOnConflictAction) conflictAction {
-	return [NSString stringWithFormat:@"UNIQUE%@", _FLSqlConflictActionString(conflictAction)];
-}
-
-+ (NSString*) notNullConstraintWithConflictAction:(FLDatabaseOnConflictAction) conflictAction {
-	return [NSString stringWithFormat:@"NOT NULL%@", _FLSqlConflictActionString(conflictAction)];
-}
-
-+ (NSString*) uniqueConstraint {
-	return @"UNIQUE";
-}
-
-+ (NSString*) notNullConstraint {
-	return @"NOT NULL";
 }
 
 - (BOOL)isEqual:(id)object {

@@ -93,19 +93,20 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"name" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"name"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"className" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"className"];
-        [s_describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"fontSize" objectClass:[NSNumber class] objectDescriber:FLDataTypeInteger] forPropertyName:@"fontSize"];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"name" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"name"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"className" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"className"];
+        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"fontSize" objectClass:[NSNumber class] objectDescriber:FLDataTypeInteger] forPropertyName:@"fontSize"];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 + (FLObjectInflator*) sharedObjectInflator
@@ -123,16 +124,7 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"name" columnType:FLDatabaseTypeText columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"className" columnType:FLDatabaseTypeText columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"fontSize" columnType:FLDatabaseTypeInteger columnConstraints:nil]];

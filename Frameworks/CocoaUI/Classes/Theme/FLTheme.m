@@ -19,6 +19,7 @@
 @synthesize applicationTextStyle = _applicationTextStyle;
 @synthesize bigTextStyle = _bigTextStyle;
 @synthesize headlineTextStyle = _headlineTextStyle;
+FLSynthesizeObjectDescriber();
 
 static FLTheme* s_currentTheme = nil;
 

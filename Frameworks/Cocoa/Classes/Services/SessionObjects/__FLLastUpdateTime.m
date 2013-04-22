@@ -82,18 +82,19 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setChildForIdentifier:@"lastUpdateId" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"lastUpdate" withClass:[NSDate class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setChildForIdentifier:@"lastUpdateId" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"lastUpdate" withClass:[NSDate class]];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
@@ -103,17 +104,8 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"lastUpdateId" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"lastUpdateId" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"lastUpdate" columnType:FLDatabaseTypeDate columnConstraints:nil]];
     });
     return s_table;

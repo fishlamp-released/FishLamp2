@@ -8,10 +8,7 @@
 //
 // [/Generated]
 
-#import "__FLDatabaseObject.h"
+#import "FLDatabaseObject_Generated.h"
 
-@interface FLDatabaseObject (ObjC)
-
-// Your methods here. Declare properties and data in your whittle object file.
-
+@interface FLDatabaseObject : FLDatabaseObject_Generated
 @end

@@ -9,26 +9,26 @@
 // Copywrite (C) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-
+#import "FLModelObject.h"
 
 // --------------------------------------------------------------------
 // FLDatabaseObject
 // --------------------------------------------------------------------
-@interface FLDatabaseObject : NSObject<NSCopying, NSCoding>{ 
+@interface FLDatabaseObject_Generated : NSObject<NSCopying, FLModelObject>{ 
 @private
-    NSString* __uid;
+    NSString* __identifier;
 } 
 
 
-@property (readwrite, strong, nonatomic) NSString* uid;
+@property (readwrite, strong) NSString* identifier;
 
-+ (NSString*) uidKey;
++ (NSString*) identifierKey;
 
-+ (FLDatabaseObject*) databaseObject; 
++ (id) databaseObject; 
 
 @end
 
-@interface FLDatabaseObject (ValueProperties) 
+@interface FLDatabaseObject_Generated (ValueProperties) 
 @end
 
 // [/Generated]

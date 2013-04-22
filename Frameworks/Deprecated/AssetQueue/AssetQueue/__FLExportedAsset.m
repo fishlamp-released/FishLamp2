@@ -92,19 +92,20 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setChildForIdentifier:@"originalID" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"assetURL" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"exportedDate" withClass:[NSDate class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setChildForIdentifier:@"originalID" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"assetURL" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"exportedDate" withClass:[NSDate class]];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
@@ -114,21 +115,12 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"originalID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"originalID" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"originalID" indexProperties:FLDatabaseColumnIndexPropertyNone]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetURL" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"assetURL" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"assetURL" indexProperties:FLDatabaseColumnIndexPropertyNone]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"exportedDate" columnType:FLDatabaseTypeDate columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"exportedDate" columnType:FLDatabaseTypeDate columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
     });
     return s_table;
 }

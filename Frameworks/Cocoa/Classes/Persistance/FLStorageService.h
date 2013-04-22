@@ -1,5 +1,5 @@
 //
-//  FLObjectStorageService.h
+//  FLStorageService.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 2/19/13.
@@ -8,13 +8,15 @@
 
 #import "FLService.h"
 #import "FLObjectStorage.h"
+#import "FLBlobStorage.h"
 
-@interface FLObjectStorageService : FLService<FLObjectStorage> {
+@interface FLStorageService : FLService<FLObjectStorage> {
 @private
 }
 
 // required override.
 - (id<FLObjectStorage>) objectStorage;
+- (id<FLBlobStorage>) blobStorage;
 
 @end
 

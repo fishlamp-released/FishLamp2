@@ -12,7 +12,7 @@
 #import "FLFontTheme.h"
 #import "FLAttributedString.h"
 
-@interface FLTheme : FLSelfDescribingObject {
+@interface FLTheme : NSObject {
 @private
     NSString* _themeName;
     FLStringDisplayStyle* _applicationTextStyle;

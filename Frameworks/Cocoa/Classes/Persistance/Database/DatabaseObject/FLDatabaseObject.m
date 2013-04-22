@@ -8,10 +8,9 @@
 //
 // [/Generated]
 
-#import "__FLDatabaseObject.h"
 #import "FLDatabaseObject.h"
 
-@implementation FLDatabaseObject (ObjC)
+@implementation FLDatabaseObject 
 
 // Your code here :-)
 

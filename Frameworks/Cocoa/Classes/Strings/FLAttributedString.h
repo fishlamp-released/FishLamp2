@@ -9,10 +9,11 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCocoa.h"
 #import "FLObjectDescriber.h"
+#import "FLModelObject.h"
 
 @class FLAttributedString;
 
-@interface FLTextStyle : FLSelfDescribingObject<NSCopying> {
+@interface FLTextStyle : FLIdentifiedObject<FLModelObject> {
 @private
     SDKColor* _textColor;
     SDKColor* _shadowColor;
@@ -31,7 +32,7 @@
 
 @end
 
-@interface FLStringDisplayStyle : FLSelfDescribingObject<NSCopying> {
+@interface FLStringDisplayStyle : FLIdentifiedObject<FLModelObject> {
 @private
     FLTextStyle* _selectedStyle;
     FLTextStyle* _enabledStyle;

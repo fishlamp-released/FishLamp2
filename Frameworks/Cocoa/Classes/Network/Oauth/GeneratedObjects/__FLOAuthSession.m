@@ -122,22 +122,23 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setChildForIdentifier:@"userGuid" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"appName" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"oauth_token" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"oauth_token_secret" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"user_id" withClass:[NSString class]];
-        [s_describer setChildForIdentifier:@"screen_name" withClass:[NSString class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setChildForIdentifier:@"userGuid" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"appName" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"oauth_token" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"oauth_token_secret" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"user_id" withClass:[NSString class]];
+        [describer setChildForIdentifier:@"screen_name" withClass:[NSString class]];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
@@ -146,18 +147,9 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"userGuid" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
-        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"appName" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLDatabaseColumn notNullConstraint], nil]]];
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"userGuid" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
+        [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"appName" columnType:FLDatabaseTypeText columnConstraints:[NSArray arrayWithObjects:[FLNotNullConstraint notNullConstraint], nil]]];
         [s_table addIndex:[FLDatabaseIndex databaseIndex:@"appName" indexProperties:FLDatabaseColumnIndexPropertyNone]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"oauth_token" columnType:FLDatabaseTypeText columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"oauth_token_secret" columnType:FLDatabaseTypeText columnConstraints:nil]];

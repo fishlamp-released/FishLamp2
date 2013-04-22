@@ -128,23 +128,24 @@
 
 + (FLObjectDescriber*) objectDescriber
 {
-    static FLObjectDescriber* s_describer = nil;
+    
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
         
-        if(!s_describer)
-        {
-            s_describer = [[FLObjectDescriber alloc] initWithClass:[self class]];
-        }
-        [s_describer setChildForIdentifier:@"speed" withClass:[FLFloatNumber class] ];
-        [s_describer setChildForIdentifier:@"repeat" withClass:[FLBoolNumber class] ];
-        [s_describer setChildForIdentifier:@"autoStart" withClass:[FLBoolNumber class] ];
-        [s_describer setChildForIdentifier:@"autoShowCaptions" withClass:[FLBoolNumber class] ];
-        [s_describer setChildForIdentifier:@"random" withClass:[FLBoolNumber class] ];
-        [s_describer setChildForIdentifier:@"playMusic" withClass:[FLBoolNumber class] ];
-        [s_describer setChildForIdentifier:@"mediaItemList" withClass:[NSMutableArray class]];
+		
+            [FLObjectDescriber registerClass:[self class]];
+        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+        
+
+        [describer setChildForIdentifier:@"speed" withClass:[FLFloatNumber class] ];
+        [describer setChildForIdentifier:@"repeat" withClass:[FLBoolNumber class] ];
+        [describer setChildForIdentifier:@"autoStart" withClass:[FLBoolNumber class] ];
+        [describer setChildForIdentifier:@"autoShowCaptions" withClass:[FLBoolNumber class] ];
+        [describer setChildForIdentifier:@"random" withClass:[FLBoolNumber class] ];
+        [describer setChildForIdentifier:@"playMusic" withClass:[FLBoolNumber class] ];
+        [describer setChildForIdentifier:@"mediaItemList" withClass:[NSMutableArray class]];
     });
-    return s_describer;
+    return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
@@ -153,16 +154,7 @@
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;
     dispatch_once(&pred, ^{
-        FLDatabaseTable* superTable = [super sharedDatabaseTable];
-        if(superTable)
-        {
-            s_table = [superTable copy];
-            s_table.tableName = [self databaseTableName];
-        }
-        else
-        {
-            s_table = [[FLDatabaseTable alloc] initWithTableName:[self databaseTableName]];
-        }
+        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"speed" columnType:FLDatabaseTypeFloat columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"repeat" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
         [s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"autoStart" columnType:FLDatabaseTypeInteger columnConstraints:nil]];

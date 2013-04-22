@@ -51,7 +51,7 @@ static NSString* kHistory = nil;
     
     [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kName
         columnType:FLDatabaseTypeText 
-        columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]]];
+        columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
 
     [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kEntry
         columnType:FLDatabaseTypeText 
@@ -67,7 +67,7 @@ static NSString* kHistory = nil;
     
     [versionTable addColumn:[FLDatabaseColumn databaseColumnWithName:kVersionId
             columnType:FLDatabaseTypeInteger 
-            columnConstraints:[NSArray arrayWithObject:[FLDatabaseColumn primaryKeyConstraint]]
+            columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]
             ]];
 
     [versionTable addColumn:[FLDatabaseColumn databaseColumnWithName:kVersion

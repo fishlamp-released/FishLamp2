@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjectStorageService.h"
+#import "FLStorageService.h"
 
 #import "FLObjectDatabase.h"
 
 @protocol FLDatabaseObjectStorageServiceDelegate;
 
-@interface FLDatabaseObjectStorageService : FLObjectStorageService {
+@interface FLDatabaseObjectStorageService : FLStorageService {
 @private
     FLObjectDatabase* _database;
 }

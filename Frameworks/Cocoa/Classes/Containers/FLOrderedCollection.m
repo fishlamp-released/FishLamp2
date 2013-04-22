@@ -118,7 +118,7 @@
 	return [_objectArray objectAtIndex:idx];
 }
 
-- (id) keyForIndex:(NSUInteger) aIndex {
+- (id) keyAtIndex:(NSUInteger) aIndex {
     return [_keys objectAtIndex:aIndex];
 }
 

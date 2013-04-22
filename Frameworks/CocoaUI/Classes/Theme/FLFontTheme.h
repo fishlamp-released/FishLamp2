@@ -7,10 +7,13 @@
 //
 
 #import "FLObjectDescriber.h"
+#import "FLModelObject.h"
+
 //#import "FLStringDisplayStyle.h"
 
-@interface FLFontTheme : FLSelfDescribingObject {
+@interface FLFontTheme : NSObject<FLModelObject> {
 @private
+    id identifier;
     NSString* _familyName;
     NSNumber* _defaultSize;
     NSNumber* _smallSize;

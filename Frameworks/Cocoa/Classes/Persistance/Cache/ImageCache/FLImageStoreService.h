@@ -10,13 +10,13 @@
 #import "FLStorableImage.h"
 #import "FLObjectStorage.h"
 #import "FLImageFolder.h"
-#import "FLObjectStorageService.h"
+#import "FLStorageService.h"
 
 @class FLImageFolder;
 
 @protocol FLImageStoreDelegate;
 
-@interface FLImageStoreService : FLObjectStorageService {
+@interface FLImageStoreService : FLStorageService {
 @private
     FLImageFolder* _imageFolder;
 }

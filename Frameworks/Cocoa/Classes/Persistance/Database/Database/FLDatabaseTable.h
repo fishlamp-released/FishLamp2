@@ -17,6 +17,7 @@
 #import "FLSqlBuilder.h"
 #import "FLDatabaseColumnDecoder.h"
 #import "FLDatabaseStatement.h"
+#import "FLObjectDescriber.h"
 
 @interface FLDatabaseTable : NSObject<NSCopying> {
 @private
@@ -38,9 +39,16 @@
 @property (readonly, strong, nonatomic) NSString* decodedTableName;
 @property (readonly, assign, nonatomic) Class classRepresentedByTable;
 
-@property (readwrite, copy, nonatomic) NSDictionary* columns;
-@property (readwrite, copy, nonatomic) NSDictionary* indexes;
+- (id) initWithTableName:(NSString*) tableName;
+- (id) initWithClass:(Class) aClass;
 
++ (id) databaseTableWithTableName:(NSString*) tableName;
++ (id) databaseTableWithClass:(Class) aClass;
+
+//
+// columns
+//
+@property (readwrite, copy, nonatomic) NSDictionary* columns;
 @property (readonly, strong, nonatomic) NSArray* primaryKeyColumns;
 @property (readonly, strong, nonatomic) NSArray* indexedColumns;
 
@@ -49,41 +57,65 @@
 - (void) setColumn:(FLDatabaseColumn*) column
      forColumnName:(NSString*) columnName;
 
-- (void) addIndex:(FLDatabaseIndex*) databaseIndex;
-
-- (NSArray*) indexesForColumn:(NSString*) columnName;
-
 - (void) removeColumnWithName:(NSString*) name;
 
 - (FLDatabaseColumn*) columnByName:(NSString*) name;
 
+//
+// indexes
+//
+@property (readwrite, copy, nonatomic) NSDictionary* indexes;
+
+- (void) addIndex:(FLDatabaseIndex*) databaseIndex;
+
+- (NSArray*) indexesForColumn:(NSString*) columnName;
+
+//
+// sql
+//
+
 - (NSString*) createTableSql;
-
-- (id) initWithTableName:(NSString*) tableName;
-
-+ (FLDatabaseTable*) databaseTableWithTableName:(NSString*) tableName;
-
-- (id) initWithClass:(Class) aClass;
-
-- (id) databaseTableWithClass:(Class) aClass;
 
 - (NSString*) createTableSqlWithIndexes;
 
-- (NSDictionary*) filterColumnsForObject:(id) object
-                                  filter:(void (^)(FLDatabaseColumn* column, BOOL* useIt, BOOL* cancel)) filter;
+//
+// object interaction 
+//
+
+- (NSDictionary*) valuesForColumns:(NSArray*) columns inObject:(id) object;
+
+- (NSDictionary*) propertyValuesForObject:(id) object
+                         withColumnFilter:(void (^)(FLDatabaseColumn* column, BOOL* useIt, BOOL* cancel)) filter;
 
 - (id) objectForRow:(NSDictionary*) row;
 
 @end
 
-@interface NSObject (FLDatabaseTable) 
-+ (FLDatabaseTable*) sharedDatabaseTable;
+@protocol FLDatabaseStorable <NSObject>
+@optional
+
 + (NSString*) databaseTableName; // returns NSStringFromClass(self) by default.
 
++ (FLDatabaseTable*) sharedDatabaseTable;
 - (FLDatabaseTable*) databaseTable;
 
-- (NSDictionary*) valuesForColumns:(NSArray*) arrayOfColumns;
++ (void) databaseTableWillAddColumns:(FLDatabaseTable*) table;
++ (void) databaseTable:(FLDatabaseTable*) table willAddDatabaseColumn:(FLDatabaseColumn*) column;
++ (void) databaseTableDidAddColumns:(FLDatabaseTable*) table;
++ (void) databaseTableWasCreated:(FLDatabaseTable*) table;
+@end
 
+
+@interface NSObject (FLDatabaseTable) 
++ (NSString*) databaseTableName; // returns NSStringFromClass(self) by default.
+
++ (FLDatabaseTable*) sharedDatabaseTable;
+- (FLDatabaseTable*) databaseTable;
+
++ (void) databaseTableWillAddColumns:(FLDatabaseTable*) table;
++ (void) databaseTable:(FLDatabaseTable*) table willAddDatabaseColumn:(FLDatabaseColumn*) column;
++ (void) databaseTableDidAddColumns:(FLDatabaseTable*) table;
++ (void) databaseTableWasCreated:(FLDatabaseTable*) table;
 @end
 
 @interface FLSqlBuilder (FLSqlTable)
