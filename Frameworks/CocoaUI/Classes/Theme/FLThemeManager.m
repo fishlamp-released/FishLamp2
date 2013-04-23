@@ -117,7 +117,7 @@ FLSynthesizeSingleton(FLThemeManager)
     
 //        NSArray* themes = [object objectForKey:@"themes"];
 //        NSMutableArray* outThemes = [NSMutableArray array];
-//        FLObjectDescriber* themeType = [FLObjectDescriber objectDescriber:@"theme" objectClass:themeClass];
+//        FLObjectDescriber* themeType = [FLPropertyDescriber propertyDescriber:@"theme" objectClass:themeClass];
 //        
 //        for(NSDictionary* themeDictionary in themes) {
 //            [outThemes addObject:[builder objectFromJSON:themeDictionary withTypeDesc:themeType]];
@@ -131,7 +131,7 @@ FLSynthesizeSingleton(FLThemeManager)
 //    FLParsedItem* xml = [[FLXmlParser xmlParser] parseFileAtURL:fileURL];
 //    if(xml) {
 //        
-//        FLObjectDescriber* themeType = [FLObjectDescriber objectDescriber:@"theme" objectClass:themeClass];
+//        FLObjectDescriber* themeType = [FLPropertyDescriber propertyDescriber:@"theme" objectClass:themeClass];
 //        
 //        return [[FLXmlObjectBuilder xmlObjectBuilder] objectsFromXML:xml withTypeDesc:themeType];
 //    }   
@@ -152,7 +152,7 @@ FLSynthesizeSingleton(FLThemeManager)
     
 //        NSArray* themes = [object objectForKey:@"themes"];
 //        NSMutableArray* outThemes = [NSMutableArray array];
-//        FLObjectDescriber* themeType = [FLObjectDescriber objectDescriber:@"theme" objectClass:themeClass];
+//        FLObjectDescriber* themeType = [FLPropertyDescriber propertyDescriber:@"theme" objectClass:themeClass];
 //        
 //        for(NSDictionary* themeDictionary in themes) {
 //            [outThemes addObject:[builder objectFromJSON:themeDictionary withTypeDesc:themeType]];
@@ -166,7 +166,7 @@ FLSynthesizeSingleton(FLThemeManager)
 //    FLParsedItem* xml = [[FLXmlParser xmlParser] parseFileAtURL:fileURL];
 //    if(xml) {
 //        
-//        FLObjectDescriber* themeType = [FLObjectDescriber objectDescriber:@"theme" objectClass:themeClass];
+//        FLObjectDescriber* themeType = [FLPropertyDescriber propertyDescriber:@"theme" objectClass:themeClass];
 //        
 //        return [[FLXmlObjectBuilder xmlObjectBuilder] objectsFromXML:xml withTypeDesc:themeType];
 //    }   

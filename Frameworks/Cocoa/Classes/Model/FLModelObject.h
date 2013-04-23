@@ -13,7 +13,10 @@
 @property (readonly, strong) id identifier;
 @end
 
-@interface FLIdentifiedObject : NSObject {
+@interface FLAbstractModelObject : NSObject<FLModelObject> 
+@end
+
+@interface FLModelObject : FLAbstractModelObject {
 @private
     id _identifier;
 }
@@ -21,9 +24,6 @@
 @end
 
 @interface NSObject (FLModelObject)
-- (void) encodeModelObjectWithCoder:(NSCoder*) aCoder;
-- (id) initModelObjectWithCoder:(NSCoder*) aDecoder;
-- (id) copyModelObjectWithZone:(NSZone*) zone;
 + (BOOL) isModelObject;
 - (BOOL) isModelObject;
 @end
@@ -64,22 +64,20 @@ extern void FLMergeObjectArrays(NSMutableArray* dest, NSArray* src, FLMergeMode 
                 return s_table; \
             }
             
-#define FLSynthesizeCoding() \
-            - (id)initWithCoder:(NSCoder *)aCoder { \
-                return [self initModelObjectWithCoder:aCoder]; \
-            } \
-            - (void) encodeWithCoder:(NSCoder*) coder { \
-                [self encodeModelObjectWithCoder:coder]; \
-            }
-
-#define FLSynthesizeCopying() \
-        - (id) copyWithZone:(NSZone*) zone { \
-            return [self copyModelObjectWithZone:zone]; \
-        }        
+//#define FLSynthesizeCoding() \
+//            - (id)initWithCoder:(NSCoder *)aCoder { \
+//                return [self initModelObjectWithCoder:aCoder]; \
+//            } \
+//            - (void) encodeWithCoder:(NSCoder*) coder { \
+//                [self encodeModelObjectWithCoder:coder]; \
+//            }
+//
+//#define FLSynthesizeCopying() \
+//        - (id) copyWithZone:(NSZone*) zone { \
+//            return [self copyModelObjectWithZone:zone]; \
+//        }        
             
 #define FLSynthesizeModelObjectMethods() \
             FLSynthesizeObjectDescriber() \
-            FLSynthesizeSharedDatabaseTable() \
-            FLSynthesizeCoding() \
-            FLSynthesizeCopying() 
+            FLSynthesizeSharedDatabaseTable()
 

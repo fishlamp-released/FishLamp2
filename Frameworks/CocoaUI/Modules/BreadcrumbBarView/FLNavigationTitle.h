@@ -17,7 +17,7 @@
     NSString* _localizedTitle;
     NSAttributedString* _attributedString;
     id _identifier;
-    FLStringDisplayStyle* _displayStyle;
+    FLStringDisplayStyle* _titleStyle;
 
     BOOL _mouseIn;
     BOOL _mouseDown;

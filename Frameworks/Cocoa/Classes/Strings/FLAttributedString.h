@@ -13,7 +13,7 @@
 
 @class FLAttributedString;
 
-@interface FLTextStyle : FLIdentifiedObject<FLModelObject> {
+@interface FLTextStyle : FLModelObject {
 @private
     SDKColor* _textColor;
     SDKColor* _shadowColor;
@@ -32,7 +32,7 @@
 
 @end
 
-@interface FLStringDisplayStyle : FLIdentifiedObject<FLModelObject> {
+@interface FLStringDisplayStyle : FLModelObject {
 @private
     FLTextStyle* _selectedStyle;
     FLTextStyle* _enabledStyle;

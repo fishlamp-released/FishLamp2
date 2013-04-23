@@ -304,9 +304,6 @@
 #import "FLDatabaseTable.h"
 #import "FLSqlStatement.h"
 
-// Classes/Persistance/Database/DatabaseObject
-#import "FLDatabaseObject.h"
-
 // Classes/Persistance/Database/DatabaseUtilities
 #import "FLLoadObjectFromDatabaseOperation.h"
 #import "FLSaveObjectToDatabaseOperation.h"

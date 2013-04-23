@@ -9,7 +9,7 @@
 // Copywrite (C) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-
+#import "FLModelObject.h"
 
 // --------------------------------------------------------------------
 // FLSoapFault11
@@ -40,6 +40,8 @@
 + (NSString*) faultstringKey;
 
 + (FLSoapFault11*) soapFault11; 
+
++ (FLObjectDescriber*) objectDescriber;
 
 @end
 

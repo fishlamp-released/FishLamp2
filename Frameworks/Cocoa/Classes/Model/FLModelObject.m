@@ -8,74 +8,147 @@
 
 #import "FLModelObject.h"
 
+@implementation FLAbstractModelObject 
 
-@implementation NSObject (FLModelObject)
-
-+ (BOOL) isModelObject {
-    return [self respondsToSelector:@selector(objectDescriber)];
+- (id) identifier {
+    return nil;
 }
 
-- (BOOL) isModelObject {
-    return [[self class] isModelObject];
-}
-
-- (void) encodeModelObjectWithCoder:(NSCoder*) aCoder {
-    if([self isModelObject]) {
+- (id)initWithCoder:(NSCoder *)aCoder { 
+    self = [super init];
+    if(self) {
         FLObjectDescriber* typeDesc = [[self class] objectDescriber];
-      
-        for(NSUInteger i = 0; i < typeDesc.subTypeCount; i++) {
-            FLObjectDescriber* type = [typeDesc subTypeForIndex:i];
-
-            id value = [self valueForKey:type.identifier];
-            if(value) {
-                [aCoder encodeObject:value forKey:type.identifier];
-            }
-        }
-    }
-}
-
-- (id) initModelObjectWithCoder:(NSCoder*) aDecoder {
-    self = [self init];
-    if(self && [self isModelObject]) {
-        FLObjectDescriber* typeDesc = [[self class] objectDescriber];
+        FLAssertNotNil(typeDesc);
         
-        for(NSUInteger i = 0; i < typeDesc.subTypeCount; i++) {
-            FLObjectDescriber* type = [typeDesc subTypeForIndex:i];
-
-            [self setValue:[aDecoder decodeObjectForKey:type.identifier] forKey:type.identifier];
+        for(FLPropertyDescriber* type in [[typeDesc properties] objectEnumerator]) {
+            [self setValue:[aCoder decodeObjectForKey:type.propertyName] forKey:type.propertyName];
         }
     }
 
     return self;
+
+} 
+
+- (void) encodeWithCoder:(NSCoder*) aCoder { 
+    FLObjectDescriber* typeDesc = [[self class] objectDescriber];
+    FLAssertNotNil(typeDesc);
+  
+    for(FLPropertyDescriber* type in [[typeDesc properties] objectEnumerator]) {
+        id value = [self valueForKey:type.propertyName];
+        if(value) {
+            [aCoder encodeObject:value forKey:type.propertyName];
+        }
+    }
 }
 
-- (id) copyModelObjectWithZone:(NSZone*) zone {
-    if([self isModelObject]) {
-        FLObjectDescriber* typeDesc = [[self class] objectDescriber];
-        
-        id copy = [[[self class] alloc] init];
-        for(NSUInteger i = 0; i < typeDesc.subTypeCount; i++) {
-            FLObjectDescriber* type = [typeDesc subTypeForIndex:i];
++ (BOOL) isModelObject { 
+    return YES; 
+} 
 
-            [copy setValue:FLCopyOrRetainObject([self valueForKey:type.identifier]) forKey:type.identifier];
-        }
-        return copy;
-    }
+- (BOOL) isModelObject { 
+    return YES; 
+}
+
+- (id) copyWithZone:(NSZone*) zone {
+    FLObjectDescriber* typeDesc = [[self class] objectDescriber];
+    FLAssertNotNil(typeDesc);
     
-    return nil;
+    id copy = [[[self class] alloc] init];
+    for(FLPropertyDescriber* type in [[typeDesc properties] objectEnumerator]) {
+        [copy setValue:FLCopyOrRetainObject([self valueForKey:type.propertyName]) forKey:type.propertyName];
+    }
+    return copy;
+}
+
+//+ (FLDatabaseTable*) sharedDatabaseTable {
+//    FLAssertFailedWithComment(@"Not implemented. Use FLSynthesizeModelObjectMethods in your subclass.");
+//    return nil;
+//}
+//
+//+ (FLObjectDescriber*) objectDescriber {
+//    FLAssertFailedWithComment(@"Not implemented. Use FLSynthesizeModelObjectMethods in your subclass.");
+//    return nil;
+//}
+
++ (void) databaseTableDidAddColumns:(FLDatabaseTable*) table {
+    FLDatabaseColumn* idColumn = [table columnForPropertySelector:@selector(identifier)];
+    [idColumn addColumnConstraint:[FLPrimaryKeyConstraint primaryKeyConstraint]];
 }
 
 @end
 
-@implementation FLIdentifiedObject
+@implementation FLModelObject 
+
 @synthesize identifier = _identifier;
+
 #if FL_MRC
 - (void) dealloc {
 	[_identifier release];
 	[super dealloc];
 }
 #endif
+
 @end
+
+
+@implementation NSObject (FLModelObject)
+
++ (BOOL) isModelObject {
+    return NO;
+}
+
+- (BOOL) isModelObject {
+    return NO;
+}
+
+//- (void) encodeModelObjectWithCoder:(NSCoder*) aCoder {
+//    if([self isModelObject]) {
+//        FLObjectDescriber* typeDesc = [[self class] objectDescriber];
+//      
+//        for(NSUInteger i = 0; i < typeDesc.propertyCount; i++) {
+//            FLObjectDescriber* type = [typeDesc propertyForIndex:i];
+//
+//            id value = [self valueForKey:type.identifier];
+//            if(value) {
+//                [aCoder encodeObject:value forKey:type.identifier];
+//            }
+//        }
+//    }
+//}
+//
+//- (id) initModelObjectWithCoder:(NSCoder*) aDecoder {
+//    self = [self init];
+//    if(self && [self isModelObject]) {
+//        FLObjectDescriber* typeDesc = [[self class] objectDescriber];
+//        
+//        for(NSUInteger i = 0; i < typeDesc.propertyCount; i++) {
+//            FLObjectDescriber* type = [typeDesc propertyForIndex:i];
+//
+//            [self setValue:[aDecoder decodeObjectForKey:type.identifier] forKey:type.identifier];
+//        }
+//    }
+//
+//    return self;
+//}
+//
+//- (id) copyModelObjectWithZone:(NSZone*) zone {
+//    if([self isModelObject]) {
+//        FLObjectDescriber* typeDesc = [[self class] objectDescriber];
+//        
+//        id copy = [[[self class] alloc] init];
+//        for(NSUInteger i = 0; i < typeDesc.propertyCount; i++) {
+//            FLObjectDescriber* type = [typeDesc propertyForIndex:i];
+//
+//            [copy setValue:FLCopyOrRetainObject([self valueForKey:type.identifier]) forKey:type.identifier];
+//        }
+//        return copy;
+//    }
+//    
+//    return nil;
+//}
+
+@end
+
 
 
 //typedef void (*CompareCallback) (id, id, FLMergeMode, NSArray* arrayItemTypes); 
@@ -180,9 +253,10 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 
 		FLObjectDescriber* srcDescriber = [[src class] objectDescriber];
         
-        for(NSUInteger i = 0; i < srcDescriber.subTypeCount; i++) {
+        for(FLPropertyDescriber* property in [[srcDescriber properties] objectEnumerator]) {
             
-            NSString* srcPropName = [srcDescriber identifierForIndex:i];
+            NSString* srcPropName = property.propertyName;
+            
 			id srcObject = [src valueForKey:srcPropName];
 			
             if(srcObject) {
@@ -191,15 +265,15 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 					[dest setValue:srcObject forKey:srcPropName];
 				}
 				else {
-					FLObjectDescriber* srcProp = [srcDescriber subTypeForIdentifier:srcPropName];
+					FLPropertyDescriber* srcProp = [srcDescriber propertyForName:srcPropName];
                     
-                    if(![srcProp.objectClass isModelObject]) {
+                    if(![srcProp.propertyType isModelObject]) {
 					   if(mergeMode == FLMergeModeSourceWins) {
 							[dest setValue:srcObject forKey:srcPropName];
 					   }
 					}
-					else if(srcProp.subTypeCount > 0) {
-						FLMergeObjectArrays(destObject, srcObject, mergeMode, [srcProp subTypesCopy]);
+					else if(srcProp.containedTypes.count > 0) {
+						FLMergeObjectArrays(destObject, srcObject, mergeMode, [srcProp containedTypes]);
 					}
 					else {
 						FLMergeObjects(destObject, srcObject, mergeMode);

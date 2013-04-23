@@ -13,7 +13,6 @@
 
 FLSynthesizeModelObjectMethods();
 
-@synthesize identifier = _identifier;
 @synthesize familyName = _familyName;
 @synthesize defaultSize = _defaultSize;
 @synthesize smallSize = _smallSize;

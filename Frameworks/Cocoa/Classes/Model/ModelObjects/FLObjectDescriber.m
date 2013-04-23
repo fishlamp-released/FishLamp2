@@ -10,20 +10,73 @@
 
 #import "FLObjcRuntime.h"
 #import "FLPropertyAttributes.h"
-#import "FLOrderedCollection.h"
 #import "FLModelObject.h"
 
 #import "FLTrace.h"
 
+@interface FLPropertyDescriber (Internal)
+@property (readwrite) NSString* propertyName;
+@property (readwrite) FLObjectDescriber* propertyType;
+@property (readwrite, copy) NSArray* containedTypes;
+@end
+
+
 @interface FLObjectDescriber ()
+//@property (readwrite, assign) Class objectClass;
+
 - (void) addPropertiesForClass:(Class) aClass;
-
-@property (readwrite, assign) Class objectClass;
-@property (readwrite, strong) NSString* identifier;
-@property (readwrite, strong) FLObjectEncoder* objectEncoder;
-
 - (id) initWithClass:(Class) aClass;
-- (id) initWithIdentifier:(NSString*) identifier class:(Class) aClass;
+@end
+
+@interface FLThreadSafeRef : NSProxy {
+@private
+    id _object;
+}
+@property (readwrite, strong, nonatomic) id object;
+@end
+
+@implementation FLThreadSafeRef 
+
+@synthesize object = _object;
+
+
+- (id) initWithObject:(id) object {	
+	self.object = object;
+	return self;
+}
+
++ (id) threadSafeRef:(id) object {
+    return FLAutorelease([[[self class] alloc] initWithObject:object]);
+}
+
+- (void)forwardInvocation:(NSInvocation *)invocation {
+    id myObject = self.object;
+    if (myObject ) {
+        [invocation setTarget:myObject];
+        @synchronized(myObject) {
+            [invocation invoke];
+        }
+    }
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel  {
+    return [self.object methodSignatureForSelector:sel];
+}
+
+#if FL_MRC
+- (void) dealloc {
+	[_object release];
+	[super dealloc];
+}
+#endif
+
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if([self respondsToSelector:aSelector]) {
+        return YES;
+    }
+
+    return [self.object respondsToSelector:aSelector];
+}
 
 @end
 
@@ -31,9 +84,8 @@
 
 static NSMutableDictionary* s_registry = nil;
 
-@synthesize identifier = _identifier;
 @synthesize objectClass = _objectClass;
-@synthesize objectEncoder = _objectEncoder;
+@synthesize properties = _properties;
 
 + (void) initialize {
     if(!s_registry) {
@@ -42,29 +94,25 @@ static NSMutableDictionary* s_registry = nil;
 }
 
 - (id) init {
-    return [self initWithIdentifier:nil class:nil];
+    return [self initWithClass:nil];
 }
 
-- (id) initWithClass:(Class) aClass {
-    return [self initWithIdentifier:nil class:aClass];
-}
-
-- (id) initWithIdentifier:(NSString*) identifier class:(Class) aClass {	
-
+- (id) initWithClass:(Class) aClass properties:(NSDictionary*) properties {
     FLAssertNotNil(aClass);
-	self = [super init];
+	self = [self initWithClass:aClass];
 	if(self) {
-        self.objectClass = aClass;
-        self.identifier = identifier;
+        _properties = [properties mutableCopy];
 	}
 	return self;
 }
 
-- (id) initInternal {
-    self = [super init];
-    if(self) {
-    }
-    return self;
+- (id) initWithClass:(Class) aClass {
+    FLAssertNotNil(aClass);
+	self = [super init];
+	if(self) {
+        _objectClass = aClass;
+	}
+	return self;
 }
 
 + (id) objectDescriber:(Class) aClass {
@@ -72,83 +120,92 @@ static NSMutableDictionary* s_registry = nil;
     @synchronized([self class]) {
         describer = [s_registry objectForKey:NSStringFromClass(aClass)];
     }
+    
+    if(describer) {
+        return describer;
+    }
+
     if(!describer && [aClass isModelObject]) {
-        describer = [aClass objectDescriber];
+        return [aClass objectDescriber];
+    }
+    else {
+        return [self registerClass:aClass];
     }
         
-    return describer;
-}
-
-+ (id) objectDescriber:(NSString*) identifier class:(Class) aClass {
-    return FLAutorelease([[[self class] alloc] initWithIdentifier:identifier class:aClass]);
+    return nil;
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_objectEncoder release];
-    [_subtypes release];
-	[_identifier release];
+    [_properties release];
     [super dealloc];
 }
 #endif
 
-- (FLObjectDescriber*) subTypeForIdentifier:(NSString*) identifier {
+- (FLObjectDescriber*) propertyForName:(NSString*) propertyName {
     @synchronized(self) {
-        return [_subtypes objectForKey:identifier];
+        return [_properties objectForKey:propertyName];
     }
 }
 
-- (FLObjectDescriber*) subTypeForIndex:(NSUInteger) idx {
+- (NSDictionary*) properties {
     @synchronized(self) {
-        return [_subtypes objectAtIndex:idx];
+        return FLCopyWithAutorelease(_properties);
     }
 }
 
-- (NSString*) identifierForIndex:(NSUInteger) idx {
+- (NSUInteger) propertyCount {
     @synchronized(self) {
-        return [_subtypes keyAtIndex:idx];
+        return [_properties count];
     }
 }
 
-- (NSUInteger) subTypeCount {
-    @synchronized(self) {
-        return [_subtypes count];
-    }
-}
-
-- (void) addSubtype:(FLObjectDescriber*) subtype {
-    FLAssertNotNil(subtype);
+- (void) addProperty:(FLPropertyDescriber*) property {
+    FLAssertNotNil(property);
     
-    if(!_subtypes) {
-        _subtypes = [[FLOrderedCollection alloc] init];
+    if(!_properties) {
+        _properties = [[NSMutableDictionary alloc] init];
     }
-    
-    if(subtype.objectClass) {
-        [_subtypes setObject:subtype forKey:subtype.identifier];
-    }
-#if TRACE    
+   
+    FLPropertyDescriber* existing = [_properties objectForKey:property.propertyName];
+    if(existing) {
+        FLTrace(@"replacing property %@ to %@", property.propertyName, NSStringFromClass(self.objectClass));
+        existing.propertyType = property.propertyType;
+        existing.containedTypes = property.containedTypes;
+    } 
     else {
-        FLLog(@"skipping property %@", subtype.identifier);
+        FLTrace(@"added property %@ to %@", property.propertyName, NSStringFromClass(self.objectClass));
+        [_properties setObject:property forKey:property.propertyName];
     }
-#endif   
 }
 
-- (void) setSubtypeClass:(Class) aClass forIdentifier:(NSString*) identifier {
-    [self addSubtype:[FLObjectDescriber objectDescriber:identifier class:aClass]];
-}
+//- (void) setPropertyClass:(Class) aClass forIdentifier:(NSString*) propertyName {
+//    [self addProperty:[FLPropertyDescriber propertyDescriber:propertyName class:aClass]];
+//}
 
-- (void) setSubtypeArrayTypes:(NSArray*) arrayTypes forIdentifier:(NSString*) identifier {
-    FLObjectDescriber* objectDescriber = [FLObjectDescriber objectDescriber:identifier class:[NSMutableArray class]];
+//- (void) setSubtypeArrayTypes:(NSArray*) arrayTypes forIdentifier:(NSString*) propertyName {
+//    FLPropertyDescriber* objectDescriber = [FLPropertyDescriber propertyDescriber:propertyName class:[NSMutableArray class]];
+//
+////    for(FLObjectDescriber* desc in arrayTypes) {
+////        [objectDescriber addProperty:desc];
+////    }
+//
+//    [self addProperty:objectDescriber];
+//}
 
-    for(FLObjectDescriber* desc in arrayTypes) {
-        [objectDescriber addSubtype:desc];
-    }
-
-    [self addSubtype:objectDescriber];
-}
+//- (void) describeTo:(FLPrettyString*) string
 
 - (NSString*) description {
-	return [NSString stringWithFormat:@"%@: { class=%@, subtypes:%@", [super description], NSStringFromClass(self.objectClass), [_subtypes description]];
+    
+    FLPrettyString* contained = [FLPrettyString prettyString];
+    [contained indent];
+    
+    for(FLPropertyDescriber* describer in [_properties objectEnumerator]) {
+        [contained appendBlankLine];
+        [contained appendFormat:@"%@", [describer description]];
+    }
+    
+    return [NSString stringWithFormat:@"%@ %@", NSStringFromClass(self.objectClass), contained.string];
 }
 
 + (id) createWithRuntimeProperty:(objc_property_t) runtimeProperty {
@@ -156,79 +213,115 @@ static NSMutableDictionary* s_registry = nil;
     FLPropertyAttributes_t attributes;
     FLPropertyAttributesDecodeWithNoCopy(runtimeProperty, &attributes);
     
-    if(attributes.className.string) {
-        NSString* identifier = [NSString stringWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
-        Class objectClass = NSClassFromString([NSString stringWithCharString:attributes.className]);
-        return [FLObjectDescriber objectDescriber:identifier class:objectClass];
+    if(attributes.propertyName) {
+
+        if(attributes.is_object) {
+            FLTrace(@"adding object property \"%s\" (%s)", attributes.propertyName, attributes.encodedAttributes);
+
+            NSString* propertyName = [NSString stringWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
+            Class objectClass = nil;
+            
+            if(attributes.className.string) {
+                objectClass = NSClassFromString([NSString stringWithCharString:attributes.className]);
+            }
+            else {
+                objectClass = [FLAbstractObjectType class];
+            }
+
+            return [FLPropertyDescriber propertyDescriber:propertyName propertyClass:objectClass];
+        }
+        else {
+            FLTrace(@"skipping property: %s (%s)", attributes.propertyName, attributes.encodedAttributes);
+        }
     }
-    
-//    FLTrace(@"unable to make object objectDescriber for %s", attributes.encodedAttributes);
+
     return nil;
 }
 
 - (void) addPropertiesForClass:(Class) aClass {
-    if(aClass && [aClass respondsToSelector:@selector(objectDescriber)]) {
-
-// do parents first, because we can override them in subclass
-        [self addPropertiesForClass:[aClass superclass]];
-
 // do all the properties
-        unsigned int propertyCount = 0;
-        objc_property_t* subtypes = class_copyPropertyList(aClass, &propertyCount);
+    unsigned int propertyCount = 0;
+    objc_property_t* propertys = class_copyPropertyList(aClass, &propertyCount);
 
-        FLTrace(@"adding %d properties for %@", propertyCount, NSStringFromClass(aClass));
+    FLTrace(@"found %d properties for %@", propertyCount, NSStringFromClass(aClass));
 
-        for(unsigned int i = 0; i < propertyCount; i++) {
-        
-            FLObjectDescriber* objectDescriber = [FLObjectDescriber createWithRuntimeProperty:subtypes[i]];
-            if(objectDescriber) {
-                [self addSubtype:objectDescriber];
-            }
+    for(unsigned int i = 0; i < propertyCount; i++) {
+    
+        FLPropertyDescriber* propertyDescriber = [FLObjectDescriber createWithRuntimeProperty:propertys[i]];
+        if(propertyDescriber) {
+            [self addProperty:propertyDescriber];
         }
+    }
 
-        free(subtypes);
+    free(propertys);
+}
+
+- (void) addPropertiesForParentClasses:(Class) aClass {
+    if(aClass && [aClass respondsToSelector:@selector(objectDescriber)]) {
+        FLObjectDescriber* describer = [aClass objectDescriber];
+        for(FLPropertyDescriber* property in [describer.properties objectEnumerator]) {
+            [self addProperty:property];
+        }
     }
 }
 
-+ (void) registerClass:(Class) aClass {
-    FLObjectDescriber* describer = FLAutorelease([[[self class] alloc] initInternal]);;
-    describer.objectClass = aClass;
-    describer.objectEncoder = [aClass objectEncoder];
++ (FLObjectDescriber*) registerClass:(Class) aClass {
+    FLTrace(@"Registering %@:", NSStringFromClass(aClass));
+
+    FLObjectDescriber* describer = FLAutorelease([[[self class] alloc] initWithClass:aClass]);;
+
+// do parents first, because we can override them in subclass
+    [describer addPropertiesForParentClasses:[aClass superclass]];
+
+// add our discovered properties
     [describer addPropertiesForClass:aClass];
     
     @synchronized(self) {
         [s_registry setObject:describer forKey:NSStringFromClass(aClass)];
     }
+    
+    [aClass objectDescriberWasRegistered:describer];
+    
+    return describer;
 }
 
 - (void) setChildForIdentifier:(NSString*) name withClass:(Class) objectClass {
-    [self setSubtypeClass:objectClass forIdentifier:name];
-}
-
-- (void) setChildForIdentifier:(NSString*) name withArrayTypes:(NSArray*) types {
-    [self setSubtypeArrayTypes:types forIdentifier:name];
-}
-
-- (NSArray*) subTypesCopy {
-    @synchronized(self) {
-        return FLAutorelease([_subtypes copy]);
+    FLPropertyDescriber* property = [_properties objectForKey:name];
+    FLAssertNotNil(property);
+    
+    if(property.propertyClass != objectClass) {
+    
+        FLLog(@"replaced property class %@ with %@", NSStringFromClass(property.propertyClass), NSStringFromClass(objectClass));
+        property.propertyType = [FLObjectDescriber objectDescriber:objectClass];
+        
+//        [_properties setObject:[FLPropertyDescriber propertyDescriber:name propertyClass:objectClass] forKey:name];
     }
 }
 
-@end
+- (void) setChildForIdentifier:(NSString*) name withArrayTypes:(NSArray*) types {
+    FLPropertyDescriber* property = [_properties objectForKey:name];
+    FLAssertNotNil(property);
+   
+    if(property.propertyClass != [NSMutableArray class]) {
+        property.propertyType  = [FLObjectDescriber objectDescriber:[NSMutableArray class]];
+    }
+    FLAssertNil(property.containedTypes);
+    FLAssertNotNil(types);
 
-@implementation NSObject (FLObjectDescriber)
+    property.containedTypes = types;    
+}        
 
-//+ (FLObjectDescriber*) objectDescriber {
-//    return nil;
-//}
-//
-//- (FLObjectDescriber*) objectDescriber {
-//    return [[self class] objectDescriber];
-//}
 
-+ (void) objectDescriberWasCreated:(FLObjectDescriber*) describer {
+- (id) copyWithZone:(NSZone *)zone {
+    return [[[self class] alloc] initWithClass:_objectClass properties:_properties];
 }
 
 
+@end
+@implementation FLAbstractObjectType
+@end
+
+@implementation NSObject (FLObjectDescriber)
++ (void) objectDescriberWasRegistered:(FLObjectDescriber*) describer {
+}
 @end

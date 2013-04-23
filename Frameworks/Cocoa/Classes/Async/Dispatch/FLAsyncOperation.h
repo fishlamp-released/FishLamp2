@@ -12,6 +12,7 @@
 @private
     FLFinisher* _finisher;
 }
+@property (readwrite, strong) FLFinisher* finisher; 
 
 - (void) setFinishedWithResult:(id) result;
 - (void) setFinished;

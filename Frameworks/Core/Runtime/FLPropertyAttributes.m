@@ -27,7 +27,7 @@ typedef enum {
     FLPropertyAttributeTypeDelimeter = ',',
     FLPropertyAttributeIVar = 'V',
 
-    FLPropertyAttributeTypeObject = '@',
+    FLPropertyAttributeTypeAbstractObject = '@',
     FLPropertyAttributeStructOrObject = '{',
     FLPropertyAttributeArray = '[',
     FLPropertyAttributeUnion = '(',
@@ -195,7 +195,7 @@ void FLParsePropertyAttributes(FLPropertyAttributes_t* attributes) {
             case FLPropertyAttributeCustomSetter:
                 break;
             
-            case FLPropertyAttributeTypeObject:
+            case FLPropertyAttributeTypeAbstractObject:
                 attributes->is_object = 1;
                 if(*str == '\"') {
                     attributes->className = FLCharStringFromCString(++str, '\"');

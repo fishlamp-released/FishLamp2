@@ -11,9 +11,8 @@
 
 //#import "FLStringDisplayStyle.h"
 
-@interface FLFontTheme : NSObject<FLModelObject> {
+@interface FLFontTheme : FLModelObject {
 @private
-    id identifier;
     NSString* _familyName;
     NSNumber* _defaultSize;
     NSNumber* _smallSize;

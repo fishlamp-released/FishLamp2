@@ -98,13 +98,13 @@
     dispatch_once(&pred, ^{
         
 		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+        
         
 
-        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"name" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"name"];
-        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"className" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"className"];
-        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"fontSize" objectClass:[NSNumber class] objectDescriber:FLDataTypeInteger] forPropertyName:@"fontSize"];
+        [describer setPropertyDescriber:[FLPropertyDescriber propertyDescriber:@"name" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"name"];
+        [describer setPropertyDescriber:[FLPropertyDescriber propertyDescriber:@"className" objectClass:[NSString class] objectDescriber:FLDataTypeString] forPropertyName:@"className"];
+        [describer setPropertyDescriber:[FLPropertyDescriber propertyDescriber:@"fontSize" objectClass:[NSNumber class] objectDescriber:FLDataTypeInteger] forPropertyName:@"fontSize"];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }
@@ -119,7 +119,14 @@
     return s_inflator;
 }
 
+- (BOOL) isModelObject {
+    return YES;
+}
++ (BOOL) isModelObject {
+    return YES;
+}
 + (FLDatabaseTable*) sharedDatabaseTable
+
 {
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;

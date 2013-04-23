@@ -106,8 +106,9 @@
 #if TRACE
         FLTrace(@"async queue processing is done: %@", self);
 #endif
-    
-        [self setFinished];
+        if(self.finisher && self.finisher.isFinished == NO) {
+            [self setFinished];
+        }
     }
 }
 

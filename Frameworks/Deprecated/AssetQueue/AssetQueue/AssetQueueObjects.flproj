@@ -7,7 +7,6 @@
     <typeDefinitions>
         <typeDefinition typeName="FLAsset" dataType="Object" import="FLAsset.h"/>
         <typeDefinition typeName="SDKImage" dataType="Object" import=""/>
-        <typeDefinition typeName="FLDatabaseObject" dataType="object" import="FLDatabaseObject.h"/>
     </typeDefinitions>
     <objects>
         <object typeName="FLUploadedAsset" protocols="NSCopying, NSCoding">

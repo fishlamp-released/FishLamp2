@@ -11,13 +11,13 @@
 
 @interface FLObjectXmlElement ()
 @property (readwrite, strong, nonatomic) id object;
-@property (readwrite, strong, nonatomic) FLObjectDescriber* objectTypeDesc;
+@property (readwrite, strong, nonatomic) FLPropertyDescriber* propertyDescriber;
 @end
 
 @implementation FLObjectXmlElement
 
 @synthesize object = _object;
-@synthesize objectTypeDesc = _objectTypeDesc;
+@synthesize propertyDescriber = _propertyDescriber;
 
 - (id) initWithObject:(id) object 
         xmlElementTag:(NSString*) xmlElementTag 
@@ -50,11 +50,11 @@
 
 - (id) initWithObject:(id) object
           xmlElementTag:(NSString*) xmlElementTag
-          typeDesc:(FLObjectDescriber*) typeDesc {
+          propertyDescriber:(FLPropertyDescriber*) propertyDescriber {
     
     self = [self initWithObject:object xmlElementTag:xmlElementTag];
     if(self) {
-        self.objectTypeDesc = typeDesc;
+        self.propertyDescriber = propertyDescriber;
     }
             
     return self;
@@ -62,24 +62,24 @@
 
 + (id) objectXmlElement:(id) object 
           xmlElementTag:(NSString*) xmlElementTag
-          typeDesc:(FLObjectDescriber*) typeDesc {
+          propertyDescriber:(FLPropertyDescriber*) propertyDescriber {
     
     return FLAutorelease([[[self class] alloc] initWithObject:object 
                                                 xmlElementTag:xmlElementTag 
-                                                     typeDesc:typeDesc]);
+                                                     propertyDescriber:propertyDescriber]);
 }          
 
 
 #if FL_MRC
 - (void) dealloc {
     [_object release];
-    [_objectTypeDesc release];
+    [_propertyDescriber release];
     [super dealloc];
 }
 #endif
 
 //- (void) appendLineWithEncodedObject:(id) object
-//                   typeDesc:(FLObjectDescriber*) typeDesc {
+//                   typeDesc:(FLPropertyDescriber*) typeDesc {
 //
 //    if(object) {
 //        FLAssertNotNilWithComment(typeDesc, @"serialization requires property typeDesc");
@@ -116,7 +116,7 @@
     
         FLAssertNotNil([self dataEncoder]);
         
-        [_object addToXmlElement:self typeDesc:_objectTypeDesc];
+        [_object addToXmlElement:self propertyDescriber:_propertyDescriber];
     }
 }
 
@@ -126,11 +126,11 @@
 @interface FLXmlElementStringBuilderLine : FLStringBuilderLine {
 @private
     id _object;
-    FLObjectDescriber* _typeDesc;
+    FLPropertyDescriber* _typeDesc;
     NSString* _encodedString;
 }
 
-+ (id) xmlElementStringBuilderLine:(id) object typeDesc:(FLObjectDescriber*) typeDesc;
++ (id) xmlElementStringBuilderLine:(id) object typeDesc:(FLPropertyDescriber*) typeDesc;
 
 @end
 
