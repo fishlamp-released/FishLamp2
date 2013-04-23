@@ -14,6 +14,7 @@
 
 @implementation ZFUploadGallery
 
+FLSynthesizeModelObjectMethods();
 
 @synthesize name = _name;
 @synthesize photoSetId = _photoSetId;
@@ -34,21 +35,6 @@
 	return @"uploadUrl";
 }
 
-- (void) copySelfTo:(id) object
-{
-	[super copySelfTo:object];
-	((ZFUploadGallery*)object).name = FLCopyOrRetainObject(_name);
-	((ZFUploadGallery*)object).photoSetId = FLCopyOrRetainObject(_photoSetId);
-	((ZFUploadGallery*)object).uploadUrl = FLCopyOrRetainObject(_uploadUrl);
-}
-
-- (id) copyWithZone:(NSZone*) zone
-{
-	id outObject = [[[self class] alloc] init];
-	[self copySelfTo:outObject];
-	return outObject;
-}
-
 - (void) dealloc
 {
 	FLRelease(_name);
@@ -57,64 +43,38 @@
 	FLSuperDealloc();
 }
 
-- (void) encodeWithCoder:(NSCoder*) aCoder
-{
-	if(_name) [aCoder encodeObject:_name forKey:@"_name"];
-	if(_photoSetId) [aCoder encodeObject:_photoSetId forKey:@"_photoSetId"];
-	if(_uploadUrl) [aCoder encodeObject:_uploadUrl forKey:@"_uploadUrl"];
-	[super encodeWithCoder:aCoder];
+//+ (FLObjectDescriber*) objectDescriber {
+//	static dispatch_once_t pred = 0;
+//	dispatch_once(&pred, ^{
+//        FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+//        
+//		[describer setChildForIdentifier:@"name" withClass:[NSString class]];
+//		[describer setChildForIdentifier:@"photoSetId" withClass:[FLIntegerNumber class] ];
+//		[describer setChildForIdentifier:@"uploadUrl" withClass:[NSString class]];
+//	});
+//	return [FLObjectDescriber objectDescriber:[self class]];
+//}
+
++ (void) objectDescriberWasRegistered:(FLObjectDescriber*) describer {
+    [describer setChildForIdentifier:@"name" withClass:[NSString class]];
+    [describer setChildForIdentifier:@"photoSetId" withClass:[FLIntegerNumber class] ];
+    [describer setChildForIdentifier:@"uploadUrl" withClass:[NSString class]];
 }
 
-- (id) init
-{
-	if((self = [super init]))
-	{
-	}
-	return self;
-}
-
-- (id) initWithCoder:(NSCoder*) aDecoder
-{
-	if((self = [super initWithCoder:aDecoder]))
-	{
-		_name = FLRetain([aDecoder decodeObjectForKey:@"_name"]);
-		_photoSetId = FLRetain([aDecoder decodeObjectForKey:@"_photoSetId"]);
-		_uploadUrl = FLRetain([aDecoder decodeObjectForKey:@"_uploadUrl"]);
-	}
-	return self;
-}
-
-+ (FLObjectDescriber*) objectDescriber
-{
-	
-	static dispatch_once_t pred = 0;
-	dispatch_once(&pred, ^{
-		
-		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
-        
-		[describer setChildForIdentifier:@"name" withClass:[NSString class]];
-		[describer setChildForIdentifier:@"photoSetId" withClass:[FLIntegerNumber class] ];
-		[describer setChildForIdentifier:@"uploadUrl" withClass:[NSString class]];
-	});
-	return [FLObjectDescriber objectDescriber:[self class]];
-}
-
-
-+ (FLDatabaseTable*) sharedDatabaseTable
-{
-	static FLDatabaseTable* s_table = nil;
-	static dispatch_once_t pred = 0;
-	dispatch_once(&pred, ^{
-        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
-
-		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"name" columnType:FLDatabaseTypeText columnConstraints:nil]];
-		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"photoSetId" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
-		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"uploadUrl" columnType:FLDatabaseTypeText columnConstraints:nil]];
-	});
-	return s_table;
-}
+//+ (FLDatabaseTable*) sharedDatabaseTable
+//
+//{
+//	static FLDatabaseTable* s_table = nil;
+//	static dispatch_once_t pred = 0;
+//	dispatch_once(&pred, ^{
+//        s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+//
+//		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"name" columnType:FLDatabaseTypeText columnConstraints:nil]];
+//		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"photoSetId" columnType:FLDatabaseTypeInteger columnConstraints:nil]];
+//		[s_table addColumn:[FLDatabaseColumn databaseColumnWithName:@"uploadUrl" columnType:FLDatabaseTypeText columnConstraints:nil]];
+//	});
+//	return s_table;
+//}
 
 + (ZFUploadGallery*) uploadGallery
 {

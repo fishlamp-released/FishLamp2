@@ -79,6 +79,7 @@
         [self addPhotoSetsToList:photoSets forGroup:_group];
         [self addObjectsFromArray:photoSets];
     }
+    
 }
 
 

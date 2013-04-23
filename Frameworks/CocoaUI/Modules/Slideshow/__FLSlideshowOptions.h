@@ -10,12 +10,12 @@
 //
 
 
-#import "FLDatabaseObject.h"
+#import "FLModelObject.h"
 
 // --------------------------------------------------------------------
 // FLSlideshowOptions
 // --------------------------------------------------------------------
-@interface FLSlideshowOptions : FLDatabaseObject<NSCopying, NSCoding>{ 
+@interface FLSlideshowOptions : FLModelObject { 
 @private
     NSNumber* __speed;
     NSNumber* __repeat;

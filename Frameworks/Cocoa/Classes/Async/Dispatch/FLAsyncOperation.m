@@ -9,7 +9,6 @@
 #import "FLAsyncOperation.h"
 
 @interface FLAsyncOperation ()
-@property (readwrite, strong) FLFinisher* finisher; 
 @end
 
 @implementation FLAsyncOperation
@@ -27,8 +26,9 @@
 #endif
 
 - (void) setFinishedWithResult:(id) result {
+    FLAssertNotNil(self.finisher);
+    
     [self.finisher setFinishedWithResult:result];
-    self.finisher = nil;
     [self operationDidFinishWithResult:result];
 }
 

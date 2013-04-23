@@ -24,24 +24,23 @@ typedef struct {
     unsigned long long currentPhotoBytes;
 } ZFTransferState_t;
 
-@interface ZFTransferState : FLIdentifiedObject<FLModelObject> {
+@interface ZFTransferState : FLModelObject {
 @private
-    NSUInteger videoCount;
-    NSUInteger videoTotal;
-    NSUInteger photoCount;
-    NSUInteger photoTotal;
-    NSUInteger photoSetCount;
-    NSUInteger photoSetTotal;
-    unsigned long long byteTotal;
-    unsigned long long byteCount;
-    NSTimeInterval startedTime;
-    NSTimeInterval transferTime;
-    unsigned long long transferredBytes;
-    unsigned long long currentPhotoBytes;
+    NSUInteger _videoCount;
+    NSUInteger _videoTotal;
+    NSUInteger _photoCount;
+    NSUInteger _photoTotal;
+    NSUInteger _photoSetCount;
+    NSUInteger _photoSetTotal;
+    unsigned long long _byteTotal;
+    unsigned long long _byteCount;
+    NSTimeInterval _startedTime;
+    NSTimeInterval _transferTime;
+    unsigned long long _transferredBytes;
+    unsigned long long _currentPhotoBytes;
 }
 + (id) transferState;
 
-@property (readwrite, strong) id identifier;
 @property (readwrite, assign) NSUInteger videoCount;
 @property (readwrite, assign) NSUInteger videoTotal;
 @property (readwrite, assign) NSUInteger photoCount;

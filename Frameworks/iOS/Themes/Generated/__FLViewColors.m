@@ -102,14 +102,14 @@
     dispatch_once(&pred, ^{
         
 		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+        
         
 
-        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"normalColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"normalColor"];
-        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"selectedColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"selectedColor"];
-        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"highlightedColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"highlightedColor"];
-        [describer setPropertyDescriber:[FLObjectDescriber objectDescriber:@"disabledColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"disabledColor"];
+        [describer setPropertyDescriber:[FLPropertyDescriber propertyDescriber:@"normalColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"normalColor"];
+        [describer setPropertyDescriber:[FLPropertyDescriber propertyDescriber:@"selectedColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"selectedColor"];
+        [describer setPropertyDescriber:[FLPropertyDescriber propertyDescriber:@"highlightedColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"highlightedColor"];
+        [describer setPropertyDescriber:[FLPropertyDescriber propertyDescriber:@"disabledColor" objectClass:[UIColor class] objectDescriber:FLDataTypeColor] forPropertyName:@"disabledColor"];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }
@@ -124,7 +124,14 @@
     return s_inflator;
 }
 
+- (BOOL) isModelObject {
+    return YES;
+}
++ (BOOL) isModelObject {
+    return YES;
+}
 + (FLDatabaseTable*) sharedDatabaseTable
+
 {
     static FLDatabaseTable* s_table = nil;
     static dispatch_once_t pred = 0;

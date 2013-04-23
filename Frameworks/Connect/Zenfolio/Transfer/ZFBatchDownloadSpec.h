@@ -10,7 +10,7 @@
 #import "ZFTransferState.h"
 #import "FLModelObject.h"
 
-@interface ZFBatchDownloadSpec : FLIdentifiedObject<FLModelObject> {
+@interface ZFBatchDownloadSpec : FLModelObject {
 @private
     NSSet* _photoSets;
     NSInteger _rootGroupID;

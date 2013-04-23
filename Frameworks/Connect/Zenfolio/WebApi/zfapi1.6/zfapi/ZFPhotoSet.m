@@ -288,8 +288,8 @@
 	dispatch_once(&pred, ^{
 		
 		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+        
         
 		[describer setChildForIdentifier:@"Caption" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"CreatedOn" withClass:[NSDate class]];
@@ -303,10 +303,10 @@
 		[describer setChildForIdentifier:@"FeaturedIndex" withClass:[FLIntegerNumber class] ];
 		[describer setChildForIdentifier:@"TitlePhoto" withClass:[ZFPhoto class]];
 		[describer setChildForIdentifier:@"IsRandomTitlePhoto" withClass:[FLBoolNumber class] ];
-		[describer setChildForIdentifier:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Id" class:[FLIntegerNumber class]], nil]];
-		[describer setChildForIdentifier:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Photo" class:[ZFPhoto class]], nil]];
-		[describer setChildForIdentifier:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Keyword" class:[NSString class] ], nil]];
-		[describer setChildForIdentifier:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" class:[FLIntegerNumber class]], nil]];
+		[describer setChildForIdentifier:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"Id" class:[FLIntegerNumber class]], nil]];
+		[describer setChildForIdentifier:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"Photo" class:[ZFPhoto class]], nil]];
+		[describer setChildForIdentifier:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"Keyword" class:[NSString class] ], nil]];
+		[describer setChildForIdentifier:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"Category" class:[FLIntegerNumber class]], nil]];
 		[describer setChildForIdentifier:@"UploadUrl" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"VideoUploadUrl" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"PageUrl" withClass:[NSString class]];
@@ -318,7 +318,14 @@
 }
 
 
+- (BOOL) isModelObject {
+    return YES;
+}
++ (BOOL) isModelObject {
+    return YES;
+}
 + (FLDatabaseTable*) sharedDatabaseTable
+
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;

@@ -134,7 +134,7 @@
 }
 
 - (NSArray*) indexesForColumn:(NSString*) columnName {	
-	return [_indexes objectForKey:columnName];
+	return [_indexes objectForKey:FLDatabaseNameEncode(columnName)];
 }
 
 - (NSString*) createTableSqlWithIndexes {
@@ -174,15 +174,19 @@
 }
 
 - (void) setColumn:(FLDatabaseColumn*) column forColumnName:(NSString*) columnName {
-	[_columns setObject:column forKey:columnName];
+	[_columns setObject:column forKey:FLDatabaseNameEncode(columnName)];
 }
 
 - (void) removeColumnWithName:(NSString*) name {
-	[_columns removeObjectForKey:name];
+	[_columns removeObjectForKey:FLDatabaseNameEncode(name)];
 }
 
 - (FLDatabaseColumn*) columnByName:(NSString*) name {
-	return [_columns objectForKey:name];
+	return [_columns objectForKey:FLDatabaseNameEncode(name)];
+}
+
+- (FLDatabaseColumn*) columnForPropertySelector:(SEL) selector {
+	return [_columns objectForKey:FLDatabaseNameEncode(NSStringFromSelector(selector))];
 }
 
 //- (void) addPrimaryKey:(SEL) primaryKey {
@@ -192,11 +196,10 @@
 
 - (void) addColumnsWithTypeDesc:(FLObjectDescriber*) describer forClass:(Class) aClass {
 
-    for(NSUInteger i = 0; i < describer.subTypeCount; i++) {
-        FLObjectDescriber* property = [describer subTypeForIndex:i];
+   for(FLPropertyDescriber* property in [[describer properties] objectEnumerator]) {
 
-        FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:property.identifier
-            columnType:[property.objectClass sqlType] 
+        FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:property.propertyName
+            columnType:[property.propertyClass sqlType] 
             columnConstraints:nil]; 
 
         [aClass databaseTable:self willAddDatabaseColumn:col];            

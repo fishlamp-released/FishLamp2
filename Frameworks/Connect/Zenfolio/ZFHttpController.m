@@ -109,7 +109,7 @@
     ZFLoadGroupHierarchyOperation* operation = 
         [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
     operation.context = self;
-    operation.delegate = self;
+ //   operation.delegate = self;
     
     FLFinisher* finisher = [FLFinisher finisher:completion];
     

@@ -71,24 +71,11 @@ FLSynthesizeSingleton(FLSoapObjectBuilder);
     return self;
 }
 
-- (FLParsedItem*) willBuildObjectsWithXML:(FLParsedItem*) element {
-    FLParsedItem* item = [element elementForElementName:@"Body"];
-    return item ? item : element;
+- (FLParsedItem*) findElementForBuilding:(NSString*) objectName inParentElement:(FLParsedItem*) parentElement  {
+
+    FLParsedItem* newParent = [parentElement elementForElementName:@"Body"];
+
+    return [super findElementForBuilding:objectName inParentElement:(newParent != nil ? newParent : parentElement)];
 }
-
-//- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withTypeDescs:(NSArray*) properties {
-//    FLAssertNotNil(xmlElement);
-//    FLAssertNotNil(properties);
-//    
-//    FLParsedItem* body = [xmlElement elementAtPath:@"Body/"];
-//    if(body) {
-//        return [super objectsFromXML:body withTypeDescs:properties];
-//    }
-//
-//    return [super objectsFromXML:xmlElement withTypeDescs:properties];
-//}
-//
-
-
 
 @end

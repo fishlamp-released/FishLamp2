@@ -27,7 +27,7 @@ typedef enum PhotoMediaTypeID
     ZFMediaTypeVideo                     
 } ZFMediaTypeID;
 
-@interface ZFMediaType : FLIdentifiedObject<FLModelObject> {
+@interface ZFMediaType : FLModelObject {
 @private
     ZFMediaTypeID _mediaTypeID;
     CGSize _size;

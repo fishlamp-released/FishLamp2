@@ -7,19 +7,15 @@
 //	Copywrite 2011 GreenTongue Software, LLC. All rights reserved.
 //
 
-
-#import "FLDatabaseObject.h"
-
 // --------------------------------------------------------------------
 // ZFUploadGallery
 // --------------------------------------------------------------------
-@interface ZFUploadGallery : FLDatabaseObject<NSCopying, NSCoding>{ 
+@interface ZFUploadGallery : FLModelObject { 
 @private
 	NSString* _name;
 	NSNumber* _photoSetId;
 	NSString* _uploadUrl;
 } 
-
 
 @property (readwrite, retain, nonatomic) NSString* name;
 

@@ -12,7 +12,6 @@
     </defines>
     <typeDefinitions>
         <typeDefinition typeName="FLZenfolioParsedCategory" dataType="object" import="FLZenfolioParsedCategory.h"/>
-        <typeDefinition typeName="FLDatabaseObject" dataType="object" import="FLDatabaseObject.h"/>
     </typeDefinitions>
     <objects>
         <object typeName="FLZenfolioPhoto">
@@ -41,7 +40,7 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLZenfolioAccessDescriptor" superclass="FLDatabaseObject">
+        <object typeName="FLZenfolioAccessDescriptor">
             <properties>
                 <property name="password" type="string"/>
                 <property name="protectedObjectClassName" type="string"/>

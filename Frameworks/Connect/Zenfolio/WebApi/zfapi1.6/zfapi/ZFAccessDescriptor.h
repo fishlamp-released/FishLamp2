@@ -12,14 +12,14 @@ This is Zenfolio Web API. See <A href="/Zenfolio/help/api">help</A> for details.
 */
 
 
-#import "FLDatabaseObject.h"
+#import "FLModelObject.h"
 #import "ZFApi1_6Enums.h"
 #import "ZFApi1_6Enums.h"
 
 // --------------------------------------------------------------------
 // ZFAccessDescriptor
 // --------------------------------------------------------------------
-@interface ZFAccessDescriptor : FLDatabaseObject<NSCoding, NSCopying>{ 
+@interface ZFAccessDescriptor : FLModelObject { 
 @private
 	NSNumber* _RealmId;
 	NSString* _AccessType;

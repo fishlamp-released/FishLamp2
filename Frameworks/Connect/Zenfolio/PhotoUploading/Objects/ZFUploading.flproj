@@ -10,17 +10,16 @@
         <typeDefinition typeName="FLZenfolioAccessDescriptor" dataType="object" import="FLZenfolioAccessDescriptor.h"/>
         <typeDefinition typeName="FLZenfolioCategory" dataType="object" import="FLZenfolioCategory.h"/>
         <typeDefinition typeName="FLQueuedAsset" dataType="object" import="FLQueuedAsset.h"/>
-        <typeDefinition typeName="FLDatabaseObject" dataType="object" import="FLDatabaseObject.h"/>
     </typeDefinitions>
     <objects>
-        <object typeName="FLZenfolioUploadGallery" superclass="FLDatabaseObject" protocols="NSCopying, NSCoding">
+        <object typeName="FLZenfolioUploadGallery">
             <properties>
                 <property type="string" name="name"/>
                 <property type="int" name="photoSetId"/>
                 <property type="string" name="uploadUrl"/>
             </properties>
         </object>
-        <object typeName="FLZenfolioQueuedPhoto" superclass="FLQueuedAsset" protocols="NSCopying, NSCoding">
+        <object typeName="FLZenfolioQueuedPhoto">
             <properties>
                 <property type="FLZenfolioAccessDescriptor" name="accessDescriptor"/>
                 <property type="NSMutableArray" name="categoryArray"/>
@@ -30,7 +29,7 @@
                 <property type="BOOL" name="wasSavedToDeviceBeforeUpload"/>
             </properties>
         </object>
-        <object typeName="FLZenfolioUploadablePhotoBase" superclass="FLZenfolioPhotoUpdater" protocols="NSCopying, NSCoding">
+        <object typeName="FLZenfolioUploadablePhotoBase">
             <properties>
                 <property type="NSString" name="photoDataFileName"/>
                 <property type="int" name="uploadFileId"/>
@@ -51,7 +50,7 @@
                 <property type="NSDate" name="modifiedDate"/>
             </properties>
         </object>
-        <object typeName="FLZenfolioSharedFavoritesSet" protocols="NSCopying, NSCoding">
+        <object typeName="FLZenfolioSharedFavoritesSet">
             <properties>
                 <property type="string" name="sharedFavoritesSetId">
                     <storageOptions isPrimaryKey="YES"/>

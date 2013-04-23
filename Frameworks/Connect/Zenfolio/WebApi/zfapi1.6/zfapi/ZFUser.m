@@ -342,10 +342,8 @@
 	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		
-		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+		FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+        
         
 		[describer setChildForIdentifier:@"LoginName" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"DisplayName" withClass:[NSString class]];
@@ -363,8 +361,8 @@
 		[describer setChildForIdentifier:@"LastUpdated" withClass:[NSDate class]];
 		[describer setChildForIdentifier:@"PublicAddress" withClass:[ZFAddress class]];
 		[describer setChildForIdentifier:@"PersonalAddress" withClass:[ZFAddress class]];
-		[describer setChildForIdentifier:@"RecentPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
-		[describer setChildForIdentifier:@"FeaturedPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
+		[describer setChildForIdentifier:@"RecentPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
+		[describer setChildForIdentifier:@"FeaturedPhotoSets" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
 		[describer setChildForIdentifier:@"RootGroup" withClass:[ZFGroup class]];
 		[describer setChildForIdentifier:@"ReferralCode" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"ExpiresOn" withClass:[NSDate class]];
@@ -375,12 +373,24 @@
 		[describer setChildForIdentifier:@"VideoBytesQuota" withClass:[FLLongNumber class] ];
 		[describer setChildForIdentifier:@"VideoDurationQuota" withClass:[FLIntegerNumber class] ];
 		[describer setChildForIdentifier:@"HierarchyCn" withClass:[FLIntegerNumber class] ];
+        
+        FLPropertyDescriber* desc = [describer propertyForName:@"RecentPhotoSets"];
+        FLLog([desc description]);
+        
+//        FLLog([describer description]);
 	});
 	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
+- (BOOL) isModelObject {
+    return YES;
+}
++ (BOOL) isModelObject {
+    return YES;
+}
 + (FLDatabaseTable*) sharedDatabaseTable
+
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;

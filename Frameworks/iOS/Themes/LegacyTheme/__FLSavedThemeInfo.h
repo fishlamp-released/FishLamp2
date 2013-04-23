@@ -9,13 +9,10 @@
 // Copywrite (C) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-
-#import "FLDatabaseObject.h"
-
 // --------------------------------------------------------------------
 // FLSavedThemeInfo
 // --------------------------------------------------------------------
-@interface FLSavedThemeInfo : FLDatabaseObject<NSCopying, NSCoding>{ 
+@interface FLSavedThemeInfo : FLModelObject{ 
 @private
     NSString* __name;
     NSString* __className;

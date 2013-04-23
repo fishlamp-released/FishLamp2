@@ -61,6 +61,7 @@
 
 - (FLDatabaseColumn*) columnByName:(NSString*) name;
 
+- (FLDatabaseColumn*) columnForPropertySelector:(SEL) selector; 
 //
 // indexes
 //

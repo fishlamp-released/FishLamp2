@@ -156,16 +156,12 @@
 	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		
-		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
-        
-		[describer setChildForIdentifier:@"RealmId" withClass:[FLIntegerNumber class] ];
+		FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+        [describer setChildForIdentifier:@"RealmId" withClass:[FLIntegerNumber class] ];
 		[describer setChildForIdentifier:@"AccessType" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"IsDerived" withClass:[FLBoolNumber class] ];
 		[describer setChildForIdentifier:@"AccessMask" withClass:[NSString class]];
-		[describer setChildForIdentifier:@"Viewers" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Viewer" class:[NSString class] ], nil]];
+		[describer setChildForIdentifier:@"Viewers" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"Viewer" class:[NSString class] ], nil]];
 		[describer setChildForIdentifier:@"PasswordHint" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"SrcPasswordHint" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"protectedObjectClassName" withClass:[NSString class]];
@@ -175,7 +171,14 @@
 }
 
 
+- (BOOL) isModelObject {
+    return YES;
+}
++ (BOOL) isModelObject {
+    return YES;
+}
 + (FLDatabaseTable*) sharedDatabaseTable
+
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;

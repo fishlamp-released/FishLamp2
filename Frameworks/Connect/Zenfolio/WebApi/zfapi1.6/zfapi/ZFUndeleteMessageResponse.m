@@ -53,17 +53,20 @@
 	
 	static dispatch_once_t pred = 0;
 	dispatch_once(&pred, ^{
-		
-		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
-        
-	});
+		[FLObjectDescriber registerClass:[self class]];
+ 	});
 	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
+- (BOOL) isModelObject {
+    return YES;
+}
++ (BOOL) isModelObject {
+    return YES;
+}
 + (FLDatabaseTable*) sharedDatabaseTable
+
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;

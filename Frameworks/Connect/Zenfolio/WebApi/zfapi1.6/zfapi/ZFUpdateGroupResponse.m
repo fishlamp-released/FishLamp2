@@ -71,8 +71,8 @@
 	dispatch_once(&pred, ^{
 		
 		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+        
         
 		[describer setChildForIdentifier:@"UpdateGroupResult" withClass:[ZFGroup class]];
 	});
@@ -80,7 +80,14 @@
 }
 
 
+- (BOOL) isModelObject {
+    return YES;
+}
++ (BOOL) isModelObject {
+    return YES;
+}
 + (FLDatabaseTable*) sharedDatabaseTable
+
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;

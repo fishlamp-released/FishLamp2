@@ -229,8 +229,8 @@
 	dispatch_once(&pred, ^{
 		
 		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+        
         
 		[describer setChildForIdentifier:@"Caption" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"CreatedOn" withClass:[NSDate class]];
@@ -241,19 +241,32 @@
 		[describer setChildForIdentifier:@"PhotoCount" withClass:[FLIntegerNumber class] ];
 		[describer setChildForIdentifier:@"ImageCount" withClass:[FLIntegerNumber class] ];
 		[describer setChildForIdentifier:@"VideoCount" withClass:[FLIntegerNumber class] ];
-		[describer setChildForIdentifier:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Id" class:[FLIntegerNumber class]], nil]];
-		[describer setChildForIdentifier:@"Elements" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Group" class:[ZFGroup class]], [FLObjectDescriber objectDescriber:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
+		[describer setChildForIdentifier:@"ParentGroups" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"Id" class:[FLIntegerNumber class]], nil]];
+		[describer setChildForIdentifier:@"Elements" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"Group" class:[ZFGroup class]], [FLPropertyDescriber propertyDescriber:@"PhotoSet" class:[ZFPhotoSet class]], nil]];
 		[describer setChildForIdentifier:@"PageUrl" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"TitlePhoto" withClass:[ZFPhoto class]];
 		[describer setChildForIdentifier:@"MailboxId" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"TextCn" withClass:[FLIntegerNumber class] ];
 		[describer setChildForIdentifier:@"ImmediateChildrenCount" withClass:[FLIntegerNumber class] ];
 	});
-	return [FLObjectDescriber objectDescriber:[self class]];
+    
+    id group = [FLObjectDescriber objectDescriber:[self class]];
+    id other = [[[group propertyForName:@"Elements"] containedTypeForName:@"Group"] propertyType];
+    
+    FLAssert(group == other);
+    
+	return group;
 }
 
 
+- (BOOL) isModelObject {
+    return YES;
+}
++ (BOOL) isModelObject {
+    return YES;
+}
 + (FLDatabaseTable*) sharedDatabaseTable
+
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;

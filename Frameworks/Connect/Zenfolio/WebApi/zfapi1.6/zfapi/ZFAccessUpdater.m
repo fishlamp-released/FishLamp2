@@ -117,20 +117,27 @@
 	dispatch_once(&pred, ^{
 		
 		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+        
         
 		[describer setChildForIdentifier:@"AccessMask" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"Password" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"AccessType" withClass:[NSString class]];
-		[describer setChildForIdentifier:@"Viewers" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Viewer" class:[NSString class] ], nil]];
+		[describer setChildForIdentifier:@"Viewers" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"Viewer" class:[NSString class] ], nil]];
 		[describer setChildForIdentifier:@"IsDerived" withClass:[FLBoolNumber class] ];
 	});
 	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
+- (BOOL) isModelObject {
+    return YES;
+}
++ (BOOL) isModelObject {
+    return YES;
+}
 + (FLDatabaseTable*) sharedDatabaseTable
+
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;

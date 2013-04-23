@@ -9,16 +9,16 @@
 #import "FLJsonObjectBuilder.h"
 #import "FLBase64Encoding.h"
 #import "FLDataEncoder.h"
-#import "FLObjectDescriber.h"
+#import "FLPropertyDescriber.h"
 #import "FLObjectDescriber.h"
 
 @interface FLJsonObjectBuilder ()
-- (id) objectFromJSON:(id) jsonObject withTypeDesc:(FLObjectDescriber*) type;
+- (id) objectFromJSON:(id) jsonObject withTypeDesc:(FLPropertyDescriber*) type;
 @end
 
 @implementation NSString (FLJsonObjectBuilder)
 
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLObjectDescriber*) typeDesc {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLPropertyDescriber*) typeDesc {
     FLAssertNotNil(builder);
     FLAssertNotNil(typeDesc);
     
@@ -29,7 +29,7 @@
         return [decoder decodeStringToObject:self withDecoder:builder.decoder];
     }
     else {
-        FLLog(@"Json property %@ has no encoder", typeDesc.identifier);
+        FLLog(@"Json property %@ has no encoder", typeDesc.propertyName);
     }
 
     return nil;
@@ -38,14 +38,14 @@
 @end
 
 @implementation NSNumber (FLJsonObjectBuilder)
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLObjectDescriber*) typeDesc {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLPropertyDescriber*) typeDesc {
     return self;
 }
 @end
 
 @implementation NSDictionary (FLJsonObjectBuilder)
 
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLObjectDescriber*) typeDesc {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLPropertyDescriber*) typeDesc {
     FLAssertNotNil(builder);
     FLAssertNotNil(typeDesc);
 
@@ -53,19 +53,19 @@
 //        id subElement = [jsonDictionary jsonObjectForElementName:typeDesc.objectName];
 //
 //        if(!subElement) {
-//            FLThrowErrorCodeWithComment(NSCocoaErrorDomain, NSFileNoSuchFileError, @"XmlObjectBuilder: \"%@\" not found in \"%@\"", typeDesc.identifier, jsonDictionary.jsonObjectName);
+//            FLThrowErrorCodeWithComment(NSCocoaErrorDomain, NSFileNoSuchFileError, @"XmlObjectBuilder: \"%@\" not found in \"%@\"", typeDesc.typeName, jsonDictionary.jsonObjectName);
 //        }
 //        
 //        jsonDictionary = subElement;
 //    }
 //
-//    FLAssertWithComment(FLStringsAreEqual(jsonDictionary.key, typeDesc.identifier), @"trying to build wrong object jsonDictionary name: \"%@\", object typeDesc name: \"%@\"", jsonDictionary.key, typeDesc.identifier);
+//    FLAssertWithComment(FLStringsAreEqual(jsonDictionary.key, typeDesc.typeName), @"trying to build wrong object jsonDictionary name: \"%@\", object typeDesc name: \"%@\"", jsonDictionary.key, typeDesc.typeName);
 
-    Class objectClass = typeDesc.objectClass;
-    if(!objectClass) {
-        FLLog(@"Object description has nil object class: %@", [typeDesc description]);
-        return nil;
-    }
+    Class objectClass = typeDesc.propertyClass;
+//    if(!objectClass) {
+//        FLLog(@"Object description has nil object class: %@", [typeDesc description]);
+//        return nil;
+//    }
     
 //    if(![objectClass isModelObject]) {
 //        return nil;
@@ -79,7 +79,7 @@
     for(id key in self) {
         id value = [self objectForKey:key];
 
-        FLObjectDescriber* subType = [typeDesc subTypeForIdentifier:key];
+        FLPropertyDescriber* subType = [typeDesc containedTypeForName:key];
         if(!subType) {
             FLLog(@"object builder skipped missing typeDesc named: %@", key);
             continue;
@@ -107,7 +107,7 @@
 - (NSArray*) objectArrayWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder withTypeDescs:(NSArray*) arrayOfObjectDescribers {
 
 // TODO: handle hetrogenous arrays
-    FLObjectDescriber* typeDesc = [arrayOfObjectDescribers firstObject];
+    FLPropertyDescriber* typeDesc = [arrayOfObjectDescribers firstObject];
 
     NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:self.count];
     for(id child in self) {	
@@ -120,7 +120,7 @@
     return newArray;
 }
 
-- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLObjectDescriber*) typeDesc {
+- (id) objectWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder typeDesc:(FLPropertyDescriber*) typeDesc {
 
     NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:self.count];
     for(id child in self) {			
@@ -170,11 +170,11 @@
     return [jsonObject objectArrayWithJsonObjectBuilder:self withTypeDescs: arrayOfObjectDescriber];
 }
 
-- (NSArray*) arrayOfObjectsFromJSON:(id) json withTypeDesc:(FLObjectDescriber*) type {
+- (NSArray*) arrayOfObjectsFromJSON:(id) json withTypeDesc:(FLPropertyDescriber*) type {
     return [self arrayOfObjectsFromJSON:json withTypeDescs:[NSArray arrayWithObject:type]];
 }
 
-- (id) objectFromJSON:(id) jsonObject withTypeDesc:(FLObjectDescriber*) type {
+- (id) objectFromJSON:(id) jsonObject withTypeDesc:(FLPropertyDescriber*) type {
     return [jsonObject objectWithJsonObjectBuilder:self typeDesc:type];
 }
 
@@ -183,7 +183,7 @@
 }
 
 - (id) objectFromJSON:(id) parsedJson expectedRootObjectClass:(Class) type {
-    return [parsedJson objectWithJsonObjectBuilder:self typeDesc:[type objectDescriber]];
+    return [parsedJson objectWithJsonObjectBuilder:self typeDesc:nil]; // TODO fix parmam
 }
 
 @end

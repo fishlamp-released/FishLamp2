@@ -86,17 +86,24 @@
 	dispatch_once(&pred, ^{
 		
 		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
         
-		[describer setChildForIdentifier:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Photo" class:[ZFPhoto class]], nil]];
+        
+		[describer setChildForIdentifier:@"Photos" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"Photo" class:[ZFPhoto class]], nil]];
 		[describer setChildForIdentifier:@"TotalCount" withClass:[FLIntegerNumber class] ];
 	});
 	return [FLObjectDescriber objectDescriber:[self class]];
 }
 
 
+- (BOOL) isModelObject {
+    return YES;
+}
++ (BOOL) isModelObject {
+    return YES;
+}
 + (FLDatabaseTable*) sharedDatabaseTable
+
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;

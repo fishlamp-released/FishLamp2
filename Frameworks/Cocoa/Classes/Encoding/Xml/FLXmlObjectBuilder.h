@@ -22,14 +22,14 @@
 + (id) xmlObjectBuilder:(id<FLDataDecoding>) decoder;
 + (id) xmlObjectBuilder;
 
-- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withTypeDescs:(NSArray*) arrayOfobjectDescribers;
-
-- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withTypeDesc:(FLObjectDescriber*) type; // for homogeneous arrays
+//- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withObjectDescribers:(NSArray*) arrayOfPropertyDescribers;
+//
+//- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withObjectDescriber:(FLPropertyDescriber*) type; // for homogeneous arrays
 
 // this will fail if number of return objects != 1
-- (id) objectFromXML:(FLParsedItem*) element withTypeDesc:(FLObjectDescriber*) type;
-
-// optional overrides
-- (FLParsedItem*) willBuildObjectsWithXML:(FLParsedItem*) element;
+- (id) buildObjectWithXmlElement:(FLParsedItem*) element 
+             withObjectDescriber:(FLObjectDescriber*) objectDescriber;
+             
+- (FLParsedItem*) findElementForBuilding:(NSString*) objectName inParentElement:(FLParsedItem*) parentElement;
 
 @end

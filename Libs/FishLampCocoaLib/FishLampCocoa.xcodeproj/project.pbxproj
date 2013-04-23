@@ -1719,24 +1719,6 @@
 		271D3A3016FE078F009CD00F /* FLSqlStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32B616FE0776009CD00F /* FLSqlStatement.m */; };
 		271D3A3116FE078F009CD00F /* FLSqlStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32B616FE0776009CD00F /* FLSqlStatement.m */; };
 		271D3A3216FE078F009CD00F /* FLSqlStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32B616FE0776009CD00F /* FLSqlStatement.m */; };
-		271D3A3316FE078F009CD00F /* FLDatabaseObject_Generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32B816FE0776009CD00F /* FLDatabaseObject_Generated.h */; };
-		271D3A3416FE078F009CD00F /* FLDatabaseObject_Generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32B816FE0776009CD00F /* FLDatabaseObject_Generated.h */; };
-		271D3A3516FE078F009CD00F /* FLDatabaseObject_Generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32B816FE0776009CD00F /* FLDatabaseObject_Generated.h */; };
-		271D3A3616FE078F009CD00F /* FLDatabaseObject_Generated.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32B816FE0776009CD00F /* FLDatabaseObject_Generated.h */; };
-		271D3A3716FE078F009CD00F /* FLDatabaseObject_Generated.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32B916FE0776009CD00F /* FLDatabaseObject_Generated.m */; };
-		271D3A3816FE078F009CD00F /* FLDatabaseObject_Generated.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32B916FE0776009CD00F /* FLDatabaseObject_Generated.m */; };
-		271D3A3916FE078F009CD00F /* FLDatabaseObject_Generated.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32B916FE0776009CD00F /* FLDatabaseObject_Generated.m */; };
-		271D3A3A16FE078F009CD00F /* FLDatabaseObject_Generated.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32B916FE0776009CD00F /* FLDatabaseObject_Generated.m */; };
-		271D3A3B16FE078F009CD00F /* FLDatabaseObject_Generated.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32B916FE0776009CD00F /* FLDatabaseObject_Generated.m */; };
-		271D3A3C16FE078F009CD00F /* FLDatabaseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32BB16FE0776009CD00F /* FLDatabaseObject.h */; };
-		271D3A3D16FE078F009CD00F /* FLDatabaseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32BB16FE0776009CD00F /* FLDatabaseObject.h */; };
-		271D3A3E16FE078F009CD00F /* FLDatabaseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32BB16FE0776009CD00F /* FLDatabaseObject.h */; };
-		271D3A3F16FE078F009CD00F /* FLDatabaseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32BB16FE0776009CD00F /* FLDatabaseObject.h */; };
-		271D3A4016FE078F009CD00F /* FLDatabaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32BC16FE0776009CD00F /* FLDatabaseObject.m */; };
-		271D3A4116FE078F009CD00F /* FLDatabaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32BC16FE0776009CD00F /* FLDatabaseObject.m */; };
-		271D3A4216FE078F009CD00F /* FLDatabaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32BC16FE0776009CD00F /* FLDatabaseObject.m */; };
-		271D3A4316FE078F009CD00F /* FLDatabaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32BC16FE0776009CD00F /* FLDatabaseObject.m */; };
-		271D3A4416FE078F009CD00F /* FLDatabaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32BC16FE0776009CD00F /* FLDatabaseObject.m */; };
 		271D3A4516FE078F009CD00F /* FLLoadObjectFromDatabaseOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32BE16FE0776009CD00F /* FLLoadObjectFromDatabaseOperation.h */; };
 		271D3A4616FE078F009CD00F /* FLLoadObjectFromDatabaseOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32BE16FE0776009CD00F /* FLLoadObjectFromDatabaseOperation.h */; };
 		271D3A4716FE078F009CD00F /* FLLoadObjectFromDatabaseOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32BE16FE0776009CD00F /* FLLoadObjectFromDatabaseOperation.h */; };
@@ -2744,6 +2726,15 @@
 		274F1ED2172483AA006B4285 /* FLFolderBlobStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 274F1ECB172483AA006B4285 /* FLFolderBlobStorage.m */; };
 		274F1ED3172483AA006B4285 /* FLFolderBlobStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 274F1ECB172483AA006B4285 /* FLFolderBlobStorage.m */; };
 		274F1ED4172483AA006B4285 /* FLFolderBlobStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 274F1ECB172483AA006B4285 /* FLFolderBlobStorage.m */; };
+		2755F92E1725E8C500C8D860 /* FLPropertyDescriber.h in Headers */ = {isa = PBXBuildFile; fileRef = 2755F92C1725E8C500C8D860 /* FLPropertyDescriber.h */; };
+		2755F92F1725E8C500C8D860 /* FLPropertyDescriber.h in Headers */ = {isa = PBXBuildFile; fileRef = 2755F92C1725E8C500C8D860 /* FLPropertyDescriber.h */; };
+		2755F9301725E8C500C8D860 /* FLPropertyDescriber.h in Headers */ = {isa = PBXBuildFile; fileRef = 2755F92C1725E8C500C8D860 /* FLPropertyDescriber.h */; };
+		2755F9311725E8C500C8D860 /* FLPropertyDescriber.h in Headers */ = {isa = PBXBuildFile; fileRef = 2755F92C1725E8C500C8D860 /* FLPropertyDescriber.h */; };
+		2755F9321725E8C500C8D860 /* FLPropertyDescriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2755F92D1725E8C500C8D860 /* FLPropertyDescriber.m */; };
+		2755F9331725E8C500C8D860 /* FLPropertyDescriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2755F92D1725E8C500C8D860 /* FLPropertyDescriber.m */; };
+		2755F9341725E8C500C8D860 /* FLPropertyDescriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2755F92D1725E8C500C8D860 /* FLPropertyDescriber.m */; };
+		2755F9351725E8C500C8D860 /* FLPropertyDescriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2755F92D1725E8C500C8D860 /* FLPropertyDescriber.m */; };
+		2755F9361725E8C500C8D860 /* FLPropertyDescriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2755F92D1725E8C500C8D860 /* FLPropertyDescriber.m */; };
 		276365DC171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 276365DA171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.h */; };
 		276365DD171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 276365DA171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.h */; };
 		276365DE171C51F600F44096 /* FLFifoQueueNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 276365DA171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.h */; };
@@ -4007,11 +3998,6 @@
 		271D32B416FE0776009CD00F /* FLDatabaseTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDatabaseTable.m; sourceTree = "<group>"; };
 		271D32B516FE0776009CD00F /* FLSqlStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSqlStatement.h; sourceTree = "<group>"; };
 		271D32B616FE0776009CD00F /* FLSqlStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSqlStatement.m; sourceTree = "<group>"; };
-		271D32B816FE0776009CD00F /* FLDatabaseObject_Generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDatabaseObject_Generated.h; sourceTree = "<group>"; };
-		271D32B916FE0776009CD00F /* FLDatabaseObject_Generated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDatabaseObject_Generated.m; sourceTree = "<group>"; };
-		271D32BA16FE0776009CD00F /* DatabaseObject.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DatabaseObject.flproj; sourceTree = "<group>"; };
-		271D32BB16FE0776009CD00F /* FLDatabaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDatabaseObject.h; sourceTree = "<group>"; };
-		271D32BC16FE0776009CD00F /* FLDatabaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDatabaseObject.m; sourceTree = "<group>"; };
 		271D32BE16FE0776009CD00F /* FLLoadObjectFromDatabaseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLoadObjectFromDatabaseOperation.h; sourceTree = "<group>"; };
 		271D32BF16FE0776009CD00F /* FLLoadObjectFromDatabaseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLoadObjectFromDatabaseOperation.m; sourceTree = "<group>"; };
 		271D32C016FE0776009CD00F /* FLSaveObjectToDatabaseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSaveObjectToDatabaseOperation.h; sourceTree = "<group>"; };
@@ -4243,6 +4229,8 @@
 		274F1EB0172474D1006B4285 /* FLBlobStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBlobStorage.m; sourceTree = "<group>"; };
 		274F1ECA172483AA006B4285 /* FLFolderBlobStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFolderBlobStorage.h; sourceTree = "<group>"; };
 		274F1ECB172483AA006B4285 /* FLFolderBlobStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFolderBlobStorage.m; sourceTree = "<group>"; };
+		2755F92C1725E8C500C8D860 /* FLPropertyDescriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPropertyDescriber.h; sourceTree = "<group>"; };
+		2755F92D1725E8C500C8D860 /* FLPropertyDescriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPropertyDescriber.m; sourceTree = "<group>"; };
 		276365DA171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFifoQueueNetworkStreamEventHandler.h; sourceTree = "<group>"; };
 		276365DB171C51F500F44096 /* FLFifoQueueNetworkStreamEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFifoQueueNetworkStreamEventHandler.m; sourceTree = "<group>"; };
 		2772454B1724E04E00D17357 /* FLHttpErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpErrors.h; sourceTree = "<group>"; };
@@ -4991,6 +4979,8 @@
 				271D31DC16FE0775009CD00F /* NSObject+Copying.m */,
 				271D31DD16FE0775009CD00F /* FLParseInfo.h */,
 				271D31DE16FE0775009CD00F /* FLParseInfo.m */,
+				2755F92C1725E8C500C8D860 /* FLPropertyDescriber.h */,
+				2755F92D1725E8C500C8D860 /* FLPropertyDescriber.m */,
 			);
 			path = ModelObjects;
 			sourceTree = "<group>";
@@ -5399,7 +5389,6 @@
 			isa = PBXGroup;
 			children = (
 				271D329B16FE0776009CD00F /* Database */,
-				271D32B716FE0776009CD00F /* DatabaseObject */,
 				271D32BD16FE0776009CD00F /* DatabaseUtilities */,
 				271D32C616FE0776009CD00F /* ObjectDatabase */,
 			);
@@ -5441,18 +5430,6 @@
 				274F1EAA17244B45006B4285 /* FLDatabaseSqlWriter.h */,
 			);
 			path = Database;
-			sourceTree = "<group>";
-		};
-		271D32B716FE0776009CD00F /* DatabaseObject */ = {
-			isa = PBXGroup;
-			children = (
-				271D32B816FE0776009CD00F /* FLDatabaseObject_Generated.h */,
-				271D32B916FE0776009CD00F /* FLDatabaseObject_Generated.m */,
-				271D32BA16FE0776009CD00F /* DatabaseObject.flproj */,
-				271D32BB16FE0776009CD00F /* FLDatabaseObject.h */,
-				271D32BC16FE0776009CD00F /* FLDatabaseObject.m */,
-			);
-			path = DatabaseObject;
 			sourceTree = "<group>";
 		};
 		271D32BD16FE0776009CD00F /* DatabaseUtilities */ = {
@@ -6549,8 +6526,6 @@
 				271D3A1816FE078E009CD00F /* FLDatabaseStatement.h in Headers */,
 				271D3A2116FE078F009CD00F /* FLDatabaseTable.h in Headers */,
 				271D3A2A16FE078F009CD00F /* FLSqlStatement.h in Headers */,
-				271D3A3316FE078F009CD00F /* FLDatabaseObject_Generated.h in Headers */,
-				271D3A3C16FE078F009CD00F /* FLDatabaseObject.h in Headers */,
 				271D3A4516FE078F009CD00F /* FLLoadObjectFromDatabaseOperation.h in Headers */,
 				271D3A4E16FE0790009CD00F /* FLSaveObjectToDatabaseOperation.h in Headers */,
 				271D3A5716FE0790009CD00F /* FLSqlBuilder.h in Headers */,
@@ -6667,6 +6642,7 @@
 				274F1EB1172474D3006B4285 /* FLBlobStorage.h in Headers */,
 				274F1ECC172483AA006B4285 /* FLFolderBlobStorage.h in Headers */,
 				2772454D1724E04E00D17357 /* FLHttpErrors.h in Headers */,
+				2755F92E1725E8C500C8D860 /* FLPropertyDescriber.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6929,8 +6905,6 @@
 				271D3A1A16FE078E009CD00F /* FLDatabaseStatement.h in Headers */,
 				271D3A2316FE078F009CD00F /* FLDatabaseTable.h in Headers */,
 				271D3A2C16FE078F009CD00F /* FLSqlStatement.h in Headers */,
-				271D3A3516FE078F009CD00F /* FLDatabaseObject_Generated.h in Headers */,
-				271D3A3E16FE078F009CD00F /* FLDatabaseObject.h in Headers */,
 				271D3A4716FE078F009CD00F /* FLLoadObjectFromDatabaseOperation.h in Headers */,
 				271D3A5016FE0790009CD00F /* FLSaveObjectToDatabaseOperation.h in Headers */,
 				271D3A5916FE0790009CD00F /* FLSqlBuilder.h in Headers */,
@@ -7047,6 +7021,7 @@
 				274F1EB3172474D3006B4285 /* FLBlobStorage.h in Headers */,
 				274F1ECE172483AA006B4285 /* FLFolderBlobStorage.h in Headers */,
 				2772454F1724E04E00D17357 /* FLHttpErrors.h in Headers */,
+				2755F9301725E8C500C8D860 /* FLPropertyDescriber.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7309,8 +7284,6 @@
 				271D3A1916FE078E009CD00F /* FLDatabaseStatement.h in Headers */,
 				271D3A2216FE078F009CD00F /* FLDatabaseTable.h in Headers */,
 				271D3A2B16FE078F009CD00F /* FLSqlStatement.h in Headers */,
-				271D3A3416FE078F009CD00F /* FLDatabaseObject_Generated.h in Headers */,
-				271D3A3D16FE078F009CD00F /* FLDatabaseObject.h in Headers */,
 				271D3A4616FE078F009CD00F /* FLLoadObjectFromDatabaseOperation.h in Headers */,
 				271D3A4F16FE0790009CD00F /* FLSaveObjectToDatabaseOperation.h in Headers */,
 				271D3A5816FE0790009CD00F /* FLSqlBuilder.h in Headers */,
@@ -7427,6 +7400,7 @@
 				274F1EB2172474D3006B4285 /* FLBlobStorage.h in Headers */,
 				274F1ECD172483AA006B4285 /* FLFolderBlobStorage.h in Headers */,
 				2772454E1724E04E00D17357 /* FLHttpErrors.h in Headers */,
+				2755F92F1725E8C500C8D860 /* FLPropertyDescriber.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7839,8 +7813,6 @@
 				271D3A1B16FE078E009CD00F /* FLDatabaseStatement.h in Headers */,
 				271D3A2416FE078F009CD00F /* FLDatabaseTable.h in Headers */,
 				271D3A2D16FE078F009CD00F /* FLSqlStatement.h in Headers */,
-				271D3A3616FE078F009CD00F /* FLDatabaseObject_Generated.h in Headers */,
-				271D3A3F16FE078F009CD00F /* FLDatabaseObject.h in Headers */,
 				271D3A4816FE078F009CD00F /* FLLoadObjectFromDatabaseOperation.h in Headers */,
 				271D3A5116FE0790009CD00F /* FLSaveObjectToDatabaseOperation.h in Headers */,
 				271D3A5A16FE0790009CD00F /* FLSqlBuilder.h in Headers */,
@@ -7957,6 +7929,7 @@
 				274F1EB4172474D3006B4285 /* FLBlobStorage.h in Headers */,
 				274F1ECF172483AA006B4285 /* FLFolderBlobStorage.h in Headers */,
 				277245501724E04E00D17357 /* FLHttpErrors.h in Headers */,
+				2755F9311725E8C500C8D860 /* FLPropertyDescriber.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8481,8 +8454,6 @@
 				271D3A1D16FE078E009CD00F /* FLDatabaseStatement.m in Sources */,
 				271D3A2616FE078F009CD00F /* FLDatabaseTable.m in Sources */,
 				271D3A2F16FE078F009CD00F /* FLSqlStatement.m in Sources */,
-				271D3A3816FE078F009CD00F /* FLDatabaseObject_Generated.m in Sources */,
-				271D3A4116FE078F009CD00F /* FLDatabaseObject.m in Sources */,
 				271D3A4A16FE078F009CD00F /* FLLoadObjectFromDatabaseOperation.m in Sources */,
 				271D3A5316FE0790009CD00F /* FLSaveObjectToDatabaseOperation.m in Sources */,
 				271D3A5C16FE0790009CD00F /* FLSqlBuilder.m in Sources */,
@@ -8592,6 +8563,7 @@
 				274F1EB6172474D3006B4285 /* FLBlobStorage.m in Sources */,
 				274F1ED1172483AA006B4285 /* FLFolderBlobStorage.m in Sources */,
 				277245521724E04E00D17357 /* FLHttpErrors.m in Sources */,
+				2755F9331725E8C500C8D860 /* FLPropertyDescriber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8826,8 +8798,6 @@
 				271D3A1F16FE078F009CD00F /* FLDatabaseStatement.m in Sources */,
 				271D3A2816FE078F009CD00F /* FLDatabaseTable.m in Sources */,
 				271D3A3116FE078F009CD00F /* FLSqlStatement.m in Sources */,
-				271D3A3A16FE078F009CD00F /* FLDatabaseObject_Generated.m in Sources */,
-				271D3A4316FE078F009CD00F /* FLDatabaseObject.m in Sources */,
 				271D3A4C16FE0790009CD00F /* FLLoadObjectFromDatabaseOperation.m in Sources */,
 				271D3A5516FE0790009CD00F /* FLSaveObjectToDatabaseOperation.m in Sources */,
 				271D3A5E16FE0790009CD00F /* FLSqlBuilder.m in Sources */,
@@ -8937,6 +8907,7 @@
 				274F1EB8172474D3006B4285 /* FLBlobStorage.m in Sources */,
 				274F1ED3172483AA006B4285 /* FLFolderBlobStorage.m in Sources */,
 				277245541724E04E00D17357 /* FLHttpErrors.m in Sources */,
+				2755F9351725E8C500C8D860 /* FLPropertyDescriber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9173,8 +9144,6 @@
 				271D3A1C16FE078E009CD00F /* FLDatabaseStatement.m in Sources */,
 				271D3A2516FE078F009CD00F /* FLDatabaseTable.m in Sources */,
 				271D3A2E16FE078F009CD00F /* FLSqlStatement.m in Sources */,
-				271D3A3716FE078F009CD00F /* FLDatabaseObject_Generated.m in Sources */,
-				271D3A4016FE078F009CD00F /* FLDatabaseObject.m in Sources */,
 				271D3A4916FE078F009CD00F /* FLLoadObjectFromDatabaseOperation.m in Sources */,
 				271D3A5216FE0790009CD00F /* FLSaveObjectToDatabaseOperation.m in Sources */,
 				271D3A5B16FE0790009CD00F /* FLSqlBuilder.m in Sources */,
@@ -9274,6 +9243,7 @@
 				274F1EB5172474D3006B4285 /* FLBlobStorage.m in Sources */,
 				274F1ED0172483AA006B4285 /* FLFolderBlobStorage.m in Sources */,
 				277245511724E04E00D17357 /* FLHttpErrors.m in Sources */,
+				2755F9321725E8C500C8D860 /* FLPropertyDescriber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9508,8 +9478,6 @@
 				271D3A1E16FE078E009CD00F /* FLDatabaseStatement.m in Sources */,
 				271D3A2716FE078F009CD00F /* FLDatabaseTable.m in Sources */,
 				271D3A3016FE078F009CD00F /* FLSqlStatement.m in Sources */,
-				271D3A3916FE078F009CD00F /* FLDatabaseObject_Generated.m in Sources */,
-				271D3A4216FE078F009CD00F /* FLDatabaseObject.m in Sources */,
 				271D3A4B16FE078F009CD00F /* FLLoadObjectFromDatabaseOperation.m in Sources */,
 				271D3A5416FE0790009CD00F /* FLSaveObjectToDatabaseOperation.m in Sources */,
 				271D3A5D16FE0790009CD00F /* FLSqlBuilder.m in Sources */,
@@ -9619,6 +9587,7 @@
 				274F1EB7172474D3006B4285 /* FLBlobStorage.m in Sources */,
 				274F1ED2172483AA006B4285 /* FLFolderBlobStorage.m in Sources */,
 				277245531724E04E00D17357 /* FLHttpErrors.m in Sources */,
+				2755F9341725E8C500C8D860 /* FLPropertyDescriber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10011,8 +9980,6 @@
 				271D3A2016FE078F009CD00F /* FLDatabaseStatement.m in Sources */,
 				271D3A2916FE078F009CD00F /* FLDatabaseTable.m in Sources */,
 				271D3A3216FE078F009CD00F /* FLSqlStatement.m in Sources */,
-				271D3A3B16FE078F009CD00F /* FLDatabaseObject_Generated.m in Sources */,
-				271D3A4416FE078F009CD00F /* FLDatabaseObject.m in Sources */,
 				271D3A4D16FE0790009CD00F /* FLLoadObjectFromDatabaseOperation.m in Sources */,
 				271D3A5616FE0790009CD00F /* FLSaveObjectToDatabaseOperation.m in Sources */,
 				271D3A5F16FE0790009CD00F /* FLSqlBuilder.m in Sources */,
@@ -10122,6 +10089,7 @@
 				274F1EB9172474D3006B4285 /* FLBlobStorage.m in Sources */,
 				274F1ED4172483AA006B4285 /* FLFolderBlobStorage.m in Sources */,
 				277245551724E04E00D17357 /* FLHttpErrors.m in Sources */,
+				2755F9361725E8C500C8D860 /* FLPropertyDescriber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

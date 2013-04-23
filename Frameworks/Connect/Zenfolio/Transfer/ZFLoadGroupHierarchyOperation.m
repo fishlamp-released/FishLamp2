@@ -35,6 +35,8 @@
 
 - (void) performUntilFinished:(FLFinisher*) finisher {
 
+    [super performUntilFinished:finisher];
+
     FLAssertNotNil(self.storageService);
 
     FLHttpRequest* request = [ZFHttpRequestFactory loadGroupHierarchyHttpRequest:_userLogin.userName];

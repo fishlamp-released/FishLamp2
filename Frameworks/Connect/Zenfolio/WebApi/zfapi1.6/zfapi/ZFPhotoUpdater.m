@@ -125,13 +125,13 @@
 	dispatch_once(&pred, ^{
 		
 		
-            [FLObjectDescriber registerClass:[self class]];
-        FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:[self class]];
+            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+        
         
 		[describer setChildForIdentifier:@"Title" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"Caption" withClass:[NSString class]];
-		[describer setChildForIdentifier:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Keyword" class:[NSString class] ], nil]];
-		[describer setChildForIdentifier:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLObjectDescriber objectDescriber:@"Category" class:[FLIntegerNumber class]], nil]];
+		[describer setChildForIdentifier:@"Keywords" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"Keyword" class:[NSString class] ], nil]];
+		[describer setChildForIdentifier:@"Categories" withArrayTypes:[NSArray arrayWithObjects:[FLPropertyDescriber propertyDescriber:@"Category" class:[FLIntegerNumber class]], nil]];
 		[describer setChildForIdentifier:@"Copyright" withClass:[NSString class]];
 		[describer setChildForIdentifier:@"FileName" withClass:[NSString class]];
 	});
@@ -139,7 +139,14 @@
 }
 
 
+- (BOOL) isModelObject {
+    return YES;
+}
++ (BOOL) isModelObject {
+    return YES;
+}
 + (FLDatabaseTable*) sharedDatabaseTable
+
 {
 	static FLDatabaseTable* s_table = nil;
 	static dispatch_once_t pred = 0;
