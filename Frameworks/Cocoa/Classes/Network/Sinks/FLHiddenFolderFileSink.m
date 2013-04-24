@@ -47,12 +47,14 @@
 }
 #endif
 
-- (void) openSink {
-
+- (void) createDirectoryIfNeeded:(NSString*) path {
     NSError* error = nil;
-    [[NSFileManager defaultManager] createDirectoryAtPath:self.folderPath withIntermediateDirectories:YES attributes:nil error:&error];
+    [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
     FLThrowIfError(error);
+}
 
+- (void) openSink {
+    [self createDirectoryIfNeeded:self.folderPath];
     [super openSink];
 }
 
@@ -61,6 +63,8 @@
     [super closeSinkWithCommit:commit];
     
     if(commit) {
+        [self createDirectoryIfNeeded:[self.destinationFilePath stringByDeletingLastPathComponent]];
+    
         NSError* error = nil;
         [[NSFileManager defaultManager] moveItemAtPath:self.tempFilePath toPath:self.destinationFilePath error:&error];
         

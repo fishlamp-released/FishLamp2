@@ -14,10 +14,6 @@
 @implementation FLAsyncOperation
 @synthesize finisher = _finisher;
 
-- (void) performUntilFinished:(FLFinisher*) finisher {
-    self.finisher = finisher;
-}
-
 #if FL_MRC
 - (void) dealloc {
 	[_finisher release];
@@ -40,9 +36,20 @@
     [self setFinishedWithResult:[NSError cancelError]];
 }
 
-//- (void) requestCancel {
-//    [super requestCancel];
-//    [self setFinishedWithCancelResult];
-//}
+- (void) performUntilFinished:(FLFinisher*) finisher {
+    FLAssertNotNil(finisher);
+
+    if(self.finisher) {
+        FLConfirmWithComment(self.finisher.isFinished, @"restarting an async operation that is not finished");
+        self.finisher = nil;
+    }
+
+    self.finisher = finisher;
+    
+    [self startAsyncOperation];
+}
+
+- (void) startAsyncOperation {
+}
 
 @end

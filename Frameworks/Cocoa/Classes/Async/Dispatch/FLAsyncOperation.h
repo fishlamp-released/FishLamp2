@@ -17,4 +17,6 @@
 - (void) setFinishedWithResult:(id) result;
 - (void) setFinished;
 - (void) setFinishedWithCancelResult;
+
+- (void) startAsyncOperation;
 @end

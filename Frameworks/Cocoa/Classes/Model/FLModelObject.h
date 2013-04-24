@@ -26,6 +26,7 @@
 @interface NSObject (FLModelObject)
 + (BOOL) isModelObject;
 - (BOOL) isModelObject;
++ (void) registerObjectDescriber;
 @end
 
 typedef enum {
@@ -42,7 +43,7 @@ extern void FLMergeObjectArrays(NSMutableArray* dest, NSArray* src, FLMergeMode 
             + (FLObjectDescriber*) objectDescriber { \
                 static dispatch_once_t pred = 0; \
                 dispatch_once(&pred, ^{ \
-                    [FLObjectDescriber registerClass:[self class]]; \
+                    [[self class] registerObjectDescriber]; \
                 }); \
                 return [FLObjectDescriber objectDescriber:[self class]]; \
             } \

@@ -12,7 +12,7 @@
 #import "FLPropertyAttributes.h"
 #import "FLModelObject.h"
 
-#import "FLTrace.h"
+//#import "FLTrace.h"
 
 @interface FLPropertyDescriber (Internal)
 @property (readwrite) NSString* propertyName;
@@ -291,7 +291,7 @@ static NSMutableDictionary* s_registry = nil;
     
     if(property.propertyClass != objectClass) {
     
-        FLLog(@"replaced property class %@ with %@", NSStringFromClass(property.propertyClass), NSStringFromClass(objectClass));
+        FLTrace(@"replaced property class %@ with %@", NSStringFromClass(property.propertyClass), NSStringFromClass(objectClass));
         property.propertyType = [FLObjectDescriber objectDescriber:objectClass];
         
 //        [_properties setObject:[FLPropertyDescriber propertyDescriber:name propertyClass:objectClass] forKey:name];
