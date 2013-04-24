@@ -22,23 +22,47 @@
 
 @property (readwrite, strong) ZFHttpUser* user;
 
-- (ZFBatchPhotoDownloader*) createBatchDownloader:(ZFBatchDownloadSpec*) spec;
+- (void) beginDownloadingPhotos:(ZFBatchDownloadSpec*) spec 
+                       observer:(id) observer 
+                     completion:(fl_completion_block_t) completion;
 
-- (FLFinisher*) beginDownloadingAllPhotoSetsForRootGroup:(id)observer
-                                              completion:(fl_completion_block_t) completion;
+- (void) beginDownloadingAllPhotoSetsForRootGroup:(id)observer 
+                                       completion:(fl_completion_block_t) completion;
 
-- (FLFinisher*) beginDownloadingRootGroup:(id) observer 
-                               completion:(fl_completion_block_t) completion;
+- (void) beginDownloadingRootGroup:(id)observer 
+                        completion:(fl_completion_block_t) completion;
 
 @end
 
 @protocol FLHttpControllerObserver <NSObject>
 @optional
+- (void) httpController:(ZFHttpController*) controller didDownloadPhotoSetForRootGroup:(ZFPhotoSet*) photoSet;
+@end
 
-- (void) httpController:(ZFHttpController*) controller didDownloadRootGroupWithResult:(FLResult) result;
+@protocol FLHttpControllerPhotoDownloaderObserver <NSObject>
 
-- (void) httpController:(ZFHttpController*) controller didDownloadPhotoSetForRootGroupWithResult:(FLResult) result;
-- (void) httpController:(ZFHttpController*) controller didDownloadAllPhotoSetsForRootGroupWithResult:(FLResult) result;
+
+- (void) httpController:(ZFHttpController*) controller updateDownloadInfo:(ZFTransferState*) downloadInfo;
+
+//- (void) batchPhotoDownloaderWillBeginDownload:(ZFBatchPhotoDownloader*) operation;
+
+- (void) httpController:(ZFHttpController*) controller willUpdatePhotoSet:(ZFPhotoSet*) photoSet;
+- (void) httpController:(ZFHttpController*) controller didUpdatePhotoSet:(ZFPhotoSet*) photoSet;
+
+// these are called per photo set
+- (void) httpController:(ZFHttpController*) controller willStartDownloadingPhotosInPhotoSet:(NSDictionary*) downloadInfo;
+
+- (void) httpController:(ZFHttpController*) controller willDownloadPhoto:(ZFDownloadSpec*) downloadInfo;
+- (void) httpController:(ZFHttpController*) controller didSkipPhoto:(ZFDownloadSpec*) downloadInfo;
+- (void) httpController:(ZFHttpController*) controller didDownloadPhoto:(ZFDownloadSpec*) downloadInfo;
+
+- (void) httpController:(ZFHttpController*) controller 
+          photoDownload:(ZFDownloadSpec*) downloadInfo 
+       didFailWithError:(NSError*) error;
+
+- (void) httpController:(ZFHttpController*) controller didDownloadPhotosInPhotoSet:(NSDictionary*) downloadInfo;
+
+
 @end
 
 

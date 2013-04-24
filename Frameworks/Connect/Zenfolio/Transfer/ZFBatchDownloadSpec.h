@@ -16,14 +16,12 @@
     NSInteger _rootGroupID;
     NSString* _destinationPath;
     NSArray* _mediaTypes;
-    ZFTransferState* _transferState;
 }
 
 @property (readwrite, assign, nonatomic) NSInteger rootGroupID;
 @property (readwrite, copy, nonatomic) NSSet* photoSets;
 @property (readwrite, copy, nonatomic) NSString* destinationPath;
 @property (readwrite, copy, nonatomic) NSArray* mediaTypes;
-@property (readwrite, strong) ZFTransferState* transferState;
 
 + (id) batchDownloadSpec;
 + (id) batchDownloadSpecFromUserDefaults;

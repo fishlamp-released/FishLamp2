@@ -23,10 +23,13 @@
 //#define kStreamReadChunkSize 1024
 
 @interface FLHttpRequest ()
-@property (readwrite, strong, nonatomic) FLFinisher* finisher;
 @property (readwrite, strong, nonatomic) FLHttpResponse* previousResponse;
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
-- (void) requestDidFinishWithResult:(id) result;
+@property (readwrite, assign) unsigned long long downloadedByteCount;
+@property (readwrite, assign) NSTimeInterval startTime;
+@property (readwrite, assign) NSTimeInterval lastTime;
+
+- (void) finishRequestWithResult:(id) result;
 @end
 
 #define FORCE_NO_SSL 1
@@ -38,11 +41,16 @@
 @synthesize authenticator = _authenticator;
 @synthesize disableAuthenticator = _disableAuthenticator;
 @synthesize inputSink = _inputSink;
-@synthesize finisher = _finisher;
 @synthesize httpStream = _httpStream;
 @synthesize previousResponse = _previousResponse;
 @synthesize timeoutInterval = _timeoutInterval;
 @synthesize streamSecurity = _streamSecurity;
+@synthesize downloadedByteCount = _downloadedByteCount;
+@synthesize startTime = _startTime;
+@synthesize lastTime = _lastTime;
+@synthesize delegateSelectors = _delegateSelectors;
+
+static FLHttpRequestDelegateSelectors s_defaultSelectors;
 
 #if TRACE
 static int s_counter = 0;
@@ -50,6 +58,22 @@ static int s_counter = 0;
 
 - (id) init {
     return [self initWithRequestURL:nil httpMethod:nil];
+}
+
++ (void) initialize {
+    static BOOL initialized = NO;
+    if(!initialized) {
+        initialized = YES;
+        
+        s_defaultSelectors.willOpen = @selector(httpRequestWillOpen:);
+        s_defaultSelectors.didOpen = @selector(httpRequestDidOpen:);
+        s_defaultSelectors.willAuthenticate = @selector(httpRequestWillAuthenticate:);
+        s_defaultSelectors.didAuthenticate = @selector(httpRequestDidAuthenticate:);
+        s_defaultSelectors.didClose = @selector(httpRequestDidAuthenticate:);
+        s_defaultSelectors.didReadBytes = @selector(httpRequestDidAuthenticate:);
+        s_defaultSelectors.didWriteBytes = @selector(httpRequestDidAuthenticate:);
+
+    }
 }
 
 -(id) initWithRequestURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
@@ -71,6 +95,8 @@ static int s_counter = 0;
         else {
             self.requestHeaders.httpMethod = httpMethod;
         }
+
+        _delegateSelectors = s_defaultSelectors;
     }
 
     FLTrace(@"%d created %@ http request: %@", ++s_counter, self.requestHeaders.httpMethod, [url absoluteString]);
@@ -84,7 +110,6 @@ static int s_counter = 0;
 - (void) releaseResponseData {
     self.previousResponse = nil;
     self.httpStream = nil;
-    self.finisher = nil;
 }
 
 - (void) dealloc {
@@ -95,7 +120,6 @@ static int s_counter = 0;
     [_asyncQueueForStream release];
     [_previousResponse release];
     [_httpStream release];
-    [_finisher release];
     [_inputSink release];
     [_authenticator release];
     [_requestHeaders release];
@@ -154,7 +178,7 @@ static int s_counter = 0;
         [[NSNotificationCenter defaultCenter] postNotificationName:FLNetworkActivityStartedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self forKey:FLNetworkActivitySenderKey]];
     });
     
-    FLPerformSelector1(self.delegate, @selector(httpRequestWillOpen:), self);
+    FLPerformSelector1(self.delegate, _delegateSelectors.willOpen, self);
         
     [self willSendHttpRequest]; // this may set requestURL so needs to be before createStreamOpenerWithURL
 
@@ -163,7 +187,7 @@ static int s_counter = 0;
     }
     
     if(![FLReachableNetwork instance].isReachable) {
-        [self requestDidFinishWithResult:[NSError errorWithDomain:FLNetworkErrorDomain code:FLNetworkErrorCodeNoRouteToHost localizedDescription:NSLocalizedString(@"Network appears to be offline", nil) ]];
+        [self finishRequestWithResult:[NSError errorWithDomain:FLNetworkErrorDomain code:FLNetworkErrorCodeNoRouteToHost localizedDescription:NSLocalizedString(@"Network appears to be offline", nil) ]];
         return;
     }
     
@@ -214,33 +238,57 @@ static int s_counter = 0;
     }
 
     if(self.authenticator && !self.disableAuthenticator) {
-        FLPerformSelector1(self.delegate, @selector(httpRequestWillAuthenticate:), self);
+        FLPerformSelector1(self.delegate, _delegateSelectors.willAuthenticate, self);
 
         [self willAuthenticate];
             
         [self.authenticator authenticateHttpRequest:self];
         
         [self didAuthenticate];
-        FLPerformSelector1(self.delegate, @selector(httpRequestDidAuthenticate:), self);
+        FLPerformSelector1(self.delegate, _delegateSelectors.didAuthenticate, self);
     }
 
     [self openStreamWithURL:url];
 }
 
-- (void) performUntilFinished:(FLFinisher*) finisher {
-    self.finisher = finisher;
+- (NSTimeInterval) elapsedTime {
+    return self.lastTime - self.startTime;
+}
+
+- (void) startAsyncOperation {
+    self.downloadedByteCount = 0;
+    self.startTime = 0;
+    self.lastTime = 0;
+
     [self openAuthenticatedStreamWithURL:self.requestHeaders.requestURL];
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
-    FLPerformSelector1(self.delegate, @selector(httpRequestDidOpen:), self);
+    FLPerformSelector1(self.delegate, _delegateSelectors.didOpen, self);
+    self.startTime = [NSDate timeIntervalSinceReferenceDate];
+}
+
+- (void) didReadBytes:(unsigned long long) amount {
+
 }
 
 - (void) networkStream:(FLHttpStream*) stream didReadBytes:(NSNumber*) amountRead {
-    FLPerformSelector2(self.delegate, @selector(httpRequest:didReadBytes:), self, amountRead);
+
+    self.downloadedByteCount += [amountRead longLongValue];
+    self.lastTime = [NSDate timeIntervalSinceReferenceDate]; 
+
+    [self didReadBytes:amountRead];
+    FLPerformSelector2(self.delegate, _delegateSelectors.didReadBytes, self, amountRead);
+    
 }
 
 - (void) requestDidFinishWithResult:(id) result {
+    
+}
+
+- (void) finishRequestWithResult:(id) result {
+
+    self.lastTime = [NSDate timeIntervalSinceReferenceDate]; 
         
     @try {
         if(![result error] ) {
@@ -252,34 +300,46 @@ static int s_counter = 0;
     }
     @finally {
 
-        FLFinisher* finisher = FLRetainWithAutorelease(self.finisher);
         [self releaseResponseData];
         
-        self.finisher = nil;
         self.previousResponse = nil;
         self.httpStream.delegate = nil;
         self.httpStream = nil;
         
         [self operationDidFinishWithResult:result];
         
-        FLPerformSelector2(self.delegate, @selector(httpRequest:didCloseWithResult:), self, result);
-        [finisher setFinishedWithResult:result];
-            
+        FLPerformSelector2(self.delegate, _delegateSelectors.didClose, self, result);
+        [self requestDidFinishWithResult:result];
+        [self setFinishedWithResult:result];
+                
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:FLNetworkActivityStoppedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self forKey:FLNetworkActivitySenderKey]];
         });
     }
 }
 
+#define kMegaBits 131072
+
+- (double) bytesPerSecond {
+    NSTimeInterval elapsedTime = self.elapsedTime;
+    unsigned long long downloadedByteCount = self.downloadedByteCount;
+    
+    if(elapsedTime && downloadedByteCount) {
+        return (downloadedByteCount / elapsedTime);
+    }
+    
+    return 0;
+}
+
 - (void) requestCancel {
     [self.httpStream terminateStream];
-    [self requestDidFinishWithResult:[NSError cancelError]];
+    [self finishRequestWithResult:[NSError cancelError]];
 }
 
 - (void) networkStream:(FLHttpStream*) readStream 
       encounteredError:(NSError*) error {
     [self.httpStream terminateStream];
-    [self requestDidFinishWithResult:error];
+    [self finishRequestWithResult:error];
 }
 
 - (void) networkStreamDidClose:(FLHttpStream*) stream {
@@ -306,7 +366,7 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
     }
     
     if(responseError) {
-        [self requestDidFinishWithResult:responseError];
+        [self finishRequestWithResult:responseError];
     }
     else {
 
@@ -324,7 +384,7 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
         }
 
         if(!redirect) {
-            [self requestDidFinishWithResult:response];
+            [self finishRequestWithResult:response];
         }
     }
 }

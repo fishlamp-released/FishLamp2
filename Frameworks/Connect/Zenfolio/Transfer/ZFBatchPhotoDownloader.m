@@ -13,13 +13,14 @@
 #import "ZFPhotoSetDownloader.h"
 #import "ZFBatchPhotoSetDownloader.h"
 #import "ZFPhotoDownloader.h"
-
+#import "FLAtomic.h"
 #import "FLTrace.h"
 
 @interface ZFBatchPhotoDownloader ()
 @property (readwrite, strong) ZFBatchDownloadSpec* downloadSpec; 
 @property (readwrite, strong) NSArray* downloadQueue; 
 @property (readwrite, strong, nonatomic) ZFGroup* rootGroup;
+@property (readwrite, strong) ZFTransferState* transferState;
 
 @end
 
@@ -28,12 +29,15 @@
 @synthesize downloadSpec = _downloadSpec;
 @synthesize downloadQueue = _downloadQueue;
 @synthesize rootGroup = _rootGroup;
-
+@synthesize transferState = _transferState;
 
 - (id) initWithDownloadSpec:(ZFBatchDownloadSpec*) downloadSpec {	
 	self = [super init];
 	if(self) {
 		self.downloadSpec = downloadSpec;
+        
+        _downloadQueue = [[NSMutableArray alloc] init];
+        
         _transferState = [[ZFTransferState alloc] init];
         
         _downloadVideos = NO;
@@ -65,11 +69,26 @@
 }
 #endif
 
+- (void) updateProgress:(BOOL) canDefer {
+    NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
+    if(!canDefer || ([NSDate timeIntervalSinceReferenceDate] - _lastProgress) > 0.3) {
+        FLPerformSelector2(self.delegate, @selector(batchPhotoDownloader:updateDownloadInfo:), self, FLCopyWithAutorelease(self.transferState));
+        _lastProgress = now;
+    }
+}
+
+- (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
+            willDownloadPhotoSet:(ZFPhotoSet*) photoSet {
+    FLPerformSelector2(self.delegate, @selector(batchPhotoDownloader:willUpdatePhotoSet:), self, photoSet);
+    [self updateProgress:NO];
+}
+
+
 - (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
              didDownloadPhotoSet:(ZFPhotoSet*) photoSet {
-    
-    NSString* folderPath = [_downloadSpec.destinationPath stringByAppendingPathComponent:
-                                [_rootGroup relativePathForElement:photoSet]];
+   
+    NSString* relativePath =  [_rootGroup relativePathForElement:photoSet];
+    NSString* folderPath = [_downloadSpec.destinationPath stringByAppendingPathComponent:relativePath];
     
     for(ZFPhoto* photo in photoSet.Photos) {
 
@@ -77,12 +96,12 @@
         if(_downloadVideos && photo.IsVideoValue) {
             _transferState.videoTotal++;
             _transferState.byteTotal += photo.SizeValue;
-            mediaType = [ZFMediaType originalImage];
+            mediaType = [ZFMediaType video];
         }
         else if(_downloadImages && !photo.IsVideoValue) {
             _transferState.photoTotal++;
             _transferState.byteTotal += photo.SizeValue;
-            mediaType = [ZFMediaType video];
+            mediaType = [ZFMediaType originalImage];
         }
         else { 
             continue;
@@ -92,6 +111,7 @@
         download.mediaType = mediaType;
         NSString* fileName = [mediaType humanReadableFileNameForPhoto:photo inPhotoSet:photoSet];
         download.fullPathToFile = [folderPath stringByAppendingPathComponent:fileName];
+        download.relativePath = [relativePath stringByAppendingPathComponent:fileName];
         download.tempFolder = [_downloadSpec.destinationPath stringByAppendingPathComponent:@".download"];
         download.rootGroupID = self.downloadSpec.rootGroupID;
         download.photoSetID = photoSet.Id;
@@ -102,26 +122,76 @@
             return;
         }
     }
+    
+    FLPerformSelector2(self.delegate, @selector(batchPhotoDownloader:didUpdatePhotoSet:), self, photoSet);
+    [self updateProgress:YES];
 }        
 
+- (void) photoDownloader:(FLHttpRequest*) httpRequest 
+   didDownloadPhotoBytes:(NSNumber*) amount {
+   
+    self.transferState.byteCount += [amount longValue];
 
-- (FLOperation*) createOperationForObject:(id) object {
-    return [ZFPhotoDownloader photoDownloader:object];
-}     
+    double bps = [httpRequest bytesPerSecond];
+    if(bps) {
+        self.transferState.bytesPerSecondTotal += httpRequest.bytesPerSecond;
+        self.transferState.bytesPerSecondCountForAveraging++; 
+    }
+    
+    [self updateProgress:YES];
+}
+
+- (void) updateCountsForMediaType:(ZFMediaType*) mediaType {
+    if(mediaType.mediaTypeID == ZFMediaTypeVideo) {
+        self.transferState.videoCount++;
+    }
+    else {
+        self.transferState.photoCount++;
+    }
+}
 
 - (void) photoDownloaderDidSkipPhoto:(ZFPhotoDownloader*) downloader {
-    FLTrace(@"skipped %@", downloader.downloadSpec.fullPathToFile);
+    self.transferState.byteTotal += downloader.downloadSpec.photo.SizeValue;
+    [self updateCountsForMediaType:downloader.downloadSpec.mediaType];
+    FLPerformSelector2(self.delegate, @selector(batchPhotoDownloader:didSkipPhoto:), self, downloader.downloadSpec);
+    [self updateProgress:YES];
 }
 
 - (void) photoDownloaderDidDownloadPhoto:(ZFPhotoDownloader*) downloader {
-    FLTrace(@"downloaded %@", downloader.downloadSpec.fullPathToFile);
+    [self updateCountsForMediaType:downloader.downloadSpec.mediaType];
+
+    FLPerformSelector2(self.delegate, @selector(batchPhotoDownloader:didDownloadPhoto:), self, downloader.downloadSpec);
+    [self updateProgress:YES];
 }
 
-- (void) photoDownloader:(ZFPhotoDownloader*) downloader didReadBytes:(NSNumber*) amount {
+- (void) willStartDownloadingPhoto:(ZFPhotoDownloader *)operation {
 }
 
-- (void) didFinishOperation:(FLOperation *)operation withResult:(FLResult)result {
-    FLTrace(@"finish %@", [result description]);
+- (void) willStartOperationInAsyncQueue:(id)operation {
+    FLPerformSelector2(self.delegate, @selector(batchPhotoDownloader:willDownloadPhoto:), self, [operation downloadSpec]);
+    [self updateProgress:YES];
+}
+
+- (FLOperation*) createOperationForObject:(id) object {
+    ZFPhotoDownloader* downloader = [ZFPhotoDownloader photoDownloader:object];
+    
+    FLHttpRequestDelegateSelectors selectors = downloader.delegateSelectors;
+    selectors.willOpen = @selector(willStartDownloadingPhoto:);
+    selectors.didReadBytes = @selector(photoDownloader:didDownloadPhotoBytes:);
+    downloader.delegate = self;
+    downloader.delegateSelectors = selectors;
+    
+    return downloader;
+}     
+
+//- (void) didFinishOperation:(FLOperation *)operation withResult:(FLResult)result {
+//    FLTrace(@"finish %@", [result description]);
+//}
+
+- (void) didProcessAllObjectsInAsyncQueue {
+    [self.transferState setFinished];
+    [super didProcessAllObjectsInAsyncQueue];
+    [self updateProgress:NO];
 }
 
 - (void) didDownloadPhotoSets:(FLResult) result {
@@ -131,20 +201,22 @@
     }
     else {
         [self addObjectsFromArray:_downloadQueue];
+        [self.transferState setStarted];
+        [self startProcessing];
     }
 }
-
-- (void) performUntilFinished:(FLFinisher*) finisher {
     
-    [super performUntilFinished:finisher];
-    
-    self.downloadSpec.transferState = [ZFTransferState transferState];
+- (void) startAsyncOperation {
 
+    self.transferState = [ZFTransferState transferState];
     FLAssertNotNil(self.storageService);
 
     self.rootGroup = [self.storageService readObject:[ZFGroup group:[NSNumber numberWithInt:_downloadSpec.rootGroupID]]]; 
     
     ZFBatchPhotoSetDownloader* loadPhotoSets = [ZFBatchPhotoSetDownloader batchPhotoSetDownloader:self.downloadSpec.photoSets.allObjects withPhotos:YES];
+
+    self.transferState.photoSetTotal = self.downloadSpec.photoSets.count;
+    
     [self runChildAsynchronously:loadPhotoSets completion:^(FLResult result) {
         [self didDownloadPhotoSets:result];
     }];

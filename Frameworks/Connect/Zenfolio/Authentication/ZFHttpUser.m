@@ -49,4 +49,9 @@
     return self.privateProfile.LoginName;
 }
 
+- (void) setRootGroup:(ZFGroup*) group {
+    FLAssert([group isKindOfClass:[ZFGroup class]]);
+
+    FLSetObjectWithRetain(_rootGroup, group);
+}
 @end

@@ -74,9 +74,7 @@
     }];
 }
 
-- (void) performUntilFinished:(FLFinisher*) finisher {
-
-    [super performUntilFinished:finisher];
+- (void) startAsyncOperation {
     
 #if TRACE
     FLLog(@"starting async queue processing: %@", self);

@@ -19,6 +19,8 @@
 }
 @property (readwrite, strong) ZFUser* privateProfile;
 @property (readwrite, strong) ZFUser* publicProfile;
-@property (readwrite, strong) ZFGroup* rootGroup;
+@property (readonly, strong) ZFGroup* rootGroup;
+
+- (void) setRootGroup:(ZFGroup*) group;
 
 @end

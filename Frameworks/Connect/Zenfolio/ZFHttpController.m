@@ -70,17 +70,54 @@
 //    }
 //}
 
-- (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
-   didDownloadPhotoSetWithResult:(FLResult) result {
+- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation updateDownloadInfo:(ZFTransferState*) downloadInfo {
+    [operation.asyncObserver receiveObservation:@selector(httpController:updateDownloadInfo:) fromSender:self withObject:downloadInfo];
+}
 
-    [downloader.asyncObserver receiveObservation:@selector(httpController:didDownloadPhotoSetForRootGroupWithResult:) 
+- (void) batchPhotoDownloaderWillBeginDownload:(ZFBatchPhotoDownloader*) operation {
+//    [operation.asyncObserver receiveObservation:@selector(httpController:updateDownloadInfo:) fromSneder:self withObject:downloadInfo];
+}
+
+- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willUpdatePhotoSet:(ZFPhotoSet*) photoSet {
+    [operation.asyncObserver receiveObservation:@selector(httpController:willUpdatePhotoSet:) fromSender:self withObject:photoSet];
+}
+
+- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didUpdatePhotoSet:(ZFPhotoSet*) photoSet {
+    [operation.asyncObserver receiveObservation:@selector(httpController:didUpdatePhotoSet:) fromSender:self withObject:photoSet];
+}
+
+//- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willStartDownloadingPhotosInPhotoSet:(NSDictionary*) downloadInfo {
+//    [operation.asyncObserver receiveObservation:@selector(httpController:willStartDownloadingPhotosInPhotoSet:) fromSender:self withObject:photoSet];
+//}
+
+- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willDownloadPhoto:(ZFDownloadSpec*) downloadInfo {
+    [operation.asyncObserver receiveObservation:@selector(httpController:willDownloadPhoto:) fromSender:self withObject:downloadInfo];
+}
+
+- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didSkipPhoto:(ZFDownloadSpec*) downloadInfo {
+    [operation.asyncObserver receiveObservation:@selector(httpController:didSkipPhoto:) fromSender:self withObject:downloadInfo];
+}
+
+- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didDownloadPhoto:(ZFDownloadSpec*) downloadInfo {
+    [operation.asyncObserver receiveObservation:@selector(httpController:didDownloadPhoto:) fromSender:self withObject:downloadInfo];
+}
+
+//- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didDownloadPhotosInPhotoSet:(NSDictionary*) downloadInfo {
+//}
+
+
+
+- (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
+             didDownloadPhotoSet:(ZFPhotoSet*) photoSet {
+
+    [downloader.asyncObserver receiveObservation:@selector(httpController:didDownloadPhotoSetForRootGroup:) 
                                       fromSender:self 
-                                      withObject:result];
+                                      withObject:photoSet];
 }             
 
 
-- (FLFinisher*) beginDownloadingAllPhotoSetsForRootGroup:(id)observer
-                                           completion:(fl_completion_block_t) completion {
+- (void) beginDownloadingAllPhotoSetsForRootGroup:(id)observer 
+                                       completion:(fl_completion_block_t) completion {
     
     ZFBatchPhotoSetDownloader* downloader =    
             [ZFBatchPhotoSetDownloader batchPhotoSetDownloaderForGroup:self.user.rootGroup withPhotos:NO];
@@ -88,46 +125,48 @@
     downloader.context = self;
     downloader.delegate = self;
     downloader.asyncObserver = observer;
-
+   
     FLFinisher* finisher = [FLFinisher finisher:completion];
-    
+    finisher.finishOnMainThread = YES;
+
     [downloader runAsynchronously:^(FLResult result) {
-        [self.user setRootGroup:result];
-        [observer receiveObservation:@selector(httpController:didDownloadAllPhotoSetsForRootGroupWithResult:) 
-                          fromSender:self 
-                          withObject:result];
         [finisher setFinishedWithResult:result];
     }];
-    
-    return finisher;
-
-                                           
 }                                           
 
-- (FLFinisher*) beginDownloadingRootGroup:(id) observer 
-                               completion:(fl_completion_block_t) completion {
+- (void) beginDownloadingRootGroup:(id)observer 
+                        completion:(fl_completion_block_t) completion { 
     ZFLoadGroupHierarchyOperation* operation = 
         [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
     operation.context = self;
- //   operation.delegate = self;
-    
+    operation.delegate = self;
+    operation.asyncObserver = observer;
+
     FLFinisher* finisher = [FLFinisher finisher:completion];
+    finisher.finishOnMainThread = YES;
     
     [operation runAsynchronously:^(FLResult result) {
         [self.user setRootGroup:result];
-        [observer receiveObservation:@selector(httpController:didDownloadRootGroupWithResult:) fromSender:self withObject:result];
+        [finisher setFinishedWithResult:result];
+    }];
+}
+
+- (void) beginDownloadingPhotos:(ZFBatchDownloadSpec*) spec 
+                       observer:(id) observer 
+                     completion:(fl_completion_block_t) completion {   
+    
+    ZFBatchPhotoDownloader* operation = [ZFBatchPhotoDownloader batchPhotoDownloadOperation:spec];
+    operation.context = self;
+    operation.asyncObserver = observer;
+    operation.delegate = self;
+    
+    FLFinisher* finisher = [FLFinisher finisher:completion];
+    finisher.finishOnMainThread = YES;
+    
+    [operation runAsynchronously:^(FLResult result) {
         [finisher setFinishedWithResult:result];
     }];
     
-    return finisher;
-}
-
-
-
-- (ZFBatchPhotoDownloader*) createBatchDownloader:(ZFBatchDownloadSpec*) spec {
-    ZFBatchPhotoDownloader* operation = [ZFBatchPhotoDownloader batchPhotoDownloadOperation:spec];
-    operation.context = self;
-    return operation;
 }
 
 @end

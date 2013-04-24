@@ -18,6 +18,7 @@
 @property (readwrite, strong) FLFifoAsyncQueue* fifoQueue; 
 @property (readwrite, assign) NSInteger processedObjectCount;
 @property (readwrite, assign) NSInteger totalObjectCount;
+@property (readwrite, assign) BOOL processing;
 
 - (void) processQueue;
 @end
@@ -31,7 +32,17 @@
 @synthesize totalObjectCount = _totalObjectCount;
 @synthesize willStartOperationSelectorForDelegate = _willStartOperationSelectorForDelegate;
 @synthesize didFinishOperationSelectorForDelegate = _didFinishOperationSelectorForDelegate;
-@synthesize finishWhenEmpty = _finishWhenEmpty;
+@synthesize processing = _processing;
+
+static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurrentOperations;
+
++ (void) setDefaultConnectionLimit:(NSInteger) threadCount {
+    FLAtomicSetInteger(s_threadCount, threadCount);
+}
+
++ (NSInteger) defaultConnectionLimit {
+    return FLAtomicGetInteger(s_threadCount);
+}
 
 - (id) init {	
     return [self initWithQueuedObjects:nil];
@@ -46,11 +57,9 @@
         else {
             _objectQueue = [[NSMutableArray alloc] init];
         }
-        _finishWhenEmpty = YES;
         _totalObjectCount = _objectQueue.count;
         _fifoQueue = [[FLFifoAsyncQueue alloc] init];
         _activeQueue = [[NSMutableArray alloc] init];
-        _maxConcurrentOperations = FLAsyncOperationQueueOperationDefaultMaxConcurrentOperations;
         
         self.willStartOperationSelectorForDelegate = @selector(asyncOperationQueueOperation:willStartOperation:);
         self.didFinishOperationSelectorForDelegate = @selector(asyncOperationQueueOperation:didFinishOperation:withResult:); 
@@ -68,24 +77,19 @@
 
 - (void) processFinishedOperation:(FLOperation*) operation result:(FLResult) result {
 
-    FLTrace(@"finished operation: %@ withResult: %@", operation, result);
-
-    if([result isErrorResult]) {
-        
-    }
-    
+    FLTrace(@"finished operation: %@ withResult: %@", operation, [result error] ? result : @"OK");
     [_activeQueue removeObject:operation];
     self.processedObjectCount++;
     
-    [self didFinishOperation:operation withResult:result];
+    [self didFinishOperationInAsyncQueue:operation withResult:result];
     [self processQueue];
 }
 
-- (void) willStartOperation:(FLOperation*) operation {
+- (void) willStartOperationInAsyncQueue:(id) operation {
     FLPerformSelector2(self.delegate, self.willStartOperationSelectorForDelegate, self, operation);
 }
 
-- (void) didFinishOperation:(FLOperation*) operation withResult:(FLResult) result {
+- (void) didFinishOperationInAsyncQueue:(id) operation withResult:(FLResult) result {
     FLPerformSelector3(self.delegate, self.didFinishOperationSelectorForDelegate, self, operation, result);
 }
 
@@ -100,16 +104,9 @@
                              nil);
 }
 
-- (void) didProcessAllObjects {
-
-    if((self.wasCancelled || self.processedObjectCount > 0) && self.finishWhenEmpty) {
-#if TRACE
-        FLTrace(@"async queue processing is done: %@", self);
-#endif
-        if(self.finisher && self.finisher.isFinished == NO) {
-            [self setFinished];
-        }
-    }
+- (void) didProcessAllObjectsInAsyncQueue {
+    self.processing = NO;
+    [self setFinished];
 }
 
 - (void) processCancelRequest {
@@ -130,25 +127,32 @@
 }
 
 - (void) processQueue {
-    while(_activeQueue.count < _maxConcurrentOperations && _objectQueue.count) {
-        id object = [_objectQueue removeFirstObject];
+    if(self.processing) {
+        NSInteger max = self.maxConcurrentOperations;
+        if(max == 0) {
+            max = [FLAsyncOperationQueue defaultConnectionLimit];
+        }
+        FLTrace(@"max connections: %d", max);
+        
+        while(_activeQueue.count < max && _objectQueue.count) {
+            id object = [_objectQueue removeFirstObject];
 
-        FLOperation* operation = [self createOperationForObject:object];
-        operation.delegate = self;
-        [_activeQueue addObject:operation];
+            FLOperation* operation = [self createOperationForObject:object];
+            operation.delegate = self;
+            [_activeQueue addObject:operation];
 
-        [self willStartOperation:operation];
-        FLTrace(@"starting operation: %@", operation);
-        [self runChildAsynchronously:operation];
-    }
-    
-    if(_activeQueue.count == 0 && _objectQueue.count == 0) {
-        [self didProcessAllObjects];
+            [self willStartOperationInAsyncQueue:operation];
+            FLTrace(@"starting operation: %@", operation);
+            [self runChildAsynchronously:operation];
+        }
+        
+        if(_activeQueue.count == 0 && _objectQueue.count == 0) {
+            [self didProcessAllObjectsInAsyncQueue];
+        }
     }
 }
 
 - (void) processAddObjects:(NSArray*) array {
-    
     [_objectQueue addObjectsFromArray:array];
     self.totalObjectCount += array.count;
 
@@ -168,16 +172,17 @@
     FLDispatchSelectorAsync1(self.fifoQueue, self, @selector(processAddObject:), object, nil);
 }
 
-- (void) setQueueNeedsProcessing {
+- (void) startProcessing {
+    self.processing = YES;
     FLDispatchSelectorAsync(self.fifoQueue, self, @selector(processQueue), nil);
 }
 
-- (void) performUntilFinished:(FLFinisher*) finisher {
-    [super performUntilFinished:finisher];
-    
-    FLTrace(@"starting async queue processing: %@", self);
-    [self setQueueNeedsProcessing];
-}
+//- (void) performUntilFinished:(FLFinisher*) finisher {
+//    [super performUntilFinished:finisher];
+//    
+//    FLTrace(@"starting async queue processing: %@", self);
+//    [self setQueueNeedsProcessing];
+//}
 
 #if FL_MRC 
 - (void) dealloc {

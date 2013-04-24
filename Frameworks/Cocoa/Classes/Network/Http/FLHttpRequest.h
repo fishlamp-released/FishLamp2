@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLOperation.h"
+#import "FLAsyncOperation.h"
 #import "FLHttpResponse.h"
 #import "FLInputSink.h"
 #import "FLHttpStream.h"
@@ -33,12 +33,21 @@
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;
 @end
 
-@interface FLHttpRequest : FLOperation<FLHttpStreamDelegate> {
+typedef struct {
+    SEL willAuthenticate;
+    SEL didAuthenticate;
+    SEL willOpen;
+    SEL didOpen;
+    SEL didClose;
+    SEL didReadBytes;
+    SEL didWriteBytes;
+} FLHttpRequestDelegateSelectors;
+
+@interface FLHttpRequest : FLAsyncOperation<FLHttpStreamDelegate> {
 @private
     FLHttpRequestHeaders* _requestHeaders;
     FLHttpRequestBody* _requestBody;
     FLFifoAsyncQueue* _asyncQueueForStream;
-    FLFinisher* _finisher;
     FLHttpResponse* _previousResponse; // if redirected
     FLHttpStream* _httpStream;
     NSTimeInterval _timeoutInterval;
@@ -49,7 +58,14 @@
     BOOL _disableAuthenticator;
     
     FLNetworkStreamSecurity _streamSecurity;
+    
+    unsigned long long _downloadedByteCount;
+    NSTimeInterval _lastTime;
+    NSTimeInterval _startTime;
+    
+    FLHttpRequestDelegateSelectors _delegateSelectors; 
 }
+@property (readwrite, assign, nonatomic) FLHttpRequestDelegateSelectors delegateSelectors;
 
 @property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
 
@@ -73,11 +89,17 @@
 
 + (id) httpRequest:(NSURL*) url;
 
+//
+// optional overrides
+//
+
 /// called before the request is started. You may set ALL of the
 /// request info here, including the URL
 - (void) willSendHttpRequest;
 - (void) willAuthenticate;
 - (void) didAuthenticate;
+- (void) didReadBytes:(unsigned long long) amount;
+- (void) requestDidFinishWithResult:(id) result;
 
 /// did receive the response. If there was an error, this will
 /// not be called.
@@ -90,7 +112,15 @@
 /// this returns YES by default.
 - (BOOL) shouldRedirectToURL:(NSURL*) url;
 
+// info
+@property (readonly, assign) unsigned long long downloadedByteCount;
+@property (readonly, assign) NSTimeInterval startTime;
+@property (readonly, assign) NSTimeInterval lastTime;
+@property (readonly, assign) NSTimeInterval elapsedTime;
+@property (readonly, assign) double bytesPerSecond;
+
 @end
+
 
 @protocol FLHttpRequestDelegate <NSObject>
 @optional
@@ -105,8 +135,6 @@
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
     didCloseWithResult:(FLResult) result;
-
-// TODO: these need a little love
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount;
 

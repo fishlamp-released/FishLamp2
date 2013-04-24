@@ -16,6 +16,7 @@
     ZFPhoto* _photo;
     ZFMediaType* _mediaType;
     NSString* _tempFolder;
+    NSString* _relativePath;
 }
 @property (readwrite, assign, nonatomic) NSInteger rootGroupID;
 @property (readwrite, assign, nonatomic) NSInteger photoSetID;
@@ -23,6 +24,7 @@
 @property (readwrite, strong, nonatomic) NSString* tempFolder;
 @property (readwrite, strong, nonatomic) ZFPhoto* photo;
 @property (readwrite, strong, nonatomic) ZFMediaType* mediaType;
+@property (readwrite, strong, nonatomic) NSString* relativePath;
 
 - (id) initWithPhoto:(ZFPhoto*) photo;
 + (id) downloadSpec:(ZFPhoto*) photo;

@@ -24,7 +24,7 @@ typedef struct {
     unsigned long long currentPhotoBytes;
 } ZFTransferState_t;
 
-@interface ZFTransferState : FLModelObject {
+@interface ZFTransferState : NSObject<NSCopying> {
 @private
     NSUInteger _videoCount;
     NSUInteger _videoTotal;
@@ -35,9 +35,9 @@ typedef struct {
     unsigned long long _byteTotal;
     unsigned long long _byteCount;
     NSTimeInterval _startedTime;
-    NSTimeInterval _transferTime;
-    unsigned long long _transferredBytes;
-    unsigned long long _currentPhotoBytes;
+    NSTimeInterval _finishedTime;
+    unsigned long long _bytesPerSecondTotal;
+    long _bytesPerSecondCountForAveraging;
 }
 + (id) transferState;
 
@@ -50,8 +50,15 @@ typedef struct {
 @property (readwrite, assign) unsigned long long byteTotal;
 @property (readwrite, assign) unsigned long long byteCount;
 @property (readwrite, assign) NSTimeInterval startedTime;
-@property (readwrite, assign) NSTimeInterval transferTime;
-@property (readwrite, assign) unsigned long long transferredBytes;
-@property (readwrite, assign) unsigned long long currentPhotoBytes;
+@property (readwrite, assign) NSTimeInterval finishedTime;
+@property (readwrite, assign) unsigned long long bytesPerSecondTotal;
+@property (readwrite, assign) long bytesPerSecondCountForAveraging;
+
+
+- (void) setStarted;
+- (void) setFinished;
+
+
+
 
 @end

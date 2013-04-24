@@ -55,31 +55,40 @@
     }    
 }
 
-- (void) didFinishOperation:(FLOperation*) operation withResult:(FLResult) result {
-    [super didFinishOperation:operation withResult:result];
+- (void) willStartOperationInAsyncQueue:(id) operation {
+
+    [super willStartOperationInAsyncQueue:operation];
+    
+    FLPerformSelector2(self.delegate, @selector(batchPhotoSetDownloader:willDownloadPhotoSet:), self, nil);
+}
+
+- (void) didFinishOperationInAsyncQueue:(FLOperation*) operation withResult:(FLResult) result {
+
+    [super didFinishOperationInAsyncQueue:operation withResult:result];
     
     if(![result error]) {
         if(_group) {
             [_group replaceElement:result];
         }
+        
+        FLPerformSelector2(self.delegate, @selector(batchPhotoSetDownloader:didDownloadPhotoSet:), self, result);
     }
-    FLPerformSelector2(self.delegate, @selector(batchPhotoSetDownloader:didDownloadPhotoSetWithResult:), self, result);
 }
 
 - (FLOperation*) createOperationForObject:(id) object {
-    return [ZFPhotoSetDownloader downloadPhotoSet:object withPhotos:NO];
+    return [ZFPhotoSetDownloader downloadPhotoSet:object withPhotos:_withPhotos];
 }
 
 - (void) performUntilFinished:(FLFinisher*) finisher {
-
-    [super performUntilFinished:finisher];
-
+    self.finisher = finisher;
+ 
     if(_group) {
         NSMutableArray* photoSets = [NSMutableArray array];
         [self addPhotoSetsToList:photoSets forGroup:_group];
         [self addObjectsFromArray:photoSets];
     }
     
+    [self startProcessing];
 }
 
 

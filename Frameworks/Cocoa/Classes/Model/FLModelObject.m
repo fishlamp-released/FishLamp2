@@ -101,6 +101,10 @@
     return NO;
 }
 
++ (void) registerObjectDescriber {
+    [FLObjectDescriber registerClass:[self class]];
+}
+
 //- (void) encodeModelObjectWithCoder:(NSCoder*) aCoder {
 //    if([self isModelObject]) {
 //        FLObjectDescriber* typeDesc = [[self class] objectDescriber];

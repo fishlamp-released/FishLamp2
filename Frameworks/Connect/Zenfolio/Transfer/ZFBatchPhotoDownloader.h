@@ -12,6 +12,7 @@
 #import "FLDispatchQueue.h"
 #import "ZFTransferState.h"
 #import "ZFWebApi.h"
+#import "ZFDownloadSpec.h"
 
 @interface ZFBatchPhotoDownloader : FLAsyncOperationQueue {
 @private
@@ -52,9 +53,11 @@
 
 // these are called per photo set
 - (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willStartDownloadingPhotosInPhotoSet:(NSDictionary*) downloadInfo;
-- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willDownloadPhoto:(NSDictionary*) downloadInfo;
-- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didSkipPhoto:(NSDictionary*) downloadInfo;
-- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didDownloadPhoto:(NSDictionary*) downloadInfo;
+
+- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willDownloadPhoto:(ZFDownloadSpec*) downloadInfo;
+- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didSkipPhoto:(ZFDownloadSpec*) downloadInfo;
+- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didDownloadPhoto:(ZFDownloadSpec*) downloadInfo;
+
 - (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didDownloadPhotosInPhotoSet:(NSDictionary*) downloadInfo;
 
 @end

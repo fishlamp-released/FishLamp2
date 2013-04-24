@@ -20,11 +20,9 @@ FLSynthesizeModelObjectMethods();
 @synthesize rootGroupID = _rootGroupID;
 @synthesize mediaTypes = _mediaTypes;
 @synthesize destinationPath = _destinationPath;
-@synthesize transferState = _transferState;
 
 #if FL_MRC
 - (void) dealloc {
-    [_transferState release];
     [_photoSets release];
     [_mediaTypes release];
     [_destinationPath release];

@@ -22,7 +22,9 @@
 
 @protocol ZFBatchPhotoSetDownloaderDelegate <FLOperationDelegate>
 @optional
+- (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
+            willDownloadPhotoSet:(ZFPhotoSet*) result; 
 
 - (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
-   didDownloadPhotoSetWithResult:(FLResult) result; 
+             didDownloadPhotoSet:(ZFPhotoSet*) result; 
 @end

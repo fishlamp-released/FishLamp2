@@ -16,6 +16,8 @@
 @synthesize photo = _photo;
 @synthesize mediaType = _mediaType;
 @synthesize tempFolder = _tempFolder;
+@synthesize relativePath = _relativePath;
+
 
 - (id) initWithPhoto:(ZFPhoto*) photo {
     self = [super init];
@@ -30,7 +32,8 @@
 }
 
 #if FL_MRC
-- (void) dealloc {
+- (void) dealloc { 
+    [_relativePath release];
 	[_fullPathToFile release];
     [_photo release];
     [_mediaType release];

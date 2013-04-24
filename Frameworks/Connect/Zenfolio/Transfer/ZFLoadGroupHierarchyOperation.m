@@ -33,9 +33,7 @@
     return FLAutorelease([[[self class] alloc] initWithCredentials:userLogin]);
 }
 
-- (void) performUntilFinished:(FLFinisher*) finisher {
-
-    [super performUntilFinished:finisher];
+- (void) startAsyncOperation {
 
     FLAssertNotNil(self.storageService);
 

@@ -25,15 +25,13 @@ typedef FLOperation* (^FLOperationFactory)(id object);
     
     NSInteger _processedObjectCount;
     NSInteger _totalObjectCount;
-    
-    BOOL _finishWhenEmpty;
+    BOOL _processing;
 }
 
 @property (readonly, assign) NSInteger processedObjectCount;
 @property (readonly, assign) NSInteger totalObjectCount;
-@property (readwrite, assign) BOOL finishWhenEmpty;
 
-@property (readwrite, assign, nonatomic) NSInteger maxConcurrentOperations;
+@property (readwrite, assign) NSInteger maxConcurrentOperations;
 
 @property (readwrite, assign, nonatomic) SEL willStartOperationSelectorForDelegate;
 @property (readwrite, assign, nonatomic) SEL didFinishOperationSelectorForDelegate;
@@ -46,13 +44,20 @@ typedef FLOperation* (^FLOperationFactory)(id object);
 - (void) addObjectsFromArray:(NSArray*) queuedObjects;
 - (void) addObject:(id) object;
 
-- (void) setQueueNeedsProcessing;
+- (void) startProcessing;
 
 // optional overrides
 - (FLOperation*) createOperationForObject:(id) object;
-- (void) willStartOperation:(FLOperation*) operation;
-- (void) didFinishOperation:(FLOperation*) operation withResult:(FLResult) result ;
-- (void) didProcessAllObjects;
+- (void) willStartOperationInAsyncQueue:(id) operation;
+- (void) didFinishOperationInAsyncQueue:(id) operation withResult:(FLResult) result ;
+- (void) didProcessAllObjectsInAsyncQueue;
+
+
++ (void) setDefaultConnectionLimit:(NSInteger) threadCount;
+
++ (NSInteger) defaultConnectionLimit;
+
+
 @end
 
 @protocol FLAsyncOperationQueueOperationDelegate <NSObject>

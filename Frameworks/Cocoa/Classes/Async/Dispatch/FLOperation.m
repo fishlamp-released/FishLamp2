@@ -26,14 +26,14 @@
 @synthesize finishedSelector = _finishedSelector;
 @synthesize retryCount = _retryCount;
 
-#if DEBUG
-- (void) setDelegate:(id) delegate {
-    if(delegate != _delegate) {
-        FLAssertIsNil(_delegate);
-        _delegate = delegate;
-    }
-}
-#endif
+//#if DEBUG
+//- (void) setDelegate:(id) delegate {
+//    if(delegate != _delegate) {
+//        FLAssertIsNil(_delegate);
+//        _delegate = delegate;
+//    }
+//}
+//#endif
 
 - (id) init {
     self = [super init];
@@ -134,24 +134,34 @@
 }
 
 - (void) willRunInParent:(FLOperation*) parent {
-    if(self.context == nil) {
-        self.context = parent.context;
-    }
-    if(self.asyncQueue == nil) {
-        self.asyncQueue = parent.asyncQueue;
-    }
+
 }
 
 - (void) didFinishInParent:(FLOperation*) parent withResult:(FLResult) result {
     [self operationDidFinishWithResult:result];
 }
 
-- (void) willStartChildOperation:(id) childOperation {
-    [childOperation willRunInParent:self];
+- (void) willStartChildOperation:(id) operation {
+    [operation willRunInParent:self];
+
+    if([operation delegate] == nil) {
+        [operation setDelegate:self];
+    }
+    if([operation context] == nil) {
+        [operation setContext:self.context];
+    }
+    if([operation asyncQueue] == nil) {
+        [operation setAsyncQueue:self.asyncQueue];
+    }
+
 }
 
 - (void) didFinishChildOperation:(id) operation withResult:(FLResult) result {
     [operation didFinishInParent:self withResult:result];
+    
+    if([operation delegate] == self) {
+        [operation setDelegate:nil];
+    }
 }
 
 - (FLResult) runChildSynchronously:(FLOperation*) operation {
@@ -173,9 +183,10 @@
 }
 
 - (FLFinisher*) runChildAsynchronously:(FLOperation*) operation 
-                completion:(fl_completion_block_t) completionOrNil {
+                            completion:(fl_completion_block_t) completionOrNil {
 
-    [self willStartChildOperation:operation];
+    [self willStartChildOperation:FLRetainWithAutorelease(operation)];
+
     if(completionOrNil) {
         completionOrNil = FLCopyWithAutorelease(completionOrNil);
     }
@@ -185,6 +196,7 @@
         if(completionOrNil) {
             completionOrNil(result);
         }
+        
     }];
 }
 

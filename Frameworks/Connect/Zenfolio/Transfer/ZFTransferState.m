@@ -37,29 +37,37 @@
 @synthesize byteTotal = _byteTotal;
 @synthesize byteCount = _byteCount;
 @synthesize startedTime = _startedTime;
-@synthesize transferTime = _transferTime;
-@synthesize transferredBytes = _transferredBytes;
-@synthesize currentPhotoBytes = _currentPhotoBytes;
+@synthesize finishedTime = _finishedTime;
+@synthesize bytesPerSecondTotal = _bytesPerSecondTotal;
+@synthesize bytesPerSecondCountForAveraging = _bytesPerSecondCountForAveraging;
 
 FLSynthesizeModelObjectMethods();
 
-//- (id) copyWithZone:(NSZone*) zone {
-//    ZFTransferState* copy = [[ZFTransferState alloc] init];
-//    copy.videoCount = self.videoCount ;
-//    copy.videoTotal = self.videoTotal;
-//    copy.photoCount = self.photoCount;
-//    copy.photoTotal = self.photoTotal;
-//    copy.photoSetCount = self.photoSetCount;
-//    copy.photoSetTotal = self.photoSetTotal;
-//    copy.byteTotal = self.byteTotal;
-//    copy.byteCount = self.byteCount;
-//    copy.startedTime = self.startedTime;
-//    copy.transferTime = self.transferTime;
-//    copy.transferredBytes = self.transferredBytes;
-//    copy.currentPhotoBytes = self.currentPhotoBytes;
-//    copy.identifier = self.identifier;
-//    return copy;
-//}
+- (void) setStarted {
+    _startedTime = [NSDate timeIntervalSinceReferenceDate];
+}
+- (void) setFinished {
+    _finishedTime = [NSDate timeIntervalSinceReferenceDate];
+}
+
+
+- (id) copyWithZone:(NSZone*) zone {
+    ZFTransferState* copy = [[ZFTransferState alloc] init];
+    copy.videoCount = self.videoCount ;
+    copy.videoTotal = self.videoTotal;
+    copy.photoCount = self.photoCount;
+    copy.photoTotal = self.photoTotal;
+    copy.photoSetCount = self.photoSetCount;
+    copy.photoSetTotal = self.photoSetTotal;
+    copy.byteTotal = self.byteTotal;
+    copy.byteCount = self.byteCount;
+    copy.startedTime = self.startedTime;
+    copy.finishedTime = self.finishedTime;
+    copy.bytesPerSecondTotal = self.bytesPerSecondTotal;
+    copy.bytesPerSecondCountForAveraging = self.bytesPerSecondCountForAveraging;
+    
+    return copy;
+}
 
 //- (void)encodeWithCoder:(NSCoder *)aCoder {
 //

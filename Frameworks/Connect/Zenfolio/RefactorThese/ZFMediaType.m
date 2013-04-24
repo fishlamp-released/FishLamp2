@@ -420,7 +420,7 @@ FLSynthesizeModelObjectMethods();
 
     FLAssertStringIsNotEmpty(photo.UrlCore);
 	
-    NSMutableString* url = [NSString stringWithFormat:@"http://%@%@", photo.UrlHost, photo.UrlCore];
+    NSMutableString* url = [NSMutableString stringWithFormat:@"http://%@%@", photo.UrlHost, photo.UrlCore];
 
     if(zenSize >= 0) {
         [url appendFormat:@"-%d.jpg", zenSize];
@@ -479,19 +479,26 @@ FLSynthesizeModelObjectMethods();
     return [NSURL URLWithString:url];
 }
 
-- (NSString*) humanReadableFileNameForPhoto:(ZFPhoto*) photo inPhotoSet:(ZFPhotoSet*) photoSet {
-    if(photo.IsVideoValue) {
-        return [NSString stringWithFormat:@"%@-Master.mp4", [photo.FileName stringByDeletingPathExtension]];
-    }
+- (NSString*) humanReadableFileNameForPhoto:(ZFPhoto*) photo 
+                                 inPhotoSet:(ZFPhotoSet*) photoSet {
+                                 
+    NSString* uniqueFileName = nil;
     
     for(ZFPhoto* otherPhoto in photoSet.Photos) {
         if(photo.IdValue != otherPhoto.IdValue && FLStringsAreEqual(photo.FileName, otherPhoto.FileName)) {
-            return [NSString stringWithFormat:@"%@(%@).%@", [photo.FileName stringByDeletingPathExtension], [photo Id], [photo.FileName pathExtension]];
+            uniqueFileName = [NSString stringWithFormat:@"%@(%@)", [photo.FileName stringByDeletingPathExtension], [photo Id]];
+            break;
         }
-        
     }
     
-    return photo.FileName;
+    
+    if(photo.IsVideoValue) {
+        return [NSString stringWithFormat:@"%@-Master.mp4", uniqueFileName ? uniqueFileName : [photo.FileName stringByDeletingPathExtension]];
+    }
+    
+    return uniqueFileName != nil ? 
+        [NSString stringWithFormat:@"%@.%@", uniqueFileName, [photo.FileName pathExtension]] : 
+        photo.FileName;
 
 //    NSMutableString* name = [NSMutableString stringWithFormat:@"%@-%@", [photo.FileName stringByDeletingPathExtension], [photo Id]]; 
 //            

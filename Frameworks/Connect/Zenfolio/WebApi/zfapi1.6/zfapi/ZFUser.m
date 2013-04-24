@@ -373,11 +373,6 @@
 		[describer setChildForIdentifier:@"VideoBytesQuota" withClass:[FLLongNumber class] ];
 		[describer setChildForIdentifier:@"VideoDurationQuota" withClass:[FLIntegerNumber class] ];
 		[describer setChildForIdentifier:@"HierarchyCn" withClass:[FLIntegerNumber class] ];
-        
-        FLPropertyDescriber* desc = [describer propertyForName:@"RecentPhotoSets"];
-        FLLog([desc description]);
-        
-//        FLLog([describer description]);
 	});
 	return [FLObjectDescriber objectDescriber:[self class]];
 }
