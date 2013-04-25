@@ -11,7 +11,7 @@
 #import "FLOperation.h"
 
 @interface FLFinisher ()
-@property (readwrite, strong) FLResult result;
+@property (readwrite, strong) id<FLAsyncResult> result;
 @property (readwrite, assign, getter=isFinished) BOOL finished;
 @property (readwrite, copy) fl_completion_block_t didFinish;
 
@@ -120,7 +120,7 @@
     }
 }
 
-- (void) setFinishedWithResult:(id) result {
+- (void) setFinishedWithResult:(id<FLAsyncResult>) result {
     
     FLAssertIsNilWithComment(self.result, @"already finished");
 
@@ -144,13 +144,30 @@
             [self notifyFinished];
         });
     }
-}                    
+}      
+
+- (void) setFinishedWithReturnedObject:(id) returnedObject {
+    [self setFinishedWithResult:[returnedObject asAsyncResult]];
+}
+
+- (void) setFinishedWithReturnedObject:(id) returnedObject hint:(NSInteger) hint {
+    [self setFinishedWithResult:[returnedObject asAsyncResultWithHint:hint]];
+}
+ 
+- (void) setFinishedWithError:(NSError*) error {
+    [self setFinishedWithReturnedObject:[error asAsyncResult]];
+}                           
 
 - (void) setFinished {
     [self setFinishedWithResult:FLSuccessfullResult];
 }
 
-//- (FLResult) executeFinishableBlock:(fl_finisher_block_t) block {
+- (void) setFinishedWithCancel {
+    [self setFinishedWithResult:[[NSError cancelError] asAsyncResult]];
+}
+
+
+//- (id<FLAsyncResult>) executeFinishableBlock:(fl_finisher_block_t) block {
 //    @try {
 //        [self setWillStartInDispatcher:self];
 //            
@@ -159,13 +176,13 @@
 //        }
 //    }
 //    @catch(NSException* ex) {
-//        [self setFinishedWithResult:ex.error];
+//        [self setFinishedWithError:ex.error];
 //    }
 //    
 //    return self.result;
 //}
 //
-//- (FLResult) executeBlock:(FLBlock) block {
+//- (id<FLAsyncResult>) executeBlock:(FLBlock) block {
 //    @try {
 //        [self setWillStartInDispatcher:self];
 //        
@@ -175,7 +192,7 @@
 //        [self setFinished];
 //    }
 //    @catch(NSException* ex) {
-//        [self setFinishedWithResult:ex.error];
+//        [self setFinishedWithError:ex.error];
 //    }
 //
 //    return self.result;

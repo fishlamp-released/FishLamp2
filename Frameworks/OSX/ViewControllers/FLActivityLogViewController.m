@@ -9,30 +9,24 @@
 #import "FLActivityLogViewController.h"
 #import "FLAttributedString.h"
 
+@interface FLActivityLogViewController()
+@property (readwrite, nonatomic, strong) NSMutableAttributedString* buffer;
+@end
+
 @implementation FLActivityLogViewController
 
 @synthesize activityLog = _activityLog;
+@synthesize buffer = _buffer;
 
 - (void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
 #if FL_MRC
+    [_buffer release];
     [_activityLog release];
     [super dealloc];
 #endif
 }
-
-//- (void) setTextColor:(NSColor*) color {
-//    FLSetObjectWithRetain(_color, color);
-//    [self setTextColor:[NSColor darkGrayColor]];
-//}
-
-//- (void) setFont:(NSFont*) font {
-//    FLSetObjectWithRetain(_textFont, font);
-//    [self setFont:self.textFont];
-//    [[self textStorage] setFont:self.textFont];
-//}
-
 
 - (void) logWasUpdated:(NSNotification*) note {
     NSAttributedString* string = [[note userInfo] objectForKey:FLActivityLogStringKey];
@@ -40,6 +34,41 @@
         [self appendAttributedString:string];
     }
 }
+
+//- (void)scrollToBottom
+//{
+//    NSPoint     pt;
+//    id          scrollView;
+//    id          clipView;
+//
+//    pt.x = 0;
+//    pt.y = 100000000000.0;
+//
+//    scrollView = [self enclosingScrollView];
+//    clipView = [scrollView contentView];
+//
+//    pt = [clipView constrainScrollPoint:pt];
+//    [clipView scrollToPoint:pt];
+//    [scrollView reflectScrolledClipView:clipView];
+//}
+
+//- (void) scrollToBottom {
+//// Scroll the vertical scroller to top
+//
+//    
+//
+////    if ([_scrollView hasVerticalScroller]) {
+////        _scrollView.verticalScroller.floatValue = 0;
+////    }
+////
+////    // Scroll the contentView to top
+////    [_scrollView.contentView scrollToPoint:NSMakePoint(0, ((NSView*)_scrollView.documentView).frame.size.height - _scrollView.contentSize.height)];        
+//
+//
+//
+//
+//    [_textView scrollRangeToVisible:range];
+//}
 
 - (void) setActivityLog:(FLActivityLog*) log {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -53,16 +82,9 @@
     [self clearContents];
 }
 
-//- (id) initWithFrame:(CGRect) frame {
-//    return [[self initWithFrame:frame] initActivityLogView];
-//}
-//
-//- (id)initWithCoder:(NSCoder *)aDecoder {
-//    return [[self initWithCoder:aDecoder] initActivityLogView];
-//}
-
 - (void) awakeFromNib {
     [super awakeFromNib];
+    _lastUpdate = 0;
     _textView.drawsBackground = NO;
     [_textView setAlignment:NSLeftTextAlignment];
     [_textView setRichText:YES];
@@ -74,29 +96,53 @@
     [_textView setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
 }
 
-- (void) appendAttributedString:(NSAttributedString*) string {
-//    NSMutableAttributedString* mutableString = FLMutableCopyWithAutorelease(string);
-//    [mutableString setFont:_textView.font forRange:string.entireRange];
-    dispatch_async(dispatch_get_main_queue(), ^{
-    if(string) {
-//        [[_textView textStorage] beginEditing];
-        [[_textView textStorage] appendAttributedString:string];
-//        [[_textView textStorage] endEditing];
-        
-//        NSRange range = NSMakeRange ([[_textView string] length], 0);
-//        [_textView scrollRangeToVisible: range];
-        
-  // Scroll the vertical scroller to top
-        if ([_scrollView hasVerticalScroller]) {
-            _scrollView.verticalScroller.floatValue = 0;
-        }
+#define kDelay 0.5
 
-        // Scroll the contentView to top
-        [_scrollView.contentView scrollToPoint:NSMakePoint(0, ((NSView*)_scrollView.documentView).frame.size.height - _scrollView.contentSize.height)];        
-        
-//        [_textView setNeedsDisplay];
+- (void) appendBufferToTextStorage {
+    if(!_buffer) {
+        return;
     }
-    });
+
+    if([NSDate timeIntervalSinceReferenceDate] - _lastUpdate > kDelay) {
+        NSTextStorage* textStorage = [_textView textStorage];
+        NSRange range = NSMakeRange(textStorage.length, 0);
+        
+        float scrollBottom = NSMaxY(_textView.visibleRect);
+        float contentHeight = NSMaxY(_textView.bounds);
+        
+        BOOL scroll = (contentHeight - scrollBottom) > 20.0f;
+        
+        [textStorage beginEditing];
+        [textStorage replaceCharactersInRange:range withAttributedString:_buffer];
+//        [textStorage appendAttributedString:_buffer];
+        [textStorage endEditing];
+        
+        self.buffer = nil;
+        _lastUpdate = [NSDate timeIntervalSinceReferenceDate];
+    
+        if(scroll) {
+            [_textView scrollRangeToVisible:NSMakeRange(textStorage.length, 0)];
+        }
+    }
+    else {
+        double delayInSeconds = kDelay;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(){
+            [self appendBufferToTextStorage];
+        });
+    }
+}
+
+- (void) appendAttributedString:(NSAttributedString*) string {
+
+    if(_buffer) {
+        [_buffer appendAttributedString:string];
+    }
+    else {
+        _buffer = [string mutableCopy];
+    }
+
+    [self appendBufferToTextStorage];
 }
 
 

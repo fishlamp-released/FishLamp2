@@ -22,7 +22,7 @@
 	return self;
 } 
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 	FLAssertIsNotNil(_input);
     FLAssertIsNotNil(_database);
 	return [_database readObject:_input];

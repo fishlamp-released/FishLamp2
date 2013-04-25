@@ -9,7 +9,7 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 #import "FLDataDecoding.h"
-#import "FLResult.h"
+#import "FLAsyncResult.h"
 #import "FLPropertyInflator.h"
 
 @protocol FLObjectBuilderDelegate;
@@ -37,7 +37,7 @@
 
 // iterative building
 - (void) openWithRootObjectClass:(Class) theClass withDataDecoder:(id<FLDataDecoding>) decoder;
-- (FLResult) finishBuilding;
+- (id<FLAsyncResult>) finishBuilding;
 
 - (FLPropertyInflator*) firstInflator;
 - (FLPropertyInflator*) lastInflator;

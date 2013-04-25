@@ -34,7 +34,7 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
     
     NSMutableArray* tests = FLAutorelease([[_sanityTests allObjects] mutableCopy]);
     

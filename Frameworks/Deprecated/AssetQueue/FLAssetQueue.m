@@ -698,7 +698,7 @@ FIXME("compatability")
 }
 #endif
  
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
     
     // TODO: Load with sort. eg USE TSQL: ORDER BY
     NSArray* queue = nil;

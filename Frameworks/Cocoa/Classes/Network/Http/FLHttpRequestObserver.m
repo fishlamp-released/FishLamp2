@@ -59,12 +59,12 @@
 //}
 //
 //- (void) httpRequest:(FLHttpRequest*) httpRequest 
-//   willCloseWithResult:(FLResult) result {
+//   willCloseWithResult:(id<FLAsyncResult>) result {
 //    FLInvokeBlock(self.willCloseBlock, result);
 //}   
 //
 //- (void) httpRequest:(FLHttpRequest*) httpRequest 
-//    didCloseWithResult:(FLResult) result {
+//    didCloseWithResult:(id<FLAsyncResult>) result {
 //    FLInvokeBlock(self.didCloseBlock, result);
 //}    
 //

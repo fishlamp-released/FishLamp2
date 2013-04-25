@@ -35,7 +35,7 @@
     [_operations addObject:operation];
 }
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
     for(FLOperation* operation in _operations) {
         [self runChildSynchronously:operation];
     }

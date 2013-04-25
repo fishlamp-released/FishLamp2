@@ -47,7 +47,7 @@
 
 }
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 
     while(YES) {
     

@@ -42,8 +42,8 @@
 - (void) saveObjectToDatabase:(id) object {
 }
 
-- (FLResult) performSynchronously {
-    FLResult object = nil;
+- (id) performSynchronously {
+    id<FLAsyncResult> object = nil;
     
 	if(self.canLoadFromCache) {
 		object = [self loadObjectFromDatabase];

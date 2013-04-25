@@ -15,6 +15,9 @@
     id<FLActivityLog> _activityLog;
     IBOutlet NSTextView* _textView;
     IBOutlet NSScrollView* _scrollView;
+    
+    NSMutableAttributedString* _buffer;
+    NSTimeInterval _lastUpdate;
 }
 
 @property (readwrite, strong, nonatomic) id<FLActivityLog> activityLog;

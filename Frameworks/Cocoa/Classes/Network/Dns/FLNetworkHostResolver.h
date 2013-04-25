@@ -8,7 +8,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FLNetworkStream.h"
-#import "FLResult.h"
+#import "FLAsyncResult.h"
 #import "FLNetworkHost.h"
 #import "FLTimedObject.h"
 #import "FLTimer.h"
@@ -22,10 +22,10 @@
 
 + (id) networkHostResolver;
 
-- (FLResult) resolveHostSynchronously:(FLNetworkHost*) host;
+- (id<FLAsyncResult>) resolveHostSynchronously:(FLNetworkHost*) host;
 - (FLFinisher*) startResolvingHost:(FLNetworkHost*) host;
 
-- (void) closeWithResult:(FLResult) result;
+- (void) closeWithResult:(id) result;
 
 
 @end

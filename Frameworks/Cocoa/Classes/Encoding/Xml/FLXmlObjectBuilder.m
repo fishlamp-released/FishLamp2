@@ -499,7 +499,7 @@
 //#endif
 //}
 //
-////- (void) didParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser withResult:(FLResult) result {
+////- (void) didParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser withResult:(id<FLAsyncResult>) result {
 ////}
 //
 //- (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser {

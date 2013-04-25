@@ -20,7 +20,7 @@
     return FLAutorelease([[[self class] alloc] initWithURL:imageURL]);
 }
 
-- (FLResult) resultFromHttpResponse:(FLHttpResponse*) response {
+- (id) resultFromHttpResponse:(FLHttpResponse*) response {
 
     FLStorableImage* image = [FLStorableImage imageWithData:response.responseData.data];
 
@@ -31,7 +31,7 @@
 }
 
 
-//- (FLResult) performSynchronously {
+//- (id) performSynchronously {
 //    
 //    
 //    id result = [super performSynchronously];

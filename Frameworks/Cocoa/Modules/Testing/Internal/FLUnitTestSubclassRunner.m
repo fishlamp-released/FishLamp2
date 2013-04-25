@@ -57,7 +57,7 @@
     }
 }
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
     
     NSMutableDictionary* groups = [NSMutableDictionary dictionary];
     
@@ -97,7 +97,7 @@
             FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
 
             [[FLUnitTest outputLog] indent:^{
-                FLResult results = [self runChildSynchronously:test];
+                id<FLAsyncResult> results = [self runChildSynchronously:test];
                 FLThrowIfError(results);
                 
                 [resultArray addObject:results];
@@ -117,7 +117,7 @@
     
     return resultArray;
     
-// - (FLResult) performSynchronously {
+// - (id) performSynchronously {
 //
 //    NSMutableArray* array = [NSMutableArray array];
 //    NSArray* allResults = [self findUnitTests];

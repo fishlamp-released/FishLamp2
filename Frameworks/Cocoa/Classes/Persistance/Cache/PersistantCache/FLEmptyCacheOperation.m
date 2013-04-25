@@ -11,7 +11,7 @@
 
 @implementation FLEmptyCacheOperation
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 	[[FLCacheManager instance] broadcastEmptyCacheMessage:self];
     return FLSuccessfullResult;
 }

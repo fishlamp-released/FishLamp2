@@ -184,7 +184,7 @@ static FLLogger* s_outputLogger = nil;
     return YES;
 }
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
     FLTestResultCollection* results = [FLTestResultCollection testResultCollection];
         
     if([self willRunTests]) {

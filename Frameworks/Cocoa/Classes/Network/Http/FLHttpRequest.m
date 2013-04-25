@@ -29,7 +29,7 @@
 @property (readwrite, assign) NSTimeInterval startTime;
 @property (readwrite, assign) NSTimeInterval lastTime;
 
-- (void) finishRequestWithResult:(id) result;
+- (void) finishRequestWithResult:(id) result error:(NSError*) error;
 @end
 
 #define FORCE_NO_SSL 1
@@ -144,7 +144,7 @@ static int s_counter = 0;
     return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"POST"]);
 }
 
-- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+- (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
     return httpResponse;
 }
 
@@ -187,7 +187,8 @@ static int s_counter = 0;
     }
     
     if(![FLReachableNetwork instance].isReachable) {
-        [self finishRequestWithResult:[NSError errorWithDomain:FLNetworkErrorDomain code:FLNetworkErrorCodeNoRouteToHost localizedDescription:NSLocalizedString(@"Network appears to be offline", nil) ]];
+        [self finishRequestWithResult:nil
+            error:[NSError errorWithDomain:FLNetworkErrorDomain code:FLNetworkErrorCodeNoRouteToHost localizedDescription:NSLocalizedString(@"Network appears to be offline", nil) ]];
         return;
     }
     
@@ -255,12 +256,13 @@ static int s_counter = 0;
     return self.lastTime - self.startTime;
 }
 
-- (void) startAsyncOperation {
+- (id) startAsyncOperation {
     self.downloadedByteCount = 0;
     self.startTime = 0;
     self.lastTime = 0;
 
     [self openAuthenticatedStreamWithURL:self.requestHeaders.requestURL];
+    return self;
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
@@ -279,24 +281,23 @@ static int s_counter = 0;
 
     [self didReadBytes:amountRead];
     FLPerformSelector2(self.delegate, _delegateSelectors.didReadBytes, self, amountRead);
-    
 }
 
 - (void) requestDidFinishWithResult:(id) result {
     
 }
 
-- (void) finishRequestWithResult:(id) result {
-
+- (void) finishRequestWithResult:(id) result error:(NSError*) error {
+    
     self.lastTime = [NSDate timeIntervalSinceReferenceDate]; 
         
     @try {
-        if(![result error] ) {
-            result = [self resultFromHttpResponse:result];
+        if(!error) {
+            result = [[self resultFromHttpResponse:result] asAsyncResult];
         }
     }
     @catch(NSException* ex) {
-        result = FLRetainWithAutorelease(ex.error);
+        result = [ex.error asAsyncResult];
     }
     @finally {
 
@@ -305,8 +306,6 @@ static int s_counter = 0;
         self.previousResponse = nil;
         self.httpStream.delegate = nil;
         self.httpStream = nil;
-        
-        [self operationDidFinishWithResult:result];
         
         FLPerformSelector2(self.delegate, _delegateSelectors.didClose, self, result);
         [self requestDidFinishWithResult:result];
@@ -332,14 +331,15 @@ static int s_counter = 0;
 }
 
 - (void) requestCancel {
+    [super requestCancel];
     [self.httpStream terminateStream];
-    [self finishRequestWithResult:[NSError cancelError]];
+    [self finishRequestWithResult:nil error:[NSError cancelError]];
 }
 
 - (void) networkStream:(FLHttpStream*) readStream 
       encounteredError:(NSError*) error {
     [self.httpStream terminateStream];
-    [self finishRequestWithResult:error];
+    [self finishRequestWithResult:nil error:error];
 }
 
 - (void) networkStreamDidClose:(FLHttpStream*) stream {
@@ -366,7 +366,7 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
     }
     
     if(responseError) {
-        [self finishRequestWithResult:responseError];
+        [self finishRequestWithResult:nil error:responseError];
     }
     else {
 
@@ -384,7 +384,7 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
         }
 
         if(!redirect) {
-            [self finishRequestWithResult:response];
+            [self finishRequestWithResult:response error:nil];
         }
     }
 }

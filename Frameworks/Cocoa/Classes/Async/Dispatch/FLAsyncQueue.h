@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLResult.h"
+#import "FLAsyncResult.h"
 #import "FLDispatchTypes.h"
 #import "FLFinisher.h"
 #import "FLDispatchTypes.h"
@@ -31,9 +31,9 @@
 
 - (void) dispatchSync:(fl_block_t) block;
 
-- (FLResult) finishSync:(fl_finisher_block_t) block;
+- (id<FLAsyncResult>) finishSync:(fl_finisher_block_t) block;
 
-- (FLResult) runSynchronously:(id<FLOperation>) operation;
+- (id<FLAsyncResult>) runSynchronously:(id<FLOperation>) operation;
 
 @end                    
 
@@ -65,7 +65,7 @@ FLFinisher* FLFinishAsync(id<FLAsyncQueue> queue,
 }
 
 NS_INLINE
-FLResult FLFinishSync(id<FLAsyncQueue> queue, 
+id<FLAsyncResult> FLFinishSync(id<FLAsyncQueue> queue, 
                       fl_finisher_block_t block) {
     FLAssertNotNil(queue);
     FLAssertNotNil(block);
@@ -73,7 +73,7 @@ FLResult FLFinishSync(id<FLAsyncQueue> queue,
 }
 
 NS_INLINE
-FLResult FLRunOperation(id<FLAsyncQueue> queue, 
+id<FLAsyncResult> FLRunOperation(id<FLAsyncQueue> queue, 
                         id<FLOperation> operation) {
     FLAssertNotNil(queue);
     FLAssertNotNil(operation);

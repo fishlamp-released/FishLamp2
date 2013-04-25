@@ -30,7 +30,7 @@
 #endif
 
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 	FLAssertIsNotNil(_database);
 	FLAssertIsNotNil(_input);
 	[_database writeObject:_input];

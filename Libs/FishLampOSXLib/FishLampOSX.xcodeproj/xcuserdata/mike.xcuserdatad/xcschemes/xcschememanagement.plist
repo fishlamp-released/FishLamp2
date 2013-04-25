@@ -4,31 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FishLampCocoaUI-OSX-32-64-MRC.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>17</integer>
-		</dict>
-		<key>FishLampCocoaUI-OSX-32-MRC.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>19</integer>
-		</dict>
-		<key>FishLampCocoaUI-OSX-64-ARC.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>21</integer>
-		</dict>
-		<key>FishLampCocoaUI-OSX-64-MRC.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>23</integer>
-		</dict>
-		<key>FishLampCocoaUI-iOS-ARC.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>15</integer>
-		</dict>
 		<key>FishLampOSX-32-MRC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>

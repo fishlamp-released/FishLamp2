@@ -68,7 +68,7 @@
 //	return nil;
 //}
 //
-//- (FLResult) performSynchronously {
+//- (id) performSynchronously {
 //
 //    for(FLLengthyTask* task in _taskList)
 //	{

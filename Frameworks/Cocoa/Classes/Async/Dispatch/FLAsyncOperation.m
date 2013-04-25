@@ -9,10 +9,12 @@
 #import "FLAsyncOperation.h"
 
 @interface FLAsyncOperation ()
+@property (readwrite, strong) id threadID;
 @end
 
 @implementation FLAsyncOperation
 @synthesize finisher = _finisher;
+@synthesize threadID = _threadID;
 
 #if FL_MRC
 - (void) dealloc {
@@ -22,19 +24,35 @@
 #endif
 
 - (void) setFinishedWithResult:(id) result {
-    FLAssertNotNil(self.finisher);
-    
-    [self.finisher setFinishedWithResult:result];
     [self operationDidFinishWithResult:result];
 }
+
+- (void) operationDidFinishWithResult:(id<FLAsyncResult>) result {
+    [super operationDidFinishWithResult:result];
+    FLAssertNotNil(self.finisher);
+    [self.finisher setFinishedWithResult:result];
+}
+
+- (void) setFinishedWithCancel {
+    [self setFinishedWithResult:[[NSError cancelError] asAsyncResult]];
+}
+
+- (void) setFinishedWithReturnedObject:(id) returnedObject {
+    [self setFinishedWithResult:[returnedObject asAsyncResult]];
+}
+
+- (void) setFinishedWithReturnedObject:(id) returnedObject hint:(NSInteger) hint {
+    [self setFinishedWithResult:[returnedObject asAsyncResultWithHint:hint]];
+}
+ 
+- (void) setFinishedWithError:(NSError*) error {
+    [self setFinishedWithReturnedObject:[error asAsyncResult]];
+}                           
 
 - (void) setFinished {
     [self setFinishedWithResult:FLSuccessfullResult];
 }
 
-- (void) setFinishedWithCancelResult {
-    [self setFinishedWithResult:[NSError cancelError]];
-}
 
 - (void) performUntilFinished:(FLFinisher*) finisher {
     FLAssertNotNil(finisher);
@@ -46,10 +64,13 @@
 
     self.finisher = finisher;
     
-    [self startAsyncOperation];
+    id initialData = [self startAsyncOperation];
+    [self sendStartMessagesWithInitialData:initialData];
+
 }
 
-- (void) startAsyncOperation {
+- (id) startAsyncOperation {
+    return nil;
 }
 
 @end

@@ -42,24 +42,24 @@
 }
 #endif
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 
     id outResult = [NSMutableDictionary dictionary];
     
     for(FLOperation* operation in _operationQueue) {
         
-        id operationResult = nil;
+        id<FLAsyncResult> operationResult = nil;
         self.currentOperation = operation;
         @try {
             operationResult = [self runChildSynchronously:operation];
         }
         @catch(NSException* ex) {
-            operationResult = FLRetainWithAutorelease(ex.error);
+            operationResult = [ex.error asAsyncResult];
         }
 
         [outResult setObject:operationResult forKey:operation.identifier];
        
-        if(self.abortNeeded || [operationResult isErrorResult]) {
+        if(self.abortNeeded || [operationResult didFail]) {
             break;
         }
     }

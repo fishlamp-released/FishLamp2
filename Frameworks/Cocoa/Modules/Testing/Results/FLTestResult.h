@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLResult.h"
+#import "FLAsyncResult.h"
 
 @protocol FLTestResult <NSObject>
 @property (readonly, assign) BOOL passed;

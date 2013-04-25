@@ -11,7 +11,7 @@
 #import "FLObjectEncoder.h"
 #import "FLParsedItem.h"
 
-typedef FLResult (^FLHandleSoapResponseBlock)(FLParsedItem* parsedSoap);
+typedef id<FLAsyncResult> (^FLHandleSoapResponseBlock)(FLParsedItem* parsedSoap);
 
 @interface FLSoapHttpRequest : FLHttpRequest {
 @private

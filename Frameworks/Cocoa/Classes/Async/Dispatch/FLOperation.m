@@ -23,7 +23,6 @@
 @synthesize storageService = _storageService;
 @synthesize cancelled = _cancelled;
 @synthesize delegate = _delegate;
-@synthesize finishedSelector = _finishedSelector;
 @synthesize retryCount = _retryCount;
 
 //#if DEBUG
@@ -41,7 +40,7 @@
         self.asyncQueue = [FLDispatchQueue defaultQueue];
   		static int32_t s_counter = 0;
         self.identifier = [NSNumber numberWithInt:FLAtomicIncrement32(s_counter)];
-        _finishedSelector = @selector(operationDidFinish:withResult:);
+//        _finishedSelector = @selector(operationDidFinish:withResult:);
     }
     return self;
 }
@@ -108,13 +107,13 @@
     }
 }
 
-- (FLResult) runSynchronously {
-    FLResult result = [FLStartOperation(self.asyncQueue, self, nil) waitUntilFinished];
-    [self operationDidFinishWithResult:result];
+- (id<FLAsyncResult>) runSynchronously {
+    id<FLAsyncResult> result = [FLStartOperation(self.asyncQueue, self, nil) waitUntilFinished];
+//    [self operationDidFinishWithResult:result];
     return result;
 }
 
-- (FLResult) runSynchronouslyInContext:(FLOperationContext*) context {
+- (id<FLAsyncResult>) runSynchronouslyInContext:(FLOperationContext*) context {
     self.context = context;
     return [self runSynchronously];
 }
@@ -137,8 +136,8 @@
 
 }
 
-- (void) didFinishInParent:(FLOperation*) parent withResult:(FLResult) result {
-    [self operationDidFinishWithResult:result];
+- (void) didFinishInParent:(FLOperation*) parent withResult:(id<FLAsyncResult>) result {
+//    [self operationDidFinishWithResult:result];
 }
 
 - (void) willStartChildOperation:(id) operation {
@@ -153,10 +152,12 @@
     if([operation asyncQueue] == nil) {
         [operation setAsyncQueue:self.asyncQueue];
     }
-
+    if([operation asyncObserver] == nil) {
+        [operation setAsyncObserver:self.asyncObserver];
+    }
 }
 
-- (void) didFinishChildOperation:(id) operation withResult:(FLResult) result {
+- (void) didFinishChildOperation:(id) operation withResult:(id<FLAsyncResult>) result {
     [operation didFinishInParent:self withResult:result];
     
     if([operation delegate] == self) {
@@ -164,16 +165,16 @@
     }
 }
 
-- (FLResult) runChildSynchronously:(FLOperation*) operation {
+- (id<FLAsyncResult>) runChildSynchronously:(FLOperation*) operation {
 
     [self willStartChildOperation:FLRetainWithAutorelease(operation)];
     
-    FLResult result = nil;
+    id<FLAsyncResult> result = nil;
     @try {
         result = [operation runSynchronously];
     }
     @catch(NSException* ex) {
-        result = FLRetainWithAutorelease(ex.error);
+        result = [ex.error asAsyncResult];
     }
     FLAssertNotNilWithComment(result, @"result should not be nil");
     
@@ -191,7 +192,7 @@
         completionOrNil = FLCopyWithAutorelease(completionOrNil);
     }
     
-    return [operation runAsynchronously:^(FLResult result) {
+    return [operation runAsynchronously:^(id<FLAsyncResult> result) {
         [self didFinishChildOperation:operation withResult:result];
         if(completionOrNil) {
             completionOrNil(result);
@@ -204,9 +205,10 @@
     return [self runChildAsynchronously:operation completion:nil];
 }
 
-- (void) operationDidFinishWithResult:(FLResult) result {
+
+- (void) operationDidFinishWithResult:(id<FLAsyncResult>) result {
     self.context = nil;
-    FLPerformSelector2(_delegate, _finishedSelector, self, result);
+    [self sendFinishMessagesWithResult:result];
     self.cancelled = NO;
 }
 
@@ -216,6 +218,10 @@
     }
 }
 
+- (void) sendStartMessagesWithInitialData:(id) initialData {
+}
+- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
+}
 
 
 

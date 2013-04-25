@@ -49,7 +49,7 @@
 
 }
 
-- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+- (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
 
     NSData* data = [[httpResponse responseData] data];
     
@@ -67,7 +67,7 @@
 
 }
 
-//- (FLResult) performSynchronously {
+//- (id) performSynchronously {
 //	
 //    
 //    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];

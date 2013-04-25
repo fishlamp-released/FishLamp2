@@ -32,7 +32,7 @@
 - (BOOL) runTestWithFinisher:(FLSelectorInfo*) info {
     __block BOOL wasRun = NO;
     
-    FLFinisher* notifier = [FLFinisher finisher:^(FLResult result){
+    FLFinisher* notifier = [FLFinisher finisher:^(id<FLAsyncResult> result){
         wasRun = YES;
     }];
     

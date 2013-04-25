@@ -144,7 +144,7 @@
 }
 
 - (void) readStream:(FLReadStream*) networkStream 
-    didCloseWithResult:(FLResult) result {
+    didCloseWithResult:(id<FLAsyncResult>) result {
     
     [self closeConnectionWithResult:result];
 }
@@ -175,7 +175,7 @@
 }
 
 - (void) writeStream:(FLWriteStream*) networkStream 
-  didCloseWithResult:(FLResult) result {
+  didCloseWithResult:(id<FLAsyncResult>) result {
     
     [self closeConnectionWithResult:result];
 }

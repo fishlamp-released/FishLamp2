@@ -53,7 +53,7 @@
     FLAssertAreEqualWithComment(self.networkHost.hostRef, theHost, nil);
     FLAssertAreEqualWithComment(self.networkHost.hostInfoType, typeInfo, nil);
     
-    FLResult result = nil;
+    id result = nil;
     
     if(error && error->domain != 0 && error->error != 0) {
         result = FLCreateErrorFromStreamError(error);
@@ -83,15 +83,15 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     }
 }
 
-- (void) closeWithResult:(FLResult) result {
+- (void) closeWithResult:(id) result {
     [self cancelRunLoop];
     [self.finisher setFinishedWithResult:result];
     self.finisher = nil;
     self.networkHost = nil;
 }
 
-- (FLResult) resolveHostSynchronously:(FLNetworkHost*) host {
-    FLResult result = [[self startResolvingHost:host] waitUntilFinished];
+- (id<FLAsyncResult>) resolveHostSynchronously:(FLNetworkHost*) host {
+    id<FLAsyncResult> result = [[self startResolvingHost:host] waitUntilFinished];
     FLThrowIfError(result);
     return result;
 }

@@ -9,7 +9,7 @@
 #import "FLCommandLineProcessor.h"
 #import "FLStringUtils.h"
 #import "FLErrorDomainInfo.h"
-#import "FLResult.h"
+#import "FLAsyncResult.h"
 #import "NSString+Lists.h"
 #import "FLUsageToolTask.h"
 #import "FLHelpToolTask.h"

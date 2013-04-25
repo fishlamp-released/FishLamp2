@@ -120,7 +120,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
             [finisher setFinished];
         }
         @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
+            [finisher setFinishedWithError:ex.error];
         }
     });
 }                                 
@@ -138,7 +138,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
             [finisher setFinished];
         }
         @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
+            [finisher setFinishedWithError:ex.error];
         }
     });
 }
@@ -153,7 +153,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
             }
         }
         @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
+            [finisher setFinishedWithError:ex.error];
         }
     });
 }
@@ -196,7 +196,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
     FLThrowIfError(error);
 }
 
-- (FLResult) finishSync:(fl_finisher_block_t) block {
+- (id<FLAsyncResult>) finishSync:(fl_finisher_block_t) block {
     
     FLFinisher* finisher = [FLFinisher finisher];
     
@@ -207,7 +207,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
             block(finisher);
         }
         @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
+            [finisher setFinishedWithError:ex.error];
        }
     });
     
@@ -263,7 +263,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
         }
         @catch(NSException* ex) {
             if(!finisher.isFinished) {
-                [finisher setFinishedWithResult:ex.error];
+                [finisher setFinishedWithError:ex.error];
             }
         }
     });
@@ -271,7 +271,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return finisher;
 }                  
 
-- (FLResult) runSynchronously:(id<FLOperation>) operation {
+- (id<FLAsyncResult>) runSynchronously:(id<FLOperation>) operation {
     return [self finishSync:^(FLFinisher* finisher) {
         [operation performUntilFinished:finisher];
     }];
