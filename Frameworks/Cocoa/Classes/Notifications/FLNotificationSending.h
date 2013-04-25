@@ -1,17 +1,16 @@
+////
+////  FLNotifier.h
+////  FishLampCocoa
+////
+////  Created by Mike Fullerton on 3/15/13.
+////  Copyright (c) 2013 Mike Fullerton. All rights reserved.
+////
 //
-//  FLNotifier.h
-//  FishLampCocoa
+//#import <Foundation/Foundation.h>
+//#import <dispatch/dispatch.h>
+//#import "FishLampCore.h"
 //
-//  Created by Mike Fullerton on 3/15/13.
-//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
-//
-
-#import <Foundation/Foundation.h>
-#import <dispatch/dispatch.h>
-#import "FishLampCore.h"
-
 @interface NSObject (FLNotificationSending)
-
 
 - (BOOL) sendNotification:(SEL) selector  
                toListener:(id) listener;

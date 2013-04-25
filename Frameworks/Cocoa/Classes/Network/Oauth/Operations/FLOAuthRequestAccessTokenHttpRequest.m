@@ -85,7 +85,7 @@
  	[self setOAuthAuthorizationHeader:oauthHeader consumerKey:_app.consumerKey secret:secret];
 }
 
-- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+- (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
 
     FLOAuthSession* session = [FLOAuthSession oAuthSession];
     [FLUrlParameterParser parseData:httpResponse.responseData.data 
@@ -96,7 +96,7 @@
     return session;
 }
 
-//- (FLResult) performSynchronously {
+//- (id) performSynchronously {
 //
 //
 //    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];

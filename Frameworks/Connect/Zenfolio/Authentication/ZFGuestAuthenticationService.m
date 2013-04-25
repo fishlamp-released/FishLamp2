@@ -19,8 +19,10 @@
     FLHttpRequest* request = [ZFHttpRequestFactory authenticateVisitorHttpRequest];
     request.context = self.operationContext;
     
-    NSString* token = [request runSynchronously];
-    FLThrowIfError(token);
+    id<FLAsyncResult> result = [request runSynchronously];
+    FLThrowIfError(result);
+
+    NSString* token = result.returnedObject;
     
     userLogin.authTokenLastUpdateTimeValue = [NSDate timeIntervalSinceReferenceDate];
     userLogin.authToken = token;

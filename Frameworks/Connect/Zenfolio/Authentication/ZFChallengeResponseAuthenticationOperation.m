@@ -49,7 +49,7 @@
     return [ZFHttpRequestFactory authenticateRequest:encodedChallenge proof:encodedProof];
 }
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
     
     FLTrace(@"Authenticating %@:", self.user.credentials.userName );
 
@@ -72,18 +72,23 @@
 
     challengeRequest.disableAuthenticator = YES;
     
-    FLResult challengeResponse = [self runChildSynchronously:challengeRequest];
+    id<FLAsyncResult> challengeResponse = [self runChildSynchronously:challengeRequest];
     FLThrowIfError(challengeResponse);
+    
+    ZFAuthChallenge* challenge = challengeResponse.returnedObject;
    
-    FLHttpRequest* authenticateRequest = [self authenticateRequestWithAuthChallenge:challengeResponse];
+    FLHttpRequest* authenticateRequest = [self authenticateRequestWithAuthChallenge:challenge];
+    
     authenticateRequest.disableAuthenticator = YES;
 
 #if OSX
     authenticateRequest.streamSecurity = FLNetworkStreamSecuritySSL;
 #endif
     
-    FLResult token = [self runChildSynchronously:authenticateRequest];
-    FLThrowIfError(token);
+    id<FLAsyncResult> result = [self runChildSynchronously:authenticateRequest];
+    FLThrowIfError(result);
+    
+    NSString* token = result.returnedObject;
     
     if(FLStringIsNotEmpty(token)) {
         self.user.credentials.authToken = token;

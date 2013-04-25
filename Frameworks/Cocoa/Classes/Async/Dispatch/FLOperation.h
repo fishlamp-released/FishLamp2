@@ -15,14 +15,14 @@
 @protocol FLOperation <NSObject>
 @property (readonly, strong) id identifier;
 - (void) performUntilFinished:(FLFinisher*) finisher;
-- (void) operationDidFinishWithResult:(FLResult) result;
+- (void) operationDidFinishWithResult:(id<FLAsyncResult>) result;
 - (void) requestCancel;
 
 @end
 
 @protocol FLOperationDelegate <NSObject>
 @optional
-- (void) operationDidFinish:(id) operation withResult:(FLResult) result;
+- (void) operationDidFinish:(id) operation withResult:(id<FLAsyncResult>) result;
 @end
 
 @interface FLOperation : FLObservable<FLOperation> {
@@ -34,14 +34,14 @@
 	id _identifier;
     BOOL _cancelled;
     __unsafe_unretained id _delegate;
-    SEL _finishedSelector;
+//    SEL _finishedSelector;
     NSInteger _retryCount;
 }
 @property (readwrite, assign) NSInteger retryCount;
 
 // finished delegate
 @property (readwrite, nonatomic, assign) id delegate;
-@property (readwrite, nonatomic, assign) SEL finishedSelector; // default = FLOperationDefaultFinishedSelector
+//@property (readwrite, nonatomic, assign) SEL finishedSelector; // default = FLOperationDefaultFinishedSelector
 
 // object storage - this can be anything as appropriate for subclass
 @property (readwrite, strong, nonatomic) id storageService;
@@ -63,9 +63,9 @@
 - (void) requestCancel;
 
 // run synchronously
-- (FLResult) runSynchronously;
+- (id<FLAsyncResult>) runSynchronously;
 
-- (FLResult) runSynchronouslyInContext:(FLOperationContext*) context;
+- (id<FLAsyncResult>) runSynchronouslyInContext:(FLOperationContext*) context;
 
 // start async. will run in asyncQueue. 
 - (FLFinisher*) runAsynchronously;
@@ -77,7 +77,7 @@
 
 // these call willRunInParent on the child before operation
 // is run or started.
-- (FLResult) runChildSynchronously:(FLOperation*) operation;
+- (id<FLAsyncResult>) runChildSynchronously:(FLOperation*) operation;
 
 - (FLFinisher*) runChildAsynchronously:(FLOperation*) operation;
 
@@ -97,12 +97,16 @@
 // if the child operation doesn't have a queue or a context,
 // it will inherit it from it's parent.
 - (void) willRunInParent:(id) parent;
-- (void) didFinishInParent:(id) parent withResult:(FLResult) result;
+- (void) didFinishInParent:(id) parent withResult:(id<FLAsyncResult>) result;
 
 - (void) willStartChildOperation:(id) childOperation;
-- (void) didFinishChildOperation:(id) childOperation withResult:(FLResult) result;
+- (void) didFinishChildOperation:(id) childOperation withResult:(id<FLAsyncResult>) result;
 
 - (void) abortIfCancelled; // throws cancelError
+
+
+- (void) sendStartMessagesWithInitialData:(id) initialData;
+- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result;
 
 @end
 

@@ -12,7 +12,7 @@
 #import "FLSelectorPerforming.h"
 #import "FLDispatchQueue.h"
 
-#import "FLTrace.h"
+//#import "FLTrace.h"
 
 @interface FLAsyncOperationQueue ()
 @property (readwrite, strong) FLFifoAsyncQueue* fifoQueue; 
@@ -22,6 +22,11 @@
 
 - (void) processQueue;
 @end
+
+@interface FLAsyncOperation (FLAsyncOperationQueue)
+@property (readwrite, strong) id threadID;
+@end
+
 
 @implementation FLAsyncOperationQueue
 
@@ -61,8 +66,8 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
         _fifoQueue = [[FLFifoAsyncQueue alloc] init];
         _activeQueue = [[NSMutableArray alloc] init];
         
-        self.willStartOperationSelectorForDelegate = @selector(asyncOperationQueueOperation:willStartOperation:);
-        self.didFinishOperationSelectorForDelegate = @selector(asyncOperationQueueOperation:didFinishOperation:withResult:); 
+//        self.willStartOperationSelectorForDelegate = @selector(asyncOperationQueueOperation:willStartOperation:);
+//        self.didFinishOperationSelectorForDelegate = @selector(asyncOperationQueueOperation:didFinishOperation:withResult:); 
 	}
 	return self;
 }
@@ -75,33 +80,16 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
     return _operationFactory ? _operationFactory(object) : (FLOperation*) object;
 }
 
-- (void) processFinishedOperation:(FLOperation*) operation result:(FLResult) result {
-
-    FLTrace(@"finished operation: %@ withResult: %@", operation, [result error] ? result : @"OK");
-    [_activeQueue removeObject:operation];
-    self.processedObjectCount++;
-    
-    [self didFinishOperationInAsyncQueue:operation withResult:result];
-    [self processQueue];
+- (void) willStartOperation:(id) operation withQueuedObject:(id) object {
+    if([self.delegate respondsToSelector:@selector(asyncOperationQueue:willStartOperation:withQueuedObject:)]) {
+        [self.delegate asyncOperationQueue:self willStartOperation:operation withQueuedObject:object];
+    }
 }
 
-- (void) willStartOperationInAsyncQueue:(id) operation {
-    FLPerformSelector2(self.delegate, self.willStartOperationSelectorForDelegate, self, operation);
-}
-
-- (void) didFinishOperationInAsyncQueue:(id) operation withResult:(FLResult) result {
-    FLPerformSelector3(self.delegate, self.didFinishOperationSelectorForDelegate, self, operation, result);
-}
-
-
-- (void) operationDidFinish:(id) operation withResult:(id)result {
-
-    FLDispatchSelectorAsync2(self.fifoQueue, 
-                             self, 
-                             @selector(processFinishedOperation:result:), 
-                             operation, 
-                             result, 
-                             nil);
+- (void) didFinishOperation:(id) operation withQueuedObject:(id) object withResult:(id<FLAsyncResult>) result {
+    if([self.delegate respondsToSelector:@selector(asyncOperationQueue:didFinishOperation:withQueuedObject:withResult:)]) {
+        [self.delegate asyncOperationQueue:self didFinishOperation:operation withQueuedObject:object withResult:result];
+    }
 }
 
 - (void) didProcessAllObjectsInAsyncQueue {
@@ -126,6 +114,10 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
     FLDispatchSelectorAsync(self.fifoQueue, self, @selector(processCancelRequest), nil);
 }
 
+- (NSString*) queueName {
+    return @"";
+}
+
 - (void) processQueue {
     if(self.processing) {
         NSInteger max = self.maxConcurrentOperations;
@@ -140,10 +132,24 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
             FLOperation* operation = [self createOperationForObject:object];
             operation.delegate = self;
             [_activeQueue addObject:operation];
+            
+    //        operation.threadID = [NSString stringWithFormat:@"%@%ld", self.queueName, _activeQueue.count]
 
-            [self willStartOperationInAsyncQueue:operation];
+            [self willStartOperation:operation withQueuedObject:object];
+            
             FLTrace(@"starting operation: %@", operation);
-            [self runChildAsynchronously:operation];
+            [self runChildAsynchronously:operation completion:^(id<FLAsyncResult> result) {
+                FLTrace(@"finished operation: %@ withResult: %@", operation, [result error] ? result : @"OK");
+
+                FLDispatchAsync(self.fifoQueue, ^{
+                    [_activeQueue removeObject:operation];
+                    self.processedObjectCount++;
+                
+                    [self didFinishOperation:operation withQueuedObject:object withResult:result];
+                    [self processQueue];
+                },
+                nil);
+            }];
         }
         
         if(_activeQueue.count == 0 && _objectQueue.count == 0) {

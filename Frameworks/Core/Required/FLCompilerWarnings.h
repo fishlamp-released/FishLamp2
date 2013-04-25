@@ -103,6 +103,7 @@
 
 #pragma GCC diagnostic ignored "-Wconversion"
 
+#pragma GCC diagnostic ignored "-Wfloat-equal"
 
 #if __MAC_10_8
     // this basically makes default: in case cause an error. I don't understand this one at all.

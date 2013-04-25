@@ -27,8 +27,8 @@
 	return self;
 }
 
-- (FLResult) performSynchronously {
-    FLResult result = FLSuccessfullResult;
+- (id) performSynchronously {
+    id<FLAsyncResult> result = FLSuccessfullResult;
 	
     switch(_operationType)
     {

@@ -20,7 +20,7 @@
 	return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
     return FLSuccessfullResult;
 }
 
@@ -38,7 +38,7 @@
     [finisher setFinishedWithResult:[self runSynchronously]];
 }
 
-- (FLResult) runSynchronously {
+- (id<FLAsyncResult>) runSynchronously {
 
     id result = nil;
 
@@ -54,13 +54,17 @@
         result = [NSError cancelError];
     }
     
-    [self operationDidFinishWithResult:result];
+    if(!result) {
+        result = FLFailedResult;
+    }
+    
+    [self operationDidFinishWithResult:[result asAsyncResult]];
     return result;
 }
 @end
 
 @implementation FLBatchSynchronousOperation
-- (void) sendIterationObservation:(FLResult) result {
+- (void) sendIterationObservation:(id<FLAsyncResult>) result {
     dispatch_async(dispatch_get_main_queue(), ^{
         FLPerformSelector1(_batchObserver, _batchAction, result);
     });
@@ -97,7 +101,7 @@
 //}
 //
 //- (void) operationDidFinish:(FLSynchronousOperation*) operation 
-//                 withResult:(FLResult) withResult {
+//                 withResult:(id<FLAsyncResult>) withResult {
 //    if(_didFinishBlock) {
 //        _didFinishBlock(withResult);
 //    }

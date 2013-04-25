@@ -121,7 +121,7 @@
 //
 //    FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoSetHttpRequest:photoSet.Id level:kZenfolioInformatonLevelFull includePhotos:YES];
 //
-//    FLResult latestPhotoSet = [self runChildSynchronously:request];
+//    id<FLAsyncResult> latestPhotoSet = [self runChildSynchronously:request];
 //    
 //    FLThrowIfError(latestPhotoSet);
 //    
@@ -134,7 +134,7 @@
 //    [self updateProgress:YES];
 //}
 //
-//- (FLResult) downloadPhotoToFile:(ZFPhoto*) photo 
+//- (id<FLAsyncResult>) downloadPhotoToFile:(ZFPhoto*) photo 
 //                        filePath:(NSString*) filePath {
 //
 //    FLHttpRequest* request = 
@@ -186,7 +186,7 @@
 //
 //    NSTimeInterval downloadStart = [NSDate timeIntervalSinceReferenceDate];
 //    
-//    FLResult result = [self downloadPhotoToFile:photo filePath:filePath];
+//    id<FLAsyncResult> result = [self downloadPhotoToFile:photo filePath:filePath];
 //    
 //    NSTimeInterval elapsedTime = ([NSDate timeIntervalSinceReferenceDate] - downloadStart);
 //
@@ -383,7 +383,7 @@
 //
 //
 //
-//- (FLResult) performSynchronously {
+//- (id) performSynchronously {
 //    self.rootGroup = [self.objectStorage readObject:[ZFGroup group:[NSNumber numberWithInt:_downloadSpec.rootGroupID]]]; 
 //    FLAssertNotNil(_rootGroup);
 //

@@ -16,7 +16,7 @@
 + (id) synchronousOperation;
 
 /// @brief Required override point
-- (FLResult) performSynchronously;
+- (id) performSynchronously;
 
 // this will raise an abort exception if runState has been signaled as finished.
 // only for subclasses to call while executing operation.
@@ -35,6 +35,6 @@
 
 
 // for subclassses
-- (void) sendIterationObservation:(FLResult) result;
+- (void) sendIterationObservation:(id<FLAsyncResult>) result;
 
 @end

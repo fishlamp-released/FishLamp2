@@ -16,7 +16,7 @@
 
 @implementation ZFLoadSyncedElementsFromCacheOperation
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 
 #if REFACTOR    
     NSArray* list = [[context syncService] loadAllSyncInfoObjectsFromDatabase];

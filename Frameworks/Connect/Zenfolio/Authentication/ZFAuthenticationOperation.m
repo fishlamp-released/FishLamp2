@@ -27,17 +27,17 @@
     return FLAutorelease([[[self class] alloc] initWithHttpUser:user]);
 }
 
-- (FLResult) sendAuthenticatedRequest:(FLHttpRequest*) request 
+- (id) sendAuthenticatedRequest:(FLHttpRequest*) request 
                             userLogin:(FLUserLogin*) userLogin {
 
     request.streamSecurity = FLNetworkStreamSecuritySSL;
     request.disableAuthenticator = YES;
     [request setAuthenticationToken:userLogin.authToken];
     
-    FLResult result = [self runChildSynchronously:request];
+    id<FLAsyncResult> result = [self runChildSynchronously:request];
     FLThrowIfError(result);
     
-    return result;
+    return [result returnedObject];
 }
 
 #if FL_MRC
@@ -47,7 +47,7 @@
 }
 #endif
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 
     FLUserLogin* authenticatedUser = self.user.credentials;
 
@@ -92,6 +92,6 @@
     
     FLLog(@"Authentication completed");
     
-    return authenticatedUser;
+    return [authenticatedUser asAsyncResult];
 }
 @end

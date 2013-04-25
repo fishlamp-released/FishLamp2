@@ -14,11 +14,10 @@
 #import "ZFWebApi.h"
 #import "ZFDownloadSpec.h"
 
-@interface ZFBatchPhotoDownloader : FLAsyncOperationQueue {
+@interface ZFBatchPhotoDownloader : FLAsyncOperation {
 @private
     ZFBatchDownloadSpec* _downloadSpec;
     ZFTransferState* _transferState;
-
     NSMutableArray* _downloadQueue;
     
     NSTimeInterval _lastProgress;
@@ -34,11 +33,13 @@
 @end
 
 
+
+
 //@protocol ZFBatchPhotoDownloaderDelegate <NSObject>
 //- (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
 //             didDownloadPhotoSet:(ZFPhotoSet*) photoSet;
 //             
-//- (void) didDownloadPhotoSets:(FLResult) result;
+//- (void) didDownloadPhotoSets:(id<FLAsyncResult>) result;
 //             
 //@end
 

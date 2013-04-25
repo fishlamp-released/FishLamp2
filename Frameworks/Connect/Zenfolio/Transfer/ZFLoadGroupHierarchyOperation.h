@@ -9,6 +9,7 @@
 #import "FLAsyncOperation.h"
 #import "ZFPhotoSet.h"
 #import "FLUserLogin.h"
+#import "ZFAsyncObserving.h"
 
 @interface ZFLoadGroupHierarchyOperation : FLAsyncOperation {
 @private    
@@ -19,7 +20,10 @@
 
 @end
 
-//@protocol  ZFSyncGroupHierarchyObserver <ZFDownloadPhotoSetsOperationObserver>
+@protocol  ZFLoadGroupHierarchyOperation <NSObject>
+@optional
+- (void) loadGroupHierarchyOperation:(ZFLoadGroupHierarchyOperation*) operation didLoadRootGroup:(ZFGroup*) group;
+@end
 //@optional
 //- (void) loadGroupHierarchyOperation:(ZFLoadGroupHierarchyOperation*) operation willDownloadGroupListForUser:(FLUserLogin*) login;
 //

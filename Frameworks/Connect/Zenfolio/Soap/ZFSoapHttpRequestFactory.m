@@ -57,7 +57,7 @@ ConcreteSubclass(ZFLoadGroupSoapRequest)
 
 @implementation ZFSoapHttpRequestFactory
 
-+ (FLResult) zenfolioResultFromSoapResponse:(FLParsedItem*) parsedSoap 
++ (id<FLAsyncResult>) zenfolioResultFromSoapResponse:(FLParsedItem*) parsedSoap 
                                     element:(FLPropertyDescriber*) element {
     FLAssertNotNil(parsedSoap);
     FLAssertNotNil(element);
@@ -93,7 +93,7 @@ ConcreteSubclass(ZFLoadGroupSoapRequest)
     ZFSoapHttpRequest* soapHttpRequest = [subclass soapHttpRequestWithGeneratedObject:operationDescriptor 
                                                                                     serverInfo:s_soapServer];
     
-    soapHttpRequest.handleSoapResponseBlock = (FLResult) ^(FLParsedItem* item) {
+    soapHttpRequest.handleSoapResponseBlock = ^(FLParsedItem* item) {
         return [self zenfolioResultFromSoapResponse:item element:element];
     };
     

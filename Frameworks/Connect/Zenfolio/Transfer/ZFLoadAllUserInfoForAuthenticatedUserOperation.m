@@ -13,14 +13,14 @@
 #if REFACTOR
 @implementation ZFLoadAllUserInfoForAuthenticatedUserOperation
 
-- (FLResult) runSubOperations {
+- (id<FLAsyncResult>) runSubOperations {
 
     FLHttpRequest* loadPrivate = [ZFHttpRequestFactory loadPrivateProfileHttpRequest];
-    FLResult privateUser = [self runChildSynchronously:loadPrivate];
+    id<FLAsyncResult> privateUser = [self runChildSynchronously:loadPrivate];
     FLThrowIfError(privateUser);
     
     FLHttpRequest* loadPublic = [ZFHttpRequestFactory loadPublicProfileHttpRequest:privateUser.LoginName];
-    FLREsult publicUser = [self runChildSynchronously:loadPublic];
+    id<FLAsyncResult> publicUser = [self runChildSynchronously:loadPublic];
     FLThrowIfError(publicUser);
     
     FLMergeObjects(privateUser, publicUser, FLMergeModePreserveDestination);

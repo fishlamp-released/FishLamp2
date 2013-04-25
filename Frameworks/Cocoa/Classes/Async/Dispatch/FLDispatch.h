@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FLResult.h"
+#import "FLAsyncResult.h"
 #import "FLFinisher.h"
 #import "FLAsyncQueue.h"
 #import "FLOperationContext.h"

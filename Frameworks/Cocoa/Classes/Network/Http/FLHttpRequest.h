@@ -99,13 +99,13 @@ typedef struct {
 - (void) willAuthenticate;
 - (void) didAuthenticate;
 - (void) didReadBytes:(unsigned long long) amount;
-- (void) requestDidFinishWithResult:(id) result;
+- (void) requestDidFinishWithResult:(id<FLAsyncResult>) result;
 
 /// did receive the response. If there was an error, this will
 /// not be called.
 /// if you want to convert the httpRespose.responseData into something
 /// else do it here and return it from from your override
-- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse;
+- (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse;
 
 - (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse;
 
@@ -134,10 +134,12 @@ typedef struct {
 - (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
-    didCloseWithResult:(FLResult) result;
+    didCloseWithResult:(id<FLAsyncResult>) result;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didWriteBytes:(NSNumber*) amount;
 
 @end
+
+

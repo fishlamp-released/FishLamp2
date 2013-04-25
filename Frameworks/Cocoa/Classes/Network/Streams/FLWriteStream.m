@@ -117,7 +117,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
         buffer += amt;
     }
     
-    [self sendNotification:@selector(networkStream:didWriteBytes:) withObject:self withObject:[NSNumber numberWithUnsignedLong:length]];
+    FLPerformSelector2(self.delegate, @selector(networkStream:didWriteBytes:), self, [NSNumber numberWithUnsignedLong:length]);
 }
 
 - (void) writeData:(NSData*) data {

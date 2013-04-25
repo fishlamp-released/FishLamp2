@@ -33,20 +33,37 @@
     return FLAutorelease([[[self class] alloc] initWithCredentials:userLogin]);
 }
 
-- (void) startAsyncOperation {
+- (id) startAsyncOperation {
 
     FLAssertNotNil(self.storageService);
 
     FLHttpRequest* request = [ZFHttpRequestFactory loadGroupHierarchyHttpRequest:_userLogin.userName];
     FLAssertNotNil(request);
 
-    [self runChildAsynchronously:request completion:^(FLResult result) {
+    [self runChildAsynchronously:request completion:^(id<FLAsyncResult> result) {
         if(![result error]) {
-            [self.storageService writeObject:result];
+            ZFGroup* group = result.returnedObject;
+            [self.storageService writeObject:group];
         }
         
         [self setFinishedWithResult:result];
     }];
+    
+    return nil;
 }
+
+- (void) sendStartMessagesWithInitialData:(id) initialData {
+    [self sendObservation:@selector(willDownloadRootGroup)];
+}
+
+- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
+    FLPerformSelector2(self.delegate, 
+        @selector(loadGroupHierarchyOperation:didLoadRootGroup:), 
+        self, 
+        result);
+    [self sendObservation:@selector(didDownloadRootGroupWithResult:) withObject:result];
+}
+
+
 
 @end

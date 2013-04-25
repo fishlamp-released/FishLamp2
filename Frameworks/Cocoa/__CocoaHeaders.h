@@ -22,7 +22,7 @@
 #import "FLFinisher.h"
 #import "FLOperation.h"
 #import "FLOperationContext.h"
-#import "FLResult.h"
+#import "FLAsyncResult.h"
 
 // Classes/Async
 #import "FLArgumentList.h"

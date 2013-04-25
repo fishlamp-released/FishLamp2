@@ -49,7 +49,7 @@
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleReadToEndOfFileCompletionNotification object:[notification object]];
 //}
 //
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 
 #if __MAC_10_8
     NSTask* task = [[NSTask alloc] init];

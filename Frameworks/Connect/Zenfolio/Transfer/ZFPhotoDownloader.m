@@ -9,6 +9,9 @@
 #import "ZFPhotoDownloader.h"
 #import "FLHttpRequest.h"
 #import "FLHiddenFolderFileSink.h"
+#import "ZFAsyncObserving.h"
+
+#import "FLObservable.h"
 
 @interface ZFPhotoDownloader ()
 @property (readwrite, strong) ZFDownloadSpec* downloadSpec; 
@@ -20,7 +23,7 @@
 
 - (id) initWithDownloadSpec:(ZFDownloadSpec*) downloadSpec {	
     FLAssertNotNil(downloadSpec);
-	self = [super initWithRequestURL:[downloadSpec.photo urlForImageWithSize:downloadSpec.mediaType]];
+	self = [super init];
 	if(self) {
 		self.downloadSpec = downloadSpec;
 	}
@@ -31,29 +34,45 @@
     return FLAutorelease([[[self class] alloc] initWithDownloadSpec:downloadSpec]);
 }
 
-- (void) requestDidFinishWithResult:(id) result {
-    [super requestDidFinishWithResult:result];
-    if(![result error]) {
-        FLPerformSelector1(self.delegate, @selector(photoDownloaderDidDownloadPhoto:), self);
-    }
+- (void) httpRequest:(FLHttpRequest*) httpRequest didWriteBytes:(NSNumber*) amount {
+ 
+    [self sendObservation:@selector(didDownloadBytes:forPhoto:) withObject:amount withObject:self.downloadSpec];
 }
 
-- (void) startAsyncOperation {
+- (id) startAsyncOperation {
     
     NSString* filePath = _downloadSpec.fullPathToFile;
+
+    [self sendObservation:@selector(willDownloadPhoto:) withObject:_downloadSpec];
     
     if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        FLPerformSelector1(self.delegate, @selector(photoDownloaderDidSkipPhoto:), self);
-        [self setFinished];
+        [self setFinishedWithReturnedObject:_downloadSpec hint:ZFPhotoDownloaderHintPhotoWasSkipped];
     }
     else {
 
+        FLHttpRequest* request = [FLHttpRequest httpRequest:[_downloadSpec.photo urlForImageWithSize:_downloadSpec.mediaType]];
 
     // TODO: abstract which sink is used    
-        self.inputSink = [FLHiddenFolderFileSink hiddenFolderFileSink:filePath
+        request.inputSink = [FLHiddenFolderFileSink hiddenFolderFileSink:filePath
                                                               folderPath:self.downloadSpec.tempFolder]; 
 
-        [super startAsyncOperation];
+        [self runChildAsynchronously:request completion:^(id<FLAsyncResult> result) {
+            [self setFinishedWithResult:result];
+        }];
     }
+    
+    return _downloadSpec;
 }
+
+- (void) sendStartMessagesWithInitialData:(id) initialData {
+    [self sendObservation:@selector(willDownloadPhoto:) withObject:_downloadSpec];
+}
+
+- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
+    [self sendObservation:@selector(didDownloadPhotoWithResult:) withObject:result];
+}
+
+
+
+
 @end

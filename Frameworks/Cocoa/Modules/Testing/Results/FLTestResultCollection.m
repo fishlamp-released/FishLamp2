@@ -82,7 +82,7 @@
 }
 
 - (id) testResultForKey:(id) key {
-    FLResult result = [_results objectForKey:key];
+    id<FLAsyncResult> result = [_results objectForKey:key];
     FLConfirmIsNotNilWithComment(result, @"can't find result for %@", [key description]);
     return result;
 }
@@ -90,7 +90,7 @@
 - (NSArray*) failedResults {
     NSMutableArray* failedCases = nil;
 
-    for(FLResult result in _results.objectEnumerator) {
+    for(id result in _results.objectEnumerator) {
         if(![result passed]) {
             if(!failedCases) {
                 failedCases = [NSMutableArray array];

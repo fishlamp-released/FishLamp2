@@ -37,7 +37,7 @@
 //    return photoSet;
 //}
 //
-//- (FLResult) runSubOperations {
+//- (id<FLAsyncResult>) runSubOperations {
 //
 //    FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoSetHttpRequest:[NSNumber numberWithInt:_photoSetID]];
 //

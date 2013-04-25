@@ -34,7 +34,7 @@ static NSNumberFormatter* s_formatter = nil;
 	FLSuperDealloc();
 }
 
-//- (FLResult) performSynchronously {
+//- (id) performSynchronously {
 //    if(FLStringIsEmpty(_photo.uploadGallery.uploadUrl)) {
 //        FLThrowErrorCodeWithComment(ZFErrorDomain, ZFErrorCodeUploadPhotoSetNotFound, @"PhotoSet not found: %@", _photo.uploadGallery.name);
 //    }

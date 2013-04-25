@@ -144,7 +144,7 @@
     return nil;
 }
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 
     ZFPhotoSet* photoSet = [self _loadLatestPhotoSet];
 #if REFACTOR    
@@ -167,7 +167,7 @@
     
     [[self.context cacheService] savePhotoSet:photoSet];
 #endif
-    return photoSet;
+    return [photoSet asAsyncResult];
 }
 
 @end

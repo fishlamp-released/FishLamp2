@@ -58,8 +58,12 @@
 }
 #endif
 
-- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
-    FLStorableImage* image = [super resultFromHttpResponse:httpResponse];
+- (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+    
+    id<FLAsyncResult> result = [super resultFromHttpResponse:httpResponse];
+    FLThrowIfError(result);
+    
+    FLStorableImage* image = result.returnedObject;
     
     image.imageProperties.imageVersion = self.photo.Sequence;
     
@@ -67,7 +71,7 @@
         [self.cache writeObject:image];
     }
     
-    return image;
+    return result;
 }
 
 - (void) performUntilFinished:(FLFinisher*) finisher {
@@ -78,7 +82,7 @@
             [super performUntilFinished:finisher];
         }
         else {
-            [finisher setFinishedWithResult:image];
+            [finisher setFinishedWithReturnedObject:image];
         }
     }
     else {

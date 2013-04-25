@@ -9,6 +9,7 @@
 #import "ZFBatchPhotoSetDownloader.h"
 #import "FLAsyncOperationQueue.h"
 #import "ZFPhotoSetDownloader.h"
+#import "ZFAsyncObserving.h"
 
 @implementation ZFBatchPhotoSetDownloader
 
@@ -27,6 +28,16 @@
     }
     return self;
 }
+
+- (void) sendStartMessagesWithInitialData:(id) initialData {
+    [self sendObservation:@selector(willDownloadPhotoSetBatch)];
+}
+
+- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
+    [self sendObservation:@selector(didDownloadPhotoSetBatchWithResult:) withObject:result];
+}
+
+
 
 #if FL_MRC
 - (void) dealloc {
@@ -55,25 +66,42 @@
     }    
 }
 
-- (void) willStartOperationInAsyncQueue:(id) operation {
-
-    [super willStartOperationInAsyncQueue:operation];
+- (void) willStartOperation:(id)operation withQueuedObject:(id)object  {
+    [super willStartOperation:operation withQueuedObject:object];
     
     FLPerformSelector2(self.delegate, @selector(batchPhotoSetDownloader:willDownloadPhotoSet:), self, nil);
 }
 
-- (void) didFinishOperationInAsyncQueue:(FLOperation*) operation withResult:(FLResult) result {
-
-    [super didFinishOperationInAsyncQueue:operation withResult:result];
+- (void) didFinishOperation:(id)operation withQueuedObject:(id)object withResult:(id<FLAsyncResult>)result {
+    [super didFinishOperation:operation withQueuedObject:object withResult:result];
     
     if(![result error]) {
         if(_group) {
-            [_group replaceElement:result];
+            [_group replaceElement:result.returnedObject];
         }
-        
-        FLPerformSelector2(self.delegate, @selector(batchPhotoSetDownloader:didDownloadPhotoSet:), self, result);
     }
 }
+
+//- (void) willStartOperationInAsyncQueue:(id) operation {
+//
+//    [super willStartOperationInAsyncQueue:operation];
+//    
+//    FLPerformSelector2(self.delegate, @selector(batchPhotoSetDownloader:willDownloadPhotoSet:), self, nil);
+//    
+//    [self sendObservation:@selector(willDownloadPhotoSet:) withObject:[
+//}
+
+//- (void) didFinishOperationInAsyncQueue:(FLOperation*) operation withResult:(id<FLAsyncResult>) result {
+//
+//    [super didFinishOperationInAsyncQueue:operation withResult:result];
+//    
+//    if(![result error]) {
+//        if(_group) {
+//            [_group replaceElement:result.returnedObject];
+//        }
+//    }
+//}
+
 
 - (FLOperation*) createOperationForObject:(id) object {
     return [ZFPhotoSetDownloader downloadPhotoSet:object withPhotos:_withPhotos];
@@ -90,6 +118,5 @@
     
     [self startProcessing];
 }
-
 
 @end

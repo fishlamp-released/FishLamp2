@@ -128,7 +128,7 @@
 }
 
 
-- (FLResult) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+- (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
     NSData* data = [httpResponse.responseData data];
     FLAssertNotNil(data);
 

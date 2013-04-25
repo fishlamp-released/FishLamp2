@@ -10,8 +10,18 @@
 #import <dispatch/dispatch.h>
 #import "FishLampCore.h"
 
-@interface NSObject (FLObservationSending)
+@interface NSObject (FLObservationReceiving)
+- (BOOL) receiveObservation:(SEL) messageSelector;
 
+- (BOOL) receiveObservation:(SEL) messageSelector withObject:(id) object;
+
+- (BOOL) receiveObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
+
+- (BOOL) receiveObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
+
+@end
+
+@interface NSObject (FLObservationSending)
 
 - (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver;
 
@@ -19,12 +29,7 @@
 
 - (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object1 withObject:(id) object2;
 
-- (BOOL) receiveObservation:(SEL) messageSelector fromSender:(id) sender;
-
-- (BOOL) receiveObservation:(SEL) messageSelector fromSender:(id) sender withObject:(id) object;
-
-- (BOOL) receiveObservation:(SEL) messageSelector fromSender:(id) sender withObject:(id) object1 withObject:(id) object2;
-
+- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
 
 - (id) asyncObserver;
 
@@ -36,14 +41,7 @@
 
 - (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
 
-
-
-// sending bottleneck
-- (BOOL) sendObservation:(SEL) selector toObserver:(id) observer argCount:(int) argCount withObject:(id) object1 withObject:(id) object2;
-
-- (BOOL) receiveObservation:(SEL) selector argCount:(int) argCount fromSender:(id) fromSender  withObject:(id) object1 withObject:(id) object2;
-
-
+- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
 
 @end
 

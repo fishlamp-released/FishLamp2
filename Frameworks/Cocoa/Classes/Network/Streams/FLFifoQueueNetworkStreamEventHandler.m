@@ -66,7 +66,7 @@
 
 - (void) queueBlock:(dispatch_block_t) block {
     FLRetain(self.stream);
-    [self.asyncQueue queueBlock:block completion:^(FLResult result) {
+    [self.asyncQueue queueBlock:block completion:^(id<FLAsyncResult> result) {
         FLAutorelease(self.stream);
     }];
 }

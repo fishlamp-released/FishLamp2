@@ -33,7 +33,7 @@
 //}
 //#endif
 //
-//- (FLResult) performSynchronously {
+//- (id) performSynchronously {
 //    
 //    NSMutableArray* outputList = [NSMutableArray array];
 //    for(NSNumber* idObject in _groupList) {

@@ -53,7 +53,7 @@
     return YES;
 }
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 
     if([self shouldExecuteTask] && (!self.delegate || [self.delegate lengthyTaskShouldBegin:self])) {
         [self prepareTask];

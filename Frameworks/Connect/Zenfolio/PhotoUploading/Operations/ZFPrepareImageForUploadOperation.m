@@ -98,7 +98,7 @@ FIXME("needs to be abstracted for mac, etc..")
 	return imageFile;
 }
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 
 // FIXME
 

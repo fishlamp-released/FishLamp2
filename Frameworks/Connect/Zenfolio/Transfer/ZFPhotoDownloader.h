@@ -8,9 +8,14 @@
 
 #import "FLAsyncOperation.h"
 #import "ZFDownloadSpec.h"
-#import "FLHttpRequest.h"
+#import "FLHttpOperation.h"
 
-@interface ZFPhotoDownloader : FLHttpRequest {
+typedef enum {
+    ZFPhotoDownloaderHintPhotoWasDownloaded,
+    ZFPhotoDownloaderHintPhotoWasSkipped
+} ZFPhotoDownloaderHint;
+
+@interface ZFPhotoDownloader : FLAsyncOperation {
 @private
     ZFDownloadSpec* _downloadSpec;
 }
@@ -18,8 +23,3 @@
 + (id) photoDownloader:(ZFDownloadSpec*) downloadSpec;
 @end
 
-@protocol FLPhotoDownloaderDelegate <FLHttpRequestDelegate>
-@optional
-- (void) photoDownloaderDidSkipPhoto:(ZFPhotoDownloader*) downloader;
-- (void) photoDownloaderDidDownloadPhoto:(ZFPhotoDownloader*) downloader;
-@end

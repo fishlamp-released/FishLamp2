@@ -224,7 +224,7 @@ void FLAtomicAddServiceToService(__strong id* ivar, FLService* newService, FLSer
 //    [finisher setFinished];
 //}
 //
-//- (void) serviceDidOpenWithResult:(FLResult) result {
+//- (void) serviceDidOpenWithResult:(id<FLAsyncResult>) result {
 //}
 //
 //- (void) serviceWillClose:(FLFinisher*) finisher {
@@ -232,14 +232,14 @@ void FLAtomicAddServiceToService(__strong id* ivar, FLService* newService, FLSer
 //    [finisher setFinished];
 //}
 //
-//- (void) serviceDidCloseWithResult:(FLResult) result {
+//- (void) serviceDidCloseWithResult:(id<FLAsyncResult>) result {
 //}
 //
 //- (FLFinisher*) openService:(fl_result_block_t) completion {
 //    
 //    FLFinisher* finisher = [FLFinisher finisher:completion];
 //    
-//    FLFinisher* openFinisher = [FLFinisher finisher:^(FLResult result){
+//    FLFinisher* openFinisher = [FLFinisher finisher:^(id<FLAsyncResult> result){
 //        [self serviceDidOpenWithResult:result];
 //        [finisher setFinishedWithResult:result];
 //    }];
@@ -253,7 +253,7 @@ void FLAtomicAddServiceToService(__strong id* ivar, FLService* newService, FLSer
 //
 //    FLFinisher* finisher = [FLFinisher finisher:completion];
 //    
-//    FLFinisher* closeFinisher = [FLFinisher finisher:^(FLResult result){
+//    FLFinisher* closeFinisher = [FLFinisher finisher:^(id<FLAsyncResult> result){
 //        [self serviceDidCloseWithResult:result];
 //        [finisher setFinishedWithResult:result];
 //    }];

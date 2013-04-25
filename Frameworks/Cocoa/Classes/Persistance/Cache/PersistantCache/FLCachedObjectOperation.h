@@ -8,14 +8,14 @@
 
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
-#import "FLResult.h"
+#import "FLAsyncResult.h"
 #import "FLDatabase.h"
 #import "FLSynchronousOperation.h"
 
 @protocol FLCacheObjectOperationSubclass <NSObject>
 - (id) loadObjectFromDatabase;
 - (void) saveObjectToDatabase:(id) object;
-- (FLResult) runSubOperations;
+- (id<FLAsyncResult>) runSubOperations;
 @end
 
 @interface FLCachedObjectOperation : FLSynchronousOperation {

@@ -23,7 +23,7 @@
 
 @implementation ZFBITSCreateSessionHttpRequest 
 
-//- (FLResult) runHttpRequestWithInput:(id) input {
+//- (id<FLAsyncResult>) runHttpRequestWithInput:(id) input {
 //
 //    if(FLStringIsEmpty(self.queuedPhoto.uploadGallery.uploadUrl)) {
 //        FLThrowErrorCodeWithComment(ZFErrorDomain, ZFErrorCodeUploadPhotoSetNotFound, @"PhotoSet not found: %@", self.queuedPhoto.uploadGallery.name);

@@ -9,7 +9,7 @@
 #import "FLCocoaRequired.h"
 #import "FLGeometry.h"
 #import "NSObject+Copying.h"
-#import "FLResult.h"
+#import "FLAsyncResult.h"
 #import "FLAsyncQueue.h"
 
 #import "FLColorModule.h"

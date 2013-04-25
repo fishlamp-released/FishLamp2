@@ -128,7 +128,7 @@
 ////    [self sendObservation:@selector(operationQueue:operationWillRun:) withObject:operation];
 //}
 //
-//- (void) operationDidFinish:(id) operation withResult:(FLResult) result {
+//- (void) operationDidFinish:(id) operation withResult:(id<FLAsyncResult>) result {
 ////    [self sendObservation:@selector(operationQueue:operationDidFinish:withResult:) withObject:operation withResult:result];
 //}
 //

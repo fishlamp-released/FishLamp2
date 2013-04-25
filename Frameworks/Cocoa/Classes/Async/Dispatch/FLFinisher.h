@@ -7,7 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLResult.h"
+#import "FLAsyncResult.h"
 #import "FLDispatchTypes.h"
 
 #if DEBUG
@@ -16,10 +16,27 @@
 
 @protocol FLOperation;
 
-@interface FLFinisher : NSObject {
+@protocol FLFinishable <NSObject>
+// notify finish with one of these
+- (void) setFinished;
+
+// result can be anything - will be packaged into an asyncResult if it's
+// not already a result.
+- (void) setFinishedWithResult:(id<FLAsyncResult>) result; 
+
+- (void) setFinishedWithError:(NSError*) error;
+- (void) setFinishedWithReturnedObject:(id) returnedObject;
+- (void) setFinishedWithReturnedObject:(id) returnedObject hint:(NSInteger) hint;
+
+- (void) setFinishedWithCancel;
+
+@end
+
+
+@interface FLFinisher : NSObject<FLFinishable> {
 @private
     dispatch_semaphore_t _semaphore;
-    id _result;
+    id<FLAsyncResult> _result;
     BOOL _finished;
     BOOL _finishOnMainThread;
     
@@ -33,7 +50,7 @@
 // NO by default.
 @property (readwrite, assign) BOOL finishOnMainThread; 
 
-@property (readonly, strong) FLResult result;
+@property (readonly, strong) id<FLAsyncResult> result;
 @property (readonly, assign, getter=isFinished) BOOL finished;
 
 // designated initializer
@@ -44,10 +61,6 @@
 
 + (id) finisher:(fl_completion_block_t) completion;
 
-// notify finish with one of these
-- (void) setFinished;
-
-- (void) setFinishedWithResult:(id) result;
 
 // blocks in current thread. Will @throw error if [self.result error] 
 - (id) waitUntilFinished;

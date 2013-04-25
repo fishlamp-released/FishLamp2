@@ -28,3 +28,4 @@
 - (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
              didDownloadPhotoSet:(ZFPhotoSet*) result; 
 @end
+

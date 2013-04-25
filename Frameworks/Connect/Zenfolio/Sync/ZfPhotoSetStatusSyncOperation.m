@@ -12,7 +12,7 @@
 
 @implementation ZFPhotoSetStatusSyncOperation
 
-- (FLResult) performSynchronously {
+- (id) performSynchronously {
 
 #if REFACTOR
     [self addBatchObjects:[[context syncService] loadAllSyncInfoObjectsFromDatabase]];

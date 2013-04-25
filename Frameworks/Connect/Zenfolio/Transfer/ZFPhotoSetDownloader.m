@@ -7,6 +7,7 @@
 //
 
 #import "ZFPhotoSetDownloader.h"
+#import "ZFAsyncObserving.h"
 
 @interface ZFPhotoSetDownloader ()
 @property (readwrite, strong, nonatomic) NSNumber* photoSetID;
@@ -41,9 +42,9 @@
                                                                      level:kZenfolioInformatonLevelFull 
                                                              includePhotos:_withPhotos];
 
-    [self runChildAsynchronously:request completion:^(FLResult result) {
-        if(![result isErrorResult]) {
-            [self.storageService writeObject:result];
+    [self runChildAsynchronously:request completion:^(id<FLAsyncResult> result) {
+        if([result didSucceed]) {
+            [self.storageService writeObject:result.returnedObject];
         }
 
         [self setFinishedWithResult:result];
@@ -55,12 +56,12 @@
                                                                      level:kZenfolioInformatonLevelLevel1 
                                                              includePhotos:NO];
 
-    [self runChildAsynchronously:request completion:^(FLResult result) {
-        if([result isErrorResult]) {
+    [self runChildAsynchronously:request completion:^(id<FLAsyncResult> result) {
+        if([result didFail]) {
             [self setFinishedWithResult:result];
         }
         else {
-            ZFPhotoSet* downloaded = result;
+            ZFPhotoSet* downloaded = result.returnedObject;
             ZFPhotoSet* cached = [self loadCachedPhotoSet];
             if( !cached || 
                 [cached isStaleComparedToPhotoSet:downloaded] || 
@@ -68,13 +69,13 @@
                 [self downloadLatestPhotoSet];
             }
             else {
-                [self setFinishedWithResult:cached];
+                [self setFinishedWithResult:[cached asAsyncResult]];
             }
         }
     }];
 }
 
-- (void) startAsyncOperation {
+- (id) startAsyncOperation {
     
 #if TRACE
     FLLog(@"starting async queue processing: %@", self);
@@ -87,6 +88,17 @@
     else {
         [self downloadMinimalPhotoSet];
     }
+    return photoSet;
 }
+
+- (void) sendStartMessagesWithInitialData:(id) initialData {
+    [self sendObservation:@selector(willDownloadPhotoSet:photoSetID:) withObject:initialData withObject:self.photoSetID];
+}
+
+- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
+    [self sendObservation:@selector(didDownloadPhotoSetWithResult:) withObject:result];
+}
+
+
 
 @end
