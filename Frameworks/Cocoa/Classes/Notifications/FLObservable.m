@@ -86,6 +86,42 @@
 }
 @end
 
+
+
 @implementation FLObservable 
 @synthesize asyncObserver = _asyncObserver;
+
+- (BOOL) sendObservation:(SEL) selector 
+              toObserver:(id) observer {
+    return [observer receiveObservation:selector];
+}
+
+- (BOOL) sendObservation:(SEL) selector 
+              toObserver:(id) observer 
+              withObject:(id) object  {
+    return [observer receiveObservation:selector withObject:object];
+}
+
+- (BOOL) sendObservation:(SEL) selector 
+              toObserver:(id) observer 
+              withObject:(id) object1 
+              withObject:(id) object2  {
+    return [observer receiveObservation:selector withObject:object1 withObject:object2];
+}
+
+- (BOOL) sendObservation:(SEL) selector 
+              toObserver:(id) observer 
+              withObject:(id) object1 
+              withObject:(id) object2  
+              withObject:(id) object3  {
+    return [observer receiveObservation:selector withObject:object1 withObject:object2 withObject:object3];
+}
+
+
+//#if FL_MRC
+//- (void) dealloc {
+//	[_observerKey release];
+//	[super dealloc];
+//}
+//#endif
 @end

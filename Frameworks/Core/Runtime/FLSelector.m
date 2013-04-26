@@ -12,23 +12,23 @@
 @implementation FLSelector 
 
 @synthesize selector = _selector;
+@synthesize originalSelector = _originalSelector;
 
 - (id) init {
-    return [self initWithSelector:nil];
+    return [self initWithSelector:nil argCount:-1];
 }
 
 - (id) initWithSelector:(SEL) selector  {
-    self = [super init];
-    if(self) {
-        _selector = selector;
-        _argumentCount = -1;
-    }
-    return self;
+    return [self initWithSelector:selector argCount:-1];
 }
 
-- (id) initWithSelector:(SEL) selector  argCount:(NSUInteger) argCount {
+- (id) initWithSelector:(SEL) selector  
+               argCount:(NSUInteger) argCount {
+               
     self = [self initWithSelector:selector];
     if(self) {
+        _originalSelector = selector;
+        _selector = selector;
         _argumentCount = argCount;
     }
     return self;
@@ -44,43 +44,50 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_selectorValue release];
     [_selectorString release];
     [super dealloc];
 }
 #endif
 
 - (NSString*) selectorString {
-    if(!_selectorString) {
-        _selectorString = FLRetain(NSStringFromSelector(_selector));
-    }
+    dispatch_once(&_predicates[0], ^{
+        _selectorString = FLRetain(NSStringFromSelector(_originalSelector));
+    });
     return _selectorString;
 }
 
+- (NSValue*) selectorValue {
+    dispatch_once(&_predicates[1], ^{
+        _selectorValue = FLRetain([NSValue valueWithPointer:_originalSelector]); 
+    });
+    return _selectorValue;
+}
+
 - (int) argumentCount {
-    if(_argumentCount == -1) { 
-        _argumentCount = 0;
-        NSString* name = self.selectorString;
-        for(int i = 0; i < name.length; i++) {
-            if([name characterAtIndex:i] == ':') {
-                _argumentCount++;
-            }
-        }
+    if(_argumentCount == -1) {
+        dispatch_once(&_predicates[2], ^{
+            _argumentCount = FLArgumentCountForSelector(_originalSelector);
+        });
     }
     
     return _argumentCount;
 }
 
 - (id) copyWithZone:(NSZone *)zone {
-    return FLRetain(self);
+
+    FLSelector* selector = [[FLSelector alloc] initWithSelector:self.originalSelector argCount:self.argumentCount];
+    selector.selector = self.selector;
+    return selector;
 }
 
-- (BOOL)isEqual:(id)object {
-    return FLSelectorsAreEqual(_selector, [object selector]);
-}
-
-- (NSUInteger)hash {
-    return (NSUInteger) sel_getName(_selector);
-}
+//- (BOOL)isEqual:(id)object {
+//    return FLSelectorsAreEqual(_selector, [object selector]);
+//}
+//
+//- (NSUInteger)hash {
+//    return (NSUInteger) [self.selectorString hash];
+//}
 
 - (NSString*) description {
     return self.selectorString;
