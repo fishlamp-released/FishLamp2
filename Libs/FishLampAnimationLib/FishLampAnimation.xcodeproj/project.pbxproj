@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2702EEDD172A257E0084066F /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEDB172A257E0084066F /* HelloWorldLayer.h */; };
+		2702EEDE172A257E0084066F /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEDB172A257E0084066F /* HelloWorldLayer.h */; };
+		2702EEDF172A257E0084066F /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEDB172A257E0084066F /* HelloWorldLayer.h */; };
+		2702EEE0172A257E0084066F /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEDB172A257E0084066F /* HelloWorldLayer.h */; };
+		2702EEE1172A257E0084066F /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEDB172A257E0084066F /* HelloWorldLayer.h */; };
+		2702EEE2172A257E0084066F /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEDC172A257E0084066F /* HelloWorldLayer.m */; };
+		2702EEE3172A257E0084066F /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEDC172A257E0084066F /* HelloWorldLayer.m */; };
+		2702EEE4172A257E0084066F /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEDC172A257E0084066F /* HelloWorldLayer.m */; };
+		2702EEE5172A257E0084066F /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEDC172A257E0084066F /* HelloWorldLayer.m */; };
+		2702EEE6172A257E0084066F /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEDC172A257E0084066F /* HelloWorldLayer.m */; };
+		2702EEFB172AE97A0084066F /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEF9172AE9790084066F /* FLCocos2dView.h */; };
+		2702EEFC172AE97A0084066F /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEF9172AE9790084066F /* FLCocos2dView.h */; };
+		2702EEFD172AE97A0084066F /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEF9172AE9790084066F /* FLCocos2dView.h */; };
+		2702EEFE172AE97A0084066F /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEF9172AE9790084066F /* FLCocos2dView.h */; };
+		2702EEFF172AE97A0084066F /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEF9172AE9790084066F /* FLCocos2dView.h */; };
+		2702EF00172AE97A0084066F /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEFA172AE97A0084066F /* FLCocos2dView.m */; };
+		2702EF01172AE97A0084066F /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEFA172AE97A0084066F /* FLCocos2dView.m */; };
+		2702EF02172AE97A0084066F /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEFA172AE97A0084066F /* FLCocos2dView.m */; };
+		2702EF03172AE97A0084066F /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEFA172AE97A0084066F /* FLCocos2dView.m */; };
+		2702EF04172AE97A0084066F /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEFA172AE97A0084066F /* FLCocos2dView.m */; };
 		27D84A9E17219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D84A9D17219AF000A83517 /* FishLampAnimation-Prefix.pch */; };
 		27D84A9F17219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D84A9D17219AF000A83517 /* FishLampAnimation-Prefix.pch */; };
 		27D84AA017219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D84A9D17219AF000A83517 /* FishLampAnimation-Prefix.pch */; };
@@ -1317,6 +1337,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2702EEDB172A257E0084066F /* HelloWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
+		2702EEDC172A257E0084066F /* HelloWorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
+		2702EEF9172AE9790084066F /* FLCocos2dView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocos2dView.h; sourceTree = "<group>"; };
+		2702EEFA172AE97A0084066F /* FLCocos2dView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCocos2dView.m; sourceTree = "<group>"; };
 		27048EF0161CB58600C38ADA /* libFishLampAnimation-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampAnimation-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampAnimation-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampAnimation-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1783,10 +1807,14 @@
 		27D84CBE1721C1A200A83517 /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				2702EEDB172A257E0084066F /* HelloWorldLayer.h */,
+				2702EEDC172A257E0084066F /* HelloWorldLayer.m */,
 				27D8524F1721C4C500A83517 /* FLCocos2d.h */,
 				27D852501721C4C500A83517 /* FLCocos2d.m */,
 				27D8525B1721C65000A83517 /* FLCocos2dViewController.h */,
 				27D8525C1721C65000A83517 /* FLCocos2dViewController.m */,
+				2702EEF9172AE9790084066F /* FLCocos2dView.h */,
+				2702EEFA172AE97A0084066F /* FLCocos2dView.m */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -2179,6 +2207,8 @@
 				27D84A9E17219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */,
 				27D852511721C4C600A83517 /* FLCocos2d.h in Headers */,
 				27D8525D1721C65000A83517 /* FLCocos2dViewController.h in Headers */,
+				2702EEDD172A257E0084066F /* HelloWorldLayer.h in Headers */,
+				2702EEFB172AE97A0084066F /* FLCocos2dView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2189,6 +2219,8 @@
 				27D84AA017219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */,
 				27D852531721C4C600A83517 /* FLCocos2d.h in Headers */,
 				27D8525F1721C65000A83517 /* FLCocos2dViewController.h in Headers */,
+				2702EEDF172A257E0084066F /* HelloWorldLayer.h in Headers */,
+				2702EEFD172AE97A0084066F /* FLCocos2dView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2199,6 +2231,8 @@
 				27D84A9F17219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */,
 				27D852521721C4C600A83517 /* FLCocos2d.h in Headers */,
 				27D8525E1721C65000A83517 /* FLCocos2dViewController.h in Headers */,
+				2702EEDE172A257E0084066F /* HelloWorldLayer.h in Headers */,
+				2702EEFC172AE97A0084066F /* FLCocos2dView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2209,6 +2243,8 @@
 				27D84AA117219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */,
 				27D852541721C4C600A83517 /* FLCocos2d.h in Headers */,
 				27D852601721C65000A83517 /* FLCocos2dViewController.h in Headers */,
+				2702EEE0172A257E0084066F /* HelloWorldLayer.h in Headers */,
+				2702EEFE172AE97A0084066F /* FLCocos2dView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2218,6 +2254,8 @@
 			files = (
 				27D84AA217219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */,
 				27D852551721C4C600A83517 /* FLCocos2d.h in Headers */,
+				2702EEE1172A257E0084066F /* HelloWorldLayer.h in Headers */,
+				2702EEFF172AE97A0084066F /* FLCocos2dView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3188,6 +3226,8 @@
 			files = (
 				27D852561721C4C600A83517 /* FLCocos2d.m in Sources */,
 				27D852611721C65000A83517 /* FLCocos2dViewController.m in Sources */,
+				2702EEE2172A257E0084066F /* HelloWorldLayer.m in Sources */,
+				2702EF00172AE97A0084066F /* FLCocos2dView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3197,6 +3237,8 @@
 			files = (
 				27D852581721C4C600A83517 /* FLCocos2d.m in Sources */,
 				27D852631721C65000A83517 /* FLCocos2dViewController.m in Sources */,
+				2702EEE4172A257E0084066F /* HelloWorldLayer.m in Sources */,
+				2702EF02172AE97A0084066F /* FLCocos2dView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3206,6 +3248,8 @@
 			files = (
 				27D852571721C4C600A83517 /* FLCocos2d.m in Sources */,
 				27D852621721C65000A83517 /* FLCocos2dViewController.m in Sources */,
+				2702EEE3172A257E0084066F /* HelloWorldLayer.m in Sources */,
+				2702EF01172AE97A0084066F /* FLCocos2dView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3215,6 +3259,8 @@
 			files = (
 				27D852591721C4C600A83517 /* FLCocos2d.m in Sources */,
 				27D852641721C65000A83517 /* FLCocos2dViewController.m in Sources */,
+				2702EEE5172A257E0084066F /* HelloWorldLayer.m in Sources */,
+				2702EF03172AE97A0084066F /* FLCocos2dView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3223,6 +3269,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D8525A1721C4C600A83517 /* FLCocos2d.m in Sources */,
+				2702EEE6172A257E0084066F /* HelloWorldLayer.m in Sources */,
+				2702EF04172AE97A0084066F /* FLCocos2dView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
