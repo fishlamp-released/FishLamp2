@@ -57,8 +57,8 @@
 }
 
 - (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
-    FLPerformSelector2(self.delegate, 
-        @selector(loadGroupHierarchyOperation:didLoadRootGroup:), 
+        FLPerformSelector2(self.delegate, 
+        @selector(loadGroupHierarchyOperation:didLoadRootGroupWithResult:), 
         self, 
         result);
     [self sendObservation:@selector(didDownloadRootGroupWithResult:) withObject:result];

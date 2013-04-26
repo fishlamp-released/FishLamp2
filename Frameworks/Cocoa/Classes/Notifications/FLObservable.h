@@ -49,7 +49,6 @@
 @private
     __unsafe_unretained id _asyncObserver;
 }
-
 @property (readwrite, assign) id asyncObserver;
 @end
 

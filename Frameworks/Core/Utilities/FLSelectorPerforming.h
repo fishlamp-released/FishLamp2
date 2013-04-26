@@ -28,6 +28,9 @@
               withObject:(id) object2
               withObject:(id) object3;
 
+- (void) performSelector:(SEL) selector 
+           argumentCount:(NSInteger) argCount
+                 objects:(id*) objects;
 @end
 
 #pragma GCC diagnostic push

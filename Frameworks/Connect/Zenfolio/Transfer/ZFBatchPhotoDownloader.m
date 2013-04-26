@@ -169,18 +169,21 @@
 //    [self updateProgress:NO];
 //}
 
+- (void) beginDownloadingPhotos {
+    [self.transferState setStarted];
+    ZFPhotoDownloaderQueue* downloadQueue = [ZFPhotoDownloaderQueue photoDownloaderQueue:_downloadQueue];
+    [self runChildAsynchronously:downloadQueue completion:^(id<FLAsyncResult> result) {
+        [self setFinishedWithResult:result];
+    }];
+}
+
 - (void) didDownloadPhotoSets:(id<FLAsyncResult>) result {
 
     if([result error]) {
         [self setFinishedWithResult:result];
     }
     else {
-    
- //       ZFPhotoDownloaderQueue* downloadQueue = [ZFPhotoDownloaderQueue photoDownloaderQueue:_downloadQueue];
-    
-//        [self addObjectsFromArray:_downloadQueue];
-//        [self.transferState setStarted];
-//        [self startProcessing];
+        [self beginDownloadingPhotos];
     }
 }
     
@@ -191,7 +194,8 @@
 
     self.rootGroup = [self.storageService readObject:[ZFGroup group:[NSNumber numberWithInt:_downloadSpec.rootGroupID]]]; 
     
-    ZFBatchPhotoSetDownloader* loadPhotoSets = [ZFBatchPhotoSetDownloader batchPhotoSetDownloader:self.downloadSpec.photoSets.allObjects withPhotos:YES];
+    ZFBatchPhotoSetDownloader* loadPhotoSets = 
+        [ZFBatchPhotoSetDownloader batchPhotoSetDownloader:self.downloadSpec.photoSets.allObjects withPhotos:YES];
 
     self.transferState.photoSetTotal = self.downloadSpec.photoSets.count;
     

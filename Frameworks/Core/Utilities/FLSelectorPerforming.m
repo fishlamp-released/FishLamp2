@@ -42,6 +42,46 @@ void FLConfirmNoReturnObject(id obj) {
     FLAssertWithComment([[invocation methodSignature] methodReturnLength] == 0, @"returned objects will leak so it's not supported (blame ARC)." );
 }              
 
+- (void) performSelector:(SEL) selector 
+           argumentCount:(NSInteger) argCount
+                 objects:(id*) objects {
+
+    FLConfirmIsNotNil(selector);
+    
+    if(argCount < 3) {
+        switch(argCount) {
+            case 0: 
+                [self performSelector:selector];
+            break;
+
+            case 1: 
+                [self performSelector:selector withObject:objects[0]];
+            break;
+            
+            case 2: 
+                [self performSelector:selector withObject:objects[0] withObject:objects[1]];
+            break;
+        }
+        return;
+    }
+    
+    NSMethodSignature *signature  = [self methodSignatureForSelector:selector];
+    NSInvocation      *invocation = [NSInvocation invocationWithMethodSignature:signature];
+
+    [invocation setTarget:self];                        // index 0 (hidden)
+    [invocation setSelector:selector];                  // index 1 (hidden)
+    
+    for(int i = 0; i < argCount; i++) {
+        [invocation setArgument:&objects[i] atIndex:i + 2];        // index 2
+    }
+
+    [invocation retainArguments];
+    [invocation invoke];
+
+    FLAssertWithComment([[invocation methodSignature] methodReturnLength] == 0, @"returned objects will leak so it's not supported (blame ARC)." );
+}  
+
+
 - (void) performSelector:(SEL) selector
                outObject:(id*) outObject {
 
@@ -260,3 +300,73 @@ BOOL FLPerformSelectorOnMainThread3(id target, SEL selector, id object1, id obje
 
 
 #pragma GCC diagnostic pop
+//
+//@interface FLSelectorRedirect : NSObject {
+//@private
+//    SEL _originalSelector;
+//    SEL _newSelector;
+//    id _selectorKey;
+//}
+//@property (readonly, strong, nonatomic) id selectorKey;
+//
+//@property (readwrite, assign, nonatomic) SEL originalSelector;
+//@property (readwrite, assign, nonatomic) SEL selector;
+//
+//- (id) initWithOriginalSelector:(SEL) selector;
+//
+//@end
+//
+//@implementation FLSelectorRedirect 
+//
+//- (id) initWithOriginalSelector:(SEL) selector {
+//	self = [super init];
+//	if(self) {
+//		_originalSelector = selector;
+//        _selectorKey = FLRetain([NSValue valueWithPointer:_originalSelector]);
+//    }
+//	return self;
+//}
+//
+//@synthesize selector = _redirectSelector;
+//
+//
+//
+//
+//@end
+
+
+//
+//@interface FLSelectorDispatcher : NSObject {
+//@private
+//    NSMutableDictionary* _selectors;
+//    const char* _selectorPrefix;
+//    
+//    const char _buffer[1024]
+//}
+//
+////@property (readwrite, assign, nonatomic) SEL selectorPrefix;
+//
+//- (BOOL) performSelector:(SEL) sel onTarget:(id) target argumentCount:(NSInteger) argCount args:(id*) args;
+//@end
+//
+//@implementation FLSelectorDispatcher 
+////@synthesize selectorPrefix = _selectorPrefix;
+//
+//- (BOOL) performSelector:(SEL) sel onTarget:(id) target argumentCount:(NSInteger) argCount args:(id*) args {
+//    if(_selectorPrefix) {
+//        const char *sel = sel_getName(sel);
+//        SEL newSelector = sel_registerName(sprintf(_buffer, @"%s%s", _selectorPrefix, sel));
+//    }
+//
+//    [target performSelector:sel argumentCount:<#(NSInteger)#> objects:<#(id *)#> 
+//}
+//
+//#if FL_MRC
+//- (void) dealloc {
+//	[_selectorPrefix release];
+//	[super dealloc];
+//}
+//#endif
+//
+//
+//@end

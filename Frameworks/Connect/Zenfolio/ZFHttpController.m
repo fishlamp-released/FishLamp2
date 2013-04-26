@@ -128,8 +128,10 @@
     [downloader runAsynchronously];
 }   
 
-- (void) loadGroupHierarchyOperation:(ZFLoadGroupHierarchyOperation*) operation didLoadRootGroup:(ZFGroup*) group {
-    [self.user setRootGroup:group];
+- (void) loadGroupHierarchyOperation:(ZFLoadGroupHierarchyOperation*) operation didLoadRootGroupWithResult:(id<FLAsyncResult>) result {
+    if(![result error]) {
+        [self.user setRootGroup:result.returnedObject];
+    }
 }                                        
 
 - (void) beginDownloadingRootGroup:(id<ZFAsyncObserving>) observer { 

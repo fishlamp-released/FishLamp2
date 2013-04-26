@@ -10,14 +10,23 @@
 
 @interface FLSelector : NSObject<NSCopying> {
 @private
+    SEL _originalSelector;
     SEL _selector;
     int _argumentCount;
     NSString* _selectorString;
+    SEL _redirect;
+    NSValue* _selectorValue;
+    
+    dispatch_once_t _predicates[3];
 }
 
-@property (readonly, nonatomic) SEL selector;
+@property (readonly, nonatomic) SEL originalSelector;
+@property (readwrite, nonatomic) SEL selector;
+
 @property (readonly, assign) int argumentCount;
-@property (readonly, assign) NSString* selectorString;
+@property (readonly, strong) NSString* selectorString;
+@property (readonly, strong) NSValue* selectorValue;
+
 
 - (id) initWithSelector:(SEL) selector;
 - (id) initWithSelector:(SEL) selector argCount:(NSUInteger) argCount;

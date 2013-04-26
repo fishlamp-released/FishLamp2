@@ -22,7 +22,7 @@
 
 @protocol  ZFLoadGroupHierarchyOperation <NSObject>
 @optional
-- (void) loadGroupHierarchyOperation:(ZFLoadGroupHierarchyOperation*) operation didLoadRootGroup:(ZFGroup*) group;
+- (void) loadGroupHierarchyOperation:(ZFLoadGroupHierarchyOperation*) operation didLoadRootGroupWithResult:(id<FLAsyncResult>) result;
 @end
 //@optional
 //- (void) loadGroupHierarchyOperation:(ZFLoadGroupHierarchyOperation*) operation willDownloadGroupListForUser:(FLUserLogin*) login;
