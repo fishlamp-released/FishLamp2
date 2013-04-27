@@ -12,7 +12,7 @@
 #import "FLSelectorPerforming.h"
 #import "FLDispatchQueue.h"
 
-//#import "FLTrace.h"
+#import "FLTrace.h"
 
 @interface FLAsyncOperationQueue ()
 @property (readwrite, strong) FLFifoAsyncQueue* fifoQueue; 
@@ -139,7 +139,7 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
             
             FLTrace(@"starting operation: %@", operation);
             [self runChildAsynchronously:operation completion:^(id<FLAsyncResult> result) {
-                FLTrace(@"finished operation: %@ withResult: %@", operation, [result error] ? result : @"OK");
+                FLTrace(@"finished operation: %@ withResult: %@", operation, [result error] ? [result returnedObject] : @"OK");
 
                 FLDispatchAsync(self.fifoQueue, ^{
                     [_activeQueue removeObject:operation];
@@ -181,6 +181,11 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 - (void) startProcessing {
     self.processing = YES;
     FLDispatchSelectorAsync(self.fifoQueue, self, @selector(processQueue), nil);
+}
+
+- (id) startAsyncOperation {
+    [self startProcessing];
+    return nil;
 }
 
 //- (void) performUntilFinished:(FLFinisher*) finisher {

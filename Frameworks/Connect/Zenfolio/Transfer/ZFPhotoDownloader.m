@@ -34,16 +34,15 @@
     return FLAutorelease([[[self class] alloc] initWithDownloadSpec:downloadSpec]);
 }
 
-- (void) httpRequest:(FLHttpRequest*) httpRequest didWriteBytes:(NSNumber*) amount {
- 
-    [self sendObservation:@selector(didDownloadBytes:forPhoto:) withObject:amount withObject:self.downloadSpec];
+- (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(FLHttpRequestByteCount*) amount {
+    [self.delegate receiveMessage:@selector(photoDownloader:didReadBytes:forPhoto:) withObject:self withObject:amount withObject:self.downloadSpec];
 }
 
 - (id) startAsyncOperation {
     
     NSString* filePath = _downloadSpec.fullPathToFile;
 
-    [self sendObservation:@selector(willDownloadPhoto:) withObject:_downloadSpec];
+    [self.observer receiveObservation:@selector(willDownloadPhoto:) withObject:_downloadSpec];
     
     if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         [self setFinishedWithReturnedObject:_downloadSpec hint:ZFPhotoDownloaderHintPhotoWasSkipped];
@@ -65,11 +64,11 @@
 }
 
 - (void) sendStartMessagesWithInitialData:(id) initialData {
-    [self sendObservation:@selector(willDownloadPhoto:) withObject:_downloadSpec];
+    [self.observer receiveObservation:@selector(willDownloadPhoto:) withObject:_downloadSpec];
 }
 
 - (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
-    [self sendObservation:@selector(didDownloadPhotoWithResult:) withObject:result];
+    [self.observer receiveObservation:@selector(didDownloadPhoto:withResult:) withObject:self.downloadSpec withObject:result];
 }
 
 

@@ -143,6 +143,51 @@ void FLConfirmNoReturnObject(id obj) {
     }
 }
 
+- (BOOL) receiveMessage:(SEL) selector {
+    return FLPerformSelector(self, selector);
+}
+
+- (BOOL) receiveMessage:(SEL) selector  
+             withObject:(id) object {
+    return FLPerformSelector1(self, selector, object);
+}             
+
+- (BOOL) receiveMessage:(SEL) selector 
+               withObject:(id) object1
+               withObject:(id) object2 {
+    return FLPerformSelector2(self, selector, object1, object2);
+}             
+
+- (BOOL) receiveMessage:(SEL) selector 
+               withObject:(id) object1
+               withObject:(id) object2
+               withObject:(id) object3 {
+    return FLPerformSelector3(self, selector, object1, object2, object3);
+}             
+
+- (BOOL) receiveObservation:(SEL) selector { 
+    return FLPerformSelectorOnMainThread(self, selector);
+}
+
+- (BOOL) receiveObservation:(SEL) selector 
+                 withObject:(id) object  {
+    return FLPerformSelectorOnMainThread1(self, selector, object);
+}
+
+- (BOOL) receiveObservation:(SEL) selector 
+                 withObject:(id) object1 
+                 withObject:(id) object2  {
+    return FLPerformSelectorOnMainThread2(self, selector, object1, object2);
+}
+
+- (BOOL) receiveObservation:(SEL) selector  
+                 withObject:(id) object1 
+                 withObject:(id) object2 
+                 withObject:(id) object3 {
+    return FLPerformSelectorOnMainThread3(self, selector, object1, object2, object3);
+}
+
+
 @end
 
 //NS_INLINE

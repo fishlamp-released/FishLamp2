@@ -23,3 +23,8 @@ typedef enum {
 + (id) photoDownloader:(ZFDownloadSpec*) downloadSpec;
 @end
 
+@protocol ZFPhotoDownloaderDelegate <NSObject>
+- (void) photoDownloader:(ZFPhotoDownloader*) downloader 
+            didReadBytes:(FLHttpRequestByteCount*) amount 
+                forPhoto:(ZFDownloadSpec*) downloadSpec;
+@end

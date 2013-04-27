@@ -30,11 +30,12 @@
 }
 
 - (void) sendStartMessagesWithInitialData:(id) initialData {
-    [self sendObservation:@selector(willDownloadPhotoSetBatch)];
+    [self.observer receiveObservation:@selector(willDownloadPhotoSetBatch)];
 }
 
 - (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
-    [self sendObservation:@selector(didDownloadPhotoSetBatchWithResult:) withObject:result];
+    [self.delegate receiveMessage:@selector(didDownloadPhotoSetBatchWithResult:) withObject:result];
+    [self.observer receiveObservation:@selector(didDownloadPhotoSetBatchWithResult:) withObject:result];
 }
 
 
@@ -69,7 +70,7 @@
 - (void) willStartOperation:(id)operation withQueuedObject:(id)object  {
     [super willStartOperation:operation withQueuedObject:object];
     
-    FLPerformSelector2(self.delegate, @selector(batchPhotoSetDownloader:willDownloadPhotoSet:), self, nil);
+    [self.delegate receiveMessage:@selector(batchPhotoSetDownloader:willDownloadPhotoSet:) withObject:self withObject:nil];
 }
 
 - (void) didFinishOperation:(id)operation withQueuedObject:(id)object withResult:(id<FLAsyncResult>)result {
@@ -80,6 +81,8 @@
             [_group replaceElement:result.returnedObject];
         }
     }
+    [self.delegate receiveMessage:@selector(batchPhotoSetDownloader:didDownloadPhotoSetWithResult:) withObject:self withObject:result];
+
 }
 
 //- (void) willStartOperationInAsyncQueue:(id) operation {
@@ -88,7 +91,7 @@
 //    
 //    FLPerformSelector2(self.delegate, @selector(batchPhotoSetDownloader:willDownloadPhotoSet:), self, nil);
 //    
-//    [self sendObservation:@selector(willDownloadPhotoSet:) withObject:[
+//    [self.observer receiveObservation:@selector(willDownloadPhotoSet:) withObject:[
 //}
 
 //- (void) didFinishOperationInAsyncQueue:(FLOperation*) operation withResult:(id<FLAsyncResult>) result {

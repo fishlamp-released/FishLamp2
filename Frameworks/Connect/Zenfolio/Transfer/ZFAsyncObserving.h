@@ -7,15 +7,13 @@
 //
 
 #import "ZFDownloadSpec.h"
+#import "ZFBatchDownloadSpec.h"
 
 @protocol ZFAsyncObserving <NSObject>
 @optional
 
 - (void) willDownloadPhoto:(ZFDownloadSpec*) downloadSpec;
-- (void) didDownloadPhotoWithResult:(id<FLAsyncResult>) withResult;
-
-- (void) didDownloadBytes:(NSNumber*) amount
-                 forPhoto:(ZFDownloadSpec*) downloadSpec;
+- (void) didDownloadPhoto:(ZFDownloadSpec*) downloadSpec withResult:(id<FLAsyncResult>) result;
 
 - (void) willDownloadPhotoSet:(ZFPhotoSet*) photoSet // may be nil if not in cache
                    photoSetID:(NSNumber*) number; 
@@ -30,5 +28,9 @@
 
 - (void) didDownloadPhotoBatchWithResult:(id<FLAsyncResult>) result;
 
+- (void) transferStateWasUpdated:(ZFTransferState*) transferState 
+           forBatchPhotoDownload:(ZFBatchDownloadSpec*) downloadSpec;
+ 
 @end
+
 

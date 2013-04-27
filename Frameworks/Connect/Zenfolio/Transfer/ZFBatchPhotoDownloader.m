@@ -103,20 +103,29 @@
 - (void) updateProgress:(BOOL) canDefer {
     NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
     if(!canDefer || ([NSDate timeIntervalSinceReferenceDate] - _lastProgress) > 0.3) {
-        FLPerformSelector2(self.delegate, @selector(batchPhotoDownloader:updateDownloadInfo:), self, FLCopyWithAutorelease(self.transferState));
+        [self.observer receiveObservation:@selector(transferStateWasUpdated:forBatchPhotoDownload:) withObject:self.transferState withObject:self.downloadSpec];
         _lastProgress = now;
     }
 }
 
-- (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
-            willDownloadPhotoSet:(ZFPhotoSet*) photoSet {
-    FLPerformSelector2(self.delegate, @selector(batchPhotoDownloader:willUpdatePhotoSet:), self, photoSet);
-    [self updateProgress:NO];
-}
+- (void) photoDownloader:(ZFPhotoDownloader*) downloader 
+            didReadBytes:(FLHttpRequestByteCount*) amount
+                forPhoto:(ZFDownloadSpec*) downloadSpec {
+    
+    self.transferState.bytesPerSecondTotal += amount.bytesPerSecond;
+    self.transferState.bytesPerSecondCountForAveraging++;
+    self.transferState.byteCount += [amount lastIncrementAmount];
+    [self updateProgress:YES];
+}                
 
-
 - (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
-             didDownloadPhotoSet:(ZFPhotoSet*) photoSet {
+   didDownloadPhotoSetWithResult:(id<FLAsyncResult>) result {
+   
+   if([result error]) {
+        return;
+   }
+   
+   ZFPhotoSet* photoSet = result.returnedObject;
    
     NSString* relativePath =  [_rootGroup relativePathForElement:photoSet];
     NSString* folderPath = [_downloadSpec.destinationPath stringByAppendingPathComponent:relativePath];
@@ -154,20 +163,9 @@
         }
     }
     
-    FLPerformSelector2(self.delegate, @selector(batchPhotoDownloader:didUpdatePhotoSet:), self, photoSet);
     [self updateProgress:YES];
 }        
 
-
-//- (void) didFinishOperation:(FLOperation *)operation withResult:(id<FLAsyncResult>)result {
-//    FLTrace(@"finish %@", [result description]);
-//}
-
-//- (void) didProcessAllObjectsInAsyncQueue {
-//    [self.transferState setFinished];
-//    [super didProcessAllObjectsInAsyncQueue];
-//    [self updateProgress:NO];
-//}
 
 - (void) beginDownloadingPhotos {
     [self.transferState setStarted];
@@ -202,27 +200,14 @@
     [self runChildAsynchronously:loadPhotoSets completion:^(id<FLAsyncResult> result) {
         [self didDownloadPhotoSets:result];
     }];
-    
-    
-//    FLPrepareDownloadQueueOperation* operation = [FLPrepareDownloadQueueOperation prepareDownloadQueueOperation:self.downloadSpec];
-//    
-//    operation.asyncObserver = self;
-//    
-//    [self runChildAsynchronously:operation completion:^(id<FLAsyncResult> result) {
-//        if([result error] ) {
-//            [finisher setFinishedWithResult:result];
-//        }
-//        else {
-//            self.finisher = finisher; 
-//            self.downloadQueue = result;
-//        
-////            FLDispatchSelectorAsync(self.fifoQueue, self, @selector(processQueue), nil);
-//        }
-//    }];
 
     return self.rootGroup;
 }
 
+
+- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>)result {
+    [self.observer receiveObservation:@selector(didDownloadPhotoBatchWithResult:) withObject:result];
+}
 
 
 @end

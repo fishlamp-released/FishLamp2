@@ -92,11 +92,11 @@
 }
 
 - (void) sendStartMessagesWithInitialData:(id) initialData {
-    [self sendObservation:@selector(willDownloadPhotoSet:photoSetID:) withObject:initialData withObject:self.photoSetID];
+    [self.observer receiveObservation:@selector(willDownloadPhotoSet:photoSetID:) withObject:initialData withObject:self.photoSetID];
 }
 
 - (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
-    [self sendObservation:@selector(didDownloadPhotoSetWithResult:) withObject:result];
+    [self.observer receiveObservation:@selector(didDownloadPhotoSetWithResult:) withObject:result];
 }
 
 

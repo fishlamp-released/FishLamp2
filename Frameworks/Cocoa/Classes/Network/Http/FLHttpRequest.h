@@ -15,6 +15,7 @@
 #import "FLHttpRequestHeaders.h"
 #import "FLHttpErrors.h"
 #import "FLNetworkErrors.h"
+#import "FLHttpRequestByteCount.h"
 
 #define FLHttpRequestDefaultTimeoutInterval 120.0f
 
@@ -33,15 +34,6 @@
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;
 @end
 
-typedef struct {
-    SEL willAuthenticate;
-    SEL didAuthenticate;
-    SEL willOpen;
-    SEL didOpen;
-    SEL didClose;
-    SEL didReadBytes;
-    SEL didWriteBytes;
-} FLHttpRequestDelegateSelectors;
 
 @interface FLHttpRequest : FLAsyncOperation<FLHttpStreamDelegate> {
 @private
@@ -59,14 +51,8 @@ typedef struct {
     
     FLNetworkStreamSecurity _streamSecurity;
     
-    unsigned long long _downloadedByteCount;
-    NSTimeInterval _lastTime;
-    NSTimeInterval _startTime;
-    
-    FLHttpRequestDelegateSelectors _delegateSelectors; 
+    FLHttpRequestByteCount* _byteCount;
 }
-@property (readwrite, assign, nonatomic) FLHttpRequestDelegateSelectors delegateSelectors;
-
 @property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
 
 @property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
@@ -112,12 +98,7 @@ typedef struct {
 /// this returns YES by default.
 - (BOOL) shouldRedirectToURL:(NSURL*) url;
 
-// info
-@property (readonly, assign) unsigned long long downloadedByteCount;
-@property (readonly, assign) NSTimeInterval startTime;
-@property (readonly, assign) NSTimeInterval lastTime;
-@property (readonly, assign) NSTimeInterval elapsedTime;
-@property (readonly, assign) double bytesPerSecond;
+@property (readonly, strong) FLHttpRequestByteCount* byteCount;
 
 @end
 
@@ -136,10 +117,9 @@ typedef struct {
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
     didCloseWithResult:(id<FLAsyncResult>) result;
 
-- (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount;
+- (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(FLHttpRequestByteCount*) amount;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didWriteBytes:(NSNumber*) amount;
 
 @end
-
 

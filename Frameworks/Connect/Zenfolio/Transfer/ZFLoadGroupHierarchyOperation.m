@@ -53,15 +53,12 @@
 }
 
 - (void) sendStartMessagesWithInitialData:(id) initialData {
-    [self sendObservation:@selector(willDownloadRootGroup)];
+    [self.observer receiveObservation:@selector(willDownloadRootGroup)];
 }
 
 - (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
-        FLPerformSelector2(self.delegate, 
-        @selector(loadGroupHierarchyOperation:didLoadRootGroupWithResult:), 
-        self, 
-        result);
-    [self sendObservation:@selector(didDownloadRootGroupWithResult:) withObject:result];
+    [self.delegate receiveMessage:@selector(loadGroupHierarchyOperation:didLoadRootGroupWithResult:) withObject:self withObject:result];
+    [self.observer receiveObservation:@selector(didDownloadRootGroupWithResult:) withObject:result];
 }
 
 

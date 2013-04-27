@@ -13,6 +13,7 @@
 #import "ZFTransferState.h"
 #import "ZFWebApi.h"
 #import "ZFDownloadSpec.h"
+#import "ZFAsyncObserving.h"
 
 @interface ZFBatchPhotoDownloader : FLAsyncOperation {
 @private
@@ -43,24 +44,24 @@
 //             
 //@end
 
-@protocol ZFBatchPhotoDownloaderDelegate <FLOperationDelegate>
-@optional
-- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation updateDownloadInfo:(ZFTransferState*) downloadInfo;
-
-- (void) batchPhotoDownloaderWillBeginDownload:(ZFBatchPhotoDownloader*) operation;
-
-- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willUpdatePhotoSet:(ZFPhotoSet*) photoSet;
-- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didUpdatePhotoSet:(ZFPhotoSet*) photoSet;
-
-// these are called per photo set
-- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willStartDownloadingPhotosInPhotoSet:(NSDictionary*) downloadInfo;
-
-- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willDownloadPhoto:(ZFDownloadSpec*) downloadInfo;
-- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didSkipPhoto:(ZFDownloadSpec*) downloadInfo;
-- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didDownloadPhoto:(ZFDownloadSpec*) downloadInfo;
-
-- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didDownloadPhotosInPhotoSet:(NSDictionary*) downloadInfo;
-
-@end
-
+//@protocol ZFBatchPhotoDownloaderDelegate <FLOperationDelegate>
+//@optional
+//- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation updateDownloadInfo:(ZFTransferState*) downloadInfo;
+//
+//- (void) batchPhotoDownloaderWillBeginDownload:(ZFBatchPhotoDownloader*) operation;
+//
+//- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willUpdatePhotoSet:(ZFPhotoSet*) photoSet;
+//- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didUpdatePhotoSet:(ZFPhotoSet*) photoSet;
+//
+//// these are called per photo set
+//- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willStartDownloadingPhotosInPhotoSet:(NSDictionary*) downloadInfo;
+//
+//- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation willDownloadPhoto:(ZFDownloadSpec*) downloadInfo;
+//- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didSkipPhoto:(ZFDownloadSpec*) downloadInfo;
+//- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didDownloadPhoto:(ZFDownloadSpec*) downloadInfo;
+//
+//- (void) batchPhotoDownloader:(ZFBatchPhotoDownloader*) operation didDownloadPhotosInPhotoSet:(NSDictionary*) downloadInfo;
+//
+//@end
+//
 

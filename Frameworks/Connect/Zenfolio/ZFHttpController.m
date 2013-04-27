@@ -123,7 +123,7 @@
     
     downloader.context = self;
     downloader.delegate = self;
-    downloader.asyncObserver = observer;
+    downloader.observer = observer;
    
     [downloader runAsynchronously];
 }   
@@ -138,7 +138,7 @@
     ZFLoadGroupHierarchyOperation* operation = 
         [ZFLoadGroupHierarchyOperation loadGroupHierarchyOperation:self.user.credentials]; 
     operation.context = self;
-    operation.asyncObserver = observer;
+    operation.observer = observer;
     operation.delegate = self;
     [operation runAsynchronously];
 }
@@ -148,7 +148,7 @@
     
     ZFBatchPhotoDownloader* operation = [ZFBatchPhotoDownloader batchPhotoDownloadOperation:spec];
     operation.context = self;
-    operation.asyncObserver = observer;
+    operation.observer = observer;
     operation.delegate = self;
     
     [operation runAsynchronously];

@@ -107,10 +107,10 @@
         NSTextStorage* textStorage = [_textView textStorage];
         NSRange range = NSMakeRange(textStorage.length, 0);
         
-        float scrollBottom = NSMaxY(_textView.visibleRect);
-        float contentHeight = NSMaxY(_textView.bounds);
+//        float scrollBottom = NSMaxY(_textView.visibleRect);
+//        float contentHeight = NSMaxY(_textView.bounds);
         
-        BOOL scroll = (contentHeight - scrollBottom) > 20.0f;
+   //     BOOL scroll = (contentHeight - scrollBottom) > 20.0f;
         
         [textStorage beginEditing];
         [textStorage replaceCharactersInRange:range withAttributedString:_buffer];
@@ -120,9 +120,9 @@
         self.buffer = nil;
         _lastUpdate = [NSDate timeIntervalSinceReferenceDate];
     
-        if(scroll) {
+//        if(scroll) {
             [_textView scrollRangeToVisible:NSMakeRange(textStorage.length, 0)];
-        }
+//        }
     }
     else {
         double delayInSeconds = kDelay;
@@ -148,7 +148,7 @@
 
 - (void) clearContents {
     [[_textView textStorage] deleteCharactersInRange:NSMakeRange(0, [_textView textStorage].length) ];
-    [self appendAttributedString:[self activityLog].attributedString];
+    self.buffer = nil;
 }
 
 @end

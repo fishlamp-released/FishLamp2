@@ -152,8 +152,8 @@
     if([operation asyncQueue] == nil) {
         [operation setAsyncQueue:self.asyncQueue];
     }
-    if([operation asyncObserver] == nil) {
-        [operation setAsyncObserver:self.asyncObserver];
+    if([operation observer] == nil) {
+        [operation setObserver:self.observer];
     }
 }
 

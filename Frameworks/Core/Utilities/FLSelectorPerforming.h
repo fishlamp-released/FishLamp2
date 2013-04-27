@@ -31,6 +31,32 @@
 - (void) performSelector:(SEL) selector 
            argumentCount:(NSInteger) argCount
                  objects:(id*) objects;
+
+
+
+- (BOOL) receiveMessage:(SEL) selector;
+
+- (BOOL) receiveMessage:(SEL) selector  
+             withObject:(id) object;
+
+- (BOOL) receiveMessage:(SEL) selector 
+               withObject:(id) object1
+               withObject:(id) object2;
+
+- (BOOL) receiveMessage:(SEL) selector 
+               withObject:(id) object1
+               withObject:(id) object2
+               withObject:(id) object3;
+
+- (BOOL) receiveObservation:(SEL) messageSelector;
+
+- (BOOL) receiveObservation:(SEL) messageSelector withObject:(id) object;
+
+- (BOOL) receiveObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
+
+- (BOOL) receiveObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
+
+
 @end
 
 #pragma GCC diagnostic push
