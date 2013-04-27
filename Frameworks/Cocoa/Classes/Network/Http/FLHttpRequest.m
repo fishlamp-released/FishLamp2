@@ -17,20 +17,24 @@
 #import "FLDispatch.h"
 #import "FLTimer.h"
 #import "FLReachableNetwork.h"
+#import "FLHttpRequestByteCount.h"
 
 #define FORCE_NO_SSL 1
 
 //#define kStreamReadChunkSize 1024
 
+@interface FLHttpResponse ()
+@property (readwrite, strong, nonatomic) FLHttpRequestByteCount* byteCount;
+@end
+
 @interface FLHttpRequest ()
 @property (readwrite, strong, nonatomic) FLHttpResponse* previousResponse;
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
-@property (readwrite, assign) unsigned long long downloadedByteCount;
-@property (readwrite, assign) NSTimeInterval startTime;
-@property (readwrite, assign) NSTimeInterval lastTime;
+@property (readwrite, strong) FLHttpRequestByteCount* byteCount;
 
 - (void) finishRequestWithResult:(id) result error:(NSError*) error;
 @end
+
 
 #define FORCE_NO_SSL 1
 
@@ -45,12 +49,7 @@
 @synthesize previousResponse = _previousResponse;
 @synthesize timeoutInterval = _timeoutInterval;
 @synthesize streamSecurity = _streamSecurity;
-@synthesize downloadedByteCount = _downloadedByteCount;
-@synthesize startTime = _startTime;
-@synthesize lastTime = _lastTime;
-@synthesize delegateSelectors = _delegateSelectors;
-
-static FLHttpRequestDelegateSelectors s_defaultSelectors;
+@synthesize byteCount = _byteCount;
 
 #if TRACE
 static int s_counter = 0;
@@ -59,23 +58,6 @@ static int s_counter = 0;
 - (id) init {
     return [self initWithRequestURL:nil httpMethod:nil];
 }
-
-+ (void) initialize {
-    static BOOL initialized = NO;
-    if(!initialized) {
-        initialized = YES;
-        
-        s_defaultSelectors.willOpen = @selector(httpRequestWillOpen:);
-        s_defaultSelectors.didOpen = @selector(httpRequestDidOpen:);
-        s_defaultSelectors.willAuthenticate = @selector(httpRequestWillAuthenticate:);
-        s_defaultSelectors.didAuthenticate = @selector(httpRequestDidAuthenticate:);
-        s_defaultSelectors.didClose = @selector(httpRequestDidAuthenticate:);
-        s_defaultSelectors.didReadBytes = @selector(httpRequestDidAuthenticate:);
-        s_defaultSelectors.didWriteBytes = @selector(httpRequestDidAuthenticate:);
-
-    }
-}
-
 -(id) initWithRequestURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
 
     FLAssertNotNil(url);
@@ -95,8 +77,6 @@ static int s_counter = 0;
         else {
             self.requestHeaders.httpMethod = httpMethod;
         }
-
-        _delegateSelectors = s_defaultSelectors;
     }
 
     FLTrace(@"%d created %@ http request: %@", ++s_counter, self.requestHeaders.httpMethod, [url absoluteString]);
@@ -117,6 +97,7 @@ static int s_counter = 0;
 
     [_asyncQueueForStream releaseToPool];
 #if FL_MRC
+    [_byteCount release];
     [_asyncQueueForStream release];
     [_previousResponse release];
     [_httpStream release];
@@ -178,7 +159,7 @@ static int s_counter = 0;
         [[NSNotificationCenter defaultCenter] postNotificationName:FLNetworkActivityStartedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self forKey:FLNetworkActivitySenderKey]];
     });
     
-    FLPerformSelector1(self.delegate, _delegateSelectors.willOpen, self);
+    [self.delegate receiveMessage:@selector(httpRequestWillOpen:) withObject:self];
         
     [self willSendHttpRequest]; // this may set requestURL so needs to be before createStreamOpenerWithURL
 
@@ -239,35 +220,28 @@ static int s_counter = 0;
     }
 
     if(self.authenticator && !self.disableAuthenticator) {
-        FLPerformSelector1(self.delegate, _delegateSelectors.willAuthenticate, self);
-
+        [self.delegate receiveMessage:@selector(httpRequestWillAuthenticate:) withObject:self];
         [self willAuthenticate];
             
         [self.authenticator authenticateHttpRequest:self];
         
         [self didAuthenticate];
-        FLPerformSelector1(self.delegate, _delegateSelectors.didAuthenticate, self);
+        [self.delegate receiveMessage:@selector(httpRequestDidAuthenticate:) withObject:self];
     }
 
     [self openStreamWithURL:url];
 }
 
-- (NSTimeInterval) elapsedTime {
-    return self.lastTime - self.startTime;
-}
 
 - (id) startAsyncOperation {
-    self.downloadedByteCount = 0;
-    self.startTime = 0;
-    self.lastTime = 0;
-
+    self.byteCount = [FLHttpRequestByteCount httpRequestByteCount];
     [self openAuthenticatedStreamWithURL:self.requestHeaders.requestURL];
     return self;
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
-    FLPerformSelector1(self.delegate, _delegateSelectors.didOpen, self);
-    self.startTime = [NSDate timeIntervalSinceReferenceDate];
+    [self.delegate receiveMessage:@selector(httpRequestDidOpen:) withObject:self];
+    [self.byteCount setStartTime];
 }
 
 - (void) didReadBytes:(unsigned long long) amount {
@@ -276,11 +250,9 @@ static int s_counter = 0;
 
 - (void) networkStream:(FLHttpStream*) stream didReadBytes:(NSNumber*) amountRead {
 
-    self.downloadedByteCount += [amountRead longLongValue];
-    self.lastTime = [NSDate timeIntervalSinceReferenceDate]; 
-
+    [self.byteCount incrementByteCount:amountRead];
     [self didReadBytes:amountRead];
-    FLPerformSelector2(self.delegate, _delegateSelectors.didReadBytes, self, amountRead);
+    [self.delegate receiveMessage:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
 }
 
 - (void) requestDidFinishWithResult:(id) result {
@@ -289,7 +261,7 @@ static int s_counter = 0;
 
 - (void) finishRequestWithResult:(id) result error:(NSError*) error {
     
-    self.lastTime = [NSDate timeIntervalSinceReferenceDate]; 
+    [self.byteCount setFinishTime];    
         
     @try {
         if(!error) {
@@ -307,7 +279,7 @@ static int s_counter = 0;
         self.httpStream.delegate = nil;
         self.httpStream = nil;
         
-        FLPerformSelector2(self.delegate, _delegateSelectors.didClose, self, result);
+        [self.delegate receiveMessage:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
         [self requestDidFinishWithResult:result];
         [self setFinishedWithResult:result];
                 
@@ -317,18 +289,7 @@ static int s_counter = 0;
     }
 }
 
-#define kMegaBits 131072
 
-- (double) bytesPerSecond {
-    NSTimeInterval elapsedTime = self.elapsedTime;
-    unsigned long long downloadedByteCount = self.downloadedByteCount;
-    
-    if(elapsedTime && downloadedByteCount) {
-        return (downloadedByteCount / elapsedTime);
-    }
-    
-    return 0;
-}
 
 - (void) requestCancel {
     [super requestCancel];
@@ -358,6 +319,8 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
                                                     headers:responseHeaders 
                                              redirectedFrom:self.previousResponse
                                                   inputSink:responseData];
+    
+    response.byteCount = self.byteCount;
     
     NSError* responseError = [self checkHttpResponseForError:response];
     
@@ -390,8 +353,6 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
 }
 @end
 
-    
-    
 
 
 

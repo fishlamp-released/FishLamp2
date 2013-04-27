@@ -8,6 +8,7 @@
 
 #import "FLHttpResponse.h"
 #import "FLHttpMessage.h"
+#import "FLHttpRequestByteCount.h"
 
 @interface FLHttpResponse ()
 @property (readwrite, strong, nonatomic) NSDictionary* responseHeaders;
@@ -17,6 +18,7 @@
 @property (readwrite, strong, nonatomic) NSURL* requestURL;
 @property (readwrite, strong, nonatomic) id<FLInputSink> responseData;
 @property (readwrite, strong, nonatomic) NSError* error;
+@property (readwrite, strong, nonatomic) FLHttpRequestByteCount* byteCount;
 @end
 
 @implementation FLHttpResponse
@@ -28,7 +30,7 @@
 @synthesize redirectedFrom = _redirectedFrom;
 @synthesize responseData = _inputSink;
 @synthesize error = _error;
-
+@synthesize byteCount = _byteCount;
 
 - (id) initWithRequestURL:(NSURL*) url 
                   headers:(FLHttpMessage*) headers 
@@ -65,6 +67,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_byteCount release];
     [_inputSink release];
     [_redirectedFrom release];
     [_requestURL release];

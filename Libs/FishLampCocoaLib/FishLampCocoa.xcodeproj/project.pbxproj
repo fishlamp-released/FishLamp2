@@ -2991,6 +2991,15 @@
 		279E747617186F6400A4147D /* FLNetworkStream_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E747417186F6400A4147D /* FLNetworkStream_Internal.h */; };
 		279E747717186F6400A4147D /* FLNetworkStream_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E747417186F6400A4147D /* FLNetworkStream_Internal.h */; };
 		279E747817186F6400A4147D /* FLNetworkStream_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E747417186F6400A4147D /* FLNetworkStream_Internal.h */; };
+		27AE41B3172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */ = {isa = PBXBuildFile; fileRef = 27AE41B1172B68AF007FDDCE /* FLHttpRequestByteCount.h */; };
+		27AE41B4172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */ = {isa = PBXBuildFile; fileRef = 27AE41B1172B68AF007FDDCE /* FLHttpRequestByteCount.h */; };
+		27AE41B5172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */ = {isa = PBXBuildFile; fileRef = 27AE41B1172B68AF007FDDCE /* FLHttpRequestByteCount.h */; };
+		27AE41B6172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */ = {isa = PBXBuildFile; fileRef = 27AE41B1172B68AF007FDDCE /* FLHttpRequestByteCount.h */; };
+		27AE41B7172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AE41B2172B68AF007FDDCE /* FLHttpRequestByteCount.m */; };
+		27AE41B8172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AE41B2172B68AF007FDDCE /* FLHttpRequestByteCount.m */; };
+		27AE41B9172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AE41B2172B68AF007FDDCE /* FLHttpRequestByteCount.m */; };
+		27AE41BA172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AE41B2172B68AF007FDDCE /* FLHttpRequestByteCount.m */; };
+		27AE41BB172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AE41B2172B68AF007FDDCE /* FLHttpRequestByteCount.m */; };
 		27B2D71F171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B2D71D171C609A000DF355 /* FLRunLoopNetworkStreamEventHandler.h */; };
 		27B2D720171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B2D71D171C609A000DF355 /* FLRunLoopNetworkStreamEventHandler.h */; };
 		27B2D721171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B2D71D171C609A000DF355 /* FLRunLoopNetworkStreamEventHandler.h */; };
@@ -4316,6 +4325,8 @@
 		279E747417186F6400A4147D /* FLNetworkStream_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkStream_Internal.h; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoa-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27AE41B1172B68AF007FDDCE /* FLHttpRequestByteCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpRequestByteCount.h; sourceTree = "<group>"; };
+		27AE41B2172B68AF007FDDCE /* FLHttpRequestByteCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpRequestByteCount.m; sourceTree = "<group>"; };
 		27B2D71D171C609A000DF355 /* FLRunLoopNetworkStreamEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRunLoopNetworkStreamEventHandler.h; sourceTree = "<group>"; };
 		27B2D71E171C609B000DF355 /* FLRunLoopNetworkStreamEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRunLoopNetworkStreamEventHandler.m; sourceTree = "<group>"; };
 		27BE09B117061F6000C375E0 /* FLOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLOperation.h; sourceTree = "<group>"; };
@@ -5111,6 +5122,8 @@
 				271D31FF16FE0775009CD00F /* FLHttpResponse.m */,
 				271D320016FE0775009CD00F /* NSURLRequest+HTTP.h */,
 				271D320116FE0775009CD00F /* NSURLRequest+HTTP.m */,
+				27AE41B1172B68AF007FDDCE /* FLHttpRequestByteCount.h */,
+				27AE41B2172B68AF007FDDCE /* FLHttpRequestByteCount.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -6657,6 +6670,7 @@
 				2772454D1724E04E00D17357 /* FLHttpErrors.h in Headers */,
 				2755F92E1725E8C500C8D860 /* FLPropertyDescriber.h in Headers */,
 				27E6788617286AE900599503 /* FLHttpOperation.h in Headers */,
+				27AE41B3172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7037,6 +7051,7 @@
 				2772454F1724E04E00D17357 /* FLHttpErrors.h in Headers */,
 				2755F9301725E8C500C8D860 /* FLPropertyDescriber.h in Headers */,
 				27E6788817286AE900599503 /* FLHttpOperation.h in Headers */,
+				27AE41B5172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7417,6 +7432,7 @@
 				2772454E1724E04E00D17357 /* FLHttpErrors.h in Headers */,
 				2755F92F1725E8C500C8D860 /* FLPropertyDescriber.h in Headers */,
 				27E6788717286AE900599503 /* FLHttpOperation.h in Headers */,
+				27AE41B4172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7947,6 +7963,7 @@
 				277245501724E04E00D17357 /* FLHttpErrors.h in Headers */,
 				2755F9311725E8C500C8D860 /* FLPropertyDescriber.h in Headers */,
 				27E6788917286AE900599503 /* FLHttpOperation.h in Headers */,
+				27AE41B6172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8582,6 +8599,7 @@
 				277245521724E04E00D17357 /* FLHttpErrors.m in Sources */,
 				2755F9331725E8C500C8D860 /* FLPropertyDescriber.m in Sources */,
 				27E6788B17286AE900599503 /* FLHttpOperation.m in Sources */,
+				27AE41B8172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8927,6 +8945,7 @@
 				277245541724E04E00D17357 /* FLHttpErrors.m in Sources */,
 				2755F9351725E8C500C8D860 /* FLPropertyDescriber.m in Sources */,
 				27E6788D17286AE900599503 /* FLHttpOperation.m in Sources */,
+				27AE41BA172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9264,6 +9283,7 @@
 				277245511724E04E00D17357 /* FLHttpErrors.m in Sources */,
 				2755F9321725E8C500C8D860 /* FLPropertyDescriber.m in Sources */,
 				27E6788A17286AE900599503 /* FLHttpOperation.m in Sources */,
+				27AE41B7172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9609,6 +9629,7 @@
 				277245531724E04E00D17357 /* FLHttpErrors.m in Sources */,
 				2755F9341725E8C500C8D860 /* FLPropertyDescriber.m in Sources */,
 				27E6788C17286AE900599503 /* FLHttpOperation.m in Sources */,
+				27AE41B9172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10112,6 +10133,7 @@
 				277245551724E04E00D17357 /* FLHttpErrors.m in Sources */,
 				2755F9361725E8C500C8D860 /* FLPropertyDescriber.m in Sources */,
 				27E6788E17286AE900599503 /* FLHttpOperation.m in Sources */,
+				27AE41BB172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

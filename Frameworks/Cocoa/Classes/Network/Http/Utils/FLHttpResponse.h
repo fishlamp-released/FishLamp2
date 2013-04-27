@@ -11,7 +11,7 @@
 #import "FLInputSink.h"
 #import "FLHttpErrors.h"
 
-
+@class FLHttpRequestByteCount;
 @class FLHttpMessage;
 
 @interface FLHttpResponse : NSObject {
@@ -23,6 +23,7 @@
     FLHttpResponse* _redirectedFrom;
     id<FLInputSink> _inputSink;
     NSError* _error;
+    FLHttpRequestByteCount* _byteCount;
 }
 @property (readonly, strong, nonatomic) NSURL* requestURL;
 @property (readonly, strong, nonatomic) NSDictionary* responseHeaders;
@@ -41,6 +42,9 @@
 @property (readonly, assign, nonatomic) BOOL isRedirect;
 @property (readonly, strong, nonatomic) FLHttpResponse* redirectedFrom;
 @property (readonly, strong, nonatomic) NSURL* redirectURL;
+
+@property (readonly, strong, nonatomic) FLHttpRequestByteCount* byteCount;
+
 
 + (id) httpResponse:(NSURL*) requestURL 
             headers:(FLHttpMessage*) headers 
