@@ -9,31 +9,31 @@
 #import <Foundation/Foundation.h>
 #import "FLAsyncResult.h"
 #import "FLDispatchTypes.h"
-#import "FLFinisher.h"
+#import "FLPromise.h"
 #import "FLDispatchTypes.h"
 
 @protocol FLOperation;
 
 @protocol FLAsyncQueue <NSObject>
 
-- (FLFinisher*) queueBlockWithDelay:(NSTimeInterval) delay 
+- (FLPromise*) queueBlockWithDelay:(NSTimeInterval) delay 
                               block:(fl_block_t) block
                          completion:(fl_completion_block_t) completionOrNil;
 
-- (FLFinisher*) queueBlock:(fl_block_t) block
+- (FLPromise*) queueBlock:(fl_block_t) block
                 completion:(fl_completion_block_t) completionOrNil;
 
-- (FLFinisher*) queueFinishableBlock:(fl_finisher_block_t) block
+- (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block
                           completion:(fl_completion_block_t) completionOrNil;
 
-- (FLFinisher*) queueOperation:(id<FLOperation>) operation
+- (FLPromise*) queueOperation:(id<FLOperation>) operation
                     completion:(fl_completion_block_t) completionOrNil;
 
 - (void) dispatchSync:(fl_block_t) block;
 
-- (id<FLAsyncResult>) finishSync:(fl_finisher_block_t) block;
+- (FLPromisedResult) finishSync:(fl_finisher_block_t) block;
 
-- (id<FLAsyncResult>) runSynchronously:(id<FLOperation>) operation;
+- (FLPromisedResult) runSynchronously:(id<FLOperation>) operation;
 
 @end                    
 
@@ -47,7 +47,7 @@ void FLDispatchSync(id<FLAsyncQueue> queue,
 }
 
 NS_INLINE
-FLFinisher* FLDispatchAsync(id<FLAsyncQueue> queue, 
+FLPromise* FLDispatchAsync(id<FLAsyncQueue> queue, 
                             dispatch_block_t block, 
                             fl_completion_block_t completionOrNil) {
     FLAssertNotNil(queue);
@@ -56,7 +56,7 @@ FLFinisher* FLDispatchAsync(id<FLAsyncQueue> queue,
 }
 
 NS_INLINE
-FLFinisher* FLFinishAsync(id<FLAsyncQueue> queue, 
+FLPromise* FLFinishAsync(id<FLAsyncQueue> queue, 
                           fl_finisher_block_t block, 
                           fl_completion_block_t completionOrNil) {
     FLAssertNotNil(queue);
@@ -65,7 +65,7 @@ FLFinisher* FLFinishAsync(id<FLAsyncQueue> queue,
 }
 
 NS_INLINE
-id<FLAsyncResult> FLFinishSync(id<FLAsyncQueue> queue, 
+FLPromisedResult FLFinishSync(id<FLAsyncQueue> queue, 
                       fl_finisher_block_t block) {
     FLAssertNotNil(queue);
     FLAssertNotNil(block);
@@ -73,7 +73,7 @@ id<FLAsyncResult> FLFinishSync(id<FLAsyncQueue> queue,
 }
 
 NS_INLINE
-id<FLAsyncResult> FLRunOperation(id<FLAsyncQueue> queue, 
+FLPromisedResult FLRunOperation(id<FLAsyncQueue> queue, 
                         id<FLOperation> operation) {
     FLAssertNotNil(queue);
     FLAssertNotNil(operation);
@@ -81,7 +81,7 @@ id<FLAsyncResult> FLRunOperation(id<FLAsyncQueue> queue,
 }
 
 NS_INLINE
-FLFinisher* FLStartOperation(id<FLAsyncQueue> queue, 
+FLPromise* FLStartOperation(id<FLAsyncQueue> queue, 
                              id<FLOperation> operation, 
                              fl_completion_block_t completionOrNil) {
     FLAssertNotNil(queue);
@@ -92,28 +92,28 @@ FLFinisher* FLStartOperation(id<FLAsyncQueue> queue,
 
 // these return NIL if the target doesn't respond to selector.
 
-FLFinisher* FLDispatchSelectorAsync0(id<FLAsyncQueue> queue, 
+FLPromise* FLDispatchSelectorAsync0(id<FLAsyncQueue> queue, 
                                     id target, 
                                     SEL selector, 
                                     fl_completion_block_t completion);
 
 #define FLDispatchSelectorAsync FLDispatchSelectorAsync0
 
-FLFinisher* FLDispatchSelectorAsync1(id<FLAsyncQueue> queue, 
+FLPromise* FLDispatchSelectorAsync1(id<FLAsyncQueue> queue, 
                                      id target, 
                                      SEL selector, 
                                      id object, 
                                      fl_completion_block_t completion);
 
 
-FLFinisher* FLDispatchSelectorAsync2(id<FLAsyncQueue> queue, 
+FLPromise* FLDispatchSelectorAsync2(id<FLAsyncQueue> queue, 
                                      id target, 
                                      SEL selector, 
                                      id object1, 
                                      id object2,
                                      fl_completion_block_t completion);
 
-FLFinisher* FLDispatchSelectorAsync3(id<FLAsyncQueue> queue, 
+FLPromise* FLDispatchSelectorAsync3(id<FLAsyncQueue> queue, 
                                      id target, 
                                      SEL selector, 
                                      id object1, 

@@ -1,5 +1,5 @@
 //
-//  id<FLAsyncResult>.m
+//  FLPromisedResult.m
 //  FLCore
 //
 //  Created by Mike Fullerton on 11/16/12.
@@ -11,124 +11,86 @@
 
 #import "FLAsyncResult.h"
 
-@interface FLAsyncResult ()
-@property (readwrite, strong, nonatomic) id returnedObject;
-@property (readwrite, assign, nonatomic) NSInteger hint;
-@property (readwrite, strong, nonatomic) NSError* error;
-@end
-
-@implementation FLAsyncResult 
-@synthesize hint = _hint;
-@synthesize returnedObject = _returnedObject;
-@synthesize error = _error;
-
-#if FL_MRC
-- (void) dealloc {
-    [_returnedObject release];
-	[_error release];
-	[super dealloc];
-}
-#endif
-
-- (id) init {	
-    return [self initWithObject:nil error:nil hint:0];
-}
-
-- (id) initWithObject:(id) returnedObject 
-                error:(NSError*) error 
-                 hint:(NSInteger) hint {	
-	self = [super init];
-	if(self) {
-		self.returnedObject = returnedObject;
-        self.hint = hint;
-        self.error = error;
-	}
-	return self;
-}
-
-- (BOOL) didFail {
-    return self.error != nil;
-}
-
-- (BOOL) didSucceed {
-    return self.error == nil;
-}
-
-- (id) copyWithZone:(NSZone *)zone {
-    return [[[self class] alloc] initWithObject:self.returnedObject error:self.error hint:self.hint];
-}
-
-- (id)mutableCopyWithZone:(NSZone *)zone {
-    return [[FLMutableAsyncResult alloc] initWithObject:self.returnedObject error:self.error hint:self.hint];
-}
-
-+ (id) asyncResult {
-    FLReturnStaticObject(
-        FLAutorelease([[[self class] alloc] init]));
-}
-
-+ (id) asyncResult:(id) returnedObject {
-    return FLAutorelease([[[self class] alloc] initWithObject:returnedObject error:nil hint:0]);
-}
-
-+ (id) asyncResult:(id) returnedObject 
-                   hint:(NSInteger) hint {
-    
-    return FLAutorelease([[[self class] alloc] initWithObject:returnedObject error:nil hint:hint]);
-}
-
-+ (id) asyncResultWithHint:(NSInteger) hint {
-    return FLAutorelease([[[self class] alloc] initWithObject:nil error:nil hint:hint]);
-}
-
-+ (id) failedAsyncResult {
-    FLReturnStaticObject(
-        FLAutorelease([[[self class] alloc] initWithObject:nil error:[NSError failedResultError] hint:0]));
-}
-
-+ (id) failedAsyncResult:(NSError*) error {
-    return FLAutorelease([[[self class] alloc] initWithObject:nil error:error hint:0]);
-}
-
-+ (id) failedAsyncResult:(NSError*) error
-                returnedObject:(id) returnedObject {
-    return FLAutorelease([[[self class] alloc] initWithObject:returnedObject error:error hint:0]);
-}
-
-+ (id) failedAsyncResult:(NSError*) error
-                  hint:(NSInteger) hint {
-    return FLAutorelease([[[self class] alloc] initWithObject:nil error:error hint:hint]);
-}
-
-+ (id) failedAsyncResult:(NSError*) error
-                returnedObject:(id) returnedObject
-                  hint:(NSInteger) hint {
-    return FLAutorelease([[[self class] alloc] initWithObject:returnedObject error:error hint:hint]);
-}
-
-+ (id) failedAsyncResultWithHint:(NSInteger) hint {
-    return FLAutorelease([[[self class] alloc] initWithObject:nil error:nil hint:hint]);
-}
-
-- (id<FLAsyncResult>) asAsyncResult {
-    return self;
-}
-@end
-
-
-@implementation FLMutableAsyncResult 
-@dynamic error;
-@dynamic returnedObject;
-@dynamic hint;
-
-+ (id) asyncResult {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-+ (id) failedAsyncResult {
-    return FLAutorelease([[[self class] alloc] initWithObject:nil error:[NSError failedResultError] hint:0]);
-}
-@end
+//@interface FLAsyncResult ()
+//@property (readwrite, strong, nonatomic) id result;
+//@property (readwrite, strong, nonatomic) NSError* error;
+//@end
+//
+//@implementation FLAsyncResult 
+//@synthesize result = _result;
+//@synthesize error = _error;
+//
+//#if FL_MRC
+//- (void) dealloc {
+//    [_returnedObject release];
+//	[_error release];
+//	[super dealloc];
+//}
+//#endif
+//
+//- (id) init {	
+//    return [self initWithObject:nil error:nil ];
+//}
+//
+//- (id) initWithObject:(id) value 
+//                error:(NSError*) error {	
+//	self = [super init];
+//	if(self) {
+//		self.value = value;
+//        self.error = error;
+//	}
+//	return self;
+//}
+//
+//- (id) copyWithZone:(NSZone *)zone {
+//    return [[[self class] alloc] initWithObject:self.value error:self.error];
+//}
+//
+//- (id)mutableCopyWithZone:(NSZone *)zone {
+//    return [[FLMutableAsyncResult alloc] initWithObject:self.value error:self.error];
+//}
+//
+//+ (id) asyncResult {
+//    FLReturnStaticObject(
+//        FLAutorelease([[[self class] alloc] init]));
+//}
+//
+//+ (id) asyncResult:(id) value {
+//    return FLAutorelease([[[self class] alloc] initWithObject:value error:nil ]);
+//}
+//
+//+ (id) failedAsyncResult {
+//    FLReturnStaticObject(
+//        FLAutorelease([[[self class] alloc] initWithObject:nil error:[NSError failedResultError] ]));
+//}
+//
+//+ (id) asyncResultWithError:(NSError*) error {
+//    return FLAutorelease([[[self class] alloc] initWithObject:nil error:error]);
+//}
+//
+//+ (id) asyncResult:(id) value
+//             error:(NSError*) error {
+//    return FLAutorelease([[[self class] alloc] initWithObject:value error:error ]);
+//}
+//
+//- (FLPromisedResult) asAsyncResult {
+//    return self;
+//}
+//@end
+//
+//
+//@implementation FLMutableAsyncResult 
+//@dynamic error;
+//@dynamic result;
+//
+//+ (id) asyncResult {
+//    return FLAutorelease([[[self class] alloc] init]);
+//}
+//
+//+ (id) failedAsyncResult {
+//    return FLAutorelease([[[self class] alloc] initWithObject:nil error:[NSError failedResultError]]);
+//}
+//@end
 
 @implementation NSError (FLAsyncResult)
 + (id) failedResultError {
@@ -140,26 +102,15 @@
                             comment:nil]);
 }
 
-- (id<FLAsyncResult>) asAsyncResult {
-    return [FLAsyncResult failedAsyncResult:self];
+- (NSError*) error {
+    return self;
 }
-
-- (id<FLAsyncResult>) asAsyncResultWithHint:(NSInteger) hint {
-    return [FLAsyncResult failedAsyncResult:self hint:hint];
-}
-
 @end
 
 @implementation NSObject (FLAsyncResult)
-
-- (id<FLAsyncResult>) asAsyncResult {
-    return [FLAsyncResult asyncResult:self];
+- (NSError*) error {
+    return nil;
 }
-
-- (id<FLAsyncResult>) asAsyncResultWithHint:(NSInteger) hint {
-    return [FLAsyncResult asyncResult:self hint:hint];
-}
-
 @end
 
 

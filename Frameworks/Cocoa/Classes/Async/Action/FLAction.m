@@ -348,7 +348,7 @@
 //////        [self actionStarted];
 //////        
 //////        [[FLAsyncQueue sharedHighPriorityQueue] dispatchObject:self.operations
-//////                                 completion:^(id<FLAsyncResult> result) {
+//////                                 completion:^(FLPromisedResult result) {
 //////                
 //////                [[FLAsyncQueue sharedForegroundQueue] queueBlock:^{
 //////                    [finisher setFinishedWithResult:[self actionFinished:result]];
@@ -357,7 +357,7 @@
 //////    }];
 ////}
 //
-////- (id<FLAsyncResult>) runChildSynchronously {
+////- (FLPromisedResult) runChildSynchronously {
 ////    FLFinisher* finisher = [FLFinisher finisher:nil];
 ////    [self runAsynchronously:finisher];
 ////    return [finisher waitUntilFinished];

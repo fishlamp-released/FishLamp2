@@ -80,6 +80,13 @@
                                                object:[self activityLog]];
 
     [self clearContents];
+
+    NSMutableDictionary* attr = [NSMutableDictionary dictionary];
+    [attr setObject:[NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]] forKey:NSFontAttributeName];
+    [attr setObject:[NSNumber numberWithBool:YES] forKey:NSUnderlineStyleAttributeName];
+    [attr setObject:[NSColor blueColor] forKey:NSForegroundColorAttributeName];
+    [attr setObject:[NSCursor pointingHandCursor] forKey:NSCursorAttributeName];
+    [_textView setLinkTextAttributes:attr];
 }
 
 - (void) awakeFromNib {
@@ -93,7 +100,10 @@
     [_textView setHorizontallyResizable:YES];
     [_textView setTextContainerInset:NSMakeSize(10, 10)];
     
+    [_textView setEditable:NO];
+    
     [_textView setEnabledTextCheckingTypes:NSTextCheckingTypeLink];
+    
 }
 
 #define kDelay 0.5
@@ -107,22 +117,24 @@
         NSTextStorage* textStorage = [_textView textStorage];
         NSRange range = NSMakeRange(textStorage.length, 0);
         
-//        float scrollBottom = NSMaxY(_textView.visibleRect);
-//        float contentHeight = NSMaxY(_textView.bounds);
+        float scrollBottom = NSMaxY(_textView.visibleRect);
+        float contentHeight = NSMaxY(_textView.bounds);
         
-   //     BOOL scroll = (contentHeight - scrollBottom) > 20.0f;
+        FLLog(@"scroll bottom %f content bottom %f", scrollBottom, contentHeight);
+        
+        BOOL scroll = (contentHeight == scrollBottom);
+        
         
         [textStorage beginEditing];
         [textStorage replaceCharactersInRange:range withAttributedString:_buffer];
-//        [textStorage appendAttributedString:_buffer];
         [textStorage endEditing];
         
         self.buffer = nil;
         _lastUpdate = [NSDate timeIntervalSinceReferenceDate];
     
-//        if(scroll) {
+        if(scroll) {
             [_textView scrollRangeToVisible:NSMakeRange(textStorage.length, 0)];
-//        }
+        }
     }
     else {
         double delayInSeconds = kDelay;

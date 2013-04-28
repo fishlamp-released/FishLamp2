@@ -12,6 +12,7 @@
 
 @interface FLOperation ()
 @property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
+//@property (readwrite, strong) FLFinisher* finisher; 
 @end
 
 @implementation FLOperation
@@ -24,6 +25,7 @@
 @synthesize cancelled = _cancelled;
 @synthesize delegate = _delegate;
 @synthesize retryCount = _retryCount;
+@synthesize finisher = _finisher;
 
 //#if DEBUG
 //- (void) setDelegate:(id) delegate {
@@ -40,7 +42,8 @@
         self.asyncQueue = [FLDispatchQueue defaultQueue];
   		static int32_t s_counter = 0;
         self.identifier = [NSNumber numberWithInt:FLAtomicIncrement32(s_counter)];
-//        _finishedSelector = @selector(operationDidFinish:withResult:);
+        self.finisher = [FLFinisher finisher];
+        self.finisher.delegate = self;
     }
     return self;
 }
@@ -53,18 +56,43 @@
         
         FLLog(@"Operation last ditch removal from context: %@", [self description]);
     }
+    _finisher.delegate = nil;
     
 #if FL_MRC
+	[_finisher release];
     [_storageService release];
     [_identifier release];
 	[super dealloc];
 #endif
 }
 
-- (void) performUntilFinished:(FLFinisher*) finisher {
+- (FLPromise*) promise {
+    FLPromise* promise = [FLPromise promise];
+    [self.finisher addPromise:promise];
+    return promise;
+}
+
+- (void) finisher:(FLFinisher*) finisher didFinishWithResult:(id) result {
+    FLAssert(_finishCount == 0);
+    
+    self.context = nil;
+    [self sendFinishMessagesWithResult:result];
+    self.cancelled = NO;
+    _finishCount++;
+}
+
+- (void) startOperation {
+    
+    id initialData = [self startAsyncOperation];
+    [self sendStartMessagesWithInitialData:initialData];
+}
+
+- (id) startAsyncOperation {
     FLLog(@"operation did nothing.");
-    [finisher setFinished];
-}                      
+    [self.finisher setFinished];
+
+    return nil;
+}
 
 - (void) requestCancel {
     self.cancelled = YES;
@@ -107,42 +135,32 @@
     }
 }
 
-- (id<FLAsyncResult>) runSynchronously {
-    id<FLAsyncResult> result = [FLStartOperation(self.asyncQueue, self, nil) waitUntilFinished];
+- (FLPromisedResult) runSynchronously {
+    FLPromisedResult result = [FLStartOperation(self.asyncQueue, self, nil) waitUntilFinished];
 //    [self operationDidFinishWithResult:result];
-    return result;
-}
+    return result;}
 
-- (id<FLAsyncResult>) runSynchronouslyInContext:(FLOperationContext*) context {
+- (FLPromisedResult) runSynchronouslyInContext:(FLOperationContext*) context {
     self.context = context;
     return [self runSynchronously];
 }
 
-- (FLFinisher*) runAsynchronously:(fl_completion_block_t) completion {
+- (FLPromise*) runAsynchronously:(fl_completion_block_t) completion {
+    
     return FLStartOperation(self.asyncQueue, self, completion);
 }
 
-- (FLFinisher*) runAsynchronously {
+- (FLPromise*) runAsynchronously {
     return [self runAsynchronously:nil];
 }
 
-- (FLFinisher*) runAsynchronouslyInContext:(FLOperationContext*) context 
+- (FLPromise*) runAsynchronouslyInContext:(FLOperationContext*) context 
                          completion:(fl_completion_block_t) completionOrNil {
     self.context = context;
     return [self runAsynchronously:completionOrNil];
 }
 
-- (void) willRunInParent:(FLOperation*) parent {
-
-}
-
-- (void) didFinishInParent:(FLOperation*) parent withResult:(id<FLAsyncResult>) result {
-//    [self operationDidFinishWithResult:result];
-}
-
-- (void) willStartChildOperation:(id) operation {
-    [operation willRunInParent:self];
-
+- (void) willRunChildOperation:(FLOperation*) operation {
     if([operation delegate] == nil) {
         [operation setDelegate:self];
     }
@@ -157,60 +175,52 @@
     }
 }
 
-- (void) didFinishChildOperation:(id) operation withResult:(id<FLAsyncResult>) result {
-    [operation didFinishInParent:self withResult:result];
-    
+- (void) didRunChildOperation:(FLOperation*) operation {
     if([operation delegate] == self) {
         [operation setDelegate:nil];
     }
 }
 
-- (id<FLAsyncResult>) runChildSynchronously:(FLOperation*) operation {
+- (FLPromisedResult) runChildSynchronously:(FLOperation*) operation {
 
-    [self willStartChildOperation:FLRetainWithAutorelease(operation)];
+    [self willRunChildOperation:operation];
     
-    id<FLAsyncResult> result = nil;
+    FLPromisedResult result = nil;
     @try {
         result = [operation runSynchronously];
     }
     @catch(NSException* ex) {
-        result = [ex.error asAsyncResult];
+        result = ex.error;
     }
     FLAssertNotNilWithComment(result, @"result should not be nil");
     
-    [self didFinishChildOperation:operation withResult:result];
-    
+    [self didRunChildOperation:operation];
+        
     return result;
 }
 
-- (FLFinisher*) runChildAsynchronously:(FLOperation*) operation 
+- (FLPromise*) runChildAsynchronously:(FLOperation*) operation 
                             completion:(fl_completion_block_t) completionOrNil {
 
-    [self willStartChildOperation:FLRetainWithAutorelease(operation)];
-
+    [self willRunChildOperation:operation];
+    
     if(completionOrNil) {
         completionOrNil = FLCopyWithAutorelease(completionOrNil);
     }
     
-    return [operation runAsynchronously:^(id<FLAsyncResult> result) {
-        [self didFinishChildOperation:operation withResult:result];
+    return [operation runAsynchronously:^(FLPromisedResult result) {
+        [self didRunChildOperation:operation];
+        
         if(completionOrNil) {
             completionOrNil(result);
         }
-        
     }];
 }
 
-- (FLFinisher*) runChildAsynchronously:(FLOperation*) operation {
+- (FLPromise*) runChildAsynchronously:(FLOperation*) operation {
     return [self runChildAsynchronously:operation completion:nil];
 }
 
-
-- (void) operationDidFinishWithResult:(id<FLAsyncResult>) result {
-    self.context = nil;
-    [self sendFinishMessagesWithResult:result];
-    self.cancelled = NO;
-}
 
 - (void) abortIfCancelled {
     if(self.wasCancelled) {
@@ -220,7 +230,7 @@
 
 - (void) sendStartMessagesWithInitialData:(id) initialData {
 }
-- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
+- (void) sendFinishMessagesWithResult:(FLPromisedResult) result {
 }
 
 

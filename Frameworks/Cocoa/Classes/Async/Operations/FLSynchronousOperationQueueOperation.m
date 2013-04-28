@@ -48,18 +48,18 @@
     
     for(FLOperation* operation in _operationQueue) {
         
-        id<FLAsyncResult> operationResult = nil;
+        FLPromisedResult operationResult = nil;
         self.currentOperation = operation;
         @try {
             operationResult = [self runChildSynchronously:operation];
         }
         @catch(NSException* ex) {
-            operationResult = [ex.error asAsyncResult];
+            operationResult = ex.error;
         }
 
         [outResult setObject:operationResult forKey:operation.identifier];
        
-        if(self.abortNeeded || [operationResult didFail]) {
+        if(self.abortNeeded || [operationResult error]) {
             break;
         }
     }

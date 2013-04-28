@@ -23,7 +23,7 @@
 - (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
-    didCloseWithResult:(id<FLAsyncResult>) result;
+    didCloseWithResult:(FLPromisedResult) result;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount;
 
@@ -47,7 +47,7 @@ httpRequestDidAuthenticate:(FLHttpRequest*) httpRequest;
 
 - (void) httpOperation:(FLHttpOperation*) operation 
            httpRequest:(FLHttpRequest*) httpRequest 
-    didCloseWithResult:(id<FLAsyncResult>) result;
+    didCloseWithResult:(FLPromisedResult) result;
 
 - (void) httpOperation:(FLHttpOperation*) operation 
            httpRequest:(FLHttpRequest*) httpRequest 

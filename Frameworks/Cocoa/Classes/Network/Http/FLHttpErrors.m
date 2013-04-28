@@ -232,19 +232,19 @@ NSString* const FLHttpServerErrorDomain = @"FLHttpServerErrorDomain";
 
 + (NSError*) httpServerError:(NSInteger) statusCode statusLine:(NSString*) statusLine {
 
-    NSString* errorString = [NSString stringWithFormat:
-			  (NSLocalizedString(@"HTTP Server Response:%d (%@). Status line: %@",nil)),
-				statusCode,
-				[NSHTTPURLResponse localizedStringForStatusCode:statusCode],
-                statusLine == nil ? @"" : statusLine];
+//    NSString* errorString = [NSString stringWithFormat:
+//			  (NSLocalizedString(@"HTTP :%d (%@). Status line: %@",nil)),
+//				statusCode,
+//				[NSHTTPURLResponse localizedStringForStatusCode:statusCode],
+//                statusLine == nil ? @"" : statusLine];
 
 #if DEBUG
-    FLLog(errorString);
+    FLLog(statusLine);
 #endif    
     
 	return [NSError errorWithDomain:FLHttpServerErrorDomain
                                code:statusCode
-               localizedDescription:errorString];
+               localizedDescription:statusLine ? statusLine : @"HTTP Server Error"];
 }
 
 - (BOOL) isHttpServerError {

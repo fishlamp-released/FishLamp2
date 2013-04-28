@@ -32,7 +32,7 @@
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
 @property (readwrite, strong) FLHttpRequestByteCount* byteCount;
 
-- (void) finishRequestWithResult:(id) result error:(NSError*) error;
+- (void) finishRequestWithResult:(id) result;
 @end
 
 
@@ -168,8 +168,7 @@ static int s_counter = 0;
     }
     
     if(![FLReachableNetwork instance].isReachable) {
-        [self finishRequestWithResult:nil
-            error:[NSError errorWithDomain:FLNetworkErrorDomain code:FLNetworkErrorCodeNoRouteToHost localizedDescription:NSLocalizedString(@"Network appears to be offline", nil) ]];
+        [self finishRequestWithResult:[NSError errorWithDomain:FLNetworkErrorDomain code:FLNetworkErrorCodeNoRouteToHost localizedDescription:NSLocalizedString(@"Network appears to be offline", nil) ]];
         return;
     }
     
@@ -259,17 +258,17 @@ static int s_counter = 0;
     
 }
 
-- (void) finishRequestWithResult:(id) result error:(NSError*) error {
+- (void) finishRequestWithResult:(id) result {
     
     [self.byteCount setFinishTime];    
         
     @try {
-        if(!error) {
-            result = [[self resultFromHttpResponse:result] asAsyncResult];
+        if(![result error]) {
+            result = [self resultFromHttpResponse:result];
         }
     }
     @catch(NSException* ex) {
-        result = [ex.error asAsyncResult];
+        result = ex.error;
     }
     @finally {
 
@@ -281,7 +280,7 @@ static int s_counter = 0;
         
         [self.delegate receiveMessage:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
         [self requestDidFinishWithResult:result];
-        [self setFinishedWithResult:result];
+        [self.finisher setFinishedWithResult:result];
                 
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:FLNetworkActivityStoppedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self forKey:FLNetworkActivitySenderKey]];
@@ -294,13 +293,13 @@ static int s_counter = 0;
 - (void) requestCancel {
     [super requestCancel];
     [self.httpStream terminateStream];
-    [self finishRequestWithResult:nil error:[NSError cancelError]];
+    [self finishRequestWithResult:[NSError cancelError]];
 }
 
 - (void) networkStream:(FLHttpStream*) readStream 
       encounteredError:(NSError*) error {
     [self.httpStream terminateStream];
-    [self finishRequestWithResult:nil error:error];
+    [self finishRequestWithResult:error];
 }
 
 - (void) networkStreamDidClose:(FLHttpStream*) stream {
@@ -329,7 +328,7 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
     }
     
     if(responseError) {
-        [self finishRequestWithResult:nil error:responseError];
+        [self finishRequestWithResult:responseError];
     }
     else {
 
@@ -347,7 +346,7 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
         }
 
         if(!redirect) {
-            [self finishRequestWithResult:response error:nil];
+            [self finishRequestWithResult:response];
         }
     }
 }

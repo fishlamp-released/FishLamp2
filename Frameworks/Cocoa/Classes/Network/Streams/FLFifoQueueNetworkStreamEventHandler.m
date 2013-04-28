@@ -64,10 +64,13 @@
 
 #pragma GCC diagnostic pop
 
+- (void) didDispatchBlockInStream:(FLNetworkStream*) stream {
+
+}
+
 - (void) queueBlock:(dispatch_block_t) block {
-    FLRetain(self.stream);
-    [self.asyncQueue queueBlock:block completion:^(id<FLAsyncResult> result) {
-        FLAutorelease(self.stream);
+    [self.asyncQueue queueBlock:block completion:^(FLPromisedResult result) {
+        [self didDispatchBlockInStream:_stream];
     }];
 }
 

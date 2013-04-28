@@ -35,6 +35,6 @@
 
 
 // for subclassses
-- (void) sendIterationObservation:(id<FLAsyncResult>) result;
+- (void) sendIterationObservation:(FLPromisedResult) result;
 
 @end

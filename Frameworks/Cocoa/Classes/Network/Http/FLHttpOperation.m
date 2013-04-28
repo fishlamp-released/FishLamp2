@@ -28,7 +28,7 @@
 }
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
-  didCloseWithResult:(id<FLAsyncResult>) result {
+  didCloseWithResult:(FLPromisedResult) result {
 
     FLPerformSelector3(self.delegate, @selector(httpOperation:httpRequest:didCloseWithResult:), self, httpRequest, result);
 }    

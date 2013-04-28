@@ -97,7 +97,7 @@
             FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
 
             [[FLUnitTest outputLog] indent:^{
-                id<FLAsyncResult> results = [self runChildSynchronously:test];
+                FLPromisedResult results = [self runChildSynchronously:test];
                 FLThrowIfError(results);
                 
                 [resultArray addObject:results];

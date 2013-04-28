@@ -15,7 +15,7 @@
 @protocol FLCacheObjectOperationSubclass <NSObject>
 - (id) loadObjectFromDatabase;
 - (void) saveObjectToDatabase:(id) object;
-- (id<FLAsyncResult>) runSubOperations;
+- (FLPromisedResult) runSubOperations;
 @end
 
 @interface FLCachedObjectOperation : FLSynchronousOperation {

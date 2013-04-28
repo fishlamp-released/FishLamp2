@@ -60,35 +60,33 @@
 @end
 
 @interface NSAttributedString (FLAdditions)
-+ (id) attributedStringWithString:(NSString*) string withTextStyle:(FLTextStyle*) style;
+//+ (id) attributedStringWithString:(NSString*) string withTextStyle:(FLTextStyle*) style;
 
 - (NSRange) entireRange;
 
-- (CGColorRef) colorForRange:(NSRange) range;
-- (CTFontRef) fontForRange:(NSRange) range;
+//- (CGColorRef) colorForRange:(NSRange) range;
+//- (CTFontRef) fontForRange:(NSRange) range;
 
 @end
 
-@interface NSMutableAttributedString (FLAdditions)
+@interface NSMutableDictionary (FLAttributedStringAdditions)
 
-- (void) setAttribute:(id) object forName:(NSString*) name forRange:(NSRange) range; // nil ojbect removes it.
-
-- (void) setFont:(SDKFont*) font forRange:(NSRange) range;
-- (void) setColor:(NSColor*) color forRange:(NSRange) range;
-- (void) setShadowColor:(NSColor*) color forRange:(NSRange) range;
-- (void) setUnderlined:(BOOL) underlined forRange:(NSRange) range;
-- (void) setTextStyle:(FLTextStyle*) style forRange:(NSRange) range;
-- (void) setURL:(NSURL*) url forRange:(NSRange) range;
-
-+ (id) mutableAttributedString;
-+ (id) mutableAttributedString:(NSString*) string;
-
-
-// makes a link
-- (id) initWithString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline;
-+ (id) mutableAttributedString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline;
-
+//- (void) setAttribute:(id) object forName:(NSString*) name forRange:(NSRange) range; // nil ojbect removes it.
+//
+- (void) setAttributedStringFont:(SDKFont*) font;
+- (void) setAttributedStringColor:(NSColor*) color;
+- (void) setAttributedStringUnderlined;
+//
+//+ (id) mutableAttributedString;
+//+ (id) mutableAttributedString:(NSString*) string;
+//
+//
+//// makes a link
+//- (id) initWithString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline;
+//+ (id) mutableAttributedString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline;
+//
 @end
+
 
 
 

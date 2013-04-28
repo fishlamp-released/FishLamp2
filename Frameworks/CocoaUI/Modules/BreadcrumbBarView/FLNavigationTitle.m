@@ -89,8 +89,24 @@
             CFRelease(colorRef);
         }
         
-        self.attributedString = [NSAttributedString attributedStringWithString:self.localizedTitle withTextStyle:textStyle];
+#if OSX
+        CGColorRef colorRef = [textStyle.textColor copyCGColorRef];
+#else
+        CGColorRef colorRef  = [color CGColor];
+#endif
+
+        NSDictionary* attr = [NSDictionary dictionaryWithObjectsAndKeys:
+            (id) colorRef, NSForegroundColorAttributeName,
+            textStyle.textFont, NSFontAttributeName,
+            nil];
+            
+        self.attributedString = FLAutorelease([[NSAttributedString alloc] initWithString:self.localizedTitle attributes:attr]);
         
+#if OSX
+        if(colorRef) {
+            CFRelease(colorRef);
+        }
+#endif            
         [self setNeedsDisplay];
         _willUpdate = NO;
 

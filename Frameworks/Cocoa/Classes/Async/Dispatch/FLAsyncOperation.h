@@ -8,13 +8,8 @@
 
 #import "FLOperation.h"
 
-@interface FLAsyncOperation : FLOperation<FLFinishable> {
+@interface FLAsyncOperation : FLOperation {
 @private
-    FLFinisher* _finisher;
-    id _threadID;
 }
-@property (readonly, strong) id threadID;
-@property (readwrite, strong) FLFinisher* finisher; 
 
-- (id) startAsyncOperation;
 @end

@@ -8,12 +8,13 @@
 
 #import "FLAsyncQueue.h"
 #import "FLFinisher.h"
+
 #import "FLSelectorPerforming.h"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
-FLFinisher* FLDispatchSelectorAsync0(id<FLAsyncQueue> queue, 
+FLPromise* FLDispatchSelectorAsync0(id<FLAsyncQueue> queue, 
                                     id target, 
                                     SEL selector, 
                                     fl_completion_block_t completion) {
@@ -27,7 +28,7 @@ FLFinisher* FLDispatchSelectorAsync0(id<FLAsyncQueue> queue,
     return nil;
 }
 
-FLFinisher* FLDispatchSelectorAsync1(id<FLAsyncQueue> queue, 
+FLPromise* FLDispatchSelectorAsync1(id<FLAsyncQueue> queue, 
                                               id target, 
                                               SEL selector, 
                                               id object, 
@@ -42,7 +43,7 @@ FLFinisher* FLDispatchSelectorAsync1(id<FLAsyncQueue> queue,
     return nil;
 }
 
-FLFinisher* FLDispatchSelectorAsync2(id<FLAsyncQueue> queue, 
+FLPromise* FLDispatchSelectorAsync2(id<FLAsyncQueue> queue, 
                                                   id target, 
                                                   SEL selector, 
                                                   id object1, 
@@ -58,7 +59,7 @@ FLFinisher* FLDispatchSelectorAsync2(id<FLAsyncQueue> queue,
 }
 
 
-FLFinisher* FLDispatchSelectorAsync3(id<FLAsyncQueue> queue, 
+FLPromise* FLDispatchSelectorAsync3(id<FLAsyncQueue> queue, 
                                                 id target, 
                                                 SEL selector, 
                                                 id object1, 

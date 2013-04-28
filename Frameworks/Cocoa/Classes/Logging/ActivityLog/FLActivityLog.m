@@ -14,8 +14,8 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
 
 @implementation FLActivityLog
 
-@synthesize textFont = _textFont;
-@synthesize textColor = _textColor;
+@synthesize activityLogTextFont = _textFont;
+@synthesize activityLogTextColor = _textColor;
 
 - (id) init {
     self = [super init];
@@ -56,7 +56,16 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
                                            dateStyle:NSDateFormatterShortStyle 
                                            timeStyle:kCFDateFormatterLongStyle]];
 
-        [_log stringFormatter:stringFormatter appendString:timeStamp];
+
+        NSDictionary *attributes = [[NSDictionary alloc] initWithObjectsAndKeys:
+            [NSColor gray15Color], NSForegroundColorAttributeName, 
+            [NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName, nil];
+
+        NSMutableAttributedString* string = 
+            FLAutorelease([[NSMutableAttributedString alloc] initWithString:timeStamp attributes:attributes]);
+
+
+        [_log stringFormatter:stringFormatter appendAttributedString:string];
 
     }
 }
@@ -130,18 +139,23 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
     return FLAutorelease(err);
 }
 
+#define kActivityLog @"ActivityLog"
+
 - (NSAttributedString*) prettyString:(FLPrettyString*) prettyString willAppendAttributedString:(NSAttributedString*) string {
     if(_textFont || _textColor) {
-        NSMutableAttributedString* mutableString = FLAutorelease([string mutableCopy]);
-        
-        if(_textFont) {
-            [mutableString setFont:_textFont forRange:string.entireRange];
+    
+        NSRange range = string.entireRange;
+        NSDictionary* attributes = [string attributesAtIndex:0 effectiveRange:&range];
+
+        NSMutableDictionary* attr = FLMutableCopyWithAutorelease(attributes);
+        if(_textFont && [attr objectForKey:NSFontAttributeName] == nil) {
+            [attr setObject:[NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]] forKey:NSFontAttributeName];
         }
-        if(_textColor) {
-            [mutableString setColor:_textColor forRange:string.entireRange];
+        if(_textColor && [attr objectForKey:NSForegroundColorAttributeName] == nil) {
+            [attr setObject:[NSColor gray15Color] forKey:NSForegroundColorAttributeName];
         }
-        
-        return mutableString;
+
+        return FLAutorelease([[NSAttributedString alloc] initWithString:string.string attributes:attr]);
     }
     
     return string;
@@ -152,24 +166,65 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
 }
 
 - (void) appendURL:(NSURL*) url string:(NSString*) string {
-    NSMutableAttributedString* urlString = [NSMutableAttributedString mutableAttributedString:string 
-                                                                                          url:url 
-                                                                                        color:[NSColor blackColor] 
-                                                                                    underline:YES];
-    [self appendAttributedString:urlString];
+    NSMutableDictionary* attr = [NSMutableDictionary dictionary];
+    [attr setObject:url forKey:NSLinkAttributeName];
+//    [attr setObject:[NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]] forKey:NSFontAttributeName];
+//    [attr setObject:[NSNumber numberWithBool:NO] forKey:NSUnderlineStyleAttributeName];
+//    [attr setAttributedStringColor:[NSColor gray20Color]];
+    [self appendAttributedString:FLAutorelease([[NSAttributedString alloc] initWithString:string attributes:attr])];
 }
 
 - (void) appendLineWithURL:(NSURL*) url string:(NSString*) string {
-    NSMutableAttributedString* urlString = [NSMutableAttributedString mutableAttributedString:string 
-                                                                                          url:url 
-                                                                                        color:[NSColor blackColor] 
-                                                                                    underline:YES];
-    [self appendLineWithAttributedString:urlString];
+
+
+//        NSMutableAttributedString* urlString = [NSMutableAttributedString mutableAttributedString:[self.rootGroup relativePathForElement:photoSet]
+//                                                                                              url:[NSURL URLWithString:[photoSet PageUrl]] 
+//                                                                                            color:[NSColor blackColor] 
+//                                                                                        underline:YES];
+        
+
+
+
+
+//
+//    NSMutableAttributedString* urlString = [NSMutableAttributedString mutableAttributedString:string 
+//                                                                                          url:url 
+//                                                                                        color:[NSColor blackColor] 
+//                                                                                    underline:YES];
+    [self appendURL:url string:string];
+    [self closeLine];
 }
 
 - (void) clear {
     [_log deleteAllCharacters];
 }
 
+- (void) appendErrorLine:(NSString*) errorLine {
+    NSDictionary *attributes = [[NSDictionary alloc] initWithObjectsAndKeys:
+        [NSColor redColor], NSForegroundColorAttributeName, 
+        [NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName, nil];
+
+    NSMutableAttributedString* string = 
+        FLAutorelease([[NSMutableAttributedString alloc] initWithString:errorLine attributes:attributes]);
+
+    [self appendLineWithAttributedString:string];
+
+}
+
+- (void) appendBoldTitle:(NSString*) title {
+    NSDictionary *attributes = [[NSDictionary alloc] initWithObjectsAndKeys:
+        [NSColor gray15Color], NSForegroundColorAttributeName, 
+        [NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName, nil];
+
+    NSMutableAttributedString* string = 
+        FLAutorelease([[NSMutableAttributedString alloc] initWithString:title attributes:attributes]);
+
+    [self appendAttributedString:string];
+}
+
+- (void) appendBoldTitleLine:(NSString*) title {
+    [self appendBoldTitle:title];
+    [self closeLine];
+}
 
 @end
