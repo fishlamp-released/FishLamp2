@@ -120,11 +120,7 @@
         float scrollBottom = NSMaxY(_textView.visibleRect);
         float contentHeight = NSMaxY(_textView.bounds);
         
-        FLLog(@"scroll bottom %f content bottom %f", scrollBottom, contentHeight);
-        
         BOOL scroll = (contentHeight == scrollBottom);
-        
-        
         [textStorage beginEditing];
         [textStorage replaceCharactersInRange:range withAttributedString:_buffer];
         [textStorage endEditing];

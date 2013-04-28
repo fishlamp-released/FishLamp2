@@ -173,7 +173,19 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
 
     if(bytesRead < 0) {
-        [self encounteredError:[NSError errorWithDomain:(NSString*) kCFErrorDomainCFNetwork code:kCFURLErrorBadServerResponse localizedDescription:NSLocalizedString(@"Read networkbytes failed: %d", bytesRead)]];
+    
+        NSError* error = [self streamError];
+        if(error) {
+            [self encounteredError:error];
+        }
+        else {
+            NSString* description = 
+                [NSString stringWithFormat:NSLocalizedString(@"Read network bytes failed: %d", nil), bytesRead];
+        
+            [self encounteredError:[NSError errorWithDomain:(NSString*) kCFErrorDomainCFNetwork 
+                                                       code:kCFURLErrorBadServerResponse 
+                                       localizedDescription:description]];
+        }
     
         return YES;
     }
