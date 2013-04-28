@@ -7,11 +7,27 @@
 //
 
 #import "FLCocos2d.h"
+#import "FLCocos2dView.h"
 
-// NOTE: the view must be a CCGLView
+// NOTE: the view must be a FLCocos2dViw
 
-@interface FLCocos2dViewController : NSViewController<CCDirectorDelegate> {
+@protocol FLCocos2dViewControllerDelegate;
+
+@interface FLCocos2dViewController : NSViewController<CCDirectorDelegate, FLCocos2dViewDelegate> {
 @private
+    IBOutlet __unsafe_unretained id _delegate;
 }
 
+@property (readonly, assign, nonatomic) CCDirectorMac* director;
+
+@property (readwrite, nonatomic, assign) id<FLCocos2dViewControllerDelegate> delegate;
+
+- (IBAction)toggleFullScreen: (id)sender;
+
+@end
+
+@protocol FLCocos2dViewControllerDelegate <NSObject>
+
+- (void) cocos2dViewController:(FLCocos2dViewController*) controller 
+             didPrepareCocos2d:(CCDirectorMac*) director;
 @end
