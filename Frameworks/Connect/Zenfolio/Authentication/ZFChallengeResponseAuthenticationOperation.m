@@ -70,6 +70,7 @@
     challengeRequest.streamSecurity = FLNetworkStreamSecuritySSL;
 #endif
 
+    challengeRequest.canRetry = NO;
     challengeRequest.disableAuthenticator = YES;
     
     FLPromisedResult challengeResponse = [self runChildSynchronously:challengeRequest];
@@ -79,6 +80,7 @@
    
     FLHttpRequest* authenticateRequest = [self authenticateRequestWithAuthChallenge:challenge];
     
+    authenticateRequest.canRetry = NO;
     authenticateRequest.disableAuthenticator = YES;
 
 #if OSX

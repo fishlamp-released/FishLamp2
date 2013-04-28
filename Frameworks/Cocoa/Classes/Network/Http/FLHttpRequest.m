@@ -31,6 +31,7 @@
 @property (readwrite, strong, nonatomic) FLHttpResponse* previousResponse;
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
 @property (readwrite, strong) FLHttpRequestByteCount* byteCount;
+@property (readwrite, assign) NSUInteger retryCount;
 
 - (void) finishRequestWithResult:(id) result;
 @end
@@ -50,6 +51,12 @@
 @synthesize timeoutInterval = _timeoutInterval;
 @synthesize streamSecurity = _streamSecurity;
 @synthesize byteCount = _byteCount;
+@synthesize retryCount = _retryCount;
+@synthesize maxRetryCount = _maxRetryCount;
+@synthesize canRetry = _canRetry;
+@synthesize retryDelay = _retryDelay;
+
+static NSUInteger s_defaultRetryCount = 3;
 
 #if TRACE
 static int s_counter = 0;
@@ -70,6 +77,8 @@ static int s_counter = 0;
         
         self.requestHeaders.requestURL = url;
         self.requestHeaders.httpMethod = httpMethod;
+        self.maxRetryCount = s_defaultRetryCount;
+        self.retryDelay = 0.5;
         
         if(FLStringIsEmpty(httpMethod)) {
             self.requestHeaders.httpMethod= @"GET";
@@ -89,6 +98,7 @@ static int s_counter = 0;
 
 - (void) releaseResponseData {
     self.previousResponse = nil;
+    self.httpStream.delegate = nil;
     self.httpStream = nil;
 }
 
@@ -235,7 +245,7 @@ static int s_counter = 0;
 - (id) startAsyncOperation {
     self.byteCount = [FLHttpRequestByteCount httpRequestByteCount];
     [self openAuthenticatedStreamWithURL:self.requestHeaders.requestURL];
-    return self;
+    return nil;
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
@@ -273,14 +283,12 @@ static int s_counter = 0;
     @finally {
 
         [self releaseResponseData];
-        
-        self.previousResponse = nil;
-        self.httpStream.delegate = nil;
-        self.httpStream = nil;
-        
+                
         [self.delegate receiveMessage:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
         [self requestDidFinishWithResult:result];
         [self.finisher setFinishedWithResult:result];
+        
+        self.retryCount = 0;
                 
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:FLNetworkActivityStoppedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self forKey:FLNetworkActivitySenderKey]];
@@ -296,10 +304,32 @@ static int s_counter = 0;
     [self finishRequestWithResult:[NSError cancelError]];
 }
 
+- (BOOL) tryRetry {
+    if(self.canRetry && self.retryCount < self.maxRetryCount) {
+        [self releaseResponseData];
+        self.retryCount++;
+        
+        FLLog(@"Retrying %ld of %ld", self.retryCount, self.maxRetryCount);
+        
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_retryDelay * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self startAsyncOperation];
+        });
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (void) networkStream:(FLHttpStream*) readStream 
       encounteredError:(NSError*) error {
     [self.httpStream terminateStream];
-    [self finishRequestWithResult:error];
+    
+    if( [error isCancelError] || self.wasCancelled || ![self tryRetry]) {       
+        [self finishRequestWithResult:error];
+    }
+    
 }
 
 - (void) networkStreamDidClose:(FLHttpStream*) stream {

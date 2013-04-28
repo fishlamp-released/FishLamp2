@@ -33,19 +33,15 @@
 @interface FLOperation : FLObservable<FLOperation, FLFinisherDelegate> {
 @private
     __unsafe_unretained FLOperationContext* _context;
+	id _identifier;
     NSUInteger _contextID;
     id<FLAsyncQueue> _asyncQueue;
     id _storageService;
-	id _identifier;
     BOOL _cancelled;
-    __unsafe_unretained id _delegate;
-    NSInteger _retryCount;
     FLFinisher* _finisher;
-    
-    int _finishCount;
+    __unsafe_unretained id _delegate;
 }
 
-@property (readwrite, assign) NSInteger retryCount;
 
 // finished delegate
 @property (readwrite, nonatomic, assign) id delegate;

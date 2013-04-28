@@ -54,6 +54,8 @@
 
         FLHttpRequest* request = [FLHttpRequest httpRequest:[_downloadSpec.photo urlForImageWithSize:_downloadSpec.mediaType]];
 
+        request.canRetry = YES;
+
     // TODO: abstract which sink is used    
         request.inputSink = [FLHiddenFolderFileSink hiddenFolderFileSink:filePath
                                                               folderPath:self.downloadSpec.tempFolder]; 

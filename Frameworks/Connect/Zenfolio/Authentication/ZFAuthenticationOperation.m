@@ -32,6 +32,7 @@
 
     request.streamSecurity = FLNetworkStreamSecuritySSL;
     request.disableAuthenticator = YES;
+    request.canRetry = NO;
     [request setAuthenticationToken:userLogin.authToken];
     
     FLPromisedResult result = [self runChildSynchronously:request];
