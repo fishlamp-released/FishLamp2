@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2702EF63172B02230084066F /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EF61172B02230084066F /* FLFileDropTableViewController.h */; };
+		2702EF64172B02230084066F /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EF61172B02230084066F /* FLFileDropTableViewController.h */; };
+		2702EF65172B02230084066F /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EF61172B02230084066F /* FLFileDropTableViewController.h */; };
+		2702EF66172B02230084066F /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EF61172B02230084066F /* FLFileDropTableViewController.h */; };
+		2702EF67172B02230084066F /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EF62172B02230084066F /* FLFileDropTableViewController.m */; };
+		2702EF68172B02230084066F /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EF62172B02230084066F /* FLFileDropTableViewController.m */; };
+		2702EF69172B02230084066F /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EF62172B02230084066F /* FLFileDropTableViewController.m */; };
+		2702EF6A172B02230084066F /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EF62172B02230084066F /* FLFileDropTableViewController.m */; };
 		2744B3F0171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
 		2744B3F1171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
 		2744B3F2171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
@@ -290,6 +298,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2702EF61172B02230084066F /* FLFileDropTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFileDropTableViewController.h; sourceTree = "<group>"; };
+		2702EF62172B02230084066F /* FLFileDropTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFileDropTableViewController.m; sourceTree = "<group>"; };
 		27048EF0161CB58600C38ADA /* libFishLampOSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampOSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -527,6 +537,8 @@
 				2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */,
 				2744B4C7172046080090B70D /* NSViewController+FLErrorSheet.h */,
 				2744B4C8172046080090B70D /* NSViewController+FLErrorSheet.m */,
+				2702EF61172B02230084066F /* FLFileDropTableViewController.h */,
+				2702EF62172B02230084066F /* FLFileDropTableViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -644,6 +656,7 @@
 				2744B4BF172042F80090B70D /* FLFramedView.h in Headers */,
 				2744B4C9172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */,
 				2744B4FF17204EE10090B70D /* NSImage+FLAdditions.h in Headers */,
+				2702EF63172B02230084066F /* FLFileDropTableViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,6 +691,7 @@
 				2744B4C1172042F80090B70D /* FLFramedView.h in Headers */,
 				2744B4CB172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */,
 				2744B50117204EE10090B70D /* NSImage+FLAdditions.h in Headers */,
+				2702EF65172B02230084066F /* FLFileDropTableViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,6 +726,7 @@
 				2744B4C0172042F80090B70D /* FLFramedView.h in Headers */,
 				2744B4CA172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */,
 				2744B50017204EE10090B70D /* NSImage+FLAdditions.h in Headers */,
+				2702EF64172B02230084066F /* FLFileDropTableViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +761,7 @@
 				2744B4C2172042F80090B70D /* FLFramedView.h in Headers */,
 				2744B4CC172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */,
 				2744B50217204EE10090B70D /* NSImage+FLAdditions.h in Headers */,
+				2702EF66172B02230084066F /* FLFileDropTableViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,6 +980,7 @@
 				2744B4C3172042F80090B70D /* FLFramedView.m in Sources */,
 				2744B4CD172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */,
 				2744B50317204EE10090B70D /* NSImage+FLAdditions.m in Sources */,
+				2702EF67172B02230084066F /* FLFileDropTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -994,6 +1011,7 @@
 				2744B4C5172042F80090B70D /* FLFramedView.m in Sources */,
 				2744B4CF172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */,
 				2744B50517204EE10090B70D /* NSImage+FLAdditions.m in Sources */,
+				2702EF69172B02230084066F /* FLFileDropTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,6 +1042,7 @@
 				2744B4C4172042F80090B70D /* FLFramedView.m in Sources */,
 				2744B4CE172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */,
 				2744B50417204EE10090B70D /* NSImage+FLAdditions.m in Sources */,
+				2702EF68172B02230084066F /* FLFileDropTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1054,6 +1073,7 @@
 				2744B4C6172042F80090B70D /* FLFramedView.m in Sources */,
 				2744B4D0172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */,
 				2744B50617204EE10090B70D /* NSImage+FLAdditions.m in Sources */,
+				2702EF6A172B02230084066F /* FLFileDropTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
