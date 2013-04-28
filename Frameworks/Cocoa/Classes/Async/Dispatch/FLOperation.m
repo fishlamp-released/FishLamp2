@@ -24,7 +24,6 @@
 @synthesize storageService = _storageService;
 @synthesize cancelled = _cancelled;
 @synthesize delegate = _delegate;
-@synthesize retryCount = _retryCount;
 @synthesize finisher = _finisher;
 
 //#if DEBUG
@@ -73,12 +72,9 @@
 }
 
 - (void) finisher:(FLFinisher*) finisher didFinishWithResult:(id) result {
-    FLAssert(_finishCount == 0);
-    
     self.context = nil;
     [self sendFinishMessagesWithResult:result];
     self.cancelled = NO;
-    _finishCount++;
 }
 
 - (void) startOperation {

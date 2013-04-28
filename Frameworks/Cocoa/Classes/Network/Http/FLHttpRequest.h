@@ -34,7 +34,6 @@
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;
 @end
 
-
 @interface FLHttpRequest : FLAsyncOperation<FLHttpStreamDelegate> {
 @private
     FLHttpRequestHeaders* _requestHeaders;
@@ -52,8 +51,19 @@
     FLNetworkStreamSecurity _streamSecurity;
     
     FLHttpRequestByteCount* _byteCount;
+    NSUInteger _retryCount;
+    NSUInteger _maxRetryCount;
+    BOOL _canRetry;
+    NSTimeInterval _retryDelay;
 }
+// timeouts
 @property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
+
+// retries
+@property (readonly, assign) NSUInteger retryCount;
+@property (readwrite, nonatomic) NSUInteger maxRetryCount;
+@property (readwrite, nonatomic) BOOL canRetry;
+@property (readwrite, nonatomic) NSTimeInterval retryDelay;
 
 @property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
 @property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> authenticator;
