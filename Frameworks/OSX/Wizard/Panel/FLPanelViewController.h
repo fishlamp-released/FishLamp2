@@ -78,14 +78,14 @@
 
 - (void) addPanelView:(SDKView*) panelView toPanelArea:(id<FLPanelArea>) panelArea animated:(BOOL) animated;
 
-- (void) showAlertWithError:(NSError*) error; 
-- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title;
-- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title withCaption:(NSString*) caption;
+//- (void) showAlertWithError:(NSError*) error; 
+//- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title;
+//- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title withCaption:(NSString*) caption;
  
-- (void) didHideAlertWithError:(NSError*) error;
+//- (void) didHideAlertWithError:(NSError*) error;
 
-- (void) showAlertWithTitle:(NSString*) title;
-- (void) showAlertWithTitle:(NSString*) title withCaption:(NSString*) caption;
+//- (void) showAlertWithTitle:(NSString*) title;
+//- (void) showAlertWithTitle:(NSString*) title withCaption:(NSString*) caption;
 
 + (id) defaultPanelIdentifier;
 

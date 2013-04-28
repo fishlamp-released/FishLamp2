@@ -43,7 +43,7 @@
 }
 
 - (id) performSynchronously {
-    id<FLAsyncResult> object = nil;
+    FLPromisedResult object = nil;
     
 	if(self.canLoadFromCache) {
 		object = [self loadObjectFromDatabase];

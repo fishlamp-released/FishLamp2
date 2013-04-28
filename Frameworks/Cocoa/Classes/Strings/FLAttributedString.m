@@ -163,27 +163,27 @@ FLSynthesizeModelObjectMethods();
     return NSMakeRange(0, self.length);
 }
 
-+ (id) attributedStringWithString:(NSString*) string 
-                    withTextStyle:(FLTextStyle*) textStyle {
+//+ (id) attributedStringWithString:(NSString*) string 
+//                    withTextStyle:(FLTextStyle*) textStyle {
+//
+//    FLAssertNotNilWithComment(textStyle, @"no text style attributed string");
+//    NSMutableAttributedString* attrString =
+//        FLAutorelease([[NSMutableAttributedString alloc] initWithString:string]);
+//
+//    [attrString setTextStyle:textStyle forRange:attrString.entireRange];
+//    return attrString;
+//}
 
-    FLAssertNotNilWithComment(textStyle, @"no text style attributed string");
-    NSMutableAttributedString* attrString =
-        FLAutorelease([[NSMutableAttributedString alloc] initWithString:string]);
-
-    [attrString setTextStyle:textStyle forRange:attrString.entireRange];
-    return attrString;
-}
-
-- (CGColorRef) colorForRange:(NSRange) range {
-
-    return FLBridge(CGColorRef, [self attribute:(NSString*) kCTForegroundColorAttributeName 
-        atIndex:0 effectiveRange:&range]);
-}
-
-- (CTFontRef) fontForRange:(NSRange) range {
-    return FLBridge(CTFontRef, [self attribute:(NSString*) kCTFontAttributeName 
-        atIndex:0 effectiveRange:&range]);
-}
+//- (CGColorRef) colorForRange:(NSRange) range {
+//
+//    return FLBridge(CGColorRef, [self attribute:(NSString*) kCTForegroundColorAttributeName 
+//        atIndex:0 effectiveRange:&range]);
+//}
+//
+//- (CTFontRef) fontForRange:(NSRange) range {
+//    return FLBridge(CTFontRef, [self attribute:(NSString*) kCTFontAttributeName 
+//        atIndex:0 effectiveRange:&range]);
+//}
 
 @end
 
@@ -195,136 +195,147 @@ FLSynthesizeModelObjectMethods();
 //    return ctFont;
 //}
 
-@implementation NSMutableAttributedString (FLAdditions)
+@implementation NSMutableDictionary (FLAttributedStringAdditions)
 
 
-- (void) setTextStyle:(FLTextStyle*) style forRange:(NSRange) range {
-    if(style.textFont) {
-        [self setFont:style.textFont forRange:range];
-    }
-    if(style.textColor) {
-        [self setColor:style.textColor forRange:range];
-    }
-    if(style.shadowColor) {
-        [self setShadowColor:style.shadowColor forRange:range];
-    }
-    if(style.isUnderlined) {
-        [self setUnderlined:YES forRange:range];
-    }
-    [self addAttribute:@"com.fishlamp.string" value:self range:range];
-}
-
-- (void) setAttribute:(id) object forName:(NSString*) name forRange:(NSRange) range {
-    if(object) {
-        [self addAttribute:name value:object range:range];
-    }
-    else {
-        [self removeAttribute:name range:range];
-    }
-}
-
-- (void) setFont:(SDKFont*) font forRange:(NSRange) range {
-    FLAssertNotNil(font); 
-    
-    CTFontRef fontRef = CTFontCreateWithName(bridge_(CFStringRef, font.fontName), font.pointSize, NULL);
-    FLAssertIsNotNil(fontRef);
-    
-    if(fontRef) {
-        [self setAttribute:bridge_(id, fontRef) forName:(NSString*) kCTFontAttributeName forRange:range];
-    
-//        [self addAttribute:(NSString*) kCTFontAttributeName
-//            value:bridge_(id, fontRef) 
-//            range:range];
-
-        CFRelease(fontRef);
-    }
-}
-
-- (void) setColor:(NSColor*) color forRange:(NSRange) range{
-
-
-#if OSX
-    CGColorRef colorRef = [color copyCGColorRef];
-#else
-    CGColorRef colorRef  = [color CGColor];
-#endif
-    [self setAttribute:FLBridge(id, colorRef) forName:(NSString*) kCTForegroundColorAttributeName forRange:range];
-
-#if OSX
-    if(colorRef) {
-        CFRelease(colorRef);
-    }
-#endif    
-
-//    if(color) {
-//        [self addAttribute:(NSString*) kCTForegroundColorAttributeName 
-//        value:bridge_(id, [NSColor NSColorToCGColor:color])
-//        range:range];
-//    }
-//    else {
+//- (void) setTextStyle:(FLTextStyle*) style forRange:(NSRange) range {
+////    if(style.textFont) {
+////        [self setFont:style.textFont forRange:range];
+////    }
+////    if(style.textColor) {
+////        [self setColor:style.textColor forRange:range];
+////    }
+////    if(style.shadowColor) {
+////        [self setShadowColor:style.shadowColor forRange:range];
+////    }
+////    if(style.isUnderlined) {
+////        [self setUnderlined:YES forRange:range];
+////    }
+////    [self addAttribute:@"com.fishlamp.string" value:self range:range];
+//}
+//
+//- (void) setAttribute:(id) object forName:(NSString*) name forRange:(NSRange) range {
+////    if(object) {
+////        [self addAttribute:name value:object range:range];
+////    }
+////    else {
+////        [self removeAttribute:name range:range];
+////    }
+//}
+//
+//- (void) setFont:(SDKFont*) font forRange:(NSRange) range {
+//    FLAssertNotNil(font); 
 //    
+////    CTFontRef fontRef = CTFontCreateWithName(bridge_(CFStringRef, font.fontName), font.pointSize, NULL);
+////    FLAssertIsNotNil(fontRef);
+////    
+////    if(fontRef) {
+////        [self setAttribute:bridge_(id, fontRef) forName:(NSString*) kCTFontAttributeName forRange:range];
+////    
+//////        [self addAttribute:(NSString*) kCTFontAttributeName
+//////            value:bridge_(id, fontRef) 
+//////            range:range];
+////
+////        CFRelease(fontRef);
+////    }
+//}
+
+- (void) setAttributedStringFont:(SDKFont*) font {
+    [self setObject:font forKey:NSFontAttributeName];
+}
+
+- (void) setAttributedStringUnderlined {
+    [self setObject:[NSNumber numberWithBool:YES] forKey:NSUnderlineStyleAttributeName];
+}
+
+- (void) setAttributedStringColor:(NSColor*) color {
+    [self setObject:color forKey:NSForegroundColorAttributeName];
+}
+
+//#if OSX
+//    CGColorRef colorRef = [color copyCGColorRef];
+//#else
+//    CGColorRef colorRef  = [color CGColor];
+//#endif
+////    [self setAttribute:FLBridge(id, colorRef) forName:NSForegroundColorAttributeName forRange:range];
+//
+////    [self addAttribute:NSForegroundColorAttributeName value:FLBridge(id, colorRef) range:range];
+//
+//#if OSX
+//    if(colorRef) {
+//        CFRelease(colorRef);
 //    }
-}
+//#endif    
+//
+////    if(color) {
+////        [self addAttribute:(NSString*) kCTForegroundColorAttributeName 
+////        value:bridge_(id, [NSColor NSColorToCGColor:color])
+////        range:range];
+////    }
+////    else {
+////    
+////    }
+//}
 
-- (void) setShadowColor:(NSColor*) color forRange:(NSRange) range {
-
-
-#if OSX
-    CGColorRef colorRef = [color copyCGColorRef];
-#else
-    CGColorRef colorRef  = [color CGColor];
-#endif
-
-    [self setAttribute:FLBridge(id, colorRef) forName:(NSString*) NSShadowAttributeName forRange:range];
-#if OSX
-    if(colorRef) {
-        CFRelease(colorRef);
-    }
-#endif    
-//    if(color) {
-//        [self addAttribute:(NSString*) NSShadowAttributeName 
-//        value:bridge_(id, [NSColor NSColorToCGColor:color])
-//        range:range];
+//- (void) setShadowColor:(NSColor*) color forRange:(NSRange) range {
+//
+//
+//#if OSX
+//    CGColorRef colorRef = [color copyCGColorRef];
+//#else
+//    CGColorRef colorRef  = [color CGColor];
+//#endif
+//
+////    [self setAttribute:FLBridge(id, colorRef) forName:(NSString*) NSShadowAttributeName forRange:range];
+//#if OSX
+//    if(colorRef) {
+//        CFRelease(colorRef);
 //    }
-//    else {
-//        [self removeAttribute:(NSString*) NSShadowAttributeName forRange:range];
+//#endif    
+////    if(color) {
+////        [self addAttribute:(NSString*) NSShadowAttributeName 
+////        value:bridge_(id, [NSColor NSColorToCGColor:color])
+////        range:range];
+////    }
+////    else {
+////        [self removeAttribute:(NSString*) NSShadowAttributeName forRange:range];
+////    }
+//}
+
+//- (void) setUnderlined:(BOOL) underlined forRange:(NSRange) range {
+//
+//  //  [self setAttribute:underlined ? [NSNumber numberWithBool:YES] : nil forName:(NSString*) NSUnderlineStyleAttributeName  forRange:range];
+//
+//
+////    [self addAttribute:(NSString*) NSUnderlineStyleAttributeName 
+////        value:[NSNumber numberWithBool:YES]
+////        range:range];
+//}
+
+//- (void) setURL:(NSURL*) url forRange:(NSRange) range {
+//    [self setAttribute:url forName:(NSString*) NSLinkAttributeName forRange:range];
+//}
+//
+//+ (id) mutableAttributedString {
+//    return FLAutorelease([[[self class] alloc] init]);
+//}
+//+ (id) mutableAttributedString:(NSString*) string {
+//    return FLAutorelease([[[self class] alloc] initWithString:string]);
+//}
+//
+//- (id) initWithString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline {
+//    self = [self initWithString:string];
+//    if(self) {
+//        NSRange range = self.entireRange;
+//        [self setURL:url forRange:range];
+//        [self setColor:color forRange:range];
+//        [self setUnderlined:underline forRange:range];
 //    }
-}
-
-- (void) setUnderlined:(BOOL) underlined forRange:(NSRange) range {
-
-    [self setAttribute:underlined ? [NSNumber numberWithBool:YES] : nil forName:(NSString*) NSUnderlineStyleAttributeName  forRange:range];
-
-
-//    [self addAttribute:(NSString*) NSUnderlineStyleAttributeName 
-//        value:[NSNumber numberWithBool:YES]
-//        range:range];
-}
-
-- (void) setURL:(NSURL*) url forRange:(NSRange) range {
-    [self setAttribute:url forName:(NSString*) NSLinkAttributeName forRange:range];
-}
-
-+ (id) mutableAttributedString {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-+ (id) mutableAttributedString:(NSString*) string {
-    return FLAutorelease([[[self class] alloc] initWithString:string]);
-}
-
-- (id) initWithString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline {
-    self = [self initWithString:string];
-    if(self) {
-        NSRange range = self.entireRange;
-        [self setURL:url forRange:range];
-        [self setColor:color forRange:range];
-        [self setUnderlined:underline forRange:range];
-    }
-    return self;
-}
-
-+ (id) mutableAttributedString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline {
-    return FLAutorelease([[[self class] alloc] initWithString:string url:url color:color underline:underline]);
-}
+//    return self;
+//}
+//
+//+ (id) mutableAttributedString:(NSString*) string url:(NSURL*) url color:(NSColor*) color underline:(BOOL) underline {
+//    return FLAutorelease([[[self class] alloc] initWithString:string url:url color:color underline:underline]);
+//}
 
 @end

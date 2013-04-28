@@ -371,6 +371,8 @@ FLSynthesizeModelObjectMethods();
 - (NSURL*) URLWithPhoto:(ZFPhoto*) photo {
 
     int zenSize = -1;
+
+    NSMutableString* url = [NSMutableString stringWithFormat:@"http://%@%@", photo.UrlHost, photo.UrlCore];
     
     switch(self.mediaTypeID) {
         case ZFMediaTypeSmallThumbnail:
@@ -409,18 +411,27 @@ FLSynthesizeModelObjectMethods();
             zenSize = 6;
         break;
         
+        case ZFMediaTypeVideo:
         case ZFMediaTypeOriginalImage:
             return [NSURL URLWithString:[photo OriginalUrl]];
             break;
             
-        case ZFMediaTypeVideo:
-            zenSize = -1;
-            break;
+//        case ZFMediaTypeVideo:
+//            [url appendString:@".jpg"];
+//            if(FLStringIsNotEmpty(photo.UrlToken)) {
+//                [url appendFormat:@".jpg%ctk=%@", nextDelim, photo.UrlToken];
+////        nextDelim = '&';
+//            }
+//            else {
+//                [url appendString:@".jpg"];
+//            }
+//
+//            return url;
+//            break;
     }
 
     FLAssertStringIsNotEmpty(photo.UrlCore);
 	
-    NSMutableString* url = [NSMutableString stringWithFormat:@"http://%@%@", photo.UrlHost, photo.UrlCore];
 
     if(zenSize >= 0) {
         [url appendFormat:@"-%d.jpg", zenSize];

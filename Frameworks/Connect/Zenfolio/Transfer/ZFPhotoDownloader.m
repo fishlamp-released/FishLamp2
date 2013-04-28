@@ -41,11 +41,14 @@
 - (id) startAsyncOperation {
     
     NSString* filePath = _downloadSpec.fullPathToFile;
+    _downloadSpec.wasSkipped = NO;
+    _downloadSpec.wasDownloaded = NO;
 
     [self.observer receiveObservation:@selector(willDownloadPhoto:) withObject:_downloadSpec];
     
     if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        [self setFinishedWithReturnedObject:_downloadSpec hint:ZFPhotoDownloaderHintPhotoWasSkipped];
+        _downloadSpec.wasSkipped = YES;
+        [self.finisher setFinishedWithResult:_downloadSpec];
     }
     else {
 
@@ -55,8 +58,11 @@
         request.inputSink = [FLHiddenFolderFileSink hiddenFolderFileSink:filePath
                                                               folderPath:self.downloadSpec.tempFolder]; 
 
-        [self runChildAsynchronously:request completion:^(id<FLAsyncResult> result) {
-            [self setFinishedWithResult:result];
+        [self runChildAsynchronously:request completion:^(FLPromisedResult result) {
+            if(![result error]) {
+                _downloadSpec.wasDownloaded = YES;
+            }
+            [self.finisher setFinishedWithResult:result];
         }];
     }
     
@@ -67,7 +73,7 @@
     [self.observer receiveObservation:@selector(willDownloadPhoto:) withObject:_downloadSpec];
 }
 
-- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
+- (void) sendFinishMessagesWithResult:(FLPromisedResult) result {
     [self.observer receiveObservation:@selector(didDownloadPhoto:withResult:) withObject:self.downloadSpec withObject:result];
 }
 

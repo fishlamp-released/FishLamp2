@@ -120,6 +120,8 @@
 - (void) appendLineWithAttributedString:(NSAttributedString*) string {
     FLAssertNotNil(string);
     FLAssertNotNil(_output);
+
+    FLRetainWithAutorelease(string);
     
     if(!_editingLine) {
         [_output stringFormatterOpenLine:self];

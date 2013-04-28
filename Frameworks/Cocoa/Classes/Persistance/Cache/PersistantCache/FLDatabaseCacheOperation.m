@@ -28,7 +28,7 @@
 }
 
 - (id) performSynchronously {
-    id<FLAsyncResult> result = FLSuccessfullResult;
+    FLPromisedResult result = FLSuccessfullResult;
 	
     switch(_operationType)
     {

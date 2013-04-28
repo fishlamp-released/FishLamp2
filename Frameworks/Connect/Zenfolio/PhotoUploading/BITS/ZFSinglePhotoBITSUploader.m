@@ -35,7 +35,7 @@
         fileSize:_fileSize]) 
         ];
 
-    [self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) { 
+    [self.actionContext startAction:action completion: ^(FLPromisedResult result) { 
             if([action didSucceed])
             {
                 self.bytesUploaded = self.uploadSize;
@@ -124,7 +124,7 @@
         [self _updateProgress];
         };
 
-	[self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) { 
+	[self.actionContext startAction:action completion: ^(FLPromisedResult result) { 
         [self _didUploadFragment:action]; 
         }];
 }
@@ -141,7 +141,7 @@
  
     [action addOperation:FLAutorelease([[ZFBITSCreateSessionOperation alloc] initWithUploadablePhoto:self.photo])];
     
-    [self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) { 
+    [self.actionContext startAction:action completion: ^(FLPromisedResult result) { 
         if([action didSucceed])
         {
             _startTime = [NSDate timeIntervalSinceReferenceDate];

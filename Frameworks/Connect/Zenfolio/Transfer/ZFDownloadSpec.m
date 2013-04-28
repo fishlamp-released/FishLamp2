@@ -18,6 +18,8 @@
 @synthesize tempFolder = _tempFolder;
 @synthesize relativePath = _relativePath;
 
+@synthesize wasSkipped = _wasSkipped;
+@synthesize wasDownloaded = _wasDownloaded;
 
 - (id) initWithPhoto:(ZFPhoto*) photo {
     self = [super init];

@@ -35,18 +35,23 @@
 
 - (id) startAsyncOperation {
 
+    FLLog(@"starting")
+
     FLAssertNotNil(self.storageService);
 
     FLHttpRequest* request = [ZFHttpRequestFactory loadGroupHierarchyHttpRequest:_userLogin.userName];
     FLAssertNotNil(request);
 
-    [self runChildAsynchronously:request completion:^(id<FLAsyncResult> result) {
+    [self runChildAsynchronously:request completion:^(FLPromisedResult result) {
+
+        FLLog(@"callback")
+
         if(![result error]) {
-            ZFGroup* group = result.returnedObject;
+            ZFGroup* group = result;
             [self.storageService writeObject:group];
         }
         
-        [self setFinishedWithResult:result];
+        [self.finisher setFinishedWithResult:result];
     }];
     
     return nil;
@@ -56,7 +61,7 @@
     [self.observer receiveObservation:@selector(willDownloadRootGroup)];
 }
 
-- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
+- (void) sendFinishMessagesWithResult:(FLPromisedResult) result {
     [self.delegate receiveMessage:@selector(loadGroupHierarchyOperation:didLoadRootGroupWithResult:) withObject:self withObject:result];
     [self.observer receiveObservation:@selector(didDownloadRootGroupWithResult:) withObject:result];
 }

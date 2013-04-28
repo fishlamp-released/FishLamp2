@@ -60,10 +60,10 @@
 
 - (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
     
-    id<FLAsyncResult> result = [super resultFromHttpResponse:httpResponse];
+    FLPromisedResult result = [super resultFromHttpResponse:httpResponse];
     FLThrowIfError(result);
     
-    FLStorableImage* image = result.returnedObject;
+    FLStorableImage* image = result;
     
     image.imageProperties.imageVersion = self.photo.Sequence;
     
@@ -74,20 +74,21 @@
     return result;
 }
 
-- (void) performUntilFinished:(FLFinisher*) finisher {
+- (id) startAsyncOperation {
     
     if(self.cache) {
         FLStorableImage* image = [self.cache loadCachedImageForPhoto:self.photo imageSize:self.imageSize];
         if(image || [image isStaleComparedToPhotoSequenceNumber:self.photo.Sequence]) {
-            [super performUntilFinished:finisher];
+            [super startAsyncOperation];
         }
         else {
-            [finisher setFinishedWithReturnedObject:image];
+            [self.finisher setFinishedWithResult:image];
         }
     }
     else {
-        [super performUntilFinished:finisher];
+        [super startAsyncOperation];
     }
+    return nil;
 }
 
 @end

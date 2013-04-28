@@ -14,7 +14,6 @@
     SEL _selector;
     int _argumentCount;
     NSString* _selectorString;
-    SEL _redirect;
     NSValue* _selectorValue;
     
     dispatch_once_t _predicates[3];

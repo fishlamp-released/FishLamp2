@@ -72,10 +72,10 @@
 
     challengeRequest.disableAuthenticator = YES;
     
-    id<FLAsyncResult> challengeResponse = [self runChildSynchronously:challengeRequest];
+    FLPromisedResult challengeResponse = [self runChildSynchronously:challengeRequest];
     FLThrowIfError(challengeResponse);
     
-    ZFAuthChallenge* challenge = challengeResponse.returnedObject;
+    ZFAuthChallenge* challenge = challengeResponse;
    
     FLHttpRequest* authenticateRequest = [self authenticateRequestWithAuthChallenge:challenge];
     
@@ -85,10 +85,10 @@
     authenticateRequest.streamSecurity = FLNetworkStreamSecuritySSL;
 #endif
     
-    id<FLAsyncResult> result = [self runChildSynchronously:authenticateRequest];
+    FLPromisedResult result = [self runChildSynchronously:authenticateRequest];
     FLThrowIfError(result);
     
-    NSString* token = result.returnedObject;
+    NSString* token = result;
     
     if(FLStringIsNotEmpty(token)) {
         self.user.credentials.authToken = token;

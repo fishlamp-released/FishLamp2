@@ -26,6 +26,6 @@
             willDownloadPhotoSet:(ZFPhotoSet*) result; 
 
 - (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
-   didDownloadPhotoSetWithResult:(id<FLAsyncResult>) result; 
+   didDownloadPhotoSetWithResult:(FLPromisedResult) result; 
 @end
 

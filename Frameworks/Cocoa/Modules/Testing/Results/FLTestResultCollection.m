@@ -82,7 +82,7 @@
 }
 
 - (id) testResultForKey:(id) key {
-    id<FLAsyncResult> result = [_results objectForKey:key];
+    FLPromisedResult result = [_results objectForKey:key];
     FLConfirmIsNotNilWithComment(result, @"can't find result for %@", [key description]);
     return result;
 }

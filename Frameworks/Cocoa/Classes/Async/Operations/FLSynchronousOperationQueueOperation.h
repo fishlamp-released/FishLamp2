@@ -47,5 +47,5 @@ typedef struct {
 - (void) operationQueue:(FLOperationQueue*) queue operationWasAdded:(id) operation;
 - (void) operationQueue:(FLOperationQueue*) queue operationWasRemoved:(id) operation;
 - (void) operationQueue:(FLOperationQueue*) queue operationWillRun:(id) operation;
-- (void) operationQueue:(FLOperationQueue*) queue operationDidFinish:(id) operation withResult:(id<FLAsyncResult>) result;
+- (void) operationQueue:(FLOperationQueue*) queue operationDidFinish:(id) operation withResult:(FLPromisedResult) result;
 @end

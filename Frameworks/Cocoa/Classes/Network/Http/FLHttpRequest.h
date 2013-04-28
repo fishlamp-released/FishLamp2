@@ -85,7 +85,7 @@
 - (void) willAuthenticate;
 - (void) didAuthenticate;
 - (void) didReadBytes:(unsigned long long) amount;
-- (void) requestDidFinishWithResult:(id<FLAsyncResult>) result;
+- (void) requestDidFinishWithResult:(FLPromisedResult) result;
 
 /// did receive the response. If there was an error, this will
 /// not be called.
@@ -115,7 +115,7 @@
 - (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
-    didCloseWithResult:(id<FLAsyncResult>) result;
+    didCloseWithResult:(FLPromisedResult) result;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(FLHttpRequestByteCount*) amount;
 

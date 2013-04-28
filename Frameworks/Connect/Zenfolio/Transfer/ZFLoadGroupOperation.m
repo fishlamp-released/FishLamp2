@@ -28,7 +28,7 @@
 //	[action addOperation:operation];
 //	FLRelease(operation);
 //
-//	[self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) {
+//	[self.actionContext startAction:action completion: ^(FLPromisedResult result) {
 //        [self _onGroupLoadedForSyncStatus:action groupId:groupId];
 //    }];
 

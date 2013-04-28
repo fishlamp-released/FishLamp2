@@ -34,11 +34,11 @@
     return self.wasCancelled;
 }
 
-- (void) performUntilFinished:(FLFinisher*) finisher {
-    [finisher setFinishedWithResult:[self runSynchronously]];
+- (void) startOperation {
+    [self runSynchronously];
 }
 
-- (id<FLAsyncResult>) runSynchronously {
+- (FLPromisedResult) runSynchronously {
 
     id result = nil;
 
@@ -58,13 +58,13 @@
         result = FLFailedResult;
     }
     
-    [self operationDidFinishWithResult:[result asAsyncResult]];
+    [self.finisher setFinishedWithResult:result];
     return result;
 }
 @end
 
 @implementation FLBatchSynchronousOperation
-- (void) sendIterationObservation:(id<FLAsyncResult>) result {
+- (void) sendIterationObservation:(FLPromisedResult) result {
     dispatch_async(dispatch_get_main_queue(), ^{
         FLPerformSelector1(_batchObserver, _batchAction, result);
     });
@@ -101,7 +101,7 @@
 //}
 //
 //- (void) operationDidFinish:(FLSynchronousOperation*) operation 
-//                 withResult:(id<FLAsyncResult>) withResult {
+//                 withResult:(FLPromisedResult) withResult {
 //    if(_didFinishBlock) {
 //        _didFinishBlock(withResult);
 //    }

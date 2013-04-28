@@ -22,7 +22,6 @@
     NSMutableArray* _downloadQueue;
     
     NSTimeInterval _lastProgress;
-    NSString* _downloadFolderPath;
     ZFGroup* _rootGroup;
     
     BOOL _downloadImages;
@@ -40,7 +39,7 @@
 //- (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
 //             didDownloadPhotoSet:(ZFPhotoSet*) photoSet;
 //             
-//- (void) didDownloadPhotoSets:(id<FLAsyncResult>) result;
+//- (void) didDownloadPhotoSets:(FLPromisedResult) result;
 //             
 //@end
 

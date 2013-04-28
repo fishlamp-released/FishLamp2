@@ -210,7 +210,7 @@
             [self _updateToGoStatus:operation];
         }];
 
-        [self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) {
+        [self.actionContext startAction:action completion: ^(FLPromisedResult result) {
             [self _didFinishUpdating:action];
         }];
 	}
@@ -293,7 +293,7 @@
 	[action addOperation:operation];
 	FLRelease(operation);
 
-	[self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) {
+	[self.actionContext startAction:action completion: ^(FLPromisedResult result) {
         [self _onGroupLoadedForSyncStatus:action groupId:groupId];
     }];
 
@@ -375,7 +375,7 @@
         [self _loadRootGroupsFromCacheForDisplay:operation outputList:outputList];
         }];
 
-    [self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) { 
+    [self.actionContext startAction:action completion: ^(FLPromisedResult result) { 
         [self _didLoadFromCacheForDisplay:action outputList:outputList]; 
     }];
 }

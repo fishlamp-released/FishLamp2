@@ -229,7 +229,7 @@
 
 - (void) appendAttributedStringToStorage:(NSAttributedString*) string {
 
-    NSAttributedString* stringToAppend = string;
+    NSAttributedString* stringToAppend = FLRetainWithAutorelease(string);
 
     if([self.delegate respondsToSelector:@selector(prettyString:willAppendAttributedString:)]) {
         stringToAppend = [((id)self.delegate) prettyString:self willAppendAttributedString:string];

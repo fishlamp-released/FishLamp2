@@ -42,12 +42,12 @@
                                                                      level:kZenfolioInformatonLevelFull 
                                                              includePhotos:_withPhotos];
 
-    [self runChildAsynchronously:request completion:^(id<FLAsyncResult> result) {
-        if([result didSucceed]) {
-            [self.storageService writeObject:result.returnedObject];
+    [self runChildAsynchronously:request completion:^(FLPromisedResult result) {
+        if(![result error]) {
+            [self.storageService writeObject:result];
         }
 
-        [self setFinishedWithResult:result];
+        [self.finisher setFinishedWithResult:result];
     }];
 }
 
@@ -56,12 +56,12 @@
                                                                      level:kZenfolioInformatonLevelLevel1 
                                                              includePhotos:NO];
 
-    [self runChildAsynchronously:request completion:^(id<FLAsyncResult> result) {
-        if([result didFail]) {
-            [self setFinishedWithResult:result];
+    [self runChildAsynchronously:request completion:^(FLPromisedResult result) {
+        if([result error]) {
+            [self.finisher setFinishedWithResult:result];
         }
         else {
-            ZFPhotoSet* downloaded = result.returnedObject;
+            ZFPhotoSet* downloaded = result;
             ZFPhotoSet* cached = [self loadCachedPhotoSet];
             if( !cached || 
                 [cached isStaleComparedToPhotoSet:downloaded] || 
@@ -69,7 +69,7 @@
                 [self downloadLatestPhotoSet];
             }
             else {
-                [self setFinishedWithResult:[cached asAsyncResult]];
+                [self.finisher setFinishedWithResult:cached ];
             }
         }
     }];
@@ -95,7 +95,7 @@
     [self.observer receiveObservation:@selector(willDownloadPhotoSet:photoSetID:) withObject:initialData withObject:self.photoSetID];
 }
 
-- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
+- (void) sendFinishMessagesWithResult:(FLPromisedResult) result {
     [self.observer receiveObservation:@selector(didDownloadPhotoSetWithResult:) withObject:result];
 }
 

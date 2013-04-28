@@ -28,7 +28,7 @@
 //    [[self.userContext objectCache] writeObject:object];
 //}
 //
-//- (id<FLAsyncResult>) runSubOperations {
+//- (FLPromisedResult) runSubOperations {
 //    
 //    FLHttpRequest* request = [ZFHttpRequestFactory loadGroupHttpRequest:[NSNumber numberWithInt:_groupID] 
 //                                                           level:kZenfolioInformatonLevelFull 

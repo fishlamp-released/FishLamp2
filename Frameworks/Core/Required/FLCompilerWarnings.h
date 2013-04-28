@@ -118,4 +118,6 @@
 
 #endif
 
-
+#if DEBUG
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#endif

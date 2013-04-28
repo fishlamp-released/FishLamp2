@@ -106,7 +106,7 @@ FLSynthesizeSingleton(ZFSharedFavoritesSetManager);
             ZFSaveAllSharedFavorites* action = [ZFSaveAllSharedFavorites batchActionManager];
             
             [action setQueuedDataForBatch:favoriteSets];
-			[actionContext startAction:action completion: ^(id<FLAsyncResult> result) {
+			[actionContext startAction:action completion: ^(FLPromisedResult result) {
                 [self _didUploadFavoritesSets:action];
                 }];
 		}

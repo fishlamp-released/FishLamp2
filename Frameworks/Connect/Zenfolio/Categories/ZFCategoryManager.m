@@ -52,11 +52,11 @@ FLSynthesizeCachedObjectHandlerProperty(ZFCachedCategories);
     return FLAutorelease([[[self class] alloc] initWithCategoryManager:manager]);
 }
 
-- (id<FLAsyncResult>) resultFromCacheObject:(id) object {
+- (FLPromisedResult) resultFromCacheObject:(id) object {
 	return [object categoryArray];
 }
 
-- (void) saveOutputToCache:(id<FLAsyncResult>) result {
+- (void) saveOutputToCache:(FLPromisedResult) result {
 	[self.input setCategoryArray: result];
 	[self.cache writeObject:_inputArray];
 }

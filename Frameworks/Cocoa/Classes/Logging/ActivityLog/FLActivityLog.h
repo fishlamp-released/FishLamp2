@@ -19,13 +19,16 @@ extern NSString* const FLActivityLogStringKey;
 
 - (void) appendURL:(NSURL*) url string:(NSString*) text;
 - (void) appendLineWithURL:(NSURL*) url string:(NSString*) text;
+- (void) appendErrorLine:(NSString*) errorLine;
+- (void) appendBoldTitle:(NSString*) title;
+- (void) appendBoldTitleLine:(NSString*) title;
 
 - (NSError*) exportToPath:(NSURL*) url;
 
 - (void) clear;
 
-@property (readonly, strong, nonatomic) SDKFont* textFont;
-@property (readonly, strong, nonatomic) NSColor* textColor;
+@property (readonly, strong, nonatomic) SDKFont* activityLogTextFont;
+@property (readonly, strong, nonatomic) NSColor* activityLogTextColor;
 
 @end
 
@@ -38,8 +41,10 @@ extern NSString* const FLActivityLogStringKey;
 
 + (id) activityLog;
 
-@property (readwrite, strong, nonatomic) SDKFont* textFont;
-@property (readwrite, strong, nonatomic) NSColor* textColor;
+@property (readwrite, strong, nonatomic) SDKFont* activityLogTextFont;
+@property (readwrite, strong, nonatomic) NSColor* activityLogTextColor;
+
+- (void) appendErrorLine:(NSString*) errorLine;
 
 //FLSingletonProperty(FLActivityLog);
 

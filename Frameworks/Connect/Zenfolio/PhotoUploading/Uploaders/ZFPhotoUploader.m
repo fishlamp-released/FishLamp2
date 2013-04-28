@@ -157,7 +157,7 @@ FLAssertDefaultInitNotCalled();
         [_uploadQueue didUploadAsset:self.photo];
     }];
         
-	[self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) {
+	[self.actionContext startAction:action completion: ^(FLPromisedResult result) {
         [self _handleActionCompleteForState:action]; 
     }];
 }
@@ -310,7 +310,7 @@ FLAssertDefaultInitNotCalled();
         [self _updateProgress];
         };
 
-   [self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) {
+   [self.actionContext startAction:action completion: ^(FLPromisedResult result) {
         [self _handleActionCompleteForState:action]; 
         }];
 }
@@ -343,7 +343,7 @@ FLAssertDefaultInitNotCalled();
         FLAction* action = [self createAction];
         [action addOperation:FLAutorelease([[ZFPrepareImageForUploadOperation alloc] initWithUploadablePhoto:self.photo])];
      
-        [self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) { 
+        [self.actionContext startAction:action completion: ^(FLPromisedResult result) { 
             [self _didPrepareUploadFile:action]; 
         }];
 
@@ -377,7 +377,7 @@ FLAssertDefaultInitNotCalled();
         [action addOperation:saver];
 #endif
 
-        [self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) {
+        [self.actionContext startAction:action completion: ^(FLPromisedResult result) {
             [self _handleActionCompleteForState:action];
             }];
     }
@@ -491,7 +491,7 @@ FLAssertDefaultInitNotCalled();
 
     [action actionDescription].actionType = FLActionTypeUpload;
     [action actionDescription].actionItemName = NSLocalizedString(@"Gallery", nil);
-	[self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) { 
+	[self.actionContext startAction:action completion: ^(FLPromisedResult result) { 
         [self _doneCheckingPhotoSets:action]; 
         }];
 }

@@ -64,7 +64,7 @@
     self.user = nil;
 }
 
-//- (void) operation:(ZFLoadGroupHierarchyOperation*) operation downloadedRootGroup:(id<FLAsyncResult>) result {
+//- (void) operation:(ZFLoadGroupHierarchyOperation*) operation downloadedRootGroup:(FLPromisedResult) result {
 //    if(![result error] ) {
 //        [self.user setRootGroup:result];
 //    }
@@ -128,9 +128,9 @@
     [downloader runAsynchronously];
 }   
 
-- (void) loadGroupHierarchyOperation:(ZFLoadGroupHierarchyOperation*) operation didLoadRootGroupWithResult:(id<FLAsyncResult>) result {
+- (void) loadGroupHierarchyOperation:(ZFLoadGroupHierarchyOperation*) operation didLoadRootGroupWithResult:(FLPromisedResult) result {
     if(![result error]) {
-        [self.user setRootGroup:result.returnedObject];
+        [self.user setRootGroup:result];
     }
 }                                        
 

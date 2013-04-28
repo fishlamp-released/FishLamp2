@@ -10,16 +10,10 @@
 #import "ZFDownloadSpec.h"
 #import "FLHttpOperation.h"
 
-typedef enum {
-    ZFPhotoDownloaderHintPhotoWasDownloaded,
-    ZFPhotoDownloaderHintPhotoWasSkipped
-} ZFPhotoDownloaderHint;
-
 @interface ZFPhotoDownloader : FLAsyncOperation {
 @private
     ZFDownloadSpec* _downloadSpec;
 }
-@property (readonly, strong, nonatomic) ZFDownloadSpec* downloadSpec;
 + (id) photoDownloader:(ZFDownloadSpec*) downloadSpec;
 @end
 

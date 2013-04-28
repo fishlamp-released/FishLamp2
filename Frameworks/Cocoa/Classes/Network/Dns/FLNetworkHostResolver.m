@@ -90,14 +90,16 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     self.networkHost = nil;
 }
 
-- (id<FLAsyncResult>) resolveHostSynchronously:(FLNetworkHost*) host {
-    id<FLAsyncResult> result = [[self startResolvingHost:host] waitUntilFinished];
+- (FLPromisedResult) resolveHostSynchronously:(FLNetworkHost*) host {
+    FLPromisedResult result = [[self startResolvingHost:host completion:nil] waitUntilFinished];
     FLThrowIfError(result);
     return result;
 }
 
-- (FLFinisher*) startResolvingHost:(FLNetworkHost*) host {
-    self.finisher = [FLFinisher finisher];
+- (FLPromise*) startResolvingHost:(FLNetworkHost*) host completion:(fl_completion_block_t) completion {
+    FLPromise* promise = [FLPromise promise:completion];
+    self.finisher = [FLFinisher finisher:promise];
+    
     FLAssertWithComment(!self.isOpen, @"already running");
     
     self.networkHost = host;
@@ -118,7 +120,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
             [self closeWithResult:FLCreateErrorFromStreamError(&streamError)];
         }
     }
-    return self.finisher;
+    return promise;
 }
 
 @end

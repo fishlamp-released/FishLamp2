@@ -125,7 +125,7 @@
     operation.canSaveToCache = YES;
     [action addOperation:operation];
 
-	[self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) { 
+	[self.actionContext startAction:action completion: ^(FLPromisedResult result) { 
         if([action didSucceed])
         {
             FLCachedImage* cachedImage = [[action lastOperation] operationOutput]; 
@@ -275,7 +275,7 @@
     [action actionDescription].actionType = FLActionTypeDownload;
     [action actionDescription].actionItemName = FLActionDescriptionItemNameGroup;
 
-	[self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) {
+	[self.actionContext startAction:action completion: ^(FLPromisedResult result) {
         [self _onGroupElementLoaded:action];
     }];
 }
@@ -300,7 +300,7 @@
     operation.canSaveToCache = YES;
     [action addOperation:operation];
 
-	[self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) { [self _onGroupElementLoaded:action]; }];
+	[self.actionContext startAction:action completion: ^(FLPromisedResult result) { [self _onGroupElementLoaded:action]; }];
 }
 
 - (void) _begin

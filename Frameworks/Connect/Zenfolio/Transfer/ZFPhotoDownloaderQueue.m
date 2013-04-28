@@ -118,7 +118,7 @@
 //- (void) willStartDownloadingPhoto:(ZFPhotoDownloader *)operation {
 //}
 //
-//- (void) didFinishOperationInAsyncQueue:(id)operation withResult:(id<FLAsyncResult>)result {
+//- (void) didFinishOperationInAsyncQueue:(id)operation withResult:(FLPromisedResult)result {
 //
 //}
 //

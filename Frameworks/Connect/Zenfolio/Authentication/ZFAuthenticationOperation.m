@@ -34,10 +34,10 @@
     request.disableAuthenticator = YES;
     [request setAuthenticationToken:userLogin.authToken];
     
-    id<FLAsyncResult> result = [self runChildSynchronously:request];
+    FLPromisedResult result = [self runChildSynchronously:request];
     FLThrowIfError(result);
     
-    return [result returnedObject];
+    return result;
 }
 
 #if FL_MRC
@@ -92,6 +92,6 @@
     
     FLLog(@"Authentication completed");
     
-    return [authenticatedUser asAsyncResult];
+    return authenticatedUser;
 }
 @end

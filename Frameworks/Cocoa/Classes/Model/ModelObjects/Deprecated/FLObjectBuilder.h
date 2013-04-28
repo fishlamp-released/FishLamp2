@@ -37,7 +37,7 @@
 
 // iterative building
 - (void) openWithRootObjectClass:(Class) theClass withDataDecoder:(id<FLDataDecoding>) decoder;
-- (id<FLAsyncResult>) finishBuilding;
+- (FLPromisedResult) finishBuilding;
 
 - (FLPropertyInflator*) firstInflator;
 - (FLPropertyInflator*) lastInflator;

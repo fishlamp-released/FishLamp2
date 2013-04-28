@@ -16,7 +16,7 @@
 - (id) initWithGroup:(ZFGroup*) group  withPhotos:(BOOL) withPhotos{	
 	self = [self initWithPhotoSets:nil withPhotos:withPhotos];
 	if(self) {
-		_group = FLRetain(group);
+		_group = [group copy];
 	}
 	return self;
 }
@@ -33,12 +33,10 @@
     [self.observer receiveObservation:@selector(willDownloadPhotoSetBatch)];
 }
 
-- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>) result {
+- (void) sendFinishMessagesWithResult:(FLPromisedResult) result {
     [self.delegate receiveMessage:@selector(didDownloadPhotoSetBatchWithResult:) withObject:result];
     [self.observer receiveObservation:@selector(didDownloadPhotoSetBatchWithResult:) withObject:result];
 }
-
-
 
 #if FL_MRC
 - (void) dealloc {
@@ -73,45 +71,22 @@
     [self.delegate receiveMessage:@selector(batchPhotoSetDownloader:willDownloadPhotoSet:) withObject:self withObject:nil];
 }
 
-- (void) didFinishOperation:(id)operation withQueuedObject:(id)object withResult:(id<FLAsyncResult>)result {
+- (void) didFinishOperation:(id)operation withQueuedObject:(id)object withResult:(FLPromisedResult)result {
     [super didFinishOperation:operation withQueuedObject:object withResult:result];
     
     if(![result error]) {
         if(_group) {
-            [_group replaceElement:result.returnedObject];
+            [_group replaceElement:result];
         }
     }
     [self.delegate receiveMessage:@selector(batchPhotoSetDownloader:didDownloadPhotoSetWithResult:) withObject:self withObject:result];
-
 }
-
-//- (void) willStartOperationInAsyncQueue:(id) operation {
-//
-//    [super willStartOperationInAsyncQueue:operation];
-//    
-//    FLPerformSelector2(self.delegate, @selector(batchPhotoSetDownloader:willDownloadPhotoSet:), self, nil);
-//    
-//    [self.observer receiveObservation:@selector(willDownloadPhotoSet:) withObject:[
-//}
-
-//- (void) didFinishOperationInAsyncQueue:(FLOperation*) operation withResult:(id<FLAsyncResult>) result {
-//
-//    [super didFinishOperationInAsyncQueue:operation withResult:result];
-//    
-//    if(![result error]) {
-//        if(_group) {
-//            [_group replaceElement:result.returnedObject];
-//        }
-//    }
-//}
-
 
 - (FLOperation*) createOperationForObject:(id) object {
     return [ZFPhotoSetDownloader downloadPhotoSet:object withPhotos:_withPhotos];
 }
 
-- (void) performUntilFinished:(FLFinisher*) finisher {
-    self.finisher = finisher;
+- (id) startAsyncOperation {
  
     if(_group) {
         NSMutableArray* photoSets = [NSMutableArray array];
@@ -120,6 +95,22 @@
     }
     
     [self startProcessing];
+    
+    return nil;
 }
+
+- (id) resultForFinisher {
+    return _group;
+}
+
+- (void) didProcessAllObjectsInAsyncQueue {
+    if(_group) {
+        [self.finisher setFinishedWithResult:_group];
+    }
+    else {
+        [self.finisher setFinished];
+    }
+}
+
 
 @end

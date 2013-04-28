@@ -32,13 +32,13 @@
 //    FLPerformSelector2(self.delegate, @selector(batchPhotoSetDownloader:willDownloadPhotoSet:), self, nil);
 //}
 //
-//- (void) didFinishOperationInAsyncQueue:(FLOperation*) operation withResult:(id<FLAsyncResult>) result {
+//- (void) didFinishOperationInAsyncQueue:(FLOperation*) operation withResult:(FLPromisedResult) result {
 //
 //    [super didFinishOperationInAsyncQueue:operation withResult:result];
 //    
 //    if(![result error]) {
 //        if(_group) {
-//            [_group replaceElement:result.returnedObject];
+//            [_group replaceElement:result.value];
 //        }
 //        
 //        FLPerformSelector2(self.delegate, @selector(batchPhotoSetDownloader:didDownloadPhotoSet:), self, result);
@@ -119,13 +119,13 @@
 }                
 
 - (void) batchPhotoSetDownloader:(ZFBatchPhotoSetDownloader*) downloader 
-   didDownloadPhotoSetWithResult:(id<FLAsyncResult>) result {
+   didDownloadPhotoSetWithResult:(FLPromisedResult) result {
    
    if([result error]) {
         return;
    }
    
-   ZFPhotoSet* photoSet = result.returnedObject;
+   ZFPhotoSet* photoSet = result;
    
     NSString* relativePath =  [_rootGroup relativePathForElement:photoSet];
     NSString* folderPath = [_downloadSpec.destinationPath stringByAppendingPathComponent:relativePath];
@@ -170,15 +170,15 @@
 - (void) beginDownloadingPhotos {
     [self.transferState setStarted];
     ZFPhotoDownloaderQueue* downloadQueue = [ZFPhotoDownloaderQueue photoDownloaderQueue:_downloadQueue];
-    [self runChildAsynchronously:downloadQueue completion:^(id<FLAsyncResult> result) {
-        [self setFinishedWithResult:result];
+    [self runChildAsynchronously:downloadQueue completion:^(FLPromisedResult result) {
+        [self.finisher setFinishedWithResult:result];
     }];
 }
 
-- (void) didDownloadPhotoSets:(id<FLAsyncResult>) result {
+- (void) didDownloadPhotoSets:(FLPromisedResult) result {
 
     if([result error]) {
-        [self setFinishedWithResult:result];
+        [self.finisher setFinishedWithResult:result];
     }
     else {
         [self beginDownloadingPhotos];
@@ -197,7 +197,7 @@
 
     self.transferState.photoSetTotal = self.downloadSpec.photoSets.count;
     
-    [self runChildAsynchronously:loadPhotoSets completion:^(id<FLAsyncResult> result) {
+    [self runChildAsynchronously:loadPhotoSets completion:^(FLPromisedResult result) {
         [self didDownloadPhotoSets:result];
     }];
 
@@ -205,7 +205,7 @@
 }
 
 
-- (void) sendFinishMessagesWithResult:(id<FLAsyncResult>)result {
+- (void) sendFinishMessagesWithResult:(FLPromisedResult)result {
     [self.observer receiveObservation:@selector(didDownloadPhotoBatchWithResult:) withObject:result];
 }
 

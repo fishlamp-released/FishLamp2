@@ -22,8 +22,9 @@
 
 + (id) networkHostResolver;
 
-- (id<FLAsyncResult>) resolveHostSynchronously:(FLNetworkHost*) host;
-- (FLFinisher*) startResolvingHost:(FLNetworkHost*) host;
+- (FLPromisedResult) resolveHostSynchronously:(FLNetworkHost*) host;
+
+- (FLPromise*) startResolvingHost:(FLNetworkHost*) host completion:(fl_completion_block_t) completion;
 
 - (void) closeWithResult:(id) result;
 

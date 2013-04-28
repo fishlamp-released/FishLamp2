@@ -47,7 +47,7 @@ static NSDateFormatter* s_rfc1123dateFormatter = nil;
 	FLSuperDealloc();
 }
 
-//- (id<FLAsyncResult>) runHttpRequestWithInput:(id) input {
+//- (FLPromisedResult) runHttpRequestWithInput:(id) input {
 //
 //    if(FLStringIsEmpty(self.queuedPhoto.uploadGallery.uploadUrl)) {
 //        FLThrowErrorCodeWithComment(ZFErrorDomain, ZFErrorCodeUploadPhotoSetNotFound, @"PhotoSet not found: %@", self.queuedPhoto.uploadGallery.name);

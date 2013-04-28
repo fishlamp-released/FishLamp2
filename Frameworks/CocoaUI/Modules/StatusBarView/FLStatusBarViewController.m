@@ -121,7 +121,7 @@
         
            completion = FLCopyWithAutorelease(completion);
         
-            [[FLFadeOutAnimation fadeOutAnimation] startAnimating:toHide completion:^(id<FLAsyncResult> result) {
+            [[FLFadeOutAnimation fadeOutAnimation] startAnimating:toHide completion:^(FLPromisedResult result) {
                 [toHide removeFromSuperview];
 
                 if(completion) {
@@ -159,7 +159,7 @@
 //    FLFlipTransition* animation = [FLFlipTransition transitionWithViewToShow:nextView 
 //                                                       viewToHide:self.notificationView];
 //                                              
-//    [animation startAnimating:^(id<FLAsyncResult> result) {
+//    [animation startAnimating:^(FLPromisedResult result) {
 //        [self.notificationView removeFromSuperview];
 //        self.notificationView = nextView;
 //        if(completion) {

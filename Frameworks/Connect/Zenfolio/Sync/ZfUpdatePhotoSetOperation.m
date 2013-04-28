@@ -167,7 +167,7 @@
     
     [[self.context cacheService] savePhotoSet:photoSet];
 #endif
-    return [photoSet asAsyncResult];
+    return photoSet;
 }
 
 @end

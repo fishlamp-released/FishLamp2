@@ -102,33 +102,26 @@
     }
 }
 
-- (void) showAlertWithTitle:(NSString*) title {
 
-}
-
-- (void) showAlertWithTitle:(NSString*) title withCaption:(NSString*) caption {
-
-}
-
-- (void) showAlertWithError:(NSError*) error {
-    [self showAlertWithError:error withTitle:nil withCaption:nil];
-}
-
-- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title {
-    [self showAlertWithError:error withTitle:title withCaption:nil];
-}
-
-- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title withCaption:(NSString*) caption {
-    [[self wizardViewController] showErrorAlert:title caption:caption error:error];
-}
-
-
-- (void) showErrorAlert:(NSString*) title caption:(NSString*) caption error:(NSError*) error {
-    [[self wizardViewController] showErrorAlert:title caption:caption error:error];
-}
-
-- (void) didHideAlertWithError:(NSError*) error {
-}
+//- (void) showAlertWithError:(NSError*) error {
+//    [self showAlertWithError:error withTitle:nil withCaption:nil];
+//}
+//
+//- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title {
+//    [self showAlertWithError:error withTitle:title withCaption:nil];
+//}
+//
+//- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title withCaption:(NSString*) caption {
+//    [self showErrorAlert:title caption:caption error:error];
+//}
+//
+//
+//- (void) showErrorAlert:(NSString*) title caption:(NSString*) caption error:(NSError*) error {
+//    [self showErrorAlert:title caption:caption error:error];
+//}
+//
+//- (void) didHideAlertWithError:(NSError*) error {
+//}
 
 - (void) setCanOpenNextPanel:(BOOL)canOpenNextPanel {
     if(canOpenNextPanel != _canOpenNextPanel) {

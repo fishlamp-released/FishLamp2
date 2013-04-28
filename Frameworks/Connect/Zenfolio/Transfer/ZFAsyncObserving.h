@@ -13,20 +13,20 @@
 @optional
 
 - (void) willDownloadPhoto:(ZFDownloadSpec*) downloadSpec;
-- (void) didDownloadPhoto:(ZFDownloadSpec*) downloadSpec withResult:(id<FLAsyncResult>) result;
+- (void) didDownloadPhoto:(ZFDownloadSpec*) downloadSpec withResult:(FLPromisedResult) result;
 
 - (void) willDownloadPhotoSet:(ZFPhotoSet*) photoSet // may be nil if not in cache
                    photoSetID:(NSNumber*) number; 
 
-- (void) didDownloadPhotoSetWithResult:(id<FLAsyncResult>) result;
+- (void) didDownloadPhotoSetWithResult:(FLPromisedResult) result;
 
 - (void) willDownloadRootGroup;
-- (void) didDownloadRootGroupWithResult:(id<FLAsyncResult>) result;
+- (void) didDownloadRootGroupWithResult:(FLPromisedResult) result;
 
 - (void) willDownloadPhotoSetBatch;
-- (void) didDownloadPhotoSetBatchWithResult:(id<FLAsyncResult>) result;
+- (void) didDownloadPhotoSetBatchWithResult:(FLPromisedResult) result;
 
-- (void) didDownloadPhotoBatchWithResult:(id<FLAsyncResult>) result;
+- (void) didDownloadPhotoBatchWithResult:(FLPromisedResult) result;
 
 - (void) transferStateWasUpdated:(ZFTransferState*) transferState 
            forBatchPhotoDownload:(ZFBatchDownloadSpec*) downloadSpec;

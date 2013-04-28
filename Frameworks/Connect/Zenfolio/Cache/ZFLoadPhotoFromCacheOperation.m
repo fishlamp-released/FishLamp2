@@ -36,7 +36,7 @@
 //}
 //#endif
 //
-//- (id<FLAsyncResult>) runSubOperations {
+//- (FLPromisedResult) runSubOperations {
 //    FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoHttpRequest:[NSNumber numberWithInt:_photoID] level:_level];
 //    return [self runChildSynchronously:request];
 //}

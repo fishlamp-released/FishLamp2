@@ -257,7 +257,7 @@
         [self _onUpdatePhotoInfoInCache:operation photo:photo];
     } ];
 
-    [self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) {
+    [self.actionContext startAction:action completion: ^(FLPromisedResult result) {
         [self _onPhotoSynced:action photo:photo];
         }];
 }
@@ -380,7 +380,7 @@
             [self _decideToLoadPhotoSet:operation photoSet:photoSet];
         }];
 
-        [self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) {
+        [self.actionContext startAction:action completion: ^(FLPromisedResult result) {
             [self _onPhotoSetDownloadedForSync:action];
         }];
 
@@ -513,7 +513,7 @@
 //	[operation setDidPerformCallback:self action:@selector(_onUpdateCachedGroupForExpandingForPrep:)];
 	[action addOperation:operation];
     
-	[self.actionContext startAction:action completion: ^(id<FLAsyncResult> result) {
+	[self.actionContext startAction:action completion: ^(FLPromisedResult result) {
         [self _onGroupLoadedForExpandingForPrep:action];
     }];
 

@@ -47,7 +47,7 @@
 //- (ZFPhotoSet*) downloadLatestPhotoSet:(ZFPhotoSet*) photoSet {
 //    FLHttpRequest* request = [ZFHttpRequestFactory loadPhotoSetHttpRequest:photoSet.Id level:kZenfolioInformatonLevelFull includePhotos:YES];
 //
-//    id<FLAsyncResult> latestPhotoSet = [self runChildSynchronously:request];
+//    FLPromisedResult latestPhotoSet = [self runChildSynchronously:request];
 //    
 //    FLThrowIfError(latestPhotoSet);
 //    
