@@ -40,7 +40,7 @@ const FLCallback_t FLCallbackZero = { nil, nil };
 }
 
 - (BOOL) perform {
-    return FLPerformSelector([self target], [self action]);
+    return FLPerformSelector0([self target], [self action]);
 }
 
 - (BOOL) performWithObject:(id) object {

@@ -175,7 +175,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 }
 
 - (id) performSynchronously {
-    if(!FLPerformSelector(_testCaseTarget, _testCaseSelector)) {
+    if(!FLPerformSelector0(_testCaseTarget, _testCaseSelector)) {
         if(_testCaseBlock) {
             _testCaseBlock();
         }

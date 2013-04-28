@@ -38,7 +38,7 @@ BOOL FLCallbackIsNil(FLCallback_t cb) {
 
 NS_INLINE
 id FLCallbackPerform(FLCallback_t callback, id withObject) {
-	return FLPerformSelector(callback.target, callback.action);
+	return FLPerformSelector0(callback.target, callback.action);
 }
 
 NS_INLINE

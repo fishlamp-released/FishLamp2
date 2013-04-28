@@ -79,7 +79,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
             FLLog(@"cancelled %@", [operation description]);
 #endif
         
-            FLPerformSelector([operation nonretainedObjectValue], @selector(requestCancel));
+            FLPerformSelector0([operation nonretainedObjectValue], @selector(requestCancel));
         }
     }
 }
