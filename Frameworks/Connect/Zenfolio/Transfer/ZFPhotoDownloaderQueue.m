@@ -29,11 +29,13 @@
 - (void) photoDownloader:(ZFPhotoDownloader*) downloader 
                 didReadBytes:(FLHttpRequestByteCount*) amount 
                 forPhoto:(ZFDownloadSpec*) downloadSpec {
-    [self.delegate receiveMessage:@selector(photoDownloader:didReadBytes:forPhoto:) 
+    [self.delegate performOptionalSelector:@selector(photoDownloader:didReadBytes:forPhoto:) 
                        withObject:downloader 
                        withObject:amount 
                        withObject:downloadSpec];
-}                
+}        
+
+        
 
 //@synthesize downloadSpec = _downloadSpec;
 //

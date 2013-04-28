@@ -34,7 +34,7 @@
 }
 
 - (void) sendFinishMessagesWithResult:(FLPromisedResult) result {
-    [self.delegate receiveMessage:@selector(didDownloadPhotoSetBatchWithResult:) withObject:result];
+    [self.delegate performOptionalSelector:@selector(didDownloadPhotoSetBatchWithResult:) withObject:result];
     [self.observer receiveObservation:@selector(didDownloadPhotoSetBatchWithResult:) withObject:result];
 }
 
@@ -68,7 +68,7 @@
 - (void) willStartOperation:(id)operation withQueuedObject:(id)object  {
     [super willStartOperation:operation withQueuedObject:object];
     
-    [self.delegate receiveMessage:@selector(batchPhotoSetDownloader:willDownloadPhotoSet:) withObject:self withObject:nil];
+    [self.delegate performOptionalSelector:@selector(batchPhotoSetDownloader:willDownloadPhotoSet:) withObject:self withObject:nil];
 }
 
 - (void) didFinishOperation:(id)operation withQueuedObject:(id)object withResult:(FLPromisedResult)result {
@@ -79,7 +79,7 @@
             [_group replaceElement:result];
         }
     }
-    [self.delegate receiveMessage:@selector(batchPhotoSetDownloader:didDownloadPhotoSetWithResult:) withObject:self withObject:result];
+    [self.delegate performOptionalSelector:@selector(batchPhotoSetDownloader:didDownloadPhotoSetWithResult:) withObject:self withObject:result];
 }
 
 - (FLOperation*) createOperationForObject:(id) object {

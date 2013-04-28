@@ -169,7 +169,7 @@ static int s_counter = 0;
         [[NSNotificationCenter defaultCenter] postNotificationName:FLNetworkActivityStartedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self forKey:FLNetworkActivitySenderKey]];
     });
     
-    [self.delegate receiveMessage:@selector(httpRequestWillOpen:) withObject:self];
+    [self.delegate performOptionalSelector:@selector(httpRequestWillOpen:) withObject:self];
         
     [self willSendHttpRequest]; // this may set requestURL so needs to be before createStreamOpenerWithURL
 
@@ -229,13 +229,13 @@ static int s_counter = 0;
     }
 
     if(self.authenticator && !self.disableAuthenticator) {
-        [self.delegate receiveMessage:@selector(httpRequestWillAuthenticate:) withObject:self];
+        [self.delegate performOptionalSelector:@selector(httpRequestWillAuthenticate:) withObject:self];
         [self willAuthenticate];
             
         [self.authenticator authenticateHttpRequest:self];
         
         [self didAuthenticate];
-        [self.delegate receiveMessage:@selector(httpRequestDidAuthenticate:) withObject:self];
+        [self.delegate performOptionalSelector:@selector(httpRequestDidAuthenticate:) withObject:self];
     }
 
     [self openStreamWithURL:url];
@@ -249,7 +249,7 @@ static int s_counter = 0;
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
-    [self.delegate receiveMessage:@selector(httpRequestDidOpen:) withObject:self];
+    [self.delegate performOptionalSelector:@selector(httpRequestDidOpen:) withObject:self];
     [self.byteCount setStartTime];
 }
 
@@ -261,7 +261,7 @@ static int s_counter = 0;
 
     [self.byteCount incrementByteCount:amountRead];
     [self didReadBytes:amountRead];
-    [self.delegate receiveMessage:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
+    [self.delegate performOptionalSelector:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
 }
 
 - (void) requestDidFinishWithResult:(id) result {
@@ -284,7 +284,7 @@ static int s_counter = 0;
 
         [self releaseResponseData];
                 
-        [self.delegate receiveMessage:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
+        [self.delegate performOptionalSelector:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
         [self requestDidFinishWithResult:result];
         [self.finisher setFinishedWithResult:result];
         

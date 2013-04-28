@@ -62,7 +62,7 @@
 }
 
 - (void) sendFinishMessagesWithResult:(FLPromisedResult) result {
-    [self.delegate receiveMessage:@selector(loadGroupHierarchyOperation:didLoadRootGroupWithResult:) withObject:self withObject:result];
+    [self.delegate performOptionalSelector:@selector(loadGroupHierarchyOperation:didLoadRootGroupWithResult:) withObject:self withObject:result];
     [self.observer receiveObservation:@selector(didDownloadRootGroupWithResult:) withObject:result];
 }
 

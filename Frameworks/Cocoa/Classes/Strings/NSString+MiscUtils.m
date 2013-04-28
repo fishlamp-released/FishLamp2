@@ -19,13 +19,13 @@
 		return [NSString stringWithFormat:@"%lld bytes", size];
 	} 
     else if ( size < MEGA ) {
-		return [NSString stringWithFormat:@"%.1f KB", size /(float)KILO];
+		return [NSString stringWithFormat:@"%.2f KB", size /(float)KILO];
 	} 
     else if ( size < GIGA ) {
-		return [NSString stringWithFormat:@"%.1f MB", size /(float)MEGA];
+		return [NSString stringWithFormat:@"%.2f MB", size /(float)MEGA];
 	} 
     else {
-		return [NSString stringWithFormat:@"%.1f GB", size /(float)GIGA];
+		return [NSString stringWithFormat:@"%.2f GB", size /(float)GIGA];
 	}
 }
 
@@ -33,14 +33,14 @@
 
 	NSMutableString *time = [NSMutableString string];
 	if ( secs > 3600 ) {
-		[time appendFormat:@"%.0F %@ ", floor(secs / 3600.0), NSLocalizedString(@"hours", nil)];
+		[time appendFormat:@"%02ld %@ ", (long)floor(secs / 3600.0), NSLocalizedString(@"hours", nil)];
 		secs = fmod(secs, 3600.0);
 	}
 	if ( secs > 60 ) {
-		[time appendFormat:@"%.0F %@ ", floor(secs / 60.0), NSLocalizedString(@"minutes", nil)];
+		[time appendFormat:@"%02ld %@ ", (long)floor(secs / 60.0), NSLocalizedString(@"minutes", nil)];
 		secs = fmod(secs, 60.0);
 	}
-	[time appendFormat:@"%.0F %@", ceil(secs), NSLocalizedString(@"seconds", nil)];
+	[time appendFormat:@"%02ld %@", (long)ceil(secs), NSLocalizedString(@"seconds", nil)];
 	return time;
 }
 

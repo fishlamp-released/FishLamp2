@@ -15,6 +15,9 @@
     ZFDownloadSpec* _downloadSpec;
 }
 + (id) photoDownloader:(ZFDownloadSpec*) downloadSpec;
+
++ (void) setDefaultMaxRetryCount:(NSUInteger) maxRetryCount;
++ (NSUInteger) defaultMaxRetryCount;
 @end
 
 @protocol ZFPhotoDownloaderDelegate <NSObject>

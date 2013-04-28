@@ -68,7 +68,7 @@
     FLAssertNotNil(self.runLoop);
     
     if([NSThread currentThread] == self.thread) {
-        FLPerformSelector(_stream, selector);
+        FLPerformSelector0(_stream, selector);
     }
     else {
         [self.runLoop performSelector:selector target:_stream argument:nil order:0 modes:[NSArray arrayWithObject:self.runLoopMode]];

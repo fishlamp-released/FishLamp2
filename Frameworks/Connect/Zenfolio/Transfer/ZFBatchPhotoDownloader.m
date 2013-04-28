@@ -166,10 +166,32 @@
     [self updateProgress:YES];
 }        
 
+- (void) photoDownloadQueue:(FLAsyncOperationQueue*) queue 
+          willStartPhotoDownload:(id) operation 
+            withQueuedObject:(id) object {
+            
+}            
+
+- (void) photoDownloadQueue:(FLAsyncOperationQueue*) queue 
+          didFinishPhotoDownload:(id) operation 
+            withQueuedObject:(ZFDownloadSpec*) downloadSpec 
+                  withResult:(FLPromisedResult) result {
+
+    if(downloadSpec.photo.IsVideoValue) {
+        self.transferState.videoCount++;
+    }
+    else {
+        self.transferState.photoCount++;
+    }
+                  
+}                  
 
 - (void) beginDownloadingPhotos {
     [self.transferState setStarted];
     ZFPhotoDownloaderQueue* downloadQueue = [ZFPhotoDownloaderQueue photoDownloaderQueue:_downloadQueue];
+    downloadQueue.finishedOperationSelector = @selector(photoDownloadQueue:didFinishPhotoDownload:withQueuedObject:withResult:);
+    downloadQueue.startedOperationSelector = @selector(photoDownloadQueue:willStartPhotoDownload:withQueuedObject:);
+    
     [self runChildAsynchronously:downloadQueue completion:^(FLPromisedResult result) {
         [self.finisher setFinishedWithResult:result];
     }];

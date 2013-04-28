@@ -92,7 +92,6 @@ ConcreteSubclass(ZFLoadGroupSoapRequest)
 
     ZFSoapHttpRequest* soapHttpRequest = [subclass soapHttpRequestWithGeneratedObject:operationDescriptor 
                                                                                     serverInfo:s_soapServer];
-    soapHttpRequest.canRetry = YES;
     
     soapHttpRequest.handleSoapResponseBlock = ^(FLParsedItem* item) {
         return [self zenfolioResultFromSoapResponse:item element:element];

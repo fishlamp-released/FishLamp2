@@ -89,12 +89,15 @@
 }
 
 - (void) performOnTarget:(id) target {
-    FLPerformSelectorWithArgCount(target, 
-                                  self.selector, 
-                                  self.parameterCount, // + sender 
-                                  _parameter1, 
-                                  _parameter2,
-                                  _parameter3);
+
+    id args[4] = {
+        _parameter1,
+        _parameter2,
+        _parameter3,
+        nil
+    };
+
+    FLPerformSelector(target, self.selector, args, self.parameterCount);
 }
 
 - (NSString*) description {
@@ -148,3 +151,4 @@
     }
 }
 @end
+

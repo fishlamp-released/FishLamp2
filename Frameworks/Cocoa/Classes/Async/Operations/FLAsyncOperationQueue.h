@@ -23,7 +23,11 @@ typedef FLOperation* (^FLOperationFactory)(id object);
     NSInteger _totalObjectCount;
     BOOL _processing;
     NSError* _error;
+
+    SEL _startedOperationSelector;
+    SEL _finishedOperationSelector;
 }
+
 @property (readonly, strong) NSString* queueName;
 
 @property (readonly, assign) NSInteger processedObjectCount;
@@ -53,6 +57,9 @@ typedef FLOperation* (^FLOperationFactory)(id object);
 
 - (id) resultForFinisher;
 
+// use these to change the delegate selectors
+@property (readwrite, assign, nonatomic) SEL startedOperationSelector;
+@property (readwrite, assign, nonatomic) SEL finishedOperationSelector;
 
 + (void) setDefaultConnectionLimit:(NSInteger) threadCount;
 

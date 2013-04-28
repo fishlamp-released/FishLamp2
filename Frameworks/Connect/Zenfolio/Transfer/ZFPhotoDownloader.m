@@ -21,6 +21,16 @@
 
 @synthesize downloadSpec = _downloadSpec;
 
+static NSUInteger s_maxRetryCount = 3;
+
++ (void) setDefaultMaxRetryCount:(NSUInteger) maxRetryCount {
+    s_maxRetryCount = maxRetryCount;
+}
+
++ (NSUInteger) defaultMaxRetryCount {
+    return s_maxRetryCount;
+}
+
 - (id) initWithDownloadSpec:(ZFDownloadSpec*) downloadSpec {	
     FLAssertNotNil(downloadSpec);
 	self = [super init];
@@ -35,7 +45,7 @@
 }
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(FLHttpRequestByteCount*) amount {
-    [self.delegate receiveMessage:@selector(photoDownloader:didReadBytes:forPhoto:) withObject:self withObject:amount withObject:self.downloadSpec];
+    [self.delegate performOptionalSelector:@selector(photoDownloader:didReadBytes:forPhoto:) withObject:self withObject:amount withObject:self.downloadSpec];
 }
 
 - (id) startAsyncOperation {
@@ -55,6 +65,7 @@
         FLHttpRequest* request = [FLHttpRequest httpRequest:[_downloadSpec.photo urlForImageWithSize:_downloadSpec.mediaType]];
 
         request.canRetry = YES;
+        request.maxRetryCount = s_maxRetryCount;
 
     // TODO: abstract which sink is used    
         request.inputSink = [FLHiddenFolderFileSink hiddenFolderFileSink:filePath

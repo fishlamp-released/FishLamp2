@@ -40,6 +40,8 @@
 @synthesize didFinishOperationSelectorForDelegate = _didFinishOperationSelectorForDelegate;
 @synthesize processing = _processing;
 @synthesize error = _error;
+@synthesize startedOperationSelector = _startedOperationSelector;
+@synthesize finishedOperationSelector = _finishedOperationSelector;
 
 static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurrentOperations;
 
@@ -67,6 +69,8 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
         _totalObjectCount = _objectQueue.count;
         _fifoQueue = [[FLFifoAsyncQueue alloc] init];
         _activeQueue = [[NSMutableArray alloc] init];
+        _startedOperationSelector = @selector(asyncOperationQueue:willStartOperation:withQueuedObject:);
+        _finishedOperationSelector = @selector(asyncOperationQueue:didFinishOperation:withQueuedObject:withResult:);
         
 //        self.willStartOperationSelectorForDelegate = @selector(asyncOperationQueueOperation:willStartOperation:);
 //        self.didFinishOperationSelectorForDelegate = @selector(asyncOperationQueueOperation:didFinishOperation:withResult:); 
@@ -83,15 +87,11 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 }
 
 - (void) willStartOperation:(id) operation withQueuedObject:(id) object {
-    if([self.delegate respondsToSelector:@selector(asyncOperationQueue:willStartOperation:withQueuedObject:)]) {
-        [self.delegate asyncOperationQueue:self willStartOperation:operation withQueuedObject:object];
-    }
+    [self.delegate performOptionalSelector:_startedOperationSelector withObject:self withObject:operation withObject:object];
 }
 
 - (void) didFinishOperation:(id) operation withQueuedObject:(id) object withResult:(FLPromisedResult) result {
-    if([self.delegate respondsToSelector:@selector(asyncOperationQueue:didFinishOperation:withQueuedObject:withResult:)]) {
-        [self.delegate asyncOperationQueue:self didFinishOperation:operation withQueuedObject:object withResult:result];
-    }
+   [self.delegate performOptionalSelector:_finishedOperationSelector withObject:self withObject:operation withObject:object withObject:result];
 }
 
 - (id) resultForFinisher {

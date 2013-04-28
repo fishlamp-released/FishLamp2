@@ -21,23 +21,6 @@
 @end
 
 @protocol ZFPhotoDownloadQueueDelegate <FLAsyncOperationQueueDelegate>
-
-//- (void) photoDownloadQueue:(ZFPhotoDownloaderQueue*) downloadQueue 
-//            photoDownloader:(ZFPhotoDownloader*) downloader
-//            didDownloadBytes:(NSNumber*) bytes;
-
-//- (void) photoDownloadQueue:(ZFPhotoDownloaderQueue*) downloadQueue 
-//photoDownloaderDidSkipPhoto:(ZFPhotoDownloader*) downloader;
-//
-//- (void) photoDownloadQueue:(ZFPhotoDownloaderQueue*) downloadQueue 
-//photoDownloaderDidDownloadPhoto:(ZFPhotoDownloader*) downloader;
-
-//- (void) photoDownloadQueue:(ZFPhotoDownloaderQueue*) downloadQueue 
-//photoDownloader:(ZFPhotoDownloader*) downloader
-//didFinishWithResult:(
-//
-
-//- (void) observePhotoDownloadQueue:(ZFPhotoDownloaderQueue*) downloadQueue willDownloadPhoto:(ZFDownloadSpec*) spec;
-
-
+- (void) photoDownloadQueue:(ZFPhotoDownloaderQueue*) downloadQueue 
+photoDownloaderDidDownloadPhoto:(ZFPhotoDownloader*) downloader;
 @end
