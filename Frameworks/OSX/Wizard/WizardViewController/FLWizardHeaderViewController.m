@@ -28,12 +28,27 @@
 
 - (void) setPrompt:(NSString*) title animated:(BOOL) animated {
     
+    title = FLEmptyStringOrString(title);
+    
+    NSShadow* shadw = FLAutorelease([[NSShadow alloc] init]);
+    [shadw setShadowColor:[NSColor whiteColor]];
+    [shadw setShadowOffset:NSMakeSize( 1.0, -1.0 )];
+    [shadw setShadowBlurRadius:1.0];        
+
+    NSDictionary* attr = [NSDictionary dictionaryWithObjectsAndKeys:
+        _titleView.textColor, NSForegroundColorAttributeName,
+        (id) shadw, NSShadowAttributeName,
+        _titleView.font, NSFontAttributeName,
+        nil];
+            
+    NSAttributedString* attributedString = FLAutorelease([[NSAttributedString alloc] initWithString:title attributes:attr]);
+    
     if(animated) {
         NSTextField* old = FLAutorelease([[[_titleView class] alloc] initWithFrame:_titleView.frame]);
         old.textColor = _titleView.textColor;
         old.drawsBackground = _titleView.drawsBackground;
         old.font = _titleView.font;
-        old.stringValue = _titleView.stringValue;
+        old.attributedStringValue = _titleView.attributedStringValue;
         old.bordered = _titleView.isBordered;
         old.bezeled = _titleView.isBezeled;
         old.backgroundColor = _titleView.backgroundColor;
@@ -41,7 +56,7 @@
         
         [_titleView.superview addSubview:old];
         _titleView.alphaValue = 0.0;
-        _titleView.stringValue = FLEmptyStringOrString(title);
+        _titleView.attributedStringValue = attributedString;
     
         [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
             [context setDuration: kAnimationDuration];
@@ -55,7 +70,7 @@
 
     }
     else {
-        _titleView.stringValue = title;
+        _titleView.attributedStringValue = attributedString;
     }
     
 }

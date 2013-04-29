@@ -48,7 +48,7 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 
 - (void) addPanel:(FLPanelViewController*) panel forIdentifier:(id) identifier withDelegate:(id) delegate;
 
-- (FLPanelViewController*) panelForIdentifier:(id) identifier;
+- (id) panelForIdentifier:(id) identifier;
 
 - (void) removePanelForIdentifier:(id) identifier;
 
@@ -93,7 +93,14 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 - (void) panelStateDidChange:(FLPanelViewController*) panel;
 - (void) didAddPanel:(FLPanelViewController*) panel;
 - (void) didRemovePanel:(FLPanelViewController*) panel;
+- (void) panelManagerWillStart;
 - (void) panelManagerDidStart;
+
+- (void) showAlertView:(NSViewController*) toShow
+    overViewController:(NSViewController*) toHide
+        withTransition:(FLViewTransition*) transition 
+            completion:(dispatch_block_t) completion;
+
 @end
 
 @interface FLPanelManager ()

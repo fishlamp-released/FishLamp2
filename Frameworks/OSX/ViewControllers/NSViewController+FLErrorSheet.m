@@ -38,11 +38,15 @@
     
     NSMutableString* errorString = [NSMutableString stringWithString:title];
     
+    if(FLStringIsNotEmpty(title)) {
+        [errorString appendFormat:@"\n\n"];
+    }
+    
     if(caption) {
-        [errorString appendFormat:@"\n\n%@\n", caption];
+        [errorString appendFormat:@"%@\n", caption];
     } 
     else {
-        [errorString appendFormat:@"\n\n%@\n", [error localizedDescription]];
+        [errorString appendFormat:@"%@\n", [error localizedDescription]];
     }
     
     theError = [NSError errorWithDomain:error.domain code:error.code localizedDescription:errorString];
