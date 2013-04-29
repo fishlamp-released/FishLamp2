@@ -13,13 +13,18 @@
 
 @synthesize frameColor = _frameColor;
 @synthesize backgroundColor = _backgroundColor;
+@synthesize borderWidth = _borderWidth;
 
+- (void) setDefaults {
+    self.frameColor = [SDKColor gray85Color];
+    self.backgroundColor = [SDKColor whiteColor];
+    self.borderWidth = 1.0;
+}
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
+    [self setDefaults];
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.frameColor = [SDKColor gray85Color];
-        self.backgroundColor = [SDKColor whiteColor];
     }
     return self;
 }
@@ -28,8 +33,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.frameColor = [SDKColor gray85Color];
-        self.backgroundColor = [SDKColor whiteColor];
+        [self setDefaults];
     }
     
     return self;
@@ -64,7 +68,7 @@
     CGContextClosePath(context); // close path
 
     [_frameColor set];
-    CGContextSetLineWidth(context,1.0f);
+    CGContextSetLineWidth(context,self.borderWidth);
     CGContextStrokePath(context);
     
 }

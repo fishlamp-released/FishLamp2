@@ -61,4 +61,13 @@ beginAuthenticatingWithCredentials:(FLLoginPanelCredentials*) credentials
     [self saveCredentials:credentials];
 }
 
+- (BOOL) loginPanel:(FLLoginPanel*) panel 
+credentialsAreAuthenticated:(FLLoginPanelCredentials*) credentials {
+
+    return  FLStringsAreEqual(credentials.userName, [self.userService userName]) &&
+            (FLStringIsNotEmpty([self.userService password]) && FLStringsAreEqual(credentials.password, [self.userService password])) &&
+            [self isAuthenticated];
+}
+
+
 @end

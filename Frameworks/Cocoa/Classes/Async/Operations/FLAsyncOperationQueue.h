@@ -35,9 +35,6 @@ typedef FLOperation* (^FLOperationFactory)(id object);
 
 @property (readwrite, assign) NSInteger maxConcurrentOperations;
 
-@property (readwrite, assign, nonatomic) SEL willStartOperationSelectorForDelegate;
-@property (readwrite, assign, nonatomic) SEL didFinishOperationSelectorForDelegate;
-
 @property (readwrite, strong, nonatomic) FLOperationFactory operationFactory;
 
 - (id) initWithQueuedObjects:(NSArray*) objects; 

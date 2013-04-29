@@ -9,12 +9,12 @@
 #import "FLImagePlaceholderView.h"
 
 @interface FLImagePlaceholderView ()
-@property (readwrite, assign, nonatomic) CGFloat borderWidth;
+//@property (readwrite, assign, nonatomic) CGFloat frameWidth;
 @end
 
 @implementation FLImagePlaceholderView
 //@synthesize imageView = _imageView;
-@synthesize borderWidth = _borderWidth;
+@synthesize frameWidth = _frameWidth;
 @synthesize alwaysProportionallyResize = _alwaysProportionallyResize;
 
 - (id)initWithFrame:(NSRect)frame
@@ -24,7 +24,7 @@
         self.autoresizesSubviews = NO;
         
         _alwaysProportionallyResize = YES;
-        _borderWidth = 4.0;
+        _frameWidth = 4.0;
         self.autoresizesSubviews = NO;
         
 //        self.backgroundColor = [NSColor gray95Color];
@@ -56,7 +56,7 @@
     [super setFrame:frame];
     
     _progress.frame = FLRectOptimizedForViewLocation(FLRectCenterRectInRect(self.bounds, _progress.frame));
-    _imageView.frame = CGRectMake(_borderWidth, _borderWidth, self.bounds.size.width - (_borderWidth*2), self.bounds.size.height - (_borderWidth*2));
+    _imageView.frame = CGRectMake(_frameWidth, _frameWidth, self.bounds.size.width - (_frameWidth*2), self.bounds.size.height - (_frameWidth*2));
 }
 
 - (void) resizeToProportionalImageSize {
@@ -64,10 +64,10 @@
         
         CGRect bounds = self.superview.bounds;
     
-        CGRect frame = CGRectInset(bounds, _borderWidth, _borderWidth);
+        CGRect frame = CGRectInset(bounds, _frameWidth, _frameWidth);
         frame = FLRectFitInRectInRectProportionally(frame,CGRectMake(0,0,_imageView.image.size.width, _imageView.image.size.height));
-        frame.size.width += (_borderWidth*2);
-        frame.size.height += (_borderWidth*2);
+        frame.size.width += (_frameWidth*2);
+        frame.size.height += (_frameWidth*2);
         frame.origin.x = bounds.size.width - frame.size.width;
         
         frame = FLRectOptimizedForViewLocation(FLRectCenterRectInRectVertically(self.superview.bounds, frame));

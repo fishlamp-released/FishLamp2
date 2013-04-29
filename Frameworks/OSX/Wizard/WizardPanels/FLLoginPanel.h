@@ -57,6 +57,9 @@ beginAuthenticatingWithCredentials:(FLLoginPanelCredentials*) credentials
 
 - (void) loginPanel:(FLLoginPanel*) loginPanel 
    saveCredentials:(FLLoginPanelCredentials*) credentials;
+
+- (BOOL) loginPanel:(FLLoginPanel*) panel 
+credentialsAreAuthenticated:(FLLoginPanelCredentials*) credentials;
    
 @end
 

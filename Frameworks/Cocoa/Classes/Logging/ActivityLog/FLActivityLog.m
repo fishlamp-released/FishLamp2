@@ -57,7 +57,7 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
                                            timeStyle:kCFDateFormatterLongStyle]];
 
 
-        NSDictionary *attributes = [[NSDictionary alloc] initWithObjectsAndKeys:
+        NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
             [NSColor gray15Color], NSForegroundColorAttributeName, 
             [NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName, nil];
 
@@ -200,7 +200,7 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
 }
 
 - (void) appendErrorLine:(NSString*) errorLine {
-    NSDictionary *attributes = [[NSDictionary alloc] initWithObjectsAndKeys:
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
         [NSColor redColor], NSForegroundColorAttributeName, 
         [NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName, nil];
 
@@ -212,7 +212,7 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
 }
 
 - (void) appendBoldTitle:(NSString*) title {
-    NSDictionary *attributes = [[NSDictionary alloc] initWithObjectsAndKeys:
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
         [NSColor gray15Color], NSForegroundColorAttributeName, 
         [NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName, nil];
 

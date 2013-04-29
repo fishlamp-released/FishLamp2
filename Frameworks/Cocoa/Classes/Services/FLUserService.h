@@ -16,8 +16,7 @@
     NSString* _password;
     NSString* _authenticationDomain;
     BOOL _rememberPassword;
-    BOOL _userDefaultsDirty;
-    BOOL _passwordDirty;
+    BOOL _loaded;
 }
 @property (readwrite, strong, nonatomic) NSString* userName;
 @property (readwrite, strong, nonatomic) NSString* password;
@@ -29,6 +28,7 @@
 
 - (void) loadCredentials;
 - (void) saveCredentials;
+- (void) clearCredentials;
 
 - (BOOL) canAuthenticate;
 

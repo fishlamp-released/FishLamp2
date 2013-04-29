@@ -45,6 +45,8 @@
     BOOL _independent;
     BOOL _hidden;
     BOOL _enabled;
+    BOOL _visiblePanel;
+    
     id _identifier;
     __unsafe_unretained id _delegate;
 
