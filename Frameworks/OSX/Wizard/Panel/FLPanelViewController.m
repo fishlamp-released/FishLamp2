@@ -10,13 +10,12 @@
 #import "FLWizardViewController.h"
 
 @interface FLPanelViewController ()
-//@property (readwrite, assign, nonatomic) id wizardViewController;
-
+@property (readwrite, assign, nonatomic, getter=isVisiblePanel) BOOL visiblePanel;
 @end
 
 @implementation FLPanelViewController
 
-@synthesize wizardViewController = _wizardViewController;
+@synthesize panelManager = _panelManager;
 @synthesize prompt = _prompt;
 @synthesize canOpenNextPanel = _canOpenNextPanel;
 @synthesize buttons = _buttons;
@@ -28,9 +27,13 @@
 @synthesize hidden = _hidden;
 @synthesize enabled = _enabled;
 @synthesize identifier = _identifier;
+@synthesize alertViewController = _alertViewController;
+@synthesize visiblePanel = _visiblePanel;
+
 
 #if FL_MRC
 - (void) dealloc {
+    [_alertViewController release];
     [_identifier release];
     [_header release];
     [_buttons release];

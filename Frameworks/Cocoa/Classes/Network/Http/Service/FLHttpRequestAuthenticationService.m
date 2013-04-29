@@ -133,4 +133,18 @@
 
 }
 
+- (void) beginAuthenticating:(fl_completion_block_t) completion {
+    FLHttpUser* user = self.user;
+    FLAssertNotNil(user); 
+
+    [_asyncQueue queueBlock:^{
+        [user resetAuthenticationTimestamp];
+        [self authenticateUser:user];
+        [user touchAuthenticationTimestamp];
+        [self.delegate httpRequestAuthenticationService:self didAuthenticateUser:user];
+    } 
+    completion:completion];
+
+}
+
 @end

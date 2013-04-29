@@ -10,17 +10,48 @@
 #import "NSObject+Blocks.h"
 #import "FLViewController.h"
 #import "FLKeychain.h"
+#import "FLProgressPanel.h"
+#import "NSViewController+FLErrorSheet.h"
+
+@implementation FLLoginPanelCredentials 
+@synthesize userName = _userName;
+@synthesize password = _password;
+@synthesize rememberPassword = _rememberPassword;
+
++ (id) loginPanelUser {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+#if FL_MRC
+- (void) dealloc {
+	[_userName release];
+	[_password release];
+    [super dealloc];
+}
+#endif
+
+- (id) copyWithZone:(NSZone *)zone {
+    FLLoginPanelCredentials* user = [[FLLoginPanelCredentials alloc] init];
+    user.userName = FLCopyWithAutorelease(self.userName);
+    user.password = FLCopyWithAutorelease(self.password);
+    user.rememberPassword = self.rememberPassword;
+    return user;
+}
+@end
 
 @interface FLLoginPanel ()
 - (void) applicationWillTerminate:(id)sender;
-@property (readwrite, strong, nonatomic) FLUserService* userService;
 - (void) updateNextButton;
 - (IBAction) resetLogin:(id) sender;
+- (IBAction) startLogin:(id) sender;
+- (IBAction) passwordCheckboxToggled:(id) sender;
+@property (readwrite, strong, nonatomic) FLLoginPanelCredentials* user;
 @end
 
 @implementation FLLoginPanel
 
-@synthesize userService = _userService;
+@synthesize user = _user;
+@synthesize credentialDataSource = _credentialDataSource;
 
 - (id) init {
     return [self initWithNibName:@"FLLoginPanel" bundle:nil];
@@ -48,7 +79,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 #if FL_MRC
-    [_userService release];
+    [_user release];
     [super dealloc];
 #endif
 }
@@ -90,20 +121,117 @@
 }
 
 - (void) updateNextButton {
-    self.canOpenNextPanel = self.canLogin;
+//    self.canOpenNextPanel = self.canLogin;
+
+
+
+    _loginButton.enabled = self.canLogin;
 }
+
 
 #if OSX
 - (void)controlTextDidChange:(NSNotification *)note {
+    _user.userName = self.userName;
+    _user.password = self.password;
+    _user.rememberPassword = self.savePasswordInKeychain;
     
-    if(self.userService.isServiceOpen) {
-        [self.userService closeService:self];
-    }
-    
+    [self.credentialDataSource  loginPanel:self didChangeCredentials:_user];
     [self updateNextButton];
 }
 
+- (void)controlTextDidEndEditing:(NSNotification *) note {
+
+    NSNumber *reason = [[note userInfo] objectForKey:@"NSTextMovement"];
+    if ([reason intValue] == NSReturnTextMovement) {
+        //	leave time for text field to clean up repainting
+        if(self.canLogin) {
+            
+            double delayInSeconds = 0.1;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [_loginButton performClick:self];
+            });
+        }
+    }
+}
+
 #endif
+
+- (void) setNextResponder {
+    if(self.view.window) {
+        [self performBlockOnMainThread:^{
+            if(FLStringIsEmpty(self.userName)) {
+                [self.view.window makeFirstResponder:_userNameTextField];
+            }
+            else {
+                [self.view.window makeFirstResponder:_passwordEntryField];
+            }
+            [self updateNextButton];
+        }];
+    }
+}
+
+- (void) showEntryFields:(BOOL) animated completion:(dispatch_block_t) completion {
+
+    if(self.isVisiblePanel) {
+        completion = FLCopyWithAutorelease(completion);
+
+        [self.panelManager showAlertView:self 
+                      overViewController:self.alertViewController 
+                          withTransition:nil 
+                          completion:^{
+                          
+            [self setNextResponder];
+            
+            if(completion) {
+                completion();
+            }
+        }];
+    }
+    self.alertViewController = nil;
+}
+
+- (void) progressPanelWasCancelled:(FLProgressPanel*) panel {
+    [self.delegate loginPanelDidCancelAuthentication:self];
+    [self showEntryFields:YES completion:nil];
+}
+
+- (void) beginAuthenticating {
+    [self.credentialDataSource  loginPanel:self 
+ beginAuthenticatingWithCredentials:self.user 
+                         completion:^(id result) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if([result error]) {
+                [self showEntryFields:YES completion:^{
+                    [self.delegate loginPanel:self authenticationFailed:[result error]];
+                }];
+            }
+            else {
+                [self setCanOpenNextPanel:YES];
+                [self.delegate loginPanelDidAuthenticate:self];
+            }
+        });
+    }];
+}
+
+- (IBAction) startLogin:(id) sender {
+    [self saveCredentials];
+
+    FLProgressPanel* panel = [FLProgressPanel progressPanel];
+    panel.delegate = self;
+    [[panel view] setFrame:self.view.frame];
+    [panel setProgressText:@"Logging into your account…"];
+    
+    self.alertViewController = panel;
+    
+    [self.panelManager showAlertView:self.alertViewController 
+                  overViewController:self withTransition:nil 
+                  completion:^{
+        [self beginAuthenticating];
+    }];
+
+}
 
 - (IBAction) resetLogin:(id) sender {
     // this is from the "forgot login" button
@@ -112,20 +240,18 @@
 }
 
 - (void) loadCredentials {
-    [self.userService loadCredentials];
-    [self setSavePasswordInKeychain:self.userService.rememberPassword];
-    [self setUserName:self.userService.userName];
-    [self setPassword:self.userService.password];
+    self.user = FLCopyWithAutorelease([self.credentialDataSource  loginPanelGetCredentials:self]);
+    [self setSavePasswordInKeychain:self.user.rememberPassword];
+    [self setUserName:self.user.userName];
+    [self setPassword:self.user.password];
 }
 
 - (void) saveCredentials {  
-    self.userService.rememberPassword = [self savePasswordInKeychain];
-    self.userService.userName = self.userName;
-    self.userService.password = self.password;
-    [self.userService saveCredentials];
+    [self.credentialDataSource  loginPanel:self saveCredentials:self.user];
 }
 
 - (IBAction) passwordCheckboxToggled:(id) sender {
+    [self saveCredentials];
 }
 
 - (void) applicationWillTerminate:(id)sender {
@@ -144,29 +270,14 @@
 - (void) panelDidAppear {
     [super panelDidAppear];
     [self updateNextButton];
-
-    [self performBlockOnMainThread:^{
-        if(FLStringIsEmpty(self.userName)) {
-            [self.view.window makeFirstResponder:_userNameTextField];
-        }
-        else {
-            [self.view.window makeFirstResponder:_passwordEntryField];
-        }
-        [self updateNextButton];
-    }];
+    [self setNextResponder];
+    
 }
-
-//- (BOOL) becomeFirstResponder {
-//    [self updateNextButton];
-//    return YES;
-//}
 
 - (void) panelWillAppear {
     [super panelWillAppear];
     _userNameTextField.stringValue = @"";
     _passwordEntryField.stringValue = @"";
-
-    self.userService = [self.delegate loginPanelGetUserService:self];
     [self loadCredentials];
     [self updateNextButton];
 }
@@ -175,7 +286,7 @@
     [self.view.window makeFirstResponder:self.view.window];
     [super panelWillDisappear];
     [self saveCredentials];
-    self.userService = nil;
+    self.user = nil;
 }
 
 - (void) panelDidDisappear {
@@ -183,6 +294,8 @@
     
     _userNameTextField.stringValue = @"";
     _passwordEntryField.stringValue = @"";
+    
+    self.alertViewController = nil;
 }
 
 @end

@@ -32,6 +32,8 @@
 // optional override
 - (BOOL) credentialsNeedAuthentication:(FLHttpUser*) user;
 
+- (void) beginAuthenticating:(fl_completion_block_t) completion;
+
 @end
 
 @protocol FLHttpRequestAuthenticationServiceDelegate <NSObject>

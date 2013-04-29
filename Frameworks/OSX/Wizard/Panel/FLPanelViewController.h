@@ -38,7 +38,6 @@
     NSString* _prompt;
     BOOL _canOpenNextPanel;
     __unsafe_unretained FLPanelManager* _panelManager;
-    __unsafe_unretained id _wizardViewController;
     id<FLPanelButtons> _buttons;
     id<FLPanelHeader> _header;
     BOOL _panelFillsView;
@@ -48,11 +47,17 @@
     BOOL _enabled;
     id _identifier;
     __unsafe_unretained id _delegate;
+
+    id _alertViewController;
 }
+@property (readonly, assign, nonatomic, getter=isVisiblePanel) BOOL visiblePanel;
+
+@property (readwrite, strong, nonatomic) id alertViewController;
+
 @property (readwrite, strong, nonatomic) id identifier;
 
 @property (readwrite, assign, nonatomic) id delegate;
-@property (readwrite, assign, nonatomic) id wizardViewController;
+@property (readonly, assign, nonatomic) FLPanelManager* panelManager;
 @property (readwrite, strong, nonatomic) id<FLPanelButtons> buttons;
 @property (readwrite, strong, nonatomic) id<FLPanelHeader> header;
 @property (readwrite, strong, nonatomic) NSString* prompt;

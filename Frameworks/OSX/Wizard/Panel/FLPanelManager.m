@@ -9,6 +9,10 @@
 #import "FLPanelManager.h"
 #import "FLWizardStyleViewTransition.h"
 
+@interface FLPanelViewController()
+@property (readwrite, assign, nonatomic, getter=isVisiblePanel) BOOL visiblePanel;
+@end
+
 @interface FLPanelManager ()
 @property (readonly, strong, nonatomic) FLOrderedCollection* panels;
 @property (readwrite, strong, nonatomic) id visiblePanelIdentifier;
@@ -131,32 +135,6 @@
     return _started ? [_panels objectForKey:_visiblePanelIdentifier] : nil;
 }
 
-//- (BOOL) canEnableTitleForPanel:(id) identifier {
-//    
-//    if(_started) {
-//        
-//        BOOL foundNo = NO;
-//        
-//        for(FLPanelViewController* panel in _panels) {
-//            if(panel.canOpenNextPanel == NO) {
-//                foundNo = YES;
-//            }
-//            if([identifier isEqual:[panel identifier]]) {
-//            
-//                if(panel.isIndependent) {
-//                    return panel.isEnabled;
-//                }
-//                else if(foundNo) {
-//                    return NO;
-//                }
-//            
-//                return panel.canOpenNextPanel;
-//            }
-//        }
-//    }
-//    return NO;
-//}
-
 - (BOOL) canOpenPanelForIdentifier:(id) identifier {
     if(!_started) {
         return NO;
@@ -191,19 +169,9 @@
     return [currentPanel isEnabled];
 }
 
-- (FLPanelViewController*) panelForIdentifier:(id) identifier {
+- (id) panelForIdentifier:(id) identifier {
     return [_panels objectForKey:identifier];
 }
-
-//- (NSInteger) panelIndexForTitle:(id) identifier {
-//    for(NSInteger i = 0; i < _panels.count; i++) {
-//        if([title isEqual:[[_panels objectAtIndex:i] title]]) {
-//            return i;
-//        }
-//    }
-//    
-//    return NSNotFound;
-//}
 
 - (void) showNextPanelAnimated:(BOOL) animated
                     completion:(void (^)(FLPanelViewController*)) completion {
@@ -251,6 +219,8 @@
         [toHide panelDidDisappear];
     }
     
+    toShow.visiblePanel = YES;
+    
     [toShow setNextResponder:self];
     [self.view.window makeFirstResponder:toShow];
 
@@ -286,6 +256,12 @@
     
     _started = YES;
 
+    toHide.visiblePanel = NO;
+    if([toHide alertViewController]) {
+        [[toHide.alertViewController view] removeFromSuperview];
+        toHide.alertViewController = nil;
+    }
+    
     FLViewTransition* transition = nil;
 
 #if BROKEN
@@ -437,23 +413,70 @@
 - (void) didRemovePanel:(FLPanelViewController*) panel {
 }
 
-- (void) showPanelsInWindow:(NSWindow*) window {
-    [window setContentView:self.view];
-    [self setNextResponder:window];
+- (void) startPanelManager {
+    [self setNextResponder:self.view.window];
+    [self panelManagerWillStart];
     [self showFirstPanel];  
     [self panelManagerDidStart];
+}
+
+- (void) showPanelsInWindow:(NSWindow*) window {
+    [window setContentView:self.view];
+    [self startPanelManager];
 }
 
 - (void) showPanelsInView:(NSView*) view {
     self.view.frame = view.bounds;
     [view addSubview:self.view];
-    [self setNextResponder:view.window];
-    [self showFirstPanel];  
-    [self panelManagerDidStart];
+    [self startPanelManager];
 }
-
+- (void) panelManagerWillStart {
+}
 - (void) panelManagerDidStart {
 }
+
+//- (void) showAlertView:(NSViewController*) viewController
+//               overView:(NSView*) view
+//               animated:(BOOL) animated;
+
+- (void) showAlertView:(NSViewController*) toShow
+    overViewController:(NSViewController*) toHide
+        withTransition:(FLViewTransition*) transition 
+            completion:(dispatch_block_t) completion {
+    
+    [_contentView addSubview:[toShow view]];
+    
+    if(transition) {
+        completion = FLCopyWithAutorelease(completion);
+        
+        [transition startShowingView:toShow.view 
+                          viewToHide:toHide.view 
+                          completion:^{
+
+            
+            [toHide.view removeFromSuperview];
+              
+            if(completion) {
+              completion();
+            }
+        }];
+    }
+    else {
+            
+        [toHide.view removeFromSuperview];
+
+        if(completion) {
+            completion();
+        }
+    }
+
+    
+}               
+
+- (void) hideAlertView {
+
+}
+
 
 
 @end

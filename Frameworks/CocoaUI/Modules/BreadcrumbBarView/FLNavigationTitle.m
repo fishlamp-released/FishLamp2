@@ -57,12 +57,17 @@
 - (void) updateState {
     if(_willUpdate) {
         NSColor* bgColor = [NSColor clearColor];
+        NSColor* shadowColor = [NSColor whiteColor];
         FLTextStyle* textStyle = self.titleStyle.enabledStyle;
+        NSShadow* shadw = FLAutorelease([[NSShadow alloc] init]);
+        [shadw setShadowOffset:NSMakeSize( 1.0, -1.0 )];
             
         if(_enabled) {
             if(self.isEmphasized) {
                 bgColor = [NSColor clearColor];
                 textStyle = self.titleStyle.emphasizedStyle;
+                shadowColor = [NSColor darkGrayColor];
+                [shadw setShadowOffset:NSMakeSize( 0.5, -0.5 )];
             }
             else if(_mouseDown) {
                 if(_mouseIn) {
@@ -72,11 +77,13 @@
                 else {
                     bgColor = [NSColor lightGrayColor];
                     textStyle = self.titleStyle.hoveringStyle;
+                    shadowColor = [NSColor blackColor];
                 }
             }
             else if(_mouseIn) {
                 bgColor = [NSColor lightGrayColor];
                 textStyle = self.titleStyle.hoveringStyle;
+                    shadowColor = [NSColor blackColor];
             }
         } 
         else {
@@ -89,24 +96,27 @@
             CFRelease(colorRef);
         }
         
-#if OSX
-        CGColorRef colorRef = [textStyle.textColor copyCGColorRef];
-#else
-        CGColorRef colorRef  = [color CGColor];
-#endif
+        [shadw setShadowColor:shadowColor];
+        [shadw setShadowBlurRadius:1.0];        
 
-        NSDictionary* attr = [NSDictionary dictionaryWithObjectsAndKeys:
-            (id) colorRef, NSForegroundColorAttributeName,
-            textStyle.textFont, NSFontAttributeName,
-            nil];
+        NSDictionary* attr = nil;
+        
+        if(shadw) {
+            attr = [NSDictionary dictionaryWithObjectsAndKeys:
+                textStyle.textColor, NSForegroundColorAttributeName,
+                (id) shadw, NSShadowAttributeName,
+                [NSFont boldSystemFontOfSize:14], NSFontAttributeName,
+                nil];
+        }
+        else {
+            attr = [NSDictionary dictionaryWithObjectsAndKeys:
+                textStyle.textColor, NSForegroundColorAttributeName,
+                [NSFont boldSystemFontOfSize:14], NSFontAttributeName,
+                nil];
+        }
             
         self.attributedString = FLAutorelease([[NSAttributedString alloc] initWithString:self.localizedTitle attributes:attr]);
         
-#if OSX
-        if(colorRef) {
-            CFRelease(colorRef);
-        }
-#endif            
         [self setNeedsDisplay];
         _willUpdate = NO;
 
@@ -189,8 +199,11 @@ CGFloat GetLineHeightForFont(CTFontRef iFont)
 - (void)drawInContext:(CGContextRef) context {
 //    CGContextClearRect(ctx, self.bounds);
 
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext:[NSGraphicsContext
+        graphicsContextWithGraphicsPort:context flipped:NO]];
+
+//    CGContextSaveGState(context);
     CGContextSetTextMatrix(context, CGAffineTransformIdentity );
     CGRect frame = CGRectZero;
     frame.size = [self.attributedString size];
@@ -199,15 +212,17 @@ CGFloat GetLineHeightForFont(CTFontRef iFont)
 //    [self.attributedString drawWithRect:frame  
 //                                options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin];
 
-//    CGColorRef colorRef = [NSColor whiteColor].CGColor;
+    [self.attributedString drawInRect:frame];
 
+//    CGColorRef colorRef = [NSColor clearColor].CGColor;
+//
 //    CGContextSetFillColorWithColor(context, colorRef);
 //    CGContextFillRect(context, frame);
-    CGContextSetShouldSmoothFonts(context, NO);
-    CGContextDrawAttributedString(context, self.attributedString,  frame);
-
-          
-    CGContextRestoreGState(context);
+//    CGContextSetShouldSmoothFonts(context, YES);
+//    CGContextDrawAttributedString(context, self.attributedString,  frame);
+//
+//          
+    [NSGraphicsContext restoreGraphicsState];
 
   //  [self.attributedString drawWithRect:frame options:NSStringDrawingTruncatesLastVisibleLine]
 //    
@@ -229,6 +244,7 @@ CGFloat GetLineHeightForFont(CTFontRef iFont)
 }
 
 - (void) setLocalizedTitle:(NSString*) localizedTitle {
+    
     if(FLStringsAreNotEqual(localizedTitle, _localizedTitle)) {
         FLSetObjectWithRetain(_localizedTitle, localizedTitle);
         [self setNeedsUpdate];
