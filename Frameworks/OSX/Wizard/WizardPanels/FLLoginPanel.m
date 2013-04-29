@@ -45,7 +45,7 @@
 - (IBAction) resetLogin:(id) sender;
 - (IBAction) startLogin:(id) sender;
 - (IBAction) passwordCheckboxToggled:(id) sender;
-@property (readwrite, strong, nonatomic) FLLoginPanelCredentials* user;
+@property (readonly, strong, nonatomic) FLLoginPanelCredentials* user;
 @end
 
 @implementation FLLoginPanel
@@ -62,6 +62,8 @@
 
     self.title = NSLocalizedString(@"Login", nil);
     self.prompt =  NSLocalizedString(@"Login to your account", nil);
+
+    _user = [[FLLoginPanelCredentials alloc] init];
 
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(applicationWillTerminate:)
@@ -121,21 +123,21 @@
 }
 
 - (void) updateNextButton {
-//    self.canOpenNextPanel = self.canLogin;
-
-
-
+    self.canOpenNextPanel = [self.credentialDataSource loginPanel:self credentialsAreAuthenticated:self.user];
     _loginButton.enabled = self.canLogin;
+}
+
+- (FLLoginPanelCredentials*) user {
+    _user.userName = self.userName;
+    _user.password = self.password;
+    _user.rememberPassword = self.savePasswordInKeychain;
+    return _user;
 }
 
 
 #if OSX
 - (void)controlTextDidChange:(NSNotification *)note {
-    _user.userName = self.userName;
-    _user.password = self.password;
-    _user.rememberPassword = self.savePasswordInKeychain;
-    
-    [self.credentialDataSource  loginPanel:self didChangeCredentials:_user];
+    [self.credentialDataSource  loginPanel:self didChangeCredentials:self.user];
     [self updateNextButton];
 }
 
@@ -143,8 +145,10 @@
 
     NSNumber *reason = [[note userInfo] objectForKey:@"NSTextMovement"];
     if ([reason intValue] == NSReturnTextMovement) {
+        [self updateNextButton];
+
         //	leave time for text field to clean up repainting
-        if(self.canLogin) {
+        if(self.canLogin && !self.canOpenNextPanel) {
             
             double delayInSeconds = 0.1;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -192,7 +196,7 @@
 }
 
 - (void) progressPanelWasCancelled:(FLProgressPanel*) panel {
-    [self.delegate loginPanelDidCancelAuthentication:self];
+    [self.credentialDataSource loginPanelDidCancelAuthentication:self];
     [self showEntryFields:YES completion:nil];
 }
 
@@ -216,21 +220,27 @@
 }
 
 - (IBAction) startLogin:(id) sender {
-    [self saveCredentials];
+    [self updateNextButton];
 
-    FLProgressPanel* panel = [FLProgressPanel progressPanel];
-    panel.delegate = self;
-    [[panel view] setFrame:self.view.frame];
-    [panel setProgressText:@"Logging into your account…"];
-    
-    self.alertViewController = panel;
-    
-    [self.panelManager showAlertView:self.alertViewController 
-                  overViewController:self withTransition:nil 
-                  completion:^{
-        [self beginAuthenticating];
-    }];
+    if(self.canOpenNextPanel) {
+        [self.delegate loginPanelDidAuthenticate:self];
+    }
+    else {
+        [self saveCredentials];
 
+        FLProgressPanel* panel = [FLProgressPanel progressPanel];
+        panel.delegate = self;
+        [[panel view] setFrame:self.view.frame];
+        [panel setProgressText:@"Logging into your account…"];
+        
+        self.alertViewController = panel;
+        
+        [self.panelManager showAlertView:self.alertViewController 
+                      overViewController:self withTransition:nil 
+                      completion:^{
+            [self beginAuthenticating];
+        }];
+    }
 }
 
 - (IBAction) resetLogin:(id) sender {
@@ -240,10 +250,10 @@
 }
 
 - (void) loadCredentials {
-    self.user = FLCopyWithAutorelease([self.credentialDataSource  loginPanelGetCredentials:self]);
-    [self setSavePasswordInKeychain:self.user.rememberPassword];
-    [self setUserName:self.user.userName];
-    [self setPassword:self.user.password];
+    FLLoginPanelCredentials* user = [self.credentialDataSource  loginPanelGetCredentials:self];
+    [self setSavePasswordInKeychain:user.rememberPassword];
+    [self setUserName:user.userName];
+    [self setPassword:user.password];
 }
 
 - (void) saveCredentials {  
@@ -286,7 +296,6 @@
     [self.view.window makeFirstResponder:self.view.window];
     [super panelWillDisappear];
     [self saveCredentials];
-    self.user = nil;
 }
 
 - (void) panelDidDisappear {

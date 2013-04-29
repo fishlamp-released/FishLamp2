@@ -39,7 +39,6 @@
 }
 
 - (void) showPanelsInWindow:(NSWindow*) window {
-    [window setDefaultButtonCell:[self.buttonViewController.nextButton cell]];
     [super showPanelsInWindow:window];
 }
 
@@ -94,6 +93,10 @@
     
     if(nextEnabled != self.buttonViewController.nextButton.isEnabled) {
         self.buttonViewController.nextButton.enabled = nextEnabled;
+        
+        if(nextEnabled) {
+            [self.view.window setDefaultButtonCell:[self.buttonViewController.nextButton cell]];
+        }
     }
 }
 

@@ -12,6 +12,8 @@
 #import "FLViewTransition.h"
 #import "FLOrderedCollection.h"
 
+#import "NSViewController+FLErrorSheet.h"
+
 @protocol FLPanelManagerDelegate;
 
 typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);

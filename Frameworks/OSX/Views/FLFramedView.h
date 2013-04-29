@@ -12,7 +12,9 @@
 @private
     NSColor* _frameColor;
     NSColor* _backgroundColor;
+    CGFloat _borderWidth;
 }
+@property (readwrite, assign, nonatomic) CGFloat borderWidth;
 @property (readwrite, strong, nonatomic) NSColor* frameColor;
 @property (readwrite, strong, nonatomic) NSColor* backgroundColor;
 @end

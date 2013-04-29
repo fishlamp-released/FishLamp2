@@ -11,27 +11,20 @@
 
 @implementation FLLinkTextField
 
-//- (void) setToZenfolioStyle {
-//    [super setToZenfolioStyle];
-//    _color = FLRetain(self.textColor);
-//    
-////    self.font = [NSFont zenfolioLinkButtonFont];
-//}
 
-@synthesize urlString = _urlString;
-
-#if FL_MRC
-- (void) dealloc {
-	[_urlString release];
-	[super dealloc];
-}
-#endif
 
 - (void)removeTrackingTags {
     if(_boundsTrackingTag) {
         [self removeTrackingRect:_boundsTrackingTag];
         _boundsTrackingTag = 0;
     }
+}
+
+- (void) dealloc {
+    [self removeTrackingTags];
+#if FL_MRC
+	[super dealloc];
+#endif
 }
 
 - (void)updateBoundsTrackingTag {

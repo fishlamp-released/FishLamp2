@@ -54,68 +54,183 @@
 }
 #endif
 
+typedef enum {
+    DrawStateNormal,
+    DrawStateHighlighted,
+    DrawStateHovering,
+    DrawStateDisabled,
+    DrawStateMouseDownIn,
+    DrawStateMouseDownOut
+} DrawState;
+
+- (void) updateDrawState:(DrawState) drawState {
+
+    NSShadow* shadow = FLAutorelease([[NSShadow alloc] init]);
+    [shadow setShadowOffset:NSMakeSize( 1.0, -1.0 )];
+    [shadow setShadowBlurRadius:1.0];        
+    
+    NSColor* bgColor = [NSColor clearColor];
+    
+    NSMutableDictionary* attr = [NSMutableDictionary dictionary];
+    [attr setObject:[NSFont boldSystemFontOfSize:14] forKey:NSFontAttributeName];
+
+    switch(drawState) {
+        case DrawStateNormal:
+            [attr setObject:[NSColor darkGrayColor] forKey:NSForegroundColorAttributeName];
+            [shadow setShadowColor:[NSColor whiteColor]];
+        break;
+        
+        case DrawStateDisabled:
+            [attr setObject:[NSColor lightGrayColor] forKey:NSForegroundColorAttributeName];
+            [shadow setShadowColor:[NSColor whiteColor]];
+        break;
+        
+        case DrawStateHighlighted:
+            [attr setObject:FLColorFromHexColorString(@"#b5482b") forKey:NSForegroundColorAttributeName];
+            [shadow setShadowColor:[NSColor gray85Color]];
+//            [shadow setShadowColor:FLColorFromHexColorString(@"#ef8039" )];
+//            shadow = nil;
+        break;
+        
+        case DrawStateHovering:
+            [attr setObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
+            bgColor = [NSColor grayColor];
+            [shadow setShadowColor:[NSColor blackColor]];
+        break;
+        
+        case DrawStateMouseDownIn:
+            [attr setObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
+            bgColor = [NSColor darkGrayColor];
+            [shadow setShadowColor:[NSColor blackColor]];
+        break;
+        
+        case DrawStateMouseDownOut:
+            [attr setObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
+            [shadow setShadowColor:[NSColor blackColor]];
+            bgColor = [NSColor grayColor];
+        break;
+    }
+
+    if(bgColor) {
+        CGColorRef colorRef = [bgColor copyCGColorRef];
+        [self setBackgroundColor:colorRef];
+        CFRelease(colorRef);
+    }
+
+    if(shadow) {
+        [attr setObject:shadow forKey:NSShadowAttributeName];
+    }
+       
+    self.attributedString = FLAutorelease([[NSAttributedString alloc] initWithString:self.localizedTitle attributes:attr]);
+                
+
+}
+
 - (void) updateState {
     if(_willUpdate) {
-        NSColor* bgColor = [NSColor clearColor];
-        NSColor* shadowColor = [NSColor whiteColor];
-        FLTextStyle* textStyle = self.titleStyle.enabledStyle;
-        NSShadow* shadw = FLAutorelease([[NSShadow alloc] init]);
-        [shadw setShadowOffset:NSMakeSize( 1.0, -1.0 )];
-            
+//        NSColor* bgColor = [NSColor clearColor];
+//        NSColor* textColor = [NSColor grayColor];
+//        NSColor* shadowColor = [NSColor whiteColor];
+//        
+//        FLTextStyle* textStyle = self.titleStyle.enabledStyle;
+//        NSShadow* shadow = FLAutorelease([[NSShadow alloc] init]);
+//        [shadow setShadowOffset:NSMakeSize( 1.5, -1.5 )];
+//        [shadow setShadowBlurRadius:1.0];        
+//            
+//        if(_enabled) {
+//            if(self.isEmphasized) {
+//                bgColor = [NSColor clearColor];
+//                textStyle = self.titleStyle.emphasizedStyle;
+//                
+//                textColor = FLColorFromHexColorName(@"#b5482b");
+//                shadowColor = FLColorFromHexColorName(@"#ef8039");
+////                [NSColor colorWith]
+//                
+////                shadowColor = [NSColor darkGrayColor];
+////                [shadow setShadowOffset:NSMakeSize( 0.5, -0.5 )];
+//            }
+//            else if(_mouseDown) {
+//                if(_mouseIn) {
+//                    bgColor = [NSColor grayColor];
+//                    textColor = [NSColor whiteColor];
+//                    
+////    self.enabledStyle.textColor = [NSColor textColor];
+////    self.disabledStyle.textColor = [NSColor disabledControlTextColor];
+////    self.selectedStyle.textColor = [NSColor selectedControlTextColor];
+////    self.highlightedStyle.textColor = [NSColor highlightColor];
+//                    
+//                    
+////                    textStyle = self.titleStyle.highlightedStyle;
+//                }
+//                else {
+//                    bgColor = [NSColor lightGrayColor];
+//                    textStyle = self.titleStyle.hoveringStyle;
+//                    shadowColor = [NSColor blackColor];
+//                }
+//            }
+//            else if(_mouseIn) {
+//                bgColor = [NSColor lightGrayColor];
+//                textStyle = self.titleStyle.hoveringStyle;
+////                shadowColor = [NSColor blackColor];
+//                [shadow setShadowColor:[NSColor whiteColor]];
+//
+//            }
+//        } 
+//        else {
+//            textStyle = self.titleStyle.disabledStyle;
+//            
+//            textColor = [NSColor disabledControlTextColor];
+//            [shadow setShadowColor:[NSColor whiteColor]];
+//    
+//        }
+//        
+//        if(bgColor) {
+//            CGColorRef colorRef = [bgColor copyCGColorRef];
+//            [self setBackgroundColor:colorRef];
+//            CFRelease(colorRef);
+//        }
+//        
+//        
+//        NSDictionary* attr = nil;
+//        
+//        if(shadow) {
+//            attr = [NSDictionary dictionaryWithObjectsAndKeys:
+//                textColor, NSForegroundColorAttributeName,
+//                (id) shadow, NSShadowAttributeName,
+//                [NSFont boldSystemFontOfSize:14], NSFontAttributeName,
+//                nil];
+//        }
+//        else {
+//            attr = [NSDictionary dictionaryWithObjectsAndKeys:
+//                textStyle.textColor, NSForegroundColorAttributeName,
+//                [NSFont boldSystemFontOfSize:14], NSFontAttributeName,
+//                nil];
+//        }
+
         if(_enabled) {
             if(self.isEmphasized) {
-                bgColor = [NSColor clearColor];
-                textStyle = self.titleStyle.emphasizedStyle;
-                shadowColor = [NSColor darkGrayColor];
-                [shadw setShadowOffset:NSMakeSize( 0.5, -0.5 )];
+                [self updateDrawState:DrawStateHighlighted];
             }
             else if(_mouseDown) {
                 if(_mouseIn) {
-                    bgColor = [NSColor grayColor];
-                    textStyle = self.titleStyle.highlightedStyle;
+                    [self updateDrawState:DrawStateMouseDownIn];
                 }
                 else {
-                    bgColor = [NSColor lightGrayColor];
-                    textStyle = self.titleStyle.hoveringStyle;
-                    shadowColor = [NSColor blackColor];
+                    [self updateDrawState:DrawStateMouseDownOut];
                 }
             }
             else if(_mouseIn) {
-                bgColor = [NSColor lightGrayColor];
-                textStyle = self.titleStyle.hoveringStyle;
-                    shadowColor = [NSColor blackColor];
+                [self updateDrawState:DrawStateHovering];
+            }
+            else {
+                [self updateDrawState:DrawStateNormal];
             }
         } 
         else {
-            textStyle = self.titleStyle.disabledStyle;
+            [self updateDrawState:DrawStateDisabled];
         }
         
-        if(bgColor) {
-            CGColorRef colorRef = [bgColor copyCGColorRef];
-            [self setBackgroundColor:colorRef];
-            CFRelease(colorRef);
-        }
-        
-        [shadw setShadowColor:shadowColor];
-        [shadw setShadowBlurRadius:1.0];        
-
-        NSDictionary* attr = nil;
-        
-        if(shadw) {
-            attr = [NSDictionary dictionaryWithObjectsAndKeys:
-                textStyle.textColor, NSForegroundColorAttributeName,
-                (id) shadw, NSShadowAttributeName,
-                [NSFont boldSystemFontOfSize:14], NSFontAttributeName,
-                nil];
-        }
-        else {
-            attr = [NSDictionary dictionaryWithObjectsAndKeys:
-                textStyle.textColor, NSForegroundColorAttributeName,
-                [NSFont boldSystemFontOfSize:14], NSFontAttributeName,
-                nil];
-        }
-            
-        self.attributedString = FLAutorelease([[NSAttributedString alloc] initWithString:self.localizedTitle attributes:attr]);
+                    
         
         [self setNeedsDisplay];
         _willUpdate = NO;
@@ -197,46 +312,16 @@ CGFloat GetLineHeightForFont(CTFontRef iFont)
 
 
 - (void)drawInContext:(CGContextRef) context {
-//    CGContextClearRect(ctx, self.bounds);
-
     [NSGraphicsContext saveGraphicsState];
     [NSGraphicsContext setCurrentContext:[NSGraphicsContext
         graphicsContextWithGraphicsPort:context flipped:NO]];
 
-//    CGContextSaveGState(context);
     CGContextSetTextMatrix(context, CGAffineTransformIdentity );
     CGRect frame = CGRectZero;
     frame.size = [self.attributedString size];
     frame = FLRectOptimizedForViewLocation(FLRectCenterRectInRect(self.bounds, frame));
-    
-//    [self.attributedString drawWithRect:frame  
-//                                options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin];
-
     [self.attributedString drawInRect:frame];
-
-//    CGColorRef colorRef = [NSColor clearColor].CGColor;
-//
-//    CGContextSetFillColorWithColor(context, colorRef);
-//    CGContextFillRect(context, frame);
-//    CGContextSetShouldSmoothFonts(context, YES);
-//    CGContextDrawAttributedString(context, self.attributedString,  frame);
-//
-//          
     [NSGraphicsContext restoreGraphicsState];
-
-  //  [self.attributedString drawWithRect:frame options:NSStringDrawingTruncatesLastVisibleLine]
-//    
-////    [super drawInContext:ctx];
-//
-//    
-//    
-//    FLLog(@"%@ %@", NSStringFromRect(self.bounds), [((id)colorRef) description] )
-
-
-//    [self.attributedString drawInContext:ctx
-//                                    rect:self.bounds 
-//                    withTextAlignment:FLTextAlignmentMake(FLVerticalTextAlignmentCenter,  FLHorizontalTextAlignmentCenter)];
-//
 
 #if TRACE
     FLLog(@"draw title: %@", _localizedTitle);

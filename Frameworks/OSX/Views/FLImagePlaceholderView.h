@@ -14,10 +14,11 @@
 @private
     FLSpinningProgressView* _progress;
     IBOutlet NSImageView* _imageView;
-    CGFloat _borderWidth;
+    CGFloat _frameWidth;
     BOOL _alwaysProportionallyResize;
     BOOL _animating;
 }
+@property (readwrite, assign, nonatomic) CGFloat frameWidth;
 
 //@property (readwrite, strong, nonatomic) NSImageView* imageView;
 @property (readwrite, assign, nonatomic) BOOL alwaysProportionallyResize;

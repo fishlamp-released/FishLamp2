@@ -35,16 +35,12 @@
 
 - (id) startAsyncOperation {
 
-    FLLog(@"starting")
-
     FLAssertNotNil(self.storageService);
 
     FLHttpRequest* request = [ZFHttpRequestFactory loadGroupHierarchyHttpRequest:_userLogin.userName];
     FLAssertNotNil(request);
 
     [self runChildAsynchronously:request completion:^(FLPromisedResult result) {
-
-        FLLog(@"callback")
 
         if(![result error]) {
             ZFGroup* group = result;

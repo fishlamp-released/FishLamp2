@@ -105,6 +105,9 @@
     }
 }
 
+- (void) showErrorAlert:(NSString*) title caption:(NSString*) caption error:(NSError*) error {
+    [self.panelManager showErrorAlert:title caption:caption error:error];
+}
 
 //- (void) showAlertWithError:(NSError*) error {
 //    [self showAlertWithError:error withTitle:nil withCaption:nil];
