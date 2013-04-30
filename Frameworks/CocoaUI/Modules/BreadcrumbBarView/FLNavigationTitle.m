@@ -17,12 +17,10 @@
 
 @implementation FLNavigationTitle
 
-@synthesize localizedTitle = _localizedTitle;
 @synthesize highlighted = _highlighted;
 @synthesize enabled = _enabled;
 @synthesize emphasized = _emphasized;
 @synthesize attributedString = _attributedString;
-@synthesize titleStyle = _titleStyle;
 @synthesize identifier = _identifier;
 @synthesize titleHeight = _titleHeight;
 
@@ -30,83 +28,76 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (id) initWithIdentifier:(id) identifier localizedTitle:(NSString*) localizedTitle {
+- (id) init {	
+	return [self initWithIdentifier:nil ];
+}
+
+- (id) initWithIdentifier:(id) identifier {
 	self = [super init];
 	if(self) {
+        _stringController = [[FLAttributedStringController alloc] init];
+        _stringController.delegate = self;
+
         self.identifier = identifier;
-        self.localizedTitle = localizedTitle;
         self.titleHeight = FLNavigationTitleDefaultHeight;
 	}
 	return self;
 }
 
-+ (id) navigationTitle:(id) identifier localizedTitle:(NSString*) localizedTitle {
-    return FLAutorelease([[[self class] alloc] initWithIdentifier:identifier localizedTitle:localizedTitle]);
++ (id) navigationTitle:(id) identifier  {
+    return FLAutorelease([[[self class] alloc] initWithIdentifier:identifier]);
 }
 
 #if FL_MRC
 - (void) dealloc {
     [_identifier release];
-    [_titleStyle release];
-    [_attributedString release];
-    [_localizedTitle release];
+    [_stringController release];
     [super dealloc];
 }
 #endif
 
-typedef enum {
-    DrawStateNormal,
-    DrawStateHighlighted,
-    DrawStateHovering,
-    DrawStateDisabled,
-    DrawStateMouseDownIn,
-    DrawStateMouseDownOut
-} DrawState;
+- (void) attributedStringController:(FLAttributedStringController*) controller 
+          addAttributesToDictionary:(NSMutableDictionary*) attr 
+                    forDisplayState:(FLStringDisplayState) displayState {
 
-- (void) updateDrawState:(DrawState) drawState {
-
-    NSShadow* shadow = FLAutorelease([[NSShadow alloc] init]);
-    [shadow setShadowOffset:NSMakeSize( 1.0, -1.0 )];
-    [shadow setShadowBlurRadius:1.0];        
-    
     NSColor* bgColor = [NSColor clearColor];
+    NSColor* fgColor = nil;
+    NSColor* shadowColor = nil;
     
-    NSMutableDictionary* attr = [NSMutableDictionary dictionary];
-    [attr setObject:[NSFont boldSystemFontOfSize:14] forKey:NSFontAttributeName];
+    switch(displayState) {
+        case FLStringDisplayStateEnabled:
+            fgColor = [NSColor darkGrayColor];
+            shadowColor = [NSColor whiteColor];
+        break;
+        
+        case FLStringDisplayStateDisabled:
+            fgColor = [NSColor lightGrayColor];
+            shadowColor = [NSColor whiteColor];
+        break;
+        
+        case FLStringDisplayStateHighlighted:
+            fgColor = FLColorFromHexColorString(@"#c56519");
 
-    switch(drawState) {
-        case DrawStateNormal:
-            [attr setObject:[NSColor darkGrayColor] forKey:NSForegroundColorAttributeName];
-            [shadow setShadowColor:[NSColor whiteColor]];
-        break;
-        
-        case DrawStateDisabled:
-            [attr setObject:[NSColor lightGrayColor] forKey:NSForegroundColorAttributeName];
-            [shadow setShadowColor:[NSColor whiteColor]];
-        break;
-        
-        case DrawStateHighlighted:
-            [attr setObject:FLColorFromHexColorString(@"#b5482b") forKey:NSForegroundColorAttributeName];
-            [shadow setShadowColor:[NSColor gray85Color]];
+//            [shadow setShadowColor:[NSColor gray85Color]];
 //            [shadow setShadowColor:FLColorFromHexColorString(@"#ef8039" )];
 //            shadow = nil;
         break;
         
-        case DrawStateHovering:
-            [attr setObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
+        case FLStringDisplayStateHovering:
+            fgColor = [NSColor whiteColor];
             bgColor = [NSColor grayColor];
-            [shadow setShadowColor:[NSColor blackColor]];
+            shadowColor = [NSColor blackColor];
         break;
         
-        case DrawStateMouseDownIn:
-            [attr setObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
+        case FLStringDisplayStateMouseDownIn:
+            fgColor = [NSColor whiteColor];
             bgColor = [NSColor darkGrayColor];
-            [shadow setShadowColor:[NSColor blackColor]];
+            shadowColor = [NSColor blackColor];
         break;
         
-        case DrawStateMouseDownOut:
-            [attr setObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
-            [shadow setShadowColor:[NSColor blackColor]];
+        case FLStringDisplayStateMouseDownOut:
+            fgColor = [NSColor whiteColor];
+            shadowColor = [NSColor blackColor];
             bgColor = [NSColor grayColor];
         break;
     }
@@ -117,138 +108,91 @@ typedef enum {
         CFRelease(colorRef);
     }
 
-    if(shadow) {
+    if(shadowColor) {
+        NSShadow* shadow = FLAutorelease([[NSShadow alloc] init]);
+        [shadow setShadowColor:shadowColor];
+        [shadow setShadowOffset:NSMakeSize( 1.0, -1.0 )];
+        [shadow setShadowBlurRadius:1.0];        
         [attr setObject:shadow forKey:NSShadowAttributeName];
     }
-       
-    self.attributedString = FLAutorelease([[NSAttributedString alloc] initWithString:self.localizedTitle attributes:attr]);
-                
-
+    else {
+        [attr removeObjectForKey:NSShadowAttributeName];
+    }
+    
+    if(fgColor) {
+        [attr setObject:fgColor forKey:NSForegroundColorAttributeName];
+    }
+    
+    [attr setObject:[NSFont boldSystemFontOfSize:14] forKey:NSFontAttributeName];
 }
 
 - (void) updateState {
     if(_willUpdate) {
-//        NSColor* bgColor = [NSColor clearColor];
-//        NSColor* textColor = [NSColor grayColor];
-//        NSColor* shadowColor = [NSColor whiteColor];
-//        
-//        FLTextStyle* textStyle = self.titleStyle.enabledStyle;
-//        NSShadow* shadow = FLAutorelease([[NSShadow alloc] init]);
-//        [shadow setShadowOffset:NSMakeSize( 1.5, -1.5 )];
-//        [shadow setShadowBlurRadius:1.0];        
-//            
-//        if(_enabled) {
-//            if(self.isEmphasized) {
-//                bgColor = [NSColor clearColor];
-//                textStyle = self.titleStyle.emphasizedStyle;
-//                
-//                textColor = FLColorFromHexColorName(@"#b5482b");
-//                shadowColor = FLColorFromHexColorName(@"#ef8039");
-////                [NSColor colorWith]
-//                
-////                shadowColor = [NSColor darkGrayColor];
-////                [shadow setShadowOffset:NSMakeSize( 0.5, -0.5 )];
-//            }
-//            else if(_mouseDown) {
-//                if(_mouseIn) {
-//                    bgColor = [NSColor grayColor];
-//                    textColor = [NSColor whiteColor];
-//                    
-////    self.enabledStyle.textColor = [NSColor textColor];
-////    self.disabledStyle.textColor = [NSColor disabledControlTextColor];
-////    self.selectedStyle.textColor = [NSColor selectedControlTextColor];
-////    self.highlightedStyle.textColor = [NSColor highlightColor];
-//                    
-//                    
-////                    textStyle = self.titleStyle.highlightedStyle;
-//                }
-//                else {
-//                    bgColor = [NSColor lightGrayColor];
-//                    textStyle = self.titleStyle.hoveringStyle;
-//                    shadowColor = [NSColor blackColor];
-//                }
-//            }
-//            else if(_mouseIn) {
-//                bgColor = [NSColor lightGrayColor];
-//                textStyle = self.titleStyle.hoveringStyle;
-////                shadowColor = [NSColor blackColor];
-//                [shadow setShadowColor:[NSColor whiteColor]];
-//
-//            }
-//        } 
-//        else {
-//            textStyle = self.titleStyle.disabledStyle;
-//            
-//            textColor = [NSColor disabledControlTextColor];
-//            [shadow setShadowColor:[NSColor whiteColor]];
-//    
-//        }
-//        
-//        if(bgColor) {
-//            CGColorRef colorRef = [bgColor copyCGColorRef];
-//            [self setBackgroundColor:colorRef];
-//            CFRelease(colorRef);
-//        }
-//        
-//        
-//        NSDictionary* attr = nil;
-//        
-//        if(shadow) {
-//            attr = [NSDictionary dictionaryWithObjectsAndKeys:
-//                textColor, NSForegroundColorAttributeName,
-//                (id) shadow, NSShadowAttributeName,
-//                [NSFont boldSystemFontOfSize:14], NSFontAttributeName,
-//                nil];
-//        }
-//        else {
-//            attr = [NSDictionary dictionaryWithObjectsAndKeys:
-//                textStyle.textColor, NSForegroundColorAttributeName,
-//                [NSFont boldSystemFontOfSize:14], NSFontAttributeName,
-//                nil];
-//        }
 
+        FLStringDisplayState displayState = FLStringDisplayStateEnabled;
         if(_enabled) {
+
             if(self.isEmphasized) {
-                [self updateDrawState:DrawStateHighlighted];
+                displayState = FLStringDisplayStateHighlighted;
             }
             else if(_mouseDown) {
                 if(_mouseIn) {
-                    [self updateDrawState:DrawStateMouseDownIn];
+                    displayState = FLStringDisplayStateMouseDownIn;
                 }
                 else {
-                    [self updateDrawState:DrawStateMouseDownOut];
+                    displayState = FLStringDisplayStateMouseDownOut;
                 }
             }
             else if(_mouseIn) {
-                [self updateDrawState:DrawStateHovering];
+                displayState = FLStringDisplayStateHovering;
             }
             else {
-                [self updateDrawState:DrawStateNormal];
             }
         } 
         else {
-            [self updateDrawState:DrawStateDisabled];
+            displayState = FLStringDisplayStateDisabled;        
         }
         
-                    
-        
-        [self setNeedsDisplay];
+        _stringController.displayState = displayState;
+            
         _willUpdate = NO;
 
-#if TRACE        
-        FLLog(@"updated title: %@", _attributedString.string);
+#if TRACE       
+     FLLog(@"updated title: %@", _stringController.string);
 #endif        
     }
 }
 
-- (void) setNeedsUpdate {
-    if(!_willUpdate) {
-        _willUpdate = YES;
+- (void) stateDidChange {
+    FLStringDisplayState displayState = FLStringDisplayStateDisabled;
+    if(_enabled) {
+        displayState = FLStringDisplayStateEnabled;        
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self updateState];
-        });
-    }
+        if(self.isEmphasized) {
+            displayState = FLStringDisplayStateHighlighted;
+        }
+        else if(_mouseDown) {
+            if(_mouseIn) {
+                displayState = FLStringDisplayStateMouseDownIn;
+            }
+            else {
+                displayState = FLStringDisplayStateMouseDownOut;
+            }
+        }
+        else if(_mouseIn) {
+            displayState = FLStringDisplayStateHovering;
+        }
+    } 
+    
+    _stringController.displayState = displayState;
+
+//    if(!_willUpdate) {
+//        _willUpdate = YES;
+//        
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self updateState];
+//        });
+//    }
 }
 
 - (void) handleMouseMoved:(CGPoint) location mouseIn:(BOOL) mouseIn mouseDown:(BOOL) mouseDown {
@@ -259,68 +203,55 @@ typedef enum {
     
     if(_mouseIn != mouseIn) {
         _mouseIn = mouseIn;
-        [self setNeedsUpdate];
+        [self stateDidChange];
     } 
 
     if(_mouseDown != mouseDown) {
         _mouseDown = mouseDown;
-        [self setNeedsUpdate];
+        [self stateDidChange];
     }
 }
 
 - (void) handleMouseUpInside:(CGPoint) location {
-    [self setNeedsUpdate];
+    [self stateDidChange];
 }
 
 - (void) setEnabled:(BOOL) enabled {
     if(_enabled != enabled) {
         _enabled = enabled;
-        [self setNeedsUpdate];
+        [self stateDidChange];
     }
 }
 
 - (void) setEmphasized:(BOOL)emphasized {
     if(_emphasized != emphasized) {
         _emphasized = emphasized;
-        [self setNeedsUpdate];
+        [self stateDidChange];
     }
 }
 
 - (void) setHighlighted:(BOOL)highlighted {
     if(_highlighted != highlighted) {
-        [self setNeedsUpdate];
+        [self stateDidChange];
     }
 }
 
-CGFloat GetLineHeightForFont(CTFontRef iFont)
-{
-    CGFloat lineHeight = 0.0;
- 
-//    check(iFont != NULL);
- 
-    // Get the ascent from the font, already scaled for the font's size
-    lineHeight += CTFontGetAscent(iFont);
- 
-    // Get the descent from the font, already scaled for the font's size
-    lineHeight += CTFontGetDescent(iFont);
- 
-    // Get the leading from the font, already scaled for the font's size
-    lineHeight += CTFontGetLeading(iFont);
- 
-    return lineHeight;
+- (void) attributedStringControllerDidChangeString:(FLAttributedStringController*) controller {
+    [self setNeedsDisplay];
 }
-
 
 - (void)drawInContext:(CGContextRef) context {
     [NSGraphicsContext saveGraphicsState];
     [NSGraphicsContext setCurrentContext:[NSGraphicsContext
         graphicsContextWithGraphicsPort:context flipped:NO]];
 
+    NSAttributedString* string = _stringController.attributedString;
+
     CGContextSetTextMatrix(context, CGAffineTransformIdentity );
     CGRect frame = CGRectZero;
-    frame.size = [self.attributedString size];
+    frame.size = [string  size];
     frame = FLRectOptimizedForViewLocation(FLRectCenterRectInRect(self.bounds, frame));
-    [self.attributedString drawInRect:frame];
+    [string  drawInRect:frame];
     [NSGraphicsContext restoreGraphicsState];
 
 #if TRACE
@@ -329,11 +260,11 @@ CGFloat GetLineHeightForFont(CTFontRef iFont)
 }
 
 - (void) setLocalizedTitle:(NSString*) localizedTitle {
-    
-    if(FLStringsAreNotEqual(localizedTitle, _localizedTitle)) {
-        FLSetObjectWithRetain(_localizedTitle, localizedTitle);
-        [self setNeedsUpdate];
-    }
+    _stringController.string = localizedTitle;
+}
+
+- (NSString*) localizedTitle {
+    return _stringController.string;
 }
 
 @end

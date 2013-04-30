@@ -103,14 +103,7 @@
     return _group;
 }
 
-- (void) didProcessAllObjectsInAsyncQueue {
-    if(_group) {
-        [self.finisher setFinishedWithResult:_group];
-    }
-    else {
-        [self.finisher setFinished];
-    }
-}
+
 
 
 @end

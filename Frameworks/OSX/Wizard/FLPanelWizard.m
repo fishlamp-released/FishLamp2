@@ -50,7 +50,12 @@
 }
 
 - (void) didAddPanel:(FLPanelViewController*) panel {
-    [self.navigationViewController addNavigationTitle:[FLNavigationTitle navigationTitle:panel.identifier localizedTitle:panel.title]];
+
+    FLNavigationTitle* title = 
+        [FLNavigationTitle navigationTitle:panel.identifier];
+    title.localizedTitle = panel.title;
+
+    [self.navigationViewController addNavigationTitle:title];
 }
 
 - (void) didRemovePanel:(FLPanelViewController*) panel {

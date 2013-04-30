@@ -15,7 +15,6 @@
 @interface FLBreadcrumbBarViewController : FLCompatibleViewController<FLBreadcrumbBarViewDelegate> {
 @private
     __unsafe_unretained id<FLBreadcrumbBarViewControllerDelegate> _delegate;
-    FLStringDisplayStyle* _titleStringStyle;
 }
 
 @property (readwrite, strong, nonatomic) FLStringDisplayStyle* titleStringStyle;
