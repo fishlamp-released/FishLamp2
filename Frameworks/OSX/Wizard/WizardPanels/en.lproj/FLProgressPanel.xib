@@ -38,7 +38,7 @@
 					<object class="NSTextField" id="826270424">
 						<reference key="NSNextResponder" ref="336500162"/>
 						<int key="NSvFlags">298</int>
-						<string key="NSFrame">{{61, 108}, {301, 17}}</string>
+						<string key="NSFrame">{{45, 108}, {317, 17}}</string>
 						<reference key="NSSuperview" ref="336500162"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="839206434"/>
@@ -79,12 +79,12 @@
 					<object class="NSProgressIndicator" id="221498419">
 						<reference key="NSNextResponder" ref="336500162"/>
 						<int key="NSvFlags">300</int>
-						<string key="NSFrame">{{24, 100}, {32, 32}}</string>
+						<string key="NSFrame">{{24, 108}, {16, 16}}</string>
 						<reference key="NSSuperview" ref="336500162"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="826270424"/>
 						<string key="NSReuseIdentifierKey">_NS:945</string>
-						<int key="NSpiFlags">20490</int>
+						<int key="NSpiFlags">20746</int>
 						<double key="NSMaxValue">100</double>
 					</object>
 					<object class="NSButton" id="839206434">

@@ -78,7 +78,7 @@ static int s_counter = 0;
         self.requestHeaders.requestURL = url;
         self.requestHeaders.httpMethod = httpMethod;
         self.maxRetryCount = s_defaultRetryCount;
-        self.retryDelay = 0.5;
+        self.retryDelay = 1.0;
         
         if(FLStringIsEmpty(httpMethod)) {
             self.requestHeaders.httpMethod= @"GET";
@@ -309,7 +309,7 @@ static int s_counter = 0;
         [self releaseResponseData];
         self.retryCount++;
         
-        FLLog(@"Retrying %ld of %ld", self.retryCount, self.maxRetryCount);
+        NSLog(@"Retrying HTTP Request %@ (%ld of %ld)", self.requestHeaders.requestURL, self.retryCount, self.maxRetryCount);
         
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_retryDelay * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){

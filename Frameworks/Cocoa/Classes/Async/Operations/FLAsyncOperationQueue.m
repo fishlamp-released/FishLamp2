@@ -96,7 +96,9 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
     return FLSuccessfullResult;
 }
 
-- (void) didProcessAllObjectsInAsyncQueue {
+- (void) didFinish {
+    self.processing = NO;
+
     if(self.error) {
         [self.finisher setFinishedWithResult:self.error];
     }
@@ -183,8 +185,7 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
         }
         
         if(_activeQueue.count == 0 && _objectQueue.count == 0) {
-            self.processing = NO;
-            [self didProcessAllObjectsInAsyncQueue];
+            [self didFinish];
         }
     }
 }

@@ -168,6 +168,24 @@ void CGContextDrawAttributedString(CGContextRef context, NSAttributedString* str
 
 @end
 
+CGFloat CGGetLineHeightForFont(CTFontRef iFont)
+{
+    CGFloat lineHeight = 0.0;
+ 
+//    check(iFont != NULL);
+ 
+    // Get the ascent from the font, already scaled for the font's size
+    lineHeight += CTFontGetAscent(iFont);
+ 
+    // Get the descent from the font, already scaled for the font's size
+    lineHeight += CTFontGetDescent(iFont);
+ 
+    // Get the leading from the font, already scaled for the font's size
+    lineHeight += CTFontGetLeading(iFont);
+ 
+    return lineHeight;
+}
+
 
 
 //#define max_buf_size 128

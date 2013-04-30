@@ -8,16 +8,15 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "FLMouseTrackingView.h"
-#import "FLAttributedString.h"
+//#import "FLAttributedString.h"
+#import "FLAttributedStringController.h"
 
 #define FLNavigationTitleDefaultHeight 40
 
-@interface FLNavigationTitle : CALayer<FLMouseHandler> {
+@interface FLNavigationTitle : CALayer<FLMouseHandler, FLAttributedStringControllerDelegate> {
 @private
-    NSString* _localizedTitle;
-    NSAttributedString* _attributedString;
+    FLAttributedStringController* _stringController;
     id _identifier;
-    FLStringDisplayStyle* _titleStyle;
 
     BOOL _mouseIn;
     BOOL _mouseDown;
@@ -28,14 +27,13 @@
     CGFloat _titleHeight;
 }
 
-- (id) initWithIdentifier:(id) identifier localizedTitle:(NSString*) localizedTitle;
-+ (id) navigationTitle:(id) identifier localizedTitle:(NSString*) localizedTitle;
+- (id) initWithIdentifier:(id) identifier;
++ (id) navigationTitle:(id) identifier;
 
 @property (readwrite, assign, nonatomic) CGFloat titleHeight;
 @property (readonly, strong, nonatomic) id identifier;
 
 @property (readwrite, strong, nonatomic) NSString* localizedTitle;
-@property (readwrite, strong, nonatomic) FLStringDisplayStyle* titleStyle;
 
 @property (readwrite, assign, nonatomic, getter=isHighlighted) BOOL highlighted;
 @property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;

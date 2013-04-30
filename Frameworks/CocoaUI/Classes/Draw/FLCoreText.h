@@ -18,6 +18,7 @@ extern CGSize CTFrameGetSize(CTFrameRef frameRef);
 extern CGSize CTRunGetSize(CTRunRef run);
 extern CGRect CTRunGetRect(CTRunRef run, CTLineRef line, CGPoint origin);
 
+extern CGFloat CGGetLineHeightForFont(CTFontRef iFont);
 
 // attributed string drawing
 extern CTFrameRef CTAttributedStringGetFrame(NSAttributedString* string, CGRect inBounds);
@@ -28,4 +29,6 @@ extern void CGContextDrawAttributedString(CGContextRef context, NSAttributedStri
 - (CGSize) sizeForDrawingInBounds:(CGRect) bounds;
 - (void) drawInRectWithCoreText:(CGRect) rect;
 @end
+
+
 

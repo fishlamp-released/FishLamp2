@@ -35,15 +35,15 @@
 - (void) awakeFromNib {
     [super awakeFromNib];
 
-    _titleStringStyle = [[FLStringDisplayStyle alloc] init];
-//    _titleStringStyle.emphasizedStyle.textColor = [SDKColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
-    _titleStringStyle.emphasizedStyle.textColor = [SDKColor orangeColor];
-    
-    _titleStringStyle.enabledStyle.textColor = [SDKColor darkGrayColor];
-    _titleStringStyle.disabledStyle.textColor = [SDKColor lightGrayColor];
-    _titleStringStyle.highlightedStyle.textColor = [SDKColor whiteColor];
-    _titleStringStyle.hoveringStyle.textColor = [SDKColor whiteColor];
-    [_titleStringStyle setTextFont:[SDKFont boldSystemFontOfSize:[SDKFont systemFontSize]]];
+//    _titleStringStyle = [[FLStringDisplayStyle alloc] init];
+////    _titleStringStyle.emphasizedStyle.textColor = [SDKColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
+//    _titleStringStyle.emphasizedStyle.textColor = [SDKColor orangeColor];
+//    
+//    _titleStringStyle.enabledStyle.textColor = [SDKColor darkGrayColor];
+//    _titleStringStyle.disabledStyle.textColor = [SDKColor lightGrayColor];
+//    _titleStringStyle.highlightedStyle.textColor = [SDKColor whiteColor];
+//    _titleStringStyle.hoveringStyle.textColor = [SDKColor whiteColor];
+//    [_titleStringStyle setTextFont:[SDKFont boldSystemFontOfSize:[SDKFont systemFontSize]]];
 
     self.breadcrumbView.delegate = self;
 }
@@ -63,9 +63,9 @@
 
 - (void) addNavigationTitle:(FLNavigationTitle*) title {
 
-    if(title.titleStyle == nil) {
-        title.titleStyle = FLCopyWithAutorelease(_titleStringStyle);
-    }
+//    if(title.titleStyle == nil) {
+//        title.titleStyle = FLCopyWithAutorelease(_titleStringStyle);
+//    }
 
     FLAssertStringIsNotEmpty(title.localizedTitle);
     FLAssertNotNil(title.identifier);

@@ -50,8 +50,6 @@ typedef FLOperation* (^FLOperationFactory)(id object);
 - (void) willStartOperation:(id) operation withQueuedObject:(id) object;
 - (void) didFinishOperation:(id) operation withQueuedObject:(id) object withResult:(FLPromisedResult) result;
 
-- (void) didProcessAllObjectsInAsyncQueue;
-
 - (id) resultForFinisher;
 
 // use these to change the delegate selectors

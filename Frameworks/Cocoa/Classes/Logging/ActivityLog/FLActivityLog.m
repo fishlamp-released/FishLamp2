@@ -59,7 +59,7 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
 
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
             [NSColor gray15Color], NSForegroundColorAttributeName, 
-            [NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName, nil];
+            self.activityLogTextFont, NSFontAttributeName, nil];
 
         NSMutableAttributedString* string = 
             FLAutorelease([[NSMutableAttributedString alloc] initWithString:timeStamp attributes:attributes]);
@@ -149,7 +149,7 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
 
         NSMutableDictionary* attr = FLMutableCopyWithAutorelease(attributes);
         if(_textFont && [attr objectForKey:NSFontAttributeName] == nil) {
-            [attr setObject:[NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]] forKey:NSFontAttributeName];
+            [attr setObject:self.activityLogTextFont forKey:NSFontAttributeName];
         }
         if(_textColor && [attr objectForKey:NSForegroundColorAttributeName] == nil) {
             [attr setObject:[NSColor gray15Color] forKey:NSForegroundColorAttributeName];
@@ -202,7 +202,7 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
 - (void) appendErrorLine:(NSString*) errorLine {
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
         [NSColor redColor], NSForegroundColorAttributeName, 
-        [NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName, nil];
+        self.activityLogTextFont, NSFontAttributeName, nil];
 
     NSMutableAttributedString* string = 
         FLAutorelease([[NSMutableAttributedString alloc] initWithString:errorLine attributes:attributes]);
@@ -214,7 +214,7 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
 - (void) appendBoldTitle:(NSString*) title {
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
         [NSColor gray15Color], NSForegroundColorAttributeName, 
-        [NSFont boldSystemFontOfSize:[NSFont smallSystemFontSize]], NSFontAttributeName, nil];
+        self.activityLogTextFont, NSFontAttributeName, nil];
 
     NSMutableAttributedString* string = 
         FLAutorelease([[NSMutableAttributedString alloc] initWithString:title attributes:attributes]);

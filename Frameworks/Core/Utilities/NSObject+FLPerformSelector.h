@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSObject (FLPerformSelector)
+@protocol FLSelectorPerformer <NSObject>
+@optional
 
 // in addition to sdk versions
 - (void) performSelector:(SEL) selector
@@ -62,5 +63,12 @@
                  withObject:(id) object2 
                  withObject:(id) object3
                  withObject:(id) object4;
+                 
+@end
+
+@interface NSObject (FLPerformSelector)
+
+// everything in FLSelectorPeformer
 
 @end
+
