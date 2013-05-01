@@ -14,8 +14,8 @@
 #import "FLViewController.h"
 #import "FLPanelViewController.h"
 #import "FLStatusBarViewController.h"
-
 #import "FLWizardStyleViewTransition.h"
+#import "NSBundle+FLCurrentBundle.h"
 
 @interface FLWizardViewController ()
 @end
@@ -26,7 +26,7 @@
 @synthesize headerViewController = _headerViewController;
 
 - (id) init {
-    return [self initWithNibName:@"FLWizardViewController" bundle:nil];
+    return [self initWithNibName:@"FLWizardViewController" bundle:[NSBundle currentBundle]];
 }
 
 + (id) wizardViewController {
@@ -45,11 +45,13 @@
 - (void) awakeFromNib {
     [super awakeFromNib];
 
-    self.buttonViewController.delegate = self;
+    if(!self.buttonViewController.delegate) {
+        self.buttonViewController.delegate = self;
 
-    [_progressView setRespondsToGlobalNetworkActivity];
-    [self addPanelArea:_headerViewController];
-    [self addPanelArea:_buttonViewController];
+        [_progressView setRespondsToGlobalNetworkActivity];
+        [self addPanelArea:_headerViewController];
+        [self addPanelArea:_buttonViewController];
+    }
 }
 
 - (void) removePanel:(FLPanelViewController*) panel {

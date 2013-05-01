@@ -28,12 +28,12 @@ NSString* FLThemeManagerKey = @"FLThemeManagerKey";
 @end
     
 @implementation NSObject (FLThemeManager)
-- (void) newAwakeFromNib {
-    [self newAwakeFromNib]; // call original awakeFromNib
-    if([self isThemable]) {
-        [self themeDidChange:[FLTheme currentTheme]];
-    }
-}
+//- (void) newAwakeFromNib {
+//    [self newAwakeFromNib]; // call original awakeFromNib
+//    if([self isThemable]) {
+//        [self themeDidChange:[FLTheme currentTheme]];
+//    }
+//}
 @end        
     
 @implementation FLThemeManager 
@@ -48,7 +48,7 @@ FLSynthesizeSingleton(FLThemeManager)
     self = [super init];
     if(self) {
         _themes = [[NSMutableArray alloc] init];
-        FLSwizzleInstanceMethod([NSObject class],@selector(awakeFromNib), @selector(newAwakeFromNib));
+//        FLSwizzleInstanceMethod([NSObject class],@selector(awakeFromNib), @selector(newAwakeFromNib));
 	}
 	return self;
 }

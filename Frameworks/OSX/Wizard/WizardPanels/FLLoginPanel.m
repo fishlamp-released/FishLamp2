@@ -12,6 +12,7 @@
 #import "FLKeychain.h"
 #import "FLProgressPanel.h"
 #import "NSViewController+FLErrorSheet.h"
+#import "NSBundle+FLCurrentBundle.h"
 
 @implementation FLLoginPanelCredentials 
 @synthesize userName = _userName;
@@ -54,7 +55,7 @@
 @synthesize credentialDataSource = _credentialDataSource;
 
 - (id) init {
-    return [self initWithNibName:@"FLLoginPanel" bundle:nil];
+    return [self initWithNibName:@"FLLoginPanel" bundle:[NSBundle currentBundle]];
 }
 
 - (void) awakeFromNib {
@@ -63,8 +64,10 @@
     self.title = NSLocalizedString(@"Login", nil);
     self.prompt =  NSLocalizedString(@"Login to your account", nil);
 
-    _user = [[FLLoginPanelCredentials alloc] init];
-
+    if(!_user) {
+        _user = [[FLLoginPanelCredentials alloc] init];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(applicationWillTerminate:)
                                                  name: NSApplicationWillTerminateNotification

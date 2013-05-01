@@ -19,11 +19,9 @@
 @implementation FLBreadcrumbBarViewController
 
 @synthesize delegate = _delegate;
-@synthesize titleStringStyle = _titleStringStyle;
 
 #if FL_MRC
 - (void) dealloc {
-    [_titleStringStyle release];
     [super dealloc];
 }
 #endif

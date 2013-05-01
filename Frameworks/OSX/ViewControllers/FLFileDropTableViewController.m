@@ -43,7 +43,9 @@
 
 - (void) awakeFromNib {
     [super awakeFromNib];
-    _urls = [[NSMutableArray alloc] init];
+    if(!_urls) {
+        _urls = [[NSMutableArray alloc] init];
+    }
                 
     [_tableView setDropRow:-1 dropOperation:NSTableViewDropOn];
     [_tableView registerForDraggedTypes:[NSArray arrayWithObjects:(id) kUTTypeFileURL, (id) kUTTypeFolder, (id) kUTTypeDirectory, nil]];

@@ -257,10 +257,12 @@ static NSMutableDictionary* s_registry = nil;
 }
 
 - (void) addPropertiesForParentClasses:(Class) aClass {
-    if(aClass && [aClass respondsToSelector:@selector(objectDescriber)]) {
-        FLObjectDescriber* describer = [aClass objectDescriber];
-        for(FLPropertyDescriber* property in [describer.properties objectEnumerator]) {
-            [self addProperty:property];
+    if([aClass isModelObject]) {
+        if(aClass && [aClass respondsToSelector:@selector(objectDescriber)]) {
+            FLObjectDescriber* describer = [aClass objectDescriber];
+            for(FLPropertyDescriber* property in [describer.properties objectEnumerator]) {
+                [self addProperty:property];
+            }
         }
     }
 }
@@ -270,11 +272,13 @@ static NSMutableDictionary* s_registry = nil;
 
     FLObjectDescriber* describer = FLAutorelease([[[self class] alloc] initWithClass:aClass]);;
 
-// do parents first, because we can override them in subclass
-    [describer addPropertiesForParentClasses:[aClass superclass]];
+    if([aClass isModelObject]) {
+    // do parents first, because we can override them in subclass
+        [describer addPropertiesForParentClasses:[aClass superclass]];
 
-// add our discovered properties
-    [describer addPropertiesForClass:aClass];
+    // add our discovered properties
+        [describer addPropertiesForClass:aClass];
+    }
     
     @synchronized(self) {
         [s_registry setObject:describer forKey:NSStringFromClass(aClass)];

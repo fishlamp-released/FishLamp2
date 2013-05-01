@@ -17,8 +17,6 @@
     __unsafe_unretained id<FLBreadcrumbBarViewControllerDelegate> _delegate;
 }
 
-@property (readwrite, strong, nonatomic) FLStringDisplayStyle* titleStringStyle;
-
 @property (readwrite,assign,nonatomic) id<FLBreadcrumbBarViewControllerDelegate> delegate;
 
 - (void) addNavigationTitle:(FLNavigationTitle*) title;
