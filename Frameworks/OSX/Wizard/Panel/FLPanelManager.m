@@ -221,6 +221,14 @@
         [self didHidePanel:toHide];
         [toHide panelDidDisappear];
     }
+
+    for(id panelArea in _panelAreas) {
+        if(toHide) { 
+            FLPerformSelector1(panelArea, @selector(panelDidDisappear:), toHide);
+        }
+        FLPerformSelector1(panelArea, @selector(panelDidAppear:), toShow);
+    }
+
     
     toShow.visiblePanel = YES;
     
@@ -231,9 +239,13 @@
     [self didShowPanel:toShow];
 }                                          
 
+#define ANIMATED 1
+
 - (void) showPanelAtIndex:(NSUInteger) idx 
                  animated:(BOOL) animated
                completion:(FLPanelViewControllerBlock) completion {
+    
+    NSUInteger currentIdx = [self currentPanelIndex];
     
     FLPanelViewController* toShow = [_panels objectAtIndex:idx];
     FLAssertNotNil(toShow);
@@ -313,6 +325,49 @@
     [self panelStateDidChange:toHide];
     [self panelStateDidChange:toShow];
 
+#if ANIMATED
+    if(animated && toHide != nil) {
+        completion = FLCopyWithAutorelease(completion);
+
+        CGRect toShowFromFrame = toShow.view.frame;
+        CGRect toShowToFrame = toShowFromFrame;
+        
+        CGRect toHideToFrame = toHide.view.frame;
+        CGRect toHideFromFrame = toHideToFrame;
+        
+        CGRect bounds = _contentView.bounds;
+        
+        CGFloat offLeft = bounds.origin.x - bounds.size.width;
+        CGFloat offRight = FLRectGetRight(bounds);
+        
+        if(idx > currentIdx) {
+            toShowFromFrame.origin.x = offRight;
+            toHideToFrame.origin.x = offLeft;
+        }
+        else {
+            toShowFromFrame.origin.x = offLeft;
+            toHideToFrame.origin.x = offRight;
+        }
+
+        toShow.view.frame = toShowFromFrame;
+        
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context){
+            [context setDuration: 0.25];
+            [context setTimingFunction: [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseIn]];
+            [[toShow.view animator] setFrame:toShowToFrame];
+            [[toHide.view animator] setFrame:toHideToFrame];
+        } completionHandler:^{
+            [self didShowPanel:toShow didHidePanel:toHide];
+            toHide.view.frame = toHideFromFrame;
+            
+            if(completion) {
+              completion(toShow);
+            }
+        }];
+    }
+    
+#else
+
     if(transition) {
         completion = FLCopyWithAutorelease(completion);
         
@@ -322,18 +377,12 @@
 
             [self didShowPanel:toShow didHidePanel:toHide];
             
-            for(id panelArea in _panelAreas) {
-                if(toHide) { 
-                    FLPerformSelector1(panelArea, @selector(panelDidDisappear:), toHide);
-                }
-                FLPerformSelector1(panelArea, @selector(panelDidAppear:), toShow);
-            }
-              
             if(completion) {
               completion(toShow);
             }
         }];
     }
+#endif    
     else {
         [self didShowPanel:toShow didHidePanel:toHide];
             

@@ -44,6 +44,8 @@
 + (SDKColor*) gray85Color; 
 + (SDKColor*) gray95Color; // almostWhite
 
++ (SDKColor*) gray237Color;
+
 + (SDKColor*) silverColor;
 
 + (SDKColor*) paleYellowColor;

@@ -43,6 +43,10 @@
         self.wantsLayer = YES;
         self.layer = [CALayer layer];
         
+        CGColorRef colorRef = [[NSColor gray237Color] copyCGColorRef];
+        self.layer.backgroundColor = colorRef;
+        CFRelease(colorRef);
+        
         _highlightLayer = [[FLBarHighlightBackgoundLayer alloc] init];
         _highlightLayer.hidden = YES;
         _highlightLayer.lineColor = [SDKColor gray85Color];
@@ -148,13 +152,6 @@
     [self updateLayout:NO];
 }
 
-//- (void) drawRect:(NSRect)dirtyRect {
-//    [super drawRect:dirtyRect];
-//    
-//    if(!_highlightLayer.isHidden && CGRectIntersectsRect(dirtyRect, _highlightLayer.frame)) {
-//        [_highlightLayer setNeedsDisplay];
-//    }
-//}
 
 
 @end

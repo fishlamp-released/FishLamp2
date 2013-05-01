@@ -187,6 +187,10 @@
 	return [SDKColor grayColor];
 }
 
++ (SDKColor*) gray237Color {
+	FLReturnColorWithRGBRed(237,237,237, 1.0);
+}
+
 + (SDKColor*) lightBlueTintedGrayColor
 {
 	FLReturnColorWithRGBRed(80,80,83, 1.0);
