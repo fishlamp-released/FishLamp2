@@ -180,7 +180,7 @@
 
 - (void) showEntryFields:(BOOL) animated completion:(dispatch_block_t) completion {
 
-    if(self.isVisiblePanel) {
+    if(self.isSelected) {
         completion = FLCopyWithAutorelease(completion);
 
         [self.panelManager showAlertView:self 

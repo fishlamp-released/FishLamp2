@@ -32,17 +32,6 @@
 
 - (void) awakeFromNib {
     [super awakeFromNib];
-
-//    _titleStringStyle = [[FLStringDisplayStyle alloc] init];
-////    _titleStringStyle.emphasizedStyle.textColor = [SDKColor colorWithRGBRed:203 green:102 blue:10 alpha:1.0];
-//    _titleStringStyle.emphasizedStyle.textColor = [SDKColor orangeColor];
-//    
-//    _titleStringStyle.enabledStyle.textColor = [SDKColor darkGrayColor];
-//    _titleStringStyle.disabledStyle.textColor = [SDKColor lightGrayColor];
-//    _titleStringStyle.highlightedStyle.textColor = [SDKColor whiteColor];
-//    _titleStringStyle.hoveringStyle.textColor = [SDKColor whiteColor];
-//    [_titleStringStyle setTextFont:[SDKFont boldSystemFontOfSize:[SDKFont systemFontSize]]];
-
     self.breadcrumbView.delegate = self;
 }
 
@@ -50,10 +39,32 @@
     return NO;
 }   
 
+- (void) updateTitle:(FLNavigationTitle*) title withState:(FLNavigationTitleState) state {
+    if(state.hidden != title.hidden) {
+        title.hidden = state.hidden;
+    }
+    title.enabled = state.enabled;
+    title.selected = state.selected;
+
+}
+
 - (void) updateNavigationTitlesAnimated:(BOOL) animated {
+    
+    BOOL selected = NO;
+    
     for(FLNavigationTitle* title in self.breadcrumbView.titles) {
-        title.enabled = [self.delegate titleNavigationController:self navigationTitleIsEnabled:title];
-        title.emphasized = [self.delegate titleNavigationController:self navigationTitleIsVisible:title];
+        FLNavigationTitleState state = 
+            [self.delegate titleNavigationController:self navigationTitleState:title];
+    
+        [self updateTitle:title withState:state];
+        
+        if(state.selected) {
+            selected = YES;
+        }
+    }
+    
+    if(!selected) {
+        FLLog(@"not selected");
     }
     
     [self.breadcrumbView updateLayout:animated];
@@ -81,17 +92,27 @@
            handleMouseMovedInTitle:(FLNavigationTitle*) title  
                            mouseIn:(BOOL) mouseIn {
                            
-    title.enabled = [self.delegate titleNavigationController:self navigationTitleIsEnabled:title];
-    title.emphasized = [self.delegate titleNavigationController:self navigationTitleIsVisible:title];
+
+    FLNavigationTitleState state = 
+        [self.delegate titleNavigationController:self navigationTitleState:title];
+
+    [self updateTitle:title withState:state];
+
+//    title.enabled = [self.delegate titleNavigationController:self navigationTitleIsEnabled:title];
+//    title.selected = [self.delegate titleNavigationController:self navigationTitleIsSelected:title];
 }
 
 - (void) titleNavigationController:(FLBreadcrumbBarView*) view 
             handleMouseDownInTitle:(FLNavigationTitle*) title {
+
+
+    FLNavigationTitleState state = 
+        [self.delegate titleNavigationController:self navigationTitleState:title];
+
+    [self updateTitle:title withState:state];
             
-    title.enabled = [self.delegate titleNavigationController:self navigationTitleIsEnabled:title];
-    title.emphasized = [self.delegate titleNavigationController:self navigationTitleIsVisible:title];
-    if(title.enabled && !title.emphasized) {
-        [self.delegate titleNavigationController:self navigationTitleWasClicked:title];
+    if(title.enabled && !title.selected) {
+        [self.delegate titleNavigationController:self navigationTitleWasSelected:title];
     }
     
     [self updateNavigationTitlesAnimated:YES];

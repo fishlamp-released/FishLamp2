@@ -18,8 +18,8 @@
     NSNumber* _smallSize;
     NSNumber* _bigSize;
     NSNumber* _headerSize;
-    SDKColor* _emphasizedColor;
     SDKColor* _selectedColor;
+    SDKColor* _highlightedColor;
     SDKColor* _disabledColor;
     SDKColor* _enabledColor;
     SDKColor* _hoverColor;
@@ -30,8 +30,8 @@
 @property (readwrite, strong, nonatomic) NSNumber* smallSize;
 @property (readwrite, strong, nonatomic) NSNumber* bigSize;
 @property (readwrite, strong, nonatomic) NSNumber* headerSize;
-@property (readwrite, strong, nonatomic) SDKColor* emphasizedColor;
 @property (readwrite, strong, nonatomic) SDKColor* selectedColor;
+@property (readwrite, strong, nonatomic) SDKColor* highlightedColor;
 @property (readwrite, strong, nonatomic) SDKColor* disabledColor;
 @property (readwrite, strong, nonatomic) SDKColor* enabledColor;
 @property (readwrite, strong, nonatomic) SDKColor* hoverColor;

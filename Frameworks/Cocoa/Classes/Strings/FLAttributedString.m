@@ -70,9 +70,8 @@ FLSynthesizeModelObjectMethods();
 @synthesize enabledStyle = _enabledStyle;
 @synthesize disabledStyle = _disabledStyle;
 @synthesize highlightedStyle = _highlightedStyle;
-@synthesize emphasizedStyle = _emphasizedStyle;
-@synthesize hoveringStyle = _hoveringStyle;
 @synthesize selectedStyle = _selectedStyle;
+@synthesize hoveringStyle = _hoveringStyle;
 @synthesize textFont = _textFont;
 
 FLSynthesizeModelObjectMethods();
@@ -88,7 +87,6 @@ FLSynthesizeModelObjectMethods();
         _enabledStyle = [[FLTextStyle alloc] init];
         _disabledStyle = [[FLTextStyle alloc] init];
         _highlightedStyle = [[FLTextStyle alloc] init];
-        _emphasizedStyle = [[FLTextStyle alloc] init];
         _hoveringStyle = [[FLTextStyle alloc] init];
     }
     return self;
@@ -115,11 +113,10 @@ FLSynthesizeModelObjectMethods();
 #if FL_MRC
 - (void) dealloc {
     [_textFont release];
-    [_selectedStyle release];
     [_enabledStyle release];
     [_disabledStyle release];
     [_highlightedStyle release];
-    [_emphasizedStyle release];
+    [_selectedStyle release];
     [_hoveringStyle release];
     [super dealloc];
 }
@@ -131,7 +128,7 @@ FLSynthesizeModelObjectMethods();
 //    colors.enabledStyle = self.enabledStyle;
 //    colors.disabledStyle = self.disabledStyle;
 //    colors.highlightedStyle = self.highlightedStyle;
-//    colors.emphasizedStyle = self.emphasizedStyle;
+//    colors.selectedStyle = self.selectedStyle;
 //    colors.hoveringStyle = self.hoveringStyle;
 //    colors.selectedStyle = self.selectedStyle;
 //    return colors;
@@ -142,7 +139,6 @@ FLSynthesizeModelObjectMethods();
     visitor(self.enabledStyle);
     visitor(self.disabledStyle);
     visitor(self.highlightedStyle);
-    visitor(self.emphasizedStyle);
     visitor(self.hoveringStyle);
 }
 

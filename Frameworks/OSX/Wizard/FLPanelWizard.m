@@ -14,13 +14,13 @@
 @implementation FLWizardView 
 
 #if DEBUG
-- (void) setFrame:(CGRect) frame {
-//    [super setFrame:frame];
-
-    if(frame.size.height > 0 && frame.size.width > 0) {
-        [super setFrame:frame];
-    }
-}
+//- (void) setFrame:(CGRect) frame {
+////    [super setFrame:frame];
+//
+//    if(frame.size.height > 0 && frame.size.width > 0) {
+//        [super setFrame:frame];
+//    }
+//}
 #endif
 
 @end
@@ -68,17 +68,18 @@
 
 #pragma mark breadcrumb bar delegate
 
-- (BOOL) titleNavigationController:(FLBreadcrumbBarViewController*) titleNavigationController navigationTitleIsVisible:(FLNavigationTitle*) title {
-    return [title.identifier isEqual:self.visiblePanelIdentifier];
-}
-
-- (BOOL) titleNavigationController:(FLBreadcrumbBarViewController*) titleNavigationController navigationTitleIsEnabled:(FLNavigationTitle*) title {
-    return [self canOpenPanelForIdentifier:title.identifier];
-}
+- (FLNavigationTitleState) titleNavigationController:(FLBreadcrumbBarViewController*) controller 
+                                navigationTitleState:(FLNavigationTitle*) title {
+ 
+    FLPanelViewController* panel = [self panelForIdentifier:title.identifier];
+ 
+    return FLNavigationTitleStateMake(panel.isSelected, panel.isHidden, panel.isSelectable);
+            
+}                                
                 
 - (void) titleNavigationController:(FLBreadcrumbBarViewController*) titleNavigationController 
-    navigationTitleWasClicked:(FLNavigationTitle*) title {
-    [self showPanelForIdentifier:title.identifier animated:YES completion:nil];
+    navigationTitleWasSelected:(FLNavigationTitle*) title {
+    [self selectPanelForIdentifier:title.identifier animated:YES completion:nil];
 }
 
 - (void) titleNavigationController:(FLBreadcrumbBarViewController*) controller 

@@ -18,3 +18,7 @@
 @property (readwrite, strong, nonatomic) NSColor* frameColor;
 @property (readwrite, strong, nonatomic) NSColor* backgroundColor;
 @end
+
+@interface FLGrayFilledFramedView : FLFramedView
+
+@end

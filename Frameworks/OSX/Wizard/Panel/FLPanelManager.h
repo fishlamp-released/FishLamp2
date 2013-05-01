@@ -36,8 +36,8 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 }
 
 @property (readonly, assign, nonatomic) NSUInteger panelCount;
-@property (readonly, strong, nonatomic) FLPanelViewController* visiblePanel;
-@property (readonly, strong, nonatomic) id visiblePanelIdentifier;
+@property (readonly, strong, nonatomic) FLPanelViewController* selectedPanel;
+@property (readonly, strong, nonatomic) id selectedPanelIdentifier;
 
 @property (readwrite, strong, nonatomic) FLViewTransition* forwardTransition;
 @property (readwrite, strong, nonatomic) FLViewTransition* backwardTransition;
@@ -47,31 +47,35 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 - (void) showPanelsInView:(NSView*) window;
 
 - (void) addPanel:(FLPanelViewController*) panel forIdentifier:(id) identifier;
-
+- (void) addPanel:(FLPanelViewController*) panel withDelegate:(id) delegate;
 - (void) addPanel:(FLPanelViewController*) panel forIdentifier:(id) identifier withDelegate:(id) delegate;
 
 - (id) panelForIdentifier:(id) identifier;
 
 - (void) removePanelForIdentifier:(id) identifier;
 
-- (BOOL) canOpenPanelForIdentifier:(id) identifier;
+- (BOOL) canSelectPanelForIdentifier:(id) identifier;
+
+- (void) setPanelHidden:(BOOL) hidden withIdentifier:(id) identifier;
 
 //
 // panel switching
 //
-- (void) showNextPanelAnimated:(BOOL) animated
+- (void) selectNextPanelAnimated:(BOOL) animated
                     completion:(void (^)(FLPanelViewController*)) completion;
 
-- (void) showPreviousPanelAnimated:(BOOL) animated
+- (void) selectPreviousPanelAnimated:(BOOL) animated
                         completion:(void (^)(FLPanelViewController*)) completion;
 
-- (void) showPanelForIdentifier:(id) identifier 
+- (void) selectPanelForIdentifier:(id) identifier 
                        animated:(BOOL) animated
                      completion:(FLPanelViewControllerBlock) completion;
 
-- (BOOL) isShowingFirstPanel;
+- (BOOL) isPanelSelected:(id) identifier;
 
-- (BOOL) isShowingLastPanel;
+- (BOOL) isFirstPanelSelected;
+
+- (BOOL) isLastPanelSelected;
 
 // panel views
 

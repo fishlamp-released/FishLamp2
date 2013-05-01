@@ -21,7 +21,7 @@
     BOOL _mouseIn;
     BOOL _mouseDown;
     BOOL _enabled;
-    BOOL _emphasized;
+    BOOL _selected;
     BOOL _highlighted;
     BOOL _willUpdate;
     CGFloat _titleHeight;
@@ -37,7 +37,7 @@
 
 @property (readwrite, assign, nonatomic, getter=isHighlighted) BOOL highlighted;
 @property (readwrite, assign, nonatomic, getter=isEnabled) BOOL enabled;
-@property (readwrite, assign, nonatomic, getter=isEmphasized) BOOL emphasized;
+@property (readwrite, assign, nonatomic, getter=isSelected) BOOL selected;
 
 @end
 

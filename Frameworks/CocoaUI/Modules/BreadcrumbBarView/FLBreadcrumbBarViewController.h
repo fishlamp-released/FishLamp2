@@ -26,16 +26,25 @@
 
 @end
 
+typedef struct {
+    BOOL selected;
+    BOOL hidden;
+    BOOL enabled;
+} FLNavigationTitleState;
+
+NS_INLINE
+FLNavigationTitleState FLNavigationTitleStateMake(BOOL selected, BOOL hidden, BOOL enabled) {
+    FLNavigationTitleState state =  { selected, hidden, enabled };
+    return state;
+}
+
 @protocol FLBreadcrumbBarViewControllerDelegate <NSObject>
 
-- (BOOL) titleNavigationController:(FLBreadcrumbBarViewController*) controller 
-          navigationTitleIsVisible:(FLNavigationTitle*) title;
+- (FLNavigationTitleState) titleNavigationController:(FLBreadcrumbBarViewController*) controller 
+                                navigationTitleState:(FLNavigationTitle*) title;
 
-- (BOOL) titleNavigationController:(FLBreadcrumbBarViewController*) controller 
-          navigationTitleIsEnabled:(FLNavigationTitle*) title;
-          
 - (void) titleNavigationController:(FLBreadcrumbBarViewController*) controller 
-         navigationTitleWasClicked:(FLNavigationTitle*) title;
+         navigationTitleWasSelected:(FLNavigationTitle*) title;
 
 - (void) titleNavigationController:(FLBreadcrumbBarViewController*) controller 
              didAddNavigationTitle:(FLNavigationTitle*) title;

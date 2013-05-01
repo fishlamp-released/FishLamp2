@@ -7,6 +7,7 @@
 //
 
 #import "FLCocoaUIRequired.h"
+#import "NSBundle+FLCurrentBundle.h"
 
 @class FLPanelManager;
 @class FLPanelViewController;
@@ -45,14 +46,13 @@
     BOOL _independent;
     BOOL _hidden;
     BOOL _enabled;
-    BOOL _visiblePanel;
+    BOOL _selected;
     
     id _identifier;
     __unsafe_unretained id _delegate;
 
     id _alertViewController;
 }
-@property (readonly, assign, nonatomic, getter=isVisiblePanel) BOOL visiblePanel;
 
 @property (readwrite, strong, nonatomic) id alertViewController;
 
@@ -66,6 +66,9 @@
 
 @property (readwrite, assign, nonatomic) BOOL canOpenNextPanel;
 @property (readwrite, assign, nonatomic) BOOL panelFillsView;
+
+@property (readonly, assign, nonatomic, getter=isSelected) BOOL selected;
+@property (readonly, assign, nonatomic, getter=isSelectable) BOOL selectable;
 
 @property (readwrite, assign, nonatomic, getter=isAuthenticated) BOOL authenticated;
 @property (readwrite, assign, nonatomic, getter=isIndependent) BOOL independent;
@@ -94,7 +97,7 @@
 //- (void) showAlertWithTitle:(NSString*) title;
 //- (void) showAlertWithTitle:(NSString*) title withCaption:(NSString*) caption;
 
-+ (id) defaultPanelIdentifier;
++ (id) panelIdentifier;
 
 @end
 

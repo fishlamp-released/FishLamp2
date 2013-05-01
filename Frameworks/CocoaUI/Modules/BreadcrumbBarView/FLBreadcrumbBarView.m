@@ -67,6 +67,10 @@
     CGFloat top = FLRectGetBottom(bounds);
 
     for(FLNavigationTitle* title in _titles) {
+        
+        if(title.isHidden) {
+            continue;
+        }
 
         CGRect frame = bounds;
         frame.size.height = title.titleHeight; 
@@ -76,7 +80,7 @@
             title.frame = frame;
         }
         [title setNeedsDisplay];
-        if(title.emphasized) {
+        if(title.isSelected) {
             highlightedTitle = title;
         }
         top -= frame.size.height;
@@ -118,14 +122,20 @@
 - (void) addTitle:(FLNavigationTitle*) title {
     [_titles addObject:title];
     [self.layer addSublayer:title];
-    [title setNeedsDisplay];
-    [self updateLayout:NO];
     
-    self.needsDisplay = YES;
+    if(!title.isHidden) {
+        [title setNeedsDisplay];
+        [self updateLayout:NO];
+        self.needsDisplay = YES;
+    }
 }
 
 - (void) handleMouseMoved:(CGPoint) location mouseIn:(BOOL) mouseIn mouseDown:(BOOL) mouseDown {
     for(FLNavigationTitle* title in _titles) {
+        if(title.isHidden) {
+            continue;
+        }
+        
         BOOL mouseInTitle = CGRectContainsPoint(title.frame, location);
         [self.delegate titleNavigationController:self handleMouseMovedInTitle:title mouseIn:mouseInTitle];
         
@@ -140,6 +150,10 @@
 
 - (void) handleMouseUpInside:(CGPoint) location {
     for(FLNavigationTitle* title in _titles) {
+        if(title.isHidden) {
+            continue;
+        }
+        
         if(CGRectContainsPoint(title.frame, location)) {
             [self.delegate titleNavigationController:self handleMouseDownInTitle:title];
             break;

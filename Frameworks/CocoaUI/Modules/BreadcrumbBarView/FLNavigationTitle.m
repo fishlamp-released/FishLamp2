@@ -18,7 +18,7 @@
 
 @synthesize highlighted = _highlighted;
 @synthesize enabled = _enabled;
-@synthesize emphasized = _emphasized;
+@synthesize selected = _selected;
 @synthesize identifier = _identifier;
 @synthesize titleHeight = _titleHeight;
 
@@ -72,8 +72,15 @@
             fgColor = [NSColor lightGrayColor];
             shadowColor = [NSColor whiteColor];
         break;
-        
+
         case FLStringDisplayStateHighlighted:
+        case FLStringDisplayStateMouseDownIn:
+            fgColor = [NSColor whiteColor];
+            bgColor = [NSColor darkGrayColor];
+            shadowColor = [NSColor blackColor];
+        break;
+        
+        case FLStringDisplayStateSelected:
             fgColor = FLColorFromHexColorString(@"#c56519");
 
 //            [shadow setShadowColor:[NSColor gray85Color]];
@@ -82,21 +89,10 @@
         break;
         
         case FLStringDisplayStateHovering:
-            fgColor = [NSColor whiteColor];
-            bgColor = [NSColor grayColor];
-            shadowColor = [NSColor blackColor];
-        break;
-        
-        case FLStringDisplayStateMouseDownIn:
-            fgColor = [NSColor whiteColor];
-            bgColor = [NSColor darkGrayColor];
-            shadowColor = [NSColor blackColor];
-        break;
-        
         case FLStringDisplayStateMouseDownOut:
             fgColor = [NSColor whiteColor];
-            shadowColor = [NSColor blackColor];
             bgColor = [NSColor grayColor];
+            shadowColor = [NSColor blackColor];
         break;
     }
 
@@ -124,50 +120,50 @@
     [attr setObject:[NSFont boldSystemFontOfSize:14] forKey:NSFontAttributeName];
 }
 
-- (void) updateState {
-    if(_willUpdate) {
-
-        FLStringDisplayState displayState = FLStringDisplayStateEnabled;
-        if(_enabled) {
-
-            if(self.isEmphasized) {
-                displayState = FLStringDisplayStateHighlighted;
-            }
-            else if(_mouseDown) {
-                if(_mouseIn) {
-                    displayState = FLStringDisplayStateMouseDownIn;
-                }
-                else {
-                    displayState = FLStringDisplayStateMouseDownOut;
-                }
-            }
-            else if(_mouseIn) {
-                displayState = FLStringDisplayStateHovering;
-            }
-            else {
-            }
-        } 
-        else {
-            displayState = FLStringDisplayStateDisabled;        
-        }
-        
-        _stringController.displayState = displayState;
-            
-        _willUpdate = NO;
-
-#if TRACE       
-     FLLog(@"updated title: %@", _stringController.string);
-#endif        
-    }
-}
+//- (void) updateState {
+//    if(_willUpdate) {
+//
+//        FLStringDisplayState displayState = FLStringDisplayStateEnabled;
+//        if(_enabled) {
+//
+//            if(_selected) {
+//                displayState = FLStringDisplayStateHighlighted;
+//            }
+//            else if(_mouseDown) {
+//                if(_mouseIn) {
+//                    displayState = FLStringDisplayStateMouseDownIn;
+//                }
+//                else {
+//                    displayState = FLStringDisplayStateMouseDownOut;
+//                }
+//            }
+//            else if(_mouseIn) {
+//                displayState = FLStringDisplayStateHovering;
+//            }
+//            else {
+//            }
+//        } 
+//        else {
+//            displayState = FLStringDisplayStateDisabled;        
+//        }
+//        
+//        _stringController.displayState = displayState;
+//            
+//        _willUpdate = NO;
+//
+//#if TRACE       
+//     FLLog(@"updated title: %@", _stringController.string);
+//#endif        
+//    }
+//}
 
 - (void) stateDidChange {
     FLStringDisplayState displayState = FLStringDisplayStateDisabled;
     if(_enabled) {
         displayState = FLStringDisplayStateEnabled;        
         
-        if(self.isEmphasized) {
-            displayState = FLStringDisplayStateHighlighted;
+        if(_selected) {
+            displayState = FLStringDisplayStateSelected;
         }
         else if(_mouseDown) {
             if(_mouseIn) {
@@ -221,15 +217,16 @@
     }
 }
 
-- (void) setEmphasized:(BOOL)emphasized {
-    if(_emphasized != emphasized) {
-        _emphasized = emphasized;
+- (void) setSelected:(BOOL)selected {
+    if(_selected != selected) {
+        _selected = selected;
         [self stateDidChange];
     }
 }
 
 - (void) setHighlighted:(BOOL)highlighted {
     if(_highlighted != highlighted) {
+        _highlighted = highlighted;
         [self stateDidChange];
     }
 }

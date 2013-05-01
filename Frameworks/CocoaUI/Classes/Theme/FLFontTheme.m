@@ -18,8 +18,8 @@ FLSynthesizeModelObjectMethods();
 @synthesize smallSize = _smallSize;
 @synthesize bigSize = _bigSize;
 @synthesize headerSize = _headerSize;
-@synthesize emphasizedColor = _emphasizedColor;
 @synthesize selectedColor = _selectedColor;
+@synthesize highlightedColor = _highlightedColor;
 @synthesize disabledColor = _disabledColor;
 @synthesize enabledColor = _enabledColor;
 @synthesize hoverColor = _hoverColor;
@@ -27,7 +27,7 @@ FLSynthesizeModelObjectMethods();
 #if FL_MRC
 - (void) dealloc {
     [_hoverColor release];
-    [_emphasizedColor release];
+    [_highlightedColor release];
     [_selectedColor release];
     [_disabledColor release];
     [_enabledColor release];

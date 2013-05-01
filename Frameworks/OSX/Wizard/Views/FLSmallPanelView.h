@@ -9,6 +9,6 @@
 #import "FLCocoaUIRequired.h"
 #import "FLFramedView.h"
 
-@interface FLSmallPanelView : FLFramedView
+@interface FLSmallPanelView : FLGrayFilledFramedView
 
 @end

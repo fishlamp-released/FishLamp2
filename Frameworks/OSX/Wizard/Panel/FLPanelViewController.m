@@ -10,7 +10,7 @@
 #import "FLWizardViewController.h"
 
 @interface FLPanelViewController ()
-@property (readwrite, assign, nonatomic, getter=isVisiblePanel) BOOL visiblePanel;
+@property (readwrite, assign, nonatomic, getter=isSelected) BOOL selected;
 @end
 
 @implementation FLPanelViewController
@@ -28,7 +28,7 @@
 @synthesize enabled = _enabled;
 @synthesize identifier = _identifier;
 @synthesize alertViewController = _alertViewController;
-@synthesize visiblePanel = _visiblePanel;
+@synthesize selected = _selected;
 
 
 #if FL_MRC
@@ -50,6 +50,7 @@
 
     return self;
 }
+
 - (void) awakeFromNib {
     [super awakeFromNib];
     self.canOpenNextPanel = NO;
@@ -57,6 +58,12 @@
     self.independent = NO;
     self.enabled = YES;
     self.hidden = NO;
+    
+    self.identifier = [[self class] panelIdentifier];
+}
+
+- (BOOL) isSelectable {
+    return [[self panelManager] canSelectPanelForIdentifier:self.identifier];
 }
 
 - (BOOL)acceptsFirstResponder {
@@ -136,7 +143,7 @@
     }
 }
 
-+ (id) defaultPanelIdentifier {
++ (id) panelIdentifier {
     return NSStringFromClass([self class]);
 }
 

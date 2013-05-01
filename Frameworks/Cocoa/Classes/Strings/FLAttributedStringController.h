@@ -12,6 +12,7 @@ typedef enum {
     FLStringDisplayStateDisabled,
     FLStringDisplayStateEnabled,
     FLStringDisplayStateHighlighted,
+    FLStringDisplayStateSelected,
     FLStringDisplayStateHovering,
     FLStringDisplayStateMouseDownIn,
     FLStringDisplayStateMouseDownOut

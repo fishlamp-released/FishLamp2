@@ -14,8 +14,6 @@
 #if OSX
     self.autoresizingMask = NSViewMaxXMargin | NSViewMaxYMargin | NSViewMinXMargin | NSViewMinYMargin; 
 #endif    
-    self.backgroundColor = [NSColor gray95Color];
-    self.borderWidth = 2.0f;
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder {

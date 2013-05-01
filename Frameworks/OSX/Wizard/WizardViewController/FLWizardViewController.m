@@ -63,31 +63,31 @@
 
 - (void) wizardButtonViewControllerRespondToNextButton:(FLWizardButtonViewController*) controller {
     BOOL handled = NO;
-    [self.visiblePanel respondToNextButton:&handled];
+    [self.selectedPanel respondToNextButton:&handled];
 
     if(!handled) {
-        [self showNextPanelAnimated:YES completion:nil];
+        [self selectNextPanelAnimated:YES completion:nil];
     }
 }
 
 - (void) wizardButtonViewControllerRespondToBackButton:(FLWizardButtonViewController*) controller {
     BOOL handled = NO;
-    [self.visiblePanel respondToBackButton:&handled];
+    [self.selectedPanel respondToBackButton:&handled];
 
     if(!handled) {
-        [self showPreviousPanelAnimated:YES completion:nil];
+        [self selectPreviousPanelAnimated:YES completion:nil];
     }
 }
 
 - (void) wizardButtonViewControllerRespondToOtherButton:(FLWizardButtonViewController*) controller {
     BOOL handled = NO;
-    [self.visiblePanel respondToOtherButton:&handled];
+    [self.selectedPanel respondToOtherButton:&handled];
 }
 
 - (void) wizardButtonViewControllerUpdateButtonStates:(FLWizardButtonViewController*) controller {
     
-    BOOL backEnabled = !self.isShowingFirstPanel;
-    BOOL nextEnabled = [self visiblePanel].canOpenNextPanel && ![self isShowingLastPanel];
+    BOOL backEnabled = !self.isFirstPanelSelected;
+    BOOL nextEnabled = [self selectedPanel].canOpenNextPanel && ![self isLastPanelSelected];
     
     if(backEnabled != self.buttonViewController.backButton.isEnabled) {
         self.buttonViewController.backButton.enabled = backEnabled;

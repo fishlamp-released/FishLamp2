@@ -74,3 +74,25 @@
 }
 
 @end
+
+@implementation FLGrayFilledFramedView
+
+- (void) awakeFromNib {
+    [super awakeFromNib];
+    
+    self.borderWidth = 2.0f;
+    self.backgroundColor = [NSColor gray95Color];
+}
+
+- (id)initWithFrame:(NSRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.borderWidth = 2.0f;
+        self.backgroundColor = [NSColor gray95Color];
+    }
+    
+    return self;
+}
+
+@end

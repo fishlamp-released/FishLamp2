@@ -38,7 +38,6 @@
     FLTextStyle* _enabledStyle;
     FLTextStyle* _disabledStyle;
     FLTextStyle* _highlightedStyle;
-    FLTextStyle* _emphasizedStyle;
     FLTextStyle* _hoveringStyle;
     SDKFont* _textFont;
 }
@@ -48,7 +47,6 @@
 @property (readwrite, copy, nonatomic) FLTextStyle* enabledStyle;
 @property (readwrite, copy, nonatomic) FLTextStyle* disabledStyle;
 @property (readwrite, copy, nonatomic) FLTextStyle* highlightedStyle;
-@property (readwrite, copy, nonatomic) FLTextStyle* emphasizedStyle;
 @property (readwrite, copy, nonatomic) FLTextStyle* hoveringStyle;
 
 - (void) visitStyles:(void (^)(FLTextStyle* style)) visitor;
