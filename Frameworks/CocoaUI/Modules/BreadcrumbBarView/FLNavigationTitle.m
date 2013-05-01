@@ -11,7 +11,6 @@
 #import "FLCoreText.h"
 
 @interface FLNavigationTitle ()
-@property (readwrite, strong, nonatomic) NSAttributedString* attributedString;
 @property (readwrite, strong, nonatomic) id identifier;
 @end
 
@@ -20,7 +19,6 @@
 @synthesize highlighted = _highlighted;
 @synthesize enabled = _enabled;
 @synthesize emphasized = _emphasized;
-@synthesize attributedString = _attributedString;
 @synthesize identifier = _identifier;
 @synthesize titleHeight = _titleHeight;
 

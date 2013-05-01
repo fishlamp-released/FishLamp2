@@ -13,7 +13,7 @@
 @end
 
 @implementation FLImagePlaceholderView
-//@synthesize imageView = _imageView;
+
 @synthesize frameWidth = _frameWidth;
 @synthesize alwaysProportionallyResize = _alwaysProportionallyResize;
 
@@ -41,12 +41,10 @@
     _imageView.imageScaling = NSImageScaleProportionallyDown;
     _imageView.imageFrameStyle = NSImageFrameNone;
     _imageView.hidden = NO;
-    FLRetainObject(_imageView);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_imageView release];
     [_progress release];
     [super dealloc];
 }

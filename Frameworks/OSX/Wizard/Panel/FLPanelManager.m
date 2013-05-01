@@ -51,17 +51,20 @@
 - (void) awakeFromNib {
     [super awakeFromNib];
      
-    _panelAreas = [[NSMutableArray alloc] init];
-    _panels = [[FLOrderedCollection alloc] init];
-    _started = NO;
-    self.forwardTransition = [FLWizardStyleForwardTransition wizardStyleForwardTransition];
-    self.backwardTransition = [FLWizardStyleBackwardTransition wizardStyleBackwardTransition];
-    
-    self.view.autoresizesSubviews = YES;
-    _contentEnclosure.autoresizesSubviews = YES;
-    _contentView.autoresizesSubviews = NO;
-    
-    [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+    if(!_panelAreas) {
+        _panelAreas = [[NSMutableArray alloc] init];
+        _panels = [[FLOrderedCollection alloc] init];
+        _started = NO;
+
+        self.forwardTransition = [FLWizardStyleForwardTransition wizardStyleForwardTransition];
+        self.backwardTransition = [FLWizardStyleBackwardTransition wizardStyleBackwardTransition];
+        
+        _contentEnclosure.autoresizesSubviews = YES;
+        _contentView.autoresizesSubviews = NO;
+        
+        [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+        self.view.autoresizesSubviews = YES;
+    }
 }
 
 - (NSUInteger) panelCount {

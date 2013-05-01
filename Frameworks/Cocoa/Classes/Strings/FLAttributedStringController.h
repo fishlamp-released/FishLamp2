@@ -36,7 +36,6 @@ typedef enum {
     FLStringDisplayState _displayState;
     NSMutableDictionary* _attributes;
     __unsafe_unretained id<FLAttributedStringControllerDelegate> _delegate;
-    SEL _delegateSelector;
     NSAttributedString* _attributedString;
 }
 @property (readwrite, assign, nonatomic) id<FLAttributedStringControllerDelegate> delegate;

@@ -7,6 +7,8 @@
 //
 
 #import "FLProgressPanel.h"
+#import "FLWizardViewController.h"
+#import "NSBundle+FLCurrentBundle.h"
 
 @interface FLProgressPanel ()
 
@@ -15,7 +17,7 @@
 @implementation FLProgressPanel
 
 - (id) init {
-    return [self initWithNibName:@"FLProgressPanel" bundle:nil];
+    return [self initWithNibName:@"FLProgressPanel" bundle:[NSBundle currentBundle]];
 }
 
 + (id) progressPanel {

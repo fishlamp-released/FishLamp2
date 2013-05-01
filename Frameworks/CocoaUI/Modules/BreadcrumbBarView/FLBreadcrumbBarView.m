@@ -39,18 +39,18 @@
 
     if(!_titles) {
         _titles = [[NSMutableArray alloc] init];
-    }
 
-    self.wantsLayer = YES;
-    self.layer = [CALayer layer];
+        self.wantsLayer = YES;
+        self.layer = [CALayer layer];
+        
+        _highlightLayer = [[FLBarHighlightBackgoundLayer alloc] init];
+        _highlightLayer.hidden = YES;
+        _highlightLayer.lineColor = [SDKColor gray85Color];
     
-    _highlightLayer = [[FLBarHighlightBackgoundLayer alloc] init];
-    _highlightLayer.hidden = YES;
-    _highlightLayer.lineColor = [SDKColor gray85Color];
+        [self.layer addSublayer:_highlightLayer];
+    }
     
-    [self.layer addSublayer:_highlightLayer];
-    
-    [self setNeedsDisplay:YES];
+//    [self setNeedsDisplay:YES];
 }
 
 - (void) updateLayout:(BOOL) animated {
