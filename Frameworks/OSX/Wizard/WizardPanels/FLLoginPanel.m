@@ -68,11 +68,6 @@
         _user = [[FLLoginPanelCredentials alloc] init];
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(applicationWillTerminate:)
-                                                 name: NSApplicationWillTerminateNotification
-                                               object: [NSApplication sharedApplication]];
-
     self.panelFillsView = NO;
 }
 
@@ -234,7 +229,7 @@
         FLProgressPanel* panel = [FLProgressPanel progressPanel];
         panel.delegate = self;
         [[panel view] setFrame:self.view.frame];
-        [panel setProgressText:@"Logging into your account…"];
+        [panel setProgressText:NSLocalizedString(@"Logging into your account…", nil)];
         
         self.alertViewController = panel;
         
@@ -284,6 +279,11 @@
     [super panelDidAppear];
     [self updateNextButton];
     [self setNextResponder];
+
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(applicationWillTerminate:)
+                                                 name: NSApplicationWillTerminateNotification
+                                               object: [NSApplication sharedApplication]];
     
 }
 
@@ -296,6 +296,8 @@
 }
 
 - (void) panelWillDisappear {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
     [self.view.window makeFirstResponder:self.view.window];
     [super panelWillDisappear];
     [self saveCredentials];

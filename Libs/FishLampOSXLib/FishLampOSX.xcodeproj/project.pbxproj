@@ -203,14 +203,6 @@
 		27BC8A5517171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */; };
 		27BC8A5617171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */; };
 		27BC8A5717171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */; };
-		27C0FCE31730A2F40000F00C /* NSBundle+FLCurrentBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C0FCE11730A2F20000F00C /* NSBundle+FLCurrentBundle.h */; };
-		27C0FCE41730A2F40000F00C /* NSBundle+FLCurrentBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C0FCE11730A2F20000F00C /* NSBundle+FLCurrentBundle.h */; };
-		27C0FCE51730A2F40000F00C /* NSBundle+FLCurrentBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C0FCE11730A2F20000F00C /* NSBundle+FLCurrentBundle.h */; };
-		27C0FCE61730A2F40000F00C /* NSBundle+FLCurrentBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C0FCE11730A2F20000F00C /* NSBundle+FLCurrentBundle.h */; };
-		27C0FCE71730A2F40000F00C /* NSBundle+FLCurrentBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C0FCE21730A2F30000F00C /* NSBundle+FLCurrentBundle.m */; };
-		27C0FCE81730A2F40000F00C /* NSBundle+FLCurrentBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C0FCE21730A2F30000F00C /* NSBundle+FLCurrentBundle.m */; };
-		27C0FCE91730A2F40000F00C /* NSBundle+FLCurrentBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C0FCE21730A2F30000F00C /* NSBundle+FLCurrentBundle.m */; };
-		27C0FCEA1730A2F40000F00C /* NSBundle+FLCurrentBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C0FCE21730A2F30000F00C /* NSBundle+FLCurrentBundle.m */; };
 		27C77D61172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */; };
 		27C77D62172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */; };
 		27C77D63172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */; };
@@ -395,8 +387,6 @@
 		27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLActivityLogViewController.h; sourceTree = "<group>"; };
 		27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLActivityLogViewController.m; sourceTree = "<group>"; };
-		27C0FCE11730A2F20000F00C /* NSBundle+FLCurrentBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+FLCurrentBundle.h"; sourceTree = "<group>"; };
-		27C0FCE21730A2F30000F00C /* NSBundle+FLCurrentBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+FLCurrentBundle.m"; sourceTree = "<group>"; };
 		27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLHttpController+UserLogin.h"; sourceTree = "<group>"; };
 		27C77D60172E07480027AE3E /* FLHttpController+UserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLHttpController+UserLogin.m"; sourceTree = "<group>"; };
 		27CBC1F416768BA600753D0A /* libFishLampOSX-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -647,8 +637,6 @@
 				274933891699FADD008E8EC5 /* FishLampOSX.h */,
 				27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */,
 				27C77D60172E07480027AE3E /* FLHttpController+UserLogin.m */,
-				27C0FCE11730A2F20000F00C /* NSBundle+FLCurrentBundle.h */,
-				27C0FCE21730A2F30000F00C /* NSBundle+FLCurrentBundle.m */,
 			);
 			name = OSX;
 			path = ../../Frameworks/OSX;
@@ -725,7 +713,6 @@
 				272D039A172DD76000302B2E /* FLLinkTextField.h in Headers */,
 				272D03EA172DF98700302B2E /* FLProgressPanel.h in Headers */,
 				27C77D61172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
-				27C0FCE31730A2F40000F00C /* NSBundle+FLCurrentBundle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,7 +752,6 @@
 				272D039C172DD76000302B2E /* FLLinkTextField.h in Headers */,
 				272D03EC172DF98700302B2E /* FLProgressPanel.h in Headers */,
 				27C77D63172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
-				27C0FCE51730A2F40000F00C /* NSBundle+FLCurrentBundle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,7 +791,6 @@
 				272D039B172DD76000302B2E /* FLLinkTextField.h in Headers */,
 				272D03EB172DF98700302B2E /* FLProgressPanel.h in Headers */,
 				27C77D62172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
-				27C0FCE41730A2F40000F00C /* NSBundle+FLCurrentBundle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,7 +830,6 @@
 				272D039D172DD76000302B2E /* FLLinkTextField.h in Headers */,
 				272D03ED172DF98700302B2E /* FLProgressPanel.h in Headers */,
 				27C77D64172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
-				27C0FCE61730A2F40000F00C /* NSBundle+FLCurrentBundle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,7 +1053,6 @@
 				272D039E172DD76000302B2E /* FLLinkTextField.m in Sources */,
 				272D03EE172DF98700302B2E /* FLProgressPanel.m in Sources */,
 				27C77D65172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
-				27C0FCE71730A2F40000F00C /* NSBundle+FLCurrentBundle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,7 +1088,6 @@
 				272D03A0172DD76000302B2E /* FLLinkTextField.m in Sources */,
 				272D03F0172DF98700302B2E /* FLProgressPanel.m in Sources */,
 				27C77D67172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
-				27C0FCE91730A2F40000F00C /* NSBundle+FLCurrentBundle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1141,7 +1123,6 @@
 				272D039F172DD76000302B2E /* FLLinkTextField.m in Sources */,
 				272D03EF172DF98700302B2E /* FLProgressPanel.m in Sources */,
 				27C77D66172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
-				27C0FCE81730A2F40000F00C /* NSBundle+FLCurrentBundle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1177,7 +1158,6 @@
 				272D03A1172DD76000302B2E /* FLLinkTextField.m in Sources */,
 				272D03F1172DF98700302B2E /* FLProgressPanel.m in Sources */,
 				27C77D68172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
-				27C0FCEA1730A2F40000F00C /* NSBundle+FLCurrentBundle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

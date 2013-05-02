@@ -14,17 +14,14 @@
 @private    
     NSString* _userName;
     NSString* _password;
-    NSString* _authenticationDomain;
     BOOL _rememberPassword;
     BOOL _loaded;
 }
 @property (readwrite, strong, nonatomic) NSString* userName;
 @property (readwrite, strong, nonatomic) NSString* password;
 @property (readwrite, assign, nonatomic) BOOL rememberPassword;
-@property (readwrite, strong, nonatomic) NSString* authenticationDomain;
 
-+ (id) userServiceWithAuthenticationDomain:(NSString*) authenticationDomain;
-+ (id) userService; // uses bundleIndentifier
++ (id) userService;
 
 - (void) loadCredentials;
 - (void) saveCredentials;

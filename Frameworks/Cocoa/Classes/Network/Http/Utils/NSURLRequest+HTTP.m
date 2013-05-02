@@ -16,12 +16,6 @@
 
 static NSString* s_defaultUserAgent = nil;
 
-+ (void) initialize {
-    if(!s_defaultUserAgent) {
-        [self setDefaultUserAgent:[FLAppInfo userAgent]];
-    }
-}
-
 + (void) setDefaultUserAgent:(NSString*) userAgent {
 	FLSetObjectWithRetain(s_defaultUserAgent, userAgent);
 }

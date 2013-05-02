@@ -7,6 +7,7 @@
 //
 
 #import "FLCocoaRequired.h"
+#import "NSBundle+FLCurrentBundle.h"
 
 @interface FLAppInfo : NSObject 
 
@@ -18,8 +19,11 @@
 
 + (NSString*) bundleIdentifier;
 
-+ (NSString*) userAgent;
-
 + (NSDictionary*) infoDictionary;
 
 @end
+
+NS_INLINE
+NSString* FLUserDefaultPathForKey(NSString* key) {
+    return [[FLAppInfo bundleIdentifier] stringByAppendingFormat:@".%@", key];
+}

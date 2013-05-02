@@ -277,9 +277,9 @@
         toHide.alertViewController = nil;
     }
     
-    FLViewTransition* transition = nil;
 
 #if BROKEN
+    FLViewTransition* transition = nil;
     NSUInteger currentIdx = [self currentPanelIndex]
 
     CGFloat animationDuration = 0.0f;
