@@ -223,14 +223,14 @@
 		27E8032D170346AC0012BFDD /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80321170346AC0012BFDD /* FLCommandLineTool.m */; };
 		27E8032E170346AC0012BFDD /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80321170346AC0012BFDD /* FLCommandLineTool.m */; };
 		27E8032F170346AC0012BFDD /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80321170346AC0012BFDD /* FLCommandLineTool.m */; };
-		27E80330170346AC0012BFDD /* FLShellCommandOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommandOperation.h */; };
-		27E80331170346AC0012BFDD /* FLShellCommandOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommandOperation.h */; };
-		27E80332170346AC0012BFDD /* FLShellCommandOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommandOperation.h */; };
-		27E80333170346AC0012BFDD /* FLShellCommandOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommandOperation.h */; };
-		27E80334170346AC0012BFDD /* FLShellCommandOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommandOperation.m */; };
-		27E80335170346AC0012BFDD /* FLShellCommandOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommandOperation.m */; };
-		27E80336170346AC0012BFDD /* FLShellCommandOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommandOperation.m */; };
-		27E80337170346AC0012BFDD /* FLShellCommandOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommandOperation.m */; };
+		27E80330170346AC0012BFDD /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommand.h */; };
+		27E80331170346AC0012BFDD /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommand.h */; };
+		27E80332170346AC0012BFDD /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommand.h */; };
+		27E80333170346AC0012BFDD /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommand.h */; };
+		27E80334170346AC0012BFDD /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommand.m */; };
+		27E80335170346AC0012BFDD /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommand.m */; };
+		27E80336170346AC0012BFDD /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommand.m */; };
+		27E80337170346AC0012BFDD /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommand.m */; };
 		27FC38191699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
 		27FC381A1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
 		27FC381B1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
@@ -393,8 +393,8 @@
 		27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCommandLineTool.h; sourceTree = "<group>"; };
 		27E80320170346AC0012BFDD /* FLCommandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCommandLineTool.h; sourceTree = "<group>"; };
 		27E80321170346AC0012BFDD /* FLCommandLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCommandLineTool.m; sourceTree = "<group>"; };
-		27E80322170346AC0012BFDD /* FLShellCommandOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLShellCommandOperation.h; sourceTree = "<group>"; };
-		27E80323170346AC0012BFDD /* FLShellCommandOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLShellCommandOperation.m; sourceTree = "<group>"; };
+		27E80322170346AC0012BFDD /* FLShellCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLShellCommand.h; sourceTree = "<group>"; };
+		27E80323170346AC0012BFDD /* FLShellCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLShellCommand.m; sourceTree = "<group>"; };
 		27E95866170BB86300587A8F /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27E95867170BB86300587A8F /* TargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-32-MRC.xcconfig"; sourceTree = "<group>"; };
 		27E95868170BB86300587A8F /* TargetSettings-OSX-3264-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-3264-MRC.xcconfig"; sourceTree = "<group>"; };
@@ -595,8 +595,8 @@
 				27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */,
 				27E80320170346AC0012BFDD /* FLCommandLineTool.h */,
 				27E80321170346AC0012BFDD /* FLCommandLineTool.m */,
-				27E80322170346AC0012BFDD /* FLShellCommandOperation.h */,
-				27E80323170346AC0012BFDD /* FLShellCommandOperation.m */,
+				27E80322170346AC0012BFDD /* FLShellCommand.h */,
+				27E80323170346AC0012BFDD /* FLShellCommand.m */,
 			);
 			path = CommandLineTool;
 			sourceTree = "<group>";
@@ -692,7 +692,7 @@
 				278DB4AD16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
 				27E80324170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
 				27E80328170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
-				27E80330170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
+				27E80330170346AC0012BFDD /* FLShellCommand.h in Headers */,
 				27BC8A5017171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
 				2744B3F0171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
 				2744B465172042930090B70D /* FLPanelWizard.h in Headers */,
@@ -731,7 +731,7 @@
 				278DB4AF16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
 				27E80326170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
 				27E8032A170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
-				27E80332170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
+				27E80332170346AC0012BFDD /* FLShellCommand.h in Headers */,
 				27BC8A5217171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
 				2744B3F2171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
 				2744B467172042930090B70D /* FLPanelWizard.h in Headers */,
@@ -770,7 +770,7 @@
 				278DB4AE16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
 				27E80325170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
 				27E80329170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
-				27E80331170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
+				27E80331170346AC0012BFDD /* FLShellCommand.h in Headers */,
 				27BC8A5117171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
 				2744B3F1171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
 				2744B466172042930090B70D /* FLPanelWizard.h in Headers */,
@@ -809,7 +809,7 @@
 				278DB4B016EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
 				27E80327170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
 				27E8032B170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
-				27E80333170346AC0012BFDD /* FLShellCommandOperation.h in Headers */,
+				27E80333170346AC0012BFDD /* FLShellCommand.h in Headers */,
 				27BC8A5317171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
 				2744B3F3171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
 				2744B468172042930090B70D /* FLPanelWizard.h in Headers */,
@@ -1032,7 +1032,7 @@
 				278DB4A216EE887A0087374D /* FLCickableImageView.m in Sources */,
 				278DB4B116EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
 				27E8032C170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
-				27E80334170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
+				27E80334170346AC0012BFDD /* FLShellCommand.m in Sources */,
 				27BC8A5417171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
 				2744B3F4171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
 				2744B469172042930090B70D /* FLPanelWizard.m in Sources */,
@@ -1067,7 +1067,7 @@
 				278DB4A416EE887A0087374D /* FLCickableImageView.m in Sources */,
 				278DB4B316EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
 				27E8032E170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
-				27E80336170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
+				27E80336170346AC0012BFDD /* FLShellCommand.m in Sources */,
 				27BC8A5617171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
 				2744B3F6171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
 				2744B46B172042930090B70D /* FLPanelWizard.m in Sources */,
@@ -1102,7 +1102,7 @@
 				278DB4A316EE887A0087374D /* FLCickableImageView.m in Sources */,
 				278DB4B216EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
 				27E8032D170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
-				27E80335170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
+				27E80335170346AC0012BFDD /* FLShellCommand.m in Sources */,
 				27BC8A5517171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
 				2744B3F5171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
 				2744B46A172042930090B70D /* FLPanelWizard.m in Sources */,
@@ -1137,7 +1137,7 @@
 				278DB4A516EE887A0087374D /* FLCickableImageView.m in Sources */,
 				278DB4B416EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
 				27E8032F170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
-				27E80337170346AC0012BFDD /* FLShellCommandOperation.m in Sources */,
+				27E80337170346AC0012BFDD /* FLShellCommand.m in Sources */,
 				27BC8A5717171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
 				2744B3F7171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
 				2744B46C172042930090B70D /* FLPanelWizard.m in Sources */,

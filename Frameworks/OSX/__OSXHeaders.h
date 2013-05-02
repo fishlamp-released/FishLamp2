@@ -3,7 +3,7 @@
 // CommandLineTool
 #import "FishLampCommandLineTool.h"
 #import "FLCommandLineTool.h"
-#import "FLShellCommandOperation.h"
+#import "FLShellCommand.h"
 
 // Menus
 #import "FLGlobalMenuController.h"

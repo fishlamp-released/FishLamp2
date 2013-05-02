@@ -1,0 +1,18 @@
+//
+//  SharedTargetSettings.xcconfig
+//  zenli
+//
+//  Created by Mike Fullerton on 3/27/13.
+//  Copyright (c) 2013 Zenfolio. All rights reserved.
+//
+
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREFIX_HEADER = Tool/Tool-Prefix.pch
+PRODUCT_NAME = tig2
+HEADER_SEARCH_PATHS= $(inherited) ../ZenLib/Classes/** $(FISHLAMP_OSX) $(FISHLAMP_CONNECT)
+
+DEPLOYMENT_LOCATION = YES
+DSTROOT = /
+INSTALL_PATH = /usr/local/bin
+MACH_O_TYPE = mh_execute
+

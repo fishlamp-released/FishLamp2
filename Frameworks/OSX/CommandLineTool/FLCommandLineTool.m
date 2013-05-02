@@ -9,11 +9,11 @@
 #import "FLCommandLineTool.h"
 #import "FLStringUtils.h"
 #import "NSString+Lists.h"
+#import "FLAppInfo.h"
 
 @interface FLCommandLineTool ()
 @property (readwrite, strong, nonatomic) NSURL* toolPath;
 @property (readwrite, strong, nonatomic) NSString* startDirectory;
-@property (readwrite, strong, nonatomic) NSString* toolName;
 @property (readwrite, strong, nonatomic) NSError* error;
 @property (readwrite, assign) BOOL running;
 @end
@@ -24,9 +24,9 @@ static id s_instance;
 
 @synthesize toolPath = _toolPath;
 @synthesize startDirectory = _startDirectory;
-@synthesize toolName = _toolName;
 @synthesize running = _running;
 @synthesize error = _error;
+@synthesize implementation = _implementation;
 
 + (id) sharedTool {
     return s_instance;
@@ -40,10 +40,27 @@ static id s_instance;
 //    return FLAutorelease([[[self class] alloc] initWithToolName:toolName]);
 //}
 
-- (id) initWithToolName:(NSString*) name {
+
+- (NSString*) toolIdentifier {
+    return nil;
+}
+
+- (NSString*) toolVersion {
+    return nil;
+}
+
+- (NSString*) toolName {
+    return nil;
+}
+
+- (id) initWithToolImplementation:(id<FLCommandLineToolImplementation>) imp {
     self = [super init];
     if(self) {
-        self.toolName = name;
+        FLAssertNotNil(imp);
+    
+        _implementation = imp;
+        [FLAppInfo setAppInfo:self.toolIdentifier appName:self.toolName version:self.toolVersion];
+    
         self.output = [FLLogger logger];
         [self.output addLoggerSink:[FLConsoleLogSink consoleLogSink:FLLogOutputSimple]];
     }
@@ -52,13 +69,12 @@ static id s_instance;
 }
 
 - (id) init {
-    return [self initWithToolName:@""];
+    return [self initWithToolImplementation:nil];
 }
 
 #if FL_MRC
 - (void) dealloc {
     [_error release];
-    [_toolName release];
     [_startDirectory release];
     [_toolPath release];
     [super dealloc];

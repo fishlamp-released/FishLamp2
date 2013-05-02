@@ -10,6 +10,12 @@
 
 @implementation FLAppInfo
 
+static NSDictionary* s_infoDictionary = nil;
+
++ (void) setInfoDictionary:(NSDictionary*) dictionary {
+    FLSetObjectWithRetain(s_infoDictionary, dictionary);
+}
+
 + (NSBundle*) bundleForInfo {
     NSBundle* bundle = [NSBundle currentBundle];
     if(!bundle) {
@@ -19,7 +25,7 @@
 }
 
 + (NSDictionary*) infoDictionary {
-    return [[self bundleForInfo] infoDictionary];
+    return s_infoDictionary ? s_infoDictionary : [[self bundleForInfo] infoDictionary];
 }
 
 + (id) objectForKey:(id) key {
@@ -29,7 +35,7 @@
 + (NSString*) appVersion {
     static NSString* s_version = nil; 
 	if(!s_version) {
-        s_version = [self objectForKey:@"CFBundleVersion"];
+        s_version = [self objectForKey:FLAppBundleInfoVersionKey];
         FLAssertNotNil(s_version);
 	}
 
@@ -39,7 +45,7 @@
 + (NSString*) appMarketingVersion {
     static NSString* s_version = nil; 
 	if(!s_version) {
-        s_version = [self objectForKey:@"CFBundleShortVersionString"];
+        s_version = [self objectForKey:FLAppBundleInfoShortVersionKey];
         FLAssertNotNil(s_version);
 	}
 
@@ -49,7 +55,7 @@
 + (NSString*) appName {
 	static NSString* s_appName = nil;
 	if(!s_appName) {
-		s_appName = [self objectForKey:@"CFBundleName"];
+		s_appName = [self objectForKey:FLAppBundleInfoAppNameKey];
         FLAssertNotNil(s_appName);
 	}
 
@@ -59,13 +65,26 @@
 + (NSString*) bundleIdentifier {
 	static NSString* s_identifier = nil;
 	if(!s_identifier) {
-		s_identifier = [self objectForKey:@"CFBundleIdentifier"];
+		s_identifier = [self objectForKey:FLAppBundleInfoIdentifierKey];
         FLAssertNotNil(s_identifier);
 	}
 
 	return s_identifier; 
 }
 
++ (void) setAppInfo:(NSString*) bundleIdentifier
+            appName:(NSString*) appName
+            version:(NSString*) version {
+            
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+        bundleIdentifier, FLAppBundleInfoIdentifierKey,
+        appName, FLAppBundleInfoAppNameKey,
+        version, FLAppBundleInfoShortVersionKey,
+        version, FLAppBundleInfoVersionKey,
+        nil];
+        
+    [self setInfoDictionary:dict];
+}            
 
 
 @end

@@ -12,24 +12,36 @@
 #import "FLToolCommand.h"
 #import "FLLogger.h"
 
+@protocol FLCommandLineToolImplementation <NSObject>
+- (NSString*) toolName;
+- (NSString*) toolIdentifier;
+- (NSString*) toolVersion;
+
+@optional
+- (void) willRunTool:(FLCommandLineTask*) task;
+- (void) runTool:(FLCommandLineTask*) task;
+- (void) didRunTool;
+@end
+
 @interface FLCommandLineTool : FLCommandLineProcessor {
 @private
     NSURL* _toolPath;
     NSString* _startDirectory;
-    NSString* _toolName;
     BOOL _running;
     NSError* _error;
+    
+    __unsafe_unretained id<FLCommandLineToolImplementation> _implementation;
 }
 
 + (id) sharedTool;
+
+@property (readonly, assign, nonatomic) id<FLCommandLineToolImplementation> implementation;
 
 @property (readonly, strong, nonatomic) NSURL* toolPath;
 @property (readonly, strong, nonatomic) NSString* startDirectory;
 @property (readwrite, strong, nonatomic) NSString* currentDirectory;
 
-@property (readonly, strong, nonatomic) NSString* toolName;
-
-- (id) initWithToolName:(NSString*) name;
+- (id) initWithToolImplementation:(id<FLCommandLineToolImplementation>) implementation;
 
 // call this from your main.
 - (int) runFromMain:(int) argc argv:(const char*[]) argv;
@@ -41,11 +53,6 @@
 
 - (void) startRunLoop;
 - (void) stopRunLoop;
-
-// optional override points
-- (void) willRunTool:(FLCommandLineTask*) task;
-- (void) runTool:(FLCommandLineTask*) task;
-- (void) didRunTool;
 
 @end
 
