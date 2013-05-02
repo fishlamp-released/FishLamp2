@@ -24,12 +24,18 @@
 - (id) init {
     self = [super init];
     if(self) {
+        [self openDocument];
     }
     return self;
 }
 
 + (FLXmlDocumentBuilder*) xmlStringBuilder {
 	return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (void) openDocument {
+    _dataEncoder = [[FLDataEncoder alloc] init];
+    [self appendDefaultXmlHeader];
 }
 
 #if FL_MRC

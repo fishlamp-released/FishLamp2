@@ -20,28 +20,6 @@
 @synthesize body = _bodyElement;
 @synthesize envelope = _envelopeElement;
 
-- (id) init {
-    self = [super init];
-	if(self) {
-        self.dataEncoder = [FLSoapDataEncoder instance];
-    
-        [self appendDefaultXmlHeader];
-
-        _envelopeElement = [[FLXmlElement alloc] initWithXmlElementTag:@"soap:Envelope"];
-        [self openElement:_envelopeElement];
-
-        [_envelopeElement setAttribute:@"http://www.w3.org/2001/XMLSchema-instance"  forKey:@"xmlns:xsi"];
-        [_envelopeElement setAttribute:@"http://www.w3.org/2001/XMLSchema" forKey:@"xmlns:xsd"];
-		[_envelopeElement setAttribute:@"http://schemas.xmlsoap.org/soap/envelope/"forKey:@"xmlns:soap" ];
-        
-        _bodyElement = [[FLXmlElement alloc] initWithXmlElementTag:@"soap:Body"];
-        [self openElement:_bodyElement];
-
-
-	}
-	return self;
-}
-
 + (id) soapStringBuilder {
     return FLAutorelease([[[self class] alloc] init]);
 }
@@ -53,6 +31,22 @@
     [super dealloc];
 }
 #endif
+
+- (void) openDocument {
+    self.dataEncoder = [FLSoapDataEncoder instance];
+    
+    [self appendDefaultXmlHeader];
+
+    _envelopeElement = [[FLXmlElement alloc] initWithXmlElementTag:@"soap:Envelope"];
+    [self openElement:_envelopeElement];
+
+    [_envelopeElement setAttribute:@"http://www.w3.org/2001/XMLSchema-instance"  forKey:@"xmlns:xsi"];
+    [_envelopeElement setAttribute:@"http://www.w3.org/2001/XMLSchema" forKey:@"xmlns:xsd"];
+    [_envelopeElement setAttribute:@"http://schemas.xmlsoap.org/soap/envelope/"forKey:@"xmlns:soap" ];
+    
+    _bodyElement = [[FLXmlElement alloc] initWithXmlElementTag:@"soap:Body"];
+    [self openElement:_bodyElement];
+}
 
 -(void) appendXmlVersionHeader:(NSString*) version 
                andEncodingHeader:(NSString*) encoding

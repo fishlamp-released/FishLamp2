@@ -9,14 +9,11 @@
 #import "FLDatabaseTable.h"
 #import "FLObjectDescriber.h"
 
-@protocol FLModelObject <FLDatabaseStorable, FLDescribable, NSCopying, NSCoding>
-@property (readonly, strong) id identifier;
+@protocol FLModelObject <FLDatabaseStorable, NSCopying, NSCoding>
+ - (id) identifier;
 @end
 
-@interface FLAbstractModelObject : NSObject<FLModelObject> 
-@end
-
-@interface FLModelObject : FLAbstractModelObject {
+@interface FLModelObject : NSObject<FLModelObject> {
 @private
     id _identifier;
 }
@@ -26,7 +23,6 @@
 @interface NSObject (FLModelObject)
 + (BOOL) isModelObject;
 - (BOOL) isModelObject;
-+ (void) registerObjectDescriber;
 @end
 
 typedef enum {
@@ -36,49 +32,45 @@ typedef enum {
 
 
 // this only works for objects with valid describers.
+extern id FLModelObjectCopy(id object);
+extern void FLModelObjectEncode(id object, NSCoder* aCoder);
+extern void FLModelObjectDecode(id object, NSCoder* aCoder);
+
 extern void FLMergeObjects(id dest, id src, FLMergeMode mergeMode);
 extern void FLMergeObjectArrays(NSMutableArray* dest, NSArray* src, FLMergeMode mergeMode, NSArray* arrayItemTypes);
 
 #define FLSynthesizeObjectDescriber() \
-            + (FLObjectDescriber*) objectDescriber { \
-                static dispatch_once_t pred = 0; \
-                dispatch_once(&pred, ^{ \
-                    [[self class] registerObjectDescriber]; \
-                }); \
-                return [FLObjectDescriber objectDescriber:[self class]]; \
-            } \
             + (BOOL) isModelObject { \
                 return YES; \
             } \
             - (BOOL) isModelObject { \
                 return YES; \
             }
-
-            
-#define FLSynthesizeSharedDatabaseTable() \
-            + (FLDatabaseTable*) sharedDatabaseTable { \
-                static FLDatabaseTable* s_table = nil; \
-                static dispatch_once_t pred = 0; \
-                dispatch_once(&pred, ^{ \
-                    s_table = [[FLDatabaseTable alloc] initWithClass:[self class]]; \
-                }); \
-                return s_table; \
+                        
+#define FLSynthesizeCoding() \
+            - (id)initWithCoder:(NSCoder *)aCoder { \
+                FLModelObjectDecode(self, aCoder); \
+                return self; \
+            } \
+            - (void) encodeWithCoder:(NSCoder*) coder { \
+                FLModelObjectEncode(self, coder); \
             }
-            
-//#define FLSynthesizeCoding() \
-//            - (id)initWithCoder:(NSCoder *)aCoder { \
-//                return [self initModelObjectWithCoder:aCoder]; \
-//            } \
-//            - (void) encodeWithCoder:(NSCoder*) coder { \
-//                [self encodeModelObjectWithCoder:coder]; \
-//            }
-//
-//#define FLSynthesizeCopying() \
-//        - (id) copyWithZone:(NSZone*) zone { \
-//            return [self copyModelObjectWithZone:zone]; \
-//        }        
+
+#define FLSynthesizeCopying() \
+            - (id) copyWithZone:(NSZone*) zone { \
+                return FLModelObjectCopy(self); \
+            }        
             
 #define FLSynthesizeModelObjectMethods() \
             FLSynthesizeObjectDescriber() \
-            FLSynthesizeSharedDatabaseTable()
+            FLSynthesizeCopying() \
+            FLSynthesizeCoding()
 
+
+//            + (FLObjectDescriber*) objectDescriber { \
+//                static dispatch_once_t pred = 0; \
+//                dispatch_once(&pred, ^{ \
+//                    [[self class] registerObjectDescriber]; \
+//                }); \
+//                return [FLObjectDescriber objectDescriber:[self class]]; \
+//            } 

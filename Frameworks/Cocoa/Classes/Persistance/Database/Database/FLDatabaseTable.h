@@ -17,7 +17,6 @@
 #import "FLSqlBuilder.h"
 #import "FLDatabaseColumnDecoder.h"
 #import "FLDatabaseStatement.h"
-#import "FLObjectDescriber.h"
 
 @interface FLDatabaseTable : NSObject<NSCopying> {
 @private

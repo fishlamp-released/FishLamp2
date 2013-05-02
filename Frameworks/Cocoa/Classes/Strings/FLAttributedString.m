@@ -17,8 +17,6 @@
 @synthesize underlined = _underlined;
 @synthesize textFont = _textFont;
 
-FLSynthesizeModelObjectMethods();
-
 - (id) init {
     self = [super init];
     if(self) {
@@ -74,8 +72,6 @@ FLSynthesizeModelObjectMethods();
 @synthesize hoveringStyle = _hoveringStyle;
 @synthesize selectedStyle = _selectedStyle;
 @synthesize textFont = _textFont;
-
-FLSynthesizeModelObjectMethods();
 
 + (id) stringDisplayStyle {
     return FLAutorelease([[[self class] alloc] init]);

@@ -11,6 +11,7 @@
 #import "FLObjcRuntime.h"
 #import "FLPropertyAttributes.h"
 #import "FLModelObject.h"
+#import "FLDatabase.h"
 
 //#import "FLTrace.h"
 
@@ -28,57 +29,57 @@
 - (id) initWithClass:(Class) aClass;
 @end
 
-@interface FLThreadSafeRef : NSProxy {
-@private
-    id _object;
-}
-@property (readwrite, strong, nonatomic) id object;
-@end
-
-@implementation FLThreadSafeRef 
-
-@synthesize object = _object;
-
-
-- (id) initWithObject:(id) object {	
-	self.object = object;
-	return self;
-}
-
-+ (id) threadSafeRef:(id) object {
-    return FLAutorelease([[[self class] alloc] initWithObject:object]);
-}
-
-- (void)forwardInvocation:(NSInvocation *)invocation {
-    id myObject = self.object;
-    if (myObject ) {
-        [invocation setTarget:myObject];
-        @synchronized(myObject) {
-            [invocation invoke];
-        }
-    }
-}
-
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel  {
-    return [self.object methodSignatureForSelector:sel];
-}
-
-#if FL_MRC
-- (void) dealloc {
-	[_object release];
-	[super dealloc];
-}
-#endif
-
-- (BOOL)respondsToSelector:(SEL)aSelector {
-    if([self respondsToSelector:aSelector]) {
-        return YES;
-    }
-
-    return [self.object respondsToSelector:aSelector];
-}
-
-@end
+//@interface FLThreadSafeRef : NSProxy {
+//@private
+//    id _object;
+//}
+//@property (readwrite, strong, nonatomic) id object;
+//@end
+//
+//@implementation FLThreadSafeRef 
+//
+//@synthesize object = _object;
+//
+//
+//- (id) initWithObject:(id) object {	
+//	self.object = object;
+//	return self;
+//}
+//
+//+ (id) threadSafeRef:(id) object {
+//    return FLAutorelease([[[self class] alloc] initWithObject:object]);
+//}
+//
+//- (void)forwardInvocation:(NSInvocation *)invocation {
+//    id myObject = self.object;
+//    if (myObject ) {
+//        [invocation setTarget:myObject];
+//        @synchronized(myObject) {
+//            [invocation invoke];
+//        }
+//    }
+//}
+//
+//- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel  {
+//    return [self.object methodSignatureForSelector:sel];
+//}
+//
+//#if FL_MRC
+//- (void) dealloc {
+//	[_object release];
+//	[super dealloc];
+//}
+//#endif
+//
+//- (BOOL)respondsToSelector:(SEL)aSelector {
+//    if([self respondsToSelector:aSelector]) {
+//        return YES;
+//    }
+//
+//    return [self.object respondsToSelector:aSelector];
+//}
+//
+//@end
 
 @implementation FLObjectDescriber
 
@@ -102,6 +103,7 @@ static NSMutableDictionary* s_registry = nil;
 	self = [self initWithClass:aClass];
 	if(self) {
         _properties = [properties mutableCopy];
+        _databaseTablePredicate = 0;
 	}
 	return self;
 }
@@ -125,12 +127,12 @@ static NSMutableDictionary* s_registry = nil;
         return describer;
     }
 
-    if(!describer && [aClass isModelObject]) {
-        return [aClass objectDescriber];
-    }
-    else {
+//    if(!describer && [aClass isModelObject]) {
+//        return [aClass objectDescriber];
+//    }
+//    else {
         return [self registerClass:aClass];
-    }
+//    }
         
     return nil;
 }
@@ -272,7 +274,8 @@ static NSMutableDictionary* s_registry = nil;
 
     FLObjectDescriber* describer = FLAutorelease([[[self class] alloc] initWithClass:aClass]);;
 
-    if([aClass isModelObject]) {
+    BOOL isModelObject = [aClass isModelObject];
+    if(isModelObject) {
     // do parents first, because we can override them in subclass
         [describer addPropertiesForParentClasses:[aClass superclass]];
 
@@ -283,8 +286,9 @@ static NSMutableDictionary* s_registry = nil;
     @synchronized(self) {
         [s_registry setObject:describer forKey:NSStringFromClass(aClass)];
     }
-    
-    [aClass objectDescriberWasRegistered:describer];
+    if(isModelObject) {    
+        [aClass modelObjectWasRegistered:describer];
+    }
     
     return describer;
 }
@@ -320,12 +324,27 @@ static NSMutableDictionary* s_registry = nil;
     return [[[self class] alloc] initWithClass:_objectClass properties:_properties];
 }
 
+- (FLDatabaseTable*) databaseTable {
+    if([self.objectClass isModelObject]) {
+        dispatch_once(&_databaseTablePredicate, ^{ 
+            _databaseTable = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+        }); 
+    }
+    return _databaseTable;
+}
+
 
 @end
 @implementation FLAbstractObjectType
 @end
 
 @implementation NSObject (FLObjectDescriber)
-+ (void) objectDescriberWasRegistered:(FLObjectDescriber*) describer {
++ (void) modelObjectWasRegistered:(FLObjectDescriber*) describer {
+}
++ (FLObjectDescriber*) objectDescriber { 
+    return [FLObjectDescriber objectDescriber:[self class]]; 
+}
+- (FLObjectDescriber*) objectDescriber {
+    return [[self class] objectDescriber];
 }
 @end

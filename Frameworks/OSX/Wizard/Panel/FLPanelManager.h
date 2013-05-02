@@ -11,6 +11,7 @@
 #import "FLPanelViewController.h"
 #import "FLViewTransition.h"
 #import "FLOrderedCollection.h"
+#import "FLPanelManagerState.h"
 
 #import "NSViewController+FLErrorSheet.h"
 
@@ -33,7 +34,10 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 
     NSMutableArray* _panelViews;
     NSMutableArray* _panelAreas;
+    
+    id _state;
 }
+@property (readwrite, strong, nonatomic) id panelManagerState;
 
 @property (readonly, assign, nonatomic) NSUInteger panelCount;
 @property (readonly, strong, nonatomic) FLPanelViewController* visiblePanel;

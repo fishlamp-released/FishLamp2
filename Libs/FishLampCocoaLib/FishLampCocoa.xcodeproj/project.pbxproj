@@ -1404,15 +1404,15 @@
 		271D38ED16FE0789009CD00F /* FLLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326716FE0776009CD00F /* FLLocalNotification.m */; };
 		271D38EE16FE0789009CD00F /* FLLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326716FE0776009CD00F /* FLLocalNotification.m */; };
 		271D38EF16FE0789009CD00F /* FLLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326716FE0776009CD00F /* FLLocalNotification.m */; };
-		271D38F016FE0789009CD00F /* FLMessageBroadcaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326816FE0776009CD00F /* FLMessageBroadcaster.h */; };
-		271D38F116FE0789009CD00F /* FLMessageBroadcaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326816FE0776009CD00F /* FLMessageBroadcaster.h */; };
-		271D38F216FE0789009CD00F /* FLMessageBroadcaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326816FE0776009CD00F /* FLMessageBroadcaster.h */; };
-		271D38F316FE0789009CD00F /* FLMessageBroadcaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326816FE0776009CD00F /* FLMessageBroadcaster.h */; };
-		271D38F416FE0789009CD00F /* FLMessageBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLMessageBroadcaster.m */; };
-		271D38F516FE0789009CD00F /* FLMessageBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLMessageBroadcaster.m */; };
-		271D38F616FE0789009CD00F /* FLMessageBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLMessageBroadcaster.m */; };
-		271D38F716FE0789009CD00F /* FLMessageBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLMessageBroadcaster.m */; };
-		271D38F816FE0789009CD00F /* FLMessageBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLMessageBroadcaster.m */; };
+		271D38F016FE0789009CD00F /* FLBroadcaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326816FE0776009CD00F /* FLBroadcaster.h */; };
+		271D38F116FE0789009CD00F /* FLBroadcaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326816FE0776009CD00F /* FLBroadcaster.h */; };
+		271D38F216FE0789009CD00F /* FLBroadcaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326816FE0776009CD00F /* FLBroadcaster.h */; };
+		271D38F316FE0789009CD00F /* FLBroadcaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326816FE0776009CD00F /* FLBroadcaster.h */; };
+		271D38F416FE0789009CD00F /* FLBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLBroadcaster.m */; };
+		271D38F516FE0789009CD00F /* FLBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLBroadcaster.m */; };
+		271D38F616FE0789009CD00F /* FLBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLBroadcaster.m */; };
+		271D38F716FE0789009CD00F /* FLBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLBroadcaster.m */; };
+		271D38F816FE0789009CD00F /* FLBroadcaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D326916FE0776009CD00F /* FLBroadcaster.m */; };
 		271D38F916FE0789009CD00F /* FLNotificationSending.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326A16FE0776009CD00F /* FLNotificationSending.h */; };
 		271D38FA16FE0789009CD00F /* FLNotificationSending.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326A16FE0776009CD00F /* FLNotificationSending.h */; };
 		271D38FB16FE0789009CD00F /* FLNotificationSending.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D326A16FE0776009CD00F /* FLNotificationSending.h */; };
@@ -3973,8 +3973,8 @@
 		271D326216FE0775009CD00F /* NSURLResponse+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLResponse+Extras.m"; sourceTree = "<group>"; };
 		271D326616FE0776009CD00F /* FLLocalNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLocalNotification.h; sourceTree = "<group>"; };
 		271D326716FE0776009CD00F /* FLLocalNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLocalNotification.m; sourceTree = "<group>"; };
-		271D326816FE0776009CD00F /* FLMessageBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMessageBroadcaster.h; sourceTree = "<group>"; };
-		271D326916FE0776009CD00F /* FLMessageBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMessageBroadcaster.m; sourceTree = "<group>"; };
+		271D326816FE0776009CD00F /* FLBroadcaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBroadcaster.h; sourceTree = "<group>"; };
+		271D326916FE0776009CD00F /* FLBroadcaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBroadcaster.m; sourceTree = "<group>"; };
 		271D326A16FE0776009CD00F /* FLNotificationSending.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNotificationSending.h; sourceTree = "<group>"; };
 		271D326B16FE0776009CD00F /* FLNotificationSending.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNotificationSending.m; sourceTree = "<group>"; };
 		271D326C16FE0776009CD00F /* FLMutableNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMutableNotification.h; sourceTree = "<group>"; };
@@ -5351,8 +5351,8 @@
 			children = (
 				271D326616FE0776009CD00F /* FLLocalNotification.h */,
 				271D326716FE0776009CD00F /* FLLocalNotification.m */,
-				271D326816FE0776009CD00F /* FLMessageBroadcaster.h */,
-				271D326916FE0776009CD00F /* FLMessageBroadcaster.m */,
+				271D326816FE0776009CD00F /* FLBroadcaster.h */,
+				271D326916FE0776009CD00F /* FLBroadcaster.m */,
 				271D326A16FE0776009CD00F /* FLNotificationSending.h */,
 				271D326B16FE0776009CD00F /* FLNotificationSending.m */,
 				271D326C16FE0776009CD00F /* FLMutableNotification.h */,
@@ -6559,7 +6559,7 @@
 				271D38D516FE0789009CD00F /* NSURLErrorDomainGenericDescriber.h in Headers */,
 				271D38DE16FE0789009CD00F /* NSURLResponse+Extras.h in Headers */,
 				271D38E716FE0789009CD00F /* FLLocalNotification.h in Headers */,
-				271D38F016FE0789009CD00F /* FLMessageBroadcaster.h in Headers */,
+				271D38F016FE0789009CD00F /* FLBroadcaster.h in Headers */,
 				271D38F916FE0789009CD00F /* FLNotificationSending.h in Headers */,
 				271D390216FE078A009CD00F /* FLMutableNotification.h in Headers */,
 				271D390B16FE078A009CD00F /* FLNotificationListener.h in Headers */,
@@ -6943,7 +6943,7 @@
 				271D38D716FE0789009CD00F /* NSURLErrorDomainGenericDescriber.h in Headers */,
 				271D38E016FE0789009CD00F /* NSURLResponse+Extras.h in Headers */,
 				271D38E916FE0789009CD00F /* FLLocalNotification.h in Headers */,
-				271D38F216FE0789009CD00F /* FLMessageBroadcaster.h in Headers */,
+				271D38F216FE0789009CD00F /* FLBroadcaster.h in Headers */,
 				271D38FB16FE0789009CD00F /* FLNotificationSending.h in Headers */,
 				271D390416FE078A009CD00F /* FLMutableNotification.h in Headers */,
 				271D390D16FE078A009CD00F /* FLNotificationListener.h in Headers */,
@@ -7327,7 +7327,7 @@
 				271D38D616FE0789009CD00F /* NSURLErrorDomainGenericDescriber.h in Headers */,
 				271D38DF16FE0789009CD00F /* NSURLResponse+Extras.h in Headers */,
 				271D38E816FE0789009CD00F /* FLLocalNotification.h in Headers */,
-				271D38F116FE0789009CD00F /* FLMessageBroadcaster.h in Headers */,
+				271D38F116FE0789009CD00F /* FLBroadcaster.h in Headers */,
 				271D38FA16FE0789009CD00F /* FLNotificationSending.h in Headers */,
 				271D390316FE078A009CD00F /* FLMutableNotification.h in Headers */,
 				271D390C16FE078A009CD00F /* FLNotificationListener.h in Headers */,
@@ -7861,7 +7861,7 @@
 				271D38D816FE0789009CD00F /* NSURLErrorDomainGenericDescriber.h in Headers */,
 				271D38E116FE0789009CD00F /* NSURLResponse+Extras.h in Headers */,
 				271D38EA16FE0789009CD00F /* FLLocalNotification.h in Headers */,
-				271D38F316FE0789009CD00F /* FLMessageBroadcaster.h in Headers */,
+				271D38F316FE0789009CD00F /* FLBroadcaster.h in Headers */,
 				271D38FC16FE0789009CD00F /* FLNotificationSending.h in Headers */,
 				271D390516FE078A009CD00F /* FLMutableNotification.h in Headers */,
 				271D390E16FE078A009CD00F /* FLNotificationListener.h in Headers */,
@@ -8509,7 +8509,7 @@
 				271D38DA16FE0789009CD00F /* NSURLErrorDomainGenericDescriber.m in Sources */,
 				271D38E316FE0789009CD00F /* NSURLResponse+Extras.m in Sources */,
 				271D38EC16FE0789009CD00F /* FLLocalNotification.m in Sources */,
-				271D38F516FE0789009CD00F /* FLMessageBroadcaster.m in Sources */,
+				271D38F516FE0789009CD00F /* FLBroadcaster.m in Sources */,
 				271D38FE16FE0789009CD00F /* FLNotificationSending.m in Sources */,
 				271D390716FE078A009CD00F /* FLMutableNotification.m in Sources */,
 				271D391016FE078A009CD00F /* FLNotificationListener.m in Sources */,
@@ -8858,7 +8858,7 @@
 				271D38DC16FE0789009CD00F /* NSURLErrorDomainGenericDescriber.m in Sources */,
 				271D38E516FE0789009CD00F /* NSURLResponse+Extras.m in Sources */,
 				271D38EE16FE0789009CD00F /* FLLocalNotification.m in Sources */,
-				271D38F716FE0789009CD00F /* FLMessageBroadcaster.m in Sources */,
+				271D38F716FE0789009CD00F /* FLBroadcaster.m in Sources */,
 				271D390016FE0789009CD00F /* FLNotificationSending.m in Sources */,
 				271D390916FE078A009CD00F /* FLMutableNotification.m in Sources */,
 				271D391216FE078A009CD00F /* FLNotificationListener.m in Sources */,
@@ -9208,7 +9208,7 @@
 				271D38D916FE0789009CD00F /* NSURLErrorDomainGenericDescriber.m in Sources */,
 				271D38E216FE0789009CD00F /* NSURLResponse+Extras.m in Sources */,
 				271D38EB16FE0789009CD00F /* FLLocalNotification.m in Sources */,
-				271D38F416FE0789009CD00F /* FLMessageBroadcaster.m in Sources */,
+				271D38F416FE0789009CD00F /* FLBroadcaster.m in Sources */,
 				271D38FD16FE0789009CD00F /* FLNotificationSending.m in Sources */,
 				271D390616FE078A009CD00F /* FLMutableNotification.m in Sources */,
 				271D390F16FE078A009CD00F /* FLNotificationListener.m in Sources */,
@@ -9548,7 +9548,7 @@
 				271D38DB16FE0789009CD00F /* NSURLErrorDomainGenericDescriber.m in Sources */,
 				271D38E416FE0789009CD00F /* NSURLResponse+Extras.m in Sources */,
 				271D38ED16FE0789009CD00F /* FLLocalNotification.m in Sources */,
-				271D38F616FE0789009CD00F /* FLMessageBroadcaster.m in Sources */,
+				271D38F616FE0789009CD00F /* FLBroadcaster.m in Sources */,
 				271D38FF16FE0789009CD00F /* FLNotificationSending.m in Sources */,
 				271D390816FE078A009CD00F /* FLMutableNotification.m in Sources */,
 				271D391116FE078A009CD00F /* FLNotificationListener.m in Sources */,
@@ -10055,7 +10055,7 @@
 				271D38DD16FE0789009CD00F /* NSURLErrorDomainGenericDescriber.m in Sources */,
 				271D38E616FE0789009CD00F /* NSURLResponse+Extras.m in Sources */,
 				271D38EF16FE0789009CD00F /* FLLocalNotification.m in Sources */,
-				271D38F816FE0789009CD00F /* FLMessageBroadcaster.m in Sources */,
+				271D38F816FE0789009CD00F /* FLBroadcaster.m in Sources */,
 				271D390116FE078A009CD00F /* FLNotificationSending.m in Sources */,
 				271D390A16FE078A009CD00F /* FLMutableNotification.m in Sources */,
 				271D391316FE078A009CD00F /* FLNotificationListener.m in Sources */,
