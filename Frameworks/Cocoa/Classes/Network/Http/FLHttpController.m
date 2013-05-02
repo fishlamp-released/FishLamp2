@@ -28,18 +28,14 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 @synthesize authenticatedServices = _authenticatedServices;
 @synthesize streamSecurity = _streamSecurity;
 
-- (id) initWithAuthenticationDomain:(NSString*) authenticationDomain {
+- (id) init {
     self = [super init]; // [super initWithRootNameForDelegateMethods:@"httpController"];
     if(self) {
         self.authenticatedServices = [FLService service];
                          
         self.userService = [self createUserService];
-        if(authenticationDomain) {
-            self.userService.authenticationDomain = authenticationDomain;
-        }
-        
+    
         FLAssertNotNil(self.userService);
-        FLAssertStringIsNotEmptyWithComment(self.userService.authenticationDomain, @"needs a domain, like http:www.fishlamp.com");
         self.userService.delegate = self;
 
         self.httpRequestAuthenticator = [self createHttpRequestAuthenticationService];
@@ -54,11 +50,6 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
     }
     return self;
 }
-
-- (id) init {	
-    return [self initWithAuthenticationDomain:nil];
-}
-
 
 - (FLUserService*) createUserService {
     return nil;

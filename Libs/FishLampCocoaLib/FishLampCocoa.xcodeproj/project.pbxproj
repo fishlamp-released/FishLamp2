@@ -687,7 +687,6 @@
 		271D360416FE077F009CD00F /* FLKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31A216FE0775009CD00F /* FLKeychain.h */; };
 		271D360516FE077F009CD00F /* FLKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31A216FE0775009CD00F /* FLKeychain.h */; };
 		271D360616FE077F009CD00F /* FLKeychain.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31A216FE0775009CD00F /* FLKeychain.h */; };
-		271D360716FE077F009CD00F /* FLKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31A316FE0775009CD00F /* FLKeychain.m */; };
 		271D360816FE077F009CD00F /* FLKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31A316FE0775009CD00F /* FLKeychain.m */; };
 		271D360916FE077F009CD00F /* FLKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31A316FE0775009CD00F /* FLKeychain.m */; };
 		271D360A16FE077F009CD00F /* FLKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31A316FE0775009CD00F /* FLKeychain.m */; };
@@ -2352,6 +2351,16 @@
 		272662FD1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */; };
 		272662FE1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */; };
 		272662FF1709050900109AC2 /* FLHiddenFolderFileSink.m in Sources */ = {isa = PBXBuildFile; fileRef = 272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */; };
+		272EE75C1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE75A1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h */; };
+		272EE75D1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE75A1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h */; };
+		272EE75E1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE75A1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h */; };
+		272EE75F1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE75A1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h */; };
+		272EE7601731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE75B1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m */; };
+		272EE7611731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE75B1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m */; };
+		272EE7621731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE75B1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m */; };
+		272EE7631731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE75B1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m */; };
+		272EE7641731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE75B1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m */; };
+		272EE7701731E7F10025CFD6 /* FLKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31A316FE0775009CD00F /* FLKeychain.m */; };
 		273FF973170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FF971170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h */; };
 		273FF974170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FF971170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h */; };
 		273FF975170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 273FF971170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h */; };
@@ -4178,6 +4187,10 @@
 		272662F51709050800109AC2 /* FLHiddenFolderFileSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHiddenFolderFileSink.h; sourceTree = "<group>"; };
 		272662F61709050800109AC2 /* FLHiddenFolderFileSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHiddenFolderFileSink.m; sourceTree = "<group>"; };
 		272D807816C84313006052E5 /* AssetQueueObjects.flproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AssetQueueObjects.flproj; sourceTree = "<group>"; };
+		272EE7581731CE4C0025CFD6 /* FLKeychainOld.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLKeychainOld.m; sourceTree = "<group>"; };
+		272EE7591731CE5D0025CFD6 /* FLKeychainOld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLKeychainOld.h; sourceTree = "<group>"; };
+		272EE75A1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+FLCurrentBundle.h"; sourceTree = "<group>"; };
+		272EE75B1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+FLCurrentBundle.m"; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoa-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2739006F16D45D1F00FC6453 /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../FishLampCoreLib/FishLampCore.xcodeproj; sourceTree = "<group>"; };
 		273FF971170A06FE0097E0D5 /* FLDatabaseObjectStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDatabaseObjectStorageService.h; sourceTree = "<group>"; };
@@ -4922,6 +4935,8 @@
 			children = (
 				271D31A216FE0775009CD00F /* FLKeychain.h */,
 				271D31A316FE0775009CD00F /* FLKeychain.m */,
+				272EE7591731CE5D0025CFD6 /* FLKeychainOld.h */,
+				272EE7581731CE4C0025CFD6 /* FLKeychainOld.m */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -5655,6 +5670,8 @@
 		271D332C16FE0776009CD00F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				272EE75A1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h */,
+				272EE75B1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m */,
 				271D332D16FE0776009CD00F /* FLAnswerable.h */,
 				271D332E16FE0776009CD00F /* FLAnswerable.m */,
 				271D332F16FE0776009CD00F /* FLAppInfo.h */,
@@ -6699,6 +6716,7 @@
 				27AE41B3172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */,
 				278B1D28172C4ADA00E0A3E5 /* FLPromise.h in Headers */,
 				27C0FCC417305B3D0000F00C /* FLAttributedStringController.h in Headers */,
+				272EE75C1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7082,6 +7100,7 @@
 				27AE41B5172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */,
 				278B1D2A172C4ADA00E0A3E5 /* FLPromise.h in Headers */,
 				27C0FCC617305B3D0000F00C /* FLAttributedStringController.h in Headers */,
+				272EE75E1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7465,6 +7484,7 @@
 				27AE41B4172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */,
 				278B1D29172C4ADA00E0A3E5 /* FLPromise.h in Headers */,
 				27C0FCC517305B3D0000F00C /* FLAttributedStringController.h in Headers */,
+				272EE75D1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7998,6 +8018,7 @@
 				27AE41B6172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */,
 				278B1D2B172C4ADA00E0A3E5 /* FLPromise.h in Headers */,
 				27C0FCC717305B3D0000F00C /* FLAttributedStringController.h in Headers */,
+				272EE75F1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8636,6 +8657,7 @@
 				27AE41B8172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */,
 				278B1D2D172C4ADA00E0A3E5 /* FLPromise.m in Sources */,
 				27C0FCC917305B3D0000F00C /* FLAttributedStringController.m in Sources */,
+				272EE7611731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8984,6 +9006,7 @@
 				27AE41BA172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */,
 				278B1D2F172C4ADA00E0A3E5 /* FLPromise.m in Sources */,
 				27C0FCCB17305B3D0000F00C /* FLAttributedStringController.m in Sources */,
+				272EE7631731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9108,7 +9131,6 @@
 				271D35E816FE077E009CD00F /* FLSizeGeometry.m in Sources */,
 				271D35F516FE077E009CD00F /* SDKImage+FLColorize.m in Sources */,
 				271D35FE16FE077E009CD00F /* SDKImage+FLUtils.m in Sources */,
-				271D360716FE077F009CD00F /* FLKeychain.m in Sources */,
 				271D361916FE077F009CD00F /* FLActivityLog.m in Sources */,
 				271D362216FE077F009CD00F /* FLLogFile.m in Sources */,
 				271D362B16FE077F009CD00F /* FLLogFileManager.m in Sources */,
@@ -9324,6 +9346,8 @@
 				27AE41B7172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */,
 				278B1D2C172C4ADA00E0A3E5 /* FLPromise.m in Sources */,
 				27C0FCC817305B3D0000F00C /* FLAttributedStringController.m in Sources */,
+				272EE7601731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */,
+				272EE7701731E7F10025CFD6 /* FLKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9672,6 +9696,7 @@
 				27AE41B9172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */,
 				278B1D2E172C4ADA00E0A3E5 /* FLPromise.m in Sources */,
 				27C0FCCA17305B3D0000F00C /* FLAttributedStringController.m in Sources */,
+				272EE7621731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10178,6 +10203,7 @@
 				27AE41BB172B68AF007FDDCE /* FLHttpRequestByteCount.m in Sources */,
 				278B1D30172C4ADA00E0A3E5 /* FLPromise.m in Sources */,
 				27C0FCCC17305B3D0000F00C /* FLAttributedStringController.m in Sources */,
+				272EE7641731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

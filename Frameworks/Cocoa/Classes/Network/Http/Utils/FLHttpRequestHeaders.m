@@ -160,9 +160,6 @@ NSString* FLMachineModel()
 }
 
 + (void) initialize {
-    if(![self defaultUserAgent]) {
-        [self setDefaultUserAgent:[FLAppInfo userAgent]];
-    }
     
     if(![self defaultUserAgent]) {
         NSString* defaultUserAgent = [NSString stringWithFormat:@"%@/%@ (%@; %@; %@;)", 
