@@ -33,6 +33,10 @@
     return self;
 }
 
+-(BOOL)isDocumentEdited {
+    return NO;
+}
+
  - (void)document:(NSDocument *)document didSave:(BOOL)didSaveSuccessfully contextInfo:(void *)contextInfo {
     
     FLLog(@"%@ did save document");
@@ -40,8 +44,6 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     FLLog(@"%@ keyPath changed", keyPath);
-    
-    [self updateChangeCount:NSChangeDone];
     
     if(self.fileURL) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -89,6 +91,8 @@
 //    }
 //    return nil;
 }
+
+
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {

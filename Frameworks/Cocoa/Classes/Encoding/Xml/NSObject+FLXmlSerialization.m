@@ -47,6 +47,15 @@
        propertyDescriber:(FLPropertyDescriber*) propertyDescriber {
     
 	if(propertyDescriber && self.count) {
+    
+        
+        for(id obj in self) {
+            FLObjectDescriber* describer = [obj objectDescriber];
+            [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:describer.propertyName propertyDescriber:describer]];
+    
+        }
+        return;
+
 		if(propertyDescriber.containedTypes.count == 1) {
 			FLPropertyDescriber* elementDesc = [propertyDescriber.containedTypes objectAtIndex:0];
 

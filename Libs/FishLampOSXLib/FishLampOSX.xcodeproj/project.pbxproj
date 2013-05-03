@@ -354,7 +354,6 @@
 		272D0380172DC73900302B2E /* FLCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCustomButton.m; sourceTree = "<group>"; };
 		272D0398172DD76000302B2E /* FLLinkTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLinkTextField.h; sourceTree = "<group>"; };
 		272D0399172DD76000302B2E /* FLLinkTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLinkTextField.m; sourceTree = "<group>"; };
-		272D03E2172DF89B00302B2E /* FLProgressPanelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLProgressPanelViewController.xib; sourceTree = "<group>"; };
 		272D03E7172DF98600302B2E /* FLProgressPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressPanel.h; sourceTree = "<group>"; };
 		272D03E8172DF98600302B2E /* FLProgressPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressPanel.m; sourceTree = "<group>"; };
 		272D03F4172DFA3600302B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLProgressPanel.xib; sourceTree = "<group>"; };
@@ -543,7 +542,6 @@
 				2744B456172042930090B70D /* FLLoginPanel.xib */,
 				2744B458172042930090B70D /* FLLoginPanel.h */,
 				2744B459172042930090B70D /* FLLoginPanel.m */,
-				272D03E2172DF89B00302B2E /* FLProgressPanelViewController.xib */,
 				272D03E7172DF98600302B2E /* FLProgressPanel.h */,
 				272D03E8172DF98600302B2E /* FLProgressPanel.m */,
 				272D03F5172DFA3600302B2E /* FLProgressPanel.xib */,
