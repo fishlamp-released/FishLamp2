@@ -32,7 +32,7 @@ typedef enum {
 
 
 // this only works for objects with valid describers.
-extern id FLModelObjectCopy(id object);
+extern id FLModelObjectCopy(id object, Class classOrNil);
 extern void FLModelObjectEncode(id object, NSCoder* aCoder);
 extern void FLModelObjectDecode(id object, NSCoder* aCoder);
 
@@ -58,7 +58,7 @@ extern void FLMergeObjectArrays(NSMutableArray* dest, NSArray* src, FLMergeMode 
 
 #define FLSynthesizeCopying() \
             - (id) copyWithZone:(NSZone*) zone { \
-                return FLModelObjectCopy(self); \
+                return FLModelObjectCopy(self, [self class]); \
             }        
             
 #define FLSynthesizeModelObjectMethods() \

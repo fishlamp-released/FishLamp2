@@ -13,22 +13,22 @@
 #import "NSString+Guid.h"
 #import "FLService.h"
 #import "FLKeychain.h"
-#import "FLAppInfo.h"
-
-NSString* const FLDefaultsKeyWizardLastUserNameKey = @"username";
-NSString* const FLDefaultsKeyWizardSavePasswordKey = @"save-password";
+#import "NSUserDefaults+FLAdditions.h"
+#import "FLUserDefaultsCredentialStorage.h"
 
 @interface FLUserService ()
+@property (readwrite, strong, nonatomic) id<FLCredentials> credentials;
 @end
 
 @implementation FLUserService
-@synthesize userName = _userName;
-@synthesize password = _password;
-@synthesize rememberPassword = _rememberPassword;
+@synthesize credentials = _authCredentials;
+@synthesize credentialStorage = _credentialStorage;
 
 - (id) init {
     self = [super initWithRootNameForDelegateMethods:@"userService"];
     if(self) {
+        self.credentialStorage = [FLUserDefaultsCredentialStorage instance];
+        self.credentials = [self.credentialStorage readCredentialsForLastUser];
     }
     return self;
 }
@@ -39,90 +39,37 @@ NSString* const FLDefaultsKeyWizardSavePasswordKey = @"save-password";
 
 #if FL_MRC
 - (void) dealloc {
-    [_userName release];
-    [_password release];
+    [_credentialStorage release];
+    [_authCredentials release];
     [super dealloc];
 }
 #endif
 
-- (void) savePassword {
-    if(FLStringIsNotEmpty(self.userName)) {
-        if(_rememberPassword && FLStringIsNotEmpty(self.password)) {
-            
-            NSString* existingPassword = [FLKeychain httpPasswordForUserName:self.userName withDomain:[FLAppInfo bundleIdentifier]];
-            
-            if(FLStringsAreNotEqual(existingPassword, self.password)) {
-                [FLKeychain setHttpPassword:self.password forUserName:self.userName withDomain:[FLAppInfo bundleIdentifier]];
-            }
-        }
-        else {
-            [FLKeychain removeHttpPasswordForUserName:self.userName withDomain:[FLAppInfo bundleIdentifier]];
-        }
-    }
+- (FLCredentialEditor*) credentialEditor {
+    return [FLCredentialEditor authCredentialEditor:self.credentials authenticated:self]; 
 }
 
-- (void) loadPassword {
-    if(FLStringIsEmpty(self.password) && FLStringIsNotEmpty(self.userName)) {
-        if(_rememberPassword) {
-            self.password = [FLKeychain httpPasswordForUserName:self.userName withDomain:[FLAppInfo bundleIdentifier]];
-        }
-        else {
-            [FLKeychain removeHttpPasswordForUserName:self.userName withDomain:[FLAppInfo bundleIdentifier]];
-            self.password = @"";
-        }
-    }
+- (void) startEditingCredentials:(FLCredentialEditor*) editor {
+   [self closeService:self];
 }
 
-- (void) loadCredentials {
-
-    if(!_loaded) {
-        self.rememberPassword = NO;
-        self.userName = @"";
-        self.password = @"";
-        
-        FLAssertStringIsNotEmptyWithComment([FLAppInfo bundleIdentifier], @"bundle identifier must be set to use keychain for password");
-        
-        self.userName = [[NSUserDefaults standardUserDefaults] objectForKey:FLUserDefaultPathForKey(FLDefaultsKeyWizardLastUserNameKey)];
-        
-        NSNumber* rememberPW = [[NSUserDefaults standardUserDefaults] objectForKey:FLUserDefaultPathForKey(FLDefaultsKeyWizardSavePasswordKey)];
-        _rememberPassword = rememberPW && [rememberPW boolValue];
-
-        [self loadPassword];
-        
-        _loaded = YES;
-    }
+- (void) credentialsDidChange:(FLCredentialEditor*) editor {
+    self.credentials = editor.credentials;
+    [self.credentialStorage writeCredentials:self.credentials];
 }
 
-- (void) saveCredentials {
-    if(FLStringIsEmpty(self.userName)) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:FLUserDefaultPathForKey(FLDefaultsKeyWizardLastUserNameKey)];
-    }
-    else {
-        [[NSUserDefaults standardUserDefaults] setObject:self.userName 
-                                                  forKey:FLUserDefaultPathForKey(FLDefaultsKeyWizardLastUserNameKey)];
-    }
-
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:_rememberPassword] 
-                                              forKey:FLUserDefaultPathForKey(FLDefaultsKeyWizardSavePasswordKey)];
-
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-    [self savePassword];
-    
-    _loaded = YES;
+- (void) finishEditingCredentials:(FLCredentialEditor*) editor {
+    self.credentials = editor.credentials;
+    [self.credentialStorage writeCredentials:self.credentials];
+    [self openService:self];
 }
 
 - (BOOL) canAuthenticate {
-    return FLStringIsNotEmpty(self.userName) && FLStringIsNotEmpty(self.password);
+    return [self.credentials canAuthenticate];
 }
 
-- (void) clearCredentials {
-    self.userName = nil;
-    self.password = nil;
-}
-
-- (void) closeService {
-    [self clearCredentials];
+- (NSString*) userName {
+    return [self.credentials userName];
 }
 
 @end

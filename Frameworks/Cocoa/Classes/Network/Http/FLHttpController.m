@@ -86,6 +86,7 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 
 - (void) didAddOperation:(FLOperation*) operation {
     [super didAddOperation:operation];
+    [self openUserService];
     
     id object = operation; // for casting
     
@@ -121,10 +122,15 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 
 - (void) logoutUser {
     [self.user setUnathenticated];
-    [self.userService setPassword:nil];
-    [self.userService saveCredentials];
-    [self.userService closeService:self];
-    [self.authenticatedServices closeService:self];
+    
+    FLCredentialEditor* editor = [self.userService credentialEditor];
+    editor.password = nil;
+    [editor finishEditing];
+    
+//    [self.userService setPassword:nil];
+//    [self.userService saveCredentials];
+//    [self.userService closeService:self];
+//    [self.authenticatedServices closeService:self];
     [self.delegate httpController:self didLogoutUser:self.user];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:FLHttpControllerDidLogoutUserNotification object:self];

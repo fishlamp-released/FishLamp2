@@ -35,8 +35,10 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
     NSMutableArray* _panelViews;
     NSMutableArray* _panelAreas;
     
-    id _state;
+    id _panelManagerState;
+    id _identifier;
 }
+@property (readwrite, strong, nonatomic) id identifier;
 @property (readwrite, strong, nonatomic) id panelManagerState;
 
 @property (readonly, assign, nonatomic) NSUInteger panelCount;
@@ -106,6 +108,8 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
     overViewController:(NSViewController*) toHide
         withTransition:(FLViewTransition*) transition 
             completion:(dispatch_block_t) completion;
+
+
 
 @end
 

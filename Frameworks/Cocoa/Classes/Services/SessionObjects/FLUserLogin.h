@@ -9,6 +9,7 @@
 // [/Generated]
 
 #import "__FLUserLogin.h"
+#import "FLCredentials.h"
 
 @interface FLUserLogin (ObjC)
 
@@ -19,5 +20,7 @@
 + (id) userLogin:(NSString*) userName password:(NSString*) password;
 
 - (void) setPropertiesWithUserLogin:(FLUserLogin*) login;
+
++ (id) userLoginWithCredentials:(id<FLCredentials>) credentials;
 
 @end

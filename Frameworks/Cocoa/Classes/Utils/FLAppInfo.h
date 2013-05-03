@@ -23,7 +23,3 @@
 
 @end
 
-NS_INLINE
-NSString* FLUserDefaultPathForKey(NSString* key) {
-    return [[FLAppInfo bundleIdentifier] stringByAppendingFormat:@".%@", key];
-}

@@ -38,4 +38,8 @@
     self.userValue = login.userValue;
 }
 
++ (id) userLoginWithCredentials:(id<FLCredentials>) credentials {
+    return [self userLogin:credentials.userName password:credentials.password];
+}
+
 @end

@@ -21,29 +21,29 @@
     return user;
 }
 
-- (void) setCredentials:(FLLoginPanelCredentials*) user {
-    [self.userService setUserName:user.userName];
-    [self.userService setPassword:user.password];
-    [self.userService setRememberPassword:user.rememberPassword];
-}
+//- (void) setCredentials:(FLLoginPanelCredentials*) user {
+//    [self.userService setUserName:user.userName];
+//    [self.userService setPassword:user.password];
+//    [self.userService setRememberPassword:user.rememberPassword];
+//}
 
-- (void) saveCredentials:(FLLoginPanelCredentials*) user {
-    [self setCredentials:user];
-    [self.userService saveCredentials];
-}
+//- (void) saveCredentials:(FLLoginPanelCredentials*) user {
+//    [self setCredentials:user];
+//    [self.userService saveCredentials];
+//}
 
-- (void) loginPanel:(FLLoginPanel*) loginPanel 
-didChangeCredentials:(FLLoginPanelCredentials*) user {
-    
-    if(self.userService.isServiceOpen) {
-        [self.userService closeService:self];
-    }
-    
-    [self setCredentials:user];
-}
+//- (void) loginPanel:(FLLoginPanel*) loginPanel 
+//didChangeCredentials:(FLLoginPanelCredentials*) user {
+//    
+//    if(self.userService.isServiceOpen) {
+//        [self.userService closeService:self];
+//    }
+//    
+//    [self setCredentials:user];
+//}
 
 - (void) loginPanel:(FLLoginPanel*) panel 
-beginAuthenticatingWithCredentials:(FLLoginPanelCredentials*) credentials
+beginAuthenticatingWithCredentials:(FLCredentialEditor*) editor
          completion:(fl_result_block_t) completion {
          
     [self openUserService];
@@ -55,14 +55,14 @@ beginAuthenticatingWithCredentials:(FLLoginPanelCredentials*) credentials
     [self requestCancel];
 }
 
-- (void) loginPanel:(FLLoginPanel*) loginPanel 
-   saveCredentials:(FLLoginPanelCredentials*) credentials {
-
-    [self saveCredentials:credentials];
-}
+//- (void) loginPanel:(FLLoginPanel*) loginPanel 
+//   saveCredentials:(FLLoginPanelCredentials*) credentials {
+//
+//    [self saveCredentials:credentials];
+//}
 
 - (BOOL) loginPanel:(FLLoginPanel*) panel 
-credentialsAreAuthenticated:(FLLoginPanelCredentials*) credentials {
+credentialsAreAuthenticated:(FLCredentialEditor*) editor {
 
     return  FLStringsAreEqual(credentials.userName, [self.userService userName]) &&
             (FLStringIsNotEmpty([self.userService password]) && FLStringsAreEqual(credentials.password, [self.userService password])) &&

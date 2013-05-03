@@ -40,12 +40,13 @@ FLSynthesizeModelObjectMethods();
 
 @end
 
+id FLModelObjectCopy(id object, Class classOrNil) {
+    Class theClass = classOrNil ? classOrNil : [object class];
 
-id FLModelObjectCopy(id object) {
-    FLObjectDescriber* typeDesc = [[object class] objectDescriber];
+    FLObjectDescriber* typeDesc = [theClass objectDescriber];
     FLAssertNotNil(typeDesc);
     
-    id copy = [[[object class] alloc] init];
+    id copy = [[theClass alloc] init];
     for(FLPropertyDescriber* type in [[typeDesc properties] objectEnumerator]) {
         [copy setValue:FLCopyOrRetainObject([object valueForKey:type.propertyName]) forKey:type.propertyName];
     }

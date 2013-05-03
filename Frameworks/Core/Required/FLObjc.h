@@ -70,10 +70,10 @@ id _FLReleaseWithNil(id __strong * obj) {
             _FLSetObjectWithMutableCopy((id*) &a, (id) b)
 
 #define FLCopyWithAutorelease(__OBJECT__) \
-            FLAutorelease([__OBJECT__ copy])
+            FLAutorelease([((id)__OBJECT__) copy])
 
 #define FLMutableCopyWithAutorelease(__OBJECT__) \
-            FLAutorelease([__OBJECT__ mutableCopy])
+            FLAutorelease([((id)__OBJECT__) mutableCopy])
 
 #define FLRetainWithAutorelease(__OBJECT__) \
             FLAutorelease(FLRetain(__OBJECT__))

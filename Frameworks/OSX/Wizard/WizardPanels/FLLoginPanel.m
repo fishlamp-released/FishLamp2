@@ -14,31 +14,7 @@
 #import "NSViewController+FLErrorSheet.h"
 #import "NSBundle+FLCurrentBundle.h"
 
-@implementation FLLoginPanelCredentials 
-@synthesize userName = _userName;
-@synthesize password = _password;
-@synthesize rememberPassword = _rememberPassword;
 
-+ (id) loginPanelUser {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-#if FL_MRC
-- (void) dealloc {
-	[_userName release];
-	[_password release];
-    [super dealloc];
-}
-#endif
-
-- (id) copyWithZone:(NSZone *)zone {
-    FLLoginPanelCredentials* user = [[FLLoginPanelCredentials alloc] init];
-    user.userName = FLCopyWithAutorelease(self.userName);
-    user.password = FLCopyWithAutorelease(self.password);
-    user.rememberPassword = self.rememberPassword;
-    return user;
-}
-@end
 
 @interface FLLoginPanel ()
 - (void) applicationWillTerminate:(id)sender;
@@ -46,7 +22,7 @@
 - (IBAction) resetLogin:(id) sender;
 - (IBAction) startLogin:(id) sender;
 - (IBAction) passwordCheckboxToggled:(id) sender;
-@property (readonly, strong, nonatomic) FLLoginPanelCredentials* user;
+@property (readonly, strong, nonatomic) FLFLAssertNotNil(_authCredentials)Editor* user;
 @end
 
 @implementation FLLoginPanel
@@ -65,7 +41,7 @@
     self.prompt =  NSLocalizedString(@"Login to your account", nil);
 
     if(!_user) {
-        _user = [[FLLoginPanelCredentials alloc] init];
+        _user = [[FLFLAssertNotNil(_authCredentials)Editor alloc] init];
     }
     
     self.panelFillsView = NO;
@@ -125,7 +101,7 @@
     _loginButton.enabled = self.canLogin;
 }
 
-- (FLLoginPanelCredentials*) user {
+- (FLFLAssertNotNil(_authCredentials)Editor*) user {
     _user.userName = self.userName;
     _user.password = self.password;
     _user.rememberPassword = self.savePasswordInKeychain;
@@ -248,14 +224,14 @@
 }
 
 - (void) loadCredentials {
-    FLLoginPanelCredentials* user = [self.credentialDataSource  loginPanelGetCredentials:self];
+    FLFLAssertNotNil(_authCredentials)Editor* user = [self.credentialDataSource  loginPanelGetCredentials:self];
     [self setSavePasswordInKeychain:user.rememberPassword];
     [self setUserName:user.userName];
     [self setPassword:user.password];
 }
 
 - (void) saveCredentials {  
-    [self.credentialDataSource  loginPanel:self saveCredentials:self.user];
+//    [self.credentialDataSource  loginPanel:self saveCredentials:self.user];
 }
 
 - (IBAction) passwordCheckboxToggled:(id) sender {

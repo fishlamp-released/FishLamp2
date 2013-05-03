@@ -31,6 +31,7 @@
 @synthesize panels = _panels;
 @synthesize forwardTransition = _forwardTransition;
 @synthesize backwardTransition = _backwardTransition;
+@synthesize identifier = _identifier;
 
 - (void) dealloc {
 #if __MAC_10_8
@@ -40,6 +41,7 @@
 #endif
 
 #if FL_MRC
+    [_identifier release];
     [_panelManagerState release];
     [_visiblePanelIdentifier release];
     [_panelAreas release];
