@@ -22,12 +22,12 @@
 - (IBAction) resetLogin:(id) sender;
 - (IBAction) startLogin:(id) sender;
 - (IBAction) passwordCheckboxToggled:(id) sender;
-@property (readonly, strong, nonatomic) FLFLAssertNotNil(_authCredentials)Editor* user;
+@property (readwrite, strong, nonatomic) FLCredentialsEditor* credentialsEditor;
 @end
 
 @implementation FLLoginPanel
 
-@synthesize user = _user;
+@synthesize credentialsEditor = _credentialsEditor;
 @synthesize credentialDataSource = _credentialDataSource;
 
 - (id) init {
@@ -40,9 +40,9 @@
     self.title = NSLocalizedString(@"Login", nil);
     self.prompt =  NSLocalizedString(@"Login to your account", nil);
 
-    if(!_user) {
-        _user = [[FLFLAssertNotNil(_authCredentials)Editor alloc] init];
-    }
+//    if(!_user) {
+//        _user = [[_authCredentialsEditor alloc] init];
+//    }
     
     self.panelFillsView = NO;
 }
@@ -55,7 +55,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 #if FL_MRC
-    [_user release];
+    [_credentialsEditor release];
     [super dealloc];
 #endif
 }
@@ -97,21 +97,27 @@
 }
 
 - (void) updateNextButton {
-    self.canOpenNextPanel = [self.credentialDataSource loginPanel:self credentialsAreAuthenticated:self.user];
+    self.canOpenNextPanel = [self.credentialDataSource loginPanel:self credentialsAreAuthenticated:self.credentialsEditor];
     _loginButton.enabled = self.canLogin;
 }
 
-- (FLFLAssertNotNil(_authCredentials)Editor*) user {
-    _user.userName = self.userName;
-    _user.password = self.password;
-    _user.rememberPassword = self.savePasswordInKeychain;
-    return _user;
+//- (FLFLAssertNotNil(_authCredentialsEditor*) user {
+//    _user.userName = self.userName;
+//    _user.password = self.password;
+//    _user.rememberPassword = self.savePasswordInKeychain;
+//    return _user;
+//}
+
+- (void) updateCredentialsEditor {
+    _credentialsEditor.userName = self.userName;
+    _credentialsEditor.password = self.password;
+    _credentialsEditor.rememberPassword = [NSNumber numberWithBool:self.savePasswordInKeychain];
 }
 
 
 #if OSX
 - (void)controlTextDidChange:(NSNotification *)note {
-    [self.credentialDataSource  loginPanel:self didChangeCredentials:self.user];
+    [self updateCredentialsEditor];
     [self updateNextButton];
 }
 
@@ -175,8 +181,12 @@
 }
 
 - (void) beginAuthenticating {
+
+    [self updateCredentialsEditor];
+    [self.credentialsEditor stopEditing];
+
     [self.credentialDataSource  loginPanel:self 
- beginAuthenticatingWithCredentials:self.user 
+ beginAuthenticatingWithCredentials:self.credentialsEditor 
                          completion:^(id result) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -200,7 +210,6 @@
         [self.delegate loginPanelDidAuthenticate:self];
     }
     else {
-        [self saveCredentials];
 
         FLProgressPanel* panel = [FLProgressPanel progressPanel];
         panel.delegate = self;
@@ -224,27 +233,23 @@
 }
 
 - (void) loadCredentials {
-    FLFLAssertNotNil(_authCredentials)Editor* user = [self.credentialDataSource  loginPanelGetCredentials:self];
-    [self setSavePasswordInKeychain:user.rememberPassword];
-    [self setUserName:user.userName];
-    [self setPassword:user.password];
-}
-
-- (void) saveCredentials {  
-//    [self.credentialDataSource  loginPanel:self saveCredentials:self.user];
+    self.credentialsEditor = [self.credentialDataSource  loginPanelGetCredentials:self];
+    [self setSavePasswordInKeychain:self.credentialsEditor.rememberPassword.boolValue];
+    [self setUserName:self.credentialsEditor .userName];
+    [self setPassword:self.credentialsEditor .password];
 }
 
 - (IBAction) passwordCheckboxToggled:(id) sender {
-    [self saveCredentials];
+    [self updateCredentialsEditor];
 }
 
 - (void) applicationWillTerminate:(id)sender {
-    [self saveCredentials];
+    [self updateCredentialsEditor];
 }
    
 - (void) respondToNextButton:(BOOL*) handledIt {
     if(self.canLogin) {
-        [self saveCredentials];
+        [self updateCredentialsEditor];
     }
     else {
         *handledIt = YES; 
@@ -276,7 +281,9 @@
 
     [self.view.window makeFirstResponder:self.view.window];
     [super panelWillDisappear];
-    [self saveCredentials];
+    [self updateCredentialsEditor];
+    [self.credentialsEditor stopEditing];
+    self.credentialsEditor = nil;
 }
 
 - (void) panelDidDisappear {

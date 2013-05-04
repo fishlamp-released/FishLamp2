@@ -45,20 +45,20 @@
 }
 #endif
 
-- (FLCredentialEditor*) credentialEditor {
-    return [FLCredentialEditor authCredentialEditor:self.credentials authenticated:self]; 
+- (FLCredentialsEditor*) credentialEditor {
+    return [FLCredentialsEditor authCredentialEditor:self.credentials authenticated:self]; 
 }
 
-- (void) startEditingCredentials:(FLCredentialEditor*) editor {
+- (void) startEditingCredentials:(FLCredentialsEditor*) editor {
    [self closeService:self];
 }
 
-- (void) credentialsDidChange:(FLCredentialEditor*) editor {
+- (void) credentialsDidChange:(FLCredentialsEditor*) editor {
     self.credentials = editor.credentials;
     [self.credentialStorage writeCredentials:self.credentials];
 }
 
-- (void) finishEditingCredentials:(FLCredentialEditor*) editor {
+- (void) finishEditingCredentials:(FLCredentialsEditor*) editor {
     self.credentials = editor.credentials;
     [self.credentialStorage writeCredentials:self.credentials];
     [self openService:self];

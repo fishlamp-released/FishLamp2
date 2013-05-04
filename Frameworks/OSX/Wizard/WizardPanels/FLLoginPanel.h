@@ -11,7 +11,7 @@
 #import "FLWizardViewController.h"
 #import "FLProgressPanel.h"
 #import "FLCredentials.h"
-#import "FLCredentialEditor.h"
+#import "FLCredentialsEditor.h"
 
 #if OSX
 
@@ -25,7 +25,7 @@
     IBOutlet NSButton* _savePasswordCheckBox;
     IBOutlet NSButton* _forgotPasswordButton;
     IBOutlet NSButton* _loginButton;
-    FLCredentialEditor* _user;
+    FLCredentialsEditor* _credentialsEditor;
     __unsafe_unretained id _credentialDataSource;
 }
 + (id) loginPanel;
@@ -33,22 +33,22 @@
 @end
 
 @protocol FLLoginPanelDataSource <NSObject>
-- (FLCredentialEditor*) loginPanelGetCredentials:(FLLoginPanel*) panel;
+- (FLCredentialsEditor*) loginPanelGetCredentials:(FLLoginPanel*) panel;
 
 //- (void) loginPanel:(FLLoginPanel*) loginPanel 
-//didChangeCredentials:(FLCredentialEditor*) user;
+//didChangeCredentials:(FLCredentialsEditor*) user;
 
 - (void) loginPanel:(FLLoginPanel*) panel 
-beginAuthenticatingWithCredentials:(FLCredentialEditor*) credentials
+beginAuthenticatingWithCredentials:(FLCredentialsEditor*) credentials
          completion:(fl_result_block_t) completion;
 
 - (void) loginPanelDidCancelAuthentication:(FLLoginPanel*) panel;
 
 //- (void) loginPanel:(FLLoginPanel*) loginPanel 
-//   saveCredentials:(FLCredentialEditor*) credentials;
+//   saveCredentials:(FLCredentialsEditor*) credentials;
 
 - (BOOL) loginPanel:(FLLoginPanel*) panel 
-credentialsAreAuthenticated:(FLCredentialEditor*) credentials;
+credentialsAreAuthenticated:(FLCredentialsEditor*) credentials;
    
 @end
 

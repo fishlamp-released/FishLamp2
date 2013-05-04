@@ -8,16 +8,16 @@
 #import "FishLampCore.h"
 #import "FLService.h"
 #import "FLAuthenticated.h"
-#import "FLCredentialStorage.h"
+#import "FLCredentialsStorage.h"
 
 @protocol FLUserLoginServiceDelegate;
 
 @interface FLUserService : FLService<FLAuthenticated> {
 @private    
     id<FLCredentials> _authCredentials;
-    id<FLCredentialStorage> _credentialStorage;
+    id<FLCredentialsStorage> _credentialStorage;
 }
-@property (readwrite, strong, nonatomic) id<FLCredentialStorage> credentialStorage;
+@property (readwrite, strong, nonatomic) id<FLCredentialsStorage> credentialStorage;
 
 + (id) userService;
 

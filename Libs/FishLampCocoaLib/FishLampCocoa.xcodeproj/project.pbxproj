@@ -2991,51 +2991,6 @@
 		27A848C11734259B00115833 /* NSUserDefaults+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848BA1734259B00115833 /* NSUserDefaults+FLAdditions.m */; };
 		27A848C21734259B00115833 /* NSUserDefaults+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848BA1734259B00115833 /* NSUserDefaults+FLAdditions.m */; };
 		27A848C31734259B00115833 /* NSUserDefaults+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848BA1734259B00115833 /* NSUserDefaults+FLAdditions.m */; };
-		27A848EB1734349500115833 /* FLCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848E71734349500115833 /* FLCredentials.h */; };
-		27A848EC1734349500115833 /* FLCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848E71734349500115833 /* FLCredentials.h */; };
-		27A848ED1734349500115833 /* FLCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848E71734349500115833 /* FLCredentials.h */; };
-		27A848EE1734349500115833 /* FLCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848E71734349500115833 /* FLCredentials.h */; };
-		27A848EF1734349500115833 /* FLCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848E81734349500115833 /* FLCredentials.m */; };
-		27A848F01734349500115833 /* FLCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848E81734349500115833 /* FLCredentials.m */; };
-		27A848F11734349500115833 /* FLCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848E81734349500115833 /* FLCredentials.m */; };
-		27A848F21734349500115833 /* FLCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848E81734349500115833 /* FLCredentials.m */; };
-		27A848F31734349500115833 /* FLCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848E81734349500115833 /* FLCredentials.m */; };
-		27A848F41734349500115833 /* FLAuthenticated.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848E91734349500115833 /* FLAuthenticated.h */; };
-		27A848F51734349500115833 /* FLAuthenticated.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848E91734349500115833 /* FLAuthenticated.h */; };
-		27A848F61734349500115833 /* FLAuthenticated.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848E91734349500115833 /* FLAuthenticated.h */; };
-		27A848F71734349500115833 /* FLAuthenticated.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848E91734349500115833 /* FLAuthenticated.h */; };
-		27A848F81734349500115833 /* FLAuthenticated.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848EA1734349500115833 /* FLAuthenticated.m */; };
-		27A848F91734349500115833 /* FLAuthenticated.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848EA1734349500115833 /* FLAuthenticated.m */; };
-		27A848FA1734349500115833 /* FLAuthenticated.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848EA1734349500115833 /* FLAuthenticated.m */; };
-		27A848FB1734349500115833 /* FLAuthenticated.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848EA1734349500115833 /* FLAuthenticated.m */; };
-		27A848FC1734349500115833 /* FLAuthenticated.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848EA1734349500115833 /* FLAuthenticated.m */; };
-		27A848FF173436C100115833 /* FLCredentialEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848FD173436C000115833 /* FLCredentialEditor.h */; };
-		27A84900173436C100115833 /* FLCredentialEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848FD173436C000115833 /* FLCredentialEditor.h */; };
-		27A84901173436C100115833 /* FLCredentialEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848FD173436C000115833 /* FLCredentialEditor.h */; };
-		27A84902173436C100115833 /* FLCredentialEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848FD173436C000115833 /* FLCredentialEditor.h */; };
-		27A84903173436C100115833 /* FLCredentialEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848FE173436C100115833 /* FLCredentialEditor.m */; };
-		27A84904173436C100115833 /* FLCredentialEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848FE173436C100115833 /* FLCredentialEditor.m */; };
-		27A84905173436C100115833 /* FLCredentialEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848FE173436C100115833 /* FLCredentialEditor.m */; };
-		27A84906173436C100115833 /* FLCredentialEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848FE173436C100115833 /* FLCredentialEditor.m */; };
-		27A84907173436C100115833 /* FLCredentialEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848FE173436C100115833 /* FLCredentialEditor.m */; };
-		27A8490A17344D5100115833 /* FLCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A8490817344D5000115833 /* FLCredentialStorage.h */; };
-		27A8490B17344D5100115833 /* FLCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A8490817344D5000115833 /* FLCredentialStorage.h */; };
-		27A8490C17344D5100115833 /* FLCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A8490817344D5000115833 /* FLCredentialStorage.h */; };
-		27A8490D17344D5100115833 /* FLCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A8490817344D5000115833 /* FLCredentialStorage.h */; };
-		27A8490E17344D5100115833 /* FLCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A8490917344D5100115833 /* FLCredentialStorage.m */; };
-		27A8490F17344D5100115833 /* FLCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A8490917344D5100115833 /* FLCredentialStorage.m */; };
-		27A8491017344D5100115833 /* FLCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A8490917344D5100115833 /* FLCredentialStorage.m */; };
-		27A8491117344D5100115833 /* FLCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A8490917344D5100115833 /* FLCredentialStorage.m */; };
-		27A8491217344D5100115833 /* FLCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A8490917344D5100115833 /* FLCredentialStorage.m */; };
-		27A8491517344E6300115833 /* FLUserDefaultsCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A8491317344E6100115833 /* FLUserDefaultsCredentialStorage.h */; };
-		27A8491617344E6300115833 /* FLUserDefaultsCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A8491317344E6100115833 /* FLUserDefaultsCredentialStorage.h */; };
-		27A8491717344E6300115833 /* FLUserDefaultsCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A8491317344E6100115833 /* FLUserDefaultsCredentialStorage.h */; };
-		27A8491817344E6300115833 /* FLUserDefaultsCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A8491317344E6100115833 /* FLUserDefaultsCredentialStorage.h */; };
-		27A8491917344E6300115833 /* FLUserDefaultsCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A8491417344E6200115833 /* FLUserDefaultsCredentialStorage.m */; };
-		27A8491A17344E6300115833 /* FLUserDefaultsCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A8491417344E6200115833 /* FLUserDefaultsCredentialStorage.m */; };
-		27A8491B17344E6300115833 /* FLUserDefaultsCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A8491417344E6200115833 /* FLUserDefaultsCredentialStorage.m */; };
-		27A8491C17344E6300115833 /* FLUserDefaultsCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A8491417344E6200115833 /* FLUserDefaultsCredentialStorage.m */; };
-		27A8491D17344E6300115833 /* FLUserDefaultsCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A8491417344E6200115833 /* FLUserDefaultsCredentialStorage.m */; };
 		27AE41B3172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */ = {isa = PBXBuildFile; fileRef = 27AE41B1172B68AF007FDDCE /* FLHttpRequestByteCount.h */; };
 		27AE41B4172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */ = {isa = PBXBuildFile; fileRef = 27AE41B1172B68AF007FDDCE /* FLHttpRequestByteCount.h */; };
 		27AE41B5172B68AF007FDDCE /* FLHttpRequestByteCount.h in Headers */ = {isa = PBXBuildFile; fileRef = 27AE41B1172B68AF007FDDCE /* FLHttpRequestByteCount.h */; };
@@ -3492,6 +3447,51 @@
 		27E957FC170B5A4F00587A8F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C62AD3170B37EC0093F260 /* Cocoa.framework */; };
 		27E957FE170B5A5B00587A8F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E957FD170B5A5B00587A8F /* SystemConfiguration.framework */; };
 		27E9582C170B5E7F00587A8F /* libFishLampCore-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EC5F5116D45E3300C5102D /* libFishLampCore-OSX-64-MRC.a */; };
+		78BC222017345E7E00383C67 /* FLAuthenticated.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221617345E7E00383C67 /* FLAuthenticated.h */; };
+		78BC222117345E7E00383C67 /* FLAuthenticated.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221617345E7E00383C67 /* FLAuthenticated.h */; };
+		78BC222217345E7E00383C67 /* FLAuthenticated.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221617345E7E00383C67 /* FLAuthenticated.h */; };
+		78BC222317345E7E00383C67 /* FLAuthenticated.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221617345E7E00383C67 /* FLAuthenticated.h */; };
+		78BC222417345E7E00383C67 /* FLAuthenticated.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221717345E7E00383C67 /* FLAuthenticated.m */; };
+		78BC222517345E7E00383C67 /* FLAuthenticated.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221717345E7E00383C67 /* FLAuthenticated.m */; };
+		78BC222617345E7E00383C67 /* FLAuthenticated.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221717345E7E00383C67 /* FLAuthenticated.m */; };
+		78BC222717345E7E00383C67 /* FLAuthenticated.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221717345E7E00383C67 /* FLAuthenticated.m */; };
+		78BC222817345E7E00383C67 /* FLAuthenticated.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221717345E7E00383C67 /* FLAuthenticated.m */; };
+		78BC222917345E7E00383C67 /* FLCredentialsEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221817345E7E00383C67 /* FLCredentialsEditor.h */; };
+		78BC222A17345E7E00383C67 /* FLCredentialsEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221817345E7E00383C67 /* FLCredentialsEditor.h */; };
+		78BC222B17345E7E00383C67 /* FLCredentialsEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221817345E7E00383C67 /* FLCredentialsEditor.h */; };
+		78BC222C17345E7E00383C67 /* FLCredentialsEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221817345E7E00383C67 /* FLCredentialsEditor.h */; };
+		78BC222D17345E7E00383C67 /* FLCredentialsEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221917345E7E00383C67 /* FLCredentialsEditor.m */; };
+		78BC222E17345E7E00383C67 /* FLCredentialsEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221917345E7E00383C67 /* FLCredentialsEditor.m */; };
+		78BC222F17345E7E00383C67 /* FLCredentialsEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221917345E7E00383C67 /* FLCredentialsEditor.m */; };
+		78BC223017345E7E00383C67 /* FLCredentialsEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221917345E7E00383C67 /* FLCredentialsEditor.m */; };
+		78BC223117345E7E00383C67 /* FLCredentialsEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221917345E7E00383C67 /* FLCredentialsEditor.m */; };
+		78BC223217345E7E00383C67 /* FLCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221A17345E7E00383C67 /* FLCredentials.h */; };
+		78BC223317345E7E00383C67 /* FLCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221A17345E7E00383C67 /* FLCredentials.h */; };
+		78BC223417345E7E00383C67 /* FLCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221A17345E7E00383C67 /* FLCredentials.h */; };
+		78BC223517345E7E00383C67 /* FLCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221A17345E7E00383C67 /* FLCredentials.h */; };
+		78BC223617345E7E00383C67 /* FLCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221B17345E7E00383C67 /* FLCredentials.m */; };
+		78BC223717345E7E00383C67 /* FLCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221B17345E7E00383C67 /* FLCredentials.m */; };
+		78BC223817345E7E00383C67 /* FLCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221B17345E7E00383C67 /* FLCredentials.m */; };
+		78BC223917345E7E00383C67 /* FLCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221B17345E7E00383C67 /* FLCredentials.m */; };
+		78BC223A17345E7E00383C67 /* FLCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221B17345E7E00383C67 /* FLCredentials.m */; };
+		78BC223B17345E7E00383C67 /* FLCredentialsStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221C17345E7E00383C67 /* FLCredentialsStorage.h */; };
+		78BC223C17345E7E00383C67 /* FLCredentialsStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221C17345E7E00383C67 /* FLCredentialsStorage.h */; };
+		78BC223D17345E7E00383C67 /* FLCredentialsStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221C17345E7E00383C67 /* FLCredentialsStorage.h */; };
+		78BC223E17345E7E00383C67 /* FLCredentialsStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221C17345E7E00383C67 /* FLCredentialsStorage.h */; };
+		78BC223F17345E7E00383C67 /* FLCredentialsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221D17345E7E00383C67 /* FLCredentialsStorage.m */; };
+		78BC224017345E7E00383C67 /* FLCredentialsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221D17345E7E00383C67 /* FLCredentialsStorage.m */; };
+		78BC224117345E7E00383C67 /* FLCredentialsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221D17345E7E00383C67 /* FLCredentialsStorage.m */; };
+		78BC224217345E7E00383C67 /* FLCredentialsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221D17345E7E00383C67 /* FLCredentialsStorage.m */; };
+		78BC224317345E7E00383C67 /* FLCredentialsStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221D17345E7E00383C67 /* FLCredentialsStorage.m */; };
+		78BC224417345E7E00383C67 /* FLUserDefaultsCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221E17345E7E00383C67 /* FLUserDefaultsCredentialStorage.h */; };
+		78BC224517345E7E00383C67 /* FLUserDefaultsCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221E17345E7E00383C67 /* FLUserDefaultsCredentialStorage.h */; };
+		78BC224617345E7E00383C67 /* FLUserDefaultsCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221E17345E7E00383C67 /* FLUserDefaultsCredentialStorage.h */; };
+		78BC224717345E7E00383C67 /* FLUserDefaultsCredentialStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BC221E17345E7E00383C67 /* FLUserDefaultsCredentialStorage.h */; };
+		78BC224817345E7E00383C67 /* FLUserDefaultsCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221F17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m */; };
+		78BC224917345E7E00383C67 /* FLUserDefaultsCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221F17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m */; };
+		78BC224A17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221F17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m */; };
+		78BC224B17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221F17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m */; };
+		78BC224C17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BC221F17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -4381,16 +4381,6 @@
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A848B91734259B00115833 /* NSUserDefaults+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+FLAdditions.h"; sourceTree = "<group>"; };
 		27A848BA1734259B00115833 /* NSUserDefaults+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+FLAdditions.m"; sourceTree = "<group>"; };
-		27A848E71734349500115833 /* FLCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCredentials.h; sourceTree = "<group>"; };
-		27A848E81734349500115833 /* FLCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCredentials.m; sourceTree = "<group>"; };
-		27A848E91734349500115833 /* FLAuthenticated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAuthenticated.h; sourceTree = "<group>"; };
-		27A848EA1734349500115833 /* FLAuthenticated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAuthenticated.m; sourceTree = "<group>"; };
-		27A848FD173436C000115833 /* FLCredentialEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCredentialEditor.h; sourceTree = "<group>"; };
-		27A848FE173436C100115833 /* FLCredentialEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCredentialEditor.m; sourceTree = "<group>"; };
-		27A8490817344D5000115833 /* FLCredentialStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCredentialStorage.h; sourceTree = "<group>"; };
-		27A8490917344D5100115833 /* FLCredentialStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCredentialStorage.m; sourceTree = "<group>"; };
-		27A8491317344E6100115833 /* FLUserDefaultsCredentialStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserDefaultsCredentialStorage.h; sourceTree = "<group>"; };
-		27A8491417344E6200115833 /* FLUserDefaultsCredentialStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserDefaultsCredentialStorage.m; sourceTree = "<group>"; };
 		27AE41B1172B68AF007FDDCE /* FLHttpRequestByteCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpRequestByteCount.h; sourceTree = "<group>"; };
 		27AE41B2172B68AF007FDDCE /* FLHttpRequestByteCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpRequestByteCount.m; sourceTree = "<group>"; };
 		27B2D71D171C609A000DF355 /* FLRunLoopNetworkStreamEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRunLoopNetworkStreamEventHandler.h; sourceTree = "<group>"; };
@@ -4512,6 +4502,16 @@
 		27E957F8170B5A3600587A8F /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		27E957FA170B5A4600587A8F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		27E957FD170B5A5B00587A8F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
+		78BC221617345E7E00383C67 /* FLAuthenticated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAuthenticated.h; sourceTree = "<group>"; };
+		78BC221717345E7E00383C67 /* FLAuthenticated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAuthenticated.m; sourceTree = "<group>"; };
+		78BC221817345E7E00383C67 /* FLCredentialsEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCredentialsEditor.h; sourceTree = "<group>"; };
+		78BC221917345E7E00383C67 /* FLCredentialsEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCredentialsEditor.m; sourceTree = "<group>"; };
+		78BC221A17345E7E00383C67 /* FLCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCredentials.h; sourceTree = "<group>"; };
+		78BC221B17345E7E00383C67 /* FLCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCredentials.m; sourceTree = "<group>"; };
+		78BC221C17345E7E00383C67 /* FLCredentialsStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCredentialsStorage.h; sourceTree = "<group>"; };
+		78BC221D17345E7E00383C67 /* FLCredentialsStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCredentialsStorage.m; sourceTree = "<group>"; };
+		78BC221E17345E7E00383C67 /* FLUserDefaultsCredentialStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserDefaultsCredentialStorage.h; sourceTree = "<group>"; };
+		78BC221F17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserDefaultsCredentialStorage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4638,6 +4638,7 @@
 		271D30F016FE0772009CD00F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				78BC221517345E7E00383C67 /* Authentication */,
 				271D30F116FE0774009CD00F /* App */,
 				271D30F416FE0774009CD00F /* Async */,
 				271D312E16FE0774009CD00F /* Color */,
@@ -5590,7 +5591,6 @@
 		271D32E216FE0776009CD00F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				27A848E61734349500115833 /* Authentication */,
 				271D32E316FE0776009CD00F /* FLService.h */,
 				271D32E416FE0776009CD00F /* FLService.m */,
 				271D32EB16FE0776009CD00F /* FLSessionObjects.flproj */,
@@ -6130,23 +6130,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		27A848E61734349500115833 /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				27A848E71734349500115833 /* FLCredentials.h */,
-				27A848E81734349500115833 /* FLCredentials.m */,
-				27A848E91734349500115833 /* FLAuthenticated.h */,
-				27A848EA1734349500115833 /* FLAuthenticated.m */,
-				27A848FE173436C100115833 /* FLCredentialEditor.m */,
-				27A848FD173436C000115833 /* FLCredentialEditor.h */,
-				27A8490817344D5000115833 /* FLCredentialStorage.h */,
-				27A8490917344D5100115833 /* FLCredentialStorage.m */,
-				27A8491317344E6100115833 /* FLUserDefaultsCredentialStorage.h */,
-				27A8491417344E6200115833 /* FLUserDefaultsCredentialStorage.m */,
-			);
-			path = Authentication;
-			sourceTree = "<group>";
-		};
 		27C62AD5170B37EC0093F260 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -6378,6 +6361,23 @@
 				27EC5F5516D45E3300C5102D /* libFishLampCore-OSX-3264-MRC.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		78BC221517345E7E00383C67 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				78BC221617345E7E00383C67 /* FLAuthenticated.h */,
+				78BC221717345E7E00383C67 /* FLAuthenticated.m */,
+				78BC221817345E7E00383C67 /* FLCredentialsEditor.h */,
+				78BC221917345E7E00383C67 /* FLCredentialsEditor.m */,
+				78BC221A17345E7E00383C67 /* FLCredentials.h */,
+				78BC221B17345E7E00383C67 /* FLCredentials.m */,
+				78BC221C17345E7E00383C67 /* FLCredentialsStorage.h */,
+				78BC221D17345E7E00383C67 /* FLCredentialsStorage.m */,
+				78BC221E17345E7E00383C67 /* FLUserDefaultsCredentialStorage.h */,
+				78BC221F17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6762,11 +6762,11 @@
 				27C0FCC417305B3D0000F00C /* FLAttributedStringController.h in Headers */,
 				272EE75C1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */,
 				27A848BB1734259B00115833 /* NSUserDefaults+FLAdditions.h in Headers */,
-				27A848EB1734349500115833 /* FLCredentials.h in Headers */,
-				27A848F41734349500115833 /* FLAuthenticated.h in Headers */,
-				27A848FF173436C100115833 /* FLCredentialEditor.h in Headers */,
-				27A8490A17344D5100115833 /* FLCredentialStorage.h in Headers */,
-				27A8491517344E6300115833 /* FLUserDefaultsCredentialStorage.h in Headers */,
+				78BC222017345E7E00383C67 /* FLAuthenticated.h in Headers */,
+				78BC222917345E7E00383C67 /* FLCredentialsEditor.h in Headers */,
+				78BC223217345E7E00383C67 /* FLCredentials.h in Headers */,
+				78BC223B17345E7E00383C67 /* FLCredentialsStorage.h in Headers */,
+				78BC224417345E7E00383C67 /* FLUserDefaultsCredentialStorage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7149,11 +7149,11 @@
 				27C0FCC617305B3D0000F00C /* FLAttributedStringController.h in Headers */,
 				272EE75E1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */,
 				27A848BD1734259B00115833 /* NSUserDefaults+FLAdditions.h in Headers */,
-				27A848ED1734349500115833 /* FLCredentials.h in Headers */,
-				27A848F61734349500115833 /* FLAuthenticated.h in Headers */,
-				27A84901173436C100115833 /* FLCredentialEditor.h in Headers */,
-				27A8490C17344D5100115833 /* FLCredentialStorage.h in Headers */,
-				27A8491717344E6300115833 /* FLUserDefaultsCredentialStorage.h in Headers */,
+				78BC222217345E7E00383C67 /* FLAuthenticated.h in Headers */,
+				78BC222B17345E7E00383C67 /* FLCredentialsEditor.h in Headers */,
+				78BC223417345E7E00383C67 /* FLCredentials.h in Headers */,
+				78BC223D17345E7E00383C67 /* FLCredentialsStorage.h in Headers */,
+				78BC224617345E7E00383C67 /* FLUserDefaultsCredentialStorage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7536,11 +7536,11 @@
 				27C0FCC517305B3D0000F00C /* FLAttributedStringController.h in Headers */,
 				272EE75D1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */,
 				27A848BC1734259B00115833 /* NSUserDefaults+FLAdditions.h in Headers */,
-				27A848EC1734349500115833 /* FLCredentials.h in Headers */,
-				27A848F51734349500115833 /* FLAuthenticated.h in Headers */,
-				27A84900173436C100115833 /* FLCredentialEditor.h in Headers */,
-				27A8490B17344D5100115833 /* FLCredentialStorage.h in Headers */,
-				27A8491617344E6300115833 /* FLUserDefaultsCredentialStorage.h in Headers */,
+				78BC222117345E7E00383C67 /* FLAuthenticated.h in Headers */,
+				78BC222A17345E7E00383C67 /* FLCredentialsEditor.h in Headers */,
+				78BC223317345E7E00383C67 /* FLCredentials.h in Headers */,
+				78BC223C17345E7E00383C67 /* FLCredentialsStorage.h in Headers */,
+				78BC224517345E7E00383C67 /* FLUserDefaultsCredentialStorage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8073,11 +8073,11 @@
 				27C0FCC717305B3D0000F00C /* FLAttributedStringController.h in Headers */,
 				272EE75F1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h in Headers */,
 				27A848BE1734259B00115833 /* NSUserDefaults+FLAdditions.h in Headers */,
-				27A848EE1734349500115833 /* FLCredentials.h in Headers */,
-				27A848F71734349500115833 /* FLAuthenticated.h in Headers */,
-				27A84902173436C100115833 /* FLCredentialEditor.h in Headers */,
-				27A8490D17344D5100115833 /* FLCredentialStorage.h in Headers */,
-				27A8491817344E6300115833 /* FLUserDefaultsCredentialStorage.h in Headers */,
+				78BC222317345E7E00383C67 /* FLAuthenticated.h in Headers */,
+				78BC222C17345E7E00383C67 /* FLCredentialsEditor.h in Headers */,
+				78BC223517345E7E00383C67 /* FLCredentials.h in Headers */,
+				78BC223E17345E7E00383C67 /* FLCredentialsStorage.h in Headers */,
+				78BC224717345E7E00383C67 /* FLUserDefaultsCredentialStorage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8715,11 +8715,11 @@
 				27C0FCC917305B3D0000F00C /* FLAttributedStringController.m in Sources */,
 				272EE7611731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */,
 				27A848C01734259B00115833 /* NSUserDefaults+FLAdditions.m in Sources */,
-				27A848F01734349500115833 /* FLCredentials.m in Sources */,
-				27A848F91734349500115833 /* FLAuthenticated.m in Sources */,
-				27A84904173436C100115833 /* FLCredentialEditor.m in Sources */,
-				27A8490F17344D5100115833 /* FLCredentialStorage.m in Sources */,
-				27A8491A17344E6300115833 /* FLUserDefaultsCredentialStorage.m in Sources */,
+				78BC222517345E7E00383C67 /* FLAuthenticated.m in Sources */,
+				78BC222E17345E7E00383C67 /* FLCredentialsEditor.m in Sources */,
+				78BC223717345E7E00383C67 /* FLCredentials.m in Sources */,
+				78BC224017345E7E00383C67 /* FLCredentialsStorage.m in Sources */,
+				78BC224917345E7E00383C67 /* FLUserDefaultsCredentialStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9067,11 +9067,11 @@
 				27C0FCCB17305B3D0000F00C /* FLAttributedStringController.m in Sources */,
 				272EE7631731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */,
 				27A848C21734259B00115833 /* NSUserDefaults+FLAdditions.m in Sources */,
-				27A848F21734349500115833 /* FLCredentials.m in Sources */,
-				27A848FB1734349500115833 /* FLAuthenticated.m in Sources */,
-				27A84906173436C100115833 /* FLCredentialEditor.m in Sources */,
-				27A8491117344D5100115833 /* FLCredentialStorage.m in Sources */,
-				27A8491C17344E6300115833 /* FLUserDefaultsCredentialStorage.m in Sources */,
+				78BC222717345E7E00383C67 /* FLAuthenticated.m in Sources */,
+				78BC223017345E7E00383C67 /* FLCredentialsEditor.m in Sources */,
+				78BC223917345E7E00383C67 /* FLCredentials.m in Sources */,
+				78BC224217345E7E00383C67 /* FLCredentialsStorage.m in Sources */,
+				78BC224B17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9411,11 +9411,11 @@
 				272EE7601731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */,
 				272EE7701731E7F10025CFD6 /* FLKeychain.m in Sources */,
 				27A848BF1734259B00115833 /* NSUserDefaults+FLAdditions.m in Sources */,
-				27A848EF1734349500115833 /* FLCredentials.m in Sources */,
-				27A848F81734349500115833 /* FLAuthenticated.m in Sources */,
-				27A84903173436C100115833 /* FLCredentialEditor.m in Sources */,
-				27A8490E17344D5100115833 /* FLCredentialStorage.m in Sources */,
-				27A8491917344E6300115833 /* FLUserDefaultsCredentialStorage.m in Sources */,
+				78BC222417345E7E00383C67 /* FLAuthenticated.m in Sources */,
+				78BC222D17345E7E00383C67 /* FLCredentialsEditor.m in Sources */,
+				78BC223617345E7E00383C67 /* FLCredentials.m in Sources */,
+				78BC223F17345E7E00383C67 /* FLCredentialsStorage.m in Sources */,
+				78BC224817345E7E00383C67 /* FLUserDefaultsCredentialStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9763,11 +9763,11 @@
 				27C0FCCA17305B3D0000F00C /* FLAttributedStringController.m in Sources */,
 				272EE7621731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */,
 				27A848C11734259B00115833 /* NSUserDefaults+FLAdditions.m in Sources */,
-				27A848F11734349500115833 /* FLCredentials.m in Sources */,
-				27A848FA1734349500115833 /* FLAuthenticated.m in Sources */,
-				27A84905173436C100115833 /* FLCredentialEditor.m in Sources */,
-				27A8491017344D5100115833 /* FLCredentialStorage.m in Sources */,
-				27A8491B17344E6300115833 /* FLUserDefaultsCredentialStorage.m in Sources */,
+				78BC222617345E7E00383C67 /* FLAuthenticated.m in Sources */,
+				78BC222F17345E7E00383C67 /* FLCredentialsEditor.m in Sources */,
+				78BC223817345E7E00383C67 /* FLCredentials.m in Sources */,
+				78BC224117345E7E00383C67 /* FLCredentialsStorage.m in Sources */,
+				78BC224A17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -10273,11 +10273,11 @@
 				27C0FCCC17305B3D0000F00C /* FLAttributedStringController.m in Sources */,
 				272EE7641731DBD50025CFD6 /* NSBundle+FLCurrentBundle.m in Sources */,
 				27A848C31734259B00115833 /* NSUserDefaults+FLAdditions.m in Sources */,
-				27A848F31734349500115833 /* FLCredentials.m in Sources */,
-				27A848FC1734349500115833 /* FLAuthenticated.m in Sources */,
-				27A84907173436C100115833 /* FLCredentialEditor.m in Sources */,
-				27A8491217344D5100115833 /* FLCredentialStorage.m in Sources */,
-				27A8491D17344E6300115833 /* FLUserDefaultsCredentialStorage.m in Sources */,
+				78BC222817345E7E00383C67 /* FLAuthenticated.m in Sources */,
+				78BC223117345E7E00383C67 /* FLCredentialsEditor.m in Sources */,
+				78BC223A17345E7E00383C67 /* FLCredentials.m in Sources */,
+				78BC224317345E7E00383C67 /* FLCredentialsStorage.m in Sources */,
+				78BC224C17345E7E00383C67 /* FLUserDefaultsCredentialStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

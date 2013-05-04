@@ -11,14 +11,14 @@
 
 @implementation FLHttpController (UserLogin)
 
-- (FLLoginPanelCredentials*) loginPanelGetCredentials:(FLLoginPanel*) panel {
-    [self.userService loadCredentials];
-    
-    FLLoginPanelCredentials* user = [FLLoginPanelCredentials loginPanelUser];
-    user.userName = [self.userService userName];
-    user.password = [self.userService password ];
-    user.rememberPassword = [self.userService rememberPassword];
-    return user;
+- (FLCredentialsEditor*) loginPanelGetCredentials:(FLLoginPanel*) panel {
+//    [self.userService loadCredentials];
+//    
+//    FLLoginPanelCredentials* user = [FLLoginPanelCredentials loginPanelUser];
+//    user.userName = [self.userService userName];
+//    user.password = [self.userService password ];
+//    user.rememberPassword = [self.userService rememberPassword];
+    return self.userService.credentialEditor;
 }
 
 //- (void) setCredentials:(FLLoginPanelCredentials*) user {
@@ -43,11 +43,11 @@
 //}
 
 - (void) loginPanel:(FLLoginPanel*) panel 
-beginAuthenticatingWithCredentials:(FLCredentialEditor*) editor
+beginAuthenticatingWithCredentials:(FLCredentialsEditor*) editor
          completion:(fl_result_block_t) completion {
          
-    [self openUserService];
-    [self saveCredentials:credentials];
+//    [self openUserService];
+//    [self saveCredentials:credentials];
     [self.httpRequestAuthenticator beginAuthenticating:completion];
 }
 
@@ -62,11 +62,9 @@ beginAuthenticatingWithCredentials:(FLCredentialEditor*) editor
 //}
 
 - (BOOL) loginPanel:(FLLoginPanel*) panel 
-credentialsAreAuthenticated:(FLCredentialEditor*) editor {
+credentialsAreAuthenticated:(FLCredentialsEditor*) editor {
 
-    return  FLStringsAreEqual(credentials.userName, [self.userService userName]) &&
-            (FLStringIsNotEmpty([self.userService password]) && FLStringsAreEqual(credentials.password, [self.userService password])) &&
-            [self isAuthenticated];
+    return  [self isAuthenticated];
 }
 
 
