@@ -98,5 +98,8 @@
     return string.string;
 }
 
+- (id) parent {
+    return nil;
+}
 
 @end

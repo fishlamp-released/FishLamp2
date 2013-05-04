@@ -10,22 +10,11 @@
 #import "FLPanelViewController.h"
 #import "FLWizardViewController.h"
 #import "FLProgressPanel.h"
+#import "FLCredentials.h"
+#import "FLCredentialsEditor.h"
 
 #if OSX
 
-@interface FLLoginPanelCredentials : NSObject<NSCopying> {
-@private
-    NSString* _userName;
-    NSString* _password;
-    BOOL _rememberPassword;
-}
-+ (id) loginPanelUser;
-
-@property (readwrite, assign, nonatomic) BOOL rememberPassword;
-@property (readwrite, strong, nonatomic) NSString* userName;
-@property (readwrite, strong, nonatomic) NSString* password;
-
-@end
 
 @protocol FLLoginPanelDelegate;
 
@@ -36,7 +25,7 @@
     IBOutlet NSButton* _savePasswordCheckBox;
     IBOutlet NSButton* _forgotPasswordButton;
     IBOutlet NSButton* _loginButton;
-    FLLoginPanelCredentials* _user;
+    FLCredentialsEditor* _credentialsEditor;
     __unsafe_unretained id _credentialDataSource;
 }
 + (id) loginPanel;
@@ -44,22 +33,22 @@
 @end
 
 @protocol FLLoginPanelDataSource <NSObject>
-- (FLLoginPanelCredentials*) loginPanelGetCredentials:(FLLoginPanel*) panel;
+- (FLCredentialsEditor*) loginPanelGetCredentials:(FLLoginPanel*) panel;
 
-- (void) loginPanel:(FLLoginPanel*) loginPanel 
-didChangeCredentials:(FLLoginPanelCredentials*) user;
+//- (void) loginPanel:(FLLoginPanel*) loginPanel 
+//didChangeCredentials:(FLCredentialsEditor*) user;
 
 - (void) loginPanel:(FLLoginPanel*) panel 
-beginAuthenticatingWithCredentials:(FLLoginPanelCredentials*) credentials
+beginAuthenticatingWithCredentials:(FLCredentialsEditor*) credentials
          completion:(fl_result_block_t) completion;
 
 - (void) loginPanelDidCancelAuthentication:(FLLoginPanel*) panel;
 
-- (void) loginPanel:(FLLoginPanel*) loginPanel 
-   saveCredentials:(FLLoginPanelCredentials*) credentials;
+//- (void) loginPanel:(FLLoginPanel*) loginPanel 
+//   saveCredentials:(FLCredentialsEditor*) credentials;
 
 - (BOOL) loginPanel:(FLLoginPanel*) panel 
-credentialsAreAuthenticated:(FLLoginPanelCredentials*) credentials;
+credentialsAreAuthenticated:(FLCredentialsEditor*) credentials;
    
 @end
 

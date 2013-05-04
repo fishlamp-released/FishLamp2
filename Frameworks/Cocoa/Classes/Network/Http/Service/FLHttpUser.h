@@ -19,13 +19,13 @@
 
 @property (readonly, strong) NSString* userName;
 
-- (id) initWithCredentials:(FLUserLogin*) userLogin;
-+ (id) httpUserWithCredentials:(FLUserLogin*) userLogin;
+- (id) initWithUserLogin:(FLUserLogin*) userLogin;
++ (id) httpUser:(FLUserLogin*) userLogin;
 
-@property (readwrite, copy, nonatomic) FLUserLogin* credentials;
+@property (readwrite, copy, nonatomic) FLUserLogin* userLogin;
 
-@property (readonly, assign, nonatomic, getter=isAuthenticated) BOOL authenticated;
-- (void) setUnathenticated;
+@property (readonly, assign, nonatomic, getter=isLoginAuthenticated) BOOL loginAuthenticated;
+- (void) setLoginUnathenticated;
 
 @property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
 @property (readonly, assign, nonatomic) NSTimeInterval lastAuthenticationTimestamp;

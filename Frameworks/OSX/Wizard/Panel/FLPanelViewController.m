@@ -66,6 +66,10 @@
     return [[self panelManager] canSelectPanelForIdentifier:self.identifier];
 }
 
+- (void) updateState:(id) state {
+    [[self.panelManager panelManagerState] setSelectedPanelSavedState:state];
+}
+
 - (BOOL)acceptsFirstResponder {
     return YES;
 }

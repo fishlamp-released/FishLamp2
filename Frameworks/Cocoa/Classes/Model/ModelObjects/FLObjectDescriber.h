@@ -11,31 +11,28 @@
 #import "FishLamp.h"
 #import "FLPropertyDescriber.h"
 #import "FLCoreTypes.h"
+#import "FLDatabase.h"
 
 @class FLObjectEncoder;
 @class FLObjectDescriber;
 
-@protocol FLDescribable <NSObject>
-@optional
+@interface NSObject (FLObjectDescriber)
++ (void) modelObjectWasRegistered:(FLObjectDescriber*) describer;
 + (FLObjectDescriber*) objectDescriber;
 - (FLObjectDescriber*) objectDescriber;
-
-+ (void) objectDescriberWasRegistered:(FLObjectDescriber*) describer;
 @end
-
-@interface NSObject (FLObjectDescriber)
-+ (void) objectDescriberWasRegistered:(FLObjectDescriber*) describer;
-@end
-
 
 @interface FLObjectDescriber : NSObject<NSCopying> {
 @private
     Class _objectClass;
     NSMutableDictionary* _properties;
+    dispatch_once_t _databaseTablePredicate;
+    FLDatabaseTable* _databaseTable;
 }
 @property (readonly, assign) Class objectClass;
 @property (readonly, assign) NSUInteger propertyCount;
 @property (readonly, copy) NSDictionary* properties;
+@property (readonly, strong) FLDatabaseTable* databaseTable;
 
 + (id) objectDescriber:(Class) aClass;
 

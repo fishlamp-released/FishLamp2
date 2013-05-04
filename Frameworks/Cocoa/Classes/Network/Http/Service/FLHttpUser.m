@@ -11,26 +11,26 @@
 
 @implementation FLHttpUser
 
-@synthesize credentials = _userLogin;
+@synthesize userLogin = _userLogin;
 @synthesize lastAuthenticationTimestamp = _lastAuthenticationTimestamp;
 @synthesize timeoutInterval = _timeoutInterval;
 
 - (id) init {
-    return [self initWithCredentials:nil];
+    return [self initWithUserLogin:nil];
 }
 
-- (id) initWithCredentials:(FLUserLogin*) userLogin {
+- (id) initWithUserLogin:(FLUserLogin*) userLogin {
     self = [super init];
     if(self) {
         _timeoutInterval = 60 * 60;
 
-        self.credentials = userLogin;
+        self.userLogin = userLogin;
     }
     return self;
 }
 
-+ (id) httpUserWithCredentials:(FLUserLogin*) userLogin {
-    return FLAutorelease([[[self class] alloc] initWithCredentials:userLogin]);
++ (id) httpUser:(FLUserLogin*) userLogin {
+    return FLAutorelease([[[self class] alloc] initWithUserLogin:userLogin]);
 }
 
 #if FL_MRC
@@ -41,14 +41,14 @@
 #endif
 
 - (NSString*) userName {
-    return self.credentials.userName;
+    return self.userLogin.userName;
 }
 
-- (BOOL) isAuthenticated {
+- (BOOL) isLoginAuthenticated {
     return _userLogin.isAuthenticatedValue;
 }
 
-- (void) setUnathenticated {
+- (void) setLoginUnathenticated {
     _userLogin.isAuthenticated = NO;
     _userLogin.authToken = NO;
     _userLogin.authTokenLastUpdateTime = nil;
@@ -65,7 +65,7 @@
 }
 
 - (id) copyWithZone:(NSZone *)zone {
-    return [[[self class] alloc] initWithCredentials:self.credentials];
+    return [[[self class] alloc] initWithUserLogin:self.userLogin];
 }
 
 - (BOOL) authenticationHasExpired {

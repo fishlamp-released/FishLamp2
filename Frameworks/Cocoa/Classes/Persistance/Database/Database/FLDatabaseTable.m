@@ -15,6 +15,7 @@
 #import "FLObjectDescriber.h"
 #import "FLObjectDescriber.h"
 #import "FLModelObject.h"
+#import "FLObjectDescriber.h"
 
 @interface FLDatabaseColumn (Internal)
 - (void) setIndexed:(BOOL) isIndexed;
@@ -55,6 +56,9 @@
         if([aClass isModelObject]) {
             FLObjectDescriber* objectDescriber = [aClass objectDescriber];
             [self addColumnsWithTypeDesc:objectDescriber forClass:aClass];
+            
+            FLDatabaseColumn* idColumn = [self columnForPropertySelector:@selector(identifier)];
+            [idColumn addColumnConstraint:[FLPrimaryKeyConstraint primaryKeyConstraint]];
         }
 
         [aClass databaseTableDidAddColumns:self];
@@ -283,8 +287,8 @@
 
 @implementation NSObject (FLDatabaseTable) 
 
-+ (FLDatabaseTable*) sharedDatabaseTable {
-	return nil;
++ (FLDatabaseTable*) sharedDatabaseTable { 
+    return [[self objectDescriber] databaseTable]; 
 }
 
 + (NSString*) databaseTableName {

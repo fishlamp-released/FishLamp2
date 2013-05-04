@@ -11,8 +11,6 @@
 
 @implementation FLFontTheme 
 
-FLSynthesizeModelObjectMethods();
-
 @synthesize familyName = _familyName;
 @synthesize defaultSize = _defaultSize;
 @synthesize smallSize = _smallSize;

@@ -16,36 +16,42 @@
 
 extern NSString* const FLHttpControllerDidLogoutUserNotification;
 
+@protocol FLHttpControllerImplementation <NSObject>
+- (FLHttpUser*) createHttpUserForCredentials:(id<FLCredentials>) credentials;
+- (FLUserService*) createUserService;
+- (FLStorageService*) createStorageService;
+- (FLHttpRequestAuthenticationService*) createHttpRequestAuthenticationService;
+@end
+
 @interface FLHttpController : FLNetworkOperationContext<
     FLHttpRequestAuthenticationServiceDelegate, FLUserLoginServiceDelegate,  FLHttpRequestContext> {
 @private
+    id _httpUser;
     FLUserService* _userLoginService;
     FLService* _authenticatedServices;
     FLStorageService* _storageService;
     FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
-    __unsafe_unretained id _delegate;
     FLNetworkStreamSecurity _streamSecurity;
+
+    __unsafe_unretained id _delegate;
+    __unsafe_unretained id<FLHttpControllerImplementation> _implementation;
 }
 
 @property (readwrite, nonatomic) FLNetworkStreamSecurity streamSecurity;
 @property (readwrite, assign, nonatomic) id delegate;
+
 @property (readonly, assign, nonatomic) BOOL isAuthenticated;
 @property (readonly, strong) FLService* authenticatedServices;
 @property (readonly, strong) FLUserService* userService;
 @property (readonly, strong) FLStorageService* storageService;
 @property (readonly, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
+@property (readonly, strong) id httpUser;
 
-+ (id) httpController;
+- (id) initWithImplementation:(id<FLHttpControllerImplementation>) implementation;
 
 - (void) logoutUser;
 
 - (void) openUserService;
-
-// required overrides
-- (FLHttpUser*) user;
-- (FLUserService*) createUserService;
-- (FLStorageService*) createStorageService;
-- (FLHttpRequestAuthenticationService*) createHttpRequestAuthenticationService;
 
 @end
 

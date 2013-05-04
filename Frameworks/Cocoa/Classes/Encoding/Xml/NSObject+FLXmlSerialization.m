@@ -18,14 +18,12 @@
     
       	FLObjectDescriber* typeDesc = [[self class] objectDescriber];
         for(FLPropertyDescriber* property in [typeDesc.properties objectEnumerator]) {
-//            FLObjectEncoder* encoder = [property.propertyType objectClass objectEncoder];
-//            if(property.objectEncoder) {
+
             id object = [self valueForKey:property.propertyName];
             if(object) {
                 [xmlElement addElement:[FLObjectXmlElement objectXmlElement:object 
                                                               xmlElementTag:property.propertyName 
                                                           propertyDescriber:property]];
-//                }
             }
         }
     }
@@ -34,6 +32,9 @@
         if(objectEncoder) {
             NSString* line = [objectEncoder encodeObjectToString:self withEncoder:xmlElement.dataEncoder];
             [xmlElement appendLine:line];
+        }
+        else {
+            FLLog(@"No encoder for %@ found", NSStringFromClass([self class]));
         }
     }
 }
@@ -47,6 +48,7 @@
        propertyDescriber:(FLPropertyDescriber*) propertyDescriber {
     
 	if(propertyDescriber && self.count) {
+
 		if(propertyDescriber.containedTypes.count == 1) {
 			FLPropertyDescriber* elementDesc = [propertyDescriber.containedTypes objectAtIndex:0];
 
@@ -55,15 +57,22 @@
 			}
 		}
 		else {
+        
             for(id obj in self) {
 				// hmm. expensive. need to decide for each item.
-				                
+                
+                BOOL found = NO;
                 for(FLPropertyDescriber* subType in propertyDescriber.containedTypes) {
 					if([obj isKindOfClass:[subType propertyClass]]) {
                         [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:subType.propertyName propertyDescriber:subType]];
+                        found = YES;
 						break;
 					}
 				}
+                if(!found) {
+                    FLLog(@"array property describer for %@ not found", NSStringFromClass([obj class]));
+                
+                }
 			}		
 		}
 	}

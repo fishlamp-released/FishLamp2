@@ -7,27 +7,22 @@
 //
 #import "FishLampCore.h"
 #import "FLService.h"
+#import "FLAuthenticated.h"
+#import "FLCredentialsStorage.h"
 
 @protocol FLUserLoginServiceDelegate;
 
-@interface FLUserService : FLService {
+@interface FLUserService : FLService<FLAuthenticated> {
 @private    
-    NSString* _userName;
-    NSString* _password;
-    BOOL _rememberPassword;
-    BOOL _loaded;
+    id<FLCredentials> _authCredentials;
+    id<FLCredentialsStorage> _credentialStorage;
 }
-@property (readwrite, strong, nonatomic) NSString* userName;
-@property (readwrite, strong, nonatomic) NSString* password;
-@property (readwrite, assign, nonatomic) BOOL rememberPassword;
+@property (readwrite, strong, nonatomic) id<FLCredentialsStorage> credentialStorage;
 
 + (id) userService;
 
-- (void) loadCredentials;
-- (void) saveCredentials;
-- (void) clearCredentials;
-
 - (BOOL) canAuthenticate;
+- (NSString*) userName;
 
 @end
 

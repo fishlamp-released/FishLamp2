@@ -52,7 +52,7 @@
 
 	FLAssertIsNotNil(user);
 	
-    if(!user.isAuthenticated) {
+    if(!user.isLoginAuthenticated) {
         return YES;
     }
 
@@ -64,7 +64,7 @@
     
         if([FLReachableNetwork instance].isReachable) {
             FLTrace(@"Login expired, will reauthenticate %@", user.credentials.userName);
-            [user setUnathenticated];
+            [user setLoginUnathenticated];
             return YES;
         }
     

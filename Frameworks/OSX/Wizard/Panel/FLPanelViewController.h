@@ -88,6 +88,8 @@
 
 - (void) addPanelView:(SDKView*) panelView toPanelArea:(id<FLPanelArea>) panelArea animated:(BOOL) animated;
 
+- (void) updateState:(id) state;
+
 //- (void) showAlertWithError:(NSError*) error; 
 //- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title;
 //- (void) showAlertWithError:(NSError*) error withTitle:(NSString*) title withCaption:(NSString*) caption;

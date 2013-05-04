@@ -39,6 +39,14 @@
 		272D03EF172DF98700302B2E /* FLProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D03E8172DF98600302B2E /* FLProgressPanel.m */; };
 		272D03F0172DF98700302B2E /* FLProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D03E8172DF98600302B2E /* FLProgressPanel.m */; };
 		272D03F1172DF98700302B2E /* FLProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D03E8172DF98600302B2E /* FLProgressPanel.m */; };
+		272EE7ED1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */; };
+		272EE7EE1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */; };
+		272EE7EF1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */; };
+		272EE7F01732F8010025CFD6 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */; };
+		272EE7F11732F8020025CFD6 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */; };
+		272EE7F21732F8020025CFD6 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */; };
+		272EE7F31732F8020025CFD6 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */; };
+		272EE7F41732F8020025CFD6 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */; };
 		2744B3F0171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
 		2744B3F1171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
 		2744B3F2171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
@@ -195,6 +203,14 @@
 		278DB4B216EE93EB0087374D /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */; };
 		278DB4B316EE93EB0087374D /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */; };
 		278DB4B416EE93EB0087374D /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */; };
+		27A848881732FB1600115833 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848861732FB1600115833 /* FLPanelManagerState.h */; };
+		27A848891732FB1600115833 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848861732FB1600115833 /* FLPanelManagerState.h */; };
+		27A8488A1732FB1600115833 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848861732FB1600115833 /* FLPanelManagerState.h */; };
+		27A8488B1732FB1600115833 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848861732FB1600115833 /* FLPanelManagerState.h */; };
+		27A8488C1732FB1600115833 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848871732FB1600115833 /* FLPanelManagerState.m */; };
+		27A8488D1732FB1600115833 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848871732FB1600115833 /* FLPanelManagerState.m */; };
+		27A8488E1732FB1600115833 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848871732FB1600115833 /* FLPanelManagerState.m */; };
+		27A8488F1732FB1600115833 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848871732FB1600115833 /* FLPanelManagerState.m */; };
 		27BC8A5017171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */; };
 		27BC8A5117171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */; };
 		27BC8A5217171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */; };
@@ -338,10 +354,11 @@
 		272D0380172DC73900302B2E /* FLCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCustomButton.m; sourceTree = "<group>"; };
 		272D0398172DD76000302B2E /* FLLinkTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLinkTextField.h; sourceTree = "<group>"; };
 		272D0399172DD76000302B2E /* FLLinkTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLinkTextField.m; sourceTree = "<group>"; };
-		272D03E2172DF89B00302B2E /* FLProgressPanelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLProgressPanelViewController.xib; sourceTree = "<group>"; };
 		272D03E7172DF98600302B2E /* FLProgressPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressPanel.h; sourceTree = "<group>"; };
 		272D03E8172DF98600302B2E /* FLProgressPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressPanel.m; sourceTree = "<group>"; };
 		272D03F4172DFA3600302B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLProgressPanel.xib; sourceTree = "<group>"; };
+		272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLModelObjectDocument.h; sourceTree = "<group>"; };
+		272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLModelObjectDocument.m; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampOSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindowController+FLModalAdditions.h"; sourceTree = "<group>"; };
 		2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindowController+FLModalAdditions.m"; sourceTree = "<group>"; };
@@ -385,6 +402,8 @@
 		278DB4AB16EE93EB0087374D /* FLImagePlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImagePlaceholderView.h; sourceTree = "<group>"; };
 		278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImagePlaceholderView.m; sourceTree = "<group>"; };
 		27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27A848861732FB1600115833 /* FLPanelManagerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelManagerState.h; sourceTree = "<group>"; };
+		27A848871732FB1600115833 /* FLPanelManagerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelManagerState.m; sourceTree = "<group>"; };
 		27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLActivityLogViewController.h; sourceTree = "<group>"; };
 		27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLActivityLogViewController.m; sourceTree = "<group>"; };
 		27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLHttpController+UserLogin.h"; sourceTree = "<group>"; };
@@ -460,6 +479,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		272EE7DE1732F7D70025CFD6 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */,
+				272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
 		2731477B1652D2D30027850D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,6 +519,8 @@
 				2744B44B172042930090B70D /* FLPanelManager.m */,
 				2744B44C172042930090B70D /* FLPanelViewController.h */,
 				2744B44D172042930090B70D /* FLPanelViewController.m */,
+				27A848861732FB1600115833 /* FLPanelManagerState.h */,
+				27A848871732FB1600115833 /* FLPanelManagerState.m */,
 			);
 			path = Panel;
 			sourceTree = "<group>";
@@ -512,7 +542,6 @@
 				2744B456172042930090B70D /* FLLoginPanel.xib */,
 				2744B458172042930090B70D /* FLLoginPanel.h */,
 				2744B459172042930090B70D /* FLLoginPanel.m */,
-				272D03E2172DF89B00302B2E /* FLProgressPanelViewController.xib */,
 				272D03E7172DF98600302B2E /* FLProgressPanel.h */,
 				272D03E8172DF98600302B2E /* FLProgressPanel.m */,
 				272D03F5172DFA3600302B2E /* FLProgressPanel.xib */,
@@ -627,6 +656,7 @@
 		27FC38121699F5E1001F4228 /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				272EE7DE1732F7D70025CFD6 /* Documents */,
 				2744B4F117204ED00090B70D /* Image */,
 				2744B414172041910090B70D /* Wizard */,
 				27E8031E170346AC0012BFDD /* CommandLineTool */,
@@ -713,6 +743,8 @@
 				272D039A172DD76000302B2E /* FLLinkTextField.h in Headers */,
 				272D03EA172DF98700302B2E /* FLProgressPanel.h in Headers */,
 				27C77D61172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
+				272EE7ED1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
+				27A848881732FB1600115833 /* FLPanelManagerState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,6 +784,8 @@
 				272D039C172DD76000302B2E /* FLLinkTextField.h in Headers */,
 				272D03EC172DF98700302B2E /* FLProgressPanel.h in Headers */,
 				27C77D63172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
+				272EE7EF1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
+				27A8488A1732FB1600115833 /* FLPanelManagerState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -791,6 +825,8 @@
 				272D039B172DD76000302B2E /* FLLinkTextField.h in Headers */,
 				272D03EB172DF98700302B2E /* FLProgressPanel.h in Headers */,
 				27C77D62172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
+				272EE7EE1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
+				27A848891732FB1600115833 /* FLPanelManagerState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,6 +866,8 @@
 				272D039D172DD76000302B2E /* FLLinkTextField.h in Headers */,
 				272D03ED172DF98700302B2E /* FLProgressPanel.h in Headers */,
 				27C77D64172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
+				272EE7F01732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
+				27A8488B1732FB1600115833 /* FLPanelManagerState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1053,6 +1091,8 @@
 				272D039E172DD76000302B2E /* FLLinkTextField.m in Sources */,
 				272D03EE172DF98700302B2E /* FLProgressPanel.m in Sources */,
 				27C77D65172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
+				272EE7F11732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
+				27A8488C1732FB1600115833 /* FLPanelManagerState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,6 +1128,8 @@
 				272D03A0172DD76000302B2E /* FLLinkTextField.m in Sources */,
 				272D03F0172DF98700302B2E /* FLProgressPanel.m in Sources */,
 				27C77D67172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
+				272EE7F31732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
+				27A8488E1732FB1600115833 /* FLPanelManagerState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1123,6 +1165,8 @@
 				272D039F172DD76000302B2E /* FLLinkTextField.m in Sources */,
 				272D03EF172DF98700302B2E /* FLProgressPanel.m in Sources */,
 				27C77D66172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
+				272EE7F21732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
+				27A8488D1732FB1600115833 /* FLPanelManagerState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,6 +1202,8 @@
 				272D03A1172DD76000302B2E /* FLLinkTextField.m in Sources */,
 				272D03F1172DF98700302B2E /* FLProgressPanel.m in Sources */,
 				27C77D68172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
+				272EE7F41732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
+				27A8488F1732FB1600115833 /* FLPanelManagerState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -257,7 +257,7 @@
 
 // Classes/Notifications
 #import "FLLocalNotification.h"
-#import "FLMessageBroadcaster.h"
+#import "FLBroadcaster.h"
 #import "FLMutableNotification.h"
 #import "FLNotificationListener.h"
 #import "FLNotificationSending.h"

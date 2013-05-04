@@ -25,10 +25,13 @@
 
 @implementation FLPanelManager
 
-@synthesize selectedPanelIdentifier = _visiblePanelIdentifier;
+@synthesize panelManagerState = _panelManagerState;
+
+@synthesize visiblePanelIdentifier = _visiblePanelIdentifier;
 @synthesize panels = _panels;
 @synthesize forwardTransition = _forwardTransition;
 @synthesize backwardTransition = _backwardTransition;
+@synthesize identifier = _identifier;
 
 - (void) dealloc {
 #if __MAC_10_8
@@ -38,6 +41,8 @@
 #endif
 
 #if FL_MRC
+    [_identifier release];
+    [_panelManagerState release];
     [_visiblePanelIdentifier release];
     [_panelAreas release];
     [_backwardTransition release];
@@ -64,6 +69,8 @@
         
         [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
         self.view.autoresizesSubviews = YES;
+        
+        _panelManagerState = [[FLPanelManagerState alloc] init];
     }
 }
 
@@ -248,6 +255,9 @@
     [toShow setNextResponder:self];
     [self.view.window makeFirstResponder:toShow];
 
+    [self.panelManagerState setSelectedPanelIdentifier:toShow.identifier];
+    [self.panelManagerState setSelectedPanelSavedState:nil];
+    
     [toShow panelDidAppear];
     [self didShowPanel:toShow];
 }                                          
