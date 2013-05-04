@@ -106,6 +106,10 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return nil;
 }
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"%@ %@", [super description], self.label];
+}
+
 - (void) queueBlockWithDelay:(NSTimeInterval) delay
                           block:(FLBlock) block 
                    withFinisher:(FLFinisher*) finisher {
@@ -209,7 +213,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
         }
         @catch(NSException* ex) {
             [finisher setFinishedWithResult:ex.error];
-       }
+        }
     });
     
     return promise.result;

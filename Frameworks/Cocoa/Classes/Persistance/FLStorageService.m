@@ -46,6 +46,11 @@
     return [self.objectStorage containsObject:object];
 }
 
+- (void) writeObjectsInArray:(NSArray*) array {
+    FLAssert(self.isServiceOpen);
+    FLAssertNotNil(self.objectStorage);
+    [self.objectStorage writeObjectsInArray:array];
+}
 
 
 @end

@@ -283,7 +283,6 @@
 #import "FLCacheBehavior.h"
 #import "FLCachedObjectOperation.h"
 #import "FLCacheProtocol.h"
-#import "FLDatabaseCacheOperation.h"
 #import "FLEmptyCacheOperation.h"
 #import "FLLowMemoryHandler.h"
 #import "FLObjectCacheBehavior.h"
@@ -305,8 +304,6 @@
 #import "FLSqlStatement.h"
 
 // Classes/Persistance/Database/DatabaseUtilities
-#import "FLLoadObjectFromDatabaseOperation.h"
-#import "FLSaveObjectToDatabaseOperation.h"
 #import "FLSqlBuilder.h"
 #import "FLUpgradeDatabaseLengthyTask.h"
 

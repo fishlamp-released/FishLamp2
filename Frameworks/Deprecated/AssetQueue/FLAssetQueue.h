@@ -5,7 +5,7 @@
 //  Created by Mike Fullerton on 6/16/11.
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
-
+#if REFACTOR
 #import <Foundation/Foundation.h>
 
 #import "FLQueuedAsset.h"
@@ -106,3 +106,4 @@ typedef void (^FLAssetQueueLoaderBlock)(FLAssetQueueLoadLock* loadLock);
 @end
 
 
+#endif

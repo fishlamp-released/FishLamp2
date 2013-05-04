@@ -22,7 +22,7 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 @interface FLPanelManager : NSViewController {
 @private
     FLOrderedCollection* _panels;
-    id _visiblePanelIdentifier;
+    id _selectedPanelIdentifier;
     
     FLViewTransition* _forwardTransition;
     FLViewTransition* _backwardTransition;

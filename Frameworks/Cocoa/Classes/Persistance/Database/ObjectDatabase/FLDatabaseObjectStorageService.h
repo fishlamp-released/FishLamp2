@@ -8,14 +8,15 @@
 
 #import "FLStorageService.h"
 
-#import "FLObjectDatabase.h"
+#import "FLObjectDatabaseController.h"
 
 @protocol FLDatabaseObjectStorageServiceDelegate;
 
 @interface FLDatabaseObjectStorageService : FLStorageService {
 @private
-    FLObjectDatabase* _database;
+    FLObjectDatabaseController* _objectDatabase;
 }
+@property (readonly, strong, nonatomic) FLObjectDatabaseController* databaseController;
 
 + (id) databaseObjectStorageService:(id<FLDatabaseObjectStorageServiceDelegate>) delegate;
 

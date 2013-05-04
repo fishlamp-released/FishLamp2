@@ -5,6 +5,7 @@
 //	Created by Mike Fullerton on 9/24/10.
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
+#if REFACTOR
 
 #import "FLCacheBehavior.h"
 
@@ -118,3 +119,5 @@
 }
 
 @end
+
+#endif

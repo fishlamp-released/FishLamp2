@@ -10,6 +10,8 @@
 
 @protocol FLObjectStorage <NSObject>
 - (void) writeObject:(id) object;
+- (void) writeObjectsInArray:(NSArray*) array; 
+
 - (id) readObject:(id) inputObject;
 - (void) deleteObject:(id) object;
 - (BOOL) containsObject:(id) object;
@@ -17,8 +19,8 @@
 
 @protocol FLObjectStorageExtended <FLObjectStorage>
 - (NSUInteger) objectCountForClass:(Class) aClass;
-- (void) removeAllObjectsWithClass:(Class) aClass;
-- (NSArray*) readObjectsForClass:(Class) aClass;
+- (void) deleteAllObjectsForClass:(Class) aClass;
+- (NSArray*) readAllObjectsForClass:(Class) aClass;
 @end
 
 @interface NSObject (FLObjectStorage)

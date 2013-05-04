@@ -16,22 +16,54 @@ typedef enum {
     FLObjectDatabaseEventHintSaved
 } FLObjectDatabaseEventHint;
 
+#define FLObjectDatabaseErrorDomain @"FLObjectDatabaseErrorDomain"
+
+typedef enum {
+    FLDatabaseErrorNoError = 0,
+	FLDatabaseErrorTooManyObjectsReturned,
+	FLDatabaseErrorAlreadyOpen,
+	FLDatabaseErrorInvalidInputObject,
+	FLDatabaseErrorInvalidOutputObject,
+	FLDatabaseErrorNoParametersSpecified,
+	FLDatabaseErrorRequiredColumnIsNull,
+    FLDatabaseErrorObjectNotFound
+} FLDatabaseError;
+
 
 @interface FLObjectDatabase : FLDatabase<FLObjectStorageExtended> {
+@private
 }
 
-- (id) initWithDefaultName:(NSString*) directory; // eg appname.sqlite
-- (id) initWithName:(NSString*) fileName directory:(NSString*) directory;
+- (void) writeObject:(id) object;
 
-- (id) loadObjectFromMemoryCache:(id) inputObject;
+- (void) writeObjectsInArray:(NSArray*) array; 
 
+- (id) readObject:(id) inputObject;
+
+- (void) deleteObject:(id) object;
+
+- (BOOL) containsObject:(id) object;
+
+- (NSArray*) readObjectsMatchingInputObject:(id) inputObject;
+
+- (NSArray*) readObjectsMatchingInputObject:(id) inputObject
+                              columnsFilter:(NSArray*) onlyTheseColumnsWillBeReturned;
+
+
+- (void) deleteAllObjectsForClass:(Class) aClass;
+
+// no params, loads everything. Careful now.
+- (NSArray*) readAllObjectsForClass:(Class) aClass;
+
+- (NSArray*) readAllObjectsInTable:(FLDatabaseTable*) table;
+
+- (NSUInteger) objectCountForClass:(Class) aClass;
 
 @end
 
+@protocol FLOptionalDatabaseEvents <NSObject>
+@optional
+- (void) wasRemovedFromDatabase:(FLObjectDatabase*) database;
+- (void) wasSavedToDatabase:(FLObjectDatabase*) database;
+@end
 
-//#import "FLAsyncJob.h"
-//
-//@interface FLObjectDatabase (FLAsyncJob) 
-//- (void) readObject:(id) inputObject 
-//   withEventHandler:(FLAsyncJob*) handler;
-//@end

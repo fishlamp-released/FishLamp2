@@ -9,36 +9,53 @@
 #import "FLDatabaseObjectStorageService.h"
 
 @interface FLDatabaseObjectStorageService ()
-@property (readwrite, strong, nonatomic) FLObjectDatabase* objectStorage;
+@property (readwrite, strong, nonatomic) FLObjectDatabaseController* databaseController;
 @end
 
 @implementation FLDatabaseObjectStorageService
-@synthesize objectStorage = _database;
+@synthesize databaseController = _databaseController;
 
 + (id) databaseObjectStorageService:(id<FLDatabaseObjectStorageServiceDelegate>) delegate {
     return FLAutorelease([[[self class] alloc] initWithDelegate:delegate]);
 }
 
+- (id<FLObjectStorage>) objectStorage {
+    return self.databaseController;
+}
+
 #if FL_MRC
 - (void) dealloc {
-    [_database release];
+    [_databaseController release];
     [super dealloc];
 }
 #endif
 
 - (void) openService {
     NSString* databasePath = [self.delegate databaseObjectStorageServiceGetDatabasePath:self];
-    FLObjectDatabase* database = FLAutorelease([[FLObjectDatabase alloc] initWithFilePath:databasePath]);
-    BOOL needsUpgrade = [database openDatabase];
-    if(needsUpgrade) {
-        // doh.
-    }
+    self.databaseController = [FLObjectDatabaseController  objectDatabaseController:databasePath];
     
-    self.objectStorage = database;
+    [self.databaseController dispatchAsync:^(FLObjectDatabase* database) {
+        [database openDatabase];
+    }
+    completion:^(FLPromisedResult result) {
+        if([result error]) {
+            FLLog(@"database error: %@", result)
+        }
+    }];
+    
+
+    
 }
 
 - (void) closeService {
-    [self.objectStorage closeDatabase];
+    [self.databaseController dispatchAsync:^(FLObjectDatabase* database) {
+        [database openDatabase];
+    }
+    completion:^(FLPromisedResult result) {
+        if([result error]) {
+            FLLog(@"database error: %@", result)
+        }
+    }];
 }
 
 

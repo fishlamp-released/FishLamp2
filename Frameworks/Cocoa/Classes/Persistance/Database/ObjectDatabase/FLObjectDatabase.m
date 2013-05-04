@@ -20,113 +20,46 @@
 #import "FLAppInfo.h"
 
 @implementation FLObjectDatabase
-  
-- (id) initWithName:(NSString*) fileName directory:(NSString*) directory {
-	return [self initWithFilePath:[directory stringByAppendingPathComponent: fileName]];
-}
 
-- (id) initWithDefaultName:(NSString*) directory {
-	NSString* name = [[NSString alloc] initWithFormat:@"%@.sqlite", [FLAppInfo appName]];
-	if((self = [self initWithName:name directory:directory])) {
-	}
-	FLReleaseWithNil(name);
-	return self;
-}
-
-- (void) _saveOneObject:(id) object {
-    id<FLCacheBehavior> behavior = [object cacheBehavior];
-    if(!behavior || [behavior willSaveObjectToDatabaseCache:object]) {
-        [super _saveOneObject:object];
-        if(behavior) {
-            [behavior didSaveObjectToDatabaseCache:object];
-        }
-    }
-}
-
-- (void) openStorage {
-}
-
-- (void) closeStorage {
-}
-
-- (void) deleteObject:(id) inputObject
-{
-    [super deleteObject:inputObject];
-    id<FLCacheBehavior> behavior = [inputObject cacheBehavior];
-    if(behavior)
-    {
+- (void) deleteObject:(id) inputObject {
+    FLAssertIsNotNilWithComment(inputObject, nil);
+        
+    FLDatabaseTable* table = [[inputObject class] sharedDatabaseTable];
     
-//#if DEBUG
-//		FLLogAssert(behavior != nil, @"%@ has no cache behavior", NSStringFromClass([object class]));
-//
-//		if(behavior.warnOnMainThreadDelete && [NSThread isMainThread])
-//		{
-//			FLDebugLog(@"Warning: deleting object cache on main thread");
-//			FLLogStackTrace();
-//		}
-//#endif
-    
-        [behavior didRemoveObjectFromCache:inputObject];
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
+    [statement appendString:SQL_DELETE];
+    [statement appendString:SQL_FROM andString:table.tableName];
+
+    if(![statement appendWhereClauseForSelectingObject:inputObject]) {
+        FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorNoParametersSpecified, @"No parameters specified");
     }
+
+    [self executeStatement:statement];
+    
+    FLPerformSelector1(inputObject, @selector(wasRemovedFromDatabase:), self);
 }
 
-- (id) loadObjectFromMemoryCache:(id) inputObject {
-	return [[inputObject cacheBehavior] loadObjectFromMemoryCache:inputObject];
-}
+- (NSArray*) readObjectsMatchingInputObject:(id) inputObject 
+                              columnsFilter:(NSArray*) columnsFilter {
+        
+    FLAssertNotNil(inputObject);
 
-- (void) readObject:(id) inputObject 
-		outputObject:(id*) outputObject {
-	
     if(!inputObject) {
-		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
-	}
-	
-    if(!outputObject) {
-		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
-	}
+        return nil;
+    }   
 
-	id<FLCacheBehavior> behavior = [inputObject cacheBehavior];
-	if(behavior) {
-		id newObject = [behavior loadObjectFromMemoryCache:inputObject];
-	
-#if DEBUG
-		if(behavior.warnOnMainThreadLoad && [NSThread isMainThread])
-		{
-			FLDebugLog(@"Warning: loading from cache on main thread");
-//			FLLogStackTrace();
-		}
-#endif
-		if(newObject) {
-			if(outputObject) {
-				*outputObject = FLRetain(newObject);
-			}
-		
-			return;
-		}
-	}
-
-    [super readObject:inputObject outputObject:outputObject];
-}
-
-
-
-- (void) selectObjectsMatchingInputObject:(id) inputObject 
-						resultColumnNames:(NSArray*) resultColumnNames
-						resultObjects:(NSArray**) outObjects {
-	if(!inputObject) {
-		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
-	}
-	if(!outObjects) {
-		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
-	}
-	id<FLCacheBehavior> behavior = [inputObject cacheBehavior];
-
+    __block NSMutableArray* outObjects = nil;
+    
 	FLDatabaseTable* table = [[inputObject class] sharedDatabaseTable];
 
     FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
-    NSMutableArray* results = [NSMutableArray array];
 
-    NSString* resultColumns = [FLSqlBuilder sqlListFromArray:resultColumnNames delimiter:@"," withinParens:NO prefixDelimiterWithSpace:NO emptyString:SQL_ALL];
+    NSString* resultColumns = [FLSqlBuilder sqlListFromArray:columnsFilter 
+                                                   delimiter:@"," 
+                                                withinParens:NO 
+                                    prefixDelimiterWithSpace:NO 
+                                                 emptyString:SQL_ALL];
+                                                 
 
     [statement appendString:SQL_SELECT andString:resultColumns];
     [statement appendString:SQL_FROM andString:table.tableName];
@@ -134,124 +67,147 @@
     FLAssert([statement appendWhereClauseForSelectingObject:inputObject] != NO);
     
     statement.objectResultBlock = ^(id object, BOOL* stop) {
-        if(behavior && [behavior didLoadObjectFromDatabaseCache:object]) {
-            [results addObject:object];
+        
+        if(!outObjects) {
+            outObjects = [NSMutableArray arrayWithObject:object];
         }
         else {
-            [self deleteObject:object];
+            [outObjects addObject:object];
         }
     };
     
     statement.finished = ^{
-        if(outObjects) {
-            *outObjects = FLRetain(results);
-        }
+        
     };
     
     [self executeStatement:statement];
+    
+    return outObjects;
 }
 
-- (void) loadAllObjectsForTypeWithTable:(FLDatabaseTable*) table outObjects:(NSArray**) outObjects
-{
-	if(!table) {
-		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
-	}
-	if(!outObjects) {
-		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidOutputObject, @"null output object");
-	}
+- (NSArray*) readAllObjectsInTable:(FLDatabaseTable*) table {
+
+    FLAssertNotNil(table);
+
+    __block NSMutableArray* outObjects = nil;
 	
-	id<FLCacheBehavior> behavior = [[table classRepresentedByTable] sharedCacheBehavior];
-    
-    NSMutableArray* results = [NSMutableArray array];
     FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
     [statement appendString:SQL_SELECT andString:SQL_ALL];
     [statement appendString:SQL_FROM andString:table.tableName];
     
     statement.objectResultBlock = ^(id object, BOOL* stop) {
-        if(behavior && [behavior didLoadObjectFromDatabaseCache:object]) {
-            [results addObject:object];
+    
+        if(!outObjects) {
+            outObjects = [NSMutableArray arrayWithObject:object];
         }
         else {
-            [self deleteObject:object];
+            [outObjects addObject:object];
         }
     };
         
-    statement.finished = ^{
-        if(outObjects) {
-            *outObjects = FLRetain(results);
-        }
-    };
-
     [self executeStatement:statement];
+    
+    return outObjects;
+}
+
+- (NSArray*) readAllObjectsForClass:(Class) aClass {
+	return [self readAllObjectsInTable:[aClass sharedDatabaseTable]];
 }
 
 - (NSUInteger) objectCountForClass:(Class) aClass {
     return [self rowCountForTable:[aClass sharedDatabaseTable]];
 }
 
-- (void) removeAllObjectsWithClass:(Class) aClass {
+- (void) deleteAllObjectsForClass:(Class) aClass {
     [self dropTable:[aClass sharedDatabaseTable]];
 }
 
-- (NSArray*) readObjectsForClass:(Class) aClass {
-    NSArray* list = nil;
-	[self loadAllObjectsForTypeWithClass:aClass outObjects:&list];
-    
-    return FLAutorelease(list);
+- (id) readObject:(id) inputObject {
+    FLAssertNotNil(inputObject);
+
+    if(!inputObject) {
+        return nil;
+	}
+
+    NSArray* array = [self readObjectsMatchingInputObject:inputObject];
+	if(array) {
+		if(array.count == 1) {
+			return FLRetainWithAutorelease(([array objectAtIndex:0]));
+		}
+		else if(array.count > 1) {
+			FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorTooManyObjectsReturned,
+                             ([NSString stringWithFormat:@"Too many objects returned for input object of type: %@", NSStringFromClass([inputObject class])]));
+		}
+	}
+
+	return nil;
 }
+
+- (NSArray*) readObjectsMatchingInputObject:(id) inputObject {
+	return [self readObjectsMatchingInputObject:inputObject columnsFilter:nil];
+}
+
+- (BOOL) containsObject:(id) inputObject
+{
+	if(!inputObject) {
+		FLThrowErrorCodeWithComment(FLObjectDatabaseErrorDomain, FLDatabaseErrorInvalidInputObject, @"null input object");
+	}
+
+    __block BOOL foundIt = NO;
+
+	FLDatabaseTable* table = [[inputObject class] sharedDatabaseTable];
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
+    
+    // TODO: it'd be faster to just load only primary key columns instead of all columns
+
+    [statement appendString:SQL_SELECT andString:SQL_ALL];
+    [statement appendString:SQL_FROM andString:table.tableName];
+    
+    if(![statement appendWhereClauseForSelectingObject:inputObject]) {
+
+        FLAssertFailedWithComment(@"No.");
+    }
+    
+    statement.rowResultBlock = ^(NSDictionary* row, BOOL* stop) {
+        foundIt = YES;
+        *stop = YES;
+    };
+    
+    [self executeStatement:statement];
+    
+    return foundIt;
+}
+
+
+- (void) writeObject:(id) object {
+    FLDatabaseTable* table = [[object class] sharedDatabaseTable];
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
+    [statement appendString:SQL_INSERT];
+    [statement appendString:SQL_OR];
+    [statement appendString:SQL_REPLACE];
+    [statement appendString:SQL_INTO andString:table.tableName];
+    [statement appendInsertClauseForObject:object];
+    [self executeStatement:statement];
+    
+    FLPerformSelector1(object, @selector(wasSavedToDatabase:), self);
+
+}
+
+- (void) writeObjectsInArray:(NSArray*) array {
+	if(array && array.count) {
+        [self executeTransaction:^{
+            for(id object in array) {
+                [self writeObject:object];
+            }
+        }];
+    }
+}
+
 
 @end
 
-//@implementation FLObjectDatabase (FLAsyncJob) 
-//
-//- (void) readObject:(id) inputObject 
-//   withEventHandler:(FLAsyncJob*) handler
-//{
-//
-//// TODO("async readObject is commented out");
-//
-////    [self performBlockInBackground: ^(id from, FLAsyncJob* job, FLAsyncEventResult* asyncEventResult) {
-////
-////        asyncEventResult.eventHint = FLObjectDatabaseEventHintLoaded;
-////        asyncEventResult.eventInput = inputObject;
-////        asyncEventResult.eventContext = from;
-////        
-////        id output = nil;
-////        @try {
-////            [from readObject:inputObject outputObject:&output];
-////            
-////            if(output) {
-////                asyncEventResult.eventOutput = output;
-////            } else { 
-////                asyncEventResult.error = [NSError errorWithDomain:FLObjectDatabaseErrorDomain 
-////                                                       code:FLDatabaseErrorObjectNotFound 
-////                                                  localizedDescription:@"object not found in database"];
-////            }
-////        }
-////        @finally {
-////            FLRelease(output);
-////        }
-////    }
-////    withEventHandler:handler
-////    ];
-//}
-//
-//- (void) writeObject:(id) object 
-//   withEventHandler:(FLAsyncJob*) handler
-//{
-//// TODO("async save object is commented out");
-//
-////    [self performBlockInBackground: ^(id from, FLAsyncJob* job, FLAsyncEventResult* asyncEventResult) {
-////            asyncEventResult.eventHint = FLObjectDatabaseEventHintSaved;
-////            asyncEventResult.eventInput = object;
-////            asyncEventResult.eventContext = from;
-////            
-////            [from writeObject:object];
-////            asyncEventResult.eventOutput = object;
-////        }
-////        withEventHandler:handler
-////        ];
-//}
-//
-//@end
+
+
+
+
 

@@ -120,43 +120,6 @@
     [attr setObject:[NSFont boldSystemFontOfSize:14] forKey:NSFontAttributeName];
 }
 
-//- (void) updateState {
-//    if(_willUpdate) {
-//
-//        FLStringDisplayState displayState = FLStringDisplayStateEnabled;
-//        if(_enabled) {
-//
-//            if(_selected) {
-//                displayState = FLStringDisplayStateHighlighted;
-//            }
-//            else if(_mouseDown) {
-//                if(_mouseIn) {
-//                    displayState = FLStringDisplayStateMouseDownIn;
-//                }
-//                else {
-//                    displayState = FLStringDisplayStateMouseDownOut;
-//                }
-//            }
-//            else if(_mouseIn) {
-//                displayState = FLStringDisplayStateHovering;
-//            }
-//            else {
-//            }
-//        } 
-//        else {
-//            displayState = FLStringDisplayStateDisabled;        
-//        }
-//        
-//        _stringController.displayState = displayState;
-//            
-//        _willUpdate = NO;
-//
-//#if TRACE       
-//     FLLog(@"updated title: %@", _stringController.string);
-//#endif        
-//    }
-//}
-
 - (void) stateDidChange {
     FLStringDisplayState displayState = FLStringDisplayStateDisabled;
     if(_enabled) {
@@ -179,14 +142,6 @@
     } 
     
     _stringController.displayState = displayState;
-
-//    if(!_willUpdate) {
-//        _willUpdate = YES;
-//        
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self updateState];
-//        });
-//    }
 }
 
 - (void) handleMouseMoved:(CGPoint) location mouseIn:(BOOL) mouseIn mouseDown:(BOOL) mouseDown {

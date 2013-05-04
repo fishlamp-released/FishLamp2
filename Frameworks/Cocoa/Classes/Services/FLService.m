@@ -85,7 +85,6 @@
 - (void) performSelectorOnAllServices:(SEL) selector {
     [self performSelector:selector];
     for(FLService* service in _subServices) {
-        [service performSelector:selector];
         [service performSelectorOnAllServices:selector];
     }
 }

@@ -12,7 +12,6 @@
 #import "NSFileManager+FLExtras.h"
 
 #import "FLDatabaseColumnDecoder.h"
-#import "FLDatabase+Tables.h"
 #import "FLDatabase.h"
 #import "FLAppInfo.h"
 #import "FLSqlStatement.h"
@@ -55,10 +54,6 @@ static FLDatabaseColumnDecoder s_decoder = nil;
         [FLDatabase setDefaultColumnDecoder:FLDefaultDatabaseColumnDecoder];
 #endif
     }
-}
-
-- (void) dispatchFifoBlock:(dispatch_block_t) block {
-    FLDispatchSync(_dispatchQueue, block);
 }
 
 - (void) handleLowMemory:(id)sender {
@@ -107,11 +102,9 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 }
 
 - (void) deleteOnDisk {
-	[self dispatchFifoBlock:^{
-        NSError* error = nil;
-        [[NSFileManager defaultManager] removeItemAtPath:[self filePath] error:&error];
-        FLThrowIfError(FLAutorelease(error));
-    }];
+    NSError* error = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:[self filePath] error:&error];
+    FLThrowIfError(FLAutorelease(error));
 }
 
 - (BOOL) databaseFileExistsOnDisk {
@@ -139,9 +132,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 }
 
 - (void) purgeMemoryIfPossible {
-    [self dispatchFifoBlock:^{
-        sqlite3_release_memory(INT32_MAX);
-    }];
+    sqlite3_release_memory(INT32_MAX);
 }
 
 - (NSString*) fileName {
@@ -199,19 +190,17 @@ static FLDatabaseColumnDecoder s_decoder = nil;
         @"Database is already open");
     }
     
-        NSString* folderPath = [self.filePath stringByDeletingLastPathComponent];
-        
-        NSError* error = nil;
-        [[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
-        if(error) {
-            FLLog(@"database open error %@", [error description]);
-            // die if it's not "already exists error" 
-        }
+    NSString* folderPath = [self.filePath stringByDeletingLastPathComponent];
     
-	[self dispatchFifoBlock:^{ 
-        [self sqliteOpen:flags]; 
-        self.isOpen = YES;
-    }];
+    NSError* error = nil;
+    [[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
+    if(error) {
+        FLLog(@"database open error %@", [error description]);
+        // die if it's not "already exists error" 
+    }
+    
+    [self sqliteOpen:flags]; 
+    self.isOpen = YES;
     
     [self initializeVersioning];
     needsUpgrade = [self databaseNeedsUpgrade];
@@ -225,24 +214,22 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 
 - (void) closeDatabase  {
     
-    [self dispatchFifoBlock:^{
-        sqlite3* sqlite3 = self.sqlite3;
-        self.sqlite3 = nil;
-    
-        if(sqlite3 == nil) {
-            FLThrowErrorCodeWithComment( 
-                FLDatabaseErrorDomain,
-                FLDatabaseErrorDatabaseAlreadyOpen, 
-                @"Database is already closed");
-        }
+    sqlite3* sqlite3 = self.sqlite3;
+    self.sqlite3 = nil;
 
-        if(sqlite3_close(sqlite3)) {
-            [self throwSqliteError:nil];
-        }
-        
-        self.tables = nil;
-        self.isOpen = NO;
-    }];
+    if(sqlite3 == nil) {
+        FLThrowErrorCodeWithComment( 
+            FLDatabaseErrorDomain,
+            FLDatabaseErrorDatabaseAlreadyOpen, 
+            @"Database is already closed");
+    }
+
+    if(sqlite3_close(sqlite3)) {
+        [self throwSqliteError:nil];
+    }
+    
+    self.tables = nil;
+    self.isOpen = NO;
 }
 
 - (void) throwSqliteError:(const char*) sql {
@@ -282,18 +269,15 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 }
 
 - (void) executeTransaction:(dispatch_block_t) block {
-
-    [self dispatchFifoBlock:^{
-        @try {
-            [self execute:@"BEGIN TRANSACTION;"];
-            if(block) block();
-            [self execute:@"COMMIT;"];
-        }
-        @catch(NSException* ex) {
-            [self execute:@"ROLLBACK;"];
-            @throw;
-        } 
-    }];
+    @try {
+        [self execute:@"BEGIN TRANSACTION;"];
+        if(block) block();
+        [self execute:@"COMMIT;"];
+    }
+    @catch(NSException* ex) {
+        [self execute:@"ROLLBACK;"];
+        @throw;
+    } 
 }
 
 //- (void) beginAsyncBlock:(void(^)(FLDatabase*)) asyncBlock
@@ -323,24 +307,22 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     
     rowResultBlock = FLCopyWithAutorelease(rowResultBlock);
     
-    [self dispatchFifoBlock:^{
-        FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:nil];
-        @try {
-            BOOL stop = NO;
-            [sqlStatement prepareWithSql:sql];
-            while(!stop && !sqlStatement.isDone) {
-                NSDictionary* row = [sqlStatement step];
-                if(row) {
-                    if(rowResultBlock) {
-                        rowResultBlock(row, &stop);
-                    }
+    FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:nil];
+    @try {
+        BOOL stop = NO;
+        [sqlStatement prepareWithSql:sql];
+        while(!stop && !sqlStatement.isDone) {
+            NSDictionary* row = [sqlStatement step];
+            if(row) {
+                if(rowResultBlock) {
+                    rowResultBlock(row, &stop);
                 }
             }
         }
-        @finally {
-            [sqlStatement finalizeStatement];
-        }
-    }];
+    }
+    @finally {
+        [sqlStatement finalizeStatement];
+    }
     
 }
 
@@ -371,57 +353,208 @@ static FLDatabaseColumnDecoder s_decoder = nil;
         };
     }
 
-    [self dispatchFifoBlock:^{
-        FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:decoder];
-        @try {
+    FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:decoder];
+    @try {
+    
+        BOOL stop = NO;
         
-            BOOL stop = NO;
+        if(statement.prepare) {
+            statement.prepare(&stop);
+            if(stop) {
+                return;
+            }
+        }
+        
+        if(statement.table) {
+            [self createTableIfNeeded:statement.table];
+        }
+        
+        [sqlStatement prepareWithSql:statement];
+        while(!stop && !sqlStatement.isDone) {
+            NSDictionary* row = [sqlStatement step];
+            if(row) {
             
-            if(statement.prepare) {
-                statement.prepare(&stop);
-                if(stop) {
-                    return;
+                if(statement.rowResultBlock) {
+                    statement.rowResultBlock(row, &stop);
+                }
+                if(statement.objectResultBlock) {
+                    FLAssertIsNotNilWithComment(statement.table, @"table is required in statement to decode object");
+                    statement.objectResultBlock([statement.table objectForRow:row], &stop);
                 }
             }
-            
-            if(statement.table) {
-                [self createTableIfNeeded:statement.table];
-            }
-            
-            [sqlStatement prepareWithSql:statement];
-            while(!stop && !sqlStatement.isDone) {
-                NSDictionary* row = [sqlStatement step];
-                if(row) {
-                
-                    if(statement.rowResultBlock) {
-                        statement.rowResultBlock(row, &stop);
-                    }
-                    if(statement.objectResultBlock) {
-                        FLAssertIsNotNilWithComment(statement.table, @"table is required in statement to decode object");
-                        statement.objectResultBlock([statement.table objectForRow:row], &stop);
-                    }
-                }
-            }
+        }
 
-            if(statement.finished) {
-                statement.finished(nil);
+        if(statement.finished) {
+            statement.finished(nil);
+        }
+    }
+    @catch(NSException* ex) {
+        if(statement.finished) {
+            statement.finished(ex.error);
+        }
+        
+        @throw;
+    }
+    @finally {
+        [sqlStatement finalizeStatement];
+    }
+}
+
+
+- (FLDatabaseTable*) tableForName:(NSString*) name {
+
+    NSString* className = FLDatabaseNameDecode(name);
+    FLDatabaseTable* table = [_tables objectForKey:className];
+    if(!table) {
+        Class theClass = NSClassFromString(className);
+        if(theClass) {
+            table = [theClass sharedDatabaseTable];
+        }
+	}
+    return table;
+}
+
+- (void) _createTableIfNotInDatabase:(FLDatabaseTable*) table {
+
+	FLAssertIsNotNil(table);
+	FLAssertIsNotNil(table.columns);
+	FLAssertWithComment([self isOpen], @"Database isn't open");
+	FLAssertWithComment([table.columns count] > 0, @"no columns in the table, bub");
+
+    if(![self tableExists:table]) {
+        [self execute:[table createTableSql]];
+        for(NSArray* indexes in table.indexes.objectEnumerator) {
+            for(FLDatabaseIndex* idx in indexes) {
+                NSString* createIndex = [idx createIndexSqlForTableName:table.tableName];
+                
+                if(FLStringIsNotEmpty(createIndex)) {
+                    [self execute:createIndex];
+                }
             }
         }
-        @catch(NSException* ex) {
-            if(statement.finished) {
-                statement.finished(ex.error);
-            }
-            
-            @throw;
-        }
-        @finally {
-            [sqlStatement finalizeStatement];
+        [self writeHistoryForTable:table entry:[table createTableSqlWithIndexes]];
+    }
+}
+
+- (void) createTableIfNeeded:(FLDatabaseTable*) table  {
+	
+    if(![_tables objectForKey:table.decodedTableName]) {
+        [self _createTableIfNotInDatabase:table];
+        [_tables setObject:table forKey:table.decodedTableName];
+    }
+}
+
+- (void) dropTable:(FLDatabaseTable*) table {
+	[self dropTableByName:table.tableName];
+}
+
+- (BOOL) tableExists:(FLDatabaseTable*) table {
+	return [self tableExistsByName:table.tableName];
+}
+
+- (NSUInteger) rowCountForTable:(FLDatabaseTable*) table {
+	[self createTableIfNeeded:table];
+	return [self rowCountForTableByName:table.tableName];
+}
+
+- (NSUInteger) rowCountForTableByName:(NSString*) table {
+	
+    __block NSUInteger count = 0;
+    
+    FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
+    [sql appendFormat:@"SELECT COUNT(*) FROM %@", table];
+    
+    [self executeSql:sql rowResultBlock: ^(NSDictionary* row, BOOL* stop) {
+        NSNumber* number = [row objectForKey:@"COUNT(*)"];
+        if(number) {
+            count = [number integerValue];
         }
     }];
 
-    
+    return count;
 }
 
+- (BOOL) tableExistsByName:(NSString*) tableName
+{
+	FLAssertStringIsNotEmpty(tableName);
+    
+    __block BOOL exists = NO;
+
+    FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
+    [sql appendFormat:@"SELECT name FROM sqlite_master WHERE name='%@'", tableName];
+
+    [self executeSql:sql rowResultBlock:^(NSDictionary* row, BOOL* stop) {
+        exists = FLStringsAreEqual([row objectForKey:@"name"], tableName);
+        if(exists) {
+            *stop = YES;
+        }
+    }];
+
+    return exists;
+}
+
+- (void) dropTableByName:(NSString*) tableName {
+	FLAssertStringIsNotEmpty(tableName);
+
+	@try  {
+		[self execute:[NSString stringWithFormat:@"DROP TABLE %@", tableName]];
+	}
+	@catch(NSException* ex) {
+		if(!ex.error.isTableDoesNotExistError) {
+			@throw;
+		}
+	}
+	
+	[_tables removeObjectForKey:tableName];
+	[_tables removeObjectForKey:FLDatabaseNameDecode(tableName)];
+}
+
+- (void) _insertOrUpdateRowInTable:(NSString*) tableName
+                               row:(NSDictionary*) row
+                            action:(NSString*) action {
+
+//    FLDatabaseTable* table = [[object class] sharedDatabaseTable];
+//    [self createTableIfNeeded:table];
+
+    FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
+    sql.sqlString = action;
+    [sql appendString:SQL_INTO andString:tableName];
+    [sql appendInsertClauseForRow:row];
+
+    [self executeSql:sql rowResultBlock:nil];
+}
+
+- (void) replaceRowInTable:(NSString*) tableName 
+			          row:(NSDictionary*) row   {
+	[self _insertOrUpdateRowInTable:tableName row:row action:@"REPLACE"];
+}
+
+- (void) insertRowInTable:(NSString*) tableName 
+			          row:(NSDictionary*) row  {
+	[self _insertOrUpdateRowInTable:tableName row:row action:@"INSERT"];
+}
+
+- (void) insertOrReplaceRowInTable:(NSString*) tableName row:(NSDictionary*) row {
+	[self _insertOrUpdateRowInTable:tableName row:row action:@"INSERT OR REPLACE"];
+}
+
+- (void) runQueryOnTable:(FLDatabaseTable*) table
+              withString:(NSString*) statementString
+                 outRows:(NSArray**) outRows {
+    
+    NSMutableArray* result = [NSMutableArray array];
+
+    FLDatabaseStatement* statement = [FLDatabaseStatement databaseStatement:table];
+    [statement appendString:statementString];
+    
+    statement.rowResultBlock = ^(NSDictionary* row, BOOL* stop) {
+        [result addObject:row];
+    };
+     
+    [self executeStatement:statement];
+
+    *outRows = FLRetain(result);
+}
 
 
 @end

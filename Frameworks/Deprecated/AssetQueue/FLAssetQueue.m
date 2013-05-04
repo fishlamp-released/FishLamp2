@@ -5,6 +5,7 @@
 //  Created by Mike Fullerton on 6/16/11.
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
+#if REFACTOR
 
 #import "FLAssetQueue.h"
 #import "FLUploadedAsset.h"
@@ -401,7 +402,7 @@ FIXME("asset q")
     }
 
 	
-    [database batchWriteObjects:assets];
+    [database writeObjectsInArray:assets];
     [database writeObject:_state];
     
     [self didChangeAssetQueue];
@@ -615,7 +616,7 @@ FIXME("compatability")
 	@synchronized(self) {
         if(_assets)
         {
-            [self.database batchWriteObjects:_assets];
+            [self.database writeObjectsInArray:_assets];
         }
         if(_state)
         {
@@ -739,3 +740,4 @@ FIXME("compatability")
 
 @end
 
+#endif

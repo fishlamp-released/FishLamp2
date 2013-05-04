@@ -27,7 +27,7 @@
 
 @synthesize panelManagerState = _panelManagerState;
 
-@synthesize visiblePanelIdentifier = _visiblePanelIdentifier;
+@synthesize selectedPanelIdentifier = _selectedPanelIdentifier;
 @synthesize panels = _panels;
 @synthesize forwardTransition = _forwardTransition;
 @synthesize backwardTransition = _backwardTransition;
@@ -43,7 +43,7 @@
 #if FL_MRC
     [_identifier release];
     [_panelManagerState release];
-    [_visiblePanelIdentifier release];
+    [_selectedPanelIdentifier release];
     [_panelAreas release];
     [_backwardTransition release];
     [_forwardTransition release];
@@ -79,7 +79,7 @@
 }
 
 - (NSUInteger) currentPanelIndex {
-    return _visiblePanelIdentifier ? [_panels indexForKey:_visiblePanelIdentifier] : NSNotFound;
+    return _selectedPanelIdentifier ? [_panels indexForKey:_selectedPanelIdentifier] : NSNotFound;
 }
 
 - (void) setPanelFrame:(FLPanelViewController*) panel {
@@ -156,7 +156,7 @@
 }
 
 - (FLPanelViewController*) selectedPanel {
-    return _started ? [_panels objectForKey:_visiblePanelIdentifier] : nil;
+    return _started ? [_panels objectForKey:_selectedPanelIdentifier] : nil;
 }
 
 - (BOOL) canSelectPanelForIdentifier:(id) identifier {

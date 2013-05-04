@@ -23,7 +23,6 @@
     BOOL _enabled;
     BOOL _selected;
     BOOL _highlighted;
-    BOOL _willUpdate;
     CGFloat _titleHeight;
 }
 

@@ -5,6 +5,7 @@
 //	Created by Mike Fullerton on 9/25/10.
 //	Copyright 2010 GreenTongue Software. All rights reserved.
 //
+#if REFACTOR
 
 #import "FLObjectCacheBehavior.h"
 
@@ -38,3 +39,5 @@
 }
 
 @end
+
+#endif

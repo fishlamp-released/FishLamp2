@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2754F4FE17033912001FFEE5"
-               BuildableName = "zenfolio"
+               BuildableName = "tig2"
                BlueprintName = "tig"
                ReferencedContainer = "container:tig.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2754F4FE17033912001FFEE5"
-            BuildableName = "zenfolio"
+            BuildableName = "tig2"
             BlueprintName = "tig"
             ReferencedContainer = "container:tig.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2754F4FE17033912001FFEE5"
-            BuildableName = "zenfolio"
+            BuildableName = "tig2"
             BlueprintName = "tig"
             ReferencedContainer = "container:tig.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2754F4FE17033912001FFEE5"
-            BuildableName = "zenfolio"
+            BuildableName = "tig2"
             BlueprintName = "tig"
             ReferencedContainer = "container:tig.xcodeproj">
          </BuildableReference>
