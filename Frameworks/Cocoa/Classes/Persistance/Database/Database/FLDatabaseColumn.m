@@ -12,7 +12,6 @@
 @interface FLDatabaseColumn ()
 @property (readwrite, strong, nonatomic) NSString* columnName;
 @property (readwrite, strong, nonatomic) NSString* decodedColumnName;
-@property (readwrite, strong, nonatomic) NSSet* columnConstraints;
 @property (readwrite, assign, nonatomic) FLDatabaseType columnType;
 @end
 
@@ -22,7 +21,6 @@
 @synthesize columnConstraints = _columnConstraints;
 @synthesize decodedColumnName = _decodedColumnName;
 @synthesize columnType = _columnType;
-@synthesize hasPrimaryKeyConstraint = _hasPrimaryKeyConstraint;
 
 - (id) initWithColumnName:(NSString*) name 
                columnType:(FLDatabaseType) columnType  {
@@ -42,9 +40,7 @@
         columnConstraints:(NSArray*) constraints {
 
 	if((self = [self initWithColumnName:name columnType:columnType])) {
-        for(id constraint in constraints) {
-            [self addColumnConstraint:constraint];
-        }
+        self.columnConstraints = constraints;
     }
 	return self;
 }
@@ -81,47 +77,10 @@
 }
 #endif
 
-- (void) addColumnConstraint:(FLDatabaseColumnConstraint*) constraint {
-    if(!_columnConstraints) {
-        _columnConstraints = [[NSMutableSet alloc] init];
-    }
-    
-    if([constraint isKindOfClass:[FLPrimaryKeyConstraint class]]) {
-        _hasPrimaryKeyConstraint = YES;
-    }
-
-    [_columnConstraints addObject:constraint];
-}
-
 
 - (id) copyWithZone:(NSZone *)zone {
-	FLDatabaseColumn* column = [[FLDatabaseColumn alloc] initWithColumnName:self.columnName 
-                                                                 columnType:self.columnType];
-                                                          
-    for(id constraint in _columnConstraints) {
-        [column addColumnConstraint:constraint];
-    }
-                                                          
-	return column;
-}
-
-- (NSString*) columnConstraintsAsString {
-	if(_columnConstraints && _columnConstraints.count) {
-		NSMutableString* str = [NSMutableString string];
-		
-		for(id constraint in _columnConstraints) {
-			if(str.length) {
-				[str appendFormat:@" %@", [constraint sqlString]];
-			}
-			else {
-				[str appendString:constraint];
-			}
-		}
-			
-		return str;
-	}
-	
-	return @"";
+	return [[FLDatabaseColumn alloc] initWithColumnName:self.columnName 
+                                             columnType:self.columnType];
 }
 
 - (BOOL)isEqual:(id)object {
@@ -132,6 +91,13 @@
     return [self.columnName hash];
 }
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"%@ { propertyName: %@, columnName: %@, columnType: %d }", 
+        [super description],
+        self.decodedColumnName, 
+        self.columnName, 
+        self.columnType];
+}
 
 
 @end

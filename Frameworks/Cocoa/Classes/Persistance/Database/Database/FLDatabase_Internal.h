@@ -5,12 +5,7 @@
 - (void) throwSqliteError:(const char*) sql;
 @end
 
-@interface FLDatabase (ObjectsInternal)
-- (void) _saveOneObject:(id) object;
-@end
-
 @interface FLDatabase (VersioningInternal)
-- (void) initializeVersioning;
 - (void) writeHistoryForTable:(FLDatabaseTable*) table entry:(NSString*) entry;
 @end
 

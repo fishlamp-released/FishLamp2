@@ -140,7 +140,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 - (NSUInteger) subStringCount:(NSString*) substring {
     NSUInteger count = 0;
     NSUInteger subLen = substring.length;
-    NSUInteger len = self.length - substring.length;
+    NSUInteger len = self.length;
     
     for(int i = 0; i < len; i++) {
         for(int j = 0; (j < subLen && i < len); j++) {

@@ -9,6 +9,8 @@
 #import "FLUpgradeDatabaseLengthyTask.h"
 #import "FLDatabase.h"
 
+#import "FLDatabase+Introspection.h"
+
 @implementation FLUpgradeDatabaseLengthyTask
 
 @synthesize database = _database;

@@ -17,10 +17,14 @@
 #import "FLModelObject.h"
 #import "FLObjectDescriber.h"
 
-@interface FLDatabaseColumn (Internal)
-- (void) setIndexed:(BOOL) isIndexed;
-@property (readwrite, strong, nonatomic) NSArray* primaryKeyColumns;
-@property (readwrite, strong, nonatomic) NSArray* indexedColumns;
+@interface FLDatabaseTable ()
+@property (readwrite, strong, nonatomic) NSSet* primaryKeyColumns;
+@property (readwrite, strong, nonatomic) NSSet* indexedColumns;
+@property (readwrite, strong, nonatomic) NSDictionary* columns;
+@property (readwrite, strong, nonatomic) NSDictionary* indexes;
+@property (readwrite, strong, nonatomic) NSDictionary* columnConstraints;
+
+- (void) addColumnsWithTypeDesc:(Class) aClass;
 @end
 
 @implementation FLDatabaseTable
@@ -31,6 +35,10 @@
 @synthesize decodedTableName = _decodedTableName;
 @synthesize classRepresentedByTable = _tableClass;
 @synthesize columnDecoder = _columnDecoder;
+@synthesize primaryKeyColumns = _primaryKeyColumns;
+@synthesize indexedColumns = _indexedColumns;
+@synthesize columnConstraints = _columnConstraints;
+
 
 - (void) setTableName:(NSString*) tableName {
     FLAssertStringIsNotEmpty(tableName);
@@ -44,6 +52,9 @@
 	if((self = [super init])) {
 		self.tableName = tableName;
 		_columns = [[NSMutableDictionary alloc] init];
+        _columnConstraints = [[NSMutableDictionary alloc] init];
+        _primaryKeyColumns = [[NSMutableSet alloc] init];
+        _indexedColumns = [[NSMutableSet alloc] init];
 	}
 	
 	return self;
@@ -54,11 +65,10 @@
         [aClass databaseTableWillAddColumns:self];
         
         if([aClass isModelObject]) {
-            FLObjectDescriber* objectDescriber = [aClass objectDescriber];
-            [self addColumnsWithTypeDesc:objectDescriber forClass:aClass];
+            [self addColumnsWithTypeDesc:aClass];
             
-            FLDatabaseColumn* idColumn = [self columnForPropertySelector:@selector(identifier)];
-            [idColumn addColumnConstraint:[FLPrimaryKeyConstraint primaryKeyConstraint]];
+//            FLDatabaseColumn* idColumn = [self columnForPropertySelector:@selector(identifier)];
+//            [idColumn addColumnConstraint:[FLPrimaryKeyConstraint primaryKeyConstraint]];
         }
 
         [aClass databaseTableDidAddColumns:self];
@@ -76,47 +86,42 @@
 	return FLAutorelease([[FLDatabaseTable alloc] initWithTableName:tableName]);
 }
 
-- (NSArray*) primaryKeyColumns {
-    if(!_primaryKeyColumns) {
-        NSMutableArray* cols = [[NSMutableArray alloc] init];
-    
-        for(FLDatabaseColumn* col in _columns.objectEnumerator) {
-            if(col.hasPrimaryKeyConstraint) {
-                [cols addObject:col];
-            }
-        }
-        
-        _primaryKeyColumns = cols;
-    }
-   
-    return _primaryKeyColumns;
-}
+//- (NSArray*) primaryKeyColumns {
+//    if(!_primaryKeyColumns) {
+//        NSMutableArray* cols = [[NSMutableArray alloc] init];
+//    
+//        for(FLDatabaseColumn* col in _columns.objectEnumerator) {
+//            NSSet* set = [_columnConstraints objectForKey:column.columnName];
+//            if(set) {
+//                for(FLDatabaseColumnConstraint* constraint in set) {
+//                    if([constraint ])
+//                }
+//            }
+//            
+//            
+//            if(col.hasPrimaryKeyConstraint) {
+//                [cols addObject:col];
+//            }
+//        }
+//        
+//        _primaryKeyColumns = cols;
+//    }
+//   
+//    return _primaryKeyColumns;
+//}
 
-- (NSArray*) indexedColumns {
-    if(!_indexedColumns) {
-        NSMutableArray* cols = [[NSMutableArray alloc] init];
-    
-        for(FLDatabaseColumn* col in _columns.objectEnumerator) {
-            if(col.hasPrimaryKeyConstraint) {
-                [cols addObject:col];
-            }
-        }
-
-        _indexedColumns = cols;
-    }
-   
-    return _indexedColumns;
-}
-
+#if FL_MRC
 - (void) dealloc {
-    FLRelease(_primaryKeyColumns);
-    FLRelease(_indexedColumns);
-	FLRelease(_decodedTableName);
-	FLRelease(_indexes);
-	FLRelease(_tableName);
-	FLRelease(_columns);
-	FLSuperDealloc();
+    [_columnConstraints release];
+    [_primaryKeyColumns release];
+    [_indexedColumns release];
+    [_decodedTableName release];
+    [_indexes release];
+    [_tableName release];
+    [_columns release];
+    [super dealloc];
 }
+#endif
 
 - (void) addIndex:(FLDatabaseIndex*) databaseIndex {
 	if(!_indexes) {
@@ -132,9 +137,7 @@
 		[_indexes setObject:indexes forKey:databaseIndex.columnName];
 	}
 	
-	[[self.columns objectForKey:databaseIndex.columnName] setIndexed:YES];
-    
-    FLReleaseWithNil(_indexedColumns);
+    [_indexedColumns addObject:databaseIndex.columnName];
 }
 
 - (NSArray*) indexesForColumn:(NSString*) columnName {	
@@ -159,8 +162,13 @@
 	int i = 0;
 	for(FLDatabaseColumn* col in self.columns.objectEnumerator) {			
 		if(col.columnType != FLDatabaseTypeNone) {
-			if(col.columnConstraints && col.columnConstraints.count) {
-				[sql appendFormat:@"%@%@ %@ %@", (i++ > 0 ? @", " : @""), col.columnName, FLDatabaseTypeToString(col.columnType), col.columnConstraintsAsString];
+            
+            NSSet* constraints = [_columnConstraints objectForKey:col.columnName];
+        
+			if(constraints) {
+				[sql appendFormat:@"%@%@ %@ %@", (i++ > 0 ? @", " : @""), col.columnName, 
+                    FLDatabaseTypeToString(col.columnType), 
+                    [FLDatabaseColumnConstraint columnConstraintsAsString:constraints]];
 			}
 			else {
 				[sql appendFormat:@"%@%@ %@", (i++ > 0 ? @", " : @""), col.columnName, FLDatabaseTypeToString(col.columnType)];
@@ -175,11 +183,18 @@
 
 - (void) addColumn:(FLDatabaseColumn*) column {
 	[_columns setObject:column forKey:column.columnName];
+    
+    NSArray* constraints = [column columnConstraints];
+    if(constraints) {
+        for(FLDatabaseColumnConstraint* constraint in constraints) {
+            [self addColumnConstraint:constraint forColumn:column];
+        }
+    }
 }
 
-- (void) setColumn:(FLDatabaseColumn*) column forColumnName:(NSString*) columnName {
-	[_columns setObject:column forKey:FLDatabaseNameEncode(columnName)];
-}
+//- (void) setColumn:(FLDatabaseColumn*) column forColumnName:(NSString*) columnName {
+//	[_columns setObject:column forKey:FLDatabaseNameEncode(columnName)];
+//}
 
 - (void) removeColumnWithName:(NSString*) name {
 	[_columns removeObjectForKey:FLDatabaseNameEncode(name)];
@@ -193,44 +208,69 @@
 	return [_columns objectForKey:FLDatabaseNameEncode(NSStringFromSelector(selector))];
 }
 
-//- (void) addPrimaryKey:(SEL) primaryKey {
-//    FLDatabaseColumn* col = [self columnByName:NSStringFromSelector(primaryKey)];
-//    [col ]
-//}
-
-- (void) addColumnsWithTypeDesc:(FLObjectDescriber*) describer forClass:(Class) aClass {
-
-   for(FLPropertyDescriber* property in [[describer properties] objectEnumerator]) {
-
-        FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:property.propertyName
-            columnType:[property.propertyClass sqlType] 
-            columnConstraints:nil]; 
-
-        [aClass databaseTable:self willAddDatabaseColumn:col];            
-
-        [self addColumn:col];
-    }
+- (void) copyPropertiesFromTable:(FLDatabaseTable*) table {
+	self.columns = FLMutableCopyWithAutorelease(table.columns);
+	self.indexes = FLMutableCopyWithAutorelease(table.indexes);
+    self.primaryKeyColumns = FLMutableCopyWithAutorelease(table.primaryKeyColumns);
+    self.indexedColumns = FLMutableCopyWithAutorelease(table.indexedColumns);
+    self.columnConstraints = FLMutableCopyWithAutorelease(table.columnConstraints);
 }
 
 - (id) copyWithZone:(NSZone *)zone {
 	FLDatabaseTable* table = [[FLDatabaseTable alloc] initWithTableName:self.tableName];
-	table.columns = self.columns;
-	table.indexes = self.indexes;
+    [table copyPropertiesFromTable:self];
 	return table;
 }
 
-- (NSDictionary*) valuesForColumns:(NSArray*) columns inObject:(id) object {
+- (void) addSuperclassProperties:(Class) aClass {
+    if([aClass isModelObject]) {
+        FLDatabaseTable* table = [aClass sharedDatabaseTable];
+        [self copyPropertiesFromTable:table];
+    }
+}
+
+- (void) addColumnsWithTypeDesc:(Class) aClass {
+
+    if([aClass isModelObject]) {
+        [self addSuperclassProperties:[aClass superclass]];
+    
+        FLObjectDescriber* describer = [aClass objectDescriber];
+
+        for(FLPropertyDescriber* property in [[describer properties] objectEnumerator]) {
+
+            NSString* propName = FLDatabaseNameEncode(property.propertyName);
+
+    // skip over properties add by superclass
+            if(![_columns objectForKey:propName]) {
+            
+                FLDatabaseType type = [property.propertyClass sqlType];
+                FLAssert(type != FLDatabaseTypeNone);
+            
+                FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:propName
+                    columnType:type
+                    columnConstraints:nil]; 
+
+                [aClass databaseTable:self willAddDatabaseColumn:col];            
+
+                [self addColumn:col];
+            }
+        }
+    }
+}
+
+- (NSDictionary*) valuesForColumns:(NSSet*) columnNames 
+                          inObject:(id) object {
                                 
     NSMutableDictionary* outDictionary = nil;
-    for(FLDatabaseColumn* col in columns) {
+    for(NSString* name in columnNames) {
         
-        id data = [object valueForKey:col.decodedColumnName];
+        id data = [object valueForKey:FLDatabaseNameDecode(name)];
         if(data) {
             if(!outDictionary) {
                 outDictionary = [NSMutableDictionary dictionary];
             }
             
-            [outDictionary setObject:data forKey:col.columnName];
+            [outDictionary setObject:data forKey:name];
         }
     }
 
@@ -282,6 +322,23 @@
     
     return newObject;        
 }
+
+- (void) addColumnConstraint:(FLDatabaseColumnConstraint*) constraint forColumn:(FLDatabaseColumn*) column {
+    NSMutableSet* constraints = [_columnConstraints objectForKey:column.columnName];
+    if(!constraints) {
+        constraints = [NSMutableSet setWithObject:constraint];
+        [_columnConstraints setObject:constraints forKey:column.columnName];
+    }
+    else {
+        [constraints addObject:constraint];
+    }
+    
+    if([constraint isKindOfClass:[FLPrimaryKeyConstraint class]]) {
+        [_primaryKeyColumns addObject:column.columnName]; 
+        [_indexedColumns addObject:column.columnName];
+    }
+}
+
 
 @end
 
@@ -344,7 +401,9 @@
     if(!searchValues) {
         searchValues = [table valuesForColumns:table.indexedColumns inObject:object];
     }
-    else {
+    
+    
+    if(!searchValues) {
         return NO;
         // ??? 
     }

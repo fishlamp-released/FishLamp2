@@ -119,7 +119,7 @@ typedef enum {
 + (id) floatNumber;
 @end
 
-@interface FLDoubleNumber : FLNumberObject
+@interface FLDoubleNumber : FLFloatNumber
 + (id) doubleNumber;
 @end
 

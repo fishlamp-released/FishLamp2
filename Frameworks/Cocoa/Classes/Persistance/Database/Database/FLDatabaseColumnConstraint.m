@@ -71,6 +71,25 @@ NSString* FLSqlConflictActionString(FLDatabaseOnConflictAction action) {
     return self.sqlString;
 }
 
++ (NSString*) columnConstraintsAsString:(NSSet*) contraints {
+	if(contraints && contraints.count) {
+		NSMutableString* str = [NSMutableString string];
+		
+		for(id constraint in contraints) {
+			if(str.length) {
+				[str appendFormat:@" %@", [constraint sqlString]];
+			}
+			else {
+				[str appendString:[constraint sqlString]];
+			}
+		}
+			
+		return str;
+	}
+	
+	return @"";
+}
+
 @end
 
 

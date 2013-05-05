@@ -21,18 +21,15 @@
 @private
 	NSString* _name;
 	NSString* _decodedColumnName;
-	NSMutableSet* _columnConstraints;
 	FLDatabaseType _columnType;
     BOOL _hasPrimaryKeyConstraint;
+
+// deprecated
+	NSArray* _columnConstraints;
 }
 
 @property (readonly, strong, nonatomic) NSString* columnName;
 @property (readonly, strong, nonatomic) NSString* decodedColumnName;
-
-@property (readonly, strong, nonatomic) NSSet* columnConstraints;
-@property (readonly, strong, nonatomic) NSString* columnConstraintsAsString;
-@property (readonly, assign, nonatomic) BOOL hasPrimaryKeyConstraint;
-
 @property (readonly, assign, nonatomic) FLDatabaseType columnType;
 
 - (id) initWithColumnName:(NSString*) name
@@ -41,14 +38,12 @@
 + (FLDatabaseColumn*) databaseColumnWithName:(NSString*) name
                                   columnType:(FLDatabaseType) columnType;
 
-// must be added before column is used in database!
-- (void) addColumnConstraint:(FLDatabaseColumnConstraint*) constraint;
-
-
 @end
 
 
-@interface FLDatabaseColumn (Deprecated)
+@interface FLDatabaseColumn ()
+// deprecated
+
 - (id) initWithColumnName:(NSString*) name
                columnType:(FLDatabaseType) columnType
         columnConstraints:(NSArray*) columnConstraints;
@@ -56,4 +51,7 @@
 + (FLDatabaseColumn*) databaseColumnWithName:(NSString*) name
                                     columnType:(FLDatabaseType) columnType
                              columnConstraints:(NSArray*) columnConstraints;
+
+@property (readwrite, strong, nonatomic) NSArray* columnConstraints;
+
 @end

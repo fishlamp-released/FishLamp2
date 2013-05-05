@@ -16,6 +16,15 @@
 #import "FLAppInfo.h"
 #import "FLSqlStatement.h"
 #import "FLDispatch.h"
+#import "FLDatabase+Introspection.h"
+
+static NSString* kVersionId = nil;
+static NSString* kVersion = nil;
+static NSString* kName = nil;
+static NSString* kEntry = nil;
+static NSString* kWrittenDate = nil;
+static NSString* kHistory = nil;
+static NSString* s_version = nil;
 
 @interface FLDatabase ()
 @property (readwrite, assign) sqlite3* sqlite3;
@@ -29,8 +38,8 @@
 @synthesize filePath = _filePath;
 @synthesize columnDecoder = _columnDecoder;
 @synthesize tables = _tables;
-@synthesize dispatchQueue = _dispatchQueue;
 @synthesize isOpen = _isOpen;
+@synthesize delegate = _delegate;
 
 static FLDatabaseColumnDecoder s_decoder = nil;
 //static int s_count = 0;
@@ -43,9 +52,17 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     s_decoder = decoder;
 }
 
+
 + (void) initialize {
     static BOOL didInit = NO;
     if(!didInit) {
+        kVersionId = FLRetain(FLDatabaseNameEncode(@"version_id"));
+        kVersion = FLRetain(FLDatabaseNameEncode(@"version"));
+        kHistory = FLRetain(FLDatabaseNameEncode(@"history"));
+        kName = FLRetain(FLDatabaseNameEncode(@"name"));
+        kEntry = FLRetain(FLDatabaseNameEncode(@"entry"));
+        kWrittenDate = FLRetain(FLDatabaseNameEncode(@"written_date"));
+
         [FLDatabase setCurrentRuntimeVersion:[FLAppInfo appVersion]];
 
 #if FL_LEGACY_DB_ENCODING
@@ -70,9 +87,6 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 		_filePath = [filePath copy];
 		_sqlite = nil;
         self.columnDecoder = s_decoder;
-
-        _dispatchQueue = FLRetain([FLFifoAsyncQueue fifoAsyncQueue]);
-
 #if IOS
 	[[NSNotificationCenter defaultCenter] addObserver:self
 		selector:@selector(handleLowMemory:)
@@ -92,16 +106,15 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 
 	FLAssertIsNilWithComment(_sqlite, nil);
     
-    [_dispatchQueue releaseToPool];
-    
 #if FL_MRC    
-    [_dispatchQueue release];
     [_filePath release];
     [super dealloc];
 #endif    
 }
 
 - (void) deleteOnDisk {
+    FLConfirm(self.isOpen == NO);
+
     NSError* error = nil;
     [[NSFileManager defaultManager] removeItemAtPath:[self filePath] error:&error];
     FLThrowIfError(FLAutorelease(error));
@@ -124,11 +137,6 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 
 - (void) cancelCurrentOperation {
     sqlite3_interrupt(self.sqlite3);
-    
-//	if(_sqlite) {
-//		@synchronized(self) {
-//		}
-//	}
 }
 
 - (void) purgeMemoryIfPossible {
@@ -179,10 +187,42 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     self.sqlite3 = sqlite3;
 }
 
+- (void) addVersionTables {
+
+    FLDatabaseTable* historyTable = [FLDatabaseTable databaseTableWithTableName:kHistory];
+    
+    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kName
+        columnType:FLDatabaseTypeText 
+        columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
+
+    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kEntry
+        columnType:FLDatabaseTypeText 
+        columnConstraints:nil]];
+
+    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kWrittenDate
+        columnType:FLDatabaseTypeDate
+        columnConstraints:nil]];
+
+	[self createTableIfNeeded:historyTable];
+
+    FLDatabaseTable* versionTable = [FLDatabaseTable databaseTableWithTableName:kVersion];
+    
+    [versionTable addColumn:[FLDatabaseColumn databaseColumnWithName:kVersionId
+            columnType:FLDatabaseTypeInteger 
+            columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]
+            ]];
+
+    [versionTable addColumn:[FLDatabaseColumn databaseColumnWithName:kVersion
+            columnType:SQLITE_TEXT 
+            columnConstraints:nil
+            ]];
+	[self createTableIfNeeded:versionTable];
+
+}
+
+
 - (BOOL) openDatabase:(FLDatabaseOpenFlags) flags {
     
-    __block BOOL needsUpgrade = NO;
-
     if(self.sqlite3 != nil || self.isOpen) {
         FLThrowErrorCodeWithComment( 
         FLDatabaseErrorDomain,
@@ -202,10 +242,25 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     [self sqliteOpen:flags]; 
     self.isOpen = YES;
     
-    [self initializeVersioning];
-    needsUpgrade = [self databaseNeedsUpgrade];
+    NSInteger tableCount = [self tableCount];
     
-    return needsUpgrade;
+    [self addVersionTables];
+    
+    if(tableCount == 0) {
+        [self writeDatabaseVersion:[[self class] currentRuntimeVersion]];
+    }
+    else {
+        BOOL needsUpgrade = [self databaseNeedsUpgrade];
+        
+        if(needsUpgrade && tableCount > 0) {
+            [self.delegate databaseVersionDidChange:self];
+        }
+        
+        return needsUpgrade;
+    }
+    
+    
+    return NO;
 }
 
 - (BOOL) openDatabase {
@@ -554,6 +609,72 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     [self executeStatement:statement];
 
     *outRows = FLRetain(result);
+}
+
++ (void) setCurrentRuntimeVersion:(NSString*) version {
+    FLSetObjectWithRetain(s_version, version);
+}
+
++ (NSString*) currentRuntimeVersion {
+    return s_version;
+}
+
+- (NSDictionary*) readHistoryForTable:(FLDatabaseTable*) table {
+	NSArray* rows = [self execute:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@='%@'", 
+		kHistory,
+		kName,
+		table.tableName]];
+		
+	return rows.count == 1 ? rows.firstObject : nil;
+}
+
+- (NSString*) readDatabaseVersion {
+    
+    __block NSString* version = nil;
+    
+    FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
+    [sql appendFormat:@"SELECT %@ FROM %@ WHERE %@=1",
+            kVersion,
+            kVersion,
+            kVersionId];
+
+    [self executeSql:sql rowResultBlock:^(NSDictionary* row, BOOL* stop) {
+        version = [row objectForKey:kVersion];
+        *stop = YES;
+    }];
+
+    return version;
+}
+
+- (void) writeDatabaseVersion:(NSString*) version {
+
+    NSDictionary* newData = [NSDictionary dictionaryWithObjectsAndKeys:
+            [NSNumber numberWithInt:1], kVersionId,
+            version, kVersion,
+            nil
+            ] ;
+
+    [self insertOrReplaceRowInTable:kVersion row:newData];
+}
+
+- (BOOL) databaseNeedsUpgrade {
+    
+    NSString* version = [self readDatabaseVersion];
+    if(FLStringIsNotEmpty(version)) {
+        return FLStringsAreNotEqual( version, [FLDatabase currentRuntimeVersion]);
+    }
+
+    return YES;
+}
+
+
+- (void) writeHistoryForTable:(FLDatabaseTable*) table entry:(NSString*) entry {
+	
+    NSDictionary* row = [NSDictionary dictionaryWithObjectsAndKeys:table.tableName, kName,
+                         entry, kEntry,
+                         [NSDate date], kWrittenDate,
+                         nil];
+	[self insertOrReplaceRowInTable:kHistory row:row];
 }
 
 

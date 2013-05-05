@@ -8,7 +8,6 @@
 
 #import "FLNetworkStream_Internal.h"
 #import "FLDispatch.h"
-#import "FLNotificationSending.h"
 #import "FLFifoQueueNetworkStreamEventHandler.h"
 
 @interface FLNetworkStream ()

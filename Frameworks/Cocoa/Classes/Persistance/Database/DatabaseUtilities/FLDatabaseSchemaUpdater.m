@@ -1,4 +1,20 @@
 //
+//  FLDatabaseSchemaUpdater.m
+//  FishLampCocoa
+//
+//  Created by Mike Fullerton on 5/4/13.
+//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
+//
+
+#import "FLDatabaseSchemaUpdater.h"
+
+@implementation FLDatabaseSchemaUpdater
+
+@end
+
+#if REFACTOR
+
+//
 //  FLDatabase+Versioning.m
 //  FishLampFrameworks
 //
@@ -29,126 +45,10 @@
 
 */
 
-static NSString* kVersionId = nil;
-static NSString* kVersion = nil;
-static NSString* kName = nil;
-static NSString* kEntry = nil;
-static NSString* kWrittenDate = nil;
-static NSString* kHistory = nil;
 
-@implementation FLDatabase (VersioningInternal)
-
-- (void) initializeVersioning {
-
-    kVersionId = FLRetain(FLDatabaseNameEncode(@"version_id"));
-    kVersion = FLRetain(FLDatabaseNameEncode(@"version"));
-    kHistory = FLRetain(FLDatabaseNameEncode(@"history"));
-    kName = FLRetain(FLDatabaseNameEncode(@"name"));
-    kEntry = FLRetain(FLDatabaseNameEncode(@"entry"));
-    kWrittenDate = FLRetain(FLDatabaseNameEncode(@"written_date"));
-
-    FLDatabaseTable* historyTable = [FLDatabaseTable databaseTableWithTableName:kHistory];
-    
-    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kName
-        columnType:FLDatabaseTypeText 
-        columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
-
-    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kEntry
-        columnType:FLDatabaseTypeText 
-        columnConstraints:nil]];
-
-    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kWrittenDate
-        columnType:FLDatabaseTypeDate
-        columnConstraints:nil]];
-
-	[self createTableIfNeeded:historyTable];
-
-    FLDatabaseTable* versionTable = [FLDatabaseTable databaseTableWithTableName:kVersion];
-    
-    [versionTable addColumn:[FLDatabaseColumn databaseColumnWithName:kVersionId
-            columnType:FLDatabaseTypeInteger 
-            columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]
-            ]];
-
-    [versionTable addColumn:[FLDatabaseColumn databaseColumnWithName:kVersion
-            columnType:SQLITE_TEXT 
-            columnConstraints:nil
-            ]];
-	[self createTableIfNeeded:versionTable];
-
-}
-
-- (void) writeHistoryForTable:(FLDatabaseTable*) table entry:(NSString*) entry {
-	
-    NSDictionary* row = [NSDictionary dictionaryWithObjectsAndKeys:table.tableName, kName,
-                         entry, kEntry,
-                         [NSDate date], kWrittenDate,
-                         nil];
-	[self insertOrReplaceRowInTable:kHistory row:row];
-}
-
-
-@end
 
 @implementation FLDatabase (Versioning)
 
-static NSString* s_version;
-
-+ (void) setCurrentRuntimeVersion:(NSString*) version {
-    FLSetObjectWithRetain(s_version, version);
-}
-
-+ (NSString*) currentRuntimeVersion {
-    return s_version;
-}
-
-- (NSDictionary*) readHistoryForTable:(FLDatabaseTable*) table {
-	NSArray* rows = [self execute:[NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@='%@'", 
-		kHistory,
-		kName,
-		table.tableName]];
-		
-	return rows.count == 1 ? rows.firstObject : nil;
-}
-
-- (NSString*) readDatabaseVersion {
-    
-    __block NSString* version = nil;
-    
-    FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
-    [sql appendFormat:@"SELECT %@ FROM %@ WHERE %@=1",
-            kVersion,
-            kVersion,
-            kVersionId];
-
-    [self executeSql:sql rowResultBlock:^(NSDictionary* row, BOOL* stop) {
-        version = [row objectForKey:kVersion];
-        *stop = YES;
-    }];
-
-    return version;
-}
-
-- (void) writeDatabaseVersion:(NSString*) version {
-
-    NSDictionary* newData = [NSDictionary dictionaryWithObjectsAndKeys:
-            [NSNumber numberWithInt:1], kVersionId,
-            version, kVersion,
-            nil
-            ] ;
-
-    [self insertOrReplaceRowInTable:kVersion row:newData];
-}
-
-- (BOOL) databaseNeedsUpgrade {
-    
-    NSString* version = [self readDatabaseVersion];
-    if(FLStringIsNotEmpty(version)) {
-        return FLStringsAreNotEqual( version, [FLDatabase currentRuntimeVersion]);
-    }
-
-    return YES;
-}
 
 //- (BOOL) _renameColumnsInTableIfNeeded:(FLDatabaseTable*) table
 //                         columnNames:(NSArray*) columnNames
@@ -566,3 +466,5 @@ NSString* FLLegacyDecodeString(NSString* string) {
 //		
 //		}
 //	}
+
+#endif

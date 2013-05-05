@@ -33,6 +33,9 @@ typedef enum {
 @private
     NSString* _sqlString;
 }
+
++ (NSString*) columnConstraintsAsString:(NSSet*) contraints;
+
 @end
 
 @interface FLPrimaryKeyConstraint : FLDatabaseColumnConstraint 
@@ -40,8 +43,8 @@ typedef enum {
 + (id) primaryKeyConstraint;
 
 + (id) primaryKeyConstraintWithSortOrder:(FLDatabaseSortOrder) sortOrder 
-                                 conflictAction:(FLDatabaseOnConflictAction) conflictAction 
-                                  autoIncrement:(BOOL) autoIncrement; // auto increment only valid if type is INTEGER
+                          conflictAction:(FLDatabaseOnConflictAction) conflictAction 
+                           autoIncrement:(BOOL) autoIncrement; // auto increment only valid if type is INTEGER
 
 @end
 

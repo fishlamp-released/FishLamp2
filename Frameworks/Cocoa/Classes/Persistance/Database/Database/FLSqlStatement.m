@@ -10,6 +10,7 @@
 #import "FLGuid.h"
 #import "FLSqlBuilder.h"
 #import "FLDatabase_Internal.h"
+#import "FLCoreTypes.h"
 
 NS_INLINE
 sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
@@ -364,6 +365,30 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 	}
 }
 
+@end
+
+@implementation FLValueEncoder (FLSqlStatement)
++ (FLDatabaseType) sqlType {
+    return FLDatabaseTypeObject;
+}
+@end
+
+@implementation FLNumberObject (FLSqlStatement)
+//- (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
+//	[statement bindInt64:parameterIndex intValue:[self longLongValue]];
+//}
++ (FLDatabaseType) sqlType {
+    return FLDatabaseTypeInteger;
+}
+@end
+
+@implementation FLFloatNumber  (FLSqlStatement)
+//- (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
+//	[statement bindDouble:parameterIndex intValue:[self longLongValue]];
+//}
++ (FLDatabaseType) sqlType {
+    return FLDatabaseTypeFloat;
+}
 @end
 
 @implementation NSNumber (FLSqlStatement)

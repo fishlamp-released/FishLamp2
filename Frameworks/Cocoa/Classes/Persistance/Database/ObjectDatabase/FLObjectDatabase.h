@@ -7,7 +7,7 @@
 //
 #import "FishLampCore.h"
 #import "FLDatabase.h"
-
+#import "FLObjectStorage.h"
 #import "FLService.h"
 
 typedef enum {

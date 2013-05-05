@@ -26,6 +26,8 @@
     
 	if(self) {
         _objectDatabase = [[FLObjectDatabase alloc] initWithFilePath:filePath];
+        _objectDatabase.delegate = self;
+        
         self.schedulingQueue = [FLFifoAsyncQueue fifoAsyncQueue];
 	}
 	return self;
@@ -42,6 +44,12 @@
 	[super dealloc];
 }
 #endif
+
+- (void) databaseVersionDidChange:(FLDatabase*) database {
+    [database closeDatabase];
+    [database deleteOnDisk];
+    [database openDatabase];
+}
 
 - (FLPromise*) dispatchAsync:(FLObjectDatabaseBlock) block
                   completion:(fl_completion_block_t) completion {
