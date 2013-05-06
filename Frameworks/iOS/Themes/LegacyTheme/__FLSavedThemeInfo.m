@@ -98,7 +98,7 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 

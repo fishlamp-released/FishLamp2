@@ -25,7 +25,7 @@
 
 @property (readonly, assign, nonatomic, getter=isEditing) BOOL editing;
 
-@property (readwrite, strong, nonatomic) NSNumber* rememberPassword;
+@property (readwrite, assign, nonatomic) BOOL rememberPassword;
 @property (readwrite, strong, nonatomic) NSString* userName;
 @property (readwrite, strong, nonatomic) NSString* password;
 

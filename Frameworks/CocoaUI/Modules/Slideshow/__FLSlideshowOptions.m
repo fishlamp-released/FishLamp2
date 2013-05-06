@@ -133,17 +133,17 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 
-        [describer setChildForIdentifier:@"speed" withClass:[FLFloatNumber class] ];
-        [describer setChildForIdentifier:@"repeat" withClass:[FLBoolNumber class] ];
-        [describer setChildForIdentifier:@"autoStart" withClass:[FLBoolNumber class] ];
-        [describer setChildForIdentifier:@"autoShowCaptions" withClass:[FLBoolNumber class] ];
-        [describer setChildForIdentifier:@"random" withClass:[FLBoolNumber class] ];
-        [describer setChildForIdentifier:@"playMusic" withClass:[FLBoolNumber class] ];
-        [describer setChildForIdentifier:@"mediaItemList" withClass:[NSMutableArray class]];
+        [describer addPropertyWithName:@"speed" withClass:[FLFloatNumber class] ];
+        [describer addPropertyWithName:@"repeat" withClass:[FLBoolNumber class] ];
+        [describer addPropertyWithName:@"autoStart" withClass:[FLBoolNumber class] ];
+        [describer addPropertyWithName:@"autoShowCaptions" withClass:[FLBoolNumber class] ];
+        [describer addPropertyWithName:@"random" withClass:[FLBoolNumber class] ];
+        [describer addPropertyWithName:@"playMusic" withClass:[FLBoolNumber class] ];
+        [describer addPropertyWithName:@"mediaItemList" withClass:[NSMutableArray class]];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

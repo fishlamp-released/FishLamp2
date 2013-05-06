@@ -22,7 +22,7 @@
     FLAssertNotNil(builder);
     FLAssertNotNil(typeDesc);
     
-    FLObjectEncoder* decoder = typeDesc.objectEncoder;
+    id<FLStringEncoder> decoder = typeDesc.objectEncoder;
     if(decoder) {
         FLAssertNotNil(builder.decoder);
 
@@ -61,7 +61,7 @@
 //
 //    FLAssertWithComment(FLStringsAreEqual(jsonDictionary.key, typeDesc.typeName), @"trying to build wrong object jsonDictionary name: \"%@\", object typeDesc name: \"%@\"", jsonDictionary.key, typeDesc.typeName);
 
-    Class objectClass = typeDesc.propertyClass;
+//    Class objectClass = typeDesc.propertyClass;
 //    if(!objectClass) {
 //        FLLog(@"Object description has nil object class: %@", [typeDesc description]);
 //        return nil;
@@ -73,8 +73,11 @@
 //    
 //    typeDesc = [objectClass objectDescriber];
 
-    id rootObject = FLAutorelease([[objectClass alloc] init]);
-    FLAssertNotNilWithComment(rootObject, @"unable to create object of type: %@", NSStringFromClass(objectClass));
+    id rootObject = [typeDesc createRepresentedObject];
+    FLAssertNotNil(rootObject);
+    
+//    FLAutorelease([[objectClass alloc] init]);
+//    FLAssertNotNilWithComment(rootObject, @"unable to create object of type: %@", NSStringFromClass(objectClass));
     
     for(id key in self) {
         id value = [self objectForKey:key];

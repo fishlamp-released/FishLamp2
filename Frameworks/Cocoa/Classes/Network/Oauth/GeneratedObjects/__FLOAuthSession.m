@@ -127,16 +127,16 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 
-        [describer setChildForIdentifier:@"userGuid" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"appName" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"oauth_token" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"oauth_token_secret" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"user_id" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"screen_name" withClass:[NSString class]];
+        [describer addPropertyWithName:@"userGuid" withClass:[NSString class]];
+        [describer addPropertyWithName:@"appName" withClass:[NSString class]];
+        [describer addPropertyWithName:@"oauth_token" withClass:[NSString class]];
+        [describer addPropertyWithName:@"oauth_token_secret" withClass:[NSString class]];
+        [describer addPropertyWithName:@"user_id" withClass:[NSString class]];
+        [describer addPropertyWithName:@"screen_name" withClass:[NSString class]];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

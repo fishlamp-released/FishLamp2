@@ -152,7 +152,7 @@
 //        return object;
 //    }
 //    
-//    FLObjectEncoder* encoder = propertyDescriber.objectEncoder;
+//    id<FLStringEncoder> encoder = propertyDescriber.objectEncoder;
 //    if(!encoder) {
 //        return nil;
 //    }
@@ -165,23 +165,7 @@
 
 @end
 
-@implementation NSObject (FLXmlBuilder)
-+ (BOOL) isArray {
-    return NO;
-}
-- (BOOL) isArray {
-    return NO;
-}
-@end
 
-@implementation NSArray (FLXmlBuilder)
-+ (BOOL) isArray {
-    return YES;
-}
-- (BOOL) isArray {
-    return YES;
-}
-@end
 
 @implementation FLXmlObjectBuilder
 @synthesize decoder = _decoder;
@@ -259,15 +243,14 @@
 }
 
 
-- (id) inflatePropertyObject:(FLPropertyDescriber*) propertyDescriber 
+- (id) inflatePropertyObject:(FLPropertyDescriber*) property 
                  withElement:(FLParsedItem*) element  {
                                 
-    FLAssertNotNil(propertyDescriber);
+    FLAssertNotNil(property);
     
-    Class objectClass = propertyDescriber.propertyClass;
-    
-    if([objectClass isModelObject]) {
-        id object = FLAutorelease([[objectClass alloc] init]);
+    if([property representsModelObject]) {
+        id object = [property createRepresentedObject];
+        
         [self addPropertiesToModelObject:object withElement:element];
         return object;
         
@@ -275,8 +258,8 @@
         
     }
     else if([element value]) {
-        FLObjectEncoder* encoder = [objectClass objectEncoder];
-        FLAssertNotNilWithComment(encoder, @"no encoder found for class: %@", NSStringFromClass(objectClass));
+        id<FLStringEncoder> encoder = [property objectEncoder];
+        FLAssertNotNilWithComment(encoder, @"no encoder found for property: %@", property.propertyName);
 
         if(encoder) {
             id object = [self.decoder decodeDataFromString:[element value] forType:encoder];
@@ -293,7 +276,7 @@
 
 
 - (void) addPropertiesToModelObject:(id) object 
-                   withElement:(FLParsedItem*) element {
+                        withElement:(FLParsedItem*) element {
     
     FLAssertNotNil(object);
     FLAssert([[object class] isModelObject]);
@@ -310,7 +293,7 @@
         
         // decide if the property we're inflating is an object or an array
         
-        if([propertyDescriber.propertyClass isArray]) {
+        if(propertyDescriber.representsArray) {
             // we need to inflate an array
             // we need to build the array either from a parsedXML element, or an array of parsedXML elements.
             
@@ -388,7 +371,7 @@
     
     // else we're a simple type, like a string.
     
-    FLObjectEncoder* encoder = [objectClass objectEncoder];
+    id<FLStringEncoder> encoder = [objectClass objectEncoder];
     FLAssertNotNilWithComment(encoder, @"no encoder found for class: %@", NSStringFromClass(objectClass));
     if(!encoder) {
         return nil;
@@ -653,7 +636,7 @@
 //    
 //    if(attributes && attributes.count > 0) {
 //        for(NSString* key in attributes) {
-//            [self.objectBuilder setChildForIdentifier:key withEncodedString:[attributes valueForKey:key] withState:FLXmlPropertyInflationIsAttribute];
+//            [self.objectBuilder addPropertyWithName:key withEncodedString:[attributes valueForKey:key] withState:FLXmlPropertyInflationIsAttribute];
 //        }
 //    }
 //}

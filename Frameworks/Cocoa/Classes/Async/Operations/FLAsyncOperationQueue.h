@@ -50,7 +50,6 @@ typedef FLOperation* (^FLOperationFactory)(id object);
 - (void) willStartOperation:(id) operation withQueuedObject:(id) object;
 - (void) didFinishOperation:(id) operation withQueuedObject:(id) object withResult:(FLPromisedResult) result;
 
-- (id) resultForFinisher;
 
 // use these to change the delegate selectors
 @property (readwrite, assign, nonatomic) SEL startedOperationSelector;

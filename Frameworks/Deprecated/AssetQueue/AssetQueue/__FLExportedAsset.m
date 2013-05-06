@@ -97,13 +97,13 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 
-        [describer setChildForIdentifier:@"originalID" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"assetURL" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"exportedDate" withClass:[NSDate class]];
+        [describer addPropertyWithName:@"originalID" withClass:[NSString class]];
+        [describer addPropertyWithName:@"assetURL" withClass:[NSString class]];
+        [describer addPropertyWithName:@"exportedDate" withClass:[NSDate class]];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

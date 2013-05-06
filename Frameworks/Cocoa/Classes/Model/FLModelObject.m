@@ -19,7 +19,7 @@
 }
 
 //+ (void) registerObjectDescriber {
-//    [FLObjectDescriber registerClass:[self class]];
+//    [FLLegacyObjectDescriber registerClass:[self class]];
 //}
 
 
@@ -29,16 +29,18 @@
 @implementation FLModelObject 
 FLSynthesizeModelObjectMethods();
 
-@synthesize identifier = _identifier;
-
-#if FL_MRC
-- (void) dealloc {
-	[_identifier release];
-	[super dealloc];
-}
-#endif
+//@synthesize identifier = _identifier;
+//
+//#if FL_MRC
+//- (void) dealloc {
+//	[_identifier release];
+//	[super dealloc];
+//}
+//#endif
 
 @end
+
+
 
 id FLModelObjectCopy(id object, Class classOrNil) {
     Class theClass = classOrNil ? classOrNil : [object class];
@@ -191,7 +193,7 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 				else {
 					FLPropertyDescriber* srcProp = [srcDescriber propertyForName:srcPropName];
                     
-                    if(![srcProp.propertyType isModelObject]) {
+                    if(![srcProp representsModelObject]) {
 					   if(mergeMode == FLMergeModeSourceWins) {
 							[dest setValue:srcObject forKey:srcPropName];
 					   }

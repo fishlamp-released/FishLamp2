@@ -41,3 +41,6 @@ const char* FLCStringCopyCharString(FLCharString charString) {
 }
 
 
+@interface NSString (FLCharString)
++ (NSString*) stringWithCharString:(FLCharString) charString;
+@end

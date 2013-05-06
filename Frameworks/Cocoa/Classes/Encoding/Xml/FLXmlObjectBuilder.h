@@ -33,3 +33,9 @@
 - (FLParsedItem*) findElementForBuilding:(NSString*) objectName inParentElement:(FLParsedItem*) parentElement;
 
 @end
+
+// TEMP
+@interface NSObject (FLXmlBuilder)
++ (BOOL) isArray;
+- (BOOL) isArray;
+@end

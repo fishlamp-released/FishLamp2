@@ -45,7 +45,7 @@
 - (FLPropertyInflator*) startInflatingPropertyWithName:(NSString*) propertyName withState:(int) state;
 - (void) finishInflatingProperty;
 
-- (void) setChildForIdentifier:(NSString*) propertyName 
+- (void) addPropertyWithName:(NSString*) propertyName 
    withEncodedString:(NSString*) data 
            withState:(int) state;
 

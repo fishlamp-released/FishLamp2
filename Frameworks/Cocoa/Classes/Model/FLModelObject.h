@@ -10,14 +10,13 @@
 #import "FLObjectDescriber.h"
 
 @protocol FLModelObject <FLDatabaseStorable, NSCopying, NSCoding>
- - (id) identifier;
 @end
 
 @interface FLModelObject : NSObject<FLModelObject> {
 @private
-    id _identifier;
+//    id _identifier;
 }
-@property (readwrite, strong) id identifier;
+//@property (readwrite, strong) id identifier;
 @end
 
 @interface NSObject (FLModelObject)

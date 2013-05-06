@@ -12,7 +12,7 @@
 
 @interface FLOperation ()
 @property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
-//@property (readwrite, strong) FLFinisher* finisher; 
+@property (readwrite, strong) FLFinisher* finisher; 
 @end
 
 @implementation FLOperation
@@ -229,6 +229,13 @@
 - (void) sendFinishMessagesWithResult:(FLPromisedResult) result {
 }
 
+- (void) setFinished {
+    [self setFinishedWithResult:FLSuccessfullResult];
+}
+
+- (void) setFinishedWithResult:(FLPromisedResult) result {
+    [self.finisher setFinishedWithResult:result];
+}
 
 
 @end

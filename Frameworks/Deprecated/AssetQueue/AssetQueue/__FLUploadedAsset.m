@@ -192,23 +192,23 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 
-        [describer setChildForIdentifier:@"queueUID" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"uploadedAssetUID" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"assetType" withClass:[FLIntegerNumber class] ];
-        [describer setChildForIdentifier:@"assetURL" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"assetUID" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"uploadedAssetURL" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"uploadedAssetId" withClass:[FLLongNumber class] ];
-        [describer setChildForIdentifier:@"uploadDestinationId" withClass:[FLLongNumber class] ];
-        [describer setChildForIdentifier:@"uploadDestinationName" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"uploadDestinationURL" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"assetName" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"thumbnail" withClass:[SDKImage class]];
-        [describer setChildForIdentifier:@"uploadedDate" withClass:[NSDate class]];
+        [describer addPropertyWithName:@"queueUID" withClass:[NSString class]];
+        [describer addPropertyWithName:@"uploadedAssetUID" withClass:[NSString class]];
+        [describer addPropertyWithName:@"assetType" withClass:[FLIntegerNumber class] ];
+        [describer addPropertyWithName:@"assetURL" withClass:[NSString class]];
+        [describer addPropertyWithName:@"assetUID" withClass:[NSString class]];
+        [describer addPropertyWithName:@"uploadedAssetURL" withClass:[NSString class]];
+        [describer addPropertyWithName:@"uploadedAssetId" withClass:[FLLongNumber class] ];
+        [describer addPropertyWithName:@"uploadDestinationId" withClass:[FLLongNumber class] ];
+        [describer addPropertyWithName:@"uploadDestinationName" withClass:[NSString class]];
+        [describer addPropertyWithName:@"uploadDestinationURL" withClass:[NSString class]];
+        [describer addPropertyWithName:@"assetName" withClass:[NSString class]];
+        [describer addPropertyWithName:@"thumbnail" withClass:[SDKImage class]];
+        [describer addPropertyWithName:@"uploadedDate" withClass:[NSDate class]];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

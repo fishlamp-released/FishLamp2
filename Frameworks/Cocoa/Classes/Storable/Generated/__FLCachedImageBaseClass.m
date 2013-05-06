@@ -137,17 +137,17 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 
-        [describer setChildForIdentifier:@"fileName" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"url" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"imageId" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"photoUrl" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"host" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"imageVersion" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"canCacheInMemory" withClass:[FLBoolNumber class] ];
+        [describer addPropertyWithName:@"fileName" withClass:[NSString class]];
+        [describer addPropertyWithName:@"url" withClass:[NSString class]];
+        [describer addPropertyWithName:@"imageId" withClass:[NSString class]];
+        [describer addPropertyWithName:@"photoUrl" withClass:[NSString class]];
+        [describer addPropertyWithName:@"host" withClass:[NSString class]];
+        [describer addPropertyWithName:@"imageVersion" withClass:[NSString class]];
+        [describer addPropertyWithName:@"canCacheInMemory" withClass:[FLBoolNumber class] ];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

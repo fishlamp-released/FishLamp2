@@ -9,77 +9,25 @@
 #import "FLObjectDescriber.h"
 
 #import "FLObjcRuntime.h"
-#import "FLPropertyAttributes.h"
 #import "FLModelObject.h"
 #import "FLDatabase.h"
 
-//#import "FLTrace.h"
+#import "FLTrace.h"
 
 @interface FLPropertyDescriber (Internal)
 @property (readwrite) NSString* propertyName;
-@property (readwrite) FLObjectDescriber* propertyType;
+@property (readwrite) FLObjectDescriber* representedObjectDescriber;
 @property (readwrite, copy) NSArray* containedTypes;
+
+- (id) initWithProperty_t:(objc_property_t) property_t;
++ (id) propertyDescriberWithProperty_t:(objc_property_t) property_t;
 @end
 
 
 @interface FLObjectDescriber ()
-//@property (readwrite, assign) Class objectClass;
-
 - (void) addPropertiesForClass:(Class) aClass;
 - (id) initWithClass:(Class) aClass;
 @end
-
-//@interface FLThreadSafeRef : NSProxy {
-//@private
-//    id _object;
-//}
-//@property (readwrite, strong, nonatomic) id object;
-//@end
-//
-//@implementation FLThreadSafeRef 
-//
-//@synthesize object = _object;
-//
-//
-//- (id) initWithObject:(id) object {	
-//	self.object = object;
-//	return self;
-//}
-//
-//+ (id) threadSafeRef:(id) object {
-//    return FLAutorelease([[[self class] alloc] initWithObject:object]);
-//}
-//
-//- (void)forwardInvocation:(NSInvocation *)invocation {
-//    id myObject = self.object;
-//    if (myObject ) {
-//        [invocation setTarget:myObject];
-//        @synchronized(myObject) {
-//            [invocation invoke];
-//        }
-//    }
-//}
-//
-//- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel  {
-//    return [self.object methodSignatureForSelector:sel];
-//}
-//
-//#if FL_MRC
-//- (void) dealloc {
-//	[_object release];
-//	[super dealloc];
-//}
-//#endif
-//
-//- (BOOL)respondsToSelector:(SEL)aSelector {
-//    if([self respondsToSelector:aSelector]) {
-//        return YES;
-//    }
-//
-//    return [self.object respondsToSelector:aSelector];
-//}
-//
-//@end
 
 @implementation FLObjectDescriber
 
@@ -100,8 +48,9 @@ static NSMutableDictionary* s_registry = nil;
 
 - (id) initWithClass:(Class) aClass properties:(NSDictionary*) properties {
     FLAssertNotNil(aClass);
-	self = [self initWithClass:aClass];
+	self = [super init];
 	if(self) {
+        _objectClass = aClass;
         _properties = [properties mutableCopy];
         _databaseTablePredicate = 0;
 	}
@@ -109,12 +58,7 @@ static NSMutableDictionary* s_registry = nil;
 }
 
 - (id) initWithClass:(Class) aClass {
-    FLAssertNotNil(aClass);
-	self = [super init];
-	if(self) {
-        _objectClass = aClass;
-	}
-	return self;
+    return [self initWithClass:aClass properties:nil];
 }
 
 + (id) objectDescriber:(Class) aClass {
@@ -127,14 +71,7 @@ static NSMutableDictionary* s_registry = nil;
         return describer;
     }
 
-//    if(!describer && [aClass isModelObject]) {
-//        return [aClass objectDescriber];
-//    }
-//    else {
-        return [self registerClass:aClass];
-//    }
-        
-    return nil;
+    return [self registerClass:aClass];
 }
 
 #if FL_MRC
@@ -172,7 +109,7 @@ static NSMutableDictionary* s_registry = nil;
     FLPropertyDescriber* existing = [_properties objectForKey:property.propertyName];
     if(existing) {
         FLTrace(@"replacing property %@ to %@", property.propertyName, NSStringFromClass(self.objectClass));
-        existing.propertyType = property.propertyType;
+        existing.representedObjectDescriber = property.representedObjectDescriber;
         existing.containedTypes = property.containedTypes;
     } 
     else {
@@ -180,22 +117,6 @@ static NSMutableDictionary* s_registry = nil;
         [_properties setObject:property forKey:property.propertyName];
     }
 }
-
-//- (void) setPropertyClass:(Class) aClass forIdentifier:(NSString*) propertyName {
-//    [self addProperty:[FLPropertyDescriber propertyDescriber:propertyName class:aClass]];
-//}
-
-//- (void) setSubtypeArrayTypes:(NSArray*) arrayTypes forIdentifier:(NSString*) propertyName {
-//    FLPropertyDescriber* objectDescriber = [FLPropertyDescriber propertyDescriber:propertyName class:[NSMutableArray class]];
-//
-////    for(FLObjectDescriber* desc in arrayTypes) {
-////        [objectDescriber addProperty:desc];
-////    }
-//
-//    [self addProperty:objectDescriber];
-//}
-
-//- (void) describeTo:(FLPrettyString*) string
 
 - (NSString*) description {
     
@@ -210,34 +131,19 @@ static NSMutableDictionary* s_registry = nil;
     return [NSString stringWithFormat:@"%@ %@", NSStringFromClass(self.objectClass), contained.string];
 }
 
-+ (id) createWithRuntimeProperty:(objc_property_t) runtimeProperty {
+- (void) checkForContainerTypes:(FLPropertyDescriber*) property {
 
-    FLPropertyAttributes_t attributes;
-    FLPropertyAttributesDecodeWithNoCopy(runtimeProperty, &attributes);
-    
-    if(attributes.propertyName) {
+//    if(property.representsArray) {
+//       SEL sel = NSSelectorFromString([NSString stringWithFormat:@"%@AddArrayTypesToProperty:", property.propertyName]);
+//        FLPerformSelector1(objectClass, sel, property);
+//    }
 
-        if(attributes.is_object) {
-            FLTrace(@"adding object property \"%s\" (%s)", attributes.propertyName, attributes.encodedAttributes);
 
-            NSString* propertyName = [NSString stringWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
-            Class objectClass = nil;
-            
-            if(attributes.className.string) {
-                objectClass = NSClassFromString([NSString stringWithCharString:attributes.className]);
-            }
-            else {
-                objectClass = [FLAbstractObjectType class];
-            }
-
-            return [FLPropertyDescriber propertyDescriber:propertyName propertyClass:objectClass];
-        }
-        else {
-            FLTrace(@"skipping property: %s (%s)", attributes.propertyName, attributes.encodedAttributes);
-        }
-    }
-
-    return nil;
+//   Class objectClass = property.propertyClass;
+//    if([objectClass isKindOfClass:[NSArray class]]) {
+//        SEL sel = NSSelectorFromString([NSString stringWithFormat:@"%@AddArrayTypesToProperty:", property.propertyName]);
+//        FLPerformSelector1(objectClass, sel, property);
+//    }
 }
 
 - (void) addPropertiesForClass:(Class) aClass {
@@ -249,8 +155,9 @@ static NSMutableDictionary* s_registry = nil;
 
     for(unsigned int i = 0; i < propertyCount; i++) {
     
-        FLPropertyDescriber* propertyDescriber = [FLObjectDescriber createWithRuntimeProperty:propertys[i]];
+        FLPropertyDescriber* propertyDescriber = [FLPropertyDescriber propertyDescriberWithProperty_t:propertys[i]];
         if(propertyDescriber) {
+            [self checkForContainerTypes:propertyDescriber];
             [self addProperty:propertyDescriber];
         }
     }
@@ -269,56 +176,33 @@ static NSMutableDictionary* s_registry = nil;
     }
 }
 
-+ (FLObjectDescriber*) registerClass:(Class) aClass {
-    FLTrace(@"Registering %@:", NSStringFromClass(aClass));
-
-    FLObjectDescriber* describer = FLAutorelease([[[self class] alloc] initWithClass:aClass]);;
-
+- (void) describeSelf {
+    Class aClass = [self objectClass];
     BOOL isModelObject = [aClass isModelObject];
     if(isModelObject) {
     // do parents first, because we can override them in subclass
-        [describer addPropertiesForParentClasses:[aClass superclass]];
+        [self addPropertiesForParentClasses:[aClass superclass]];
 
     // add our discovered properties
-        [describer addPropertiesForClass:aClass];
+        [self addPropertiesForClass:aClass];
     }
-    
+}
+
++ (id) registerClass:(Class) aClass {
+    FLTrace(@"Registering %@:", NSStringFromClass(aClass));
+
+    FLObjectDescriber* describer = FLAutorelease([[[self class] alloc] initWithClass:aClass]);;
+    [describer describeSelf];
+
     @synchronized(self) {
         [s_registry setObject:describer forKey:NSStringFromClass(aClass)];
     }
-    if(isModelObject) {    
+    if([aClass isModelObject]) {    
         [aClass modelObjectWasRegistered:describer];
     }
     
     return describer;
 }
-
-- (void) setChildForIdentifier:(NSString*) name withClass:(Class) objectClass {
-    FLPropertyDescriber* property = [_properties objectForKey:name];
-    FLAssertNotNil(property);
-    
-    if(property.propertyClass != objectClass) {
-    
-        FLTrace(@"replaced property class %@ with %@", NSStringFromClass(property.propertyClass), NSStringFromClass(objectClass));
-        property.propertyType = [FLObjectDescriber objectDescriber:objectClass];
-        
-//        [_properties setObject:[FLPropertyDescriber propertyDescriber:name propertyClass:objectClass] forKey:name];
-    }
-}
-
-- (void) setChildForIdentifier:(NSString*) name withArrayTypes:(NSArray*) types {
-    FLPropertyDescriber* property = [_properties objectForKey:name];
-    FLAssertNotNil(property);
-   
-    if(property.propertyClass != [NSMutableArray class]) {
-        property.propertyType  = [FLObjectDescriber objectDescriber:[NSMutableArray class]];
-    }
-    FLAssertNil(property.containedTypes);
-    FLAssertNotNil(types);
-
-    property.containedTypes = types;    
-}        
-
 
 - (id) copyWithZone:(NSZone *)zone {
     return [[[self class] alloc] initWithClass:_objectClass properties:_properties];
@@ -348,3 +232,37 @@ static NSMutableDictionary* s_registry = nil;
     return [[self class] objectDescriber];
 }
 @end
+
+@implementation FLLegacyObjectDescriber
+
+- (id) initWithClass:(Class) aClass {
+    return [super initWithClass:aClass];
+}
+
+- (void) addPropertyWithName:(NSString*) name withClass:(Class) objectClass {
+    FLPropertyDescriber* property = [self.properties objectForKey:name];
+    FLAssertNotNil(property);
+    
+    if(![property representsClass:objectClass]) {
+    
+//        FLTrace(@"replaced property class %@ with %@", NSStringFromClass(property.propertyClass), NSStringFromClass(objectClass));
+        property.representedObjectDescriber = [FLObjectDescriber objectDescriber:objectClass];
+    }
+}
+
+- (void) addPropertyWithName:(NSString*) name withArrayTypes:(NSArray*) types {
+    FLPropertyDescriber* property = [self.properties objectForKey:name];
+    FLAssertNotNil(property);
+   
+    if(![property representsClass:[NSMutableArray class]] ) {
+        property.representedObjectDescriber  = [FLObjectDescriber objectDescriber:[NSMutableArray class]];
+    }
+    FLAssertNil(property.containedTypes);
+    FLAssertNotNil(types);
+
+    property.containedTypes = types;    
+}        
+
+
+@end
+

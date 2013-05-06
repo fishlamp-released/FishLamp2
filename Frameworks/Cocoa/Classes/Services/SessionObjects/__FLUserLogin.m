@@ -142,18 +142,18 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 
-        [describer setChildForIdentifier:@"userGuid" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"userName" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"password" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"isAuthenticated" withClass:[FLBoolNumber class] ];
-        [describer setChildForIdentifier:@"authToken" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"email" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"authTokenLastUpdateTime" withClass:[FLDoubleNumber class] ];
-        [describer setChildForIdentifier:@"userValue" withClass:[FLLongNumber class] ];
+        [describer addPropertyWithName:@"userGuid" withClass:[NSString class]];
+        [describer addPropertyWithName:@"userName" withClass:[NSString class]];
+        [describer addPropertyWithName:@"password" withClass:[NSString class]];
+        [describer addPropertyWithName:@"isAuthenticated" withClass:[FLBoolNumber class] ];
+        [describer addPropertyWithName:@"authToken" withClass:[NSString class]];
+        [describer addPropertyWithName:@"email" withClass:[NSString class]];
+        [describer addPropertyWithName:@"authTokenLastUpdateTime" withClass:[FLDoubleNumber class] ];
+        [describer addPropertyWithName:@"userValue" withClass:[FLLongNumber class] ];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

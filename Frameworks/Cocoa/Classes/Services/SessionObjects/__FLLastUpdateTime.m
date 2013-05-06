@@ -87,12 +87,12 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 
-        [describer setChildForIdentifier:@"lastUpdateId" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"lastUpdate" withClass:[NSDate class]];
+        [describer addPropertyWithName:@"lastUpdateId" withClass:[NSString class]];
+        [describer addPropertyWithName:@"lastUpdate" withClass:[NSDate class]];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

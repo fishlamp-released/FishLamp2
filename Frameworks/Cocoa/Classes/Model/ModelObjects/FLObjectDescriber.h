@@ -43,14 +43,16 @@
 
 // NOTE THE METHODS BELOW ARE NOT THREAD SAFE
 
-+ (FLObjectDescriber*) registerClass:(Class) aClass;
++ (id) registerClass:(Class) aClass;
 - (void) addProperty:(FLPropertyDescriber*) subtype;
-
-// deprecated
-- (id) initWithClass:(Class) aClass;
-- (void) setChildForIdentifier:(NSString*) name withClass:(Class) objectClass;
-- (void) setChildForIdentifier:(NSString*) name withArrayTypes:(NSArray*) types;
 @end            
 
 @interface FLAbstractObjectType : NSObject
+@end
+
+
+@interface FLLegacyObjectDescriber : FLObjectDescriber
+//- (id) initWithClass:(Class) aClass;
+- (void) addPropertyWithName:(NSString*) name withClass:(Class) objectClass;
+- (void) addPropertyWithName:(NSString*) name withArrayTypes:(NSArray*) types;
 @end

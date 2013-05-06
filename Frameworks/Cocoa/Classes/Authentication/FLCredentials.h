@@ -9,14 +9,14 @@
 #import "FLModelObject.h"
 
 @protocol FLCredentials <NSObject, NSCopying, NSMutableCopying>
-@property (readonly, strong, nonatomic) NSNumber* rememberPassword;
+@property (readonly, assign, nonatomic) BOOL rememberPassword;
 @property (readonly, strong, nonatomic) NSString* userName;
 @property (readonly, strong, nonatomic) NSString* password;
 @property (readonly, assign, nonatomic) BOOL canAuthenticate;
 @end
 
 @protocol FLMutableCredentials <FLCredentials>
-@property (readwrite, strong, nonatomic) NSNumber* rememberPassword;
+@property (readwrite, assign, nonatomic) BOOL rememberPassword;
 @property (readwrite, strong, nonatomic) NSString* userName;
 @property (readwrite, strong, nonatomic) NSString* password;
 - (void) clearCredentials;
@@ -27,16 +27,16 @@
 @private
     NSString* _userName;
     NSString* _password;
-    NSNumber* _rememberPassword;
+    BOOL _rememberPassword;
 }
 
 - (id) initWithUserName:(NSString*) userName 
                password:(NSString*) password 
-       rememberPassword:(NSNumber*) rememberPassword;
+       rememberPassword:(BOOL) rememberPassword;
 
 + (id) credentials:(NSString*) userName 
               password:(NSString*) password 
-      rememberPassword:(NSNumber*) rememberPassword;
+      rememberPassword:(BOOL) rememberPassword;
 
 + (id) credentials;
 @end

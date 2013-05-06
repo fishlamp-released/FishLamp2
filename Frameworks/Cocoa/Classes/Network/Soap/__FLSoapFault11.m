@@ -102,14 +102,14 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 
-        [describer setChildForIdentifier:@"faultcode" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"faultstring" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"faultactor" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"detail" withClass:[NSString class]];
+        [describer addPropertyWithName:@"faultcode" withClass:[NSString class]];
+        [describer addPropertyWithName:@"faultstring" withClass:[NSString class]];
+        [describer addPropertyWithName:@"faultactor" withClass:[NSString class]];
+        [describer addPropertyWithName:@"detail" withClass:[NSString class]];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

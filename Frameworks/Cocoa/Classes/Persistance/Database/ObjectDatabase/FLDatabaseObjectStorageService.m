@@ -30,8 +30,14 @@
 }
 #endif
 
+- (NSString*) databaseFilePath {
+    return [self.delegate databaseObjectStorageServiceGetDatabasePath:self];
+}
+
 - (void) openService {
-    NSString* databasePath = [self.delegate databaseObjectStorageServiceGetDatabasePath:self];
+    NSString* databasePath = [self databaseFilePath];
+    FLAssertStringIsNotEmpty(databasePath);
+    
     self.databaseController = [FLObjectDatabaseController  objectDatabaseController:databasePath];
     
     [self.databaseController dispatchAsync:^(FLObjectDatabase* database) {
@@ -42,10 +48,7 @@
             FLLog(@"database error: %@", result)
         }
     }];
-    
-
-    
-}
+ }
 
 - (void) closeService {
     [self.databaseController dispatchAsync:^(FLObjectDatabase* database) {

@@ -99,18 +99,18 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 
-        [describer setChildForIdentifier:@"appId" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"apiKey" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"consumerKey" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"consumerSecret" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"requestTokenUrl" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"accessTokenUrl" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"authorizeUrl" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"callback" withClass:[NSString class]];
+        [describer addPropertyWithName:@"appId" withClass:[NSString class]];
+        [describer addPropertyWithName:@"apiKey" withClass:[NSString class]];
+        [describer addPropertyWithName:@"consumerKey" withClass:[NSString class]];
+        [describer addPropertyWithName:@"consumerSecret" withClass:[NSString class]];
+        [describer addPropertyWithName:@"requestTokenUrl" withClass:[NSString class]];
+        [describer addPropertyWithName:@"accessTokenUrl" withClass:[NSString class]];
+        [describer addPropertyWithName:@"authorizeUrl" withClass:[NSString class]];
+        [describer addPropertyWithName:@"callback" withClass:[NSString class]];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

@@ -6,37 +6,62 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLPropertyAttributes.h"
+#import "FLObjectEncoder.h"
+#import "FLDatabase.h"
 
 @class FLObjectDescriber;
 
-@interface FLPropertyDescriber : NSObject<NSCopying> {
+@interface FLPropertyDescriber : NSObject {
 @private
     NSString* _propertyName;
-    FLObjectDescriber* _propertyType;
+    FLObjectDescriber* _representedObjectDescriber;
     NSMutableArray* _containedTypes;
+    
+    FLPropertyAttributes_t _attributes;
+    NSString* _structName;
+    NSString* _ivarName;
+    NSString* _unionName;
+    SEL _customGetter;
+    SEL _customSetter;
+    SEL _selector;
 }
-@property (readonly, assign) Class propertyClass;
-@property (readonly, strong) NSString* propertyName;
-@property (readonly, strong) FLObjectDescriber* propertyType;
 
+// property attributes
+@property (readonly, strong) NSString* propertyName;
+@property (readonly, strong, nonatomic) NSString* structName;
+@property (readonly, strong, nonatomic) NSString* ivarName;
+@property (readonly, strong, nonatomic) NSString* unionName;
+@property (readonly, assign, nonatomic) SEL customGetter;
+@property (readonly, assign, nonatomic) SEL customSetter;
+@property (readonly, assign, nonatomic) SEL selector;
+@property (readonly, assign, nonatomic) FLPropertyAttributes_t attributes;
+
+// represented object 
+@property (readonly, assign) BOOL representsModelObject;
+@property (readonly, assign) BOOL representsArray;
+@property (readonly, strong) id<FLStringEncoder> objectEncoder;
+- (id) createRepresentedObject;
+- (BOOL) representsClass:(Class) aClass;
+
+// contained types
 @property (readonly, copy) NSArray* containedTypes;
 @property (readonly, assign) NSUInteger containedTypesCount;
 - (FLPropertyDescriber*) containedTypeForIndex:(NSUInteger) idx;
-
-+ (id) propertyDescriber:(NSString*) identifier 
-            propertyType:(FLObjectDescriber*) propertyType;
+- (FLPropertyDescriber*) containedTypeForClass:(Class) aClass;
+- (FLPropertyDescriber*) containedTypeForName:(NSString*) name;
 
 + (id) propertyDescriber:(NSString*) identifier 
            propertyClass:(Class) aClass;
 
-+ (id) propertyDescriber:(NSString*) identifier 
-           propertyClass:(Class) aClass 
-          containedTypes:(NSArray*) containedTypes;
           
-- (FLPropertyDescriber*) containedTypeForName:(NSString*) name;
+// Database Support
+- (FLDatabaseType) representedObjectSqlType;
+- (id) representedObjectFromSqliteColumnData:(NSData*) data;
+- (id) representedObjectFromSqliteColumnString:(NSString*) string;
 
-// deprecated
+@end
+
+@interface FLPropertyDescriber (Deprecated)
 + (id) propertyDescriber:(NSString*) name class:(Class) aClass;
-
 @end

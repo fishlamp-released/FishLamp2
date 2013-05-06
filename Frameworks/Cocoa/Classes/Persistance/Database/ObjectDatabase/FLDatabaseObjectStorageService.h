@@ -20,6 +20,8 @@
 
 + (id) databaseObjectStorageService:(id<FLDatabaseObjectStorageServiceDelegate>) delegate;
 
+- (NSString*) databaseFilePath;
+
 @end
 
 @protocol FLDatabaseObjectStorageServiceDelegate <NSObject>

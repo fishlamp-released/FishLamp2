@@ -82,20 +82,18 @@
     }
 }
 
-- (NSNumber*) rememberPassword {
+- (BOOL) rememberPassword {
     FLAssertNotNil(_authCredentials);
     return _authCredentials.rememberPassword;
 }
 
-- (void) setRememberPassword:(NSNumber*) boolNumber {
+- (void) setRememberPassword:(BOOL) remember {
     [self openIfNeeded];
     FLAssertNotNil(_authCredentials);
 
-    if( boolNumber != _authCredentials.rememberPassword && 
-        boolNumber.boolValue != _authCredentials.rememberPassword.boolValue) {
-        
+    if( remember != _authCredentials.rememberPassword) {
         [self didChange];
-        _authCredentials.rememberPassword = boolNumber;
+        _authCredentials.rememberPassword = remember;
     }
 }
 

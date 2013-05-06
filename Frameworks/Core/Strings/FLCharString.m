@@ -8,3 +8,13 @@
 
 #import "FLCharString.h"
 
+@implementation NSString (FLCharString)
++ (NSString*) stringWithCharString:(FLCharString) charString {
+    if(charString.length == 0) {
+        return nil;
+    }
+
+    return FLAutorelease([[NSString alloc] initWithBytes:charString.string length:charString.length encoding:NSASCIIStringEncoding]);
+
+}
+@end

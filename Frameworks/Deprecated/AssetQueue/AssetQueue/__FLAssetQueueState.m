@@ -117,15 +117,15 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 
-        [describer setChildForIdentifier:@"queueUID" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"sortOrder" withClass:[FLIntegerNumber class] ];
-        [describer setChildForIdentifier:@"totalAssetsAdded" withClass:[FLLongNumber class] ];
-        [describer setChildForIdentifier:@"firstQueuePosition" withClass:[FLIntegerNumber class] ];
-        [describer setChildForIdentifier:@"lastQueuePosition" withClass:[FLIntegerNumber class] ];
+        [describer addPropertyWithName:@"queueUID" withClass:[NSString class]];
+        [describer addPropertyWithName:@"sortOrder" withClass:[FLIntegerNumber class] ];
+        [describer addPropertyWithName:@"totalAssetsAdded" withClass:[FLLongNumber class] ];
+        [describer addPropertyWithName:@"firstQueuePosition" withClass:[FLIntegerNumber class] ];
+        [describer addPropertyWithName:@"lastQueuePosition" withClass:[FLIntegerNumber class] ];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

@@ -53,11 +53,11 @@
 
 
 @implementation NSObject (FLType)
-+ (FLObjectEncoder*) objectEncoder {
++ (id<FLStringEncoder>) objectEncoder {
     return nil; // [FLObjectEncoder objectEncoderForClass:[self class]];
 }
 
-- (FLObjectEncoder*) objectEncoder {
+- (id<FLStringEncoder>) objectEncoder {
     return [[self class] objectEncoder];
 }
 

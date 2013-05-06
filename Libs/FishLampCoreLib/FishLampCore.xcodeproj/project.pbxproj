@@ -313,15 +313,6 @@
 		27D4791D16F7765C0066140D /* FLPropertyAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4791616F7765C0066140D /* FLPropertyAttributes.m */; };
 		27D4791E16F7765C0066140D /* FLPropertyAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4791616F7765C0066140D /* FLPropertyAttributes.m */; };
 		27D4791F16F7765C0066140D /* FLPropertyAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4791616F7765C0066140D /* FLPropertyAttributes.m */; };
-		27D4792216F7881C0066140D /* NSString+FLCharString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D4792016F7881C0066140D /* NSString+FLCharString.h */; };
-		27D4792316F7881C0066140D /* NSString+FLCharString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D4792016F7881C0066140D /* NSString+FLCharString.h */; };
-		27D4792416F7881C0066140D /* NSString+FLCharString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D4792016F7881C0066140D /* NSString+FLCharString.h */; };
-		27D4792516F7881C0066140D /* NSString+FLCharString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D4792016F7881C0066140D /* NSString+FLCharString.h */; };
-		27D4792616F7881C0066140D /* NSString+FLCharString.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4792116F7881C0066140D /* NSString+FLCharString.m */; };
-		27D4792716F7881C0066140D /* NSString+FLCharString.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4792116F7881C0066140D /* NSString+FLCharString.m */; };
-		27D4792816F7881C0066140D /* NSString+FLCharString.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4792116F7881C0066140D /* NSString+FLCharString.m */; };
-		27D4792916F7881C0066140D /* NSString+FLCharString.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4792116F7881C0066140D /* NSString+FLCharString.m */; };
-		27D4792A16F7881C0066140D /* NSString+FLCharString.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D4792116F7881C0066140D /* NSString+FLCharString.m */; };
 		27D4792D16F7883E0066140D /* FLCharString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D4792B16F7883E0066140D /* FLCharString.h */; };
 		27D4792E16F7883E0066140D /* FLCharString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D4792B16F7883E0066140D /* FLCharString.h */; };
 		27D4792F16F7883E0066140D /* FLCharString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D4792B16F7883E0066140D /* FLCharString.h */; };
@@ -558,8 +549,6 @@
 		27CBC1F416768BA600753D0A /* libFishLampCore-OSX-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-OSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D4791516F7765C0066140D /* FLPropertyAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPropertyAttributes.h; sourceTree = "<group>"; };
 		27D4791616F7765C0066140D /* FLPropertyAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPropertyAttributes.m; sourceTree = "<group>"; };
-		27D4792016F7881C0066140D /* NSString+FLCharString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FLCharString.h"; sourceTree = "<group>"; };
-		27D4792116F7881C0066140D /* NSString+FLCharString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FLCharString.m"; sourceTree = "<group>"; };
 		27D4792B16F7883E0066140D /* FLCharString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCharString.h; sourceTree = "<group>"; };
 		27D4792C16F7883E0066140D /* FLCharString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCharString.m; sourceTree = "<group>"; };
 		27E957E6170B572F00587A8F /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
@@ -646,8 +635,6 @@
 				271E3D0716920FC800FB62C9 /* FLStringUtils.m */,
 				271E3D0816920FC800FB62C9 /* FLWhitespace.h */,
 				271E3D0916920FC800FB62C9 /* FLWhitespace.m */,
-				27D4792016F7881C0066140D /* NSString+FLCharString.h */,
-				27D4792116F7881C0066140D /* NSString+FLCharString.m */,
 				27D4792B16F7883E0066140D /* FLCharString.h */,
 				27D4792C16F7883E0066140D /* FLCharString.m */,
 			);
@@ -953,7 +940,6 @@
 				274933F1169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
 				27EC4ECC16F0F87300E38A05 /* FLSelector.h in Headers */,
 				27D4791716F7765C0066140D /* FLPropertyAttributes.h in Headers */,
-				27D4792216F7881C0066140D /* NSString+FLCharString.h in Headers */,
 				27D4792D16F7883E0066140D /* FLCharString.h in Headers */,
 				27F46EB716FA45FD006271B4 /* FLAssertionFailureErrorDomain.h in Headers */,
 				27F46EC016FA45FD006271B4 /* FLAssertions.h in Headers */,
@@ -1021,7 +1007,6 @@
 				274933F3169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
 				27EC4ECE16F0F87300E38A05 /* FLSelector.h in Headers */,
 				27D4791916F7765C0066140D /* FLPropertyAttributes.h in Headers */,
-				27D4792416F7881C0066140D /* NSString+FLCharString.h in Headers */,
 				27D4792F16F7883E0066140D /* FLCharString.h in Headers */,
 				27F46EB916FA45FD006271B4 /* FLAssertionFailureErrorDomain.h in Headers */,
 				27F46EC216FA45FD006271B4 /* FLAssertions.h in Headers */,
@@ -1089,7 +1074,6 @@
 				274933F2169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
 				27EC4ECD16F0F87300E38A05 /* FLSelector.h in Headers */,
 				27D4791816F7765C0066140D /* FLPropertyAttributes.h in Headers */,
-				27D4792316F7881C0066140D /* NSString+FLCharString.h in Headers */,
 				27D4792E16F7883E0066140D /* FLCharString.h in Headers */,
 				27F46EB816FA45FD006271B4 /* FLAssertionFailureErrorDomain.h in Headers */,
 				27F46EC116FA45FD006271B4 /* FLAssertions.h in Headers */,
@@ -1157,7 +1141,6 @@
 				274933F4169A051E008E8EC5 /* __CoreHeaders.h in Headers */,
 				27EC4ECF16F0F87300E38A05 /* FLSelector.h in Headers */,
 				27D4791A16F7765C0066140D /* FLPropertyAttributes.h in Headers */,
-				27D4792516F7881C0066140D /* NSString+FLCharString.h in Headers */,
 				27D4793016F7883E0066140D /* FLCharString.h in Headers */,
 				27F46EBA16FA45FD006271B4 /* FLAssertionFailureErrorDomain.h in Headers */,
 				27F46EC316FA45FD006271B4 /* FLAssertions.h in Headers */,
@@ -1327,7 +1310,6 @@
 				271E3D2A16920FC800FB62C9 /* FLWhitespace.m in Sources */,
 				27EC4ED116F0F87300E38A05 /* FLSelector.m in Sources */,
 				27D4791C16F7765C0066140D /* FLPropertyAttributes.m in Sources */,
-				27D4792716F7881C0066140D /* NSString+FLCharString.m in Sources */,
 				27D4793216F7883E0066140D /* FLCharString.m in Sources */,
 				2713040916F902FE00DA94F7 /* FLAssociatedProperty.m in Sources */,
 				27F46EBC16FA45FD006271B4 /* FLAssertionFailureErrorDomain.m in Sources */,
@@ -1376,7 +1358,6 @@
 				271E3D2C16920FC800FB62C9 /* FLWhitespace.m in Sources */,
 				27EC4ED316F0F87300E38A05 /* FLSelector.m in Sources */,
 				27D4791E16F7765C0066140D /* FLPropertyAttributes.m in Sources */,
-				27D4792916F7881C0066140D /* NSString+FLCharString.m in Sources */,
 				27D4793416F7883E0066140D /* FLCharString.m in Sources */,
 				2713040B16F902FE00DA94F7 /* FLAssociatedProperty.m in Sources */,
 				27F46EBE16FA45FD006271B4 /* FLAssertionFailureErrorDomain.m in Sources */,
@@ -1425,7 +1406,6 @@
 				271E3D2916920FC800FB62C9 /* FLWhitespace.m in Sources */,
 				27EC4ED016F0F87300E38A05 /* FLSelector.m in Sources */,
 				27D4791B16F7765C0066140D /* FLPropertyAttributes.m in Sources */,
-				27D4792616F7881C0066140D /* NSString+FLCharString.m in Sources */,
 				27D4793116F7883E0066140D /* FLCharString.m in Sources */,
 				2713040816F902FE00DA94F7 /* FLAssociatedProperty.m in Sources */,
 				27F46EBB16FA45FD006271B4 /* FLAssertionFailureErrorDomain.m in Sources */,
@@ -1474,7 +1454,6 @@
 				271E3D2B16920FC800FB62C9 /* FLWhitespace.m in Sources */,
 				27EC4ED216F0F87300E38A05 /* FLSelector.m in Sources */,
 				27D4791D16F7765C0066140D /* FLPropertyAttributes.m in Sources */,
-				27D4792816F7881C0066140D /* NSString+FLCharString.m in Sources */,
 				27D4793316F7883E0066140D /* FLCharString.m in Sources */,
 				2713040A16F902FE00DA94F7 /* FLAssociatedProperty.m in Sources */,
 				27F46EBD16FA45FD006271B4 /* FLAssertionFailureErrorDomain.m in Sources */,
@@ -1523,7 +1502,6 @@
 				271E3D2D16920FC800FB62C9 /* FLWhitespace.m in Sources */,
 				27EC4ED416F0F87300E38A05 /* FLSelector.m in Sources */,
 				27D4791F16F7765C0066140D /* FLPropertyAttributes.m in Sources */,
-				27D4792A16F7881C0066140D /* NSString+FLCharString.m in Sources */,
 				27D4793516F7883E0066140D /* FLCharString.m in Sources */,
 				2713040C16F902FE00DA94F7 /* FLAssociatedProperty.m in Sources */,
 				27F46EBF16FA45FD006271B4 /* FLAssertionFailureErrorDomain.m in Sources */,

@@ -11,7 +11,12 @@
 
 #import <objc/runtime.h>
 
-@interface FLObjectEncoder : NSObject<NSCopying> {
+@protocol FLStringEncoder <NSObject>
+- (NSString*) encodeObjectToString:(id) object withEncoder:(id) encoder;
+- (id) decodeStringToObject:(NSString*) object withDecoder:(id) decoder;
+@end
+
+@interface FLObjectEncoder : NSObject<FLStringEncoder, NSCopying> {
 @private
     SEL _encodeSelector;
     SEL _decodeSelector;
@@ -27,6 +32,6 @@
 @end
 
 @interface NSObject (FLObjectEncoder) 
-+ (FLObjectEncoder*) objectEncoder;
-- (FLObjectEncoder*) objectEncoder;
++ (id<FLStringEncoder>) objectEncoder;
+- (id<FLStringEncoder>) objectEncoder;
 @end

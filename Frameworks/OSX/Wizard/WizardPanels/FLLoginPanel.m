@@ -39,11 +39,6 @@
 
     self.title = NSLocalizedString(@"Login", nil);
     self.prompt =  NSLocalizedString(@"Login to your account", nil);
-
-//    if(!_user) {
-//        _user = [[_authCredentialsEditor alloc] init];
-//    }
-    
     self.panelFillsView = NO;
 }
 
@@ -100,13 +95,6 @@
     self.canOpenNextPanel = [self.credentialDataSource loginPanel:self credentialsAreAuthenticated:self.credentialsEditor];
     _loginButton.enabled = self.canLogin;
 }
-
-//- (FLFLAssertNotNil(_authCredentialsEditor*) user {
-//    _user.userName = self.userName;
-//    _user.password = self.password;
-//    _user.rememberPassword = self.savePasswordInKeychain;
-//    return _user;
-//}
 
 - (void) updateCredentialsEditor {
     _credentialsEditor.userName = self.userName;
@@ -234,7 +222,7 @@
 
 - (void) loadCredentials {
     self.credentialsEditor = [self.credentialDataSource  loginPanelGetCredentials:self];
-    [self setSavePasswordInKeychain:self.credentialsEditor.rememberPassword.boolValue];
+    [self setSavePasswordInKeychain:self.credentialsEditor.rememberPassword];
     [self setUserName:self.credentialsEditor .userName];
     [self setPassword:self.credentialsEditor .password];
 }
@@ -245,6 +233,7 @@
 
 - (void) applicationWillTerminate:(id)sender {
     [self updateCredentialsEditor];
+    [self.credentialsEditor stopEditing];
 }
    
 - (void) respondToNextButton:(BOOL*) handledIt {

@@ -28,7 +28,7 @@
         }
     }
     else {
-        FLObjectEncoder* objectEncoder = [self.class objectEncoder];
+        id<FLStringEncoder> objectEncoder = [self.class objectEncoder];
         if(objectEncoder) {
             NSString* line = [objectEncoder encodeObjectToString:self withEncoder:xmlElement.dataEncoder];
             [xmlElement appendLine:line];
@@ -61,18 +61,28 @@
             for(id obj in self) {
 				// hmm. expensive. need to decide for each item.
                 
-                BOOL found = NO;
-                for(FLPropertyDescriber* subType in propertyDescriber.containedTypes) {
-					if([obj isKindOfClass:[subType propertyClass]]) {
-                        [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:subType.propertyName propertyDescriber:subType]];
-                        found = YES;
-						break;
-					}
-				}
-                if(!found) {
-                    FLLog(@"array property describer for %@ not found", NSStringFromClass([obj class]));
-                
+                FLPropertyDescriber* containedType = [propertyDescriber containedTypeForClass:[obj class]];
+                if(containedType) {
+                    [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj 
+                                                                  xmlElementTag:containedType.propertyName 
+                                                              propertyDescriber:containedType]];
                 }
+                else {
+                    FLLog(@"array property describer for %@ not found", NSStringFromClass([obj class]));
+                }
+                
+//                BOOL found = NO;
+//                for(FLPropertyDescriber* subType in propertyDescriber.containedTypes) {
+//					if([obj isKindOfClass:[subType propertyClass]]) {
+//                        [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:subType.propertyName propertyDescriber:subType]];
+//                        found = YES;
+//						break;
+//					}
+//				}
+//                if(!found) {
+//                    FLLog(@"array property describer for %@ not found", NSStringFromClass([obj class]));
+//                
+//                }
 			}		
 		}
 	}

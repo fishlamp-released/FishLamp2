@@ -71,14 +71,14 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
         
 
-        [describer setChildForIdentifier:@"oauth_token_secret" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"oauth_callback_confirmed" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"oauth_token" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"oauth_verifier" withClass:[NSString class]];
+        [describer addPropertyWithName:@"oauth_token_secret" withClass:[NSString class]];
+        [describer addPropertyWithName:@"oauth_callback_confirmed" withClass:[NSString class]];
+        [describer addPropertyWithName:@"oauth_token" withClass:[NSString class]];
+        [describer addPropertyWithName:@"oauth_verifier" withClass:[NSString class]];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

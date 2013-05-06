@@ -9,25 +9,28 @@
 #import <Foundation/Foundation.h>
 
 #import "FLCharString.h"
-#import "NSString+FLCharString.h"
+
+#ifndef FLPropertyAttributesBufferSize
+#define FLPropertyAttributesBufferSize 256
+#endif
 
 typedef struct {
-    objc_property_t property;
+    char encodedAttributes[FLPropertyAttributesBufferSize];
+    char propertyName[FLPropertyAttributesBufferSize];
 
-    const char* encodedAttributes;
-    const char* propertyName;
-    
+    // these are pointers into the various strings
     FLCharString className;
     FLCharString structName;
     FLCharString customGetter;
     FLCharString customSetter;
     FLCharString ivar;
-    FLCharString selectorName;
+    FLCharString selector;
     FLCharString unionName;
-
+    
     unsigned int is_object: 1;
     unsigned int is_array: 1;
     unsigned int is_union: 1;
+    unsigned int is_number: 1;
     unsigned int retain:1;
     unsigned int readonly: 1;
     unsigned int copy: 1;
@@ -36,13 +39,33 @@ typedef struct {
     unsigned int dynamic: 1;
     unsigned int eligible_for_gc : 1;
     unsigned int indirect_count:8;
-
-    unsigned int needs_free: 1;
-    
+    unsigned int is_pointer:1;
+    char type; // see runtime.h
 } FLPropertyAttributes_t;
 
-extern void FLPropertyAttributesDecodeWithCopy(objc_property_t property, FLPropertyAttributes_t* attributes);
-extern void FLPropertyAttributesFree(FLPropertyAttributes_t* attributes);
+extern FLPropertyAttributes_t FLPropertyAttributesParse(objc_property_t property);
 
-extern void FLPropertyAttributesDecodeWithNoCopy(objc_property_t property, FLPropertyAttributes_t* attributes);
+//extern void FLPropertyAttributesFree(FLPropertyAttributes_t* attributes);
+//
+//extern void FLPropertyAttributesDecodeWithNoCopy(objc_property_t property, FLPropertyAttributes_t* attributes);
 
+//@interface FLPropertyAttributes : NSObject {
+//@private
+//
+//    SEL _customGetter;
+//    SEL _customSetter;
+//    SEL _selector;
+//    
+//// types
+//    NSString* _className;
+//    NSString* _structName;
+//    NSString* _ivarName;
+//    NSString* _unionName;
+//    
+//    FLPropertyAttributes_t _attributes;
+//}
+//- (id) initWithParsedAttributes:(FLPropertyAttributes_t) parsed;
+//+ (id) propertyAttributes:(FLPropertyAttributes_t) parsed;
+//
+//
+//@end

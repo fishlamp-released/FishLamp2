@@ -8,204 +8,68 @@
 
 #import "FLPropertyAttributes.h"
 
-//https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html
+// https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html
 
-//https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html#//apple_ref/doc/uid/TP40008048-CH100-SW1
+// https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
 
-typedef enum {
-    FLPropertyAttributeReadOnly = 'R',
-    FLPropertyAttributeCopy = 'C',
-    FLPropertyAttributeRetain = '&',
-    FLPropertyAttributeNonAtomic = 'N',
-    FLPropertyAttributeCustomGetter = 'G',
-    FLPropertyAttributeCustomSetter = 'S',
-    FLPropertyAttributeDynamic = 'D',
-    FLPropertyAttributeWeak = 'W',
-    FLPropertyAttributeEligibleForGarbageCollection = 'P',
-    FLPropertyAttributeOldStyleTypeEncoding = 't',
-    FLPropertyAttributeType = 'T',
-    FLPropertyAttributeTypeDelimeter = ',',
-    FLPropertyAttributeIVar = 'V',
-
-    FLPropertyAttributeTypeAbstractObject = '@',
-    FLPropertyAttributeStructOrObject = '{',
-    FLPropertyAttributeArray = '[',
-    FLPropertyAttributeUnion = '(',
-    
-    FLPropertyAttributeIndirect = '^'
-} FLPropertyAttribute;
-
-//@interface FLPropertyAttributes : NSObject {
-//@private
-//    NSString* _propertyName;
-//    NSString* _structName;
-//    NSString* _customGetter;
-//    NSString* _customSetter;
-//    NSString* _ivarName;
-//    NSString* _className;
-//    NSString* _selectorName;
+//typedef enum {
+//    FLPropertyAttributeReadOnly = 'R',
+//    FLPropertyAttributeCopy = 'C',
+//    FLPropertyAttributeRetain = '&',
+//    FLPropertyAttributeNonAtomic = 'N',
+//    FLPropertyAttributeCustomGetter = 'G',
+//    FLPropertyAttributeCustomSetter = 'S',
+//    FLPropertyAttributeDynamic = 'D',
+//    FLPropertyAttributeWeak = 'W',
+//    FLPropertyAttributeEligibleForGarbageCollection = 'P',
+//    FLPropertyAttributeOldStyleTypeEncoding = 't',
+//    FLPropertyAttributeType = 'T',
+//    FLPropertyAttributeTypeDelimeter = ',',
+//    FLPropertyAttributeIVar = 'V',
+//
+//    FLPropertyAttributeTypeAbstractObject = '@',
+//    FLPropertyAttributeStructOrObject = '{',
+//    FLPropertyAttributeArray = '[',
+//    FLPropertyAttributeUnion = '(',
 //    
-//    FLPropertyAttributes_t _attributes;    
-//}
-//- (id) initWithProperty:(objc_property_t) property;
-//
-//@property (readonly, assign, nonatomic) FLPropertyAttributes_t info;
-//
-//@property (readonly, strong, nonatomic) NSString* propertyName;
-//@property (readonly, strong, nonatomic) NSString* structName;
-//@property (readonly, assign, nonatomic) NSString* customGetter;
-//@property (readonly, assign, nonatomic) NSString* customSetter;
-//@property (readonly, assign, nonatomic) NSString* ivarName;
-//@property (readonly, assign, nonatomic) NSString* className;
-//@property (readonly, assign, nonatomic) NSString* selectorName;
-//@end
-//
-
-//
-//
-//@implementation FLPropertyAttributes
-//
-//@synthesize propertyName = _propertyName;
-//@synthesize info = _info;
-//@synthesize className = _className;
-//@synthesize structName = _structName;
-//@synthesize customGetter = _customGetter;
-//@synthesize customSetter = _customSetter;
-//@synthesize ivarName = _ivarName;
-//@synthesize selectorName = _selectorName;
-//
-//
-////- (id) initWithPropertyAttributes:(FLPropertyAttributes_t) attributes {
-////	self = [super init];
-////	if(self) {
-////		_info = attributes.info;
-////        _propertyName = [[NSString alloc] initWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
-////        _structName = FLCreateStringFromSubString(attributes.structName);
-////        _customGetter = FLCreateStringFromSubString(attributes.customGetter);
-////        _customSetter = FLCreateStringFromSubString(attributes.customSetter);
-////        _ivarName = FLCreateStringFromSubString(attributes.ivar);
-////        _className = FLCreateStringFromSubString(attributes.className);
-////        _selectorName = FLCreateStringFromSubString(attributes.selectorName);
-////    }
-////	return self;
-////}
-//
-//- (id) initWithProperty(objc_property_t) property {
-//    self = [super init];
-//    if(self) {
-//        _attributes = FLParsePropertyAttributeString(attributeStringCopy, property);
-//    }
-//    
-//    return self;
-//}
-//
-//- (void) dealloc {
-//    free(_attributes.encodedAttributes);
-//
-//#if FL_MRC
-//    [_selectorName release];
-//    [_propertyName release];
-//    [_ivarName release];
-//    [_structName release];
-//    [_customGetter release];
-//    [_customSetter release];
-//    [_className release];
-//    
-//    [super dealloc];
-//#endif
-//}
-//
-//
-//@end
+//    FLPropertyAttributeIndirect = '^'
+//} FLPropertyAttribute;
 
 
-NS_INLINE
-BOOL FLSetPropertyInfoBits(FLPropertyAttributes_t* attributes, char c) {
+const char* FLParsePropertyType(FLPropertyAttributes_t* attributes, const char* str, const char* end) {
 
-    switch(c) {
-        
-    // set attributes bits.
-        case FLPropertyAttributeCopy:       
-            attributes->copy = 1;        
-            break;
-        
-        case FLPropertyAttributeReadOnly:   
-            attributes->readonly = 1;    
-            break;
-        
-        case FLPropertyAttributeTypeDelimeter: 
-            // skip
-            break;
-        
-        case FLPropertyAttributeNonAtomic:
-            attributes->nonatomic = 1;
-            break;
-        
-        case FLPropertyAttributeRetain: 
-            // set by reference? 
-            // only seems to be on readwrite properties that have a setter for an object?
-            attributes->retain = 1;
-        break;
-        
-        case FLPropertyAttributeEligibleForGarbageCollection:   
-            attributes->eligible_for_gc = 1;
-            break;
-            
-        case FLPropertyAttributeType:
-            // skip
-        break;
-        
-        case FLPropertyAttributeWeak:
-            attributes->weak = 1;
-            break;
-            
-        case FLPropertyAttributeDynamic:
-            attributes->dynamic = 1;
-            break;
-
-        case FLPropertyAttributeIndirect:
-            attributes->indirect_count++;
-            break;
-            
-        default:
-            return NO;
-            break;
+    if(*str != 'T') {
+        return str;
     }
-    
-    return YES;
-} 
 
-void FLParsePropertyAttributes(FLPropertyAttributes_t* attributes) {
-
-    const char* str = attributes->encodedAttributes;
-    
-	while(*str != 0) {
+    // i don't trust checking for trailing 0
+    while(str < end) {
         char c = *str++;
-        
-        if(FLSetPropertyInfoBits(attributes, c)) {
-            continue;
+
+        if(c == ',') {
+            break;
         }
-        
+
         switch(c) {
         // parse sub strings
         
-            case FLPropertyAttributeCustomGetter:
+            case 'T':
+                // expecting this, skip it.
                 break;
-                
-            case FLPropertyAttributeCustomSetter:
-                break;
-            
-            case FLPropertyAttributeTypeAbstractObject:
+        
+            case '@': // object
+                attributes->type = _C_ID;
                 attributes->is_object = 1;
                 if(*str == '\"') {
                     attributes->className = FLCharStringFromCString(++str, '\"');
                     str += (attributes->className.length + 1);
                 }
             break;
-            
+                        
             // enclosed encoded object or struct
-            case FLPropertyAttributeStructOrObject: {
-            
+            case '{': {
+                attributes->type = _C_STRUCT_B;
+
                 // TODO: parse nested structs?? T{CGRect={CGPoint=dd}{CGSize=dd}},N,V_frame
                 // For now just eat the inner ones.
             
@@ -225,20 +89,105 @@ void FLParsePropertyAttributes(FLPropertyAttributes_t* attributes) {
             }
             break; 
 
-            case FLPropertyAttributeIVar: 
-                attributes->ivar = FLCharStringFromCString(str, 0);
-//                str += attributes->ivar.length;
-                goto done;
+            case '^': // pointer
+                attributes->is_pointer = YES;
+                attributes->indirect_count++;
+            break;
+                    
+            case ':': // method selector
+                attributes->type = _C_SEL;
             break;
             
-            case ':':
-            case 'b':
-            case '#':
-                FLAssertFailedWithComment(@"unsupported type: %c", c);
-                break;
+            case 'c': // char
+                attributes->is_number = YES;
+                attributes->type = _C_CHR;
+            break;
             
-            // array
-            case FLPropertyAttributeArray: {
+            case 'i': // int
+                attributes->is_number = YES;
+                attributes->type = _C_INT;
+            break;
+            
+            case 's': // short
+                attributes->is_number = YES;
+                attributes->type = _C_SHT;
+            break;
+            
+            case 'l': // long
+                attributes->is_number = YES;
+                attributes->type = _C_LNG;
+            break;
+            
+            case 'q': // long long
+                attributes->is_number = YES;
+                attributes->type = _C_LNG_LNG;
+            break;
+            
+            case 'C': // unsigned char
+                attributes->is_number = YES;
+                attributes->type = _C_UCHR;
+            break;
+            
+            case 'I': // unsigned int
+                attributes->is_number = YES;
+                attributes->type = _C_UINT;
+            break;
+            
+            case 'S': // unsigned short
+                attributes->is_number = YES;
+                attributes->type = _C_USHT;
+            break;
+            
+            case 'L': // unsigned long
+                attributes->is_number = YES;
+                attributes->type = _C_ULNG;
+            break;
+            
+            case 'Q': // unsigned long long
+                attributes->is_number = YES;
+                attributes->type = _C_ULNG_LNG;
+            break;
+            
+            case 'f': // float
+                attributes->is_number = YES;
+                attributes->type = _C_FLT;
+            break;
+            
+            case 'd': // double
+                attributes->is_number = YES;
+                attributes->type = _C_DBL;
+            break;
+            
+            case 'B': // Bool
+                attributes->is_number = YES;
+                attributes->type = _C_BOOL;
+            break;
+            
+            case 'v': // void
+                attributes->type = _C_VOID;
+            break;
+            
+            case '*': // char*
+                attributes->type = _C_CHARPTR;
+            break;
+            
+            case '#': // class object
+                attributes->type = _C_CLASS;
+            break;
+            
+            case 'b': // bit field
+            // TODO: parse number
+                attributes->type = _C_BFLD;
+            break;
+            
+            case '?': // unknown type
+                attributes->type = _C_UNDEF;
+            break;
+
+
+            case '[': { // array
+                attributes->type = _C_ARY_B;
+                
                 // TODO parse array type and size.
                 attributes->is_array = 1;
                 
@@ -247,7 +196,8 @@ void FLParsePropertyAttributes(FLPropertyAttributes_t* attributes) {
             }
             break;
             
-            case FLPropertyAttributeUnion: {
+            case '(': { // union
+                attributes->type = _C_UNION_B;
                 attributes->is_union = 1;
 
                 attributes->unionName = FLCharStringFromCString(str, '=');
@@ -267,59 +217,194 @@ void FLParsePropertyAttributes(FLPropertyAttributes_t* attributes) {
                     }
                 }
             }
+            
+            default:
+                FLAssertFailedWithComment(@"unhandled type: %c", c);
             break;
-                        
         }
+    }
+    
+    return str;
+}
+
+const char* FLParseTrailingAttributes(FLPropertyAttributes_t* attributes, const char* str, const char* end) {
+    // i don't trust checking for trailing 0
+    while(str < end) {
+        char c = *str++;
+                
+        switch(c) {
+        // parse sub strings
+
+            case 'C':       
+                attributes->copy = 1;        
+                break;
+            
+            case 'R': // readonly   
+                attributes->readonly = 1;    
+                break;
+            
+            case ',': 
+                // skip, this is the delimeter
+                break;
+            
+            case 'N': // nonatomic
+                attributes->nonatomic = 1;
+                break;
+            
+            case '&': // retain
+             
+                // set by reference? 
+                // only seems to be on readwrite properties that have a setter for an object?
+                attributes->retain = 1;
+            break;
+            
+            case 'P': // eligible for GC 
+                attributes->eligible_for_gc = 1;
+                break;
+                            
+            case 'W': // weak
+                attributes->weak = 1;
+                break;
+                
+            case 'D': // dynamic
+                attributes->dynamic = 1;
+                break;
         
+            case 'G': // custom getter
+                    // Ti,GintGetFoo,SintSetFoo:,VintSetterGetter
+                attributes->customGetter = FLCharStringFromCString(str, ',');
+                str += (attributes->customGetter.length);
+                break;
+                
+            case 'S': // custom setter
+                    // Ti,GintGetFoo,SintSetFoo:,VintSetterGetter
+                attributes->customSetter = FLCharStringFromCString(str, ',');
+                str += (attributes->customSetter.length);
+                break;
+            
+            case 'V': // iVar
+                attributes->ivar = FLCharStringFromCString(str, 0);
+                str += (attributes->ivar.length);
+            break;
+                
+            default:
+                FLAssertFailedWithComment(@"unhandled char: %c", c);
+            break;
+        }
     }
-
-done:;
-
+    
+    return str;
 }
 
-void FLPropertyAttributesDecode(objc_property_t property, FLPropertyAttributes_t* attributes, BOOL withCopy) {
+FLPropertyAttributes_t FLPropertyAttributesParse(objc_property_t property) {   
+    
     FLAssertNotNil(property);
-    FLAssertNotNil(attributes);
     
-    if(attributes && property) {
-        memset(attributes, 0, sizeof(FLPropertyAttributes_t));
+    FLPropertyAttributes_t attributes;
+    memset(&attributes, 0, sizeof(FLPropertyAttributes_t));
     
-        attributes->propertyName = property_getName(property);
-        attributes->property = property;
-        attributes->encodedAttributes = property_getAttributes(property);
-
-        if(withCopy) {
-            attributes->needs_free = YES;
-            attributes->propertyName = FLCStringCopy(attributes->propertyName);
-            attributes->encodedAttributes = FLCStringCopy(attributes->encodedAttributes);
-        }
+    if(property) {
+    
+        const char* propertyName = property_getName(property);
+        const char* encoded = property_getAttributes(property);
+        
+        FLAssertWithComment(strlen(propertyName) < FLPropertyAttributesBufferSize, @"FLPropertyAttributesBufferSize is too small");
+    
+        FLAssertWithComment(strlen(encoded) < FLPropertyAttributesBufferSize, @"FLPropertyAttributesBufferSize is too small");
+    
+        strncpy(attributes.propertyName, propertyName, FLPropertyAttributesBufferSize);
+        strncpy(attributes.encodedAttributes, encoded, FLPropertyAttributesBufferSize);
        
-        FLParsePropertyAttributes(attributes);
+        NSUInteger len = strlen(encoded);
+        
+        const char* end = (encoded + len);
+        
+        const char* walker = FLParsePropertyType(&attributes, encoded, end);
+        
+        walker = FLParseTrailingAttributes(&attributes, walker, end);
+        
+        FLAssertWithComment(walker >= end, @"didn't parse all of %c", encoded);
     }
+    
+    return attributes;
 }
 
-void FLPropertyAttributesDecodeWithCopy(objc_property_t property, FLPropertyAttributes_t* attributes) {
-    FLPropertyAttributesDecode(property, attributes, YES);
-}
+//void FLPropertyAttributesDecodeWithCopy(objc_property_t property, FLPropertyAttributes_t* attributes) {
+//    FLPropertyAttributesDecode(property, attributes, YES);
+//}
 
-void FLPropertyAttributesDecodeWithNoCopy(objc_property_t property, FLPropertyAttributes_t* attributes) {
-    FLPropertyAttributesDecode(property, attributes, NO);
-}
+//void FLPropertyAttributesParse(objc_property_t property, FLPropertyAttributes_t* attributes) {
+//    FLPropertyAttributesDecode(property, attributes, NO);
+//}
 
-void FLPropertyAttributesFree(FLPropertyAttributes_t* attributes) {
-    if(attributes && attributes->needs_free) {
-        if(attributes->encodedAttributes) {
-            free((void*)attributes->encodedAttributes);
-        }
-        if(attributes->propertyName) {
-            free((void*)attributes->propertyName);
-        }
-        memset(attributes, 0, sizeof(FLPropertyAttributes_t));
-    }
-}
+//void FLPropertyAttributesFree(FLPropertyAttributes_t* attributes) {
+//    if(attributes && attributes->needs_free) {
+//        if(attributes->encodedAttributes) {
+//            free((void*)attributes->encodedAttributes);
+//        }
+//        if(attributes->propertyName) {
+//            free((void*)attributes->propertyName);
+//        }
+//        memset(attributes, 0, sizeof(FLPropertyAttributes_t));
+//    }
+//}
 
 NSString* FLPropertyNameFromAttributes(FLPropertyAttributes_t attributes) {
     return [NSString stringWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
 }
 
+//@interface FLPropertyAttributes ()
+//@property (readwrite, strong, nonatomic) NSString* className;
+//@property (readwrite, strong, nonatomic) NSString* propertyName;
+//@property (readwrite, strong, nonatomic) NSString* structName;
+//@property (readwrite, strong, nonatomic) NSString* ivarName;
+//@property (readwrite, strong, nonatomic) NSString* unionName;
+//
+//@property (readwrite, assign, nonatomic) SEL customGetter;
+//@property (readwrite, assign, nonatomic) SEL customSetter;
+//@property (readwrite, assign, nonatomic) SEL selector;
+//@end
+//
+//#define MakeSelector(str) str.length == 0 ? nil : NSSelectorFromString([NSString withCharString:str])
+//
+
+//
+//@implementation FLPropertyAttributes
+//
+//@synthesize className = _className;
+//@synthesize propertyName = _propertyName;
+//@synthesize structName = _structName;
+//@synthesize ivarName = _ivarName;
+//@synthesize unionName = _unionName;
+//@synthesize customGetter = _customGetter;
+//@synthesize customSetter = _customSetter;
+//@synthesize selector = _selector;
+//
+//LazyStringGetter(propertyName, _propertyName, _attributes.propertyName)
+//LazyStringGetter(structName, _structName, _attributes.structName)
+//LazyStringGetter(unionName, _unionName, _attributes.unionName)
+//LazyStringGetter(ivarName, _ivarName, _attributes.ivar)
+//
+//
+//- (id) initWithParsedAttributes:(FLPropertyAttributes_t) parsed 
+//	self = [super init];
+//	if(self) {
+//		if(parsed.propertyName) {
+//            self.propertyName = [NSString stringWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
+//        }
+//        
+//        self.className = [NSString stringWithCharString:attributes.className];
+//        self.structName = [NSString stringWithCharString:attributes.structName];
+//        self.ivalName = [NSString stringWithCharString:attributes.ivar];
+//        self.unionName = [NSString stringWithCharString:attributes.ivar];
+//        self.customSetter = MakeSelector(attributes.customSetter);
+//        self.customSetter = MakeSelector(attributes.customSetter);
+//	}
+//	return self;
+//}
+//+ (id) propertyAttributes:(FLPropertyAttributes_t) parsed {
+//    return FLAutorelease([[[self class] alloc] initWithParsedAttributes:parsed]);
+//}
+//
+//@end
 

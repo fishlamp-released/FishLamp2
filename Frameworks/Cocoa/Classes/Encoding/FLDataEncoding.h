@@ -15,7 +15,7 @@
 @protocol FLDataEncoding <NSObject, FLTypeCoreTypesEncoding>
 
 - (NSString*) encodeDataToString:(id) data 
-                         forType:(FLObjectEncoder*) type;
+                         forType:(id<FLStringEncoder>) type;
 
 @end
 

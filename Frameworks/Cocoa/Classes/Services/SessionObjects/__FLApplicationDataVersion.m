@@ -57,11 +57,11 @@
     dispatch_once(&pred, ^{
         
 		
-            FLObjectDescriber* describer = [FLObjectDescriber registerClass:[self class]];
+            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
         
 		
-        [describer setChildForIdentifier:@"userGuid" withClass:[NSString class]];
-        [describer setChildForIdentifier:@"versionString" withClass:[NSString class]];
+        [describer addPropertyWithName:@"userGuid" withClass:[NSString class]];
+        [describer addPropertyWithName:@"versionString" withClass:[NSString class]];
     });
     return [FLObjectDescriber objectDescriber:[self class]];
 }

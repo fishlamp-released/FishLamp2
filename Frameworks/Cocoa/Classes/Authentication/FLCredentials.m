@@ -9,7 +9,7 @@
 #import "FLCredentials.h"
 
 @interface FLCredentials ()
-@property (readwrite, strong, nonatomic) NSNumber* rememberPassword;
+@property (readwrite, assign, nonatomic) BOOL rememberPassword;
 @property (readwrite, strong, nonatomic) NSString* userName;
 @property (readwrite, strong, nonatomic) NSString* password;
 @end
@@ -26,7 +26,7 @@
 
 - (id) initWithUserName:(NSString*) userName 
                password:(NSString*) password 
-       rememberPassword:(NSNumber*) rememberPassword {
+       rememberPassword:(BOOL) rememberPassword {
 
 	self = [super init];
 	if(self) {
@@ -39,7 +39,7 @@
 
 + (id) credentials:(NSString*) userName 
               password:(NSString*) password 
-      rememberPassword:(NSNumber*) rememberPassword {
+      rememberPassword:(BOOL) rememberPassword {
     return FLAutorelease([[[self class] alloc] initWithUserName:userName 
                                                        password:password 
                                                rememberPassword:rememberPassword]);
@@ -52,8 +52,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_rememberPassword release];
-	[_userName release];
+    [_userName release];
 	[_password release];
     [super dealloc];
 }

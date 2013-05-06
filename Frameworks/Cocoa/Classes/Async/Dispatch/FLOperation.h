@@ -66,7 +66,9 @@
 @property (readonly, assign, getter=wasCancelled) BOOL cancelled;
 - (void) requestCancel;
 
-@property (readwrite, strong) FLFinisher* finisher; 
+- (void) setFinished;
+
+- (void) setFinishedWithResult:(FLPromisedResult) result;
 
 - (FLPromise*) promise;
 

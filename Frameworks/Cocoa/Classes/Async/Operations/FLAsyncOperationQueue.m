@@ -92,23 +92,13 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
    [self.delegate performOptionalSelector:_finishedOperationSelector withObject:self withObject:operation withObject:object withObject:result];
 }
 
-- (id) resultForFinisher {
-    return FLSuccessfullResult;
-}
-
 - (void) didFinish {
     self.processing = NO;
-
     if(self.error) {
-        [self.finisher setFinishedWithResult:self.error];
+        [self setFinishedWithResult:self.error];
     }
     else {
-        id result = [self resultForFinisher];
-        if(!result) {
-            result = FLSuccessfullResult;
-        }
-
-        [self.finisher setFinishedWithResult:result];
+        [self setFinished];
     }
 }
 

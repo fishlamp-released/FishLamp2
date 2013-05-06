@@ -25,7 +25,7 @@ FLSynthesizeSingleton(FLUserDefaultsCredentialStorage);
     FLAssertStringIsNotEmptyWithComment([FLAppInfo bundleIdentifier], @"bundle identifier must be set to use keychain for password");
 
     if(FLStringIsNotEmpty(creds.userName)) {
-        if((creds.rememberPassword && creds.rememberPassword.boolValue) && FLStringIsNotEmpty(creds.password)) {
+        if(creds.rememberPassword && FLStringIsNotEmpty(creds.password)) {
             
             NSString* existingPassword = [FLKeychain httpPasswordForUserName:creds.userName withDomain:[FLAppInfo bundleIdentifier]];
             
@@ -97,7 +97,7 @@ FLSynthesizeSingleton(FLUserDefaultsCredentialStorage);
     FLAssertStringIsNotEmptyWithComment([FLAppInfo bundleIdentifier], @"bundle identifier must be set to use keychain for password");
 
     if(FLStringIsNotEmpty(self.userName)) {
-        if(self.rememberPassword && self.rememberPassword.boolValue) {
+        if(self.rememberPassword) {
             self.password = [FLKeychain httpPasswordForUserName:self.userName withDomain:[FLAppInfo bundleIdentifier]];
         }
         else {

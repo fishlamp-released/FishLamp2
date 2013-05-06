@@ -243,7 +243,7 @@
     // skip over properties add by superclass
             if(![_columns objectForKey:propName]) {
             
-                FLDatabaseType type = [property.propertyClass sqlType];
+                FLDatabaseType type = [property representedObjectSqlType];
                 FLAssert(type != FLDatabaseTypeNone);
             
                 FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:propName

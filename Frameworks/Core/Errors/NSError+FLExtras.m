@@ -62,12 +62,17 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, stackTrace, s
         commentAddOn = [NSString stringWithFormat:@"[domain:\'%@\", error code:%ld]", domain, (long)code];
     }
 
+#if DEBUG
+    localizedDescription = [NSString stringWithFormat:@"%@ (%@) %@", comment, localizedDescription, commentAddOn];
+#endif    
+
     if(comment) {
         comment = [NSString stringWithFormat:@"%@ %@", comment, commentAddOn];
     }
     else {
         comment = commentAddOn;
     }
+    
     
     if(userInfo) {
         NSMutableDictionary* newUserInfo = FLMutableCopyWithAutorelease(userInfo);
