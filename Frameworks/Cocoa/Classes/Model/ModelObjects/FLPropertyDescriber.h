@@ -37,7 +37,10 @@
 @property (readonly, assign, nonatomic) SEL selector;
 @property (readonly, assign, nonatomic) FLPropertyAttributes_t attributes;
 
+@property (readonly, assign, nonatomic) BOOL representsIvar;
+
 // represented object 
+@property (readonly, assign) BOOL representsObject;
 @property (readonly, assign) BOOL representsModelObject;
 @property (readonly, assign) BOOL representsArray;
 @property (readonly, strong) id<FLStringEncoder> objectEncoder;
@@ -45,11 +48,13 @@
 - (BOOL) representsClass:(Class) aClass;
 
 // contained types
-@property (readonly, copy) NSArray* containedTypes;
+@property (readonly, strong) NSArray* containedTypes;
 @property (readonly, assign) NSUInteger containedTypesCount;
 - (FLPropertyDescriber*) containedTypeForIndex:(NSUInteger) idx;
 - (FLPropertyDescriber*) containedTypeForClass:(Class) aClass;
 - (FLPropertyDescriber*) containedTypeForName:(NSString*) name;
+- (void) addContainedProperty:(NSString*) name withClass:(Class) aClass; 
+
 
 + (id) propertyDescriber:(NSString*) identifier 
            propertyClass:(Class) aClass;

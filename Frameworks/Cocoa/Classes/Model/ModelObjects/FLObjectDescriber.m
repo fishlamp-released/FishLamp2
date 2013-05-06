@@ -146,6 +146,10 @@ static NSMutableDictionary* s_registry = nil;
 //    }
 }
 
+- (BOOL) shouldAddProperty:(FLPropertyDescriber*) property {
+    return property.representsIvar;
+}
+
 - (void) addPropertiesForClass:(Class) aClass {
 // do all the properties
     unsigned int propertyCount = 0;
@@ -156,7 +160,7 @@ static NSMutableDictionary* s_registry = nil;
     for(unsigned int i = 0; i < propertyCount; i++) {
     
         FLPropertyDescriber* propertyDescriber = [FLPropertyDescriber propertyDescriberWithProperty_t:propertys[i]];
-        if(propertyDescriber) {
+        if(propertyDescriber && [self shouldAddProperty:propertyDescriber]) {
             [self checkForContainerTypes:propertyDescriber];
             [self addProperty:propertyDescriber];
         }
@@ -198,7 +202,7 @@ static NSMutableDictionary* s_registry = nil;
         [s_registry setObject:describer forKey:NSStringFromClass(aClass)];
     }
     if([aClass isModelObject]) {    
-        [aClass modelObjectWasRegistered:describer];
+        [aClass didRegisterObjectDescriber:describer];
     }
     
     return describer;
@@ -211,19 +215,36 @@ static NSMutableDictionary* s_registry = nil;
 - (FLDatabaseTable*) databaseTable {
     if([self.objectClass isModelObject]) {
         dispatch_once(&_databaseTablePredicate, ^{ 
-            _databaseTable = [[FLDatabaseTable alloc] initWithClass:[self class]]; 
+            _databaseTable = [[FLDatabaseTable alloc] initWithClass:self.objectClass]; 
         }); 
     }
     return _databaseTable;
 }
 
+- (void) addPropertyArrayTypes:(NSArray*) types forPropertyName:(NSString*) name {
+    FLPropertyDescriber* property = [self.properties objectForKey:name];
+    FLAssertNotNil(property);
+   
+    if(![property representsClass:[NSMutableArray class]] ) {
+        property.representedObjectDescriber  = [FLObjectDescriber objectDescriber:[NSMutableArray class]];
+    }
+    FLAssertNil(property.containedTypes);
+    FLAssertNotNil(types);
+
+    property.containedTypes = types;    
+
+} 
+
+- (void) addPropertyWithName:(NSString*) name withArrayTypes:(NSArray*) types {
+    [self addPropertyArrayTypes:types forPropertyName:name];
+}
 
 @end
 @implementation FLAbstractObjectType
 @end
 
 @implementation NSObject (FLObjectDescriber)
-+ (void) modelObjectWasRegistered:(FLObjectDescriber*) describer {
++ (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
 }
 + (FLObjectDescriber*) objectDescriber { 
     return [FLObjectDescriber objectDescriber:[self class]]; 
@@ -261,7 +282,12 @@ static NSMutableDictionary* s_registry = nil;
     FLAssertNotNil(types);
 
     property.containedTypes = types;    
+
 }        
+
+- (BOOL) shouldAddProperty:(FLPropertyDescriber*) property {
+    return property.representsObject && property.representsIvar;
+}
 
 
 @end

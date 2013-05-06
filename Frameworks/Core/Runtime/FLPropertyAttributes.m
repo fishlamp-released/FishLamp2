@@ -150,11 +150,13 @@ const char* FLParsePropertyType(FLPropertyAttributes_t* attributes, const char* 
             
             case 'f': // float
                 attributes->is_number = YES;
+                attributes->is_float_number = YES;
                 attributes->type = _C_FLT;
             break;
             
             case 'd': // double
                 attributes->is_number = YES;
+                attributes->is_float_number = YES;
                 attributes->type = _C_DBL;
             break;
             

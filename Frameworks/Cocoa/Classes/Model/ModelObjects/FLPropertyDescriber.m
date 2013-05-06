@@ -56,21 +56,11 @@
 }
 
 @interface FLPropertyDescriber ()
-@property (readwrite) NSString* propertyName;
-@property (readwrite) FLObjectDescriber* representedObjectDescriber;
-@property (readwrite, copy) NSArray* containedTypes;
+@property (readwrite, strong) NSString* propertyName;
+@property (readwrite, strong) FLObjectDescriber* representedObjectDescriber;
+@property (readwrite, strong) NSArray* containedTypes;
 @property (readonly, assign) Class propertyClass;
 @property (readwrite, assign) FLPropertyAttributes_t attributes;
-
-//+ (id) propertyDescriber:(NSString*) identifier 
-//representedObjectDescriber:(FLObjectDescriber*) representedObjectDescriber;
-//
-////+ (id) propertyDescriber:(NSString*) identifier 
-////           propertyClass:(Class) aClass;
-//
-//+ (id) propertyDescriber:(NSString*) identifier 
-//           propertyClass:(Class) aClass 
-//          containedTypes:(NSArray*) containedTypes;
 
 + (id) propertyDescriberWithProperty_t:(objc_property_t) property_t;
 
@@ -93,6 +83,14 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
 @synthesize attributes = _attributes;
 
+- (BOOL) representsIvar {
+    return _attributes.ivar.length > 0;
+}
+
+- (BOOL) representsObject {
+    return NO;
+}
+
 - (BOOL) representsModelObject {
     return NO;
 }
@@ -108,38 +106,6 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 - (id) createRepresentedObject {
     return nil; 
 }
-
-//- (id) initWithProperty_t:(objc_property_t) property_t {
-//
-//    self = [super init];
-//    if(self) {
-//       
-//        
-////        if(attributes.propertyName) {
-////
-////            if(attributes.is_object) {
-////                FLTrace(@"adding object property \"%s\" (%s)", attributes.propertyName, attributes.encodedAttributes);
-////
-////                NSString* propertyName = [NSString stringWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
-////                Class objectClass = nil;
-////                
-////                if(attributes.className.string) {
-////                    objectClass = NSClassFromString([NSString stringWithCharString:attributes.className]);
-////                }
-////                else {
-////                    objectClass = [FLAbstractObjectType class];
-////                }
-////
-////                return [FLPropertyDescriber propertyDescriber:propertyName propertyClass:objectClass];
-////            }
-////            else {
-////                FLTrace(@"skipping property: %s (%s)", attributes.propertyName, attributes.encodedAttributes);
-////            }
-////        }
-//    }
-//    
-//    return self;
-//}
 
 + (id) propertyDescriber {
     return FLAutorelease([[[self class] alloc] init]);
@@ -210,20 +176,6 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     return [[self propertyClass] decodeObjectWithSqliteColumnString:string];
 }
 
-//- (id) initWithPropertyName:(NSString*) propertyName 
-// representedObjectDescriber:(FLObjectDescriber*) representedObjectDescriber
-//             containedTypes:(NSArray*) containedTypes {	
-//
-//    FLAssertNotNil(propertyName);
-//    FLAssertNotNil(representedObjectDescriber);
-//	self = [super init];
-//	if(self) {
-//        self.representedObjectDescriber = representedObjectDescriber;
-//        self.propertyName = propertyName;
-//        _containedTypes = [containedTypes copy];
-//	}
-//	return self;
-//}
 
 + (id) propertyDescriber:(NSString*) name propertyClass:(Class) aClass {
     FLPropertyDescriber* describer = [FLPropertyDescriber propertyDescriber:aClass];
@@ -234,31 +186,6 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 + (id) propertyDescriber:(NSString*) name class:(Class) aClass {
     return [FLPropertyDescriber propertyDescriber:name propertyClass:aClass];
 }
-
-//+ (id) propertyDescriber:(NSString*) name 
-//representedObjectDescriber:(FLObjectDescriber*) representedObjectDescriber {
-//    return FLAutorelease([[[self class] alloc] initWithPropertyName:name representedObjectDescriber:representedObjectDescriber containedTypes:nil]);
-//}            
-
-//+ (id) propertyDescriber:(NSString*) name 
-//           propertyClass:(Class) aClass 
-//          containedTypes:(NSArray*) containedTypes {
-//
-//    FLObjectDescriber* describer = [FLObjectDescriber objectDescriber:aClass];
-//    if(describer) {
-//        return FLAutorelease([[FLPropertyDescriber alloc] initWithPropertyName:name 
-//                                                                  representedObjectDescriber:describer 
-//                                                                containedTypes:containedTypes]);
-//    }
-//    
-//    return nil;
-//}
-
-//- (id) copyWithZone:(NSZone *)zone {
-////    return [[FLPropertyDescriber alloc] initWithPropertyName:_propertyName 
-////                                                representedObjectDescriber:_representedObjectDescriber 
-////                                              containedTypes:FLCopyWithAutorelease(_containedTypes)];
-//}
 
 - (Class) propertyClass {
     return _representedObjectDescriber.objectClass;
@@ -313,9 +240,14 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     }
 }
 
-//- (void) describeTo:(FLPrettyString*) string {
-//    [string appendLineWithFormat:@"propertyName %@, representedObjectDescriber %@", self.propertyName, [self.representedObjectDescriber description]];
-//}
+- (void) addContainedProperty:(NSString*) name withClass:(Class) aClass {
+
+    if(!_containedTypes) {
+        _containedTypes = [[NSMutableArray alloc] init];
+    }
+
+    [_containedTypes addObject:[FLPropertyDescriber propertyDescriber:name class:aClass]];
+}
 
 - (NSString*) description {
     
@@ -346,6 +278,10 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
 
 @implementation FLObjectPropertyDescriber : FLPropertyDescriber
+
+- (BOOL) representsObject {
+    return YES;
+}
 
 - (id<FLStringEncoder>) objectEncoder {
     return [[self propertyClass] objectEncoder];
@@ -391,6 +327,10 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
 @implementation FLValuePropertyDescriber 
 
+- (BOOL) representsObject {
+    return NO;
+}
+
 - (BOOL) representsModelObject {
     return NO;
 }
@@ -407,6 +347,10 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
 @implementation FLNumberPropertyDescriber 
 
+- (BOOL) representsObject {
+    return NO;
+}
+
 - (id<FLStringEncoder>) objectEncoder {
     return self;
 }
@@ -418,5 +362,18 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 - (id) decodeStringToObject:(NSString*) string withDecoder:(id) decoder {
     return [decoder decodeNumberFromString:string];
 }
+
+- (FLDatabaseType) representedObjectSqlType {
+    return self.attributes.is_float_number ? FLDatabaseTypeFloat : FLDatabaseTypeInteger;
+}
+
+- (id) representedObjectFromSqliteColumnData:(NSData*) data {
+    return nil;
+}
+
+- (id) representedObjectFromSqliteColumnString:(NSString*) string {
+    return nil;
+}
+
 
 @end

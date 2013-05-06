@@ -91,6 +91,7 @@
 
 // must be added before column is used in database!
 - (void) addColumnConstraint:(FLDatabaseColumnConstraint*) constraint forColumn:(FLDatabaseColumn*) column;
+- (void) addColumnConstraint:(FLDatabaseColumnConstraint*) constraint forColumnName:(NSString*) columnName;
 
 
 @end

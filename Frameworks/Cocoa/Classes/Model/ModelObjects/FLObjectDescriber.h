@@ -17,7 +17,7 @@
 @class FLObjectDescriber;
 
 @interface NSObject (FLObjectDescriber)
-+ (void) modelObjectWasRegistered:(FLObjectDescriber*) describer;
++ (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer;
 + (FLObjectDescriber*) objectDescriber;
 - (FLObjectDescriber*) objectDescriber;
 @end
@@ -45,7 +45,15 @@
 
 + (id) registerClass:(Class) aClass;
 - (void) addProperty:(FLPropertyDescriber*) subtype;
+
+- (void) addPropertyArrayTypes:(NSArray*) arrayTypes forPropertyName:(NSString*) propertyName;
+
+
+// deprected
+- (void) addPropertyWithName:(NSString*) name withArrayTypes:(NSArray*) types;
 @end            
+
+
 
 @interface FLAbstractObjectType : NSObject
 @end

@@ -31,6 +31,7 @@ typedef struct {
     unsigned int is_array: 1;
     unsigned int is_union: 1;
     unsigned int is_number: 1;
+    unsigned int is_float_number: 1;
     unsigned int retain:1;
     unsigned int readonly: 1;
     unsigned int copy: 1;
