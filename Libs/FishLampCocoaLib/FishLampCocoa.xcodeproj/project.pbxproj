@@ -1816,11 +1816,6 @@
 		271D3B2B16FE0793009CD00F /* __FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F716FE0776009CD00F /* __FLApplicationSession.h */; };
 		271D3B2C16FE0793009CD00F /* __FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F716FE0776009CD00F /* __FLApplicationSession.h */; };
 		271D3B2D16FE0793009CD00F /* __FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F716FE0776009CD00F /* __FLApplicationSession.h */; };
-		271D3B2E16FE0793009CD00F /* __FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F816FE0776009CD00F /* __FLApplicationSession.m */; };
-		271D3B2F16FE0793009CD00F /* __FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F816FE0776009CD00F /* __FLApplicationSession.m */; };
-		271D3B3016FE0793009CD00F /* __FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F816FE0776009CD00F /* __FLApplicationSession.m */; };
-		271D3B3116FE0793009CD00F /* __FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F816FE0776009CD00F /* __FLApplicationSession.m */; };
-		271D3B3216FE0794009CD00F /* __FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F816FE0776009CD00F /* __FLApplicationSession.m */; };
 		271D3B3316FE0794009CD00F /* __FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F916FE0776009CD00F /* __FLLastUpdateTime.h */; };
 		271D3B3416FE0794009CD00F /* __FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F916FE0776009CD00F /* __FLLastUpdateTime.h */; };
 		271D3B3516FE0794009CD00F /* __FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F916FE0776009CD00F /* __FLLastUpdateTime.h */; };
@@ -1960,11 +1955,6 @@
 		271D3BBB16FE0796009CD00F /* __FLCachedImageBaseClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331916FE0776009CD00F /* __FLCachedImageBaseClass.h */; };
 		271D3BBC16FE0796009CD00F /* __FLCachedImageBaseClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331916FE0776009CD00F /* __FLCachedImageBaseClass.h */; };
 		271D3BBD16FE0796009CD00F /* __FLCachedImageBaseClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331916FE0776009CD00F /* __FLCachedImageBaseClass.h */; };
-		271D3BBE16FE0796009CD00F /* __FLCachedImageBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331A16FE0776009CD00F /* __FLCachedImageBaseClass.m */; };
-		271D3BBF16FE0796009CD00F /* __FLCachedImageBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331A16FE0776009CD00F /* __FLCachedImageBaseClass.m */; };
-		271D3BC016FE0796009CD00F /* __FLCachedImageBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331A16FE0776009CD00F /* __FLCachedImageBaseClass.m */; };
-		271D3BC116FE0796009CD00F /* __FLCachedImageBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331A16FE0776009CD00F /* __FLCachedImageBaseClass.m */; };
-		271D3BC216FE0796009CD00F /* __FLCachedImageBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331A16FE0776009CD00F /* __FLCachedImageBaseClass.m */; };
 		271D3BC316FE0796009CD00F /* FLCachedImageBaseClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331C16FE0776009CD00F /* FLCachedImageBaseClass.h */; };
 		271D3BC416FE0796009CD00F /* FLCachedImageBaseClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331C16FE0776009CD00F /* FLCachedImageBaseClass.h */; };
 		271D3BC516FE0796009CD00F /* FLCachedImageBaseClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331C16FE0776009CD00F /* FLCachedImageBaseClass.h */; };
@@ -2960,10 +2950,6 @@
 		2798DA40166D886500A0863D /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1C166D886500A0863D /* __FLAssetQueueState.h */; };
 		2798DA41166D886500A0863D /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1C166D886500A0863D /* __FLAssetQueueState.h */; };
 		2798DA42166D886500A0863D /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1C166D886500A0863D /* __FLAssetQueueState.h */; };
-		2798DA43166D886500A0863D /* __FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1D166D886500A0863D /* __FLAssetQueueState.m */; };
-		2798DA44166D886500A0863D /* __FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1D166D886500A0863D /* __FLAssetQueueState.m */; };
-		2798DA45166D886500A0863D /* __FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1D166D886500A0863D /* __FLAssetQueueState.m */; };
-		2798DA46166D886500A0863D /* __FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1D166D886500A0863D /* __FLAssetQueueState.m */; };
 		2798DA47166D886500A0863D /* __FLExportedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1E166D886500A0863D /* __FLExportedAsset.h */; };
 		2798DA48166D886500A0863D /* __FLExportedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1E166D886500A0863D /* __FLExportedAsset.h */; };
 		2798DA49166D886500A0863D /* __FLExportedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1E166D886500A0863D /* __FLExportedAsset.h */; };
@@ -2974,17 +2960,9 @@
 		2798DA4E166D886500A0863D /* __FLQueuedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE20166D886500A0863D /* __FLQueuedAsset.h */; };
 		2798DA4F166D886500A0863D /* __FLQueuedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE20166D886500A0863D /* __FLQueuedAsset.h */; };
 		2798DA50166D886500A0863D /* __FLQueuedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE20166D886500A0863D /* __FLQueuedAsset.h */; };
-		2798DA51166D886500A0863D /* __FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE21166D886500A0863D /* __FLQueuedAsset.m */; };
-		2798DA52166D886500A0863D /* __FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE21166D886500A0863D /* __FLQueuedAsset.m */; };
-		2798DA53166D886500A0863D /* __FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE21166D886500A0863D /* __FLQueuedAsset.m */; };
-		2798DA54166D886500A0863D /* __FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE21166D886500A0863D /* __FLQueuedAsset.m */; };
 		2798DA55166D886500A0863D /* __FLUploadedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE22166D886500A0863D /* __FLUploadedAsset.h */; };
 		2798DA56166D886500A0863D /* __FLUploadedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE22166D886500A0863D /* __FLUploadedAsset.h */; };
 		2798DA57166D886500A0863D /* __FLUploadedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE22166D886500A0863D /* __FLUploadedAsset.h */; };
-		2798DA58166D886500A0863D /* __FLUploadedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE23166D886500A0863D /* __FLUploadedAsset.m */; };
-		2798DA59166D886500A0863D /* __FLUploadedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE23166D886500A0863D /* __FLUploadedAsset.m */; };
-		2798DA5A166D886500A0863D /* __FLUploadedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE23166D886500A0863D /* __FLUploadedAsset.m */; };
-		2798DA5B166D886500A0863D /* __FLUploadedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE23166D886500A0863D /* __FLUploadedAsset.m */; };
 		2798DA5C166D886500A0863D /* FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE25166D886500A0863D /* FLAssetQueueState.h */; };
 		2798DA5D166D886500A0863D /* FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE25166D886500A0863D /* FLAssetQueueState.h */; };
 		2798DA5E166D886500A0863D /* FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE25166D886500A0863D /* FLAssetQueueState.h */; };
@@ -3208,10 +3186,7 @@
 		27C0FCCC17305B3D0000F00C /* FLAttributedStringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C0FCC317305B3D0000F00C /* FLAttributedStringController.m */; };
 		27C62D3B170B45C80093F260 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C62D3A170B45C80093F260 /* Foundation.framework */; };
 		27C62D4A170B46670093F260 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C62D49170B46670093F260 /* main.m */; };
-		27CBBFA416768BA600753D0A /* __FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1D166D886500A0863D /* __FLAssetQueueState.m */; };
 		27CBBFA516768BA600753D0A /* __FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1F166D886500A0863D /* __FLExportedAsset.m */; };
-		27CBBFA616768BA600753D0A /* __FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE21166D886500A0863D /* __FLQueuedAsset.m */; };
-		27CBBFA716768BA600753D0A /* __FLUploadedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE23166D886500A0863D /* __FLUploadedAsset.m */; };
 		27CBBFA816768BA600753D0A /* FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE26166D886500A0863D /* FLAssetQueueState.m */; };
 		27CBBFA916768BA600753D0A /* FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE28166D886500A0863D /* FLExportedAsset.m */; };
 		27CBBFAA16768BA600753D0A /* FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2A166D886500A0863D /* FLQueuedAsset.m */; };
@@ -8027,10 +8002,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2798DA45166D886500A0863D /* __FLAssetQueueState.m in Sources */,
 				2798DA4C166D886500A0863D /* __FLExportedAsset.m in Sources */,
-				2798DA53166D886500A0863D /* __FLQueuedAsset.m in Sources */,
-				2798DA5A166D886500A0863D /* __FLUploadedAsset.m in Sources */,
 				2798DA61166D886500A0863D /* FLAssetQueueState.m in Sources */,
 				2798DA68166D886500A0863D /* FLExportedAsset.m in Sources */,
 				2798DA6F166D886500A0863D /* FLQueuedAsset.m in Sources */,
@@ -8264,7 +8236,6 @@
 				271D3B1416FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1D16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
 				271D3B2616FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */,
-				271D3B2F16FE0793009CD00F /* __FLApplicationSession.m in Sources */,
 				271D3B3816FE0794009CD00F /* __FLLastUpdateTime.m in Sources */,
 				271D3B4116FE0794009CD00F /* __FLUserLogin.m in Sources */,
 				271D3B4A16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */,
@@ -8280,7 +8251,6 @@
 				271D3BA416FE0795009CD00F /* FLStorable.m in Sources */,
 				271D3BAD16FE0795009CD00F /* FLStorableImage.m in Sources */,
 				271D3BB616FE0796009CD00F /* FLStorageStrategy.m in Sources */,
-				271D3BBF16FE0796009CD00F /* __FLCachedImageBaseClass.m in Sources */,
 				271D3BC816FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
 				271D3BD116FE0796009CD00F /* FLAttributedString.m in Sources */,
 				271D3BDA16FE0796009CD00F /* FLDocumentBuilder.m in Sources */,
@@ -8402,10 +8372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2798DA46166D886500A0863D /* __FLAssetQueueState.m in Sources */,
 				2798DA4D166D886500A0863D /* __FLExportedAsset.m in Sources */,
-				2798DA54166D886500A0863D /* __FLQueuedAsset.m in Sources */,
-				2798DA5B166D886500A0863D /* __FLUploadedAsset.m in Sources */,
 				2798DA62166D886500A0863D /* FLAssetQueueState.m in Sources */,
 				2798DA69166D886500A0863D /* FLExportedAsset.m in Sources */,
 				2798DA70166D886500A0863D /* FLQueuedAsset.m in Sources */,
@@ -8639,7 +8606,6 @@
 				271D3B1616FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1F16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
 				271D3B2816FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */,
-				271D3B3116FE0793009CD00F /* __FLApplicationSession.m in Sources */,
 				271D3B3A16FE0794009CD00F /* __FLLastUpdateTime.m in Sources */,
 				271D3B4316FE0794009CD00F /* __FLUserLogin.m in Sources */,
 				271D3B4C16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */,
@@ -8655,7 +8621,6 @@
 				271D3BA616FE0795009CD00F /* FLStorable.m in Sources */,
 				271D3BAF16FE0796009CD00F /* FLStorableImage.m in Sources */,
 				271D3BB816FE0796009CD00F /* FLStorageStrategy.m in Sources */,
-				271D3BC116FE0796009CD00F /* __FLCachedImageBaseClass.m in Sources */,
 				271D3BCA16FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
 				271D3BD316FE0796009CD00F /* FLAttributedString.m in Sources */,
 				271D3BDC16FE0796009CD00F /* FLDocumentBuilder.m in Sources */,
@@ -8777,10 +8742,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2798DA43166D886500A0863D /* __FLAssetQueueState.m in Sources */,
 				2798DA4A166D886500A0863D /* __FLExportedAsset.m in Sources */,
-				2798DA51166D886500A0863D /* __FLQueuedAsset.m in Sources */,
-				2798DA58166D886500A0863D /* __FLUploadedAsset.m in Sources */,
 				2798DA5F166D886500A0863D /* FLAssetQueueState.m in Sources */,
 				2798DA66166D886500A0863D /* FLExportedAsset.m in Sources */,
 				2798DA6D166D886500A0863D /* FLQueuedAsset.m in Sources */,
@@ -9015,7 +8977,6 @@
 				271D3B1316FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1C16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
 				271D3B2516FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */,
-				271D3B2E16FE0793009CD00F /* __FLApplicationSession.m in Sources */,
 				271D3B3716FE0794009CD00F /* __FLLastUpdateTime.m in Sources */,
 				271D3B4016FE0794009CD00F /* __FLUserLogin.m in Sources */,
 				271D3B4916FE0794009CD00F /* FLApplicationDataVersion.m in Sources */,
@@ -9031,7 +8992,6 @@
 				271D3BA316FE0795009CD00F /* FLStorable.m in Sources */,
 				271D3BAC16FE0795009CD00F /* FLStorableImage.m in Sources */,
 				271D3BB516FE0796009CD00F /* FLStorageStrategy.m in Sources */,
-				271D3BBE16FE0796009CD00F /* __FLCachedImageBaseClass.m in Sources */,
 				271D3BC716FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
 				271D3BD016FE0796009CD00F /* FLAttributedString.m in Sources */,
 				271D3BD916FE0796009CD00F /* FLDocumentBuilder.m in Sources */,
@@ -9144,10 +9104,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2798DA44166D886500A0863D /* __FLAssetQueueState.m in Sources */,
 				2798DA4B166D886500A0863D /* __FLExportedAsset.m in Sources */,
-				2798DA52166D886500A0863D /* __FLQueuedAsset.m in Sources */,
-				2798DA59166D886500A0863D /* __FLUploadedAsset.m in Sources */,
 				2798DA60166D886500A0863D /* FLAssetQueueState.m in Sources */,
 				2798DA67166D886500A0863D /* FLExportedAsset.m in Sources */,
 				2798DA6E166D886500A0863D /* FLQueuedAsset.m in Sources */,
@@ -9381,7 +9338,6 @@
 				271D3B1516FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1E16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
 				271D3B2716FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */,
-				271D3B3016FE0793009CD00F /* __FLApplicationSession.m in Sources */,
 				271D3B3916FE0794009CD00F /* __FLLastUpdateTime.m in Sources */,
 				271D3B4216FE0794009CD00F /* __FLUserLogin.m in Sources */,
 				271D3B4B16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */,
@@ -9397,7 +9353,6 @@
 				271D3BA516FE0795009CD00F /* FLStorable.m in Sources */,
 				271D3BAE16FE0796009CD00F /* FLStorableImage.m in Sources */,
 				271D3BB716FE0796009CD00F /* FLStorageStrategy.m in Sources */,
-				271D3BC016FE0796009CD00F /* __FLCachedImageBaseClass.m in Sources */,
 				271D3BC916FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
 				271D3BD216FE0796009CD00F /* FLAttributedString.m in Sources */,
 				271D3BDB16FE0796009CD00F /* FLDocumentBuilder.m in Sources */,
@@ -9527,10 +9482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27CBBFA416768BA600753D0A /* __FLAssetQueueState.m in Sources */,
 				27CBBFA516768BA600753D0A /* __FLExportedAsset.m in Sources */,
-				27CBBFA616768BA600753D0A /* __FLQueuedAsset.m in Sources */,
-				27CBBFA716768BA600753D0A /* __FLUploadedAsset.m in Sources */,
 				27CBBFA816768BA600753D0A /* FLAssetQueueState.m in Sources */,
 				27CBBFA916768BA600753D0A /* FLExportedAsset.m in Sources */,
 				27CBBFAA16768BA600753D0A /* FLQueuedAsset.m in Sources */,
@@ -9764,7 +9716,6 @@
 				271D3B1716FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B2016FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
 				271D3B2916FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */,
-				271D3B3216FE0794009CD00F /* __FLApplicationSession.m in Sources */,
 				271D3B3B16FE0794009CD00F /* __FLLastUpdateTime.m in Sources */,
 				271D3B4416FE0794009CD00F /* __FLUserLogin.m in Sources */,
 				271D3B4D16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */,
@@ -9780,7 +9731,6 @@
 				271D3BA716FE0795009CD00F /* FLStorable.m in Sources */,
 				271D3BB016FE0796009CD00F /* FLStorableImage.m in Sources */,
 				271D3BB916FE0796009CD00F /* FLStorageStrategy.m in Sources */,
-				271D3BC216FE0796009CD00F /* __FLCachedImageBaseClass.m in Sources */,
 				271D3BCB16FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
 				271D3BD416FE0796009CD00F /* FLAttributedString.m in Sources */,
 				271D3BDD16FE0796009CD00F /* FLDocumentBuilder.m in Sources */,

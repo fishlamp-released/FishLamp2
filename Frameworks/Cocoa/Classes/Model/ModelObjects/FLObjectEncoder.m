@@ -52,13 +52,13 @@
 @end
 
 
-@implementation NSObject (FLType)
-+ (id<FLStringEncoder>) objectEncoder {
-    return nil; // [FLObjectEncoder objectEncoderForClass:[self class]];
-}
-
-- (id<FLStringEncoder>) objectEncoder {
-    return [[self class] objectEncoder];
-}
-
-@end
+//@implementation NSObject (FLType)
+////+ (id<FLStringEncoder>) objectEncoder {
+////    return nil; // [FLObjectEncoder objectEncoderForClass:[self class]];
+////}
+////
+////- (id<FLStringEncoder>) objectEncoder {
+////    return [[self class] objectEncoder];
+////}
+//
+//@end

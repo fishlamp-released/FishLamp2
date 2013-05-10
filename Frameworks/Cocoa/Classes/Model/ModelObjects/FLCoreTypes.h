@@ -43,139 +43,139 @@
 - (SDKFont*) decodeFontFromString:(NSString*) string;
 @end
 
-// numbers
-typedef enum {
-    FLTypeIDBool              = _C_BOOL,
-	FLTypeIDChar              = _C_CHR,
-	FLTypeIDUnsignedChar      = _C_UCHR,
-	FLTypeIDShort             = _C_SHT,
-	FLTypeIDUnsignedShort     = _C_USHT,
-	FLTypeIDInt               = _C_INT,
-	FLTypeIDUnsignedInt       = _C_UINT,
-	FLTypeIDLong              = _C_LNG,
-	FLTypeIDUnsignedLong      = _C_ULNG,
-	FLTypeIDLongLong          = _C_LNG_LNG,
-	FLTypeIDUnsignedLongLong  = _C_ULNG_LNG,
-	FLTypeIDFloat             = _C_FLT,
-	FLTypeIDDouble            = _C_DBL,
-} FLTypeNumberType;
+//// numbers
+//typedef enum {
+//    FLTypeIDBool              = _C_BOOL,
+//	FLTypeIDChar              = _C_CHR,
+//	FLTypeIDUnsignedChar      = _C_UCHR,
+//	FLTypeIDShort             = _C_SHT,
+//	FLTypeIDUnsignedShort     = _C_USHT,
+//	FLTypeIDInt               = _C_INT,
+//	FLTypeIDUnsignedInt       = _C_UINT,
+//	FLTypeIDLong              = _C_LNG,
+//	FLTypeIDUnsignedLong      = _C_ULNG,
+//	FLTypeIDLongLong          = _C_LNG_LNG,
+//	FLTypeIDUnsignedLongLong  = _C_ULNG_LNG,
+//	FLTypeIDFloat             = _C_FLT,
+//	FLTypeIDDouble            = _C_DBL,
+//} FLTypeNumberType;
 
-@interface FLNumberEncoder : FLObjectEncoder {
-@private
-    FLTypeNumberType _numberType;
-}
-@property (readonly, assign, nonatomic) FLTypeNumberType numberType;
-@end
-
-
-@interface FLNumberObject : NSObject
-@end
-
-@interface FLBoolNumber : FLNumberObject
-+ (id) boolNumber;
-@end
-
-@interface FLCharNumber : FLNumberObject
-+ (id) charNumber;
-@end
-
-@interface FLUnsignedCharNumber : FLNumberObject
-+ (id) unsignedCharNumber;
-@end
-
-@interface FLShortNumber : FLNumberObject
-+ (id) shortNumber;
-@end
-
-@interface FLUnsignedShortNumber : FLNumberObject
-+ (id) unsignedShortNumber;
-@end
-
-@interface FLIntNumber : FLNumberObject
-+ (id) intNumber;
-@end
-
-@interface FLUnsignedIntNumber : FLNumberObject
-+ (id) unsignedIntNumber;
-@end
-
-@interface FLLongNumber : FLNumberObject
-+ (id) longNumber;
-@end
-
-@interface FLUnsignedLongNumber : FLNumberObject
-+ (id) unsignedLongNumber;
-@end
-
-@interface FLLongLongNumber : FLNumberObject
-+ (id) longLongNumber;
-@end
-
-@interface FLUnsignedLongLongNumber : FLNumberObject
-+ (id) unsignedLongLongNumber;
-@end
-
-@interface FLFloatNumber : FLNumberObject
-+ (id) floatNumber;
-@end
-
-@interface FLDoubleNumber : FLFloatNumber
-+ (id) doubleNumber;
-@end
-
-@interface FLIntegerNumber : FLNumberObject
-+ (id) integerNumber;
-@end
-
-@interface FLUnsignedIntegerNumber : FLNumberObject
-+ (id) unsignedIntegerNumber;
-@end
-
-// values
-
-@interface FLValueEncoder : FLObjectEncoder
-@end
-
-@interface FLGeometrySize : NSObject
-+ (id) geometrySize;
-@end
-
-@interface FLGeometryRect : NSObject
-+ (id) geometryRect;
-@end
-
-@interface FLGeometryPoint : NSObject
-+ (id) geometryPoint;
-@end
+//@interface FLNumberEncoder : FLObjectEncoder {
+//@private
+//    FLTypeNumberType _numberType;
+//}
+//@property (readonly, assign, nonatomic) FLTypeNumberType numberType;
+//@end
+//
+//
+//@interface FLNumberObject : NSObject
+//@end
+//
+//@interface FLBoolNumber : FLNumberObject
+//+ (id) boolNumber;
+//@end
+//
+//@interface FLCharNumber : FLNumberObject
+//+ (id) charNumber;
+//@end
+//
+//@interface FLUnsignedCharNumber : FLNumberObject
+//+ (id) unsignedCharNumber;
+//@end
+//
+//@interface FLShortNumber : FLNumberObject
+//+ (id) shortNumber;
+//@end
+//
+//@interface FLUnsignedShortNumber : FLNumberObject
+//+ (id) unsignedShortNumber;
+//@end
+//
+//@interface FLIntNumber : FLNumberObject
+//+ (id) intNumber;
+//@end
+//
+//@interface FLUnsignedIntNumber : FLNumberObject
+//+ (id) unsignedIntNumber;
+//@end
+//
+//@interface FLLongNumber : FLNumberObject
+//+ (id) longNumber;
+//@end
+//
+//@interface FLUnsignedLongNumber : FLNumberObject
+//+ (id) unsignedLongNumber;
+//@end
+//
+//@interface FLLongLongNumber : FLNumberObject
+//+ (id) longLongNumber;
+//@end
+//
+//@interface FLUnsignedLongLongNumber : FLNumberObject
+//+ (id) unsignedLongLongNumber;
+//@end
+//
+//@interface FLFloatNumber : FLNumberObject
+//+ (id) floatNumber;
+//@end
+//
+//@interface FLDoubleNumber : FLFloatNumber
+//+ (id) doubleNumber;
+//@end
+//
+//@interface FLIntegerNumber : FLNumberObject
+//+ (id) integerNumber;
+//@end
+//
+//@interface FLUnsignedIntegerNumber : FLNumberObject
+//+ (id) unsignedIntegerNumber;
+//@end
+//
+//// values
+//
+//@interface FLValueEncoder : FLObjectEncoder
+//@end
+//
+//@interface FLGeometrySize : NSObject
+//+ (id) geometrySize;
+//@end
+//
+//@interface FLGeometryRect : NSObject
+//+ (id) geometryRect;
+//@end
+//
+//@interface FLGeometryPoint : NSObject
+//+ (id) geometryPoint;
+//@end
 
 //@interface FLMutableArrayType : FLObjectEncoder
 //@end
 
-// simple objects that return FLTypes
-@interface NSString (FLCoreTypes)
-@end
-
-@interface NSMutableString (FLCoreTypes)
-@end
-
-@interface NSArray (FLCoreTypes)
-@end
-
-@interface NSMutableArray (FLCoreTypes)
-@end
-
-@interface NSURL (FLCoreTypes)
-@end
-
-@interface NSData (FLCoreTypes)
-@end
-
-@interface NSMutableData (FLCoreTypes)
-@end
-
-@interface NSDate (FLCoreTypes)
-@end
-
-@interface SDKFont (FLCoreTypes)
-
-@end
+//// simple objects that return FLTypes
+//@interface NSString (FLCoreTypes)
+//@end
+//
+//@interface NSMutableString (FLCoreTypes)
+//@end
+//
+//@interface NSArray (FLCoreTypes)
+//@end
+//
+//@interface NSMutableArray (FLCoreTypes)
+//@end
+//
+//@interface NSURL (FLCoreTypes)
+//@end
+//
+//@interface NSData (FLCoreTypes)
+//@end
+//
+//@interface NSMutableData (FLCoreTypes)
+//@end
+//
+//@interface NSDate (FLCoreTypes)
+//@end
+//
+//@interface SDKFont (FLCoreTypes)
+//
+//@end

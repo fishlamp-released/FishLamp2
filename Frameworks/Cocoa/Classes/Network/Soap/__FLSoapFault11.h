@@ -14,7 +14,7 @@
 // --------------------------------------------------------------------
 // FLSoapFault11
 // --------------------------------------------------------------------
-@interface FLSoapFault11 : NSObject<NSCopying, NSCoding>{ 
+@interface FLSoapFault11 : FLModelObject { 
 @private
     NSString* __faultcode;
     NSString* __faultstring;
@@ -22,30 +22,14 @@
     NSString* __detail;
 } 
 
-
 @property (readwrite, strong, nonatomic) NSString* detail;
-
 @property (readwrite, strong, nonatomic) NSString* faultactor;
-
 @property (readwrite, strong, nonatomic) NSString* faultcode;
-
 @property (readwrite, strong, nonatomic) NSString* faultstring;
-
-+ (NSString*) detailKey;
-
-+ (NSString*) faultactorKey;
-
-+ (NSString*) faultcodeKey;
-
-+ (NSString*) faultstringKey;
 
 + (FLSoapFault11*) soapFault11; 
 
-+ (FLObjectDescriber*) objectDescriber;
-
 @end
 
-@interface FLSoapFault11 (ValueProperties) 
-@end
 
 // [/Generated]

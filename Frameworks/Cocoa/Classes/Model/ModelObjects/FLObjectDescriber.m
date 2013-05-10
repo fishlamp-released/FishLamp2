@@ -243,6 +243,11 @@ static NSMutableDictionary* s_registry = nil;
 
 @implementation FLLegacyObjectDescriber
 
++ (id) registerClass:(Class) aClass {
+    FLAssertFailedWithComment(@"no longer supported");
+    return nil;
+}
+
 - (id) initWithClass:(Class) aClass {
     return [super initWithClass:aClass];
 }

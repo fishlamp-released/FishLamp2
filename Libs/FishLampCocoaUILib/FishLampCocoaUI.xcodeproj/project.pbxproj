@@ -639,24 +639,6 @@
 		78329D81167E97C20024E8DC /* FLProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BD8167E97C20024E8DC /* FLProgressViewController.m */; };
 		78329D82167E97C20024E8DC /* FLProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BD8167E97C20024E8DC /* FLProgressViewController.m */; };
 		78329D83167E97C20024E8DC /* FLProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BD8167E97C20024E8DC /* FLProgressViewController.m */; };
-		78329D84167E97C20024E8DC /* __FLSlideshowOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BDA167E97C20024E8DC /* __FLSlideshowOptions.h */; };
-		78329D85167E97C20024E8DC /* __FLSlideshowOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BDA167E97C20024E8DC /* __FLSlideshowOptions.h */; };
-		78329D86167E97C20024E8DC /* __FLSlideshowOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BDA167E97C20024E8DC /* __FLSlideshowOptions.h */; };
-		78329D87167E97C20024E8DC /* __FLSlideshowOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BDA167E97C20024E8DC /* __FLSlideshowOptions.h */; };
-		78329D88167E97C20024E8DC /* __FLSlideshowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BDB167E97C20024E8DC /* __FLSlideshowOptions.m */; };
-		78329D89167E97C20024E8DC /* __FLSlideshowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BDB167E97C20024E8DC /* __FLSlideshowOptions.m */; };
-		78329D8A167E97C20024E8DC /* __FLSlideshowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BDB167E97C20024E8DC /* __FLSlideshowOptions.m */; };
-		78329D8B167E97C20024E8DC /* __FLSlideshowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BDB167E97C20024E8DC /* __FLSlideshowOptions.m */; };
-		78329D8C167E97C20024E8DC /* __FLSlideshowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BDB167E97C20024E8DC /* __FLSlideshowOptions.m */; };
-		78329D8D167E97C20024E8DC /* FLSlideshowOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BDC167E97C20024E8DC /* FLSlideshowOptions.h */; };
-		78329D8E167E97C20024E8DC /* FLSlideshowOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BDC167E97C20024E8DC /* FLSlideshowOptions.h */; };
-		78329D8F167E97C20024E8DC /* FLSlideshowOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BDC167E97C20024E8DC /* FLSlideshowOptions.h */; };
-		78329D90167E97C20024E8DC /* FLSlideshowOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BDC167E97C20024E8DC /* FLSlideshowOptions.h */; };
-		78329D91167E97C20024E8DC /* FLSlideshowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BDD167E97C20024E8DC /* FLSlideshowOptions.m */; };
-		78329D92167E97C20024E8DC /* FLSlideshowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BDD167E97C20024E8DC /* FLSlideshowOptions.m */; };
-		78329D93167E97C20024E8DC /* FLSlideshowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BDD167E97C20024E8DC /* FLSlideshowOptions.m */; };
-		78329D94167E97C20024E8DC /* FLSlideshowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BDD167E97C20024E8DC /* FLSlideshowOptions.m */; };
-		78329D95167E97C20024E8DC /* FLSlideshowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 78329BDD167E97C20024E8DC /* FLSlideshowOptions.m */; };
 		78329D96167E97C20024E8DC /* FLTilingImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BE0167E97C20024E8DC /* FLTilingImageView.h */; };
 		78329D97167E97C20024E8DC /* FLTilingImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BE0167E97C20024E8DC /* FLTilingImageView.h */; };
 		78329D98167E97C20024E8DC /* FLTilingImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 78329BE0167E97C20024E8DC /* FLTilingImageView.h */; };
@@ -989,11 +971,6 @@
 		78329BD6167E97C20024E8DC /* FLProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressView.h; sourceTree = "<group>"; };
 		78329BD7167E97C20024E8DC /* FLProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressViewController.h; sourceTree = "<group>"; };
 		78329BD8167E97C20024E8DC /* FLProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressViewController.m; sourceTree = "<group>"; };
-		78329BDA167E97C20024E8DC /* __FLSlideshowOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLSlideshowOptions.h; sourceTree = "<group>"; };
-		78329BDB167E97C20024E8DC /* __FLSlideshowOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLSlideshowOptions.m; sourceTree = "<group>"; };
-		78329BDC167E97C20024E8DC /* FLSlideshowOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSlideshowOptions.h; sourceTree = "<group>"; };
-		78329BDD167E97C20024E8DC /* FLSlideshowOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSlideshowOptions.m; sourceTree = "<group>"; };
-		78329BDE167E97C20024E8DC /* SlideShowObjects.cgxml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SlideShowObjects.cgxml; sourceTree = "<group>"; };
 		78329BE0167E97C20024E8DC /* FLTilingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTilingImageView.h; sourceTree = "<group>"; };
 		78329BE1167E97C20024E8DC /* FLTilingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTilingImageView.m; sourceTree = "<group>"; };
 		78329BE3167E97C20024E8DC /* FLImageButtonToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImageButtonToolbarItem.h; sourceTree = "<group>"; };
@@ -1061,7 +1038,7 @@
 				2709A0D816EBAC8700C59905 /* libFishLampCocoa-OSX-64-MRC.a */,
 				2709A0DA16EBAC8700C59905 /* libFishLampCocoa-OSX-64-ARC.a */,
 				2709A0DC16EBAC8700C59905 /* libFishLampCocoa-OSX-3264-MRC.a */,
-				27C62D6F170B4A3C0093F260 /* CocoaTestTool-64-MRC */,
+				27C62D6F170B4A3C0093F260 /* FishLampCocoaTestTool-64-MRC */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1392,7 +1369,6 @@
 				78329BCB167E97C20024E8DC /* BreadcrumbBarView */,
 				78329BD0167E97C20024E8DC /* GradientView */,
 				78329BD3167E97C20024E8DC /* Progress */,
-				78329BD9167E97C20024E8DC /* Slideshow */,
 				78329BDF167E97C20024E8DC /* TilingImageView */,
 				78329BE2167E97C20024E8DC /* ToolbarView */,
 				78329BF1167E97C20024E8DC /* ViewControllerStack */,
@@ -1441,18 +1417,6 @@
 				278DB49216EE75B40087374D /* FLAnimatedImageView.m */,
 			);
 			path = Progress;
-			sourceTree = "<group>";
-		};
-		78329BD9167E97C20024E8DC /* Slideshow */ = {
-			isa = PBXGroup;
-			children = (
-				78329BDA167E97C20024E8DC /* __FLSlideshowOptions.h */,
-				78329BDB167E97C20024E8DC /* __FLSlideshowOptions.m */,
-				78329BDC167E97C20024E8DC /* FLSlideshowOptions.h */,
-				78329BDD167E97C20024E8DC /* FLSlideshowOptions.m */,
-				78329BDE167E97C20024E8DC /* SlideShowObjects.cgxml */,
-			);
-			path = Slideshow;
 			sourceTree = "<group>";
 		};
 		78329BDF167E97C20024E8DC /* TilingImageView */ = {
@@ -1507,8 +1471,6 @@
 				78329D6E167E97C20024E8DC /* FLProgressFactory.h in Headers */,
 				78329D77167E97C20024E8DC /* FLProgressView.h in Headers */,
 				78329D7B167E97C20024E8DC /* FLProgressViewController.h in Headers */,
-				78329D84167E97C20024E8DC /* __FLSlideshowOptions.h in Headers */,
-				78329D8D167E97C20024E8DC /* FLSlideshowOptions.h in Headers */,
 				78329D96167E97C20024E8DC /* FLTilingImageView.h in Headers */,
 				78329D9F167E97C20024E8DC /* FLImageButtonToolbarItem.h in Headers */,
 				78329DA8167E97C20024E8DC /* FLToolbarButtonBarView.h in Headers */,
@@ -1598,8 +1560,6 @@
 				78329D70167E97C20024E8DC /* FLProgressFactory.h in Headers */,
 				78329D79167E97C20024E8DC /* FLProgressView.h in Headers */,
 				78329D7D167E97C20024E8DC /* FLProgressViewController.h in Headers */,
-				78329D86167E97C20024E8DC /* __FLSlideshowOptions.h in Headers */,
-				78329D8F167E97C20024E8DC /* FLSlideshowOptions.h in Headers */,
 				78329D98167E97C20024E8DC /* FLTilingImageView.h in Headers */,
 				78329DA1167E97C20024E8DC /* FLImageButtonToolbarItem.h in Headers */,
 				78329DAA167E97C20024E8DC /* FLToolbarButtonBarView.h in Headers */,
@@ -1689,8 +1649,6 @@
 				78329D6F167E97C20024E8DC /* FLProgressFactory.h in Headers */,
 				78329D78167E97C20024E8DC /* FLProgressView.h in Headers */,
 				78329D7C167E97C20024E8DC /* FLProgressViewController.h in Headers */,
-				78329D85167E97C20024E8DC /* __FLSlideshowOptions.h in Headers */,
-				78329D8E167E97C20024E8DC /* FLSlideshowOptions.h in Headers */,
 				78329D97167E97C20024E8DC /* FLTilingImageView.h in Headers */,
 				78329DA0167E97C20024E8DC /* FLImageButtonToolbarItem.h in Headers */,
 				78329DA9167E97C20024E8DC /* FLToolbarButtonBarView.h in Headers */,
@@ -1780,8 +1738,6 @@
 				78329D71167E97C20024E8DC /* FLProgressFactory.h in Headers */,
 				78329D7A167E97C20024E8DC /* FLProgressView.h in Headers */,
 				78329D7E167E97C20024E8DC /* FLProgressViewController.h in Headers */,
-				78329D87167E97C20024E8DC /* __FLSlideshowOptions.h in Headers */,
-				78329D90167E97C20024E8DC /* FLSlideshowOptions.h in Headers */,
 				78329D99167E97C20024E8DC /* FLTilingImageView.h in Headers */,
 				78329DA2167E97C20024E8DC /* FLImageButtonToolbarItem.h in Headers */,
 				78329DAB167E97C20024E8DC /* FLToolbarButtonBarView.h in Headers */,
@@ -2027,7 +1983,7 @@
 			remoteRef = 2709A0DB16EBAC8700C59905 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27C62D6F170B4A3C0093F260 /* CocoaTestTool-64-MRC */ = {
+		27C62D6F170B4A3C0093F260 /* FishLampCocoaTestTool-64-MRC */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = "FishLampCocoaTestTool-64-MRC";
@@ -2045,8 +2001,6 @@
 				78329D6A167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D73167E97C20024E8DC /* FLProgressFactory.m in Sources */,
 				78329D80167E97C20024E8DC /* FLProgressViewController.m in Sources */,
-				78329D89167E97C20024E8DC /* __FLSlideshowOptions.m in Sources */,
-				78329D92167E97C20024E8DC /* FLSlideshowOptions.m in Sources */,
 				78329D9B167E97C20024E8DC /* FLTilingImageView.m in Sources */,
 				78329DA4167E97C20024E8DC /* FLImageButtonToolbarItem.m in Sources */,
 				78329DAD167E97C20024E8DC /* FLToolbarButtonBarView.m in Sources */,
@@ -2131,8 +2085,6 @@
 				78329D6C167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D75167E97C20024E8DC /* FLProgressFactory.m in Sources */,
 				78329D82167E97C20024E8DC /* FLProgressViewController.m in Sources */,
-				78329D8B167E97C20024E8DC /* __FLSlideshowOptions.m in Sources */,
-				78329D94167E97C20024E8DC /* FLSlideshowOptions.m in Sources */,
 				78329D9D167E97C20024E8DC /* FLTilingImageView.m in Sources */,
 				78329DA6167E97C20024E8DC /* FLImageButtonToolbarItem.m in Sources */,
 				78329DAF167E97C20024E8DC /* FLToolbarButtonBarView.m in Sources */,
@@ -2217,8 +2169,6 @@
 				78329D69167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D72167E97C20024E8DC /* FLProgressFactory.m in Sources */,
 				78329D7F167E97C20024E8DC /* FLProgressViewController.m in Sources */,
-				78329D88167E97C20024E8DC /* __FLSlideshowOptions.m in Sources */,
-				78329D91167E97C20024E8DC /* FLSlideshowOptions.m in Sources */,
 				78329D9A167E97C20024E8DC /* FLTilingImageView.m in Sources */,
 				78329DA3167E97C20024E8DC /* FLImageButtonToolbarItem.m in Sources */,
 				78329DAC167E97C20024E8DC /* FLToolbarButtonBarView.m in Sources */,
@@ -2303,8 +2253,6 @@
 				78329D6B167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D74167E97C20024E8DC /* FLProgressFactory.m in Sources */,
 				78329D81167E97C20024E8DC /* FLProgressViewController.m in Sources */,
-				78329D8A167E97C20024E8DC /* __FLSlideshowOptions.m in Sources */,
-				78329D93167E97C20024E8DC /* FLSlideshowOptions.m in Sources */,
 				78329D9C167E97C20024E8DC /* FLTilingImageView.m in Sources */,
 				78329DA5167E97C20024E8DC /* FLImageButtonToolbarItem.m in Sources */,
 				78329DAE167E97C20024E8DC /* FLToolbarButtonBarView.m in Sources */,
@@ -2389,8 +2337,6 @@
 				78329D6D167E97C20024E8DC /* FLGradientView.m in Sources */,
 				78329D76167E97C20024E8DC /* FLProgressFactory.m in Sources */,
 				78329D83167E97C20024E8DC /* FLProgressViewController.m in Sources */,
-				78329D8C167E97C20024E8DC /* __FLSlideshowOptions.m in Sources */,
-				78329D95167E97C20024E8DC /* FLSlideshowOptions.m in Sources */,
 				78329D9E167E97C20024E8DC /* FLTilingImageView.m in Sources */,
 				78329DA7167E97C20024E8DC /* FLImageButtonToolbarItem.m in Sources */,
 				78329DB0167E97C20024E8DC /* FLToolbarButtonBarView.m in Sources */,

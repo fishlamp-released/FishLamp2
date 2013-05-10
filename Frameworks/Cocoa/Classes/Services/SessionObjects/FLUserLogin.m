@@ -13,13 +13,6 @@
 
 @implementation FLUserLogin (ObjC)
 
-- (void) setUserInfo:(NSDictionary*) userInfo {
-}
-
-- (NSDictionary*) userInfo {
-    return nil;
-}
-
 + (id) userLogin:(NSString*) userName password:(NSString*) password {
     FLUserLogin* userLogin = [FLUserLogin userLogin];
     userLogin.userName = userName;
@@ -35,7 +28,6 @@
     self.authTokenLastUpdateTime = login.authTokenLastUpdateTime;
     self.password = login.password;
     self.userGuid = login.userGuid;
-    self.userValue = login.userValue;
 }
 
 + (id) userLoginWithCredentials:(id<FLCredentials>) credentials {

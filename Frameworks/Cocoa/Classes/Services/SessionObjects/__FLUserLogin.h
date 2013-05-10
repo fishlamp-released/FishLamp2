@@ -9,55 +9,29 @@
 // Copywrite (C) 2012 GreenTongue Software, LLC. All rights reserved.
 //
 
-
+#import "FLModelObject.h"
 
 // --------------------------------------------------------------------
 // FLUserLogin
 // --------------------------------------------------------------------
-@interface FLUserLogin : NSObject<NSCopying, NSCoding>{ 
+@interface FLUserLogin : FLModelObject { 
 @private
     NSString* __userGuid;
     NSString* __userName;
     NSString* __password;
-    NSNumber* __isAuthenticated;
+    BOOL __isAuthenticated;
     NSString* __authToken;
     NSString* __email;
-    NSNumber* __authTokenLastUpdateTime;
-    NSNumber* __userValue;
+    NSTimeInterval __authTokenLastUpdateTime;
 } 
 
-
 @property (readwrite, strong, nonatomic) NSString* authToken;
-
-@property (readwrite, strong, nonatomic) NSNumber* authTokenLastUpdateTime;
-
+@property (readwrite, assign, nonatomic) NSTimeInterval authTokenLastUpdateTime;
 @property (readwrite, strong, nonatomic) NSString* email;
-
-@property (readwrite, strong, nonatomic) NSNumber* isAuthenticated;
-
+@property (readwrite, assign, nonatomic) BOOL isAuthenticated;
 @property (readwrite, strong, nonatomic) NSString* password;
-
 @property (readwrite, strong, nonatomic) NSString* userGuid;
-
 @property (readwrite, strong, nonatomic) NSString* userName;
-
-@property (readwrite, strong, nonatomic) NSNumber* userValue;
-
-+ (NSString*) authTokenKey;
-
-+ (NSString*) authTokenLastUpdateTimeKey;
-
-+ (NSString*) emailKey;
-
-+ (NSString*) isAuthenticatedKey;
-
-+ (NSString*) passwordKey;
-
-+ (NSString*) userGuidKey;
-
-+ (NSString*) userNameKey;
-
-+ (NSString*) userValueKey;
 
 + (id) userLogin; 
 

@@ -28,7 +28,7 @@
         }
     }
     else {
-        id<FLStringEncoder> objectEncoder = [self.class objectEncoder];
+        id<FLStringEncoder> objectEncoder = [propertyDescriber objectEncoder];
         if(objectEncoder) {
             NSString* line = [objectEncoder encodeObjectToString:self withEncoder:xmlElement.dataEncoder];
             [xmlElement appendLine:line];

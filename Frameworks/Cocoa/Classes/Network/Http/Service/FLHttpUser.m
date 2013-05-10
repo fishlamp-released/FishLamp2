@@ -51,7 +51,7 @@
 - (void) setLoginUnathenticated {
     _userLogin.isAuthenticated = NO;
     _userLogin.authToken = NO;
-    _userLogin.authTokenLastUpdateTime = nil;
+    _userLogin.authTokenLastUpdateTime = 0;
     _userLogin.password = @"";
     [self resetAuthenticationTimestamp];
 }

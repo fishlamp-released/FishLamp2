@@ -13,10 +13,6 @@
 
 @interface FLUserLogin (ObjC)
 
-// Your methods here. Declare properties and data in your whittle object file.
-
-@property (readwrite, strong, nonatomic) NSDictionary* userInfo;
-
 + (id) userLogin:(NSString*) userName password:(NSString*) password;
 
 - (void) setPropertiesWithUserLogin:(FLUserLogin*) login;

@@ -49,8 +49,35 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
+- (FLParsedItem*) findElementForBuilding:(NSString*) objectName inParentElement:(FLParsedItem*) parentElement {
+
+    if(FLStringsAreEqual(parentElement.elementName, objectName)) {
+        return parentElement;
+    }
+
+    FLParsedItem* subElement = [parentElement elementForElementName:objectName];
+    if(subElement) {
+        return subElement;
+    }
+
+    FLThrowErrorCodeWithComment(NSCocoaErrorDomain, NSFileNoSuchFileError, @"XmlObjectBuilder: \"%@\" not found in \"%@\"", objectName, parentElement.elementName);
+
+    return nil;
+}
+
+
 #if OLD
 
+//
+//- (id) buildObjectForClass:(Class) objectClass withXmlElement:(FLParsedItem*) element {
+//    
+//    FLAssertNotNil(self.decoder);
+//    FLAssertNotNil(element);
+//    FLAssertNotNil(objectClass);
+//
+//    FLObjectDescriber* objectDescriber = [objectClass objectDescriber];
+//    return [objectDescriber xmlObjectBuilder:self inflateObjectWithXml:element];
+//}
 - (void) inflateElement:(FLParsedItem*) element 
               intoArray:(NSMutableArray*) newArray
            propertyDescriber:(FLPropertyDescriber*) propertyDescriber {
@@ -224,33 +251,6 @@
     return object;
 }
 #endif
-//
-//- (id) buildObjectForClass:(Class) objectClass withXmlElement:(FLParsedItem*) element {
-//    
-//    FLAssertNotNil(self.decoder);
-//    FLAssertNotNil(element);
-//    FLAssertNotNil(objectClass);
-//
-//    FLObjectDescriber* objectDescriber = [objectClass objectDescriber];
-//    return [objectDescriber xmlObjectBuilder:self inflateObjectWithXml:element];
-//}
-
-- (FLParsedItem*) findElementForBuilding:(NSString*) objectName inParentElement:(FLParsedItem*) parentElement {
-
-    if(FLStringsAreEqual(parentElement.elementName, objectName)) {
-        return parentElement;
-    }
-
-    FLParsedItem* subElement = [parentElement elementForElementName:objectName];
-    if(subElement) {
-        return subElement;
-    }
-
-    FLThrowErrorCodeWithComment(NSCocoaErrorDomain, NSFileNoSuchFileError, @"XmlObjectBuilder: \"%@\" not found in \"%@\"", objectName, parentElement.elementName);
-
-    return nil;
-}
-
 
 @end
 

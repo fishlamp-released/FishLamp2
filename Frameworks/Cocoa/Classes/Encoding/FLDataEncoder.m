@@ -103,16 +103,16 @@
 
 - (NSNumber*) decodeNumberFromString:(NSString*) string {
     
-    static NSCharacterSet* numbers = nil;
-    if(!numbers) {
-        numbers = [NSCharacterSet decimalDigitCharacterSet];
-    }
-    
-    for(int i = 0; i < string.length; i++) {
-        if(![numbers characterIsMember:[string characterAtIndex:i]]) {
-            return [NSNumber numberWithBool:[string boolValue]];
-        }
-    }
+//    static NSCharacterSet* numbers = nil;
+//    if(!numbers) {
+//        numbers = [NSCharacterSet decimalDigitCharacterSet];
+//    }
+//    
+//    for(int i = 0; i < string.length; i++) {
+//        if(![numbers characterIsMember:[string characterAtIndex:i]]) {
+//            return [NSNumber numberWithBool:[string boolValue]];
+//        }
+//    }
     
     return [_numberFormatter numberFromString:string];
 }

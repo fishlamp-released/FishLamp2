@@ -31,7 +31,7 @@
 - (id) decodeStringToObject:(NSString*) object withDecoder:(id) decoder;
 @end
 
-@interface NSObject (FLObjectEncoder) 
-+ (id<FLStringEncoder>) objectEncoder;
-- (id<FLStringEncoder>) objectEncoder;
-@end
+//@interface NSObject (FLObjectEncoder) 
+////+ (id<FLStringEncoder>) objectEncoder;
+////- (id<FLStringEncoder>) objectEncoder;
+//@end

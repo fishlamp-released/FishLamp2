@@ -481,18 +481,6 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 
 @end
 
-@implementation FLNumberObject (FLSqlStatement)
-+ (FLDatabaseType) databaseColumnType {
-    return FLDatabaseTypeInteger;
-}
-@end
-
-@implementation FLFloatNumber  (FLSqlStatement)
-+ (FLDatabaseType) databaseColumnType {
-    return FLDatabaseTypeFloat;
-}
-@end
-
 @implementation NSNumber (FLSqlStatement)
 - (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
 	
