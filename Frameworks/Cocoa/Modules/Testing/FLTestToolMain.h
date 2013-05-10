@@ -8,4 +8,4 @@
 
 #import "FLCocoaRequired.h"
 
-extern int FLTestToolMain(int argc, const char *argv[]);
+extern int FLTestToolMain(int argc, const char *argv[], NSString* bundleIdentifier, NSString* appName, NSString* version);

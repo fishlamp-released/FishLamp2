@@ -65,12 +65,6 @@
 #endif
 }
 
-- (FLPromise*) promise {
-    FLPromise* promise = [FLPromise promise];
-    [self.finisher addPromise:promise];
-    return promise;
-}
-
 - (void) finisher:(FLFinisher*) finisher didFinishWithResult:(id) result {
     self.context = nil;
     [self sendFinishMessagesWithResult:result];

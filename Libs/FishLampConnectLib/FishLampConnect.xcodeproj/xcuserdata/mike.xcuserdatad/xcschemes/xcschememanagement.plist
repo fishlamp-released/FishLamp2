@@ -7,27 +7,32 @@
 		<key>FishLampConnect-OSX-32-MRC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>26</integer>
+			<integer>16</integer>
 		</dict>
 		<key>FishLampConnect-OSX-3264-MRC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>27</integer>
+			<integer>17</integer>
 		</dict>
 		<key>FishLampConnect-OSX-64-ARC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>28</integer>
+			<integer>18</integer>
 		</dict>
 		<key>FishLampConnect-OSX-64-MRC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>29</integer>
+			<integer>19</integer>
 		</dict>
 		<key>FishLampConnect-iOS-ARC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>15</integer>
+		</dict>
+		<key>FishLampConnectTestTool-64-MRC.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>41</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -53,6 +58,11 @@
 			<true/>
 		</dict>
 		<key>27CBBE2916768BA600753D0A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27EF350A173C2E61004F2404</key>
 		<dict>
 			<key>primary</key>
 			<true/>

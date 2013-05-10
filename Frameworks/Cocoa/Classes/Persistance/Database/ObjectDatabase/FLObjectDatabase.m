@@ -18,6 +18,8 @@
 #import "FLSqlBuilder.h"
 #import "FLDatabase_Internal.h"
 #import "FLAppInfo.h"
+#import "FLObjectDescriber.h"
+#import "FLPropertyDescriber.h"
 
 @implementation FLObjectDatabase
 
@@ -64,8 +66,10 @@
     [statement appendString:SQL_SELECT andString:resultColumns];
     [statement appendString:SQL_FROM andString:table.tableName];
     
-    FLAssert([statement appendWhereClauseForSelectingObject:inputObject] != NO);
-    
+    if(![statement appendWhereClauseForSelectingObject:inputObject]) {
+        FLAssertFailed();
+    }
+   
     statement.objectResultBlock = ^(id object, BOOL* stop) {
         
         if(!outObjects) {
@@ -202,6 +206,23 @@
         }];
     }
 }
+
+//- (id) sqlStatement:(FLSqlStatement*) statement 
+//   willDecodeObject:(NSData*) data 
+//          forTable:(FLDatabaseTable*) table
+//          forColumn:(FLDatabaseColumn*) column {
+//
+//    FLObjectDescriber* objectDescriber = [[table classRepresentedByTable] objectDescriber];
+//
+//    FLPropertyDescriber* property = [objectDescriber propertyForName:column.decodedColumnName];
+//
+//    if(property) {
+//        return [property representedObjectFromSqliteColumnData:data];
+//    }
+//
+//    return nil;
+//}
+
 
 
 @end

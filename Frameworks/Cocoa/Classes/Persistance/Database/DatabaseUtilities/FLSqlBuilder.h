@@ -48,15 +48,16 @@ typedef enum {
     BOOL _insertPrefixDelimiterSpace;
 }
 
-- (id) initWithString:(NSString*) string;
-
-+ (FLSqlBuilder*) sqlBuilder;
-+ (FLSqlBuilder*) sqlBuilderWithString:(NSString*) string;
 
 @property (readwrite, nonatomic, copy) NSString* sqlString;
 
 // objects are appended as placeholders "?" until the SQL statement is bound to data.
 @property (readonly, nonatomic, strong) NSArray* objects;
+
+- (id) initWithString:(NSString*) string;
+
++ (FLSqlBuilder*) sqlBuilder;
++ (FLSqlBuilder*) sqlBuilderWithString:(NSString*) string;
 
 - (void) openParen;
 - (void) closeParen;

@@ -14,45 +14,6 @@
 #import "FLStackTrace.h"
 #endif
 
-//@protocol FLOperation;
-//
-//@protocol FLFinishable <NSObject>
-//
-//@end
-//
-//
-//@interface FLOldFinisher : NSObject<FLFinishable> {
-//@private
-//    dispatch_semaphore_t _semaphore;
-//    FLPromisedResult _result;
-//    BOOL _finished;
-//    BOOL _finishOnMainThread;
-//    fl_completion_block_t _didFinish;
-//#if DEBUG
-//    FLStackTrace* _createdStackTrace;
-//    FLStackTrace* _finishedStackTrace;
-//#endif    
-//}
-//
-//// NO by default.
-//@property (readwrite, assign) BOOL finishOnMainThread; 
-//
-//@property (readonly, strong) FLPromisedResult result;
-//@property (readonly, assign, getter=isFinished) BOOL finished;
-//
-//// designated initializer
-//- (id) initWithCompletion:(fl_completion_block_t) completion;
-//
-//// class instantiators
-//+ (id) finisher;
-//
-//+ (id) finisher:(fl_completion_block_t) completion;
-//
-//
-//// blocks in current thread. 
-//- (id) waitUntilFinished;
-//@end
-
 #import "FLPromise.h"
 
 @protocol FLFinisherDelegate;
@@ -65,9 +26,16 @@
 
 @property (readwrite, assign) id<FLFinisherDelegate> delegate;
 @property (readonly, assign) BOOL willFinish;
+@property (readonly, strong) FLPromise* firstPromise;
 
 + (id) finisher;
-+ (id) finisher:(FLPromise*) promise;
++ (id) finisherWithBlock:(fl_completion_block_t) completion;
++ (id) finisherWithTarget:(id) target action:(SEL) action;
++ (id) finisherWithPromise:(FLPromise*) promise;
+
+- (FLPromise*) addPromise;
+- (FLPromise*) addPromiseWithBlock:(fl_completion_block_t) completion;
+- (FLPromise*) addPromiseWithTarget:(id) target action:(SEL) action;
 
 - (void) addPromise:(FLPromise*) promise;
 

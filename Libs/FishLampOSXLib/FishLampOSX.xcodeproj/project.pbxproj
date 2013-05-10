@@ -47,6 +47,14 @@
 		272EE7F21732F8020025CFD6 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */; };
 		272EE7F31732F8020025CFD6 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */; };
 		272EE7F41732F8020025CFD6 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */; };
+		2743D31E1739BE08003BC70A /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2743D31B1739BE08003BC70A /* FLErrorWindowController.h */; };
+		2743D31F1739BE08003BC70A /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2743D31B1739BE08003BC70A /* FLErrorWindowController.h */; };
+		2743D3201739BE08003BC70A /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2743D31B1739BE08003BC70A /* FLErrorWindowController.h */; };
+		2743D3211739BE08003BC70A /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2743D31B1739BE08003BC70A /* FLErrorWindowController.h */; };
+		2743D3221739BE08003BC70A /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2743D31C1739BE08003BC70A /* FLErrorWindowController.m */; };
+		2743D3231739BE08003BC70A /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2743D31C1739BE08003BC70A /* FLErrorWindowController.m */; };
+		2743D3241739BE08003BC70A /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2743D31C1739BE08003BC70A /* FLErrorWindowController.m */; };
+		2743D3251739BE08003BC70A /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2743D31C1739BE08003BC70A /* FLErrorWindowController.m */; };
 		2744B3F0171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
 		2744B3F1171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
 		2744B3F2171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
@@ -301,41 +309,6 @@
 			remoteGlobalIDString = 27CBC1F416768BA600753D0A;
 			remoteInfo = "FishLampCocoa-OSX-3264-MRC";
 		};
-		27C62D7B170B4A3C0093F260 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 27C62AD2170B37EC0093F260;
-			remoteInfo = "FishLampCocoaTests-OSX-64-MRC";
-		};
-		27C62D7D170B4A3C0093F260 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 27C62B79170B441A0093F260;
-			remoteInfo = "FishLampCocoaTests-OSX-64-ARC";
-		};
-		27C62D7F170B4A3C0093F260 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 27C62BB3170B442A0093F260;
-			remoteInfo = "FishLampCocoaTests-OSX-32-MRC";
-		};
-		27C62D81170B4A3C0093F260 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 27C62BED170B44380093F260;
-			remoteInfo = "FishLampCocoaTests-OSX-3264-ARC";
-		};
-		27C62D83170B4A3C0093F260 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 27C62C27170B44450093F260;
-			remoteInfo = "FishLampCocoaTests-iOS-ARC";
-		};
 		27C62D85170B4A3C0093F260 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */;
@@ -360,6 +333,11 @@
 		272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLModelObjectDocument.h; sourceTree = "<group>"; };
 		272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLModelObjectDocument.m; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampOSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2743D31B1739BE08003BC70A /* FLErrorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLErrorWindowController.h; sourceTree = "<group>"; };
+		2743D31C1739BE08003BC70A /* FLErrorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLErrorWindowController.m; sourceTree = "<group>"; };
+		2743D31D1739BE08003BC70A /* FLErrorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLErrorWindowController.xib; sourceTree = "<group>"; };
+		2743D3311739BEB7003BC70A /* attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attention.png; sourceTree = "<group>"; };
+		2743D3321739BEB7003BC70A /* attention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attention@2x.png"; sourceTree = "<group>"; };
 		2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindowController+FLModalAdditions.h"; sourceTree = "<group>"; };
 		2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindowController+FLModalAdditions.m"; sourceTree = "<group>"; };
 		2744B447172042930090B70D /* FLPanelWizard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelWizard.h; sourceTree = "<group>"; };
@@ -469,11 +447,6 @@
 				2709A0C916EBAC8700C59905 /* libFishLampCocoa-OSX-64-MRC.a */,
 				2709A0CB16EBAC8700C59905 /* libFishLampCocoa-OSX-64-ARC.a */,
 				2709A0CD16EBAC8700C59905 /* libFishLampCocoa-OSX-3264-MRC.a */,
-				27C62D7C170B4A3C0093F260 /* libFishLampCocoaTests-OSX-64-MRC.a */,
-				27C62D7E170B4A3C0093F260 /* libFishLampCocoaTests-OSX-64-ARC.a */,
-				27C62D80170B4A3C0093F260 /* libFishLampCocoaTests-OSX-32-MRC.a */,
-				27C62D82170B4A3C0093F260 /* libFishLampCocoaTests-OSX-3264-ARC.a */,
-				27C62D84170B4A3C0093F260 /* libFishLampCocoaTests-iOS-ARC.a */,
 				27C62D86170B4A3C0093F260 /* CocoaTestTool-64-MRC */,
 			);
 			name = Products;
@@ -614,6 +587,11 @@
 				2744B4C8172046080090B70D /* NSViewController+FLErrorSheet.m */,
 				2702EF61172B02230084066F /* FLFileDropTableViewController.h */,
 				2702EF62172B02230084066F /* FLFileDropTableViewController.m */,
+				2743D31B1739BE08003BC70A /* FLErrorWindowController.h */,
+				2743D31C1739BE08003BC70A /* FLErrorWindowController.m */,
+				2743D31D1739BE08003BC70A /* FLErrorWindowController.xib */,
+				2743D3311739BEB7003BC70A /* attention.png */,
+				2743D3321739BEB7003BC70A /* attention@2x.png */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -745,6 +723,7 @@
 				27C77D61172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
 				272EE7ED1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
 				27A848881732FB1600115833 /* FLPanelManagerState.h in Headers */,
+				2743D31E1739BE08003BC70A /* FLErrorWindowController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,6 +765,7 @@
 				27C77D63172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
 				272EE7EF1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
 				27A8488A1732FB1600115833 /* FLPanelManagerState.h in Headers */,
+				2743D3201739BE08003BC70A /* FLErrorWindowController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -827,6 +807,7 @@
 				27C77D62172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
 				272EE7EE1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
 				27A848891732FB1600115833 /* FLPanelManagerState.h in Headers */,
+				2743D31F1739BE08003BC70A /* FLErrorWindowController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,6 +849,7 @@
 				27C77D64172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
 				272EE7F01732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
 				27A8488B1732FB1600115833 /* FLPanelManagerState.h in Headers */,
+				2743D3211739BE08003BC70A /* FLErrorWindowController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1014,45 +996,10 @@
 			remoteRef = 2709A0CC16EBAC8700C59905 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27C62D7C170B4A3C0093F260 /* libFishLampCocoaTests-OSX-64-MRC.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libFishLampCocoaTests-OSX-64-MRC.a";
-			remoteRef = 27C62D7B170B4A3C0093F260 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		27C62D7E170B4A3C0093F260 /* libFishLampCocoaTests-OSX-64-ARC.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libFishLampCocoaTests-OSX-64-ARC.a";
-			remoteRef = 27C62D7D170B4A3C0093F260 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		27C62D80170B4A3C0093F260 /* libFishLampCocoaTests-OSX-32-MRC.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libFishLampCocoaTests-OSX-32-MRC.a";
-			remoteRef = 27C62D7F170B4A3C0093F260 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		27C62D82170B4A3C0093F260 /* libFishLampCocoaTests-OSX-3264-ARC.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libFishLampCocoaTests-OSX-3264-ARC.a";
-			remoteRef = 27C62D81170B4A3C0093F260 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		27C62D84170B4A3C0093F260 /* libFishLampCocoaTests-iOS-ARC.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libFishLampCocoaTests-iOS-ARC.a";
-			remoteRef = 27C62D83170B4A3C0093F260 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		27C62D86170B4A3C0093F260 /* CocoaTestTool-64-MRC */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
-			path = "CocoaTestTool-64-MRC";
+			path = "FishLampCocoaTestTool-64-MRC";
 			remoteRef = 27C62D85170B4A3C0093F260 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1093,6 +1040,7 @@
 				27C77D65172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
 				272EE7F11732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
 				27A8488C1732FB1600115833 /* FLPanelManagerState.m in Sources */,
+				2743D3221739BE08003BC70A /* FLErrorWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1130,6 +1078,7 @@
 				27C77D67172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
 				272EE7F31732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
 				27A8488E1732FB1600115833 /* FLPanelManagerState.m in Sources */,
+				2743D3241739BE08003BC70A /* FLErrorWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,6 +1116,7 @@
 				27C77D66172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
 				272EE7F21732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
 				27A8488D1732FB1600115833 /* FLPanelManagerState.m in Sources */,
+				2743D3231739BE08003BC70A /* FLErrorWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1204,6 +1154,7 @@
 				27C77D68172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
 				272EE7F41732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
 				27A8488F1732FB1600115833 /* FLPanelManagerState.m in Sources */,
+				2743D3251739BE08003BC70A /* FLErrorWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

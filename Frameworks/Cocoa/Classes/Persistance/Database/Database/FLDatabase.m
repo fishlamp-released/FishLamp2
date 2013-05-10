@@ -18,12 +18,6 @@
 #import "FLDispatch.h"
 #import "FLDatabase+Introspection.h"
 
-static NSString* kVersionId = nil;
-static NSString* kVersion = nil;
-static NSString* kName = nil;
-static NSString* kEntry = nil;
-static NSString* kWrittenDate = nil;
-static NSString* kHistory = nil;
 static NSString* s_version = nil;
 
 @interface FLDatabase ()
@@ -36,40 +30,14 @@ static NSString* s_version = nil;
 
 @synthesize sqlite3 = _sqlite;
 @synthesize filePath = _filePath;
-@synthesize columnDecoder = _columnDecoder;
 @synthesize tables = _tables;
 @synthesize isOpen = _isOpen;
 @synthesize delegate = _delegate;
 
-static FLDatabaseColumnDecoder s_decoder = nil;
-//static int s_count = 0;
-
-+ (FLDatabaseColumnDecoder) defaultColumnDecoder {
-    return s_decoder;
-}
-
-+ (void) setDefaultColumnDecoder:(FLDatabaseColumnDecoder) decoder {
-    s_decoder = decoder;
-}
-
-
 + (void) initialize {
     static BOOL didInit = NO;
     if(!didInit) {
-        kVersionId = FLRetain(FLDatabaseNameEncode(@"version_id"));
-        kVersion = FLRetain(FLDatabaseNameEncode(@"version"));
-        kHistory = FLRetain(FLDatabaseNameEncode(@"history"));
-        kName = FLRetain(FLDatabaseNameEncode(@"name"));
-        kEntry = FLRetain(FLDatabaseNameEncode(@"entry"));
-        kWrittenDate = FLRetain(FLDatabaseNameEncode(@"written_date"));
-
         [FLDatabase setCurrentRuntimeVersion:[FLAppInfo appVersion]];
-
-#if FL_LEGACY_DB_ENCODING
-        [FLDatabase setDefaultColumnDecoder:FLLegacyDatabaseColumnDecoder];
-#else
-        [FLDatabase setDefaultColumnDecoder:FLDefaultDatabaseColumnDecoder];
-#endif
     }
 }
 
@@ -86,7 +54,6 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 	if(self) {
 		_filePath = [filePath copy];
 		_sqlite = nil;
-        self.columnDecoder = s_decoder;
 #if IOS
 	[[NSNotificationCenter defaultCenter] addObserver:self
 		selector:@selector(handleLowMemory:)
@@ -187,39 +154,38 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     self.sqlite3 = sqlite3;
 }
 
+#define kVersionId FL_DATABASE_PREFIX \
+    @"version_id"
+
+#define kVersion FL_DATABASE_PREFIX \
+    @"version"
+
+#define kHistory FL_DATABASE_PREFIX \
+    @"history"
+
+#define kName FL_DATABASE_PREFIX \
+    @"name"
+
+#define kEntry FL_DATABASE_PREFIX \
+    @"entry"
+
+#define kWrittenDate FL_DATABASE_PREFIX \
+    @"written_date"
+
 - (void) addVersionTables {
-
     FLDatabaseTable* historyTable = [FLDatabaseTable databaseTableWithTableName:kHistory];
-    
-    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kName
-        columnType:FLDatabaseTypeText 
-        columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]]];
-
-    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kEntry
-        columnType:FLDatabaseTypeText 
-        columnConstraints:nil]];
-
-    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kWrittenDate
-        columnType:FLDatabaseTypeDate
-        columnConstraints:nil]];
-
+    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kName columnType:FLDatabaseTypeText]];
+    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kEntry columnType:FLDatabaseTypeText]];
+    [historyTable addColumn:[FLDatabaseColumn databaseColumnWithName:kWrittenDate columnType:FLDatabaseTypeDate]];
+    [historyTable addColumnConstraint:[FLPrimaryKeyConstraint primaryKeyConstraint] forColumnName:kName];
 	[self createTableIfNeeded:historyTable];
 
     FLDatabaseTable* versionTable = [FLDatabaseTable databaseTableWithTableName:kVersion];
-    
-    [versionTable addColumn:[FLDatabaseColumn databaseColumnWithName:kVersionId
-            columnType:FLDatabaseTypeInteger 
-            columnConstraints:[NSArray arrayWithObject:[FLPrimaryKeyConstraint primaryKeyConstraint]]
-            ]];
-
-    [versionTable addColumn:[FLDatabaseColumn databaseColumnWithName:kVersion
-            columnType:SQLITE_TEXT 
-            columnConstraints:nil
-            ]];
+    [versionTable addColumn:[FLDatabaseColumn databaseColumnWithName:kVersionId columnType:FLDatabaseTypeInteger]];
+    [versionTable addColumn:[FLDatabaseColumn databaseColumnWithName:kVersion columnType:FLDatabaseTypeText]];
+    [versionTable addColumnConstraint:[FLPrimaryKeyConstraint primaryKeyConstraint] forColumnName:kVersionId];
 	[self createTableIfNeeded:versionTable];
-
 }
-
 
 - (BOOL) openDatabase:(FLDatabaseOpenFlags) flags {
     
@@ -360,9 +326,8 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 - (void) executeSql:(FLSqlBuilder*) sql 
         rowResultBlock:(FLDatabaseStatementDidSelectRowBlock) rowResultBlock {
     
-    rowResultBlock = FLCopyWithAutorelease(rowResultBlock);
     
-    FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:nil];
+    FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self];
     @try {
         BOOL stop = NO;
         [sqlStatement prepareWithSql:sql];
@@ -401,14 +366,14 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     
     FLAssertNotNil(statement);
 
-    FLDecodeColumnObjectBlock decoder = nil;
-    if(statement.table && self.columnDecoder) {
-        decoder = ^ id (NSString* column, id object) {
-            return self.columnDecoder(self, statement.table, [statement.table columnByName:column], object);
-        };
-    }
+//    FLDecodeColumnObjectBlock decoder = nil;
+//    if(statement.table) {
+//        decoder = ^ id (NSString* column, id object) {
+//            return self.columnDecoder(self, statement.table, [statement.table columnByName:column], object);
+//        };
+//    }
 
-    FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self columnDecoder:decoder];
+    FLSqlStatement* sqlStatement = [FLSqlStatement sqlStatement:self table:statement.table];
     @try {
     
         BOOL stop = NO;
@@ -455,15 +420,20 @@ static FLDatabaseColumnDecoder s_decoder = nil;
     }
 }
 
+- (void) addTable:(FLDatabaseTable*) table {
+    [_tables setObject:table forKey:table.tableName];
+    [_tables setObject:table forKey:table.decodedTableName];
+}
 
 - (FLDatabaseTable*) tableForName:(NSString*) name {
-
-    NSString* className = FLDatabaseNameDecode(name);
-    FLDatabaseTable* table = [_tables objectForKey:className];
+    FLDatabaseTable* table = [_tables objectForKey:name];
     if(!table) {
-        Class theClass = NSClassFromString(className);
+        Class theClass = NSClassFromString(FLDatabaseNameDecode(name));
         if(theClass) {
             table = [theClass sharedDatabaseTable];
+            if(table) {
+                [self addTable:table];
+            }
         }
 	}
     return table;
@@ -493,9 +463,12 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 
 - (void) createTableIfNeeded:(FLDatabaseTable*) table  {
 	
-    if(![_tables objectForKey:table.decodedTableName]) {
+    if(![_tables objectForKey:table.tableName]) {
         [self _createTableIfNotInDatabase:table];
-        [_tables setObject:table forKey:table.decodedTableName];
+
+        if(table) {
+            [self addTable:table];
+        }
     }
 }
 
@@ -533,6 +506,8 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 {
 	FLAssertStringIsNotEmpty(tableName);
     
+    tableName = FLDatabaseNameEncode(tableName);
+    
     __block BOOL exists = NO;
 
     FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
@@ -551,8 +526,10 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 - (void) dropTableByName:(NSString*) tableName {
 	FLAssertStringIsNotEmpty(tableName);
 
+    tableName = FLDatabaseNameEncode(tableName);
+
 	@try  {
-		[self execute:[NSString stringWithFormat:@"DROP TABLE %@", tableName]];
+		[self execute:[NSString stringWithFormat:@"DROP TABLE %@", FLDatabaseNameEncode(tableName)]];
 	}
 	@catch(NSException* ex) {
 		if(!ex.error.isTableDoesNotExistError) {
@@ -560,7 +537,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 		}
 	}
 	
-	[_tables removeObjectForKey:tableName];
+	[_tables removeObjectForKey:FLDatabaseNameEncode(tableName)];
 	[_tables removeObjectForKey:FLDatabaseNameDecode(tableName)];
 }
 
@@ -573,7 +550,7 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 
     FLSqlBuilder* sql = [FLSqlBuilder sqlBuilder];
     sql.sqlString = action;
-    [sql appendString:SQL_INTO andString:tableName];
+    [sql appendString:SQL_INTO andString:FLDatabaseNameEncode(tableName)];
     [sql appendInsertClauseForRow:row];
 
     [self executeSql:sql rowResultBlock:nil];
@@ -677,9 +654,52 @@ static FLDatabaseColumnDecoder s_decoder = nil;
 	[self insertOrReplaceRowInTable:kHistory row:row];
 }
 
+//- (NSDate*) sqlStatement:(FLSqlStatement*) statement willDecodeDate:(NSNumber*) number  forTable:(FLDatabaseTable*) table forColumn:(FLDatabaseColumn*) column {
+//    switch(column.columnType) {
+//        case FLDatabaseTypeFloat:
+//            return [NSDate dateWithTimeIntervalSinceReferenceDate:[number doubleValue]];
+//            break;
+//            
+//        case FLDatabaseTypeInteger:
+//            return [NSDate dateWithTimeIntervalSinceReferenceDate:(NSTimeInterval) [number longLongValue]];
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//
+//    return nil;
+//}
+
+- (NSString*) sqlStatement:(FLSqlStatement*) statement willDecodeString:(NSString*) string  forTable:(FLDatabaseTable*) table  forColumn:(FLDatabaseColumn*) column {
+    return string;
+}
+
+- (NSNumber*) sqlStatement:(FLSqlStatement*) statement willDecodeNumber:(NSNumber*) number forTable:(FLDatabaseTable*) table forColumn:(FLDatabaseColumn*) column {
+    return number;
+}
+
+- (NSData*) sqlStatement:(FLSqlStatement*) statement willDecodeBlob:(NSData*) data  forTable:(FLDatabaseTable*) table forColumn:(FLDatabaseColumn*) column {
+    return data;
+}
+
+- (id) sqlStatement:(FLSqlStatement*) statement willDecodeObject:(NSData*) data forTable:(FLDatabaseTable*) table forColumn:(FLDatabaseColumn*) column {
+    return data;
+}
 
 @end
 
+@implementation NSObject (FLDatabase)
+- (id<NSCoding>) databaseRepresentation {
+    return [self conformsToProtocol:@protocol(NSCoding)] ? (id<NSCoding>) self : nil;
+}
++ (id) objectWithDatabaseRepresentation:(id) representation {
+    return representation;
+}
++ (FLDatabaseType) databaseColumnType {
+    return FLDatabaseTypeObject;
+}
+@end
 
 
 

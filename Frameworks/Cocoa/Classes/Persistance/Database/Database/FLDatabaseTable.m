@@ -10,7 +10,6 @@
 #import "FLDatabase_Internal.h"
 
 #import "FLObjcRuntime.h"
-#import "FLSqlStatement.h"
 #import "FLPropertyAttributes.h"
 #import "FLObjectDescriber.h"
 #import "FLObjectDescriber.h"
@@ -34,11 +33,9 @@
 @synthesize indexes = _indexes;
 @synthesize decodedTableName = _decodedTableName;
 @synthesize classRepresentedByTable = _tableClass;
-@synthesize columnDecoder = _columnDecoder;
 @synthesize primaryKeyColumns = _primaryKeyColumns;
 @synthesize indexedColumns = _indexedColumns;
 @synthesize columnConstraints = _columnConstraints;
-
 
 - (void) setTableName:(NSString*) tableName {
     FLAssertStringIsNotEmpty(tableName);
@@ -72,7 +69,12 @@
         }
 
         [aClass databaseTableDidAddColumns:self];
-        [aClass databaseTableWasCreated:self];
+        [aClass didCreateDatabaseTable:self];
+        
+        SEL primaryKeyColumn = [aClass databasePrimaryKeyColumn];
+        if(primaryKeyColumn) {
+            [self addColumnConstraint:[FLPrimaryKeyConstraint primaryKeyConstraint] forColumnName:NSStringFromSelector(primaryKeyColumn)];
+        }
 	}
 	
 	return self;
@@ -161,19 +163,18 @@
 	NSMutableString* sql = [NSMutableString stringWithFormat:@"CREATE TABLE %@ (", self.tableName]; //  IF NOT EXISTS
 	int i = 0;
 	for(FLDatabaseColumn* col in self.columns.objectEnumerator) {			
-		if(col.columnType != FLDatabaseTypeNone) {
-            
-            NSSet* constraints = [_columnConstraints objectForKey:col.columnName];
-        
-			if(constraints) {
-				[sql appendFormat:@"%@%@ %@ %@", (i++ > 0 ? @", " : @""), col.columnName, 
-                    FLDatabaseTypeToString(col.columnType), 
-                    [FLDatabaseColumnConstraint columnConstraintsAsString:constraints]];
-			}
-			else {
-				[sql appendFormat:@"%@%@ %@", (i++ > 0 ? @", " : @""), col.columnName, FLDatabaseTypeToString(col.columnType)];
-			}
-		}
+        NSSet* constraints = [_columnConstraints objectForKey:col.columnName];
+
+        if(constraints) {
+            [sql appendFormat:@"%@%@ %@ %@", (i++ > 0 ? @", " : @""), col.columnName, 
+                FLDatabaseTypeToString(col.columnType), 
+                [FLDatabaseColumnConstraint columnConstraintsAsString:constraints]];
+        }
+        else {
+            [sql appendFormat:@"%@%@ %@", (i++ > 0 ? @", " : @""), 
+                col.columnName, 
+                FLDatabaseTypeToString(col.columnType)];
+        }
 	}
 
 	[sql appendString:@")"];
@@ -243,12 +244,10 @@
     // skip over properties add by superclass
             if(![_columns objectForKey:propName]) {
             
-                FLDatabaseType type = [property representedObjectSqlType];
-                FLAssert(type != FLDatabaseTypeNone);
+                
             
-                FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:propName
-                    columnType:type
-                    columnConstraints:nil]; 
+            
+                FLDatabaseColumn* col = [FLDatabaseColumn databaseColumnWithName:propName columnType:property.databaseColumnType]; 
 
                 [aClass databaseTable:self willAddDatabaseColumn:col];            
 
@@ -370,10 +369,13 @@
 + (void) databaseTableDidAddColumns:(FLDatabaseTable*) table {
 }
 
-+ (void) databaseTableWasCreated:(FLDatabaseTable*) table {
++ (void) didCreateDatabaseTable:(FLDatabaseTable*) table {
 
 }
 
++ (SEL) databasePrimaryKeyColumn {
+    return nil;
+}
 
 
 //+ (FLDatabaseTable*) createEmptySqliteTable

@@ -12,7 +12,7 @@
 #import "FLModelObject.h"
 #import "FLDatabase.h"
 
-#import "FLTrace.h"
+//#import "FLTrace.h"
 
 @interface FLPropertyDescriber (Internal)
 @property (readwrite) NSString* propertyName;
@@ -27,6 +27,7 @@
 @interface FLObjectDescriber ()
 - (void) addPropertiesForClass:(Class) aClass;
 - (id) initWithClass:(Class) aClass;
+@property (readwrite, assign) Class objectClass;
 @end
 
 @implementation FLObjectDescriber
@@ -72,6 +73,10 @@ static NSMutableDictionary* s_registry = nil;
     }
 
     return [self registerClass:aClass];
+}
+
++ (id) objectDescriber {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 #if FL_MRC
@@ -131,21 +136,6 @@ static NSMutableDictionary* s_registry = nil;
     return [NSString stringWithFormat:@"%@ %@", NSStringFromClass(self.objectClass), contained.string];
 }
 
-- (void) checkForContainerTypes:(FLPropertyDescriber*) property {
-
-//    if(property.representsArray) {
-//       SEL sel = NSSelectorFromString([NSString stringWithFormat:@"%@AddArrayTypesToProperty:", property.propertyName]);
-//        FLPerformSelector1(objectClass, sel, property);
-//    }
-
-
-//   Class objectClass = property.propertyClass;
-//    if([objectClass isKindOfClass:[NSArray class]]) {
-//        SEL sel = NSSelectorFromString([NSString stringWithFormat:@"%@AddArrayTypesToProperty:", property.propertyName]);
-//        FLPerformSelector1(objectClass, sel, property);
-//    }
-}
-
 - (BOOL) shouldAddProperty:(FLPropertyDescriber*) property {
     return property.representsIvar;
 }
@@ -161,7 +151,6 @@ static NSMutableDictionary* s_registry = nil;
     
         FLPropertyDescriber* propertyDescriber = [FLPropertyDescriber propertyDescriberWithProperty_t:propertys[i]];
         if(propertyDescriber && [self shouldAddProperty:propertyDescriber]) {
-            [self checkForContainerTypes:propertyDescriber];
             [self addProperty:propertyDescriber];
         }
     }
@@ -192,15 +181,23 @@ static NSMutableDictionary* s_registry = nil;
     }
 }
 
++ (id) createDescriberForClass:(Class) aClass {
+    return [aClass isModelObject] ? 
+        FLAutorelease([[FLModelObjectDescriber alloc] initWithClass:aClass]) : 
+        FLAutorelease([[FLObjectDescriber alloc] initWithClass:aClass]);
+    
+}
+
 + (id) registerClass:(Class) aClass {
     FLTrace(@"Registering %@:", NSStringFromClass(aClass));
 
-    FLObjectDescriber* describer = FLAutorelease([[[self class] alloc] initWithClass:aClass]);;
-    [describer describeSelf];
-
+    FLObjectDescriber* describer = [[self class] createDescriberForClass:aClass];
+    
     @synchronized(self) {
         [s_registry setObject:describer forKey:NSStringFromClass(aClass)];
     }
+    [describer describeSelf];
+
     if([aClass isModelObject]) {    
         [aClass didRegisterObjectDescriber:describer];
     }
@@ -240,18 +237,8 @@ static NSMutableDictionary* s_registry = nil;
 }
 
 @end
-@implementation FLAbstractObjectType
-@end
 
-@implementation NSObject (FLObjectDescriber)
-+ (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
-}
-+ (FLObjectDescriber*) objectDescriber { 
-    return [FLObjectDescriber objectDescriber:[self class]]; 
-}
-- (FLObjectDescriber*) objectDescriber {
-    return [[self class] objectDescriber];
-}
+@implementation FLModelObjectDescriber
 @end
 
 @implementation FLLegacyObjectDescriber
@@ -289,6 +276,23 @@ static NSMutableDictionary* s_registry = nil;
     return property.representsObject && property.representsIvar;
 }
 
++ (id) createDescriberForClass:(Class) aClass {
+    return FLAutorelease([[FLLegacyObjectDescriber alloc] initWithClass:aClass]);
+}
+
 
 @end
 
+@implementation FLAbstractObjectType
+@end
+
+@implementation NSObject (FLObjectDescriber)
++ (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
+}
++ (FLObjectDescriber*) objectDescriber { 
+    return [FLObjectDescriber objectDescriber:[self class]]; 
+}
+- (FLObjectDescriber*) objectDescriber {
+    return [[self class] objectDescriber];
+}
+@end

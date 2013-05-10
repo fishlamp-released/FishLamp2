@@ -42,12 +42,14 @@
 - (FLPropertyInflator*) firstInflator;
 - (FLPropertyInflator*) lastInflator;
 
-- (FLPropertyInflator*) startInflatingPropertyWithName:(NSString*) propertyName withState:(int) state;
+- (FLPropertyInflator*) startInflatingPropertyWithName:(NSString*) propertyName 
+                                             withState:(int) state;
+
 - (void) finishInflatingProperty;
 
 - (void) addPropertyWithName:(NSString*) propertyName 
-   withEncodedString:(NSString*) data 
-           withState:(int) state;
+           withEncodedString:(NSString*) data 
+                   withState:(int) state;
 
 // debugging/errors
 - (void) setError:(NSError*) error errorHint:(int) errorHint;

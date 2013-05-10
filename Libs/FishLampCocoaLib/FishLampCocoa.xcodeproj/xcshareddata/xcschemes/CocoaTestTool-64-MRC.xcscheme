@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27C62D38170B45C80093F260"
-               BuildableName = "CocoaTestTool-64-MRC"
-               BlueprintName = "CocoaTestTool-64-MRC"
+               BuildableName = "FishLampCocoaTestTool-64-MRC"
+               BlueprintName = "FishLampCocoaTestTool-64-MRC"
                ReferencedContainer = "container:FishLampCocoa.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27C62D38170B45C80093F260"
-            BuildableName = "CocoaTestTool-64-MRC"
-            BlueprintName = "CocoaTestTool-64-MRC"
+            BuildableName = "FishLampCocoaTestTool-64-MRC"
+            BlueprintName = "FishLampCocoaTestTool-64-MRC"
             ReferencedContainer = "container:FishLampCocoa.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -52,8 +52,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27C62D38170B45C80093F260"
-            BuildableName = "CocoaTestTool-64-MRC"
-            BlueprintName = "CocoaTestTool-64-MRC"
+            BuildableName = "FishLampCocoaTestTool-64-MRC"
+            BlueprintName = "FishLampCocoaTestTool-64-MRC"
             ReferencedContainer = "container:FishLampCocoa.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -70,8 +70,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "27C62D38170B45C80093F260"
-            BuildableName = "CocoaTestTool-64-MRC"
-            BlueprintName = "CocoaTestTool-64-MRC"
+            BuildableName = "FishLampCocoaTestTool-64-MRC"
+            BlueprintName = "FishLampCocoaTestTool-64-MRC"
             ReferencedContainer = "container:FishLampCocoa.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

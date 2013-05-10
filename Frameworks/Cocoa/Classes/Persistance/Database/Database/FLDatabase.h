@@ -18,21 +18,19 @@
 #import "FLDatabaseErrors.h"
 #import "FLDatabaseColumnDecoder.h"
 #import "FLDatabaseStatement.h"
+#import "FLSqlStatement.h"
 
 @protocol FLDatabaseDelegate;
 
-@interface FLDatabase : NSObject {
+@interface FLDatabase : NSObject<FLSqlStatementDelegate> {
 @private
 	sqlite3* _sqlite;
 	NSString* _filePath;
 	NSMutableDictionary* _tables;
-	FLDatabaseColumnDecoder _columnDecoder;
     BOOL _isOpen;
     __unsafe_unretained id<FLDatabaseDelegate> _delegate;
 }
 @property (readwrite, assign, nonatomic) id<FLDatabaseDelegate> delegate;
-
-@property (readwrite, assign, nonatomic) FLDatabaseColumnDecoder columnDecoder;
 
 /// returns path to db file
 @property (readonly, retain, nonatomic) NSString* filePath;
@@ -83,11 +81,6 @@
 
 // misc
 - (void) purgeMemoryIfPossible;
-
-// utils
-+ (FLDatabaseColumnDecoder) defaultColumnDecoder;
-+ (void) setDefaultColumnDecoder:(FLDatabaseColumnDecoder) decoder;
-
 
 // tables
 /// does the table exist in the db?
@@ -182,6 +175,11 @@ NSString* FLDatabaseNameDecode(NSString* internalName) {
 	return FLDatabaseIsInternalNameEncoded_(internalName) ? [internalName substringFromIndex:FL_DATABASE_PREFIX.length] : internalName;
 }
 
+@interface NSObject (FLDatabase)
+- (id<NSCoding>) databaseRepresentation; // returns self by default if implements nscoding or nil
++ (id) objectWithDatabaseRepresentation:(id) representation; // returns representation by default
++ (FLDatabaseType) databaseColumnType;
+@end
 
 
 

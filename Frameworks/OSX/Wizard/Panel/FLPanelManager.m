@@ -122,7 +122,7 @@
 
     panel.identifier = identifier;
     
-    FLLog(@"Added Panel: %@ for identifier: %@", [panel description], [identifier description]);
+    FLTrace(@"Added Panel: %@ for identifier: %@", [panel description], [identifier description]);
     
 //    panel.view.wantsLayer = YES;
     [panel didMoveToPanelManager:self];
@@ -514,10 +514,6 @@
 }
 - (void) panelManagerDidStart {
 }
-
-//- (void) showAlertView:(NSViewController*) viewController
-//               overView:(NSView*) view
-//               animated:(BOOL) animated;
 
 - (void) showAlertView:(NSViewController*) toShow
     overViewController:(NSViewController*) toHide

@@ -13,10 +13,14 @@
 #import "FLOperation.h"
 
 #import "FLUnitTest.h"
+#import "FLAppInfo.h"
 
-int FLTestToolMain(int argc, const char *argv[]) {
+int FLTestToolMain(int argc, const char *argv[], NSString* bundleIdentifier, NSString* appName, NSString* version) {
     @autoreleasepool {
         @try {
+            [FLAppInfo setAppInfo:bundleIdentifier
+                          appName:appName
+                          version:version];            
         
             FLLogger* logger = [FLLogger logger];
             [logger addLoggerSink:[FLConsoleLogSink consoleLogSink:FLLogOutputSimple]];

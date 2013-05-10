@@ -14,7 +14,7 @@
 
 @interface FLDatabaseObjectStorageService : FLStorageService {
 @private
-    FLObjectDatabaseController* _objectDatabase;
+    FLObjectDatabaseController* _databaseController;
 }
 @property (readonly, strong, nonatomic) FLObjectDatabaseController* databaseController;
 

@@ -11,6 +11,7 @@
 #import "FLSqlBuilder.h"
 #import "FLDatabase_Internal.h"
 #import "FLCoreTypes.h"
+#import "FLDatabaseObjectSerializer.h"
 
 NS_INLINE
 sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
@@ -22,25 +23,74 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 
 @interface FLSqlStatement ()
 @property (readwrite, strong) FLDatabase* database;
-@property (readwrite, copy) FLDecodeColumnObjectBlock columnDecoder;
+
+// column objects
+@property (readonly, assign) int columnCount;
+- (NSString*) nameForColumn:(int) column;
+- (int) typeForColumn:(int) column;
+- (NSNumber*) integerForColumn:(int) col;
+- (NSNumber*) doubleForColumn:(int) col;
+- (NSData*) blobForColumn:(int) col;
+- (NSString*) textForColumn:(int) col;
+
+// raw sql columns
+- (const void *) column_blob:(int) columnIndex;
+- (int) column_bytes:(int) columnIndex;
+- (int) column_bytes16:(int) columnIndex;
+- (double) column_double:(int) columnIndex;
+- (int) column_int:(int) columnIndex;
+- (sqlite3_int64) column_int64:(int) columnIndex;
+- (const unsigned char*) column_text:(int) columnIndex;
+- (const void *) column_text16:(int) columnIndex;
+- (int) column_type:(int) columnIndex;
+- (sqlite3_value*) column_value:(int) columnIndex;
+
+// binding
+- (void) bindBlob:(int) parameterIndex data:(NSData*) data;
+- (void) bindZeroBlob:(int) parameterIndex size:(int) size;
+- (void) bindDouble:(int) parameterIndex doubleValue:(double) aDouble;
+- (void) bindInt:(int) parameterIndex intValue:(int) aInt;
+- (void) bindInt64:(int) parameterIndex intValue:(sqlite3_int64) aInt;
+- (void) bindNull:(int) parameterIndex;
+- (void) bindText:(int) parameterIndex text:(NSString*) text; // encodes as utf8
+
+- (int) bindParameterCount;
+- (const char *) bindParameterName:(int) idx;
+- (int) bindParameterIndex:(const char*) zName;
+
+- (void) clearBindings;
+
 @end
+
+
+
+
 
 @implementation FLSqlStatement
 
 @synthesize database = _database;
-@synthesize columnDecoder = _columnDecoder;
 @synthesize stepValue = _stepValue;
+@synthesize delegate = _delegate;
+@synthesize table = _table;
 
-+ (id) sqlStatement:(FLDatabase*) database columnDecoder:(FLDecodeColumnObjectBlock) columnDecoder {
-    return FLAutorelease([[[self class] alloc] initWithDatabase:database columnDecoder:columnDecoder]);
++ (id) sqlStatement:(FLDatabase*) database {
+    return FLAutorelease([[[self class] alloc] initWithDatabase:database table:nil]);
 }
 
-- (id) initWithDatabase:(FLDatabase*) database columnDecoder:(FLDecodeColumnObjectBlock) columnDecoder {
++ (id) sqlStatement:(FLDatabase*) database table:(FLDatabaseTable*) table {
+    return FLAutorelease([[[self class] alloc] initWithDatabase:database table:table]);
+}
+
+- (id) initWithDatabase:(FLDatabase*) database {
+    return [self initWithDatabase:database table:nil];
+}
+
+- (id) initWithDatabase:(FLDatabase*) database table:(FLDatabaseTable*) table{
     self = [super init];
     if(self) {
         self.database = database;
-        self.columnDecoder = columnDecoder;
-        
+        self.delegate = database;
+        self.table = table;
         FLAssertNotNil(_database);
     }
     return self;
@@ -48,7 +98,7 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 
 #if FL_MRC
 - (void) dealloc {
-    [_columnDecoder release];
+    [_table release];
     [_database release];
     [super dealloc];
 }
@@ -241,6 +291,59 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
     return self.stepValue == SQLITE_DONE;
 }
 
+//- (id) decodeColumnData:(id) data forTable:(FLDatabaseTable*) table forColumn:(FLDatabaseColumn*) column {
+//    
+//    if(column.columnType == FLDatabaseIgnored) {
+//        FLObjectWrapper* wrapper = [NSKeyedUnarchiver unarchiveObjectWithData:data]
+//        return wrapper ? wrapper.object;
+//    }
+//
+//    
+////    switch(column.columnType) {
+////        case FLDatabaseIgnored:
+////            FLAssertFailedWithComment(@"invalid column type");
+////            return nil;
+////            break;
+////            
+////        case FLDatabaseIgnored:
+////        case FLDatabaseIgnored:
+////            return nil;
+////            break;
+////            
+////        case FLDatabaseIgnored:
+////        case FLDatabaseIgnored: 
+////            FLConfirmIsNotNil(data);
+////            FLAssertWithComment([data isKindOfClass:[NSNumber class]], @"expecting a number here");
+////            return [_delegate sqlStatement:self willDecodeNumber:data forTable:table forColumn:column];
+////        break;
+////        
+////        case FLDatabaseIgnored:
+////            FLConfirmIsKindOfClass(data, NSString);
+////            return [_delegate sqlStatement:self willDecodeString:data forTable:table  forColumn:column];
+////        break;
+////			
+////        case FLDatabaseIgnored:
+////            FLConfirmIsKindOfClass(data, NSNumber);
+////            return [_delegate sqlStatement:self willDecodeDate:data forTable:table forColumn:column];
+////        break;
+////			
+////        case FLDatabaseIgnored:
+////            FLConfirmIsNotNil(data);
+////            FLConfirmIsKindOfClass(data, NSData);
+////            return [_delegate sqlStatement:self willDecodeBlob:data forTable:table forColumn:column];
+////        break;
+////			           
+////        case FLDatabaseIgnored:
+////            FLConfirmIsNotNil(data);
+////            FLConfirmIsKindOfClass(data, NSData);
+////            return [_delegate sqlStatement:self willDecodeObject:data forTable:table forColumn:column];
+////        break;
+////    }
+//    
+//    return data;
+//}
+
+
 - (NSDictionary*) nextRow {
 
 	int columnCount = self.columnCount;
@@ -251,9 +354,8 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
         for(int i = 0; i < columnCount; i++) {
             NSString* colName = [self nameForColumn:i];
             
-            FLDatabaseType type = [self typeForColumn:i]; 
             id data = nil;
-            switch(type)
+            switch([self typeForColumn:i])
             {
                 case SQLITE_INTEGER:
                     data = [self integerForColumn:i];
@@ -261,13 +363,33 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
                 break;
                 
                 case SQLITE_FLOAT:
-                    data = [self doubleForColumn:i];
+                    if([_table columnByName:colName].columnType == FLDatabaseTypeDate) {
+                    
+                        NSTimeInterval time = sqlite3_column_double(statement_, i);
+                    
+                        NSTimeInterval timeZoneOffset = [[NSTimeZone defaultTimeZone] secondsFromGMT]; 
+        
+                        time += timeZoneOffset;
+
+                        data = [NSDate dateWithTimeIntervalSinceReferenceDate:time];
+                    }
+                    else {
+                        data = [self doubleForColumn:i];
+                    }
                     FLAssertIsNotNil(data);
+                    
+                    
                 break;
                 
-                case SQLITE_BLOB:
+                case SQLITE_BLOB: {
                     data = [self blobForColumn:i];
                     FLAssertIsNotNil(data);
+                    
+                    FLDatabaseObjectSerializer* wrapper = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                    if(wrapper) {
+                        data = FLRetainWithAutorelease(wrapper.object);
+                    }
+                }
                 break;
                 
                 case SQLITE_NULL:
@@ -278,16 +400,8 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
                     data = [self textForColumn:i];
                     FLAssertIsNotNil(data);
                 break;
-                
-                default:
-                    FLAssertFailedWithComment(@"Unknown data type from sqlite: %d", type);
-                    break;
             }
         
-            if(data && _columnDecoder) {
-                data = _columnDecoder(colName, data);
-            }
-
             if(data) {
                 [row setObject:data forKey:colName];
             }
@@ -367,26 +481,14 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 
 @end
 
-@implementation FLValueEncoder (FLSqlStatement)
-+ (FLDatabaseType) sqlType {
-    return FLDatabaseTypeObject;
-}
-@end
-
 @implementation FLNumberObject (FLSqlStatement)
-//- (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
-//	[statement bindInt64:parameterIndex intValue:[self longLongValue]];
-//}
-+ (FLDatabaseType) sqlType {
++ (FLDatabaseType) databaseColumnType {
     return FLDatabaseTypeInteger;
 }
 @end
 
 @implementation FLFloatNumber  (FLSqlStatement)
-//- (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
-//	[statement bindDouble:parameterIndex intValue:[self longLongValue]];
-//}
-+ (FLDatabaseType) sqlType {
++ (FLDatabaseType) databaseColumnType {
     return FLDatabaseTypeFloat;
 }
 @end
@@ -421,34 +523,29 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 		break;
 	}
 }
-+ (FLDatabaseType) sqlType
-{
-//	switch(CFNumberGetType((CFNumberRef) self))
-//	{
-//		case kCFNumberCGFloatType: 
-//		case kCFNumberDoubleType:
-//		case kCFNumberFloatType:
-//		case kCFNumberFloat32Type:
-//		case kCFNumberFloat64Type:
-//			return FLDatabaseTypeFloat;
-//		break;
-//		
-//		case kCFNumberSInt64Type:
-//		case kCFNumberLongLongType:
-//		case kCFNumberCFIndexType:
-//		case kCFNumberCharType:
-//		case kCFNumberShortType:
-//		case kCFNumberIntType:
-//		case kCFNumberLongType:
-//		case kCFNumberSInt8Type:
-//		case kCFNumberSInt16Type:
-//		case kCFNumberSInt32Type:
-//			return FLDatabaseTypeInteger;
-//		break;
-//	}
+
++ (FLDatabaseType) databaseColumnType {
+    return FLDatabaseTypeInteger;
+}
+
+@end
+
+
+@implementation NSDate (FLSqlStatement) 
+- (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
+
+    NSTimeInterval time = [self timeIntervalSinceReferenceDate];
+
+    NSTimeInterval timeZoneOffset = [[NSTimeZone defaultTimeZone] secondsFromGMT]; 
+    
+    time -= timeZoneOffset;
 	
-	return FLDatabaseTypeFloat;
-	
+    FLLog([NSDate dateWithTimeIntervalSinceReferenceDate:time]);
+    
+    [statement bindDouble:parameterIndex doubleValue:time];
+}
++ (FLDatabaseType) databaseColumnType {
+    return FLDatabaseTypeDate;
 }
 @end
 
@@ -456,103 +553,63 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 - (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
 	[statement bindText:parameterIndex text:self];
 }
-+ (id) decodeObjectWithSqliteColumnString:(NSString*) string {
-    return string;
-}
-+ (FLDatabaseType) sqlType {
-	return FLDatabaseTypeText;
-}
-@end
 
-@implementation NSData (FLSqlStatement) 
-- (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
-	[statement bindBlob:parameterIndex data:self];
-}
-
-+ (FLDatabaseType) sqlType {
-	return FLDatabaseTypeBlob;
-}
-
-@end
-
-@implementation NSNull (FLSqlStatement)
-- (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
-	[statement bindNull:parameterIndex];
-}
-+ (FLDatabaseType) sqlType {
-	return FLDatabaseTypeNull;
-}
-
-@end
-
-@implementation NSDate (FLSqlStatement)
-- (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
-	[statement bindInt64:parameterIndex intValue:(sqlite3_int64)[self timeIntervalSinceReferenceDate]];
-}
-+ (FLDatabaseType) sqlType {
-	return FLDatabaseTypeFloat;
-}
-@end
-
-@implementation NSURL (FLSqlStatement) 
-+ (id) decodeObjectWithSqliteColumnString:(NSString*) string {
-    return [NSURL URLWithString:string];
-}
-- (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
-	[statement bindText:parameterIndex text:[self absoluteString]];
-}
-+ (FLDatabaseType) sqlType {
-	return FLDatabaseTypeText;
++ (FLDatabaseType) databaseColumnType {
+    return FLDatabaseTypeText;
 }
 @end
 
 @implementation NSObject (FLSqlStatement)
-+ (id) decodeObjectWithSqliteColumnData:(NSData*) data {
-	return [NSKeyedUnarchiver unarchiveObjectWithData:data];
-}
-+ (id) decodeObjectWithSqliteColumnString:(NSString*) string {
-    FLAssertFailedWithComment(@"can't decode an object with a string");
-    return nil;
-}
+
+
+
 - (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
-	if([self conformsToProtocol:@protocol(NSCoding)]) {
-		[statement bindBlob:parameterIndex data:[NSKeyedArchiver archivedDataWithRootObject:self]];
+    
+    id archivable = [self databaseRepresentation]; 
+
+	if(archivable) {
+        FLAssert([archivable conformsToProtocol:@protocol(NSCoding)]);
+    
+        FLDatabaseObjectSerializer* wrapper = [FLDatabaseObjectSerializer objectSerializer:archivable];
+        NSData* encodedData = [NSKeyedArchiver archivedDataWithRootObject:wrapper]; 
+		[statement bindBlob:parameterIndex data:encodedData];
 	}
 	else {
-		// throw error?
+        FLLog(@"Warning: trying to archive object %@ that doesn't conform to NSCoding protocol. Implement databaseRepresentation and objectWithDatabaseRepresentation for this class", NSStringFromClass([self class]));
+		[statement bindNull:parameterIndex];
 	}
 }
-+ (FLDatabaseType) sqlType {
-	return [self conformsToProtocol:@protocol(NSCoding)] ? FLDatabaseTypeBlob : FLDatabaseTypeNone;
-}
+//+ (FLDatabaseIgnored) sqlType {
+//	return [self conformsToProtocol:@protocol(NSCoding)] ? FLDatabaseIgnored : FLDatabaseIgnored;
+//}
 @end
 
-#import "FLCocoaRequired.h"
+//#import "FLCocoaRequired.h"
 
-@implementation SDKImage (FLSqlStatement)
-+ (id) decodeObjectWithSqliteColumnData:(NSData*) data {
-	return [SDKImage imageWithData:data];
-}
-- (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
-FIXME("osx");
-#if IOS
-	NSData* data = SDKImageJPEGRepresentation(self, 1.0f);
-	[data bindToStatement:statement parameterIndex:parameterIndex];
-#endif    
-}
-+ (FLDatabaseType) sqlType {
-	return FLDatabaseTypeObject;
-}
-@end
+//@implementation SDKImage (FLSqlStatement)
+////+ (id) decodeObjectWithSqliteColumnData:(NSData*) data {
+////	return [SDKImage imageWithData:data];
+////}
+////- (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
+////FIXME("osx");
+////#if IOS
+////	NSData* data = SDKImageJPEGRepresentation(self, 1.0f);
+////	[data bindToStatement:statement parameterIndex:parameterIndex];
+////#endif    
+////}
+////+ (FLDatabaseIgnored) sqlType {
+////	return FLDatabaseIgnored;
+////}
+//@end
 
 //@implementation SDKColor (FLDatabaseIterator) 
 //- (void) bindToStatement:(FLDatabaseIterator*) statement parameterIndex:(int) parameterIndex
 //{
 //	[statement bindText:parameterIndex text:[self toRgbString]];
 //}
-//+ (FLDatabaseType) sqlType
+//+ (FLDatabaseIgnored) sqlType
 //{
-//	return FLDatabaseTypeColor;
+//	return FLDatabaseIgnored;
 //}
 //@end
 

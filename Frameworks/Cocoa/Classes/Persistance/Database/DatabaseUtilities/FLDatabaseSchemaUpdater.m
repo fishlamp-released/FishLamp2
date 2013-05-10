@@ -396,7 +396,7 @@ NSString* FLLegacyDecodeString(NSString* string) {
 //				foundDifference = YES;
 //			}
 //			
-//			if(!FLStringsAreEqual(type, FLDatabaseTypeToString(col.columnType)))
+//			if(!FLStringsAreEqual(type, FLDatabaseIgnored(col.columnType)))
 //			{
 //				foundDifference = YES;
 //			}

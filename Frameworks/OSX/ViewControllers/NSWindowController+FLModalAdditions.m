@@ -9,32 +9,38 @@
 #import "NSWindowController+FLModalAdditions.h"
 
 @interface NSWindow (FLModalAdditionsMore)
-@property (readwrite, strong, nonatomic) NSWindowController* modalWindowController;
+//@property (readwrite, strong, nonatomic) NSWindowController* modalWindowController;
+//@property (readonly, assign, nonatomic) NSWindow* modalInWindow;
 @end
 
 
 @implementation NSWindow (FLModalAdditions)
-FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, modalWindowController, setModalWindowController, NSWindowController*);
 
-- (void) closeModalWindowController {
-    [self.modalWindowController closeIfModalInWindow:self];
+//FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, modalWindowController, setModalWindowController, NSWindowController*);
+
+//- (void) closeModalWindowController {
+//    [self.modalWindowController.window close];
+//    [self.modalWindowController.window orderOut:self];
+//}
+
+- (IBAction) closeModalWindow:(id) sender {
+    [[NSApplication sharedApplication] endSheet:self];
 }
-
 @end
 
-@implementation NSWindowController (FLModalAdditions)
+@implementation NSViewController (FLModalAdditions)
 
-FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, modalInWindow, setModalInWindow, NSWindow*);
-FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, modalSession, setModalSession, NSValue*);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, modalWindowController, setModalWindowController, NSWindowController*);
 FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, previousFirstResponderForModal, setPreviousFirstResponderForModal, id);
+FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, modalSession, setModalSession, NSValue*);
 
-- (IBAction) closeIfModalInWindow:(id) sender {
-    if(self.modalInWindow) {
-        [[NSApplication sharedApplication] endSheet:self.window];
-    }
-    
-    [self.window makeFirstResponder:self.previousFirstResponderForModal];
-}
+
+//- (IBAction) closeIfModalInWindow:(id) sender {
+//    if(self.modalInWindow) {
+//        [[NSApplication sharedApplication] endSheet:self.window];
+//    }
+//    
+//}
 
 
 - (void)sheetDidEnd:(NSAlert*)alert 
@@ -42,37 +48,40 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyAssignNonatomic, previousFirst
         contextInfo:(void*)contextInfo {
 
     [NSApp endModalSession:[[self modalSession] pointerValue]];
-    [self.window orderOut:self.window];
+    [self.modalWindowController.window orderOut:self];
     
-    self.modalInWindow.modalWindowController = nil;
-    self.modalInWindow = nil;
+    self.modalWindowController = nil;
+    self.previousFirstResponderForModal = nil;
     self.modalSession = nil;
+    
+    [self.view.window makeFirstResponder:self.previousFirstResponderForModal];
 }
 
-
-
-- (void) showModallyInWindow:(NSWindow*) window 
-           withDefaultButton:(NSButton*) button {
+- (void) showModalWindow:(NSWindowController*) windowController 
+       withDefaultButton:(NSButton*) button {
     
-    self.modalInWindow = window;
-    self.previousFirstResponderForModal = self.window.firstResponder;
+    self.modalWindowController = windowController;
+    self.previousFirstResponderForModal = self.view.window.firstResponder;
     
-    window.modalWindowController = self;
-
-    [[NSApplication sharedApplication] beginSheet:self.window  
-                                   modalForWindow:window
+    
+    [[NSApplication sharedApplication] beginSheet:windowController.window  
+                                   modalForWindow:self.view.window
                                    modalDelegate:self 
                                    didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:) 
                                       contextInfo:nil];
                                       
-    NSModalSession modalSession = [NSApp beginModalSessionForWindow:self.window];
+    NSModalSession modalSession = [NSApp beginModalSessionForWindow:self.view.window];
     self.modalSession = [NSValue valueWithPointer:modalSession];
     
     [NSApp runModalSession:modalSession];
-    [window makeFirstResponder:window];
+    [self.view.window makeFirstResponder:windowController.window];
     
     if(button) {
-        [self.window setDefaultButtonCell:[button cell]];
+        [windowController.window setDefaultButtonCell:[button cell]];
+        [self.view.window setDefaultButtonCell:[button cell]];
     }
 }
+
+
+
 @end

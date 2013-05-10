@@ -96,7 +96,7 @@ NSString* FLSqlConflictActionString(FLDatabaseOnConflictAction action) {
 @implementation FLPrimaryKeyConstraint
 
 + (NSString*) primaryKeyConstraint {
-    return FLAutorelease([[[self class] alloc] initWithSqlString:@"PRIMARY KEY ASC NOT NULL"]);
+    FLReturnStaticObject( FLAutorelease([[[self class] alloc] initWithSqlString:@"PRIMARY KEY ASC NOT NULL"]); );
 }
 
 + (NSString*) primaryKeyConstraintWithSortOrder:(FLDatabaseSortOrder) sortOrder 
@@ -135,7 +135,7 @@ NSString* FLSqlConflictActionString(FLDatabaseOnConflictAction action) {
 }
 
 + (id) notNullConstraint {
-	return FLAutorelease([[[self class] alloc] initWithSqlString: @"NOT NULL"]);
+	FLReturnStaticObject( FLAutorelease([[[self class] alloc] initWithSqlString: @"NOT NULL"]););
 }
 
 @end

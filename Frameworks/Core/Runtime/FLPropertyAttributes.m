@@ -100,6 +100,7 @@ const char* FLParsePropertyType(FLPropertyAttributes_t* attributes, const char* 
             
             case 'c': // char
                 attributes->is_number = YES;
+                attributes->is_bool_number = YES;
                 attributes->type = _C_CHR;
             break;
             
@@ -125,6 +126,7 @@ const char* FLParsePropertyType(FLPropertyAttributes_t* attributes, const char* 
             
             case 'C': // unsigned char
                 attributes->is_number = YES;
+                attributes->is_bool_number = YES;
                 attributes->type = _C_UCHR;
             break;
             

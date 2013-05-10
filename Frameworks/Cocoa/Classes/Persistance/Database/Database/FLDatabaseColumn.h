@@ -22,7 +22,6 @@
 	NSString* _name;
 	NSString* _decodedColumnName;
 	FLDatabaseType _columnType;
-    BOOL _hasPrimaryKeyConstraint;
 
 // deprecated
 	NSArray* _columnConstraints;

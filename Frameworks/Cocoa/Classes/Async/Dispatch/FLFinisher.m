@@ -17,13 +17,16 @@
 @end
 
 @interface FLFinisher ()
-//@property (readwrite, assign, getter=isFinished) BOOL finished;
 @property (readwrite, strong) FLPromise* firstPromise;
 @end
 
 @implementation FLFinisher 
 @synthesize firstPromise = _firstPromise;
 @synthesize delegate = _delegate;
+
+- (id) init {	
+    return [self initWithPromise:nil];
+}
 
 - (id) initWithPromise:(FLPromise*) promise {	
 	self = [super init];
@@ -34,7 +37,19 @@
 }
 
 + (id) finisher {
-    return FLAutorelease([[[self class] alloc] init]);
+    return FLAutorelease([[[self class] alloc] initWithPromise:nil]);
+}
+
++ (id) finisherWithBlock:(fl_completion_block_t) completion {
+    return [self finisherWithPromise:[FLPromise promise:completion]];
+}
+
++ (id) finisherWithTarget:(id) target action:(SEL) action {
+    return [self finisherWithPromise:[FLPromise promise:target action:action]];
+}
+
++ (id) finisherWithPromise:(FLPromise*) promise {
+    return FLAutorelease([[[self class] alloc] initWithPromise:promise]);
 }
 
 - (void) addPromise:(FLPromise*) promise {
@@ -42,15 +57,24 @@
     self.firstPromise = promise;
 }
 
-+ (id) finisher:(FLPromise*) promise {
-    return FLAutorelease([[[self class] alloc] initWithPromise:promise]);
+- (FLPromise*) addPromise {
+    FLPromise* promise = [FLPromise promise];
+    [self addPromise:promise];
+    return promise;
 }
 
-//+ (id) finisher:(fl_completion_block_t) completion {
-//    FLFinisher* finisher* = FLAutorelease([[[self class] alloc] init]);
-//    [finisher addPromise:[FLPromise promise:completion]];
-//    return finisher;
-//}
+- (FLPromise*) addPromiseWithBlock:(fl_completion_block_t) completion {
+    FLPromise* promise = [FLPromise promise:completion];
+    [self addPromise:promise];
+    return promise;
+}
+
+- (FLPromise*) addPromiseWithTarget:(id) target action:(SEL) action {
+    FLPromise* promise = [FLPromise promise:target action:action];
+    [self addPromise:promise];
+    return promise;
+}
+
 
 #if FL_MRC
 - (void) dealloc {
@@ -90,252 +114,3 @@
 
 
 @end
-
-
-//@interface FLOldFinisher ()
-//@property (readwrite, strong) FLPromisedResult result;
-//@property (readwrite, assign, getter=isFinished) BOOL finished;
-//@property (readwrite, copy) fl_completion_block_t didFinish;
-//
-//#if DEBUG
-//@property (readwrite, strong) FLStackTrace* createdStackTrace;
-//@property (readwrite, strong) FLStackTrace* finishedStackTrace;
-//#endif
-//
-//@end
-//
-
-//
-//@implementation FLOldFinisher
-//@synthesize didFinish = _didFinish;
-//@synthesize result = _result;
-//@synthesize finished = _finished;
-//@synthesize finishOnMainThread = _finishOnMainThread;
-//
-//
-//#if DEBUG
-//@synthesize createdStackTrace = _createdStackTrace;
-//@synthesize finishedStackTrace = _finishedStackTrace;
-//#endif
-//
-//- (id) initWithCompletion:(fl_completion_block_t) completion {
-//    
-//    self = [super init];
-//    if(self) {
-//        if(completion) {
-//            _didFinish = [completion copy];
-//        }
-//        
-//        _semaphore = dispatch_semaphore_create(0);
-////        FLLog(@"created semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
-//
-//#if DEBUG
-//        self.createdStackTrace = FLCreateStackTrace(YES);
-//#endif
-//    }
-//    return self;
-//}
-//
-//- (id) init {
-//    return [self initWithCompletion:nil];
-//}
-//
-//- (void) dealloc {
-//    if(_semaphore) {
-//        dispatch_release(_semaphore);
-//    }
-//    
-//#if FL_MRC
-//#if DEBUG
-//    [_createdStackTrace release];
-//    [_finishedStackTrace release];
-//#endif    
-//    [_didFinish release];
-//    [_result release];
-//    [super dealloc];
-//#endif
-//}
-//
-//+ (id) finisher {
-//    return FLAutorelease([[[self class] alloc] init]);
-//}
-//
-//+ (id) finisher:(fl_completion_block_t) completion {
-//    return FLAutorelease([[[self class] alloc] initWithCompletion:completion]);
-//}
-//
-//- (id) waitUntilFinished {
-//    
-//    FLRetainObject(self);
-//    
-//    @try {
-//        if([NSThread isMainThread]) {
-//        // this may not work in all cases - e.g. some iOS apis expect to be called in the main thread
-//        // and this will cause endless blocking, unfortunately. I've seen this is the AssetLibrary sdk.
-//            while(!self.isFinished) {
-//                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate date]];
-//            }
-//        } 
-//        else {
-////            FLLog(@"waiting for semaphor for %X, thread %@", (void*) _semaphore, [NSThread currentThread]);
-//            dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
-////            FLLog(@"finished waiting for %X", (void*) _semaphore);
-//        } 
-//    }
-//    @finally {
-//        FLAutoreleaseObject(self);
-//    }   
-//
-//    FLAssertNotNilWithComment(self.result, @"result should not be nil!!");
-//
-//    return self.result;
-//}
-//
-//- (void) notifyFinished {
-//    if(_didFinish) {
-//        _didFinish(self.result);
-//    }
-//
-//    self.finished = YES;
-//
-//    if(_semaphore) {
-//    //       FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
-//        dispatch_semaphore_signal(_semaphore);
-//    }
-//}
-//
-//- (void) setFinishedWithResult:(FLPromisedResult) result {
-//    
-//    FLAssertIsNilWithComment(self.result, @"already finished");
-//
-//    if(result == nil) {
-//        self.result = FLFailedResult;
-//    }
-//    else {
-//        self.result = result;
-//    }
-//    
-//#if DEBUG
-//    self.finishedStackTrace = FLCreateStackTrace(YES);
-//#endif
-//
-//    if(!self.finishOnMainThread || 
-//        [NSThread currentThread] == [NSThread mainThread] ) {
-//        [self notifyFinished];
-//    }
-//    else {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self notifyFinished];
-//        });
-//    }
-//}      
-//
-//- (void) setFinishedWithResult:(id) value {
-//    [self setFinishedWithResult:[value asAsyncResult]];
-//}
-//
-//- (void) setFinishedWithResult:(id) value hint:(NSInteger) hint {
-//    [self setFinishedWithResult:[value asAsyncResultWithHint:hint]];
-//}
-// 
-//- (void) setFinishedWithResult:(NSError*) error {
-//    [self setFinishedWithResult:[error asAsyncResult]];
-//}                           
-//
-//- (void) setFinished {
-//    [self setFinishedWithResult:FLSuccessfullResult];
-//}
-//
-//- (void) setFinishedWithCancel {
-//    [self setFinishedWithResult:[[NSError cancelError] asAsyncResult]];
-//}
-//
-//
-////- (FLPromisedResult) executeFinishableBlock:(fl_finisher_block_t) block {
-////    @try {
-////        [self setWillStartInDispatcher:self];
-////            
-////        if(block) {
-////            block(self);
-////        }
-////    }
-////    @catch(NSException* ex) {
-////        [self setFinishedWithResult:ex.error];
-////    }
-////    
-////    return self.result;
-////}
-////
-////- (FLPromisedResult) executeBlock:(FLBlock) block {
-////    @try {
-////        [self setWillStartInDispatcher:self];
-////        
-////        if(block) {
-////            block();
-////        }
-////        [self setFinished];
-////    }
-////    @catch(NSException* ex) {
-////        [self setFinishedWithResult:ex.error];
-////    }
-////
-////    return self.result;
-////}
-//
-////+ (FLFinisherNotificationSchedulerBlock) scheduleNotificationInMainThreadBlock {
-////    static FLFinisherNotificationSchedulerBlock s_block = ^(FLBlock notifier) {
-////        if(![NSThread isMainThread]) {
-////            
-////            FLSafeguardBlock(notifier);
-////            
-////            dispatch_async(dispatch_get_main_queue(), ^{
-////                notifier();
-////            });    
-////        }
-////        else {
-////            notifier();
-////        }
-////    }; 
-////
-////    return s_block;
-////}
-//
-//#if DEBUG    
-//- (NSString*) description {
-//    FLPrettyString* string = [FLPrettyString prettyString];
-//    [string appendLine:[super description]];
-//    [string appendLine:@"created stack trace:"];
-//    [string indent:^{
-//        [string appendLine:[_createdStackTrace description]];
-//    }];
-//    if(_finishedStackTrace) {
-//        [string appendLine:@"finished stack trace:"];
-//        [string indent:^{
-//            [string appendLine:[_finishedStackTrace description]];
-//        }];
-//    }
-//    return string.string;
-//}
-//#endif              
-//
-//
-//@end
-
-
-
-//
-//@implementation FLMainThreadFinisher 
-//- (id) initWithCompletion:(fl_completion_block_t) completion {
-//    self = [super initWithCompletion:completion];
-//    if(self) {
-//        if([NSThread isMainThread]) {
-//            self.scheduleNotificationBlock = [FLFinisher scheduleNotificationInMainThreadBlock];
-//        }
-//    }
-//    return self;
-//}
-//
-//@end
-
-
-

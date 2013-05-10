@@ -23,14 +23,16 @@
     
     __block BOOL fired = NO;
     
-    FLFinisher* finisher = [FLFinisher finisher:^(id result) { 
+    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(id result) { 
         fired = YES; 
     }];
     
-    FLAssert(!finisher.isFinished);
+    FLPromise* promise = [finisher addPromise];
+    
+    FLAssert(!promise.isFinished);
     FLAssert(fired == NO);
     [finisher setFinished];
-    FLAssert(finisher.isFinished);
+    FLAssert(promise.isFinished);
     FLAssert(fired == YES);
 }
 
@@ -38,11 +40,16 @@
     
     __block BOOL fired = NO;
     
-    FLFinisher* finisher = [FLFinisher finisher:^(id result){ fired = YES; }];
-    FLAssert(!finisher.isFinished);
+    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(id result) { 
+        fired = YES; 
+    }];
+    
+    FLPromise* promise = [finisher addPromise];
+
+    FLAssert(!promise.isFinished);
     FLAssert(fired == NO);
     [finisher setFinished];
-    FLAssert(finisher.isFinished);
+    FLAssert(promise.isFinished);
 
     BOOL gotError = NO;
     @try {
@@ -61,15 +68,16 @@
     FLLog(@"async self test");
     
     FLFinisher* finisher = [FLFinisher finisher];
-    
+    FLPromise* promise = [finisher addPromise];
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [NSThread sleepForTimeInterval:0.25];
         FLLog(@"done in thread");
         [finisher setFinished];
         });
     
-    [finisher waitUntilFinished];
-    FLAssert(finisher.isFinished);
+    [promise waitUntilFinished];
+    FLAssert(promise.isFinished);
 }
 
 

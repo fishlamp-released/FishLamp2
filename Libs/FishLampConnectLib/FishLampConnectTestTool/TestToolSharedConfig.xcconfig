@@ -1,0 +1,15 @@
+//
+//  TestToolSharedConfig.xcconfig
+//  FishLampCocoa
+//
+//  Created by Mike Fullerton on 4/2/13.
+//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
+//
+
+#include "FishLampBuildSupport/FishLampIncludedConfig-TestTool.xcconfig"
+
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREFIX_HEADER = FishLampConnectTestTool/FishLampConnectTestTool-Prefix.pch
+HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_COCOA) $(FISHLAMP_COCOA_CONNECT)
+
+

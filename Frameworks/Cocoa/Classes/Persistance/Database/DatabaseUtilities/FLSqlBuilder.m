@@ -241,7 +241,4 @@
 
     [self closeList];
 }
-
-
-
 @end

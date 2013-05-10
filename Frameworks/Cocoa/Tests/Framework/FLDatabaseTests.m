@@ -6,25 +6,42 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#import "FLDatabase+Tests.h"
+#import "FLDatabaseTests.h"
 #import "FLTempFolder.h"
 #import "FLDatabase.h"
 
 #import "FLUnitTest.h"
+#import "FLModelObject.h"
+
 
 @implementation FLDatabaseTests
+@synthesize database = _database;
+
+#if FL_MRC
+- (void) dealloc {
+	[_database release];
+	[super dealloc];
+}
+#endif
 
 + (FLUnitTestGroup*) unitTestGroup {
     return [self frameworkTestGroup];
+}
+
+- (id) createDatabase:(NSString*) filePath {
+    return FLAutorelease([[FLDatabase alloc] initWithFilePath:filePath]);
 }
 
 - (void) setupTests {
     FLTempFolder* folder = [FLTempFolder tempFolder];
     [folder createIfNeeded];
     
-    _database = [[FLDatabase alloc] initWithFilePath:[folder pathForFile:@"tempdb.sqlite"]];
+    NSString* path = [NSString stringWithFormat:@"%@.sqlite", NSStringFromClass([self class])];
+    
+    _database = FLRetain([self createDatabase:[folder pathForFile:path]]);
+    
     [_database openDatabase:FLDatabaseOpenFlagsDefault];
-    FLAssertWithComment(_database.isOpen, @"database is not open");
+    FLAssertWithComment([_database isOpen], @"database is not open");
 }
 
 - (void) teardownTests {
@@ -35,7 +52,7 @@
 
 - (void) testIsOpen {
     FLAssertIsNotNilWithComment(_database, nil);
-    FLAssertWithComment(_database.isOpen, @"database is not open");
+    FLAssertWithComment([_database isOpen], @"database is not open");
 }
 
 @end

@@ -29,7 +29,7 @@ NSString* FLDatabaseTypeToString(FLDatabaseType type)
 			return @"TEXT";
 
 		case FLDatabaseTypeDate:
-			return @"INTEGER";
+			return @"REAL";
 			
 		case FLDatabaseTypeNone:
 			return nil;
@@ -42,6 +42,6 @@ NSString* FLDatabaseTypeToString(FLDatabaseType type)
 
 	return nil;
 }
-
-
-
+//
+//
+//

@@ -40,6 +40,7 @@
 @property (readonly, assign, nonatomic) BOOL representsIvar;
 
 // represented object 
+@property (readonly, assign) Class representedObjectClass;
 @property (readonly, assign) BOOL representsObject;
 @property (readonly, assign) BOOL representsModelObject;
 @property (readonly, assign) BOOL representsArray;
@@ -59,14 +60,33 @@
 + (id) propertyDescriber:(NSString*) identifier 
            propertyClass:(Class) aClass;
 
-          
+@property (readonly, assign) FLDatabaseType databaseColumnType;          
 // Database Support
-- (FLDatabaseType) representedObjectSqlType;
-- (id) representedObjectFromSqliteColumnData:(NSData*) data;
-- (id) representedObjectFromSqliteColumnString:(NSString*) string;
+//- (FLDatabaseIgnored) representedObjectSqlType;
+//- (id) representedObjectFromSqliteColumnData:(NSData*) data;
+//- (id) representedObjectFromSqliteColumnString:(NSString*) string;
 
 @end
 
 @interface FLPropertyDescriber (Deprecated)
 + (id) propertyDescriber:(NSString*) name class:(Class) aClass;
+@end
+
+@interface FLValuePropertyDescriber : FLPropertyDescriber
+@end
+
+@interface FLNumberPropertyDescriber : FLValuePropertyDescriber<FLStringEncoder>
+@end
+
+@interface FLBoolNumberPropertyDescriber : FLNumberPropertyDescriber<FLStringEncoder>
+@end
+
+
+@interface FLObjectPropertyDescriber : FLPropertyDescriber
+@end
+
+@interface FLModelObjectPropertyDescriber : FLObjectPropertyDescriber
+@end
+
+@interface FLArrayPropertyDescriber : FLObjectPropertyDescriber
 @end

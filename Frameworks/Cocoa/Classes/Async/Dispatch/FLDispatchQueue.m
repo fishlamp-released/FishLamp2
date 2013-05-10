@@ -202,8 +202,8 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 - (FLPromisedResult) finishSync:(fl_finisher_block_t) block {
     
-    FLPromise* promise = [FLPromise promise];
-    FLFinisher* finisher = [FLFinisher finisher:promise];
+    FLFinisher* finisher = [FLFinisher finisher];
+    FLPromise* promise = [finisher addPromise];
     
     block = FLCopyWithAutorelease(block);
     
@@ -222,9 +222,8 @@ static void * const s_queue_key = (void*)&s_queue_key;
 - (FLPromise*) queueBlock:(fl_block_t) block 
                 completion:(fl_completion_block_t) completion {
 
-    FLPromise* promise = [FLPromise promise:completion];
-    
-    FLFinisher* finisher = [FLFinisher finisher:promise];
+    FLFinisher* finisher = [FLFinisher finisher];
+    FLPromise* promise = [finisher addPromiseWithBlock:completion];
 
     FLAssertNotNil(block);
     FLAssertNotNil(finisher);
@@ -242,8 +241,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
                           completion:(fl_completion_block_t) completion {
 
 
-    FLPromise* promise = [FLPromise promise:completion];
-    FLFinisher* finisher = [FLFinisher finisher:promise];
+    FLFinisher* finisher = [FLFinisher finisher];
+    FLPromise* promise = [finisher addPromiseWithBlock:completion];
+    
     FLAssertNotNil(block);
     FLAssertNotNil(finisher);
     [self queueFinishableBlock:block withFinisher:finisher];
@@ -254,8 +254,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
                               block:(fl_block_t) block
                          completion:(fl_completion_block_t) completion {
 
-    FLPromise* promise = [FLPromise promise:completion];
-    FLFinisher* finisher = [FLFinisher finisher:promise];
+    FLFinisher* finisher = [FLFinisher finisher];
+    FLPromise* promise = [finisher addPromiseWithBlock:completion];
+    
     [self queueBlockWithDelay:delay block:block withFinisher:finisher];
     return promise;
 }                          
@@ -265,10 +266,8 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
     FLAssertNotNil(operation);
     
-    FLPromise* promise = [FLPromise promise:completion];
-    
     FLFinisher* finisher = operation.finisher;
-    [finisher addPromise:promise];
+    FLPromise* promise = [finisher addPromiseWithBlock:completion];
 
     dispatch_async(_dispatch_queue, ^{
         @try {

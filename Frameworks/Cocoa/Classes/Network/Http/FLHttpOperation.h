@@ -11,7 +11,7 @@
 
 @interface FLHttpOperation : FLAsyncOperation {
 @private
-    FLHttpRequest* _request;
+    FLHttpRequest* _httpRequest;
 }
 
 - (id) initWithHttpRequest:(FLHttpRequest*) request ;

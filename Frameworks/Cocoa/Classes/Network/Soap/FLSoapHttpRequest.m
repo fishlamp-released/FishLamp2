@@ -43,13 +43,13 @@
 		char* first = strnstr((const char*) [data bytes], "Fault", MIN([data length], (unsigned int) MAX_ERR_LEN));
         if(first) {
             FLParsedItem* soap = [[FLSoapParser soapParser] parseData:data];
-//            FLObjectDescriber* type = [FLPropertyDescriber propertyDescriber:@"Fault" class:[FLSoapFault11 class]];
             
-            FLParsedItem* item = [[FLSoapObjectBuilder instance] findElementForBuilding:@"Fault" inParentElement:soap];
+            FLSoapFault11* soapFault = [FLSoapFault11 objectWithXmlElement:soap 
+                                                               elementName:@"Fault"
+                                                         withObjectBuilder:[FLSoapObjectBuilder instance]];
             
-            FLSoapFault11* soapFault = [[FLSoapObjectBuilder instance] buildObjectWithXmlElement:item withObjectDescriber:[FLSoapFault11 objectDescriber]];
             FLAssertNotNil(soapFault);
-			FLDebugLog(@"Soap Fault:%@/%@", [soapFault faultcode], [soapFault faultstring]);
+			FLLog(@"Soap Fault:%@/%@", [soapFault faultcode], [soapFault faultstring]);
             return soapFault;
 		}
 	}

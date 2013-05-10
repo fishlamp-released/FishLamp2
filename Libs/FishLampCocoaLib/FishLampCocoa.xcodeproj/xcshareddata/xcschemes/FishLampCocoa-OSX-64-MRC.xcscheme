@@ -20,6 +20,20 @@
                ReferencedContainer = "container:FishLampCocoa.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27C62D38170B45C80093F260"
+               BuildableName = "FishLampCocoaTestTool-64-MRC"
+               BlueprintName = "FishLampCocoaTestTool-64-MRC"
+               ReferencedContainer = "container:FishLampCocoa.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -39,6 +53,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "27C62D38170B45C80093F260"
+            BuildableName = "FishLampCocoaTestTool-64-MRC"
+            BlueprintName = "FishLampCocoaTestTool-64-MRC"
+            ReferencedContainer = "container:FishLampCocoa.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

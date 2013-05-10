@@ -21,7 +21,6 @@
 - (void) requestCancel;
 
 @property (readonly, strong) FLFinisher* finisher; 
-- (FLPromise*) promise;
 
 @end
 
@@ -69,8 +68,6 @@
 - (void) setFinished;
 
 - (void) setFinishedWithResult:(FLPromisedResult) result;
-
-- (FLPromise*) promise;
 
 // run synchronously
 - (FLPromisedResult) runSynchronously;

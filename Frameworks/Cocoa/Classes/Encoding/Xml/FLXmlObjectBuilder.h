@@ -11,6 +11,7 @@
 #import "FLParsedItem.h"
 #import "FLObjectDescriber.h"
 #import "FLModelObject.h"
+#import "NSObject+FLXmlObjectBuilder.h"
 
 @interface FLXmlObjectBuilder : NSObject {
 @private
@@ -21,21 +22,10 @@
 - (id) initWithDataDecoder:(id<FLDataDecoding>) decoder;
 + (id) xmlObjectBuilder:(id<FLDataDecoding>) decoder;
 + (id) xmlObjectBuilder;
-
-//- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withObjectDescribers:(NSArray*) arrayOfPropertyDescribers;
-//
-//- (NSArray*) objectsFromXML:(FLParsedItem*) xmlElement withObjectDescriber:(FLPropertyDescriber*) type; // for homogeneous arrays
-
-// this will fail if number of return objects != 1
-- (id) buildObjectWithXmlElement:(FLParsedItem*) element 
-             withObjectDescriber:(FLObjectDescriber*) objectDescriber;
              
-- (FLParsedItem*) findElementForBuilding:(NSString*) objectName inParentElement:(FLParsedItem*) parentElement;
+- (FLParsedItem*) findElementForBuilding:(NSString*) objectName 
+                         inParentElement:(FLParsedItem*) parentElement;
 
 @end
 
-// TEMP
-@interface NSObject (FLXmlBuilder)
-+ (BOOL) isArray;
-- (BOOL) isArray;
-@end
+

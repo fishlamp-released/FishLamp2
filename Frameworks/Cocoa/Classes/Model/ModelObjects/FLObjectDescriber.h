@@ -53,14 +53,15 @@
 - (void) addPropertyWithName:(NSString*) name withArrayTypes:(NSArray*) types;
 @end            
 
-
-
-@interface FLAbstractObjectType : NSObject
+@interface FLModelObjectDescriber : FLObjectDescriber
 @end
 
-
-@interface FLLegacyObjectDescriber : FLObjectDescriber
+@interface FLLegacyObjectDescriber : FLModelObjectDescriber
 //- (id) initWithClass:(Class) aClass;
 - (void) addPropertyWithName:(NSString*) name withClass:(Class) objectClass;
 - (void) addPropertyWithName:(NSString*) name withArrayTypes:(NSArray*) types;
+@end
+
+
+@interface FLAbstractObjectType : NSObject
 @end

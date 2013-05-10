@@ -11,8 +11,11 @@
 #import "FLUnitTest.h"
 
 @interface FLDatabaseTests : FLUnitTest {
-    FLDatabase* _database;
+@private
+    id _database;
 }
+- (id) createDatabase:(NSString*) filePath;
+@property (readonly, strong, nonatomic) id database;
 
 @end
 

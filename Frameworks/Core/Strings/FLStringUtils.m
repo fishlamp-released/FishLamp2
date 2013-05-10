@@ -18,7 +18,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
         va_list va;
         va_start(va, format);
         
-        NSString* string = FLAutorelease([[NSString alloc] initWithFormat:(NSString*)format arguments:va]);
+        NSString* string = FLAutorelease([[NSString alloc] initWithFormat:[format description] arguments:va]);
         va_end(va);
         return string;
     }

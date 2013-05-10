@@ -10,22 +10,6 @@
 #import "FLObjectDescriber.h"
 #import "FLPropertyAttributes.h"
 #import "FLModelObject.h"
-#import "FLSqlStatement.h"
-
-@interface FLValuePropertyDescriber : FLPropertyDescriber
-@end
-
-@interface FLNumberPropertyDescriber : FLValuePropertyDescriber<FLStringEncoder>
-@end
-
-@interface FLObjectPropertyDescriber : FLPropertyDescriber
-@end
-
-@interface FLModelObjectPropertyDescriber : FLObjectPropertyDescriber
-@end
-
-@interface FLArrayPropertyDescriber : FLObjectPropertyDescriber
-@end
 
 @implementation NSObject (FLXmlBuilder)
 + (id) propertyDescriber {
@@ -59,7 +43,6 @@
 @property (readwrite, strong) NSString* propertyName;
 @property (readwrite, strong) FLObjectDescriber* representedObjectDescriber;
 @property (readwrite, strong) NSArray* containedTypes;
-@property (readonly, assign) Class propertyClass;
 @property (readwrite, assign) FLPropertyAttributes_t attributes;
 
 + (id) propertyDescriberWithProperty_t:(objc_property_t) property_t;
@@ -130,7 +113,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
     FLPropertyAttributes_t attributes = FLPropertyAttributesParse(property_t);
 
-    NSString* propertyName = [[NSString alloc] initWithCString:attributes.propertyName encoding:NSASCIIStringEncoding];
+    NSString* propertyName = FLAutorelease([[NSString alloc] initWithCString:attributes.propertyName encoding:NSASCIIStringEncoding]);
     FLAssertStringIsNotEmpty(propertyName);
     
     FLPropertyDescriber* property = nil;
@@ -151,7 +134,10 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
         property = [FLPropertyDescriber propertyDescriber:objectClass];
     }
     else {
-        if(attributes.is_number) {
+        if(attributes.is_bool_number) {
+            property = [FLBoolNumberPropertyDescriber propertyDescriber];
+        }
+        else if(attributes.is_number) {
             property = [FLNumberPropertyDescriber propertyDescriber];
         }
     }
@@ -164,19 +150,6 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     return property;
 }
 
-- (FLDatabaseType) representedObjectSqlType {
-    return [[self propertyClass] sqlType];
-}
-
-- (id) representedObjectFromSqliteColumnData:(NSData*) data {
-    return [[self propertyClass] decodeObjectWithSqliteColumnData:data];
-}
-
-- (id) representedObjectFromSqliteColumnString:(NSString*) string {
-    return [[self propertyClass] decodeObjectWithSqliteColumnString:string];
-}
-
-
 + (id) propertyDescriber:(NSString*) name propertyClass:(Class) aClass {
     FLPropertyDescriber* describer = [FLPropertyDescriber propertyDescriber:aClass];
     describer.propertyName = name;
@@ -187,7 +160,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     return [FLPropertyDescriber propertyDescriber:name propertyClass:aClass];
 }
 
-- (Class) propertyClass {
+- (Class) representedObjectClass {
     return _representedObjectDescriber.objectClass;
 }   
 
@@ -216,7 +189,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 - (FLPropertyDescriber*) containedTypeForClass:(Class) aClass {
     @synchronized(self) {
         for(FLPropertyDescriber* subType in _containedTypes) {
-            if([aClass isKindOfClass:[subType propertyClass]]) {
+            if([aClass isKindOfClass:[subType representedObjectClass]]) {
                 return subType;
             }
         }
@@ -225,7 +198,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 }
 
 - (BOOL) representsClass:(Class) aClass {
-    return self.propertyClass == aClass;
+    return self.representedObjectClass == aClass;
 }
 
 - (void) setContainedTypes:(NSArray*) types {
@@ -263,7 +236,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
         [contained appendFormat:@"%@", [describer description]];
     }
     
-    return [NSString stringWithFormat:@"%@ %@: %@ %@", [super description], self.propertyName, NSStringFromClass(self.propertyClass), contained ? [contained string] : @""];
+    return [NSString stringWithFormat:@"%@ %@: %@ %@", [super description], self.propertyName, NSStringFromClass(self.representedObjectClass), contained ? [contained string] : @""];
 }
 
 #if FL_MRC
@@ -274,6 +247,21 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     [super dealloc];
 }
 #endif
+
+- (FLDatabaseType) databaseColumnType {
+
+    if(_attributes.is_object) {
+        return [self.representedObjectClass databaseColumnType];
+    }
+    else if (_attributes.is_number) {
+        return _attributes.is_float_number ? FLDatabaseTypeFloat : FLDatabaseTypeInteger;
+    }
+    else {
+        return FLDatabaseTypeObject; // it'll be boxes, like in a NSValue.
+    }
+
+
+}
 @end
 
 
@@ -284,11 +272,11 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 }
 
 - (id<FLStringEncoder>) objectEncoder {
-    return [[self propertyClass] objectEncoder];
+    return [[self representedObjectClass] objectEncoder];
 }
 
 - (id) createRepresentedObject {
-    return FLAutorelease([[[self propertyClass] alloc] init]);
+    return FLAutorelease([[[self representedObjectClass] alloc] init]);
 }
 
 @end
@@ -363,9 +351,9 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     return [decoder decodeNumberFromString:string];
 }
 
-- (FLDatabaseType) representedObjectSqlType {
-    return self.attributes.is_float_number ? FLDatabaseTypeFloat : FLDatabaseTypeInteger;
-}
+//- (FLDatabaseIgnored) representedObjectSqlType {
+//    return self.attributes.is_float_number ? FLDatabaseIgnored : FLDatabaseIgnored;
+//}
 
 - (id) representedObjectFromSqliteColumnData:(NSData*) data {
     return nil;
@@ -374,6 +362,19 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 - (id) representedObjectFromSqliteColumnString:(NSString*) string {
     return nil;
 }
+@end
 
+@implementation FLBoolNumberPropertyDescriber 
 
+//- (FLDatabaseIgnored) representedObjectSqlType {
+//    return FLDatabaseIgnored;
+//}
+
+- (NSString*) encodeObjectToString:(id) object withEncoder:(id) encoder {
+    return [encoder encodeStringWithBOOL:object];
+}
+
+- (id) decodeStringToObject:(NSString*) string withDecoder:(id) decoder {
+    return [decoder decodeBOOLFromString:string];
+}
 @end

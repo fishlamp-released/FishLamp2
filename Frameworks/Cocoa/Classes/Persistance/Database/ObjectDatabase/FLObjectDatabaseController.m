@@ -24,6 +24,7 @@
 - (id) initWithFilePath:(NSString*) filePath {	
     FLAssertStringIsNotEmpty(filePath);
     
+    self = [super init];
 	if(self) {
         _objectDatabase = [[FLObjectDatabase alloc] initWithFilePath:filePath];
         _objectDatabase.delegate = self;

@@ -6,16 +6,14 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-@interface NSWindowController (FLModalAdditions)
-@property (readonly, assign, nonatomic) NSWindow* modalInWindow;
+@interface NSViewController (FLModalAdditions)
 
-- (void) showModallyInWindow:(NSWindow*) window 
-           withDefaultButton:(NSButton*) button;
+- (void) showModalWindow:(NSWindowController*) window 
+       withDefaultButton:(NSButton*) button;
 
-- (IBAction) closeIfModalInWindow:(id) sender;
+
 @end
 
 @interface NSWindow (FLModalAdditions)
-- (void) closeModalWindowController;
-@property (readonly, strong, nonatomic) NSWindowController* modalWindowController;
+- (IBAction) closeModalWindow:(id) sender;
 @end

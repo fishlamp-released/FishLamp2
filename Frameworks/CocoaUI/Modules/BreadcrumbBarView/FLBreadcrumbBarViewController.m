@@ -63,18 +63,10 @@
         }
     }
     
-    if(!selected) {
-        FLLog(@"not selected");
-    }
-    
     [self.breadcrumbView updateLayout:animated];
 }
 
 - (void) addNavigationTitle:(FLNavigationTitle*) title {
-
-//    if(title.titleStyle == nil) {
-//        title.titleStyle = FLCopyWithAutorelease(_titleStringStyle);
-//    }
 
     FLAssertStringIsNotEmpty(title.localizedTitle);
     FLAssertNotNil(title.identifier);
@@ -91,15 +83,11 @@
 - (void) titleNavigationController:(FLBreadcrumbBarView*) view
            handleMouseMovedInTitle:(FLNavigationTitle*) title  
                            mouseIn:(BOOL) mouseIn {
-                           
 
     FLNavigationTitleState state = 
         [self.delegate titleNavigationController:self navigationTitleState:title];
 
     [self updateTitle:title withState:state];
-
-//    title.enabled = [self.delegate titleNavigationController:self navigationTitleIsEnabled:title];
-//    title.selected = [self.delegate titleNavigationController:self navigationTitleIsSelected:title];
 }
 
 - (void) titleNavigationController:(FLBreadcrumbBarView*) view 

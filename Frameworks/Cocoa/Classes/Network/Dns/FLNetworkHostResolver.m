@@ -98,7 +98,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
 
 - (FLPromise*) startResolvingHost:(FLNetworkHost*) host completion:(fl_completion_block_t) completion {
     FLPromise* promise = [FLPromise promise:completion];
-    self.finisher = [FLFinisher finisher:promise];
+    self.finisher = [FLFinisher finisherWithPromise:promise];
     
     FLAssertWithComment(!self.isOpen, @"already running");
     

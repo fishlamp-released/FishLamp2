@@ -4,4 +4,4 @@
 //
 
 #include "FishLampBuildSupport/FishLampTargetSettings-OSX-32-MRC.xcconfig"
-#include "FishLampCocoaTests/CocoaTestsSharedConfig.xcconfig"
+#include "FishLampConnectTestTool/TestToolSharedConfig.xcconfig"

@@ -15,7 +15,6 @@
 #import "FLDatabaseColumn.h"
 #import "FLDatabaseIndex.h"
 #import "FLSqlBuilder.h"
-#import "FLDatabaseColumnDecoder.h"
 #import "FLDatabaseStatement.h"
 
 @interface FLDatabaseTable : NSObject<NSCopying> {
@@ -30,11 +29,7 @@
     NSMutableSet* _indexedColumns;
     
 	Class _tableClass;
-    FLDatabaseColumnDecoder _columnDecoder;
-    
 }
-
-@property (readwrite, assign, nonatomic) FLDatabaseColumnDecoder columnDecoder;
 
 @property (readonly, strong, nonatomic) NSString* tableName;
 @property (readonly, strong, nonatomic) NSString* decodedTableName;
@@ -107,7 +102,7 @@
 + (void) databaseTableWillAddColumns:(FLDatabaseTable*) table;
 + (void) databaseTable:(FLDatabaseTable*) table willAddDatabaseColumn:(FLDatabaseColumn*) column;
 + (void) databaseTableDidAddColumns:(FLDatabaseTable*) table;
-+ (void) databaseTableWasCreated:(FLDatabaseTable*) table;
++ (void) didCreateDatabaseTable:(FLDatabaseTable*) table;
 @end
 
 
@@ -120,7 +115,9 @@
 + (void) databaseTableWillAddColumns:(FLDatabaseTable*) table;
 + (void) databaseTable:(FLDatabaseTable*) table willAddDatabaseColumn:(FLDatabaseColumn*) column;
 + (void) databaseTableDidAddColumns:(FLDatabaseTable*) table;
-+ (void) databaseTableWasCreated:(FLDatabaseTable*) table;
++ (void) didCreateDatabaseTable:(FLDatabaseTable*) table;
+
++ (SEL) databasePrimaryKeyColumn;
 @end
 
 @interface FLSqlBuilder (FLSqlTable)

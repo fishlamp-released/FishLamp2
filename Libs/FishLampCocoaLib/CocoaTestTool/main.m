@@ -10,6 +10,6 @@
 #import "FLTestToolMain.h"
 
 int main(int argc, const char * argv[]) {
-    return FLTestToolMain(argc, argc);
+    return FLTestToolMain(argc, argc, @"com.fishlamp.cocoa.tests", @"FLCocoaTestTool", @"1.0.0");
 }
 
