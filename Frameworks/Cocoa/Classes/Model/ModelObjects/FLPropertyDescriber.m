@@ -46,6 +46,7 @@
 @property (readwrite, assign) FLPropertyAttributes_t attributes;
 
 + (id) propertyDescriberWithProperty_t:(objc_property_t) property_t;
+- (void) addContainedProperty:(NSString*) name withClass:(Class) aClass; 
 
 @end
 
@@ -54,14 +55,13 @@
 @synthesize propertyName = _propertyName;
 @synthesize representedObjectDescriber = _representedObjectDescriber;
 @synthesize containedTypes = _containedTypes;
+
 LazyStringGetter(structName, _structName, _attributes.structName)
 LazyStringGetter(unionName, _unionName, _attributes.unionName)
 LazyStringGetter(ivarName, _ivarName, _attributes.ivar)
 
 LazySelectorGetter(customGetter, _customGetter, _attributes.customGetter)
-
 LazySelectorGetter(customSetter, _customSetter, _attributes.customSetter)
-
 LazySelectorGetter(selector, _selector, _attributes.selector)
 
 @synthesize attributes = _attributes;

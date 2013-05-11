@@ -46,28 +46,3 @@ typedef struct {
 } FLPropertyAttributes_t;
 
 extern FLPropertyAttributes_t FLPropertyAttributesParse(objc_property_t property);
-
-//extern void FLPropertyAttributesFree(FLPropertyAttributes_t* attributes);
-//
-//extern void FLPropertyAttributesDecodeWithNoCopy(objc_property_t property, FLPropertyAttributes_t* attributes);
-
-//@interface FLPropertyAttributes : NSObject {
-//@private
-//
-//    SEL _customGetter;
-//    SEL _customSetter;
-//    SEL _selector;
-//    
-//// types
-//    NSString* _className;
-//    NSString* _structName;
-//    NSString* _ivarName;
-//    NSString* _unionName;
-//    
-//    FLPropertyAttributes_t _attributes;
-//}
-//- (id) initWithParsedAttributes:(FLPropertyAttributes_t) parsed;
-//+ (id) propertyAttributes:(FLPropertyAttributes_t) parsed;
-//
-//
-//@end

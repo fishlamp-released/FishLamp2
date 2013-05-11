@@ -156,7 +156,7 @@
                                      nil];
         
         [outerGradient drawInRect:[outerClip bounds] angle:90.0f];
-        [outerGradient release];
+        FLRelease(outerGradient);
         [ctx restoreGraphicsState];
     }
      

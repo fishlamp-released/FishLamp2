@@ -121,12 +121,10 @@
     FLAssertNotNil(string);
     FLAssertNotNil(_output);
 
-    FLRetainWithAutorelease(string);
-    
     if(!_editingLine) {
         [_output stringFormatterOpenLine:self];
     }
-    [_output stringFormatter:self appendAttributedString:string];
+    [_output stringFormatter:self appendAttributedString:FLRetainWithAutorelease(string)];
     [_output  stringFormatterCloseLine:self];
     _editingLine = NO;
 }

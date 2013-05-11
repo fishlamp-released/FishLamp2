@@ -37,22 +37,22 @@ BOOL FLCallbackIsNil(FLCallback_t cb) {
 }
 
 NS_INLINE
-id FLCallbackPerform(FLCallback_t callback, id withObject) {
+BOOL FLCallbackPerform(FLCallback_t callback, id withObject) {
 	return FLPerformSelector0(callback.target, callback.action);
 }
 
 NS_INLINE
-id FLCallbackPerform1(FLCallback_t callback, id withObject) {
+BOOL FLCallbackPerform1(FLCallback_t callback, id withObject) {
 	return FLPerformSelector1(callback.target, callback.action, withObject);
 }
 
 NS_INLINE
-id FLCallbackPerform2(FLCallback_t callback, id withObject1, id withObject2) {
+BOOL FLCallbackPerform2(FLCallback_t callback, id withObject1, id withObject2) {
 	return FLPerformSelector2(callback.target, callback.action, withObject1, withObject2);
 }
 
 NS_INLINE
-id FLCallbackPerform3(FLCallback_t callback, id withObject1, id withObject2, id withObject3) {
+BOOL FLCallbackPerform3(FLCallback_t callback, id withObject1, id withObject2, id withObject3) {
 	return FLPerformSelector3(callback.target, callback.action, withObject1, withObject2, withObject3);
 }
 

@@ -236,6 +236,9 @@ static NSMutableDictionary* s_registry = nil;
     [self addPropertyArrayTypes:types forPropertyName:name];
 }
 
+- (void) addArrayProperty:(NSString*) name withArrayTypes:(NSArray*) types {
+    [self addPropertyArrayTypes:types forPropertyName:name];
+}
 @end
 
 @implementation FLModelObjectDescriber

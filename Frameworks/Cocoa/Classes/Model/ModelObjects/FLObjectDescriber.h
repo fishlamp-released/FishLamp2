@@ -51,6 +51,7 @@
 
 // deprected
 - (void) addPropertyWithName:(NSString*) name withArrayTypes:(NSArray*) types;
+- (void) addArrayProperty:(NSString*) name withArrayTypes:(NSArray*) types;
 @end            
 
 @interface FLModelObjectDescriber : FLObjectDescriber

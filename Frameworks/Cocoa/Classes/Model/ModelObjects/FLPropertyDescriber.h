@@ -35,8 +35,6 @@
 @property (readonly, assign, nonatomic) SEL customGetter;
 @property (readonly, assign, nonatomic) SEL customSetter;
 @property (readonly, assign, nonatomic) SEL selector;
-@property (readonly, assign, nonatomic) FLPropertyAttributes_t attributes;
-
 @property (readonly, assign, nonatomic) BOOL representsIvar;
 
 // represented object 
@@ -45,8 +43,8 @@
 @property (readonly, assign) BOOL representsModelObject;
 @property (readonly, assign) BOOL representsArray;
 @property (readonly, strong) id<FLStringEncoder> objectEncoder;
-- (id) createRepresentedObject;
 - (BOOL) representsClass:(Class) aClass;
+- (id) createRepresentedObject;
 
 // contained types
 @property (readonly, strong) NSArray* containedTypes;
@@ -54,18 +52,11 @@
 - (FLPropertyDescriber*) containedTypeForIndex:(NSUInteger) idx;
 - (FLPropertyDescriber*) containedTypeForClass:(Class) aClass;
 - (FLPropertyDescriber*) containedTypeForName:(NSString*) name;
-- (void) addContainedProperty:(NSString*) name withClass:(Class) aClass; 
-
 
 + (id) propertyDescriber:(NSString*) identifier 
            propertyClass:(Class) aClass;
 
 @property (readonly, assign) FLDatabaseType databaseColumnType;          
-// Database Support
-//- (FLDatabaseIgnored) representedObjectSqlType;
-//- (id) representedObjectFromSqliteColumnData:(NSData*) data;
-//- (id) representedObjectFromSqliteColumnString:(NSString*) string;
-
 @end
 
 @interface FLPropertyDescriber (Deprecated)
