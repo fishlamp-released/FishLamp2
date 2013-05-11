@@ -8,7 +8,7 @@
 
 #import "FLHttpRequest.h"
 #import "FLSoapFault11.h"
-#import "FLObjectEncoder.h"
+#import "FLStringEncoder.h"
 #import "FLParsedItem.h"
 
 typedef FLPromisedResult (^FLHandleSoapResponseBlock)(FLParsedItem* parsedSoap);

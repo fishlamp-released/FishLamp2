@@ -82,10 +82,6 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     return NO;
 }
 
-- (id<FLStringEncoder>) objectEncoder {
-    return nil;
-}
-
 - (id) createRepresentedObject {
     return nil; 
 }
@@ -259,8 +255,10 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     else {
         return FLDatabaseTypeObject; // it'll be boxes, like in a NSValue.
     }
+}
 
-
+- (NSString*) stringEncodingKeyForRepresentedData {
+    return nil;
 }
 @end
 
@@ -271,12 +269,16 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     return YES;
 }
 
-- (id<FLStringEncoder>) objectEncoder {
-    return [[self representedObjectClass] objectEncoder];
-}
+//- (id<FLStringEncoder>) objectEncoder {
+//    return [[self representedObjectClass] objectEncoder];
+//}
 
 - (id) createRepresentedObject {
     return FLAutorelease([[[self representedObjectClass] alloc] init]);
+}
+
+- (NSString*) stringEncodingKeyForRepresentedData {
+    return [[self representedObjectClass] stringEncodingKey];
 }
 
 @end
@@ -285,10 +287,6 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
 - (BOOL) representsModelObject {
     return YES;
-}
-
-- (id<FLStringEncoder>) objectEncoder {
-    return nil;
 }
 
 @end
@@ -301,10 +299,6 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
 - (BOOL) representsArray {
     return YES;
-}
-
-- (id<FLStringEncoder>) objectEncoder {
-    return nil;
 }
 
 - (id) createRepresentedObject {
@@ -331,50 +325,25 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     return nil;
 }
 
+- (NSString*) stringEncodingKeyForRepresentedData {
+    return nil;
+}
+
 @end
 
 @implementation FLNumberPropertyDescriber 
 
-- (BOOL) representsObject {
-    return NO;
+- (NSString*) stringEncodingKeyForRepresentedData {
+    return [NSNumber stringEncodingKey];
 }
 
-- (id<FLStringEncoder>) objectEncoder {
-    return self;
-}
-
-- (NSString*) encodeObjectToString:(id) object withEncoder:(id) encoder {
-    return [encoder encodeStringWithNumber:object];
-}
-
-- (id) decodeStringToObject:(NSString*) string withDecoder:(id) decoder {
-    return [decoder decodeNumberFromString:string];
-}
-
-//- (FLDatabaseIgnored) representedObjectSqlType {
-//    return self.attributes.is_float_number ? FLDatabaseIgnored : FLDatabaseIgnored;
-//}
-
-- (id) representedObjectFromSqliteColumnData:(NSData*) data {
-    return nil;
-}
-
-- (id) representedObjectFromSqliteColumnString:(NSString*) string {
-    return nil;
-}
 @end
 
 @implementation FLBoolNumberPropertyDescriber 
 
-//- (FLDatabaseIgnored) representedObjectSqlType {
-//    return FLDatabaseIgnored;
-//}
 
-- (NSString*) encodeObjectToString:(id) object withEncoder:(id) encoder {
-    return [encoder encodeStringWithBOOL:object];
+- (NSString*) stringEncodingKeyForRepresentedData {
+    return [FLBoolStringEncoder stringEncodingKey];
 }
 
-- (id) decodeStringToObject:(NSString*) string withDecoder:(id) decoder {
-    return [decoder decodeBOOLFromString:string];
-}
 @end

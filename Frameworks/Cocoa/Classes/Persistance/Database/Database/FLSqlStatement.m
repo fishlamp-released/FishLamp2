@@ -10,7 +10,6 @@
 #import "FLGuid.h"
 #import "FLSqlBuilder.h"
 #import "FLDatabase_Internal.h"
-#import "FLCoreTypes.h"
 #import "FLDatabaseObjectSerializer.h"
 
 NS_INLINE

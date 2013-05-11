@@ -20,7 +20,7 @@
     FLAssertNotNil(xmlElement);
 
     FLObjectDescriber* objectDescriber = [self objectDescriber];
-    return [objectDescriber xmlObjectBuilder:builder inflateObjectWithXml:xmlElement];
+    return [objectDescriber xmlObjectBuilder:builder inflateRootObjectWithXML:xmlElement];
 }
 
 

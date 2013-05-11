@@ -28,9 +28,12 @@
         }
     }
     else {
-        id<FLStringEncoder> objectEncoder = [propertyDescriber objectEncoder];
-        if(objectEncoder) {
-            NSString* line = [objectEncoder encodeObjectToString:self withEncoder:xmlElement.dataEncoder];
+    
+        NSString* encodingKey = [propertyDescriber stringEncodingKeyForRepresentedData];
+        if(encodingKey) {
+            NSString* line = [xmlElement.dataEncoder stringFromObject:self encodingKey:encodingKey];
+
+//            NSString* line = [objectEncoder encodeObjectToString:self withEncoder:xmlElement.dataEncoder];
             [xmlElement appendLine:line];
         }
         else {

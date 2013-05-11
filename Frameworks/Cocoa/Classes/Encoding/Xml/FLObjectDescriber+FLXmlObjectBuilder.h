@@ -15,6 +15,6 @@
 @interface FLObjectDescriber (FLXmlObjectBuilder)
 
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-   inflateObjectWithXml:(FLParsedItem*) element;
+   inflateRootObjectWithXML:(FLParsedItem*) element;
    
 @end

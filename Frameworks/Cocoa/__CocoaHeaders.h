@@ -153,10 +153,9 @@
 #import "NSObject+FLObjectBuilder.h"
 
 // Classes/Model/ModelObjects
-#import "FLCoreTypes.h"
 #import "FLEnumHandler.h"
 #import "FLObjectDescriber.h"
-#import "FLObjectEncoder.h"
+#import "FLStringEncoder.h"
 #import "FLParseInfo.h"
 #import "FLStorageAttribute.h"
 #import "NSObject+Comparison.h"

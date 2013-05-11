@@ -6,16 +6,23 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "FLDataEncoding.h"
 #import "FLDataDecoding.h"
+#import "FLStringEncoder.h"
+
+//@protocol FLProtocolStringEncoding <NSObject>
+//- (NSString*) stringDecodedFromString:(NSString*) string;
+//- (NSString*) stringEncodedFromString:(NSString*) string;
+//@end
 
 @interface FLDataEncoder : NSObject<FLDataEncoding, FLDataDecoding> {
 @private
-    NSNumberFormatter* _numberFormatter;
+    NSMutableDictionary* _stringEncoders;
 }
+
 + (id) dataEncoder;
 
-@property (readonly, strong, nonatomic) NSNumberFormatter* numberFormatter;
+- (void) setStringEncoder:(id<FLStringEncoding>) encoder forKey:(NSString*) encodingKey;
+- (id<FLStringEncoding>) stringEncoderForKey:(NSString*) key;
 
 @end

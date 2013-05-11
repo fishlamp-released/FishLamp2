@@ -6,13 +6,9 @@
 //  Copyright 2011 GreenTongue Software. All rights reserved.
 //
 
-#import "FLCocoaRequired.h"
-#import "FishLampCore.h"
-#import "FLDataEncoder.h"
+#import "FLXmlDataEncoder.h"
 
-#import "NSString+XML.h"
-
-@interface FLSoapDataEncoder : FLDataEncoder {
+@interface FLSoapDataEncoder : FLXmlDataEncoder {
 }
 
 FLSingletonProperty(FLSoapDataEncoder);

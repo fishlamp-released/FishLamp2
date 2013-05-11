@@ -17,33 +17,33 @@
 
 FLSynthesizeSingleton(FLSoapDataEncoder);
 
-- (NSString*) encodeStringWithString:(NSString*) string {
-    return [string xmlEncode];
-}
-
-- (NSString*) decodeStringFromString:(NSString*) string {
-    return [string xmlDecode];
-}
-
-- (NSString*) encodeStringWithDate:(NSDate*) date {
-    return [[FLDateMgr instance] ISO8601DateToString:(NSDate*) date];
-}
-
-- (NSDate*) decodeDateFromString:(NSString*) string {
-    return [[FLDateMgr instance] ISO8601StringToDate:string];
-}
-
-- (NSData*) decodeDataFromString:(NSString*) string {
-    return [string base64Decode];
-}
-
-// TODO: why is this UTF8??? 
-- (NSString*) encodeStringWithData:(NSData*) data {
-    return FLAutorelease([[NSString alloc] initWithBytes:[data bytes] 
-                                    length:[data length] 
-                                    encoding:NSUTF8StringEncoding]);
-}
-
+//- (NSString*) encodeStringWithString:(NSString*) string {
+//    return [string xmlEncode];
+//}
+//
+//- (NSString*) decodeStringFromString:(NSString*) string {
+//    return [string xmlDecode];
+//}
+//
+//- (NSString*) encodeStringWithDate:(NSDate*) date {
+//    return [[FLDateMgr instance] ISO8601DateToString:(NSDate*) date];
+//}
+//
+//- (NSDate*) decodeDateFromString:(NSString*) string {
+//    return [[FLDateMgr instance] ISO8601StringToDate:string];
+//}
+//
+//- (NSData*) decodeDataFromString:(NSString*) string {
+//    return [string base64Decode];
+//}
+//
+//// TODO: why is this UTF8??? 
+//- (NSString*) encodeStringWithData:(NSData*) data {
+//    return FLAutorelease([[NSString alloc] initWithBytes:[data bytes] 
+//                                    length:[data length] 
+//                                    encoding:NSUTF8StringEncoding]);
+//}
+//
 
 
 

@@ -8,11 +8,11 @@
 //
 // [/Generated]
 
-#import "__FLCachedImageBaseClass.h"
-#import "FLCachedImageBaseClass.h"
-
-@implementation FLCachedImageBaseClass (ObjC)
-
-// Your code here :-)
-
-@end
+//#import "__FLCachedImageBaseClass.h"
+//#import "FLCachedImageBaseClass.h"
+//
+//@implementation FLCachedImageBaseClass (ObjC)
+//
+//// Your code here :-)
+//
+//@end

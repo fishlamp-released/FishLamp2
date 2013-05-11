@@ -19,12 +19,12 @@
 inflateObjectWithElement:(FLParsedItem*) element {
     
     if(FLStringIsNotEmpty([element value])) {
-        id<FLStringEncoder> encoder = [self objectEncoder];
+    
+        NSString* encodingKey = self.stringEncodingKeyForRepresentedData;
+        FLAssertNotNilWithComment(encodingKey, @"no encoder found for property: %@", self.propertyName);
 
-        FLAssertNotNilWithComment(encoder, @"no encoder found for property: %@", self.propertyName);
-
-        if(encoder) {
-            id object = [builder.decoder decodeDataFromString:[element value] forType:encoder];
+        if(encodingKey) {
+            id object = [builder.decoder objectFromString:[element value] encodingKey:encodingKey];
             
             FLAssertNotNilWithComment(object,
                     @"object not expanded for %@:%@", [element elementName], [element value]);

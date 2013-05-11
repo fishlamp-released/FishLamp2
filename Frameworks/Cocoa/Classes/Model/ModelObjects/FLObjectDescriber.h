@@ -10,10 +10,9 @@
 
 #import "FishLamp.h"
 #import "FLPropertyDescriber.h"
-#import "FLCoreTypes.h"
 #import "FLDatabase.h"
 
-@class FLObjectEncoder;
+@class FLStringEncoder;
 @class FLObjectDescriber;
 
 @interface NSObject (FLObjectDescriber)

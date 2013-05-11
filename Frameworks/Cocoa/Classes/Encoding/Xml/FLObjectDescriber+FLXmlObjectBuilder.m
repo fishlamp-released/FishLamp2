@@ -15,15 +15,16 @@
 @implementation FLObjectDescriber (FLXmlObjectBuilder)
 
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-   inflateObjectWithXml:(FLParsedItem*) element {
+   inflateRootObjectWithXML:(FLParsedItem*) element {
 
-    id<FLStringEncoder> encoder = [self.objectClass objectEncoder];
-    FLAssertNotNilWithComment(encoder, @"no encoder found for class: %@", NSStringFromClass(self.objectClass));
-    if(!encoder) {
-        return nil;
-    }
-    
-    id object = [builder.decoder decodeDataFromString:[element value] forType:encoder];
+//    NSString* encodingKey = typeDesc.stringEncodingKeyForRepresentedData;
+//    if(encodingKey) {
+//        FLAssertNotNil(builder.decoder);
+//        return [builder.decoder objectFromString:self encodingKey:encodingKey];
+
+    NSString* encodingKey = [[self objectClass] stringEncodingKey];
+  
+    id object = [builder.decoder objectFromString:[element value] encodingKey:encodingKey];
     FLAssertNotNil(object);
 
     return object;
@@ -34,7 +35,7 @@
 @implementation FLModelObjectDescriber (FLXmlObjectBuilder)
 
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-   inflateObjectWithXml:(FLParsedItem*) element {
+   inflateRootObjectWithXML:(FLParsedItem*) element {
 
     FLAssert([self.objectClass isModelObject]);
     

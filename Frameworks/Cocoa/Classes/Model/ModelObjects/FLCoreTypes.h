@@ -7,41 +7,41 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLObjectEncoder.h"
+#import "FLStringEncoder.h"
 
 
-@protocol FLTypeCoreTypesEncoding <NSObject>
-- (NSString*) encodeStringWithRect:(NSValue*) value;
-- (NSString*) encodeStringWithPoint:(NSValue*) value;
-- (NSString*) encodeStringWithSize:(NSValue*) value;
-
-- (NSString*) encodeStringWithNumber:(NSNumber*) number;
-- (NSString*) encodeStringWithString:(NSString*) string;
-- (NSString*) encodeStringWithBOOL:(NSNumber*) number;
-
-- (NSString*) encodeStringWithData:(NSData*) data;
-- (NSString*) encodeStringWithURL:(NSURL*) URL;
-- (NSString*) encodeStringWithDate:(NSDate*) date;
-- (NSString*) encodeStringWithFont:(SDKFont*) font;
-
-@end
-
-// decoding
-
-@protocol FLTypeCoreTypesDecoding <NSObject>
-- (NSValue*) decodePointFromString:(NSString*) string;
-- (NSValue*) decodeRectFromString:(NSString*) string;
-- (NSValue*) decodeSizeFromString:(NSString*) string;
-
-- (NSNumber*) decodeBOOLFromString:(NSString*) string;
-- (NSNumber*) decodeNumberFromString:(NSString*) string;
-- (NSString*) decodeStringFromString:(NSString*) string;
-
-- (NSData*) decodeDataFromString:(NSString*) string;
-- (NSURL*) decodeURLFromString:(NSString*) string;
-- (NSDate*) decodeDateFromString:(NSString*) string;
-- (SDKFont*) decodeFontFromString:(NSString*) string;
-@end
+//@protocol FLTypeCoreTypesEncoding <NSObject>
+//- (NSString*) encodeStringWithRect:(NSValue*) value;
+//- (NSString*) encodeStringWithPoint:(NSValue*) value;
+//- (NSString*) encodeStringWithSize:(NSValue*) value;
+//
+//- (NSString*) encodeStringWithNumber:(NSNumber*) number;
+//- (NSString*) encodeStringWithString:(NSString*) string;
+//- (NSString*) encodeStringWithBOOL:(NSNumber*) number;
+//
+//- (NSString*) encodeStringWithData:(NSData*) data;
+//- (NSString*) encodeStringWithURL:(NSURL*) URL;
+//- (NSString*) encodeStringWithDate:(NSDate*) date;
+//- (NSString*) encodeStringWithFont:(SDKFont*) font;
+//
+//@end
+//
+//// decoding
+//
+//@protocol FLTypeCoreTypesDecoding <NSObject>
+//- (NSValue*) decodePointFromString:(NSString*) string;
+//- (NSValue*) decodeRectFromString:(NSString*) string;
+//- (NSValue*) decodeSizeFromString:(NSString*) string;
+//
+//- (NSNumber*) decodeBOOLFromString:(NSString*) string;
+//- (NSNumber*) decodeNumberFromString:(NSString*) string;
+//- (NSString*) decodeStringFromString:(NSString*) string;
+//
+//- (NSData*) decodeDataFromString:(NSString*) string;
+//- (NSURL*) decodeURLFromString:(NSString*) string;
+//- (NSDate*) decodeDateFromString:(NSString*) string;
+//- (SDKFont*) decodeFontFromString:(NSString*) string;
+//@end
 
 //// numbers
 //typedef enum {
@@ -60,7 +60,7 @@
 //	FLTypeIDDouble            = _C_DBL,
 //} FLTypeNumberType;
 
-//@interface FLNumberEncoder : FLObjectEncoder {
+//@interface FLNumberEncoder : FLStringEncoder {
 //@private
 //    FLTypeNumberType _numberType;
 //}
@@ -133,7 +133,7 @@
 //
 //// values
 //
-//@interface FLValueEncoder : FLObjectEncoder
+//@interface FLValueEncoder : FLStringEncoder
 //@end
 //
 //@interface FLGeometrySize : NSObject
@@ -148,7 +148,7 @@
 //+ (id) geometryPoint;
 //@end
 
-//@interface FLMutableArrayType : FLObjectEncoder
+//@interface FLMutableArrayType : FLStringEncoder
 //@end
 
 //// simple objects that return FLTypes

@@ -6,16 +6,12 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "FLCocoaRequired.h"
-#import "FishLampCore.h"
-#import "FLObjectEncoder.h"
-#import "FLCoreTypes.h"
 
-@protocol FLDataDecoding <NSObject, FLTypeCoreTypesEncoding>
-- (id) decodeDataFromString:(NSString*) inEncodedString 
-                    forType:(id<FLStringEncoder>) type;
+@protocol FLDataDecoding <NSObject>
+
+- (id) objectFromString:(NSString*) string
+            encodingKey:(NSString*) encodingKey;
 
 @end
 

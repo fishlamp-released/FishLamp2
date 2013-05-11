@@ -7,7 +7,7 @@
 //
 
 #import "FLPropertyAttributes.h"
-#import "FLObjectEncoder.h"
+#import "FLStringEncoder.h"
 #import "FLDatabase.h"
 
 @class FLObjectDescriber;
@@ -42,7 +42,7 @@
 @property (readonly, assign) BOOL representsObject;
 @property (readonly, assign) BOOL representsModelObject;
 @property (readonly, assign) BOOL representsArray;
-@property (readonly, strong) id<FLStringEncoder> objectEncoder;
+//@property (readonly, strong) id<FLStringEncoder> objectEncoder;
 - (BOOL) representsClass:(Class) aClass;
 - (id) createRepresentedObject;
 
@@ -56,6 +56,9 @@
 + (id) propertyDescriber:(NSString*) identifier 
            propertyClass:(Class) aClass;
 
+
+- (NSString*) stringEncodingKeyForRepresentedData;
+
 @property (readonly, assign) FLDatabaseType databaseColumnType;          
 @end
 
@@ -66,10 +69,10 @@
 @interface FLValuePropertyDescriber : FLPropertyDescriber
 @end
 
-@interface FLNumberPropertyDescriber : FLValuePropertyDescriber<FLStringEncoder>
+@interface FLNumberPropertyDescriber : FLValuePropertyDescriber 
 @end
 
-@interface FLBoolNumberPropertyDescriber : FLNumberPropertyDescriber<FLStringEncoder>
+@interface FLBoolNumberPropertyDescriber : FLValuePropertyDescriber
 @end
 
 

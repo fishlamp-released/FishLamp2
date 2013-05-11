@@ -39,7 +39,6 @@
                     <storageOptions isIndexed="YES" isUnique="YES"/>
                 </property>
                 <property type="double" name="authTokenLastUpdateTime"/>
-                <property type="long" name="userValue"/>
                 <property type="dictionary" name="userInfo"/>
             </properties>
         </object>

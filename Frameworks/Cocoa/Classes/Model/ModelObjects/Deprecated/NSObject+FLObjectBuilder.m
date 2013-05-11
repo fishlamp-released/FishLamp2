@@ -14,7 +14,6 @@
 #import "FLPropertyType.h"
 
 #import "FLXmlObjectBuilder.h"
-#import "FLCoreTypes.h"
 
 @implementation NSObject (FLObjectBuilder)
 

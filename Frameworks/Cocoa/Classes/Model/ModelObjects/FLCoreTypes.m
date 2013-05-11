@@ -7,7 +7,7 @@
 //
 
 #import "FLCoreTypes.h"
-#import "FLObjectEncoder.h"
+#import "FLStringEncoder.h"
 
 //// objects
 //enum  {
@@ -53,7 +53,7 @@
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
 //
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"BOOL" numberType:FLTypeIDBool]));
 //}
 //
@@ -64,7 +64,7 @@
 //+ (id) charNumber {
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDChar]));
 //}
 //
@@ -77,7 +77,7 @@
 //+ (id) unsignedCharNumber {
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDUnsignedChar]));
 //}
 //
@@ -89,7 +89,7 @@
 //+ (id) shortNumber {
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDShort]));
 //}
 //
@@ -100,7 +100,7 @@
 //+ (id) unsignedShortNumber {
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDUnsignedShort]));
 //}
 //
@@ -112,7 +112,7 @@
 //+ (id) intNumber {
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDInt]));
 //}
 //
@@ -124,7 +124,7 @@
 //+ (id) unsignedIntNumber {
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDUnsignedInt]));
 //}
 //
@@ -137,7 +137,7 @@
 //+ (id) longNumber {
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDLong]));
 //}
 //
@@ -147,7 +147,7 @@
 //@implementation FLUnsignedLongNumber 
 //
 //
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDUnsignedLong]));
 //}
 //
@@ -159,7 +159,7 @@
 //
 //@implementation FLLongLongNumber 
 //
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDLongLong]));
 //}
 //
@@ -174,7 +174,7 @@
 //+ (id) unsignedLongLongNumber {
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDUnsignedLongLong]));
 //}
 //
@@ -186,7 +186,7 @@
 //+ (id) floatNumber {
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDFloat]));
 //}
 //@end
@@ -197,7 +197,7 @@
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
 //
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDDouble]));
 //}
 //
@@ -208,7 +208,7 @@
 //+ (id) integerNumber {
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDLong]));
 //}
 //
@@ -219,7 +219,7 @@
 //+ (id) unsignedIntegerNumber {
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLNumberEncoder alloc] initWithEncodingKey:@"Number" numberType:FLTypeIDUnsignedLong]));
 //}
 //
@@ -234,7 +234,7 @@
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
 //
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLValueEncoder alloc] initWithEncodingKey:@"Size"]));
 //}
 //
@@ -246,7 +246,7 @@
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
 //
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLValueEncoder alloc] initWithEncodingKey:@"Rect"]));
 //}
 //
@@ -258,66 +258,12 @@
 //    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));  
 //}
 //
-//+ (FLObjectEncoder*) objectEncoder {
+//+ (FLStringEncoder*) objectEncoder {
 //    FLReturnStaticObject(FLAutorelease([[FLValueEncoder alloc] initWithEncodingKey:@"Point"]));
 //}
 //
 //@end
 
-@implementation NSString (FLCoreTypes)
-+ (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"String"]);
-}
-
-@end
-
-@implementation NSArray (FLCoreTypes)
-+ (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Array"]);
-}
-@end
-
-//@implementation NSMutableArray (FLCoreTypes)
-//+ (FLObjectEncoder*) objectEncoder {
-//    FLReturnStaticObject([[FLMutableArrayType alloc] initWithEncodingKey:@"MutableArray"]);
-//}
-//@end
-
-@implementation NSURL (FLCoreTypes)
-+ (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"URL" ]);
-}
-@end
-
-@implementation NSData (FLCoreTypes)
-+ (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Data" ]);
-}
-@end
-
-@implementation NSDate (FLCoreTypes)
-+ (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Date" ]);
-}
-@end
-
-@implementation SDKFont (FLCoreTypes)
-+ (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Font"]);
-}
-@end
-
-@implementation SDKColor (FLCoreTypes)
-+ (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject([[FLObjectEncoder alloc] initWithEncodingKey:@"Color"]);
-}
-@end
-
-@implementation NSNumber (FLCoreTypes) 
-+ (FLObjectEncoder*) objectEncoder {
-    FLReturnStaticObject(FLAutorelease([[FLObjectEncoder alloc] initWithEncodingKey:@"Number"]));
-}
-@end
 
 
 

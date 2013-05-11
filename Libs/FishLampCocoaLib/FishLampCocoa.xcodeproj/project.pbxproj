@@ -844,15 +844,15 @@
 		271D36BD16FE0781009CD00F /* FLObjectDescriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D516FE0775009CD00F /* FLObjectDescriber.m */; };
 		271D36BE16FE0781009CD00F /* FLObjectDescriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D516FE0775009CD00F /* FLObjectDescriber.m */; };
 		271D36BF16FE0781009CD00F /* FLObjectDescriber.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D516FE0775009CD00F /* FLObjectDescriber.m */; };
-		271D36C016FE0781009CD00F /* FLObjectEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31D616FE0775009CD00F /* FLObjectEncoder.h */; };
-		271D36C116FE0781009CD00F /* FLObjectEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31D616FE0775009CD00F /* FLObjectEncoder.h */; };
-		271D36C216FE0781009CD00F /* FLObjectEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31D616FE0775009CD00F /* FLObjectEncoder.h */; };
-		271D36C316FE0781009CD00F /* FLObjectEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31D616FE0775009CD00F /* FLObjectEncoder.h */; };
-		271D36C416FE0781009CD00F /* FLObjectEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D716FE0775009CD00F /* FLObjectEncoder.m */; };
-		271D36C516FE0781009CD00F /* FLObjectEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D716FE0775009CD00F /* FLObjectEncoder.m */; };
-		271D36C616FE0781009CD00F /* FLObjectEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D716FE0775009CD00F /* FLObjectEncoder.m */; };
-		271D36C716FE0781009CD00F /* FLObjectEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D716FE0775009CD00F /* FLObjectEncoder.m */; };
-		271D36C816FE0781009CD00F /* FLObjectEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D716FE0775009CD00F /* FLObjectEncoder.m */; };
+		271D36C016FE0781009CD00F /* FLStringEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31D616FE0775009CD00F /* FLStringEncoder.h */; };
+		271D36C116FE0781009CD00F /* FLStringEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31D616FE0775009CD00F /* FLStringEncoder.h */; };
+		271D36C216FE0781009CD00F /* FLStringEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31D616FE0775009CD00F /* FLStringEncoder.h */; };
+		271D36C316FE0781009CD00F /* FLStringEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31D616FE0775009CD00F /* FLStringEncoder.h */; };
+		271D36C416FE0781009CD00F /* FLStringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D716FE0775009CD00F /* FLStringEncoder.m */; };
+		271D36C516FE0781009CD00F /* FLStringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D716FE0775009CD00F /* FLStringEncoder.m */; };
+		271D36C616FE0781009CD00F /* FLStringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D716FE0775009CD00F /* FLStringEncoder.m */; };
+		271D36C716FE0781009CD00F /* FLStringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D716FE0775009CD00F /* FLStringEncoder.m */; };
+		271D36C816FE0781009CD00F /* FLStringEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31D716FE0775009CD00F /* FLStringEncoder.m */; };
 		271D36C916FE0781009CD00F /* FLStorageAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31D816FE0775009CD00F /* FLStorageAttribute.h */; };
 		271D36CA16FE0781009CD00F /* FLStorageAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31D816FE0775009CD00F /* FLStorageAttribute.h */; };
 		271D36CB16FE0781009CD00F /* FLStorageAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31D816FE0775009CD00F /* FLStorageAttribute.h */; };
@@ -902,15 +902,6 @@
 		271D36F716FE0782009CD00F /* FLNetworkHostResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31E416FE0775009CD00F /* FLNetworkHostResolver.m */; };
 		271D36F816FE0782009CD00F /* FLNetworkHostResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31E416FE0775009CD00F /* FLNetworkHostResolver.m */; };
 		271D36F916FE0782009CD00F /* FLNetworkHostResolver.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31E416FE0775009CD00F /* FLNetworkHostResolver.m */; };
-		271D36FA16FE0782009CD00F /* FLDownloadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31E616FE0775009CD00F /* FLDownloadImageHttpRequest.h */; };
-		271D36FB16FE0782009CD00F /* FLDownloadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31E616FE0775009CD00F /* FLDownloadImageHttpRequest.h */; };
-		271D36FC16FE0782009CD00F /* FLDownloadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31E616FE0775009CD00F /* FLDownloadImageHttpRequest.h */; };
-		271D36FD16FE0782009CD00F /* FLDownloadImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31E616FE0775009CD00F /* FLDownloadImageHttpRequest.h */; };
-		271D36FE16FE0782009CD00F /* FLDownloadImageHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31E716FE0775009CD00F /* FLDownloadImageHttpRequest.m */; };
-		271D36FF16FE0782009CD00F /* FLDownloadImageHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31E716FE0775009CD00F /* FLDownloadImageHttpRequest.m */; };
-		271D370016FE0782009CD00F /* FLDownloadImageHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31E716FE0775009CD00F /* FLDownloadImageHttpRequest.m */; };
-		271D370116FE0782009CD00F /* FLDownloadImageHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31E716FE0775009CD00F /* FLDownloadImageHttpRequest.m */; };
-		271D370216FE0782009CD00F /* FLDownloadImageHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D31E716FE0775009CD00F /* FLDownloadImageHttpRequest.m */; };
 		271D370316FE0782009CD00F /* FLHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31E816FE0775009CD00F /* FLHttp.h */; };
 		271D370416FE0782009CD00F /* FLHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31E816FE0775009CD00F /* FLHttp.h */; };
 		271D370516FE0782009CD00F /* FLHttp.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D31E816FE0775009CD00F /* FLHttp.h */; };
@@ -1467,33 +1458,6 @@
 		271D395016FE078B009CD00F /* FLDataStoreWithCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328016FE0776009CD00F /* FLDataStoreWithCacheService.m */; };
 		271D395116FE078B009CD00F /* FLDataStoreWithCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328016FE0776009CD00F /* FLDataStoreWithCacheService.m */; };
 		271D395216FE078B009CD00F /* FLDataStoreWithCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328016FE0776009CD00F /* FLDataStoreWithCacheService.m */; };
-		271D395316FE078B009CD00F /* FLCachedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328216FE0776009CD00F /* FLCachedImage.h */; };
-		271D395416FE078B009CD00F /* FLCachedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328216FE0776009CD00F /* FLCachedImage.h */; };
-		271D395516FE078B009CD00F /* FLCachedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328216FE0776009CD00F /* FLCachedImage.h */; };
-		271D395616FE078B009CD00F /* FLCachedImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328216FE0776009CD00F /* FLCachedImage.h */; };
-		271D395716FE078B009CD00F /* FLCachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328316FE0776009CD00F /* FLCachedImage.m */; };
-		271D395816FE078B009CD00F /* FLCachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328316FE0776009CD00F /* FLCachedImage.m */; };
-		271D395916FE078B009CD00F /* FLCachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328316FE0776009CD00F /* FLCachedImage.m */; };
-		271D395A16FE078B009CD00F /* FLCachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328316FE0776009CD00F /* FLCachedImage.m */; };
-		271D395B16FE078B009CD00F /* FLCachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328316FE0776009CD00F /* FLCachedImage.m */; };
-		271D395C16FE078B009CD00F /* FLCachedImageCacheBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328416FE0776009CD00F /* FLCachedImageCacheBehavior.h */; };
-		271D395D16FE078B009CD00F /* FLCachedImageCacheBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328416FE0776009CD00F /* FLCachedImageCacheBehavior.h */; };
-		271D395E16FE078B009CD00F /* FLCachedImageCacheBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328416FE0776009CD00F /* FLCachedImageCacheBehavior.h */; };
-		271D395F16FE078B009CD00F /* FLCachedImageCacheBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328416FE0776009CD00F /* FLCachedImageCacheBehavior.h */; };
-		271D396016FE078B009CD00F /* FLCachedImageCacheBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328516FE0776009CD00F /* FLCachedImageCacheBehavior.m */; };
-		271D396116FE078B009CD00F /* FLCachedImageCacheBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328516FE0776009CD00F /* FLCachedImageCacheBehavior.m */; };
-		271D396216FE078B009CD00F /* FLCachedImageCacheBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328516FE0776009CD00F /* FLCachedImageCacheBehavior.m */; };
-		271D396316FE078B009CD00F /* FLCachedImageCacheBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328516FE0776009CD00F /* FLCachedImageCacheBehavior.m */; };
-		271D396416FE078B009CD00F /* FLCachedImageCacheBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328516FE0776009CD00F /* FLCachedImageCacheBehavior.m */; };
-		271D396516FE078B009CD00F /* FLImageStoreService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328616FE0776009CD00F /* FLImageStoreService.h */; };
-		271D396616FE078B009CD00F /* FLImageStoreService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328616FE0776009CD00F /* FLImageStoreService.h */; };
-		271D396716FE078B009CD00F /* FLImageStoreService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328616FE0776009CD00F /* FLImageStoreService.h */; };
-		271D396816FE078B009CD00F /* FLImageStoreService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328616FE0776009CD00F /* FLImageStoreService.h */; };
-		271D396916FE078B009CD00F /* FLImageStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328716FE0776009CD00F /* FLImageStoreService.m */; };
-		271D396A16FE078B009CD00F /* FLImageStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328716FE0776009CD00F /* FLImageStoreService.m */; };
-		271D396B16FE078B009CD00F /* FLImageStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328716FE0776009CD00F /* FLImageStoreService.m */; };
-		271D396C16FE078B009CD00F /* FLImageStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328716FE0776009CD00F /* FLImageStoreService.m */; };
-		271D396D16FE078B009CD00F /* FLImageStoreService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D328716FE0776009CD00F /* FLImageStoreService.m */; };
 		271D396E16FE078B009CD00F /* _oldFLDatabaseCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328916FE0776009CD00F /* _oldFLDatabaseCache.h */; };
 		271D396F16FE078B009CD00F /* _oldFLDatabaseCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328916FE0776009CD00F /* _oldFLDatabaseCache.h */; };
 		271D397016FE078B009CD00F /* _oldFLDatabaseCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D328916FE0776009CD00F /* _oldFLDatabaseCache.h */; };
@@ -1780,11 +1744,6 @@
 		271D3B0716FE0793009CD00F /* FLUserDataStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32EE16FE0776009CD00F /* FLUserDataStorageService.h */; };
 		271D3B0816FE0793009CD00F /* FLUserDataStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32EE16FE0776009CD00F /* FLUserDataStorageService.h */; };
 		271D3B0916FE0793009CD00F /* FLUserDataStorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32EE16FE0776009CD00F /* FLUserDataStorageService.h */; };
-		271D3B0A16FE0793009CD00F /* FLUserDataStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */; };
-		271D3B0B16FE0793009CD00F /* FLUserDataStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */; };
-		271D3B0C16FE0793009CD00F /* FLUserDataStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */; };
-		271D3B0D16FE0793009CD00F /* FLUserDataStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */; };
-		271D3B0E16FE0793009CD00F /* FLUserDataStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */; };
 		271D3B0F16FE0793009CD00F /* FLUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F016FE0776009CD00F /* FLUserService.h */; };
 		271D3B1016FE0793009CD00F /* FLUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F016FE0776009CD00F /* FLUserService.h */; };
 		271D3B1116FE0793009CD00F /* FLUserService.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F016FE0776009CD00F /* FLUserService.h */; };
@@ -1803,64 +1762,6 @@
 		271D3B1E16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F316FE0776009CD00F /* NSError+FLServiceRequest.m */; };
 		271D3B1F16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F316FE0776009CD00F /* NSError+FLServiceRequest.m */; };
 		271D3B2016FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F316FE0776009CD00F /* NSError+FLServiceRequest.m */; };
-		271D3B2116FE0793009CD00F /* __FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F516FE0776009CD00F /* __FLApplicationDataVersion.h */; };
-		271D3B2216FE0793009CD00F /* __FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F516FE0776009CD00F /* __FLApplicationDataVersion.h */; };
-		271D3B2316FE0793009CD00F /* __FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F516FE0776009CD00F /* __FLApplicationDataVersion.h */; };
-		271D3B2416FE0793009CD00F /* __FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F516FE0776009CD00F /* __FLApplicationDataVersion.h */; };
-		271D3B2516FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F616FE0776009CD00F /* __FLApplicationDataVersion.m */; };
-		271D3B2616FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F616FE0776009CD00F /* __FLApplicationDataVersion.m */; };
-		271D3B2716FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F616FE0776009CD00F /* __FLApplicationDataVersion.m */; };
-		271D3B2816FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F616FE0776009CD00F /* __FLApplicationDataVersion.m */; };
-		271D3B2916FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F616FE0776009CD00F /* __FLApplicationDataVersion.m */; };
-		271D3B2A16FE0793009CD00F /* __FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F716FE0776009CD00F /* __FLApplicationSession.h */; };
-		271D3B2B16FE0793009CD00F /* __FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F716FE0776009CD00F /* __FLApplicationSession.h */; };
-		271D3B2C16FE0793009CD00F /* __FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F716FE0776009CD00F /* __FLApplicationSession.h */; };
-		271D3B2D16FE0793009CD00F /* __FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F716FE0776009CD00F /* __FLApplicationSession.h */; };
-		271D3B3316FE0794009CD00F /* __FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F916FE0776009CD00F /* __FLLastUpdateTime.h */; };
-		271D3B3416FE0794009CD00F /* __FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F916FE0776009CD00F /* __FLLastUpdateTime.h */; };
-		271D3B3516FE0794009CD00F /* __FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F916FE0776009CD00F /* __FLLastUpdateTime.h */; };
-		271D3B3616FE0794009CD00F /* __FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32F916FE0776009CD00F /* __FLLastUpdateTime.h */; };
-		271D3B3716FE0794009CD00F /* __FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FA16FE0776009CD00F /* __FLLastUpdateTime.m */; };
-		271D3B3816FE0794009CD00F /* __FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FA16FE0776009CD00F /* __FLLastUpdateTime.m */; };
-		271D3B3916FE0794009CD00F /* __FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FA16FE0776009CD00F /* __FLLastUpdateTime.m */; };
-		271D3B3A16FE0794009CD00F /* __FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FA16FE0776009CD00F /* __FLLastUpdateTime.m */; };
-		271D3B3B16FE0794009CD00F /* __FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FA16FE0776009CD00F /* __FLLastUpdateTime.m */; };
-		271D3B3C16FE0794009CD00F /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FB16FE0776009CD00F /* __FLUserLogin.h */; };
-		271D3B3D16FE0794009CD00F /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FB16FE0776009CD00F /* __FLUserLogin.h */; };
-		271D3B3E16FE0794009CD00F /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FB16FE0776009CD00F /* __FLUserLogin.h */; };
-		271D3B3F16FE0794009CD00F /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FB16FE0776009CD00F /* __FLUserLogin.h */; };
-		271D3B4016FE0794009CD00F /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FC16FE0776009CD00F /* __FLUserLogin.m */; };
-		271D3B4116FE0794009CD00F /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FC16FE0776009CD00F /* __FLUserLogin.m */; };
-		271D3B4216FE0794009CD00F /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FC16FE0776009CD00F /* __FLUserLogin.m */; };
-		271D3B4316FE0794009CD00F /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FC16FE0776009CD00F /* __FLUserLogin.m */; };
-		271D3B4416FE0794009CD00F /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FC16FE0776009CD00F /* __FLUserLogin.m */; };
-		271D3B4516FE0794009CD00F /* FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FD16FE0776009CD00F /* FLApplicationDataVersion.h */; };
-		271D3B4616FE0794009CD00F /* FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FD16FE0776009CD00F /* FLApplicationDataVersion.h */; };
-		271D3B4716FE0794009CD00F /* FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FD16FE0776009CD00F /* FLApplicationDataVersion.h */; };
-		271D3B4816FE0794009CD00F /* FLApplicationDataVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FD16FE0776009CD00F /* FLApplicationDataVersion.h */; };
-		271D3B4916FE0794009CD00F /* FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FE16FE0776009CD00F /* FLApplicationDataVersion.m */; };
-		271D3B4A16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FE16FE0776009CD00F /* FLApplicationDataVersion.m */; };
-		271D3B4B16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FE16FE0776009CD00F /* FLApplicationDataVersion.m */; };
-		271D3B4C16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FE16FE0776009CD00F /* FLApplicationDataVersion.m */; };
-		271D3B4D16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32FE16FE0776009CD00F /* FLApplicationDataVersion.m */; };
-		271D3B4E16FE0794009CD00F /* FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FF16FE0776009CD00F /* FLApplicationSession.h */; };
-		271D3B4F16FE0794009CD00F /* FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FF16FE0776009CD00F /* FLApplicationSession.h */; };
-		271D3B5016FE0794009CD00F /* FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FF16FE0776009CD00F /* FLApplicationSession.h */; };
-		271D3B5116FE0794009CD00F /* FLApplicationSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D32FF16FE0776009CD00F /* FLApplicationSession.h */; };
-		271D3B5216FE0794009CD00F /* FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330016FE0776009CD00F /* FLApplicationSession.m */; };
-		271D3B5316FE0794009CD00F /* FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330016FE0776009CD00F /* FLApplicationSession.m */; };
-		271D3B5416FE0794009CD00F /* FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330016FE0776009CD00F /* FLApplicationSession.m */; };
-		271D3B5516FE0794009CD00F /* FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330016FE0776009CD00F /* FLApplicationSession.m */; };
-		271D3B5616FE0794009CD00F /* FLApplicationSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330016FE0776009CD00F /* FLApplicationSession.m */; };
-		271D3B5716FE0794009CD00F /* FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330116FE0776009CD00F /* FLLastUpdateTime.h */; };
-		271D3B5816FE0794009CD00F /* FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330116FE0776009CD00F /* FLLastUpdateTime.h */; };
-		271D3B5916FE0794009CD00F /* FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330116FE0776009CD00F /* FLLastUpdateTime.h */; };
-		271D3B5A16FE0794009CD00F /* FLLastUpdateTime.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330116FE0776009CD00F /* FLLastUpdateTime.h */; };
-		271D3B5B16FE0794009CD00F /* FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330216FE0776009CD00F /* FLLastUpdateTime.m */; };
-		271D3B5C16FE0794009CD00F /* FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330216FE0776009CD00F /* FLLastUpdateTime.m */; };
-		271D3B5D16FE0794009CD00F /* FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330216FE0776009CD00F /* FLLastUpdateTime.m */; };
-		271D3B5E16FE0794009CD00F /* FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330216FE0776009CD00F /* FLLastUpdateTime.m */; };
-		271D3B5F16FE0794009CD00F /* FLLastUpdateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330216FE0776009CD00F /* FLLastUpdateTime.m */; };
 		271D3B6016FE0794009CD00F /* FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330316FE0776009CD00F /* FLUserLogin.h */; };
 		271D3B6116FE0794009CD00F /* FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330316FE0776009CD00F /* FLUserLogin.h */; };
 		271D3B6216FE0794009CD00F /* FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330316FE0776009CD00F /* FLUserLogin.h */; };
@@ -1879,69 +1780,6 @@
 		271D3B6F16FE0794009CD00F /* FLDatabaseLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330716FE0776009CD00F /* FLDatabaseLink.m */; };
 		271D3B7016FE0795009CD00F /* FLDatabaseLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330716FE0776009CD00F /* FLDatabaseLink.m */; };
 		271D3B7116FE0795009CD00F /* FLDatabaseLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330716FE0776009CD00F /* FLDatabaseLink.m */; };
-		271D3B7216FE0795009CD00F /* FLImageFolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330816FE0776009CD00F /* FLImageFolder.h */; };
-		271D3B7316FE0795009CD00F /* FLImageFolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330816FE0776009CD00F /* FLImageFolder.h */; };
-		271D3B7416FE0795009CD00F /* FLImageFolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330816FE0776009CD00F /* FLImageFolder.h */; };
-		271D3B7516FE0795009CD00F /* FLImageFolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330816FE0776009CD00F /* FLImageFolder.h */; };
-		271D3B7616FE0795009CD00F /* FLImageFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330916FE0776009CD00F /* FLImageFolder.m */; };
-		271D3B7716FE0795009CD00F /* FLImageFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330916FE0776009CD00F /* FLImageFolder.m */; };
-		271D3B7816FE0795009CD00F /* FLImageFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330916FE0776009CD00F /* FLImageFolder.m */; };
-		271D3B7916FE0795009CD00F /* FLImageFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330916FE0776009CD00F /* FLImageFolder.m */; };
-		271D3B7A16FE0795009CD00F /* FLImageFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330916FE0776009CD00F /* FLImageFolder.m */; };
-		271D3B7B16FE0795009CD00F /* FLImageProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330A16FE0776009CD00F /* FLImageProperties.h */; };
-		271D3B7C16FE0795009CD00F /* FLImageProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330A16FE0776009CD00F /* FLImageProperties.h */; };
-		271D3B7D16FE0795009CD00F /* FLImageProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330A16FE0776009CD00F /* FLImageProperties.h */; };
-		271D3B7E16FE0795009CD00F /* FLImageProperties.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330A16FE0776009CD00F /* FLImageProperties.h */; };
-		271D3B7F16FE0795009CD00F /* FLImageProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330B16FE0776009CD00F /* FLImageProperties.m */; };
-		271D3B8016FE0795009CD00F /* FLImageProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330B16FE0776009CD00F /* FLImageProperties.m */; };
-		271D3B8116FE0795009CD00F /* FLImageProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330B16FE0776009CD00F /* FLImageProperties.m */; };
-		271D3B8216FE0795009CD00F /* FLImageProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330B16FE0776009CD00F /* FLImageProperties.m */; };
-		271D3B8316FE0795009CD00F /* FLImageProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330B16FE0776009CD00F /* FLImageProperties.m */; };
-		271D3B8416FE0795009CD00F /* FLImageStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330C16FE0776009CD00F /* FLImageStorage.h */; };
-		271D3B8516FE0795009CD00F /* FLImageStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330C16FE0776009CD00F /* FLImageStorage.h */; };
-		271D3B8616FE0795009CD00F /* FLImageStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330C16FE0776009CD00F /* FLImageStorage.h */; };
-		271D3B8716FE0795009CD00F /* FLImageStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330C16FE0776009CD00F /* FLImageStorage.h */; };
-		271D3B8816FE0795009CD00F /* FLImageStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330D16FE0776009CD00F /* FLImageStorage.m */; };
-		271D3B8916FE0795009CD00F /* FLImageStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330D16FE0776009CD00F /* FLImageStorage.m */; };
-		271D3B8A16FE0795009CD00F /* FLImageStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330D16FE0776009CD00F /* FLImageStorage.m */; };
-		271D3B8B16FE0795009CD00F /* FLImageStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330D16FE0776009CD00F /* FLImageStorage.m */; };
-		271D3B8C16FE0795009CD00F /* FLImageStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330D16FE0776009CD00F /* FLImageStorage.m */; };
-		271D3B8D16FE0795009CD00F /* FLImageStorageStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330E16FE0776009CD00F /* FLImageStorageStrategy.h */; };
-		271D3B8E16FE0795009CD00F /* FLImageStorageStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330E16FE0776009CD00F /* FLImageStorageStrategy.h */; };
-		271D3B8F16FE0795009CD00F /* FLImageStorageStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330E16FE0776009CD00F /* FLImageStorageStrategy.h */; };
-		271D3B9016FE0795009CD00F /* FLImageStorageStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330E16FE0776009CD00F /* FLImageStorageStrategy.h */; };
-		271D3B9116FE0795009CD00F /* FLImageStorageStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330F16FE0776009CD00F /* FLImageStorageStrategy.m */; };
-		271D3B9216FE0795009CD00F /* FLImageStorageStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330F16FE0776009CD00F /* FLImageStorageStrategy.m */; };
-		271D3B9316FE0795009CD00F /* FLImageStorageStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330F16FE0776009CD00F /* FLImageStorageStrategy.m */; };
-		271D3B9416FE0795009CD00F /* FLImageStorageStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330F16FE0776009CD00F /* FLImageStorageStrategy.m */; };
-		271D3B9516FE0795009CD00F /* FLImageStorageStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330F16FE0776009CD00F /* FLImageStorageStrategy.m */; };
-		271D3B9616FE0795009CD00F /* FLPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331016FE0776009CD00F /* FLPhoto.h */; };
-		271D3B9716FE0795009CD00F /* FLPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331016FE0776009CD00F /* FLPhoto.h */; };
-		271D3B9816FE0795009CD00F /* FLPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331016FE0776009CD00F /* FLPhoto.h */; };
-		271D3B9916FE0795009CD00F /* FLPhoto.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331016FE0776009CD00F /* FLPhoto.h */; };
-		271D3B9A16FE0795009CD00F /* FLPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331116FE0776009CD00F /* FLPhoto.m */; };
-		271D3B9B16FE0795009CD00F /* FLPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331116FE0776009CD00F /* FLPhoto.m */; };
-		271D3B9C16FE0795009CD00F /* FLPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331116FE0776009CD00F /* FLPhoto.m */; };
-		271D3B9D16FE0795009CD00F /* FLPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331116FE0776009CD00F /* FLPhoto.m */; };
-		271D3B9E16FE0795009CD00F /* FLPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331116FE0776009CD00F /* FLPhoto.m */; };
-		271D3B9F16FE0795009CD00F /* FLStorable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331216FE0776009CD00F /* FLStorable.h */; };
-		271D3BA016FE0795009CD00F /* FLStorable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331216FE0776009CD00F /* FLStorable.h */; };
-		271D3BA116FE0795009CD00F /* FLStorable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331216FE0776009CD00F /* FLStorable.h */; };
-		271D3BA216FE0795009CD00F /* FLStorable.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331216FE0776009CD00F /* FLStorable.h */; };
-		271D3BA316FE0795009CD00F /* FLStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331316FE0776009CD00F /* FLStorable.m */; };
-		271D3BA416FE0795009CD00F /* FLStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331316FE0776009CD00F /* FLStorable.m */; };
-		271D3BA516FE0795009CD00F /* FLStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331316FE0776009CD00F /* FLStorable.m */; };
-		271D3BA616FE0795009CD00F /* FLStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331316FE0776009CD00F /* FLStorable.m */; };
-		271D3BA716FE0795009CD00F /* FLStorable.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331316FE0776009CD00F /* FLStorable.m */; };
-		271D3BA816FE0795009CD00F /* FLStorableImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331416FE0776009CD00F /* FLStorableImage.h */; };
-		271D3BA916FE0795009CD00F /* FLStorableImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331416FE0776009CD00F /* FLStorableImage.h */; };
-		271D3BAA16FE0795009CD00F /* FLStorableImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331416FE0776009CD00F /* FLStorableImage.h */; };
-		271D3BAB16FE0795009CD00F /* FLStorableImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331416FE0776009CD00F /* FLStorableImage.h */; };
-		271D3BAC16FE0795009CD00F /* FLStorableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331516FE0776009CD00F /* FLStorableImage.m */; };
-		271D3BAD16FE0795009CD00F /* FLStorableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331516FE0776009CD00F /* FLStorableImage.m */; };
-		271D3BAE16FE0796009CD00F /* FLStorableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331516FE0776009CD00F /* FLStorableImage.m */; };
-		271D3BAF16FE0796009CD00F /* FLStorableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331516FE0776009CD00F /* FLStorableImage.m */; };
-		271D3BB016FE0796009CD00F /* FLStorableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D331516FE0776009CD00F /* FLStorableImage.m */; };
 		271D3BB116FE0796009CD00F /* FLStorageStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331616FE0776009CD00F /* FLStorageStrategy.h */; };
 		271D3BB216FE0796009CD00F /* FLStorageStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331616FE0776009CD00F /* FLStorageStrategy.h */; };
 		271D3BB316FE0796009CD00F /* FLStorageStrategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D331616FE0776009CD00F /* FLStorageStrategy.h */; };
@@ -2947,50 +2785,6 @@
 		278E85EE170253AA008AFB98 /* FLJsonObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 278E85E7170253AA008AFB98 /* FLJsonObjectBuilder.m */; };
 		278E85EF170253AA008AFB98 /* FLJsonObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 278E85E7170253AA008AFB98 /* FLJsonObjectBuilder.m */; };
 		278E85F0170253AA008AFB98 /* FLJsonObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 278E85E7170253AA008AFB98 /* FLJsonObjectBuilder.m */; };
-		2798DA40166D886500A0863D /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1C166D886500A0863D /* __FLAssetQueueState.h */; };
-		2798DA41166D886500A0863D /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1C166D886500A0863D /* __FLAssetQueueState.h */; };
-		2798DA42166D886500A0863D /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1C166D886500A0863D /* __FLAssetQueueState.h */; };
-		2798DA47166D886500A0863D /* __FLExportedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1E166D886500A0863D /* __FLExportedAsset.h */; };
-		2798DA48166D886500A0863D /* __FLExportedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1E166D886500A0863D /* __FLExportedAsset.h */; };
-		2798DA49166D886500A0863D /* __FLExportedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1E166D886500A0863D /* __FLExportedAsset.h */; };
-		2798DA4A166D886500A0863D /* __FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1F166D886500A0863D /* __FLExportedAsset.m */; };
-		2798DA4B166D886500A0863D /* __FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1F166D886500A0863D /* __FLExportedAsset.m */; };
-		2798DA4C166D886500A0863D /* __FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1F166D886500A0863D /* __FLExportedAsset.m */; };
-		2798DA4D166D886500A0863D /* __FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1F166D886500A0863D /* __FLExportedAsset.m */; };
-		2798DA4E166D886500A0863D /* __FLQueuedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE20166D886500A0863D /* __FLQueuedAsset.h */; };
-		2798DA4F166D886500A0863D /* __FLQueuedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE20166D886500A0863D /* __FLQueuedAsset.h */; };
-		2798DA50166D886500A0863D /* __FLQueuedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE20166D886500A0863D /* __FLQueuedAsset.h */; };
-		2798DA55166D886500A0863D /* __FLUploadedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE22166D886500A0863D /* __FLUploadedAsset.h */; };
-		2798DA56166D886500A0863D /* __FLUploadedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE22166D886500A0863D /* __FLUploadedAsset.h */; };
-		2798DA57166D886500A0863D /* __FLUploadedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE22166D886500A0863D /* __FLUploadedAsset.h */; };
-		2798DA5C166D886500A0863D /* FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE25166D886500A0863D /* FLAssetQueueState.h */; };
-		2798DA5D166D886500A0863D /* FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE25166D886500A0863D /* FLAssetQueueState.h */; };
-		2798DA5E166D886500A0863D /* FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE25166D886500A0863D /* FLAssetQueueState.h */; };
-		2798DA5F166D886500A0863D /* FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE26166D886500A0863D /* FLAssetQueueState.m */; };
-		2798DA60166D886500A0863D /* FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE26166D886500A0863D /* FLAssetQueueState.m */; };
-		2798DA61166D886500A0863D /* FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE26166D886500A0863D /* FLAssetQueueState.m */; };
-		2798DA62166D886500A0863D /* FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE26166D886500A0863D /* FLAssetQueueState.m */; };
-		2798DA63166D886500A0863D /* FLExportedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE27166D886500A0863D /* FLExportedAsset.h */; };
-		2798DA64166D886500A0863D /* FLExportedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE27166D886500A0863D /* FLExportedAsset.h */; };
-		2798DA65166D886500A0863D /* FLExportedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE27166D886500A0863D /* FLExportedAsset.h */; };
-		2798DA66166D886500A0863D /* FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE28166D886500A0863D /* FLExportedAsset.m */; };
-		2798DA67166D886500A0863D /* FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE28166D886500A0863D /* FLExportedAsset.m */; };
-		2798DA68166D886500A0863D /* FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE28166D886500A0863D /* FLExportedAsset.m */; };
-		2798DA69166D886500A0863D /* FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE28166D886500A0863D /* FLExportedAsset.m */; };
-		2798DA6A166D886500A0863D /* FLQueuedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE29166D886500A0863D /* FLQueuedAsset.h */; };
-		2798DA6B166D886500A0863D /* FLQueuedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE29166D886500A0863D /* FLQueuedAsset.h */; };
-		2798DA6C166D886500A0863D /* FLQueuedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE29166D886500A0863D /* FLQueuedAsset.h */; };
-		2798DA6D166D886500A0863D /* FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2A166D886500A0863D /* FLQueuedAsset.m */; };
-		2798DA6E166D886500A0863D /* FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2A166D886500A0863D /* FLQueuedAsset.m */; };
-		2798DA6F166D886500A0863D /* FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2A166D886500A0863D /* FLQueuedAsset.m */; };
-		2798DA70166D886500A0863D /* FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2A166D886500A0863D /* FLQueuedAsset.m */; };
-		2798DA71166D886500A0863D /* FLUploadedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE2B166D886500A0863D /* FLUploadedAsset.h */; };
-		2798DA72166D886500A0863D /* FLUploadedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE2B166D886500A0863D /* FLUploadedAsset.h */; };
-		2798DA73166D886500A0863D /* FLUploadedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE2B166D886500A0863D /* FLUploadedAsset.h */; };
-		2798DA74166D886500A0863D /* FLUploadedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2C166D886500A0863D /* FLUploadedAsset.m */; };
-		2798DA75166D886500A0863D /* FLUploadedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2C166D886500A0863D /* FLUploadedAsset.m */; };
-		2798DA76166D886500A0863D /* FLUploadedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2C166D886500A0863D /* FLUploadedAsset.m */; };
-		2798DA77166D886500A0863D /* FLUploadedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2C166D886500A0863D /* FLUploadedAsset.m */; };
 		2798DA78166D886500A0863D /* FLAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE2D166D886500A0863D /* FLAsset.h */; };
 		2798DA79166D886500A0863D /* FLAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE2D166D886500A0863D /* FLAsset.h */; };
 		2798DA7A166D886500A0863D /* FLAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE2D166D886500A0863D /* FLAsset.h */; };
@@ -3184,13 +2978,40 @@
 		27C0FCCA17305B3D0000F00C /* FLAttributedStringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C0FCC317305B3D0000F00C /* FLAttributedStringController.m */; };
 		27C0FCCB17305B3D0000F00C /* FLAttributedStringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C0FCC317305B3D0000F00C /* FLAttributedStringController.m */; };
 		27C0FCCC17305B3D0000F00C /* FLAttributedStringController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C0FCC317305B3D0000F00C /* FLAttributedStringController.m */; };
+		27C16EC6173EB76800C8B8FA /* FLXmlStringEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16EC4173EB76800C8B8FA /* FLXmlStringEncoding.h */; };
+		27C16EC7173EB76800C8B8FA /* FLXmlStringEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16EC4173EB76800C8B8FA /* FLXmlStringEncoding.h */; };
+		27C16EC8173EB76800C8B8FA /* FLXmlStringEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16EC4173EB76800C8B8FA /* FLXmlStringEncoding.h */; };
+		27C16EC9173EB76800C8B8FA /* FLXmlStringEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16EC4173EB76800C8B8FA /* FLXmlStringEncoding.h */; };
+		27C16ECA173EB76800C8B8FA /* FLXmlStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16EC5173EB76800C8B8FA /* FLXmlStringEncoding.m */; };
+		27C16ECB173EB76800C8B8FA /* FLXmlStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16EC5173EB76800C8B8FA /* FLXmlStringEncoding.m */; };
+		27C16ECC173EB76800C8B8FA /* FLXmlStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16EC5173EB76800C8B8FA /* FLXmlStringEncoding.m */; };
+		27C16ECD173EB76800C8B8FA /* FLXmlStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16EC5173EB76800C8B8FA /* FLXmlStringEncoding.m */; };
+		27C16ECE173EB76800C8B8FA /* FLXmlStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16EC5173EB76800C8B8FA /* FLXmlStringEncoding.m */; };
+		27C16ED1173EB8DF00C8B8FA /* FLXmlDataEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16ECF173EB8DF00C8B8FA /* FLXmlDataEncoder.h */; };
+		27C16ED2173EB8DF00C8B8FA /* FLXmlDataEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16ECF173EB8DF00C8B8FA /* FLXmlDataEncoder.h */; };
+		27C16ED3173EB8DF00C8B8FA /* FLXmlDataEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16ECF173EB8DF00C8B8FA /* FLXmlDataEncoder.h */; };
+		27C16ED4173EB8DF00C8B8FA /* FLXmlDataEncoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16ECF173EB8DF00C8B8FA /* FLXmlDataEncoder.h */; };
+		27C16ED5173EB8DF00C8B8FA /* FLXmlDataEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16ED0173EB8DF00C8B8FA /* FLXmlDataEncoder.m */; };
+		27C16ED6173EB8DF00C8B8FA /* FLXmlDataEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16ED0173EB8DF00C8B8FA /* FLXmlDataEncoder.m */; };
+		27C16ED7173EB8DF00C8B8FA /* FLXmlDataEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16ED0173EB8DF00C8B8FA /* FLXmlDataEncoder.m */; };
+		27C16ED8173EB8DF00C8B8FA /* FLXmlDataEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16ED0173EB8DF00C8B8FA /* FLXmlDataEncoder.m */; };
+		27C16ED9173EB8DF00C8B8FA /* FLXmlDataEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16ED0173EB8DF00C8B8FA /* FLXmlDataEncoder.m */; };
+		27C16EDA173EBE7700C8B8FA /* FLUserDataStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */; };
+		27C16EDB173EBE7800C8B8FA /* FLUserDataStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */; };
+		27C16EDC173EBE7900C8B8FA /* FLUserDataStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */; };
+		27C16EDD173EBE7900C8B8FA /* FLUserDataStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */; };
+		27C16EDE173EBE7A00C8B8FA /* FLUserDataStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32EF16FE0776009CD00F /* FLUserDataStorageService.m */; };
+		27C16EE1173EC08100C8B8FA /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16EDF173EC08000C8B8FA /* __FLUserLogin.h */; };
+		27C16EE2173EC08100C8B8FA /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16EDF173EC08000C8B8FA /* __FLUserLogin.h */; };
+		27C16EE3173EC08100C8B8FA /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16EDF173EC08000C8B8FA /* __FLUserLogin.h */; };
+		27C16EE4173EC08100C8B8FA /* __FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C16EDF173EC08000C8B8FA /* __FLUserLogin.h */; };
+		27C16EE5173EC08100C8B8FA /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16EE0173EC08000C8B8FA /* __FLUserLogin.m */; };
+		27C16EE6173EC08100C8B8FA /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16EE0173EC08000C8B8FA /* __FLUserLogin.m */; };
+		27C16EE7173EC08100C8B8FA /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16EE0173EC08000C8B8FA /* __FLUserLogin.m */; };
+		27C16EE8173EC08100C8B8FA /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16EE0173EC08000C8B8FA /* __FLUserLogin.m */; };
+		27C16EE9173EC08100C8B8FA /* __FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C16EE0173EC08000C8B8FA /* __FLUserLogin.m */; };
 		27C62D3B170B45C80093F260 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C62D3A170B45C80093F260 /* Foundation.framework */; };
 		27C62D4A170B46670093F260 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C62D49170B46670093F260 /* main.m */; };
-		27CBBFA516768BA600753D0A /* __FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE1F166D886500A0863D /* __FLExportedAsset.m */; };
-		27CBBFA816768BA600753D0A /* FLAssetQueueState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE26166D886500A0863D /* FLAssetQueueState.m */; };
-		27CBBFA916768BA600753D0A /* FLExportedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE28166D886500A0863D /* FLExportedAsset.m */; };
-		27CBBFAA16768BA600753D0A /* FLQueuedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2A166D886500A0863D /* FLQueuedAsset.m */; };
-		27CBBFAB16768BA600753D0A /* FLUploadedAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2C166D886500A0863D /* FLUploadedAsset.m */; };
 		27CBBFAC16768BA600753D0A /* FLAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE2E166D886500A0863D /* FLAsset.m */; };
 		27CBBFAD16768BA600753D0A /* FLAssetFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE30166D886500A0863D /* FLAssetFactory.m */; };
 		27CBBFAE16768BA600753D0A /* FLAssetQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE32166D886500A0863D /* FLAssetQueue.m */; };
@@ -3211,14 +3032,6 @@
 		27CBBFBF16768BA600753D0A /* SDKImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2798CE5E166D886500A0863D /* SDKImage+RoundedCorner.m */; };
 		27CBBFE516768BA600753D0A /* FLJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 2776CC6F1672643C00F2E70A /* FLJson.m */; };
 		27CBBFEE16768BA600753D0A /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
-		27CBC19816768BA600753D0A /* __FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1C166D886500A0863D /* __FLAssetQueueState.h */; };
-		27CBC19916768BA600753D0A /* __FLExportedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE1E166D886500A0863D /* __FLExportedAsset.h */; };
-		27CBC19A16768BA600753D0A /* __FLQueuedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE20166D886500A0863D /* __FLQueuedAsset.h */; };
-		27CBC19B16768BA600753D0A /* __FLUploadedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE22166D886500A0863D /* __FLUploadedAsset.h */; };
-		27CBC19C16768BA600753D0A /* FLAssetQueueState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE25166D886500A0863D /* FLAssetQueueState.h */; };
-		27CBC19D16768BA600753D0A /* FLExportedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE27166D886500A0863D /* FLExportedAsset.h */; };
-		27CBC19E16768BA600753D0A /* FLQueuedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE29166D886500A0863D /* FLQueuedAsset.h */; };
-		27CBC19F16768BA600753D0A /* FLUploadedAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE2B166D886500A0863D /* FLUploadedAsset.h */; };
 		27CBC1A016768BA600753D0A /* FLAsset.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE2D166D886500A0863D /* FLAsset.h */; };
 		27CBC1A116768BA600753D0A /* FLAssetFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE2F166D886500A0863D /* FLAssetFactory.h */; };
 		27CBC1A216768BA600753D0A /* FLAssetQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2798CE31166D886500A0863D /* FLAssetQueue.h */; };
@@ -3742,8 +3555,8 @@
 		271D31D316FE0775009CD00F /* FLEnumHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEnumHandler.m; sourceTree = "<group>"; };
 		271D31D416FE0775009CD00F /* FLObjectDescriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectDescriber.h; sourceTree = "<group>"; };
 		271D31D516FE0775009CD00F /* FLObjectDescriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjectDescriber.m; sourceTree = "<group>"; };
-		271D31D616FE0775009CD00F /* FLObjectEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectEncoder.h; sourceTree = "<group>"; };
-		271D31D716FE0775009CD00F /* FLObjectEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjectEncoder.m; sourceTree = "<group>"; };
+		271D31D616FE0775009CD00F /* FLStringEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStringEncoder.h; sourceTree = "<group>"; };
+		271D31D716FE0775009CD00F /* FLStringEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStringEncoder.m; sourceTree = "<group>"; };
 		271D31D816FE0775009CD00F /* FLStorageAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStorageAttribute.h; sourceTree = "<group>"; };
 		271D31D916FE0775009CD00F /* NSObject+Comparison.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Comparison.h"; sourceTree = "<group>"; };
 		271D31DA16FE0775009CD00F /* NSObject+Comparison.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Comparison.m"; sourceTree = "<group>"; };
@@ -3755,8 +3568,6 @@
 		271D31E216FE0775009CD00F /* FLNetworkHost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkHost.m; sourceTree = "<group>"; };
 		271D31E316FE0775009CD00F /* FLNetworkHostResolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNetworkHostResolver.h; sourceTree = "<group>"; };
 		271D31E416FE0775009CD00F /* FLNetworkHostResolver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLNetworkHostResolver.m; sourceTree = "<group>"; };
-		271D31E616FE0775009CD00F /* FLDownloadImageHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDownloadImageHttpRequest.h; sourceTree = "<group>"; };
-		271D31E716FE0775009CD00F /* FLDownloadImageHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDownloadImageHttpRequest.m; sourceTree = "<group>"; };
 		271D31E816FE0775009CD00F /* FLHttp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttp.h; sourceTree = "<group>"; };
 		271D31E916FE0775009CD00F /* FLHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpRequest.h; sourceTree = "<group>"; };
 		271D31EA16FE0775009CD00F /* FLHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpRequest.m; sourceTree = "<group>"; };
@@ -3883,12 +3694,6 @@
 		271D327E16FE0776009CD00F /* FLCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCacheManager.m; sourceTree = "<group>"; };
 		271D327F16FE0776009CD00F /* FLDataStoreWithCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDataStoreWithCacheService.h; sourceTree = "<group>"; };
 		271D328016FE0776009CD00F /* FLDataStoreWithCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDataStoreWithCacheService.m; sourceTree = "<group>"; };
-		271D328216FE0776009CD00F /* FLCachedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCachedImage.h; sourceTree = "<group>"; };
-		271D328316FE0776009CD00F /* FLCachedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCachedImage.m; sourceTree = "<group>"; };
-		271D328416FE0776009CD00F /* FLCachedImageCacheBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCachedImageCacheBehavior.h; sourceTree = "<group>"; };
-		271D328516FE0776009CD00F /* FLCachedImageCacheBehavior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCachedImageCacheBehavior.m; sourceTree = "<group>"; };
-		271D328616FE0776009CD00F /* FLImageStoreService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImageStoreService.h; sourceTree = "<group>"; };
-		271D328716FE0776009CD00F /* FLImageStoreService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImageStoreService.m; sourceTree = "<group>"; };
 		271D328916FE0776009CD00F /* _oldFLDatabaseCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _oldFLDatabaseCache.h; sourceTree = "<group>"; };
 		271D328A16FE0776009CD00F /* _oldFLDatabaseCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _oldFLDatabaseCache.m; sourceTree = "<group>"; };
 		271D328B16FE0776009CD00F /* FLCacheBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCacheBehavior.h; sourceTree = "<group>"; };
@@ -3959,38 +3764,10 @@
 		271D32F116FE0776009CD00F /* FLUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserService.m; sourceTree = "<group>"; };
 		271D32F216FE0776009CD00F /* NSError+FLServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+FLServiceRequest.h"; sourceTree = "<group>"; };
 		271D32F316FE0776009CD00F /* NSError+FLServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+FLServiceRequest.m"; sourceTree = "<group>"; };
-		271D32F516FE0776009CD00F /* __FLApplicationDataVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLApplicationDataVersion.h; sourceTree = "<group>"; };
-		271D32F616FE0776009CD00F /* __FLApplicationDataVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLApplicationDataVersion.m; sourceTree = "<group>"; };
-		271D32F716FE0776009CD00F /* __FLApplicationSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLApplicationSession.h; sourceTree = "<group>"; };
-		271D32F816FE0776009CD00F /* __FLApplicationSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLApplicationSession.m; sourceTree = "<group>"; };
-		271D32F916FE0776009CD00F /* __FLLastUpdateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLLastUpdateTime.h; sourceTree = "<group>"; };
-		271D32FA16FE0776009CD00F /* __FLLastUpdateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLLastUpdateTime.m; sourceTree = "<group>"; };
-		271D32FB16FE0776009CD00F /* __FLUserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLUserLogin.h; sourceTree = "<group>"; };
-		271D32FC16FE0776009CD00F /* __FLUserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLUserLogin.m; sourceTree = "<group>"; };
-		271D32FD16FE0776009CD00F /* FLApplicationDataVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLApplicationDataVersion.h; sourceTree = "<group>"; };
-		271D32FE16FE0776009CD00F /* FLApplicationDataVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLApplicationDataVersion.m; sourceTree = "<group>"; };
-		271D32FF16FE0776009CD00F /* FLApplicationSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLApplicationSession.h; sourceTree = "<group>"; };
-		271D330016FE0776009CD00F /* FLApplicationSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLApplicationSession.m; sourceTree = "<group>"; };
-		271D330116FE0776009CD00F /* FLLastUpdateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLastUpdateTime.h; sourceTree = "<group>"; };
-		271D330216FE0776009CD00F /* FLLastUpdateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLastUpdateTime.m; sourceTree = "<group>"; };
 		271D330316FE0776009CD00F /* FLUserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserLogin.h; sourceTree = "<group>"; };
 		271D330416FE0776009CD00F /* FLUserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserLogin.m; sourceTree = "<group>"; };
 		271D330616FE0776009CD00F /* FLDatabaseLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDatabaseLink.h; sourceTree = "<group>"; };
 		271D330716FE0776009CD00F /* FLDatabaseLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDatabaseLink.m; sourceTree = "<group>"; };
-		271D330816FE0776009CD00F /* FLImageFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImageFolder.h; sourceTree = "<group>"; };
-		271D330916FE0776009CD00F /* FLImageFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImageFolder.m; sourceTree = "<group>"; };
-		271D330A16FE0776009CD00F /* FLImageProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImageProperties.h; sourceTree = "<group>"; };
-		271D330B16FE0776009CD00F /* FLImageProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImageProperties.m; sourceTree = "<group>"; };
-		271D330C16FE0776009CD00F /* FLImageStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImageStorage.h; sourceTree = "<group>"; };
-		271D330D16FE0776009CD00F /* FLImageStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImageStorage.m; sourceTree = "<group>"; };
-		271D330E16FE0776009CD00F /* FLImageStorageStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImageStorageStrategy.h; sourceTree = "<group>"; };
-		271D330F16FE0776009CD00F /* FLImageStorageStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImageStorageStrategy.m; sourceTree = "<group>"; };
-		271D331016FE0776009CD00F /* FLPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPhoto.h; sourceTree = "<group>"; };
-		271D331116FE0776009CD00F /* FLPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPhoto.m; sourceTree = "<group>"; };
-		271D331216FE0776009CD00F /* FLStorable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStorable.h; sourceTree = "<group>"; };
-		271D331316FE0776009CD00F /* FLStorable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStorable.m; sourceTree = "<group>"; };
-		271D331416FE0776009CD00F /* FLStorableImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStorableImage.h; sourceTree = "<group>"; };
-		271D331516FE0776009CD00F /* FLStorableImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStorableImage.m; sourceTree = "<group>"; };
 		271D331616FE0776009CD00F /* FLStorageStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStorageStrategy.h; sourceTree = "<group>"; };
 		271D331716FE0776009CD00F /* FLStorageStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStorageStrategy.m; sourceTree = "<group>"; };
 		271D331916FE0776009CD00F /* __FLCachedImageBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLCachedImageBaseClass.h; sourceTree = "<group>"; };
@@ -4102,7 +3879,6 @@
 		27277D42173C0C0200A107F0 /* FLUnretainedUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUnretainedUnitTests.m; sourceTree = "<group>"; };
 		27277D43173C0C0200A107F0 /* FLWeakRefTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWeakRefTests.h; sourceTree = "<group>"; };
 		27277D44173C0C0200A107F0 /* FLWeakRefTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWeakRefTests.m; sourceTree = "<group>"; };
-		272D807816C84313006052E5 /* AssetQueueObjects.flproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AssetQueueObjects.flproj; sourceTree = "<group>"; };
 		272EE7581731CE4C0025CFD6 /* FLKeychainOld.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLKeychainOld.m; sourceTree = "<group>"; };
 		272EE7591731CE5D0025CFD6 /* FLKeychainOld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLKeychainOld.h; sourceTree = "<group>"; };
 		272EE75A1731DBD50025CFD6 /* NSBundle+FLCurrentBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+FLCurrentBundle.h"; sourceTree = "<group>"; };
@@ -4230,22 +4006,6 @@
 		278E85DE170248B1008AFB98 /* FLHexColorDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHexColorDefines.h; sourceTree = "<group>"; };
 		278E85E6170253AA008AFB98 /* FLJsonObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLJsonObjectBuilder.h; sourceTree = "<group>"; };
 		278E85E7170253AA008AFB98 /* FLJsonObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLJsonObjectBuilder.m; sourceTree = "<group>"; };
-		2798CE1C166D886500A0863D /* __FLAssetQueueState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLAssetQueueState.h; sourceTree = "<group>"; };
-		2798CE1D166D886500A0863D /* __FLAssetQueueState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLAssetQueueState.m; sourceTree = "<group>"; };
-		2798CE1E166D886500A0863D /* __FLExportedAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLExportedAsset.h; sourceTree = "<group>"; };
-		2798CE1F166D886500A0863D /* __FLExportedAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLExportedAsset.m; sourceTree = "<group>"; };
-		2798CE20166D886500A0863D /* __FLQueuedAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLQueuedAsset.h; sourceTree = "<group>"; };
-		2798CE21166D886500A0863D /* __FLQueuedAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLQueuedAsset.m; sourceTree = "<group>"; };
-		2798CE22166D886500A0863D /* __FLUploadedAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLUploadedAsset.h; sourceTree = "<group>"; };
-		2798CE23166D886500A0863D /* __FLUploadedAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLUploadedAsset.m; sourceTree = "<group>"; };
-		2798CE25166D886500A0863D /* FLAssetQueueState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAssetQueueState.h; sourceTree = "<group>"; };
-		2798CE26166D886500A0863D /* FLAssetQueueState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAssetQueueState.m; sourceTree = "<group>"; };
-		2798CE27166D886500A0863D /* FLExportedAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLExportedAsset.h; sourceTree = "<group>"; };
-		2798CE28166D886500A0863D /* FLExportedAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLExportedAsset.m; sourceTree = "<group>"; };
-		2798CE29166D886500A0863D /* FLQueuedAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLQueuedAsset.h; sourceTree = "<group>"; };
-		2798CE2A166D886500A0863D /* FLQueuedAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLQueuedAsset.m; sourceTree = "<group>"; };
-		2798CE2B166D886500A0863D /* FLUploadedAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUploadedAsset.h; sourceTree = "<group>"; };
-		2798CE2C166D886500A0863D /* FLUploadedAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUploadedAsset.m; sourceTree = "<group>"; };
 		2798CE2D166D886500A0863D /* FLAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAsset.h; sourceTree = "<group>"; };
 		2798CE2E166D886500A0863D /* FLAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAsset.m; sourceTree = "<group>"; };
 		2798CE2F166D886500A0863D /* FLAssetFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAssetFactory.h; sourceTree = "<group>"; };
@@ -4300,6 +4060,12 @@
 		27BE09B617061FA900C375E0 /* FLOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLOperation.m; sourceTree = "<group>"; };
 		27C0FCC217305B3D0000F00C /* FLAttributedStringController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAttributedStringController.h; sourceTree = "<group>"; };
 		27C0FCC317305B3D0000F00C /* FLAttributedStringController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAttributedStringController.m; sourceTree = "<group>"; };
+		27C16EC4173EB76800C8B8FA /* FLXmlStringEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXmlStringEncoding.h; sourceTree = "<group>"; };
+		27C16EC5173EB76800C8B8FA /* FLXmlStringEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLXmlStringEncoding.m; sourceTree = "<group>"; };
+		27C16ECF173EB8DF00C8B8FA /* FLXmlDataEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXmlDataEncoder.h; sourceTree = "<group>"; };
+		27C16ED0173EB8DF00C8B8FA /* FLXmlDataEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLXmlDataEncoder.m; sourceTree = "<group>"; };
+		27C16EDF173EC08000C8B8FA /* __FLUserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __FLUserLogin.h; sourceTree = "<group>"; };
+		27C16EE0173EC08000C8B8FA /* __FLUserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = __FLUserLogin.m; sourceTree = "<group>"; };
 		27C62AD3170B37EC0093F260 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		27C62AD6170B37EC0093F260 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		27C62AD7170B37EC0093F260 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -4744,6 +4510,10 @@
 				272DF310170DDD09001C228A /* Parsing */,
 				271D318A16FE0775009CD00F /* NSString+XML.h */,
 				271D318B16FE0775009CD00F /* NSString+XML.m */,
+				27C16EC4173EB76800C8B8FA /* FLXmlStringEncoding.h */,
+				27C16EC5173EB76800C8B8FA /* FLXmlStringEncoding.m */,
+				27C16ECF173EB8DF00C8B8FA /* FLXmlDataEncoder.h */,
+				27C16ED0173EB8DF00C8B8FA /* FLXmlDataEncoder.m */,
 			);
 			path = Xml;
 			sourceTree = "<group>";
@@ -4882,8 +4652,8 @@
 				271D31D316FE0775009CD00F /* FLEnumHandler.m */,
 				271D31D416FE0775009CD00F /* FLObjectDescriber.h */,
 				271D31D516FE0775009CD00F /* FLObjectDescriber.m */,
-				271D31D616FE0775009CD00F /* FLObjectEncoder.h */,
-				271D31D716FE0775009CD00F /* FLObjectEncoder.m */,
+				271D31D616FE0775009CD00F /* FLStringEncoder.h */,
+				271D31D716FE0775009CD00F /* FLStringEncoder.m */,
 				271D31D816FE0775009CD00F /* FLStorageAttribute.h */,
 				271D31D916FE0775009CD00F /* NSObject+Comparison.h */,
 				271D31DA16FE0775009CD00F /* NSObject+Comparison.m */,
@@ -4959,8 +4729,6 @@
 			children = (
 				2772454B1724E04E00D17357 /* FLHttpErrors.h */,
 				2772454C1724E04E00D17357 /* FLHttpErrors.m */,
-				271D31E616FE0775009CD00F /* FLDownloadImageHttpRequest.h */,
-				271D31E716FE0775009CD00F /* FLDownloadImageHttpRequest.m */,
 				271D31E816FE0775009CD00F /* FLHttp.h */,
 				271D31E916FE0775009CD00F /* FLHttpRequest.h */,
 				271D31EA16FE0775009CD00F /* FLHttpRequest.m */,
@@ -5265,12 +5033,6 @@
 		271D328116FE0776009CD00F /* ImageCache */ = {
 			isa = PBXGroup;
 			children = (
-				271D328216FE0776009CD00F /* FLCachedImage.h */,
-				271D328316FE0776009CD00F /* FLCachedImage.m */,
-				271D328416FE0776009CD00F /* FLCachedImageCacheBehavior.h */,
-				271D328516FE0776009CD00F /* FLCachedImageCacheBehavior.m */,
-				271D328616FE0776009CD00F /* FLImageStoreService.h */,
-				271D328716FE0776009CD00F /* FLImageStoreService.m */,
 			);
 			path = ImageCache;
 			sourceTree = "<group>";
@@ -5419,20 +5181,8 @@
 		271D32F416FE0776009CD00F /* SessionObjects */ = {
 			isa = PBXGroup;
 			children = (
-				271D32F516FE0776009CD00F /* __FLApplicationDataVersion.h */,
-				271D32F616FE0776009CD00F /* __FLApplicationDataVersion.m */,
-				271D32F716FE0776009CD00F /* __FLApplicationSession.h */,
-				271D32F816FE0776009CD00F /* __FLApplicationSession.m */,
-				271D32F916FE0776009CD00F /* __FLLastUpdateTime.h */,
-				271D32FA16FE0776009CD00F /* __FLLastUpdateTime.m */,
-				271D32FB16FE0776009CD00F /* __FLUserLogin.h */,
-				271D32FC16FE0776009CD00F /* __FLUserLogin.m */,
-				271D32FD16FE0776009CD00F /* FLApplicationDataVersion.h */,
-				271D32FE16FE0776009CD00F /* FLApplicationDataVersion.m */,
-				271D32FF16FE0776009CD00F /* FLApplicationSession.h */,
-				271D330016FE0776009CD00F /* FLApplicationSession.m */,
-				271D330116FE0776009CD00F /* FLLastUpdateTime.h */,
-				271D330216FE0776009CD00F /* FLLastUpdateTime.m */,
+				27C16EDF173EC08000C8B8FA /* __FLUserLogin.h */,
+				27C16EE0173EC08000C8B8FA /* __FLUserLogin.m */,
 				271D330316FE0776009CD00F /* FLUserLogin.h */,
 				271D330416FE0776009CD00F /* FLUserLogin.m */,
 			);
@@ -5444,20 +5194,6 @@
 			children = (
 				271D330616FE0776009CD00F /* FLDatabaseLink.h */,
 				271D330716FE0776009CD00F /* FLDatabaseLink.m */,
-				271D330816FE0776009CD00F /* FLImageFolder.h */,
-				271D330916FE0776009CD00F /* FLImageFolder.m */,
-				271D330A16FE0776009CD00F /* FLImageProperties.h */,
-				271D330B16FE0776009CD00F /* FLImageProperties.m */,
-				271D330C16FE0776009CD00F /* FLImageStorage.h */,
-				271D330D16FE0776009CD00F /* FLImageStorage.m */,
-				271D330E16FE0776009CD00F /* FLImageStorageStrategy.h */,
-				271D330F16FE0776009CD00F /* FLImageStorageStrategy.m */,
-				271D331016FE0776009CD00F /* FLPhoto.h */,
-				271D331116FE0776009CD00F /* FLPhoto.m */,
-				271D331216FE0776009CD00F /* FLStorable.h */,
-				271D331316FE0776009CD00F /* FLStorable.m */,
-				271D331416FE0776009CD00F /* FLStorableImage.h */,
-				271D331516FE0776009CD00F /* FLStorableImage.m */,
 				271D331616FE0776009CD00F /* FLStorageStrategy.h */,
 				271D331716FE0776009CD00F /* FLStorageStrategy.m */,
 				271D331816FE0776009CD00F /* Generated */,
@@ -5876,7 +5612,6 @@
 		2798CE1A166D886500A0863D /* AssetQueue */ = {
 			isa = PBXGroup;
 			children = (
-				2798CE1B166D886500A0863D /* AssetQueue */,
 				2798CE2D166D886500A0863D /* FLAsset.h */,
 				2798CE2E166D886500A0863D /* FLAsset.m */,
 				2798CE2F166D886500A0863D /* FLAssetFactory.h */,
@@ -5889,30 +5624,6 @@
 				2798CE36166D886500A0863D /* FLJpegFileImageAsset.h */,
 				2798CE37166D886500A0863D /* FLJpegFileImageAsset.m */,
 				2798CE38166D886500A0863D /* FLStorableImageProtocol.h */,
-			);
-			path = AssetQueue;
-			sourceTree = "<group>";
-		};
-		2798CE1B166D886500A0863D /* AssetQueue */ = {
-			isa = PBXGroup;
-			children = (
-				272D807816C84313006052E5 /* AssetQueueObjects.flproj */,
-				2798CE1C166D886500A0863D /* __FLAssetQueueState.h */,
-				2798CE1D166D886500A0863D /* __FLAssetQueueState.m */,
-				2798CE1E166D886500A0863D /* __FLExportedAsset.h */,
-				2798CE1F166D886500A0863D /* __FLExportedAsset.m */,
-				2798CE20166D886500A0863D /* __FLQueuedAsset.h */,
-				2798CE21166D886500A0863D /* __FLQueuedAsset.m */,
-				2798CE22166D886500A0863D /* __FLUploadedAsset.h */,
-				2798CE23166D886500A0863D /* __FLUploadedAsset.m */,
-				2798CE25166D886500A0863D /* FLAssetQueueState.h */,
-				2798CE26166D886500A0863D /* FLAssetQueueState.m */,
-				2798CE27166D886500A0863D /* FLExportedAsset.h */,
-				2798CE28166D886500A0863D /* FLExportedAsset.m */,
-				2798CE29166D886500A0863D /* FLQueuedAsset.h */,
-				2798CE2A166D886500A0863D /* FLQueuedAsset.m */,
-				2798CE2B166D886500A0863D /* FLUploadedAsset.h */,
-				2798CE2C166D886500A0863D /* FLUploadedAsset.m */,
 			);
 			path = AssetQueue;
 			sourceTree = "<group>";
@@ -6174,14 +5885,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
-				2798DA41166D886500A0863D /* __FLAssetQueueState.h in Headers */,
-				2798DA48166D886500A0863D /* __FLExportedAsset.h in Headers */,
-				2798DA4F166D886500A0863D /* __FLQueuedAsset.h in Headers */,
-				2798DA56166D886500A0863D /* __FLUploadedAsset.h in Headers */,
-				2798DA5D166D886500A0863D /* FLAssetQueueState.h in Headers */,
-				2798DA64166D886500A0863D /* FLExportedAsset.h in Headers */,
-				2798DA6B166D886500A0863D /* FLQueuedAsset.h in Headers */,
-				2798DA72166D886500A0863D /* FLUploadedAsset.h in Headers */,
 				2798DA79166D886500A0863D /* FLAsset.h in Headers */,
 				2798DA80166D886500A0863D /* FLAssetFactory.h in Headers */,
 				2798DA87166D886500A0863D /* FLAssetQueue.h in Headers */,
@@ -6327,14 +6030,13 @@
 				271D36A516FE0781009CD00F /* FLCoreTypes.h in Headers */,
 				271D36AE16FE0781009CD00F /* FLEnumHandler.h in Headers */,
 				271D36B716FE0781009CD00F /* FLObjectDescriber.h in Headers */,
-				271D36C016FE0781009CD00F /* FLObjectEncoder.h in Headers */,
+				271D36C016FE0781009CD00F /* FLStringEncoder.h in Headers */,
 				271D36C916FE0781009CD00F /* FLStorageAttribute.h in Headers */,
 				271D36CD16FE0781009CD00F /* NSObject+Comparison.h in Headers */,
 				271D36D616FE0782009CD00F /* NSObject+Copying.h in Headers */,
 				271D36DF16FE0782009CD00F /* FLParseInfo.h in Headers */,
 				271D36E816FE0782009CD00F /* FLNetworkHost.h in Headers */,
 				271D36F116FE0782009CD00F /* FLNetworkHostResolver.h in Headers */,
-				271D36FA16FE0782009CD00F /* FLDownloadImageHttpRequest.h in Headers */,
 				271D370316FE0782009CD00F /* FLHttp.h in Headers */,
 				271D370716FE0782009CD00F /* FLHttpRequest.h in Headers */,
 				271D371016FE0782009CD00F /* FLHttpRequestObserver.h in Headers */,
@@ -6399,9 +6101,6 @@
 				271D392F16FE078A009CD00F /* NSNotification+FLExtras.h in Headers */,
 				271D394116FE078B009CD00F /* FLCacheManager.h in Headers */,
 				271D394A16FE078B009CD00F /* FLDataStoreWithCacheService.h in Headers */,
-				271D395316FE078B009CD00F /* FLCachedImage.h in Headers */,
-				271D395C16FE078B009CD00F /* FLCachedImageCacheBehavior.h in Headers */,
-				271D396516FE078B009CD00F /* FLImageStoreService.h in Headers */,
 				271D396E16FE078B009CD00F /* _oldFLDatabaseCache.h in Headers */,
 				271D397716FE078C009CD00F /* FLCacheBehavior.h in Headers */,
 				271D398016FE078C009CD00F /* FLCachedObjectOperation.h in Headers */,
@@ -6438,22 +6137,8 @@
 				271D3B0616FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B0F16FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1816FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
-				271D3B2116FE0793009CD00F /* __FLApplicationDataVersion.h in Headers */,
-				271D3B2A16FE0793009CD00F /* __FLApplicationSession.h in Headers */,
-				271D3B3316FE0794009CD00F /* __FLLastUpdateTime.h in Headers */,
-				271D3B3C16FE0794009CD00F /* __FLUserLogin.h in Headers */,
-				271D3B4516FE0794009CD00F /* FLApplicationDataVersion.h in Headers */,
-				271D3B4E16FE0794009CD00F /* FLApplicationSession.h in Headers */,
-				271D3B5716FE0794009CD00F /* FLLastUpdateTime.h in Headers */,
 				271D3B6016FE0794009CD00F /* FLUserLogin.h in Headers */,
 				271D3B6916FE0794009CD00F /* FLDatabaseLink.h in Headers */,
-				271D3B7216FE0795009CD00F /* FLImageFolder.h in Headers */,
-				271D3B7B16FE0795009CD00F /* FLImageProperties.h in Headers */,
-				271D3B8416FE0795009CD00F /* FLImageStorage.h in Headers */,
-				271D3B8D16FE0795009CD00F /* FLImageStorageStrategy.h in Headers */,
-				271D3B9616FE0795009CD00F /* FLPhoto.h in Headers */,
-				271D3B9F16FE0795009CD00F /* FLStorable.h in Headers */,
-				271D3BA816FE0795009CD00F /* FLStorableImage.h in Headers */,
 				271D3BB116FE0796009CD00F /* FLStorageStrategy.h in Headers */,
 				271D3BBA16FE0796009CD00F /* __FLCachedImageBaseClass.h in Headers */,
 				271D3BC316FE0796009CD00F /* FLCachedImageBaseClass.h in Headers */,
@@ -6576,6 +6261,9 @@
 				27277E02173C0C0200A107F0 /* FLWeakRefTests.h in Headers */,
 				27733E18173C477900B93AB1 /* FLDatabaseObjectSerializer.h in Headers */,
 				27733E23173C51BC00B93AB1 /* FLObjectDatabaseTests.h in Headers */,
+				27C16EC6173EB76800C8B8FA /* FLXmlStringEncoding.h in Headers */,
+				27C16ED1173EB8DF00C8B8FA /* FLXmlDataEncoder.h in Headers */,
+				27C16EE1173EC08100C8B8FA /* __FLUserLogin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6584,14 +6272,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
-				2798DA42166D886500A0863D /* __FLAssetQueueState.h in Headers */,
-				2798DA49166D886500A0863D /* __FLExportedAsset.h in Headers */,
-				2798DA50166D886500A0863D /* __FLQueuedAsset.h in Headers */,
-				2798DA57166D886500A0863D /* __FLUploadedAsset.h in Headers */,
-				2798DA5E166D886500A0863D /* FLAssetQueueState.h in Headers */,
-				2798DA65166D886500A0863D /* FLExportedAsset.h in Headers */,
-				2798DA6C166D886500A0863D /* FLQueuedAsset.h in Headers */,
-				2798DA73166D886500A0863D /* FLUploadedAsset.h in Headers */,
 				2798DA7A166D886500A0863D /* FLAsset.h in Headers */,
 				2798DA81166D886500A0863D /* FLAssetFactory.h in Headers */,
 				2798DA88166D886500A0863D /* FLAssetQueue.h in Headers */,
@@ -6737,14 +6417,13 @@
 				271D36A716FE0781009CD00F /* FLCoreTypes.h in Headers */,
 				271D36B016FE0781009CD00F /* FLEnumHandler.h in Headers */,
 				271D36B916FE0781009CD00F /* FLObjectDescriber.h in Headers */,
-				271D36C216FE0781009CD00F /* FLObjectEncoder.h in Headers */,
+				271D36C216FE0781009CD00F /* FLStringEncoder.h in Headers */,
 				271D36CB16FE0781009CD00F /* FLStorageAttribute.h in Headers */,
 				271D36CF16FE0781009CD00F /* NSObject+Comparison.h in Headers */,
 				271D36D816FE0782009CD00F /* NSObject+Copying.h in Headers */,
 				271D36E116FE0782009CD00F /* FLParseInfo.h in Headers */,
 				271D36EA16FE0782009CD00F /* FLNetworkHost.h in Headers */,
 				271D36F316FE0782009CD00F /* FLNetworkHostResolver.h in Headers */,
-				271D36FC16FE0782009CD00F /* FLDownloadImageHttpRequest.h in Headers */,
 				271D370516FE0782009CD00F /* FLHttp.h in Headers */,
 				271D370916FE0782009CD00F /* FLHttpRequest.h in Headers */,
 				271D371216FE0782009CD00F /* FLHttpRequestObserver.h in Headers */,
@@ -6809,9 +6488,6 @@
 				271D393116FE078A009CD00F /* NSNotification+FLExtras.h in Headers */,
 				271D394316FE078B009CD00F /* FLCacheManager.h in Headers */,
 				271D394C16FE078B009CD00F /* FLDataStoreWithCacheService.h in Headers */,
-				271D395516FE078B009CD00F /* FLCachedImage.h in Headers */,
-				271D395E16FE078B009CD00F /* FLCachedImageCacheBehavior.h in Headers */,
-				271D396716FE078B009CD00F /* FLImageStoreService.h in Headers */,
 				271D397016FE078B009CD00F /* _oldFLDatabaseCache.h in Headers */,
 				271D397916FE078C009CD00F /* FLCacheBehavior.h in Headers */,
 				271D398216FE078C009CD00F /* FLCachedObjectOperation.h in Headers */,
@@ -6848,22 +6524,8 @@
 				271D3B0816FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B1116FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1A16FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
-				271D3B2316FE0793009CD00F /* __FLApplicationDataVersion.h in Headers */,
-				271D3B2C16FE0793009CD00F /* __FLApplicationSession.h in Headers */,
-				271D3B3516FE0794009CD00F /* __FLLastUpdateTime.h in Headers */,
-				271D3B3E16FE0794009CD00F /* __FLUserLogin.h in Headers */,
-				271D3B4716FE0794009CD00F /* FLApplicationDataVersion.h in Headers */,
-				271D3B5016FE0794009CD00F /* FLApplicationSession.h in Headers */,
-				271D3B5916FE0794009CD00F /* FLLastUpdateTime.h in Headers */,
 				271D3B6216FE0794009CD00F /* FLUserLogin.h in Headers */,
 				271D3B6B16FE0794009CD00F /* FLDatabaseLink.h in Headers */,
-				271D3B7416FE0795009CD00F /* FLImageFolder.h in Headers */,
-				271D3B7D16FE0795009CD00F /* FLImageProperties.h in Headers */,
-				271D3B8616FE0795009CD00F /* FLImageStorage.h in Headers */,
-				271D3B8F16FE0795009CD00F /* FLImageStorageStrategy.h in Headers */,
-				271D3B9816FE0795009CD00F /* FLPhoto.h in Headers */,
-				271D3BA116FE0795009CD00F /* FLStorable.h in Headers */,
-				271D3BAA16FE0795009CD00F /* FLStorableImage.h in Headers */,
 				271D3BB316FE0796009CD00F /* FLStorageStrategy.h in Headers */,
 				271D3BBC16FE0796009CD00F /* __FLCachedImageBaseClass.h in Headers */,
 				271D3BC516FE0796009CD00F /* FLCachedImageBaseClass.h in Headers */,
@@ -6986,6 +6648,9 @@
 				27277E04173C0C0200A107F0 /* FLWeakRefTests.h in Headers */,
 				27733E1A173C477900B93AB1 /* FLDatabaseObjectSerializer.h in Headers */,
 				27733E25173C51BC00B93AB1 /* FLObjectDatabaseTests.h in Headers */,
+				27C16EC8173EB76800C8B8FA /* FLXmlStringEncoding.h in Headers */,
+				27C16ED3173EB8DF00C8B8FA /* FLXmlDataEncoder.h in Headers */,
+				27C16EE3173EC08100C8B8FA /* __FLUserLogin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6994,14 +6659,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
-				2798DA40166D886500A0863D /* __FLAssetQueueState.h in Headers */,
-				2798DA47166D886500A0863D /* __FLExportedAsset.h in Headers */,
-				2798DA4E166D886500A0863D /* __FLQueuedAsset.h in Headers */,
-				2798DA55166D886500A0863D /* __FLUploadedAsset.h in Headers */,
-				2798DA5C166D886500A0863D /* FLAssetQueueState.h in Headers */,
-				2798DA63166D886500A0863D /* FLExportedAsset.h in Headers */,
-				2798DA6A166D886500A0863D /* FLQueuedAsset.h in Headers */,
-				2798DA71166D886500A0863D /* FLUploadedAsset.h in Headers */,
 				2798DA78166D886500A0863D /* FLAsset.h in Headers */,
 				2798DA7F166D886500A0863D /* FLAssetFactory.h in Headers */,
 				2798DA86166D886500A0863D /* FLAssetQueue.h in Headers */,
@@ -7147,14 +6804,13 @@
 				271D36A616FE0781009CD00F /* FLCoreTypes.h in Headers */,
 				271D36AF16FE0781009CD00F /* FLEnumHandler.h in Headers */,
 				271D36B816FE0781009CD00F /* FLObjectDescriber.h in Headers */,
-				271D36C116FE0781009CD00F /* FLObjectEncoder.h in Headers */,
+				271D36C116FE0781009CD00F /* FLStringEncoder.h in Headers */,
 				271D36CA16FE0781009CD00F /* FLStorageAttribute.h in Headers */,
 				271D36CE16FE0781009CD00F /* NSObject+Comparison.h in Headers */,
 				271D36D716FE0782009CD00F /* NSObject+Copying.h in Headers */,
 				271D36E016FE0782009CD00F /* FLParseInfo.h in Headers */,
 				271D36E916FE0782009CD00F /* FLNetworkHost.h in Headers */,
 				271D36F216FE0782009CD00F /* FLNetworkHostResolver.h in Headers */,
-				271D36FB16FE0782009CD00F /* FLDownloadImageHttpRequest.h in Headers */,
 				271D370416FE0782009CD00F /* FLHttp.h in Headers */,
 				271D370816FE0782009CD00F /* FLHttpRequest.h in Headers */,
 				271D371116FE0782009CD00F /* FLHttpRequestObserver.h in Headers */,
@@ -7219,9 +6875,6 @@
 				271D393016FE078A009CD00F /* NSNotification+FLExtras.h in Headers */,
 				271D394216FE078B009CD00F /* FLCacheManager.h in Headers */,
 				271D394B16FE078B009CD00F /* FLDataStoreWithCacheService.h in Headers */,
-				271D395416FE078B009CD00F /* FLCachedImage.h in Headers */,
-				271D395D16FE078B009CD00F /* FLCachedImageCacheBehavior.h in Headers */,
-				271D396616FE078B009CD00F /* FLImageStoreService.h in Headers */,
 				271D396F16FE078B009CD00F /* _oldFLDatabaseCache.h in Headers */,
 				271D397816FE078C009CD00F /* FLCacheBehavior.h in Headers */,
 				271D398116FE078C009CD00F /* FLCachedObjectOperation.h in Headers */,
@@ -7258,22 +6911,8 @@
 				271D3B0716FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B1016FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1916FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
-				271D3B2216FE0793009CD00F /* __FLApplicationDataVersion.h in Headers */,
-				271D3B2B16FE0793009CD00F /* __FLApplicationSession.h in Headers */,
-				271D3B3416FE0794009CD00F /* __FLLastUpdateTime.h in Headers */,
-				271D3B3D16FE0794009CD00F /* __FLUserLogin.h in Headers */,
-				271D3B4616FE0794009CD00F /* FLApplicationDataVersion.h in Headers */,
-				271D3B4F16FE0794009CD00F /* FLApplicationSession.h in Headers */,
-				271D3B5816FE0794009CD00F /* FLLastUpdateTime.h in Headers */,
 				271D3B6116FE0794009CD00F /* FLUserLogin.h in Headers */,
 				271D3B6A16FE0794009CD00F /* FLDatabaseLink.h in Headers */,
-				271D3B7316FE0795009CD00F /* FLImageFolder.h in Headers */,
-				271D3B7C16FE0795009CD00F /* FLImageProperties.h in Headers */,
-				271D3B8516FE0795009CD00F /* FLImageStorage.h in Headers */,
-				271D3B8E16FE0795009CD00F /* FLImageStorageStrategy.h in Headers */,
-				271D3B9716FE0795009CD00F /* FLPhoto.h in Headers */,
-				271D3BA016FE0795009CD00F /* FLStorable.h in Headers */,
-				271D3BA916FE0795009CD00F /* FLStorableImage.h in Headers */,
 				271D3BB216FE0796009CD00F /* FLStorageStrategy.h in Headers */,
 				271D3BBB16FE0796009CD00F /* __FLCachedImageBaseClass.h in Headers */,
 				271D3BC416FE0796009CD00F /* FLCachedImageBaseClass.h in Headers */,
@@ -7396,6 +7035,9 @@
 				27277E03173C0C0200A107F0 /* FLWeakRefTests.h in Headers */,
 				27733E19173C477900B93AB1 /* FLDatabaseObjectSerializer.h in Headers */,
 				27733E24173C51BC00B93AB1 /* FLObjectDatabaseTests.h in Headers */,
+				27C16EC7173EB76800C8B8FA /* FLXmlStringEncoding.h in Headers */,
+				27C16ED2173EB8DF00C8B8FA /* FLXmlDataEncoder.h in Headers */,
+				27C16EE2173EC08100C8B8FA /* __FLUserLogin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7404,14 +7046,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27CBBFEE16768BA600753D0A /* FishLampCocoa-Prefix.pch in Headers */,
-				27CBC19816768BA600753D0A /* __FLAssetQueueState.h in Headers */,
-				27CBC19916768BA600753D0A /* __FLExportedAsset.h in Headers */,
-				27CBC19A16768BA600753D0A /* __FLQueuedAsset.h in Headers */,
-				27CBC19B16768BA600753D0A /* __FLUploadedAsset.h in Headers */,
-				27CBC19C16768BA600753D0A /* FLAssetQueueState.h in Headers */,
-				27CBC19D16768BA600753D0A /* FLExportedAsset.h in Headers */,
-				27CBC19E16768BA600753D0A /* FLQueuedAsset.h in Headers */,
-				27CBC19F16768BA600753D0A /* FLUploadedAsset.h in Headers */,
 				27CBC1A016768BA600753D0A /* FLAsset.h in Headers */,
 				27CBC1A116768BA600753D0A /* FLAssetFactory.h in Headers */,
 				27CBC1A216768BA600753D0A /* FLAssetQueue.h in Headers */,
@@ -7557,14 +7191,13 @@
 				271D36A816FE0781009CD00F /* FLCoreTypes.h in Headers */,
 				271D36B116FE0781009CD00F /* FLEnumHandler.h in Headers */,
 				271D36BA16FE0781009CD00F /* FLObjectDescriber.h in Headers */,
-				271D36C316FE0781009CD00F /* FLObjectEncoder.h in Headers */,
+				271D36C316FE0781009CD00F /* FLStringEncoder.h in Headers */,
 				271D36CC16FE0781009CD00F /* FLStorageAttribute.h in Headers */,
 				271D36D016FE0781009CD00F /* NSObject+Comparison.h in Headers */,
 				271D36D916FE0782009CD00F /* NSObject+Copying.h in Headers */,
 				271D36E216FE0782009CD00F /* FLParseInfo.h in Headers */,
 				271D36EB16FE0782009CD00F /* FLNetworkHost.h in Headers */,
 				271D36F416FE0782009CD00F /* FLNetworkHostResolver.h in Headers */,
-				271D36FD16FE0782009CD00F /* FLDownloadImageHttpRequest.h in Headers */,
 				271D370616FE0782009CD00F /* FLHttp.h in Headers */,
 				271D370A16FE0782009CD00F /* FLHttpRequest.h in Headers */,
 				271D371316FE0782009CD00F /* FLHttpRequestObserver.h in Headers */,
@@ -7629,9 +7262,6 @@
 				271D393216FE078A009CD00F /* NSNotification+FLExtras.h in Headers */,
 				271D394416FE078B009CD00F /* FLCacheManager.h in Headers */,
 				271D394D16FE078B009CD00F /* FLDataStoreWithCacheService.h in Headers */,
-				271D395616FE078B009CD00F /* FLCachedImage.h in Headers */,
-				271D395F16FE078B009CD00F /* FLCachedImageCacheBehavior.h in Headers */,
-				271D396816FE078B009CD00F /* FLImageStoreService.h in Headers */,
 				271D397116FE078B009CD00F /* _oldFLDatabaseCache.h in Headers */,
 				271D397A16FE078C009CD00F /* FLCacheBehavior.h in Headers */,
 				271D398316FE078C009CD00F /* FLCachedObjectOperation.h in Headers */,
@@ -7668,22 +7298,8 @@
 				271D3B0916FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B1216FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1B16FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
-				271D3B2416FE0793009CD00F /* __FLApplicationDataVersion.h in Headers */,
-				271D3B2D16FE0793009CD00F /* __FLApplicationSession.h in Headers */,
-				271D3B3616FE0794009CD00F /* __FLLastUpdateTime.h in Headers */,
-				271D3B3F16FE0794009CD00F /* __FLUserLogin.h in Headers */,
-				271D3B4816FE0794009CD00F /* FLApplicationDataVersion.h in Headers */,
-				271D3B5116FE0794009CD00F /* FLApplicationSession.h in Headers */,
-				271D3B5A16FE0794009CD00F /* FLLastUpdateTime.h in Headers */,
 				271D3B6316FE0794009CD00F /* FLUserLogin.h in Headers */,
 				271D3B6C16FE0794009CD00F /* FLDatabaseLink.h in Headers */,
-				271D3B7516FE0795009CD00F /* FLImageFolder.h in Headers */,
-				271D3B7E16FE0795009CD00F /* FLImageProperties.h in Headers */,
-				271D3B8716FE0795009CD00F /* FLImageStorage.h in Headers */,
-				271D3B9016FE0795009CD00F /* FLImageStorageStrategy.h in Headers */,
-				271D3B9916FE0795009CD00F /* FLPhoto.h in Headers */,
-				271D3BA216FE0795009CD00F /* FLStorable.h in Headers */,
-				271D3BAB16FE0795009CD00F /* FLStorableImage.h in Headers */,
 				271D3BB416FE0796009CD00F /* FLStorageStrategy.h in Headers */,
 				271D3BBD16FE0796009CD00F /* __FLCachedImageBaseClass.h in Headers */,
 				271D3BC616FE0796009CD00F /* FLCachedImageBaseClass.h in Headers */,
@@ -7806,6 +7422,9 @@
 				27277E05173C0C0200A107F0 /* FLWeakRefTests.h in Headers */,
 				27733E1B173C477900B93AB1 /* FLDatabaseObjectSerializer.h in Headers */,
 				27733E26173C51BC00B93AB1 /* FLObjectDatabaseTests.h in Headers */,
+				27C16EC9173EB76800C8B8FA /* FLXmlStringEncoding.h in Headers */,
+				27C16ED4173EB8DF00C8B8FA /* FLXmlDataEncoder.h in Headers */,
+				27C16EE4173EC08100C8B8FA /* __FLUserLogin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8002,11 +7621,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2798DA4C166D886500A0863D /* __FLExportedAsset.m in Sources */,
-				2798DA61166D886500A0863D /* FLAssetQueueState.m in Sources */,
-				2798DA68166D886500A0863D /* FLExportedAsset.m in Sources */,
-				2798DA6F166D886500A0863D /* FLQueuedAsset.m in Sources */,
-				2798DA76166D886500A0863D /* FLUploadedAsset.m in Sources */,
 				2798DA7D166D886500A0863D /* FLAsset.m in Sources */,
 				2798DA84166D886500A0863D /* FLAssetFactory.m in Sources */,
 				2798DA8B166D886500A0863D /* FLAssetQueue.m in Sources */,
@@ -8132,13 +7746,12 @@
 				271D36AA16FE0781009CD00F /* FLCoreTypes.m in Sources */,
 				271D36B316FE0781009CD00F /* FLEnumHandler.m in Sources */,
 				271D36BC16FE0781009CD00F /* FLObjectDescriber.m in Sources */,
-				271D36C516FE0781009CD00F /* FLObjectEncoder.m in Sources */,
+				271D36C516FE0781009CD00F /* FLStringEncoder.m in Sources */,
 				271D36D216FE0781009CD00F /* NSObject+Comparison.m in Sources */,
 				271D36DB16FE0782009CD00F /* NSObject+Copying.m in Sources */,
 				271D36E416FE0782009CD00F /* FLParseInfo.m in Sources */,
 				271D36ED16FE0782009CD00F /* FLNetworkHost.m in Sources */,
 				271D36F616FE0782009CD00F /* FLNetworkHostResolver.m in Sources */,
-				271D36FF16FE0782009CD00F /* FLDownloadImageHttpRequest.m in Sources */,
 				271D370C16FE0782009CD00F /* FLHttpRequest.m in Sources */,
 				271D371516FE0782009CD00F /* FLHttpRequestObserver.m in Sources */,
 				271D371E16FE0782009CD00F /* FLHttpRequestAuthenticationService.m in Sources */,
@@ -8199,9 +7812,6 @@
 				271D393416FE078A009CD00F /* NSNotification+FLExtras.m in Sources */,
 				271D394616FE078B009CD00F /* FLCacheManager.m in Sources */,
 				271D394F16FE078B009CD00F /* FLDataStoreWithCacheService.m in Sources */,
-				271D395816FE078B009CD00F /* FLCachedImage.m in Sources */,
-				271D396116FE078B009CD00F /* FLCachedImageCacheBehavior.m in Sources */,
-				271D396A16FE078B009CD00F /* FLImageStoreService.m in Sources */,
 				271D397316FE078B009CD00F /* _oldFLDatabaseCache.m in Sources */,
 				271D397C16FE078C009CD00F /* FLCacheBehavior.m in Sources */,
 				271D398516FE078C009CD00F /* FLCachedObjectOperation.m in Sources */,
@@ -8232,24 +7842,10 @@
 				271D3AC816FE0792009CD00F /* FLDeletedObjectReference.m in Sources */,
 				271D3AD516FE0792009CD00F /* FLWeakReference.m in Sources */,
 				271D3ADE16FE0792009CD00F /* FLService.m in Sources */,
-				271D3B0B16FE0793009CD00F /* FLUserDataStorageService.m in Sources */,
 				271D3B1416FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1D16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
-				271D3B2616FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */,
-				271D3B3816FE0794009CD00F /* __FLLastUpdateTime.m in Sources */,
-				271D3B4116FE0794009CD00F /* __FLUserLogin.m in Sources */,
-				271D3B4A16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */,
-				271D3B5316FE0794009CD00F /* FLApplicationSession.m in Sources */,
-				271D3B5C16FE0794009CD00F /* FLLastUpdateTime.m in Sources */,
 				271D3B6516FE0794009CD00F /* FLUserLogin.m in Sources */,
 				271D3B6E16FE0794009CD00F /* FLDatabaseLink.m in Sources */,
-				271D3B7716FE0795009CD00F /* FLImageFolder.m in Sources */,
-				271D3B8016FE0795009CD00F /* FLImageProperties.m in Sources */,
-				271D3B8916FE0795009CD00F /* FLImageStorage.m in Sources */,
-				271D3B9216FE0795009CD00F /* FLImageStorageStrategy.m in Sources */,
-				271D3B9B16FE0795009CD00F /* FLPhoto.m in Sources */,
-				271D3BA416FE0795009CD00F /* FLStorable.m in Sources */,
-				271D3BAD16FE0795009CD00F /* FLStorableImage.m in Sources */,
 				271D3BB616FE0796009CD00F /* FLStorageStrategy.m in Sources */,
 				271D3BC816FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
 				271D3BD116FE0796009CD00F /* FLAttributedString.m in Sources */,
@@ -8365,6 +7961,10 @@
 				27277E07173C0C0200A107F0 /* FLWeakRefTests.m in Sources */,
 				27733E1D173C477900B93AB1 /* FLDatabaseObjectSerializer.m in Sources */,
 				27733E28173C51BC00B93AB1 /* FLObjectDatabaseTests.m in Sources */,
+				27C16ECB173EB76800C8B8FA /* FLXmlStringEncoding.m in Sources */,
+				27C16ED6173EB8DF00C8B8FA /* FLXmlDataEncoder.m in Sources */,
+				27C16EDB173EBE7800C8B8FA /* FLUserDataStorageService.m in Sources */,
+				27C16EE6173EC08100C8B8FA /* __FLUserLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8372,11 +7972,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2798DA4D166D886500A0863D /* __FLExportedAsset.m in Sources */,
-				2798DA62166D886500A0863D /* FLAssetQueueState.m in Sources */,
-				2798DA69166D886500A0863D /* FLExportedAsset.m in Sources */,
-				2798DA70166D886500A0863D /* FLQueuedAsset.m in Sources */,
-				2798DA77166D886500A0863D /* FLUploadedAsset.m in Sources */,
 				2798DA7E166D886500A0863D /* FLAsset.m in Sources */,
 				2798DA85166D886500A0863D /* FLAssetFactory.m in Sources */,
 				2798DA8C166D886500A0863D /* FLAssetQueue.m in Sources */,
@@ -8502,13 +8097,12 @@
 				271D36AC16FE0781009CD00F /* FLCoreTypes.m in Sources */,
 				271D36B516FE0781009CD00F /* FLEnumHandler.m in Sources */,
 				271D36BE16FE0781009CD00F /* FLObjectDescriber.m in Sources */,
-				271D36C716FE0781009CD00F /* FLObjectEncoder.m in Sources */,
+				271D36C716FE0781009CD00F /* FLStringEncoder.m in Sources */,
 				271D36D416FE0781009CD00F /* NSObject+Comparison.m in Sources */,
 				271D36DD16FE0782009CD00F /* NSObject+Copying.m in Sources */,
 				271D36E616FE0782009CD00F /* FLParseInfo.m in Sources */,
 				271D36EF16FE0782009CD00F /* FLNetworkHost.m in Sources */,
 				271D36F816FE0782009CD00F /* FLNetworkHostResolver.m in Sources */,
-				271D370116FE0782009CD00F /* FLDownloadImageHttpRequest.m in Sources */,
 				271D370E16FE0782009CD00F /* FLHttpRequest.m in Sources */,
 				271D371716FE0782009CD00F /* FLHttpRequestObserver.m in Sources */,
 				271D372016FE0782009CD00F /* FLHttpRequestAuthenticationService.m in Sources */,
@@ -8569,9 +8163,6 @@
 				271D393616FE078A009CD00F /* NSNotification+FLExtras.m in Sources */,
 				271D394816FE078B009CD00F /* FLCacheManager.m in Sources */,
 				271D395116FE078B009CD00F /* FLDataStoreWithCacheService.m in Sources */,
-				271D395A16FE078B009CD00F /* FLCachedImage.m in Sources */,
-				271D396316FE078B009CD00F /* FLCachedImageCacheBehavior.m in Sources */,
-				271D396C16FE078B009CD00F /* FLImageStoreService.m in Sources */,
 				271D397516FE078B009CD00F /* _oldFLDatabaseCache.m in Sources */,
 				271D397E16FE078C009CD00F /* FLCacheBehavior.m in Sources */,
 				271D398716FE078C009CD00F /* FLCachedObjectOperation.m in Sources */,
@@ -8602,24 +8193,10 @@
 				271D3ACA16FE0792009CD00F /* FLDeletedObjectReference.m in Sources */,
 				271D3AD716FE0792009CD00F /* FLWeakReference.m in Sources */,
 				271D3AE016FE0792009CD00F /* FLService.m in Sources */,
-				271D3B0D16FE0793009CD00F /* FLUserDataStorageService.m in Sources */,
 				271D3B1616FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1F16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
-				271D3B2816FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */,
-				271D3B3A16FE0794009CD00F /* __FLLastUpdateTime.m in Sources */,
-				271D3B4316FE0794009CD00F /* __FLUserLogin.m in Sources */,
-				271D3B4C16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */,
-				271D3B5516FE0794009CD00F /* FLApplicationSession.m in Sources */,
-				271D3B5E16FE0794009CD00F /* FLLastUpdateTime.m in Sources */,
 				271D3B6716FE0794009CD00F /* FLUserLogin.m in Sources */,
 				271D3B7016FE0795009CD00F /* FLDatabaseLink.m in Sources */,
-				271D3B7916FE0795009CD00F /* FLImageFolder.m in Sources */,
-				271D3B8216FE0795009CD00F /* FLImageProperties.m in Sources */,
-				271D3B8B16FE0795009CD00F /* FLImageStorage.m in Sources */,
-				271D3B9416FE0795009CD00F /* FLImageStorageStrategy.m in Sources */,
-				271D3B9D16FE0795009CD00F /* FLPhoto.m in Sources */,
-				271D3BA616FE0795009CD00F /* FLStorable.m in Sources */,
-				271D3BAF16FE0796009CD00F /* FLStorableImage.m in Sources */,
 				271D3BB816FE0796009CD00F /* FLStorageStrategy.m in Sources */,
 				271D3BCA16FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
 				271D3BD316FE0796009CD00F /* FLAttributedString.m in Sources */,
@@ -8735,6 +8312,10 @@
 				27277E09173C0C0200A107F0 /* FLWeakRefTests.m in Sources */,
 				27733E1F173C477900B93AB1 /* FLDatabaseObjectSerializer.m in Sources */,
 				27733E2A173C51BC00B93AB1 /* FLObjectDatabaseTests.m in Sources */,
+				27C16ECD173EB76800C8B8FA /* FLXmlStringEncoding.m in Sources */,
+				27C16ED8173EB8DF00C8B8FA /* FLXmlDataEncoder.m in Sources */,
+				27C16EDD173EBE7900C8B8FA /* FLUserDataStorageService.m in Sources */,
+				27C16EE8173EC08100C8B8FA /* __FLUserLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8742,11 +8323,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2798DA4A166D886500A0863D /* __FLExportedAsset.m in Sources */,
-				2798DA5F166D886500A0863D /* FLAssetQueueState.m in Sources */,
-				2798DA66166D886500A0863D /* FLExportedAsset.m in Sources */,
-				2798DA6D166D886500A0863D /* FLQueuedAsset.m in Sources */,
-				2798DA74166D886500A0863D /* FLUploadedAsset.m in Sources */,
 				2798DA7B166D886500A0863D /* FLAsset.m in Sources */,
 				2798DA82166D886500A0863D /* FLAssetFactory.m in Sources */,
 				2798DA89166D886500A0863D /* FLAssetQueue.m in Sources */,
@@ -8873,13 +8449,12 @@
 				271D36A916FE0781009CD00F /* FLCoreTypes.m in Sources */,
 				271D36B216FE0781009CD00F /* FLEnumHandler.m in Sources */,
 				271D36BB16FE0781009CD00F /* FLObjectDescriber.m in Sources */,
-				271D36C416FE0781009CD00F /* FLObjectEncoder.m in Sources */,
+				271D36C416FE0781009CD00F /* FLStringEncoder.m in Sources */,
 				271D36D116FE0781009CD00F /* NSObject+Comparison.m in Sources */,
 				271D36DA16FE0782009CD00F /* NSObject+Copying.m in Sources */,
 				271D36E316FE0782009CD00F /* FLParseInfo.m in Sources */,
 				271D36EC16FE0782009CD00F /* FLNetworkHost.m in Sources */,
 				271D36F516FE0782009CD00F /* FLNetworkHostResolver.m in Sources */,
-				271D36FE16FE0782009CD00F /* FLDownloadImageHttpRequest.m in Sources */,
 				271D370B16FE0782009CD00F /* FLHttpRequest.m in Sources */,
 				271D371416FE0782009CD00F /* FLHttpRequestObserver.m in Sources */,
 				271D371D16FE0782009CD00F /* FLHttpRequestAuthenticationService.m in Sources */,
@@ -8940,9 +8515,6 @@
 				271D393316FE078A009CD00F /* NSNotification+FLExtras.m in Sources */,
 				271D394516FE078B009CD00F /* FLCacheManager.m in Sources */,
 				271D394E16FE078B009CD00F /* FLDataStoreWithCacheService.m in Sources */,
-				271D395716FE078B009CD00F /* FLCachedImage.m in Sources */,
-				271D396016FE078B009CD00F /* FLCachedImageCacheBehavior.m in Sources */,
-				271D396916FE078B009CD00F /* FLImageStoreService.m in Sources */,
 				271D397216FE078B009CD00F /* _oldFLDatabaseCache.m in Sources */,
 				271D397B16FE078C009CD00F /* FLCacheBehavior.m in Sources */,
 				271D398416FE078C009CD00F /* FLCachedObjectOperation.m in Sources */,
@@ -8973,24 +8545,10 @@
 				271D3AC716FE0792009CD00F /* FLDeletedObjectReference.m in Sources */,
 				271D3AD416FE0792009CD00F /* FLWeakReference.m in Sources */,
 				271D3ADD16FE0792009CD00F /* FLService.m in Sources */,
-				271D3B0A16FE0793009CD00F /* FLUserDataStorageService.m in Sources */,
 				271D3B1316FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1C16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
-				271D3B2516FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */,
-				271D3B3716FE0794009CD00F /* __FLLastUpdateTime.m in Sources */,
-				271D3B4016FE0794009CD00F /* __FLUserLogin.m in Sources */,
-				271D3B4916FE0794009CD00F /* FLApplicationDataVersion.m in Sources */,
-				271D3B5216FE0794009CD00F /* FLApplicationSession.m in Sources */,
-				271D3B5B16FE0794009CD00F /* FLLastUpdateTime.m in Sources */,
 				271D3B6416FE0794009CD00F /* FLUserLogin.m in Sources */,
 				271D3B6D16FE0794009CD00F /* FLDatabaseLink.m in Sources */,
-				271D3B7616FE0795009CD00F /* FLImageFolder.m in Sources */,
-				271D3B7F16FE0795009CD00F /* FLImageProperties.m in Sources */,
-				271D3B8816FE0795009CD00F /* FLImageStorage.m in Sources */,
-				271D3B9116FE0795009CD00F /* FLImageStorageStrategy.m in Sources */,
-				271D3B9A16FE0795009CD00F /* FLPhoto.m in Sources */,
-				271D3BA316FE0795009CD00F /* FLStorable.m in Sources */,
-				271D3BAC16FE0795009CD00F /* FLStorableImage.m in Sources */,
 				271D3BB516FE0796009CD00F /* FLStorageStrategy.m in Sources */,
 				271D3BC716FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
 				271D3BD016FE0796009CD00F /* FLAttributedString.m in Sources */,
@@ -9097,6 +8655,10 @@
 				27277E06173C0C0200A107F0 /* FLWeakRefTests.m in Sources */,
 				27733E1C173C477900B93AB1 /* FLDatabaseObjectSerializer.m in Sources */,
 				27733E27173C51BC00B93AB1 /* FLObjectDatabaseTests.m in Sources */,
+				27C16ECA173EB76800C8B8FA /* FLXmlStringEncoding.m in Sources */,
+				27C16ED5173EB8DF00C8B8FA /* FLXmlDataEncoder.m in Sources */,
+				27C16EDA173EBE7700C8B8FA /* FLUserDataStorageService.m in Sources */,
+				27C16EE5173EC08100C8B8FA /* __FLUserLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9104,11 +8666,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2798DA4B166D886500A0863D /* __FLExportedAsset.m in Sources */,
-				2798DA60166D886500A0863D /* FLAssetQueueState.m in Sources */,
-				2798DA67166D886500A0863D /* FLExportedAsset.m in Sources */,
-				2798DA6E166D886500A0863D /* FLQueuedAsset.m in Sources */,
-				2798DA75166D886500A0863D /* FLUploadedAsset.m in Sources */,
 				2798DA7C166D886500A0863D /* FLAsset.m in Sources */,
 				2798DA83166D886500A0863D /* FLAssetFactory.m in Sources */,
 				2798DA8A166D886500A0863D /* FLAssetQueue.m in Sources */,
@@ -9234,13 +8791,12 @@
 				271D36AB16FE0781009CD00F /* FLCoreTypes.m in Sources */,
 				271D36B416FE0781009CD00F /* FLEnumHandler.m in Sources */,
 				271D36BD16FE0781009CD00F /* FLObjectDescriber.m in Sources */,
-				271D36C616FE0781009CD00F /* FLObjectEncoder.m in Sources */,
+				271D36C616FE0781009CD00F /* FLStringEncoder.m in Sources */,
 				271D36D316FE0781009CD00F /* NSObject+Comparison.m in Sources */,
 				271D36DC16FE0782009CD00F /* NSObject+Copying.m in Sources */,
 				271D36E516FE0782009CD00F /* FLParseInfo.m in Sources */,
 				271D36EE16FE0782009CD00F /* FLNetworkHost.m in Sources */,
 				271D36F716FE0782009CD00F /* FLNetworkHostResolver.m in Sources */,
-				271D370016FE0782009CD00F /* FLDownloadImageHttpRequest.m in Sources */,
 				271D370D16FE0782009CD00F /* FLHttpRequest.m in Sources */,
 				271D371616FE0782009CD00F /* FLHttpRequestObserver.m in Sources */,
 				271D371F16FE0782009CD00F /* FLHttpRequestAuthenticationService.m in Sources */,
@@ -9301,9 +8857,6 @@
 				271D393516FE078A009CD00F /* NSNotification+FLExtras.m in Sources */,
 				271D394716FE078B009CD00F /* FLCacheManager.m in Sources */,
 				271D395016FE078B009CD00F /* FLDataStoreWithCacheService.m in Sources */,
-				271D395916FE078B009CD00F /* FLCachedImage.m in Sources */,
-				271D396216FE078B009CD00F /* FLCachedImageCacheBehavior.m in Sources */,
-				271D396B16FE078B009CD00F /* FLImageStoreService.m in Sources */,
 				271D397416FE078B009CD00F /* _oldFLDatabaseCache.m in Sources */,
 				271D397D16FE078C009CD00F /* FLCacheBehavior.m in Sources */,
 				271D398616FE078C009CD00F /* FLCachedObjectOperation.m in Sources */,
@@ -9334,24 +8887,10 @@
 				271D3AC916FE0792009CD00F /* FLDeletedObjectReference.m in Sources */,
 				271D3AD616FE0792009CD00F /* FLWeakReference.m in Sources */,
 				271D3ADF16FE0792009CD00F /* FLService.m in Sources */,
-				271D3B0C16FE0793009CD00F /* FLUserDataStorageService.m in Sources */,
 				271D3B1516FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1E16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
-				271D3B2716FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */,
-				271D3B3916FE0794009CD00F /* __FLLastUpdateTime.m in Sources */,
-				271D3B4216FE0794009CD00F /* __FLUserLogin.m in Sources */,
-				271D3B4B16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */,
-				271D3B5416FE0794009CD00F /* FLApplicationSession.m in Sources */,
-				271D3B5D16FE0794009CD00F /* FLLastUpdateTime.m in Sources */,
 				271D3B6616FE0794009CD00F /* FLUserLogin.m in Sources */,
 				271D3B6F16FE0794009CD00F /* FLDatabaseLink.m in Sources */,
-				271D3B7816FE0795009CD00F /* FLImageFolder.m in Sources */,
-				271D3B8116FE0795009CD00F /* FLImageProperties.m in Sources */,
-				271D3B8A16FE0795009CD00F /* FLImageStorage.m in Sources */,
-				271D3B9316FE0795009CD00F /* FLImageStorageStrategy.m in Sources */,
-				271D3B9C16FE0795009CD00F /* FLPhoto.m in Sources */,
-				271D3BA516FE0795009CD00F /* FLStorable.m in Sources */,
-				271D3BAE16FE0796009CD00F /* FLStorableImage.m in Sources */,
 				271D3BB716FE0796009CD00F /* FLStorageStrategy.m in Sources */,
 				271D3BC916FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
 				271D3BD216FE0796009CD00F /* FLAttributedString.m in Sources */,
@@ -9467,6 +9006,10 @@
 				27277E08173C0C0200A107F0 /* FLWeakRefTests.m in Sources */,
 				27733E1E173C477900B93AB1 /* FLDatabaseObjectSerializer.m in Sources */,
 				27733E29173C51BC00B93AB1 /* FLObjectDatabaseTests.m in Sources */,
+				27C16ECC173EB76800C8B8FA /* FLXmlStringEncoding.m in Sources */,
+				27C16ED7173EB8DF00C8B8FA /* FLXmlDataEncoder.m in Sources */,
+				27C16EDC173EBE7900C8B8FA /* FLUserDataStorageService.m in Sources */,
+				27C16EE7173EC08100C8B8FA /* __FLUserLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9482,11 +9025,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27CBBFA516768BA600753D0A /* __FLExportedAsset.m in Sources */,
-				27CBBFA816768BA600753D0A /* FLAssetQueueState.m in Sources */,
-				27CBBFA916768BA600753D0A /* FLExportedAsset.m in Sources */,
-				27CBBFAA16768BA600753D0A /* FLQueuedAsset.m in Sources */,
-				27CBBFAB16768BA600753D0A /* FLUploadedAsset.m in Sources */,
 				27CBBFAC16768BA600753D0A /* FLAsset.m in Sources */,
 				27CBBFAD16768BA600753D0A /* FLAssetFactory.m in Sources */,
 				27CBBFAE16768BA600753D0A /* FLAssetQueue.m in Sources */,
@@ -9612,13 +9150,12 @@
 				271D36AD16FE0781009CD00F /* FLCoreTypes.m in Sources */,
 				271D36B616FE0781009CD00F /* FLEnumHandler.m in Sources */,
 				271D36BF16FE0781009CD00F /* FLObjectDescriber.m in Sources */,
-				271D36C816FE0781009CD00F /* FLObjectEncoder.m in Sources */,
+				271D36C816FE0781009CD00F /* FLStringEncoder.m in Sources */,
 				271D36D516FE0781009CD00F /* NSObject+Comparison.m in Sources */,
 				271D36DE16FE0782009CD00F /* NSObject+Copying.m in Sources */,
 				271D36E716FE0782009CD00F /* FLParseInfo.m in Sources */,
 				271D36F016FE0782009CD00F /* FLNetworkHost.m in Sources */,
 				271D36F916FE0782009CD00F /* FLNetworkHostResolver.m in Sources */,
-				271D370216FE0782009CD00F /* FLDownloadImageHttpRequest.m in Sources */,
 				271D370F16FE0782009CD00F /* FLHttpRequest.m in Sources */,
 				271D371816FE0782009CD00F /* FLHttpRequestObserver.m in Sources */,
 				271D372116FE0782009CD00F /* FLHttpRequestAuthenticationService.m in Sources */,
@@ -9679,9 +9216,6 @@
 				271D393716FE078A009CD00F /* NSNotification+FLExtras.m in Sources */,
 				271D394916FE078B009CD00F /* FLCacheManager.m in Sources */,
 				271D395216FE078B009CD00F /* FLDataStoreWithCacheService.m in Sources */,
-				271D395B16FE078B009CD00F /* FLCachedImage.m in Sources */,
-				271D396416FE078B009CD00F /* FLCachedImageCacheBehavior.m in Sources */,
-				271D396D16FE078B009CD00F /* FLImageStoreService.m in Sources */,
 				271D397616FE078C009CD00F /* _oldFLDatabaseCache.m in Sources */,
 				271D397F16FE078C009CD00F /* FLCacheBehavior.m in Sources */,
 				271D398816FE078C009CD00F /* FLCachedObjectOperation.m in Sources */,
@@ -9712,24 +9246,10 @@
 				271D3ACB16FE0792009CD00F /* FLDeletedObjectReference.m in Sources */,
 				271D3AD816FE0792009CD00F /* FLWeakReference.m in Sources */,
 				271D3AE116FE0792009CD00F /* FLService.m in Sources */,
-				271D3B0E16FE0793009CD00F /* FLUserDataStorageService.m in Sources */,
 				271D3B1716FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B2016FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
-				271D3B2916FE0793009CD00F /* __FLApplicationDataVersion.m in Sources */,
-				271D3B3B16FE0794009CD00F /* __FLLastUpdateTime.m in Sources */,
-				271D3B4416FE0794009CD00F /* __FLUserLogin.m in Sources */,
-				271D3B4D16FE0794009CD00F /* FLApplicationDataVersion.m in Sources */,
-				271D3B5616FE0794009CD00F /* FLApplicationSession.m in Sources */,
-				271D3B5F16FE0794009CD00F /* FLLastUpdateTime.m in Sources */,
 				271D3B6816FE0794009CD00F /* FLUserLogin.m in Sources */,
 				271D3B7116FE0795009CD00F /* FLDatabaseLink.m in Sources */,
-				271D3B7A16FE0795009CD00F /* FLImageFolder.m in Sources */,
-				271D3B8316FE0795009CD00F /* FLImageProperties.m in Sources */,
-				271D3B8C16FE0795009CD00F /* FLImageStorage.m in Sources */,
-				271D3B9516FE0795009CD00F /* FLImageStorageStrategy.m in Sources */,
-				271D3B9E16FE0795009CD00F /* FLPhoto.m in Sources */,
-				271D3BA716FE0795009CD00F /* FLStorable.m in Sources */,
-				271D3BB016FE0796009CD00F /* FLStorableImage.m in Sources */,
 				271D3BB916FE0796009CD00F /* FLStorageStrategy.m in Sources */,
 				271D3BCB16FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
 				271D3BD416FE0796009CD00F /* FLAttributedString.m in Sources */,
@@ -9845,6 +9365,10 @@
 				27277E0A173C0C0200A107F0 /* FLWeakRefTests.m in Sources */,
 				27733E20173C477900B93AB1 /* FLDatabaseObjectSerializer.m in Sources */,
 				27733E2B173C51BC00B93AB1 /* FLObjectDatabaseTests.m in Sources */,
+				27C16ECE173EB76800C8B8FA /* FLXmlStringEncoding.m in Sources */,
+				27C16ED9173EB8DF00C8B8FA /* FLXmlDataEncoder.m in Sources */,
+				27C16EDE173EBE7A00C8B8FA /* FLUserDataStorageService.m in Sources */,
+				27C16EE9173EC08100C8B8FA /* __FLUserLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

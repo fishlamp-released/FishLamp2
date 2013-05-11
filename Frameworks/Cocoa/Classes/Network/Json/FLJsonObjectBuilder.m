@@ -22,14 +22,14 @@
     FLAssertNotNil(builder);
     FLAssertNotNil(typeDesc);
     
-    id<FLStringEncoder> decoder = typeDesc.objectEncoder;
-    if(decoder) {
+    
+    NSString* encodingKey = typeDesc.stringEncodingKeyForRepresentedData;
+    if(encodingKey) {
         FLAssertNotNil(builder.decoder);
-
-        return [decoder decodeStringToObject:self withDecoder:builder.decoder];
+        return [builder.decoder objectFromString:self encodingKey:encodingKey];
     }
     else {
-        FLLog(@"Json property %@ has no encoder", typeDesc.propertyName);
+        FLLog(@"Json property %@ has no encoder key", typeDesc.propertyName);
     }
 
     return nil;

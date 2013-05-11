@@ -11,7 +11,6 @@
 #import "FLObjectBuilder.h"
 #import "FLPropertyInflator.h"
 #import "FLType.h"
-#import "FLCoreTypes.h"
 
 @interface NSObject (FLObjectBuilder)
 
