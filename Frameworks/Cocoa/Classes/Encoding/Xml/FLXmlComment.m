@@ -14,14 +14,14 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
+- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
     
     BOOL hasLines = self.lines.count > 0;
     if(hasLines) {
         [stringFormatter appendLine:@"<--"];
 
         [stringFormatter indent:^{
-            [super appendLinesToStringFormatter:stringFormatter];
+            [super buildStringIntoStringFormatter:stringFormatter];
         }];
         
         [stringFormatter appendLine:@"-->"];

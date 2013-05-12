@@ -118,17 +118,17 @@
     
 }
 
-- (void)appendLinesToStringFormatter:(id<FLStringFormatter>)stringFormatter {
+- (void)buildStringIntoStringFormatter:(id<FLStringFormatter>)stringFormatter {
 
     if(_comments) {
-        [_comments appendLinesToStringFormatter:stringFormatter];
+        [_comments buildStringIntoStringFormatter:stringFormatter];
     }
     
     BOOL hasLines = self.lines.count > 0;
     [stringFormatter appendLine:[self xmlOpenTag:!hasLines]];
     if(hasLines) {
         [stringFormatter indent:^{
-            [super appendLinesToStringFormatter:stringFormatter];
+            [super buildStringIntoStringFormatter:stringFormatter];
         }];
 
         [stringFormatter appendLine:[NSString stringWithFormat:@"</%@>", self.xmlElementCloseTag]];

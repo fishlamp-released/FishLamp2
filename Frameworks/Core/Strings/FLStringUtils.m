@@ -110,7 +110,6 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 	return outString;
 }
 
-
 - (NSString*) stringWithRemovingQuotes {
     
     if(self.length >= 2) {

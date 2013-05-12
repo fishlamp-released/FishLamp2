@@ -46,8 +46,8 @@
     return [_document openedStringBuilder];
 }
 
-- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
-    [_document.rootStringBuilder appendLinesToStringFormatter:stringFormatter];
+- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
+    [_document.rootStringBuilder buildStringIntoStringFormatter:stringFormatter];
 }
 
 - (void) openSection:(FLDocumentSection*) element {
@@ -87,14 +87,16 @@
 }
 
 - (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+    [[self openedSection] stringFormatterIndent:stringFormatter];
 }
 
 - (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+    [[self openedSection] stringFormatterOutdent:stringFormatter];
 }
 
 - (NSString*) description {
     FLPrettyString* string = [FLPrettyString prettyString];
-    [self appendLinesToStringFormatter:string];
+    [self buildStringIntoStringFormatter:string];
     return string.string;
 }
 

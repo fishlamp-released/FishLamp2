@@ -78,7 +78,7 @@
 @end
 
 @protocol FLBuildableString <NSObject>
-- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter;
+- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter;
 @end
 
 

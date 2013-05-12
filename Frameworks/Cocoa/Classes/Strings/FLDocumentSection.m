@@ -14,10 +14,46 @@
 @end
 
 @implementation NSString (FLDocumentSection)
-- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
+- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
     [stringFormatter appendLine:self];
 }
 @end
+
+@interface FLDocumentSectionIndent : NSObject<FLBuildableString>
++ (id) documentSectionIndent;
+@end
+
+@interface FLDocumentSectionOutdent : NSObject<FLBuildableString>
++ (id) documentSectionOutdent;
+@end
+
+@implementation FLDocumentSectionIndent
++ (id) documentSectionIndent {
+    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));
+}
+- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
+    [stringFormatter indent];
+}
+- (NSString*) description {
+    return @"INDENT";
+}
+
+
+@end
+
+@implementation FLDocumentSectionOutdent
++ (id) documentSectionOutdent {
+    FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));
+}
+- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
+    [stringFormatter outdent];
+}
+- (NSString*) description {
+    return @"OUTDENT";
+}
+
+@end
+
 
 @implementation FLDocumentSection 
 
@@ -78,9 +114,11 @@
 }
 
 - (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+    [_lines addObject:[FLDocumentSectionIndent documentSectionIndent]];
 }
 
 - (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+    [_lines addObject:[FLDocumentSectionOutdent documentSectionOutdent]];
 }
 
 
@@ -125,12 +163,12 @@
 - (void) didBuildWithStringFormatter:(id<FLStringFormatter>) stringFormatter {
 }
 
-- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
+- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
 
     [self willBuildWithStringFormatter:stringFormatter];
 
     for(id<FLBuildableString> line in _lines) {
-        [line appendLinesToStringFormatter:stringFormatter];
+        [line buildStringIntoStringFormatter:stringFormatter];
     }
 
     [self didBuildWithStringFormatter:stringFormatter];
@@ -216,7 +254,7 @@
     return line;
 }
 
-- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
+- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
     if(FLStringIsNotEmpty(_string)) {
         [prettyString appendLine:_string];
     }

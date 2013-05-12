@@ -166,7 +166,7 @@
 }
 
 - (void) appendBuildableString:(id<FLBuildableString>) buildableString {
-    [buildableString appendLinesToStringFormatter:self];
+    [buildableString buildStringIntoStringFormatter:self];
 }
 
 - (NSString*) description {

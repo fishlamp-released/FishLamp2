@@ -45,11 +45,11 @@
 }
 #endif
 
-- (void) appendLinesToStringFormatter:(id<FLStringFormatter>) stringFormatter {
+- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
     if(FLStringIsNotEmpty(_openScopeString)) {
         [stringFormatter appendLine:_openScopeString];
         [stringFormatter indent:^{
-            [super appendLinesToStringFormatter:stringFormatter];
+            [super buildStringIntoStringFormatter:stringFormatter];
         }];
         
         if(FLStringIsNotEmpty(_closeScopeString)) {
@@ -57,7 +57,7 @@
         }
     }
     else {
-        [super appendLinesToStringFormatter:stringFormatter];
+        [super buildStringIntoStringFormatter:stringFormatter];
     }
 }
 
