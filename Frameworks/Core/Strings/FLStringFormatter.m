@@ -23,11 +23,11 @@
     FLAssertNotNil(_output);
     
     if(!_editingLine) {
+        _editingLine = YES;
         [_output stringFormatterOpenLine:self];
     }
     [_output stringFormatter:self appendString:string];
     
-    _editingLine = YES;
 }
 
 
@@ -36,11 +36,11 @@
     FLAssertNotNil(_output);
 
     if(!_editingLine) {
+        _editingLine = YES;
         [_output stringFormatterOpenLine:self];
     }
+    
     [_output stringFormatter:self appendAttributedString:string];
-        
-    _editingLine = YES;
 }
 
 
@@ -96,9 +96,9 @@
         [_output  stringFormatterCloseLine:self];
     }
     
+    _editingLine = YES;
     [_output stringFormatterOpenLine:self];
     [_output stringFormatter:self appendString:string];
-    _editingLine = YES;
 }
 
 
@@ -110,9 +110,9 @@
         [_output  stringFormatterCloseLine:self];
     }
     
+    _editingLine = YES;
     [_output stringFormatterOpenLine:self];
     [_output stringFormatter:self appendAttributedString:string];
-    _editingLine = YES;
 }
 
 #define appendLineInfo() MakeInfo(NO, NO, !_editingLine, YES)
@@ -122,6 +122,7 @@
     FLAssertNotNil(_output);
 
     if(!_editingLine) {
+        _editingLine = YES;
         [_output stringFormatterOpenLine:self];
     }
     [_output stringFormatter:self appendAttributedString:FLRetainWithAutorelease(string)];
@@ -135,6 +136,7 @@
     FLAssertNotNil(_output);
 
     if(!_editingLine) {
+        _editingLine = YES;
         [_output stringFormatterOpenLine:self];
     }
     [_output stringFormatter:self appendString:string];
