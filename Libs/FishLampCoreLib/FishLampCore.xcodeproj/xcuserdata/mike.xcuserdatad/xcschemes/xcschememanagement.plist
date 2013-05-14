@@ -17,17 +17,17 @@
 		<key>FishLampCore-OSX-32-MRC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>24</integer>
 		</dict>
 		<key>FishLampCore-OSX-64-ARC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>25</integer>
 		</dict>
 		<key>FishLampCore-OSX-64-MRC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>26</integer>
 		</dict>
 		<key>FishLampCore-iOS-ARC.xcscheme_^#shared#^_</key>
 		<dict>

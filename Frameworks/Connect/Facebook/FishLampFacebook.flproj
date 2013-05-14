@@ -67,30 +67,30 @@
         </enumType>
     </enumTypes>
     <objects>
-        <object typeName="FLFacebookObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="id">
                     <storageOptions isPrimaryKey="YES"/>
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookNamedObject" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookNamedObject" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="name"/>
             </properties>
         </object>
-        <object typeName="FLFacebookDataList"/>
-        <object typeName="FLFacebookPlace" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookDataList"/>
+        <object className="FLFacebookPlace" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="location"/>
             </properties>
         </object>
-        <object typeName="FLFacebookEmailObject" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookEmailObject" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="email"/>
             </properties>
         </object>
-        <object typeName="FLFacebookAlbum" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookAlbum" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="description"/>
                 <property type="FLFacebookNamedObject" name="from"/>
@@ -104,14 +104,14 @@
                 <property type="date" name="updated_time"/>
             </properties>
         </object>
-        <object typeName="FLFacebookApplication" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookApplication" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="category"/>
                 <property type="string" name="link"/>
                 <property type="string" name="description"/>
             </properties>
         </object>
-        <object typeName="FLFacebookCheckin" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookCheckin" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="FLFacebookObject" name="from"/>
                 <property type="FLFacebookDataList" name="tags"/>
@@ -121,7 +121,7 @@
                 <property type="date" name="created_time"/>
             </properties>
         </object>
-        <object typeName="FLFacebookComment" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookComment" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="date" name="created_time"/>
                 <property type="string" name="message"/>
@@ -129,10 +129,10 @@
                 <property type="integer" name="likes"/>
             </properties>
         </object>
-        <object typeName="FLFacebookDomain" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookDomain" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties/>
         </object>
-        <object typeName="FLFacebookEvent" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookEvent" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="owner"/>
                 <property type="string" name="description"/>
@@ -144,7 +144,7 @@
                 <property type="date" name="updated_time"/>
             </properties>
         </object>
-        <object typeName="FLFacebookFriendList" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookFriendList" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="array" name="friends">
                     <arrayTypes>
@@ -153,7 +153,7 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookGroup" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookGroup" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="owner"/>
                 <property type="string" name="icon"/>
@@ -163,13 +163,13 @@
                 <property type="date" name="updated_time"/>
             </properties>
         </object>
-        <object typeName="FLFacebookInsight">
+        <object className="FLFacebookInsight">
             <properties>
                 <property type="int" name="value"/>
                 <property type="date" name="end_time"/>
             </properties>
         </object>
-        <object typeName="FLFacebookInsights" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookInsights" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="period"/>
                 <property type="array" name="values">
@@ -179,7 +179,7 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookLink" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookLink" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="FLFacebookObject" name="from"/>
                 <property type="string" name="link"/>
@@ -191,7 +191,7 @@
                 <property type="date" name="created_time"/>
             </properties>
         </object>
-        <object typeName="FLFacebookMessage" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookMessage" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="FLFacebookEmailObject" name="from"/>
                 <property type="FLFacebookEmailObject" name="to"/>
@@ -199,7 +199,7 @@
                 <property type="date" name="created_time"/>
             </properties>
         </object>
-        <object typeName="FLFacebookNote" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookNote" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="FLFacebookNamedObject" name="from"/>
                 <property type="string" name="subject"/>
@@ -209,20 +209,20 @@
                 <property type="date" name="created_time"/>
             </properties>
         </object>
-        <object typeName="FLFacebookPage" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookPage" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="category"/>
                 <property type="int" name="likes"/>
             </properties>
         </object>
-        <object typeName="FLFacebookTag">
+        <object className="FLFacebookTag">
             <properties>
                 <property type="FLFacebookNamedObject" name="user"/>
                 <property type="int" name="x"/>
                 <property type="int" name="y"/>
             </properties>
         </object>
-        <object typeName="FLFacebookPhoto" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookPhoto" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="FLFacebookNamedObject" name="from"/>
                 <property type="date" name="updated_time"/>
@@ -239,20 +239,20 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookAction" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookAction" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="link"/>
                 <property type="string" name="name"/>
             </properties>
         </object>
-        <object typeName="FLFacebookProperty" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookProperty" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="text"/>
                 <property type="string" name="name"/>
                 <property type="string" name="href"/>
             </properties>
         </object>
-        <object typeName="FLFacebookPrivacy" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookPrivacy" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="value"/>
                 <property type="string" name="friends"/>
@@ -261,7 +261,7 @@
                 <property type="string" name="description"/>
             </properties>
         </object>
-        <object typeName="FLFacebookPost" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookPost" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="object_id"/>
                 <property type="FLFacebookNamedObject" name="from"/>
@@ -298,14 +298,14 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookStatusMessage" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookStatusMessage" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="FLFacebookNamedObject" name="from"/>
                 <property type="string" name="message"/>
                 <property type="date" name="updated_time"/>
             </properties>
         </object>
-        <object typeName="FLFacebookEmployer" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookEmployer" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="employer"/>
                 <property type="string" name="location"/>
@@ -314,7 +314,7 @@
                 <property type="date" name="end_date"/>
             </properties>
         </object>
-        <object typeName="FLFacebookWorkHistory" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookWorkHistory" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="FLFacebookNamedObject" name="employer"/>
                 <property type="FLFacebookNamedObject" name="location"/>
@@ -323,7 +323,7 @@
                 <property type="date" name="end_date"/>
             </properties>
         </object>
-        <object typeName="FLFacebookUser" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookUser" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="first_name"/>
                 <property type="string" name="last_name"/>
@@ -355,7 +355,7 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookVideo" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookVideo" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="FLFacebookNamedObject" name="from"/>
                 <property type="date" name="updated_time"/>
@@ -371,7 +371,7 @@
             </properties>
         </object>
         <!-- Network operations -->
-        <object typeName="FLFacebookNetworkSession" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookNetworkSession" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="userId">
                     <storageOptions isIndexed="YES"/>
@@ -388,7 +388,7 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookError" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookError" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="error_reason"/>
                 <property type="string" name="error"/>
@@ -396,19 +396,19 @@
                 <property type="string" name="externalUrl"/>
             </properties>
         </object>
-        <object typeName="FLFacebookAuthenticationResponse" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookAuthenticationResponse" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="FLFacebookNetworkSession" name="session"/>
                 <property type="NSURL" name="redirectURL"/>
             </properties>
         </object>
-        <object typeName="FLFacebookPagingResponse" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookPagingResponse" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="previous"/>
                 <property type="string" name="next"/>
             </properties>
         </object>
-        <object typeName="FLFacebookFetchStatusListResponse" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookFetchStatusListResponse" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="FLFacebookPagingResponse" name="paging"/>
                 <property type="array" name="data">
@@ -418,7 +418,7 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookCommentList" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookCommentList" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="int" name="count"/>
                 <property type="array" name="data">
@@ -428,7 +428,7 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookLikeList" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookLikeList" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="int" name="count"/>
                 <property type="array" name="data">
@@ -438,7 +438,7 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookActionList" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookActionList" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="int" name="count"/>
                 <property type="array" name="data">
@@ -448,7 +448,7 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookNamedObjectList" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookNamedObjectList" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="int" name="count"/>
                 <property type="array" name="data">
@@ -458,13 +458,13 @@
                 </property>
             </properties>
         </object>
-        <object typeName="FLFacebookUpdateStatusOperation" superclass="FLFacebookHttpRequest">
+        <object className="FLFacebookUpdateStatusOperation" superclass="FLFacebookHttpRequest">
             <properties>
                 <property type="FLFacebookStatusMessage" name="input"/>
                 <property type="string" name="output"/>
             </properties>
         </object>
-        <object typeName="FLFacebookLoadUserPictureOperationInput" protocols="NSCopying, NSCoding">
+        <object className="FLFacebookLoadUserPictureOperationInput" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="type"/>
                 <property type="string" name="pictureSize"/>

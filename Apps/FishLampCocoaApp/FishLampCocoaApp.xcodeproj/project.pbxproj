@@ -542,7 +542,7 @@
 				27F1F44E16A094F300B10213 /* libFishLampCocoa-OSX-64-MRC.a */,
 				27F1F45016A094F300B10213 /* libFishLampCocoa-OSX-64-ARC.a */,
 				27F1F45216A094F300B10213 /* libFishLampCocoa-OSX-3264-MRC.a */,
-				27C62D5D170B4A3A0093F260 /* CocoaTestTool-64-MRC */,
+				27C62D5D170B4A3A0093F260 /* FishLampCocoaTestTool-64-MRC */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -766,7 +766,7 @@
 			remoteRef = 2739694116B9CAC700EFDA6C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27C62D5D170B4A3A0093F260 /* CocoaTestTool-64-MRC */ = {
+		27C62D5D170B4A3A0093F260 /* FishLampCocoaTestTool-64-MRC */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = "FishLampCocoaTestTool-64-MRC";

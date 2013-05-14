@@ -57,7 +57,7 @@
     </enumTypes>
 -->
     <objects>
-        <object typeName="FLTwitterStatusUpdate" protocols="NSCopying, NSCoding">
+        <object name="FLTwitterStatusUpdate" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="status"/>
                 <property type="string" name="in_reply_to_status_id"/>
@@ -69,7 +69,7 @@
                 <property type="string" name="include_entities"/>
             </properties>
         </object>
-        <object typeName="FLTwitterError" protocols="NSCopying, NSCoding">
+        <object name="FLTwitterError" protocols="NSCopying, NSCoding">
             <properties>
                 <property type="string" name="error"/>
                 <property type="string" name="request"/>
