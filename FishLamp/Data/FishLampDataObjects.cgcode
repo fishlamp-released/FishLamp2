@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GtCodeGeneratorObjectSchema copywrite="">
+   <company>
+      GreenTongue Software
+   </company>
+   <includes>
+      <include name="GtPhotoData.h">
+      </include>
+   </includes>
+   <objects>
+      <object type="GtUserLogin" superclass="GtObject" isSingleton="NO">
+         <properties>
+            <property type="NSString" name="userName">
+            </property>
+            <property type="NSString" name="password">
+            </property>
+            <property type="NSString" name="userGuid">
+            </property>
+         </properties>
+      </object>
+      <object type="GtCachedPhotoDataBase" superclass="GtObject" isSingleton="NO">
+         <properties>
+            <property type="NSString" name="filePath">
+            </property>
+            <property type="NSString" name="url">
+            </property>
+         </properties>
+      </object>
+      <object type="GtCachedAuthenticationTokenBase" superclass="GtObject">
+         <properties>
+            <property type="NSString" name="token">
+            </property>
+            <property type="int" name="id">
+            </property>
+         </properties>
+      </object>
+   </objects>
+   <project>
+      FishLamp
+   </project>
+</GtCodeGeneratorObjectSchema>
