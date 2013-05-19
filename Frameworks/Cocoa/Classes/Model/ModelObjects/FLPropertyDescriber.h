@@ -42,7 +42,6 @@
 @property (readonly, assign) BOOL representsObject;
 @property (readonly, assign) BOOL representsModelObject;
 @property (readonly, assign) BOOL representsArray;
-//@property (readonly, strong) id<FLStringEncoder> objectEncoder;
 - (BOOL) representsClass:(Class) aClass;
 - (id) createRepresentedObject;
 

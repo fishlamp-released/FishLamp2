@@ -124,15 +124,15 @@
 //        // NOTE: what if there is a value?? 
 //        
 //    }
-//    else if([element value]) {
+//    else if([element parsedValue]) {
 //        id<FLStringEncoder> encoder = [property objectEncoder];
 //        FLAssertNotNilWithComment(encoder, @"no encoder found for property: %@", property.propertyName);
 //
 //        if(encoder) {
-//            id object = [self.decoder decodeDataFromString:[element value] forType:encoder];
+//            id object = [self.decoder decodeDataFromString:[element parsedValue] forType:encoder];
 //            
 //            FLAssertNotNilWithComment(object,
-//                    @"object not expanded for %@:%@", [element elementName], [element value]);
+//                    @"object not expanded for %@:%@", [element elementName], [element parsedValue]);
 //            
 //            return object;
 //        }
@@ -244,7 +244,7 @@
 //        return nil;
 //    }
 //    
-//    id object = [self.decoder decodeDataFromString:[element value] forType:encoder];
+//    id object = [self.decoder decodeDataFromString:[element parsedValue] forType:encoder];
 //    FLAssertNotNil(object);
 //
 //    return object;

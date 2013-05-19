@@ -14,14 +14,14 @@
     NSString* _namespace;
     NSString* _elementName;
     NSString* _qualifiedName;
-    NSMutableString* _value;
+    NSMutableString* _elementValue;
     NSMutableDictionary* _elements;
     __unsafe_unretained FLParsedItem* _parent;
 }
-- (id) initWithName:(NSString*) name value:(NSString*) value;
+- (id) initWithName:(NSString*) name elementValue:(NSString*) elementValue;
 
 + (id) parsedItem;
-+ (id) parsedItem:(NSString*) name value:(NSString*) value;
++ (id) parsedItem:(NSString*) name elementValue:(NSString*) elementValue;
 
 @property (readwrite, strong, nonatomic) NSDictionary* attributes;
 @property (readwrite, strong, nonatomic) NSString* namespaceURI;
@@ -29,7 +29,7 @@
 
 @property (readwrite, strong, nonatomic) NSString* elementName;
 
-@property (readonly, strong, nonatomic) NSString* value;
+@property (readonly, strong, nonatomic) NSString* elementValue;
 
 @property (readonly, strong, nonatomic) NSDictionary* elements;
 
@@ -39,9 +39,9 @@
 
 - (void) addElement:(FLParsedItem*) element;
 
-- (FLParsedItem*) elementAtPath:(NSString*) path;
-- (FLParsedItem*) elementForElementName:(NSString*) name;
-- (FLParsedItem*) findElementWithName:(NSString*) name maxDepth:(NSInteger) maxDepth;
+- (NSArray*) elementsAtPath:(NSString*) path;
+- (NSArray*) elementsForElementName:(NSString*) name;
+//- (id) findElementWithName:(NSString*) name maxDepth:(NSInteger) maxDepth;
 
 - (NSDictionary*) childrenAtPath:(NSString*) parentalPath;
 

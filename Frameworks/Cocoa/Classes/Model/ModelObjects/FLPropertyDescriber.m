@@ -46,7 +46,7 @@
 @property (readwrite, assign) FLPropertyAttributes_t attributes;
 
 + (id) propertyDescriberWithProperty_t:(objc_property_t) property_t;
-- (void) addContainedProperty:(NSString*) name withClass:(Class) aClass; 
+- (void) addContainedProperty:(FLPropertyDescriber*) property;
 
 @end
 
@@ -209,13 +209,13 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     }
 }
 
-- (void) addContainedProperty:(NSString*) name withClass:(Class) aClass {
+- (void) addContainedProperty:(FLPropertyDescriber*) property {
 
     if(!_containedTypes) {
         _containedTypes = [[NSMutableArray alloc] init];
     }
 
-    [_containedTypes addObject:[FLPropertyDescriber propertyDescriber:name class:aClass]];
+    [_containedTypes addObject:property];
 }
 
 - (NSString*) description {

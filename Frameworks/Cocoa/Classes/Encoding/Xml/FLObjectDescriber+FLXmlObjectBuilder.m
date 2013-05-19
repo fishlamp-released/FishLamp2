@@ -24,7 +24,7 @@
 
     NSString* encodingKey = [[self objectClass] stringEncodingKey];
   
-    id object = [builder.decoder objectFromString:[element value] encodingKey:encodingKey];
+    id object = [builder.decoder objectFromString:[element elementValue] encodingKey:encodingKey];
     FLAssertNotNil(object);
 
     return object;
@@ -45,7 +45,7 @@
         
         FLPropertyDescriber* propertyDescriber = [self propertyForName:elementName];
         if(!propertyDescriber) {
-            FLLog(@"object builder skipped missing propertyDescriber named: %@", elementName);
+            FLLog(@"object builder skipped missing propertyDescriber named: %@:%@", NSStringFromClass(self.objectClass),elementName);
             continue;
         }
         
