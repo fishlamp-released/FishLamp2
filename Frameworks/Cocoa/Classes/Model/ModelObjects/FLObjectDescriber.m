@@ -18,7 +18,7 @@
 @property (readwrite) NSString* propertyName;
 @property (readwrite) FLObjectDescriber* representedObjectDescriber;
 @property (readwrite, copy) NSArray* containedTypes;
-- (void) addContainedProperty:(FLPropertyDescriber*) property;
+
 - (id) initWithProperty_t:(objc_property_t) property_t;
 + (id) propertyDescriberWithProperty_t:(objc_property_t) property_t;
 @end
@@ -229,13 +229,8 @@ static NSMutableDictionary* s_registry = nil;
     FLAssertNotNil(types);
 
     property.containedTypes = types;    
-} 
 
-- (void) addContainerType:(FLPropertyDescriber*) subProperty 
-     forContainerProperty:(NSString*) propertyName {
-    FLPropertyDescriber* property = [self.properties objectForKey:propertyName];
-    [property addContainedProperty:subProperty];
-}
+} 
 
 - (void) addPropertyWithName:(NSString*) name withArrayTypes:(NSArray*) types {
     [self addPropertyArrayTypes:types forPropertyName:name];

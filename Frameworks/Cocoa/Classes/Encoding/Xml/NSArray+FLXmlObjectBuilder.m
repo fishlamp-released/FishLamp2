@@ -108,10 +108,7 @@ arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
             FLAssert([elementOrArray isKindOfClass:[FLParsedItem class]]);
 
             FLPropertyDescriber* arrayType = [propertyDescriber containedTypeForName:[elementOrArray elementName]];
-            if(!arrayType) {
-                FLLog(@"Array type for %@:%@ not found", self.elementName, [elementOrArray elementName]);
-            }
-                    
+                
             id object = [arrayType xmlObjectBuilder:builder inflateElementContents:elementOrArray];
             if(object) {
                 [newArray addObject:object];

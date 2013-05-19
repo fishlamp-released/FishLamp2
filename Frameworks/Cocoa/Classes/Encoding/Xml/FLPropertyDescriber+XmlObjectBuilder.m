@@ -18,16 +18,16 @@
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
 inflateObjectWithElement:(FLParsedItem*) element {
     
-    if(FLStringIsNotEmpty([element elementValue])) {
+    if(FLStringIsNotEmpty([element value])) {
     
         NSString* encodingKey = self.stringEncodingKeyForRepresentedData;
         FLAssertNotNilWithComment(encodingKey, @"no encoder found for property: %@", self.propertyName);
 
         if(encodingKey) {
-            id object = [builder.decoder objectFromString:[element elementValue] encodingKey:encodingKey];
+            id object = [builder.decoder objectFromString:[element value] encodingKey:encodingKey];
             
             FLAssertNotNilWithComment(object,
-                    @"object not expanded for %@:%@", [element elementName], [element elementValue]);
+                    @"object not expanded for %@:%@", [element elementName], [element value]);
             
             return object;
         }

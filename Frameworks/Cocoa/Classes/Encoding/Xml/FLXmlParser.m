@@ -76,7 +76,7 @@ didStartElement:(NSString *)elementName
     if(attributes && attributes.count) {
         newElement.attributes = attributes;
         for(NSString* attributeName in attributes) {
-            [newElement addElement:[FLParsedItem parsedItem:attributeName elementValue:[attributes objectForKey:attributeName]]];
+            [newElement addElement:[FLParsedItem parsedItem:attributeName value:[attributes objectForKey:attributeName]]];
         }
     }
 
