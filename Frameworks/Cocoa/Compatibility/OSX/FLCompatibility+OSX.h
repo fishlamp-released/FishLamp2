@@ -7,7 +7,7 @@
 // Note: This is a generated file. Modifications will be overwritten.
 //
 // Created by Mike Fullerton on Thu Dec 13 13:34:22 HST 2012
-// Copyright (c) 2012 GreenTongue Software LLC. All Rights Reserved.
+// Copyright (c) 2013 GreenTongue Software LLC. All Rights Reserved.
 //
 #if OSX
 #import <Foundation/Foundation.h>

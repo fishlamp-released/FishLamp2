@@ -3,7 +3,8 @@
 //	FishLamp
 //
 //	Created by Mike Fullerton on 8/19/09.
-//	Copyright 2009 Greentongue Software. All rights reserved.
+//	Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.

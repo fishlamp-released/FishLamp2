@@ -3,7 +3,8 @@
 //  FishLamp
 //
 //  Created by Mike Fullerton on 10/23/11.
-//  Copyright (c) 2011 GreenTongue Software, LLC. All rights reserved.
+//  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
 #import "FLHttpResponse.h"

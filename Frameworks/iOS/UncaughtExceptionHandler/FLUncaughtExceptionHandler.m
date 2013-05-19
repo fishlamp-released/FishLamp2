@@ -3,7 +3,8 @@
 //	UncaughtExceptions
 //
 //	Created by Matt Gallagher on 2010/05/25.
-//	Copyright 2010 Matt Gallagher. All rights reserved.
+//	Copyright (c) 2013 Matt Gallagher. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 //	Permission is given to use this source code file, free of charge, in any
 //	project, commercial or otherwise, entirely at your risk, with the condition

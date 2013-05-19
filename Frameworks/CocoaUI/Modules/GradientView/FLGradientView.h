@@ -3,7 +3,8 @@
 //	ShadowedTableView
 //
 //	Created by Mike Fullerton on 2009/08/21.
-//	Copyright 2009 Mike Fullerton. All rights reserved.
+//	Copyright (c) 2013 Mike Fullerton. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
 #import "FLCocoaUIRequired.h"

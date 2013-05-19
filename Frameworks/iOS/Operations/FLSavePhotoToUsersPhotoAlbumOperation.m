@@ -3,7 +3,8 @@
 //	FishLamp
 //
 //	Created by Mike Fullerton on 9/1/09.
-//	Copyright 2009 GreenTongue Software. All rights reserved.
+//	Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
 #import "FLSavePhotoToUsersPhotoAlbumOperation.h"
