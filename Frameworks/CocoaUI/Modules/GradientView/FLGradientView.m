@@ -3,7 +3,8 @@
 //	ShadowedTableView
 //
 //	Created by Matt Gallagher on 2009/08/21.
-//	Copyright 2009 Matt Gallagher. All rights reserved.
+//	Copyright (c) 2013 Matt Gallagher. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
 #import "FLGradientView.h"

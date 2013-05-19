@@ -3,7 +3,8 @@
 //	FishLamp
 //
 //	Created by Mike Fullerton on 1/24/11.
-//	Copyright 2011 GreenTongue Software. All rights reserved.
+//	Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 #if 0
 #import "FLEditObjectViewControllerButtonStrategy.h"

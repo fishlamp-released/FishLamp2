@@ -6,7 +6,8 @@
 // Project: FishLamp
 // Schema: Twitter
 //
-// Copywrite (C) 2012 GreenTongue Software, LLC. All rights reserved.
+// Copywrite (C) 2012 GreenTongue Software, LLC. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
 #import "FLTwitterStatusUpdate.h"

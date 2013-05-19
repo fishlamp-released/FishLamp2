@@ -3,7 +3,8 @@
 //	RSFoundation
 //
 //	Created by Daniel Jalkut on 2/14/07.
-//	Copyright 2007 Red Sweater Software. All rights reserved.
+//	Copyright 2007 Red Sweater Software. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 //	Based on code from Dan Wood 
 //	http://gigliwood.com/weblog/Cocoa/Better_description_.html

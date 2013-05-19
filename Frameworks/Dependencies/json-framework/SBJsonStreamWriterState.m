@@ -1,6 +1,7 @@
 /*
  Copyright (c) 2010, Stig Brautaset.
- All rights reserved.
+ 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are

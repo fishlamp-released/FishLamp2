@@ -3,7 +3,8 @@
 //  FishLampOSX
 //
 //  Created by Mike Fullerton on 4/28/13.
-//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
+//  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
 #import "FLLinkTextField.h"
@@ -128,7 +129,7 @@
 //- (void)drawRect:(NSRect)rect {
 //	
 ////    if( _mouseDown && _mouseIn) {
-////        self.textColor = [NSColor orangeColor]; // //[NSColor zenfolioOrange];
+////        self.textColor = [NSColor orangeColor]; 
 ////    }
 ////    else {
 ////        self.textColor = _color;

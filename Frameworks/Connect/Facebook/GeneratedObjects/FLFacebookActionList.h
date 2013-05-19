@@ -10,7 +10,8 @@
 // 
 // Organization: GreenTongue Software, LLC
 // 
-// Copywrite (C) 2013 GreenTongue Software, LLC. All rights reserved.
+// Copywrite (C) 2013 GreenTongue Software, LLC. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 // 
 #import "FLModelObject.h"
 @interface FLFacebookActionList : FLModelObject {

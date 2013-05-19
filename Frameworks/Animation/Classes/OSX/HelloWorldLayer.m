@@ -3,7 +3,8 @@
 //  Cocos2d-SampleApp
 //
 //  Created by Mike Fullerton on 4/19/13.
-//  Copyright __MyCompanyName__ 2013. All rights reserved.
+//  Copyright __MyCompanyName__ 2013. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
 

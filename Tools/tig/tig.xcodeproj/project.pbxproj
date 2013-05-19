@@ -225,7 +225,7 @@
 				2754F58E17033F70001FFEE5 /* tig.1 */,
 			);
 			name = "Supporting Files";
-			path = zenli;
+			path = TigTool;
 			sourceTree = "<group>";
 		};
 		2754F5A917033F84001FFEE5 /* Classes */ = {
@@ -278,7 +278,7 @@
 				27E9818517034B0600962AD4 /* PBXTargetDependency */,
 			);
 			name = tig;
-			productName = zenli;
+			productName = TigTool;
 			productReference = 2754F4FF17033912001FFEE5 /* tig2 */;
 			productType = "com.apple.product-type.tool";
 		};
@@ -289,7 +289,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = Zenfolio;
+				ORGANIZATIONNAME = GreenTongue Software, LLC.;
 			};
 			buildConfigurationList = 2754F4FA17033912001FFEE5 /* Build configuration list for PBXProject "tig" */;
 			compatibilityVersion = "Xcode 3.2";

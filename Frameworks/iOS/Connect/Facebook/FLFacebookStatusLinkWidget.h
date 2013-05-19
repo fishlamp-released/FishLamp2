@@ -3,7 +3,8 @@
 //  Affable
 //
 //  Created by Mike Fullerton on 7/11/11.
-//  Copyright 2011 GreenTongue Software, LLC. All rights reserved.
+//  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
 #import <Foundation/Foundation.h>

@@ -1,7 +1,8 @@
 /*ISO8601DateFormatter.m
  *
  *Created by Peter Hosey on 2009-04-11.
- *Copyright 2009 Peter Hosey. All rights reserved.
+ *Copyright (c) 2013 Peter Hosey. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
  */
 
 #import <Foundation/Foundation.h>
