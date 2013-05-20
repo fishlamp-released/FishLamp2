@@ -3,7 +3,8 @@
 //  FishLampCocoaUI
 //
 //  Created by Mike Fullerton on 12/21/12.
-//  Copyright (c) 2012 Mike Fullerton. All rights reserved.
+//  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
 // see http://www.mentalfaculty.com/mentalfaculty/Blog/Entries/2010/9/22_FLIPPIN_OUT_AT_NSVIEW.html

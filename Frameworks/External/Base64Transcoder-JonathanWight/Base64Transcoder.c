@@ -3,7 +3,8 @@
  *  Base64Test
  *
  *  Created by Jonathan Wight on Tue Mar 18 2003.
- *  Copyright (c) 2003 Toxic Software. All rights reserved.
+ *  Copyright (c) 2003 Toxic Software. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
  *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal

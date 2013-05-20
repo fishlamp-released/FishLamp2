@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'zenli' target in the 'zenli' project
+// Prefix header for all source files of the 'TigTool' target in the 'TigTool' project
 //
 
 #ifdef __OBJC__
