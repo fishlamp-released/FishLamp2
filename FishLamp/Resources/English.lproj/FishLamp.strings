@@ -1,0 +1,30 @@
+/* 
+   Localizable.strings
+   FishLamp
+
+   Created by Mike Fullerton on 9/29/09.
+   Copyright 2009 GreenTongue Software. All rights reserved.
+ */
+
+"GT_NETWORK_UNAVAILABLE_STR" = "You are currently disconnected from the internet.\n\nPlease turn on Wi-Fi if you are in Airplane mode, or connect to a network and try again.";
+"GT_OPERATION_FAILED_STR" = "An operation could not be completed.";
+"GT_DB_OPERATION_FAILED_STR" = "A database operation could not be completed.";
+"GT_DONE_EDITING_STR" = "Done Editing";
+"GT_ARE_YOU_SURE_STR" = "Are you sure?";
+"GT_YES_STR" = "Yes";
+"GT_NO_STR" = "No";
+"GT_OK_STR" = "OK"; /* for alerts */ /* NSLocalizedStringFromTable(@"GT_OK_STR", @"FishLamp", nil) */
+
+"GT__NETWORK_ERROR_OCCURED" = "The application has encountered an error. The most likely reason for this is a poor network connection. Please try again when the connection has improved."; 
+
+/* used in photo controller */
+"GT_UNABLE_TO_SEND_EMAIL_STR" = "Unable to send e-mail.";
+"GT_CHECK_EMAIL_CONFIG_STR" = "Please check your email configuration and try again.";
+"GT_EMAIL_SAVED_STR" = "Your email was saved in your outbox and will be sent later.";
+"GT_EMAIL_SENT_STR" = "Your email was sent.";
+"GT_CANT_SEND_OLDSDK_STR" = "To send invitations, please update your device to at least version 3.0 of the operating system.";
+"GT_UNABLE_TO_LOAD_PHOTO_STR" = "Unable to load photo";
+
+/*
+NSLocalizedStringFromTable(@"GT_OPERATION_FAILED_STR", @"FishLamp", nil)
+*/

@@ -1,0 +1,73 @@
+/* 
+   NSUrlErrorStrings.strings
+   MyZen
+
+   Created by Mike Fullerton on 11/24/09.
+   Copyright 2009 GreenTongue Software. All rights reserved.
+ */
+
+"GT_LOST_CONNECTION" = "Lost connection to server.";
+"GT_LOOKUP_FAILED" = "Unable to connect to server.";
+"GT_NETWORK_FAILURE" = "Unabled to perform a network operation.";
+"GT_TIMEOUT" = "A network operation took too long and didn't complete.";
+
+"GT_EXPLANATION_HEADER" = "This may be because of one of the following reasons:";
+
+"GT_POOR_CONNECTION_EXPLANATION" = "Intermittent or loss of network connectivity.";
+"GT_POOR_SERVER_DOWN_EXPLANATION" = "The server may be offline.";
+
+"GT_TRY_AGAIN_ACTION" = "Try again when you have a better connection to the network.";
+"GT_CONTACT_HOST_ACTION" = "Try again when the server is online.";
+
+"NSURLErrorUnknown" = "NSURLErrorUnknown";
+"NSURLErrorCancelled" = "NSURLErrorCancelled";
+"NSURLErrorTimedOut" = "NSURLErrorTimedOut";
+
+"NSURLErrorBadURL" = "NSURLErrorBadURL";
+"NSURLErrorUnsupportedURL" = "NSURLErrorUnsupportedURL";
+
+"NSURLErrorHTTPTooManyRedirects" = "NSURLErrorHTTPTooManyRedirects";
+
+"NSURLErrorCannotFindHost" = "NSURLErrorCannotFindHost";
+"NSURLErrorCannotConnectToHost" = "NSURLErrorCannotConnectToHost";
+"NSURLErrorDNSLookupFailed" = "NSURLErrorDNSLookupFailed";
+"NSURLErrorResourceUnavailable" = "NSURLErrorResourceUnavailable";
+"NSURLErrorRedirectToNonExistentLocation" = "NSURLErrorRedirectToNonExistentLocation";
+
+"NSURLErrorNetworkConnectionLost" = "NSURLErrorNetworkConnectionLost";
+"NSURLErrorNotConnectedToInternet" = "NSURLErrorNotConnectedToInternet";
+
+
+"NSURLErrorBadServerResponse" = "NSURLErrorBadServerResponse";
+"NSURLErrorUserCancelledAuthentication" = "NSURLErrorUserCancelledAuthentication";
+"NSURLErrorUserAuthenticationRequired" = "NSURLErrorUserAuthenticationRequired";
+"NSURLErrorZeroByteResource" = "NSURLErrorZeroByteResource";
+"NSURLErrorCannotDecodeRawData" = "NSURLErrorCannotDecodeRawData";
+"NSURLErrorCannotDecodeContentData" = "NSURLErrorCannotDecodeContentData";
+"NSURLErrorCannotParseResponse" = "NSURLErrorCannotParseResponse";
+"NSURLErrorInternationalRoamingOff" = "NSURLErrorInternationalRoamingOff";
+"NSURLErrorCallIsActive" = "NSURLErrorCallIsActive";
+"NSURLErrorDataNotAllowed" = "NSURLErrorDataNotAllowed";
+"NSURLErrorRequestBodyStreamExhausted" = "NSURLErrorRequestBodyStreamExhausted";
+"NSURLErrorFileDoesNotExist" = "NSURLErrorFileDoesNotExist";
+"NSURLErrorFileIsDirectory" = "NSURLErrorFileIsDirectory";
+"NSURLErrorNoPermissionsToReadFile" = "NSURLErrorNoPermissionsToReadFile";
+"NSURLErrorDataLengthExceedsMaximum" = "NSURLErrorDataLengthExceedsMaximum";
+"NSURLErrorSecureConnectionFailed" = "NSURLErrorSecureConnectionFailed";
+"NSURLErrorServerCertificateHasBadDate" = "NSURLErrorServerCertificateHasBadDate";
+"NSURLErrorServerCertificateUntrusted" = "NSURLErrorServerCertificateUntrusted";
+"NSURLErrorServerCertificateHasUnknownRoot" = "NSURLErrorServerCertificateHasUnknownRoot";
+"NSURLErrorServerCertificateNotYetValid" = "NSURLErrorServerCertificateNotYetValid";
+"NSURLErrorClientCertificateRejected" = "NSURLErrorClientCertificateRejected";
+"NSURLErrorCannotLoadFromNetwork" = "NSURLErrorCannotLoadFromNetwork";
+
+// Download and file I/O errors
+"NSURLErrorCannotCreateFile" = "NSURLErrorCannotCreateFile";
+"NSURLErrorCannotOpenFile" = "NSURLErrorCannotOpenFile";
+"NSURLErrorCannotCloseFile" = "NSURLErrorCannotCloseFile";
+"NSURLErrorCannotWriteToFile" = "NSURLErrorCannotWriteToFile";
+"NSURLErrorCannotRemoveFile" = "NSURLErrorCannotRemoveFile";
+"NSURLErrorCannotMoveFile" = "NSURLErrorCannotMoveFile";
+"NSURLErrorDownloadDecodingFailedMidStream" = "NSURLErrorDownloadDecodingFailedMidStream";
+"NSURLErrorDownloadDecodingFailedToComplete" = "NSURLErrorDownloadDecodingFailedToComplete";
+	
