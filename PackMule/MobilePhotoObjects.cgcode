@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema companyName="GreenTongue Software, LLC" projectName="FishLamp Mobile">
+    <generatorOptions>
+        <typePrefix>Gt</typePrefix>
+    </generatorOptions>
+    <typeDefinitions>
+        <typeDefinition typeName="AVCaptureFlashMode" dataType="enum"/>
+        <typeDefinition typeName="GtDatabaseObject" dataType="object" import="GtDatabaseObject.h"/>
+    </typeDefinitions>
+    <objects>
+       <object typeName="GtCameraConfig" protocols="NSCopying, NSCoding">
+            <!-- ifDef="GT_CUSTOM_CAMERA" -->
+            <properties>
+                <property type="NSInteger" name="captureDevicePosition"/>
+                <!--  <property type="AVCaptureFlashMode" name="captureFlashMode"/> -->
+                <property type="NSInteger" name="captureFlashMode"/>
+                <property type="NSInteger" name="captureTorchMode"/>
+                <property type="NSInteger" name="captureFocusMode"/>
+                <property type="NSInteger" name="captureWhiteBalanceMode"/>
+                <property type="BOOL" name="showGuidelines"/>
+                <property type="BOOL" name="showStabityTracker"/>
+                <property type="BOOL" name="showZoom"/>
+                <property type="BOOL" name="foo"/>
+            </properties>
+        </object>
+    </objects>
+</schema>

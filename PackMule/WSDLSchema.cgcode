@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema companyName="GreenTongue Software, LLC" projectName="FishLamp" canLazyCreate="YES" isWildcardArray="NO">
+    <generatorOptions>
+        <disabled>NO</disabled>
+        <generateAllIncludesFile>YES</generateAllIncludesFile>
+        <objectsFolderName>WsdlSchema</objectsFolderName>
+        <typePrefix>Gt</typePrefix>
+    </generatorOptions>
+    <objects>
+        <object typeName="GtWsdlDefinitions">
+            <properties>
+                <property name="types" type="NSMutableArray">
+                    <arrayTypes>
+                        <arrayType name="schema" typeName="GtWsdlSchema"/>
+                    </arrayTypes>
+                </property>
+                <property name="messages" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="message" typeName="GtWsdlMessage"/>
+                    </arrayTypes>
+                </property>
+                <property name="portTypes" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="portType" typeName="GtWsdlPortType"/>
+                    </arrayTypes>
+                </property>
+                <property name="bindings" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="binding" typeName="GtWsdlBinding"/>
+                    </arrayTypes>
+                </property>
+                <property name="service" type="GtWsdlService"/>
+                <property name="targetNamespace" type="NSString"/>
+                <property name="documentation" type="NSString"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlElementBaseType">
+            <properties>
+                <property name="elements" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="element" typeName="GtWsdlElement"/>
+                    </arrayTypes>
+                </property>
+                <property name="simpleTypes" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="simpleType" typeName="GtWsdlSimpleType"/>
+                    </arrayTypes>
+                </property>
+                <property name="complexTypes" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="complexType" typeName="GtWsdlComplexType"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object typeName="GtWsdlSchema" superclass="GtWsdlElementBaseType">
+            <properties>
+                <property name="elementFormDefault" type="NSString"/>
+                <property name="targetNamespace" type="NSString"/>
+                <property name="imports" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="import" typeName="GtWsdlImport"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object typeName="GtWsdlElement">
+            <properties>
+                <property name="minOccurs" type="NSString"/>
+                <property name="maxOccurs" type="NSString"/>
+                <property name="name" type="NSString"/>
+                <property name="type" type="NSString"/>
+                <property name="ref" type="NSString"/>
+                <property name="nillable" type="BOOL"/>
+                <property name="complexType" type="GtWsdlComplexType"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlSequenceArray">
+            <properties>
+                <property name="minOccurs" type="NSString"/>
+                <property name="maxOccurs" type="NSString"/>
+                <property name="sequence" type="NSMutableArray">
+                    <arrayTypes>
+                        <arrayType name="element" typeName="GtWsdlElement"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object typeName="GtWsdlExtension" superclass="GtWsdlSequenceArray">
+            <properties>
+                <property name="base" type="NSString"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlRestrictionArray" superclass="GtWsdlSequenceArray">
+            <properties>
+                <property name="base" type="NSString"/>
+                <property name="enumerations" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="enumeration" typeName="GtWsdlEnumeration"/>
+                    </arrayTypes>
+                </property>
+                <property name="elements" type="NSMutableArray">
+                    <arrayTypes>
+                        <arrayType name="element" typeName="GtWsdlElement"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object typeName="GtWsdlEnumeration">
+            <properties>
+                <property type="NSString" name="value"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlList">
+            <properties>
+                <property name="simpleType" type="GtWsdlSimpleType"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlSimpleType">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="restriction" type="GtWsdlRestrictionArray"/>
+                <property name="list" type="GtWsdlList"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlComplexContent">
+            <properties>
+                <property name="mixed" type="NSString"/>
+                <property name="extension" type="GtWsdlExtension"/>
+                <property name="restriction" type="GtWsdlRestrictionArray"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlComplexType" superclass="GtWsdlSequenceArray">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="choice" type="GtWsdlChoiceArray"/>
+                <property name="complexContent" type="GtWsdlComplexContent"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlImport">
+            <properties>
+                <property name="import" type="NSString"/>
+                <property name="namespace" type="NSString"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlMessage">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="parts" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType typeName="GtWsdlPart" name="part"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object typeName="GtWsdlPart">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="element" type="NSString"/>
+                <property name="type" type="NSString"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlServiceAddress">
+            <properties>
+                <property name="location" type="NSString"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlPortType">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="binding" type="NSString"/>
+                <property name="address" type="GtWsdlServiceAddress"/>
+                <property name="operations" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="operation" typeName="GtWsdlOperation"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object typeName="GtWsdlOperation">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="location" type="NSString"/>
+                <property name="soapAction" type="NSString"/>
+                <property name="style" type="NSString"/>
+                <property name="documentation" type="NSString"/>
+                <property name="input" type="GtWsdlInputOutput"/>
+                <property name="output" type="GtWsdlInputOutput"/>
+                <property name="operation" type="GtWsdlOperation"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlInputOutput">
+            <properties>
+                <property name="message" type="NSString"/>
+                <property name="type" type="NSString"/>
+                <property name="body" type="GtWsdlMessageBody"/>
+                <property name="content" type="GtWsdlContent"/>
+                <property name="urlEncoded" type="NSString"/>
+                <property name="mimeXml" type="GtWsdlMime"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlBinding">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="transport" type="NSString"/>
+                <property name="verb" type="NSString"/>
+                <property name="type" type="NSString"/>
+                <property name="bindings" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType typeName="GtWsdlBinding" name="binding"/>
+                    </arrayTypes>
+                </property>
+                <property name="operations" type="NSMutableArray" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType typeName="GtWsdlOperation" name="operation"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object typeName="GtWsdlService">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="documentation" type="NSString"/>
+                <property name="ports" type="NSMutableArray"  isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="port" typeName="GtWsdlPortType"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object typeName="GtWsdlChoiceArray">
+            <properties>
+                <property name="minOccurs" type="NSString"/>
+                <property name="maxOccurs" type="NSString"/>
+                <property name="elements" type="NSMutableArray"  isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="element" typeName="GtWsdlElement"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object typeName="GtWsdlMime">
+            <properties>
+                <property name="part" type="NSString"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlContent">
+            <properties>
+                <property name="type" type="NSString"/>
+            </properties>
+        </object>
+        <object typeName="GtWsdlMessageBody">
+            <properties>
+                <property name="use" type="NSString"/>
+            </properties>
+        </object>
+    </objects>
+</schema>

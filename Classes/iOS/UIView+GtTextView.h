@@ -1,0 +1,56 @@
+//
+//	UIView+GtTextView.h
+//	FishLamp
+//
+//	Created by Mike Fullerton on 10/18/10.
+//	Copyright (c) 2013 GreenTongue Software, LLC, Mike Fullerton.The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
+//
+
+#import <Foundation/Foundation.h>
+
+#import <UIKit/UITextField.h>
+#import <UIKit/UITextView.h>
+#import <UIKit/UILabel.h>
+
+// to help deal with various text views polymorphically...
+// they're here just for the compiler and get and set nothing.
+
+//@interface UIView (GtTextView) 
+//@property(nonatomic,copy)	  NSString		 *text;			   // default is nil
+//@property(nonatomic,retain) UIFont		 *font;			   // default is nil (system font 17 plain)
+//@property(nonatomic,retain) UIColor *textColor;
+//@property(nonatomic)		  UITextAlignment		  textAlignment; 
+//@end
+
+#import "GtTextDescriptor.h"
+
+@interface GtTextViewProxy : NSObject {
+	id m_proxiedView;
+}
+
+- (id) initWithView:(UIView*) view;
+
+@property(readwrite, retain, nonatomic) UIView* view; 
+
+@property(nonatomic,copy)	NSString* text;			   // default is nil
+@property(nonatomic,retain) UIFont* font;			 // default is nil (system font 17 plain)
+@property(nonatomic,retain) UIColor* textColor;
+@property(nonatomic)		UITextAlignment			textAlignment; 
+
+@property (readonly, assign, nonatomic) BOOL viewIsLabelView;
+@property (readonly, assign, nonatomic) BOOL viewIsTextField;
+@property (readonly, assign, nonatomic) BOOL viewIsTextView;
+
+- (UILabel*) labelView;
+- (UITextField*) textField;
+- (UITextView*) textView;
+
+// not all of the proxied views respond to these selectors, if not, it's a no-op
+@property (nonatomic, retain, readwrite) UIColor* shadowColor; 
+@property (nonatomic, assign, readwrite) CGSize shadowOffset;
+
+@property (nonatomic, copy, readwrite) GtTextDescriptor* textDescriptor;
+
+@property (readonly, assign, nonatomic) UILineBreakMode lineBreakMode;
+
+@end

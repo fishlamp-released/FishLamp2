@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema companyName="GreenTongue Software, LLC" projectName="FishLamp Mobile">
+    <generatorOptions>
+        <typePrefix>Gt</typePrefix>
+    </generatorOptions>
+    <typeDefinitions>
+        <typeDefinition typeName="GtDatabaseObject" dataType="object" import="GtDatabaseObject.h"/>
+    </typeDefinitions>
+    <objects>
+        <object typeName="GtSlideshowOptions" superclass="GtDatabaseObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="float" name="speed"/>
+                <property type="BOOL" name="repeat"/>
+                <property type="BOOL" name="autoStart"/>
+                <property type="BOOL" name="autoShowCaptions"/>
+                <property type="BOOL" name="random"/>
+                <property type="BOOL" name="playMusic"/>
+                <property type="NSArray" name="mediaItemList"/>
+            </properties>
+        </object>
+    </objects>
+</schema>

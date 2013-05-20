@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<code companyName="GreentTongue Software" projectName="FishLamp" canLazyCreate="NO" isWildcardArray="NO">
+    <generatorOptions typePrefix="Gt"/>
+    <objects>
+        <object typeName="GtThemeDescriptor" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="themeName" useForEquality="YES">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+
+                <property type="color" name="backgroundColor"/>
+
+            </properties>
+        </object>
+    </objects>
+</code>

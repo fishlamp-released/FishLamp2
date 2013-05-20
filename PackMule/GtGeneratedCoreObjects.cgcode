@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project companyName="GreenTongue Software" projectName="FishLamp">
+    <generatorOptions>
+        <typePrefix>Gt</typePrefix>
+    </generatorOptions>
+    <objects>
+        <object typeName="GtDatabaseObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="uid">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object typeName="GtSavedThemeInfo" superclass="GtDatabaseObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="NSString" name="name"/>
+                <property type="NSString" name="className"/>
+                <property type="int" name="fontSize"/>
+            </properties>
+        </object>
+        <object typeName="GtSoapFault11" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="NSString" name="faultcode"/>
+                <property type="NSString" name="faultstring"/>
+                <property type="NSString" name="faultactor"/>
+                <property type="NSString" name="detail"/>
+            </properties>
+        </object>
+        <object typeName="GtApplicationSession" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="int" name="sessionId">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="NSString" name="userGuid"/>
+            </properties>
+        </object>
+        <object typeName="GtLastUpdateTime" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="lastUpdateId">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="date" name="lastUpdate"/>
+            </properties>
+        </object>
+        <object typeName="GtUserLogin" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="NSString" name="userGuid">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="NSString" name="userName">
+                    <storageOptions isIndexed="YES" isUnique="YES"/>
+                </property>
+                <property type="NSString" name="password">
+                    <storageOptions isStorable="NO"/>
+                </property>
+                <property type="BOOL" name="isAuthenticated"/>
+                <property type="NSString" name="authToken"/>
+                <property type="NSString" name="email">
+                    <storageOptions isIndexed="YES" isUnique="YES"/>
+                </property>
+                <property type="double" name="authTokenLastUpdateTime"/>
+                <property type="long" name="userValue"/>
+            </properties>
+        </object>
+        <object typeName="GtCachedImageBaseClass" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="NSString" name="fileName"/>
+                <property type="NSString" name="url"/>
+                <property type="NSString" name="imageId">
+                    <storageOptions isPrimaryKey="YES" isRequired="YES"/>
+                </property>
+                <property type="NSString" name="photoUrl"/>
+                <property type="NSString" name="host">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="NSString" name="imageVersion"/>
+                <property type="BOOL" name="canCacheInMemory"/>
+            </properties>
+        </object>
+        <object typeName="GtApplicationDataVersion">
+            <properties>
+                <property type="string" name="userGuid">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="string" name="versionString"/>
+            </properties>
+        </object>
+    </objects>
+</project>
