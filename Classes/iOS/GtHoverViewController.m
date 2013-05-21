@@ -210,7 +210,7 @@ GtSynthesizeSingleton(GtHoverViewEventReceiver);
 - (void) dealloc
 {
 	GtRelease(m_popupStack);
-	[[GtApplication sharedApplication] removeEventInterceptor:self];
+	[[GtApplication sharedApplication].keyWindow removeEventInterceptor:self];
 	GtSuperDealloc();
 }
 
@@ -269,7 +269,7 @@ GtSynthesizeStructProperty(contentViewIsModal, setContentViewIsModal, BOOL, m_st
 	if(!s_init)
 	{	
 		s_init = YES;
-		[[GtApplication sharedApplication] addEventInterceptor:[GtHoverViewEventReceiver instance]];
+		[[GtApplication sharedApplication].keyWindow addEventInterceptor:[GtHoverViewEventReceiver instance]];
 	}
 }
 

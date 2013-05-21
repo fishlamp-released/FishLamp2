@@ -16,14 +16,17 @@
 #import "GtMobileTheme.h"
 
 @interface GtApplicationRootViewController : GtViewController 
++ (id) applicationRootViewController;
 @end
 
 @interface GtApplicationDelegate : UIResponder<GtNotificationDisplayManager, GtUserSessionDelegate> {
 @private
 	UIWindow* m_window;
+    GtNavigationController* _navigationController;
 }
 
 @property (readwrite, retain, nonatomic) IBOutlet UIWindow *window;
+@property (readwrite, retain, nonatomic) GtNavigationController* navigationController;
 
 + (id) instance;
 
@@ -34,11 +37,9 @@
 - (void) logout;
 - (void) beginLoggingOut;
 
-// call this after initializeApp.
-- (GtNavigationController*) createNavigationControllerInRootViewController;
-
-// this is called if the window doesn't have a root view controller after it's loaded.
-- (UIViewController*) createRootViewController; // returns a new GtApplicationRootViewController by default
+- (void) setRootViewController:(UIViewController*) rootViewController;
+- (void) setRootViewControllerWithNavigationController;
+- (void) setRootViewControllerWithNavigationController:(UIViewController*) rootViewController;
 
 
 // optional overrides

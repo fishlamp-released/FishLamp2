@@ -87,7 +87,7 @@ GtSynthesizeStructProperty(notificationType, setNotificationType, GtDisplayedNot
 		self.padding = 10.0f;
 		self.autoDismiss = YES;
         
-        [[GtApplication sharedApplication] addEventInterceptor:self];
+        [[GtApplication sharedApplication].keyWindow addEventInterceptor:self];
 	}
 
 	return self;
@@ -95,7 +95,7 @@ GtSynthesizeStructProperty(notificationType, setNotificationType, GtDisplayedNot
 
 - (void) dealloc
 {
-    [[GtApplication sharedApplication] removeEventInterceptor:self];
+    [[GtApplication sharedApplication].keyWindow removeEventInterceptor:self];
 	GtRelease(m_error);
 	GtSuperDealloc();
 }

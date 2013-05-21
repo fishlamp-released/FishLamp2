@@ -20,7 +20,7 @@
 {
     if((self = [super init]))
     {
-        [[GtApplication sharedApplication] addEventInterceptor:self];
+        [[GtApplication sharedApplication].keyWindow addEventInterceptor:self];
     }
     
     return self;
@@ -28,7 +28,7 @@
 
 - (void) dealloc
 {
-	[[GtApplication sharedApplication] removeEventInterceptor:self];
+	[[GtApplication sharedApplication].keyWindow removeEventInterceptor:self];
 	GtSuperDealloc();
 }
 
@@ -167,7 +167,7 @@ static id s_lastEnteredObject = nil;
 //		}
 //		else
 //		{
-//			[[GtApplication sharedApplication] removeEventInterceptor:self];
+//			[[GtApplication sharedApplication].keyWindow removeEventInterceptor:self];
 //		}
 //	}
 //}

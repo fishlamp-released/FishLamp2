@@ -34,25 +34,25 @@
 
     [self addPrimaryView:view];
     
-    if(![[GtApplication sharedApplication] hasEventInterceptor:self])
+    if(![view.window hasEventInterceptor:self])
     {
-        [[GtApplication sharedApplication] addEventInterceptor:self];
+        [view.window addEventInterceptor:self];
     }
 }
 
 - (void) stopWatchingTouches
 {
-    if([[GtApplication sharedApplication] hasEventInterceptor:self])
+    if([[GtApplication sharedApplication].keyWindow hasEventInterceptor:self])
     {
-        [[GtApplication sharedApplication] removeEventInterceptor:self];
+        [[GtApplication sharedApplication].keyWindow removeEventInterceptor:self];
     }
 }
 
 - (void) dealloc
 {
-    if([[GtApplication sharedApplication] hasEventInterceptor:self])
+    if([[GtApplication sharedApplication].keyWindow hasEventInterceptor:self])
     {
-        [[GtApplication sharedApplication] removeEventInterceptor:self];
+        [[GtApplication sharedApplication].keyWindow removeEventInterceptor:self];
     }
 
     GtRelease(m_views);

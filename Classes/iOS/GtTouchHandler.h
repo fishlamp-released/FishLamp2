@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GtApplication.h"
+#import "GtWindow.h"
 
 @protocol GtTouchableObject <NSObject>
 - (UIView*) view;

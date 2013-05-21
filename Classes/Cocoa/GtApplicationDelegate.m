@@ -29,6 +29,9 @@
 #endif
 
 @implementation GtApplicationRootViewController
++ (id) applicationRootViewController {
+return [[[[self class] alloc] init] autorelease];
+}
 @end
 
 @implementation GtApplicationDelegate
@@ -36,6 +39,7 @@
 @synthesize window = m_window;
 
 static GtApplicationDelegate* s_instance = nil;
+@synthesize navigationController = _navigationController;
 
 + (id) instance
 {
@@ -48,6 +52,8 @@ static GtApplicationDelegate* s_instance = nil;
 	[[NSNotificationCenter defaultCenter] removeObserver:[UIDevice currentDevice]];
 #endif    
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+
+    [_navigationController release];
 
 	GtRelease(m_window);
 	s_instance = nil;
@@ -129,11 +135,6 @@ static GtApplicationDelegate* s_instance = nil;
         [self.window makeKeyAndVisible];
     }
 
-    if(!self.window.rootViewController)
-    {
-        self.window.rootViewController = [self createRootViewController];
-    }
-
     [self.window makeKeyAndVisible];
 }
 
@@ -142,7 +143,20 @@ static GtApplicationDelegate* s_instance = nil;
     return GtReturnAutoreleased([[GtApplicationRootViewController alloc] init]);
 }
 
+- (void) setRootViewControllerWithNavigationController {
+    [self setRootViewControllerWithNavigationController:[GtApplicationRootViewController applicationRootViewController]];
+}
 
+- (void) setRootViewControllerWithNavigationController:(UIViewController*) rootViewController
+{
+	self.navigationController = [GtNavigationController navigationController:rootViewController];
+    [[GtThemeManager theme] applyThemeToNavigationController:self.navigationController];
+    [self setRootViewController:self.navigationController];
+}
+
+- (void) setRootViewController:(UIViewController*) rootViewController {
+    self.window.rootViewController = rootViewController;
+}
 
 - (void) initWindow
 {
@@ -291,12 +305,6 @@ static GtApplicationDelegate* s_instance = nil;
 		}];
 }
 
-- (GtNavigationController*) createNavigationControllerInRootViewController
-{
-	GtNavigationController* navigationController = [GtNavigationController navigationController:self.window.rootViewController];
-    [[GtThemeManager theme] applyThemeToNavigationController:navigationController];
-    self.window.rootViewController = navigationController;
-    return navigationController;
-}
+
 
 @end

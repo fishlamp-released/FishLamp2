@@ -8,21 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#define GtDeviceWasShakenNotification @"SHAKEN"
 
-@protocol GtEventInterceptor <NSObject>
-- (BOOL) didInterceptEvent:(UIEvent*) event;
-@end
 
-@interface GtApplication : UIApplication {
-@private
-	NSMutableArray* m_eventInterceptors;
-}
-
-- (void) addEventInterceptor:(id<GtEventInterceptor>) eventReceiver; 
-- (void) removeEventInterceptor:(id<GtEventInterceptor>) eventReceiver;
-- (BOOL) hasEventInterceptor:(id<GtEventInterceptor>) eventReceiver; 
-
-+ (GtApplication*) sharedApplication;
+@interface GtApplication : UIApplication 
 
 @end

@@ -24,7 +24,7 @@
 
 - (void) dealloc
 {
-    [[GtApplication sharedApplication] removeEventInterceptor:self];
+    [[GtApplication sharedApplication].keyWindow removeEventInterceptor:self];
     GtRelease(m_item);
     GtSuperDealloc();
 }
@@ -47,12 +47,12 @@
     GtAssertNotNil(item.touchableView.window);
     m_item = GtRetain(item);
 
-   [[GtApplication sharedApplication] addEventInterceptor:self];
+   [[GtApplication sharedApplication].keyWindow addEventInterceptor:self];
 }
 
 - (void) stopWatchingTouches
 {
-    [[GtApplication sharedApplication] removeEventInterceptor:self];
+    [[GtApplication sharedApplication].keyWindow removeEventInterceptor:self];
     GtReleaseWithNil(m_item);
 }
 
