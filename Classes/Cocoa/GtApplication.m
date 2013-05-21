@@ -10,6 +10,14 @@
 
 @implementation GtApplication
 
+- (id) init {	
+	self = [super init];
+	if(self) {
+		
+	}
+	return self;
+}
+
 + (GtApplication*) sharedApplication
 {
 	return (GtApplication*) [UIApplication sharedApplication];

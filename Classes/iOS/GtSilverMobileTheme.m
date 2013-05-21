@@ -98,7 +98,7 @@
 	field.backgroundColor = [UIColor clearColor];
 	field.textDescriptor = self.valueDescriptor;
 }
-- (void) applyThemeToNotificationViewController:(GtNotificationView*) object
+- (void) applyThemeToNotificationViewController:(GtNotificationViewController*) object
 {
 	[object setNotificationViewStyle:GtNotificationViewStyleSquareCorners];
 	[object roundRectView].borderAlpha = 1.0;
