@@ -22,6 +22,8 @@
 
 - (id) initWithProperty_t:(objc_property_t) property_t;
 + (id) propertyDescriberWithProperty_t:(objc_property_t) property_t;
+
+- (void) addContainedProperty:(FLPropertyDescriber*) propertyDescriber;
 @end
 
 
@@ -239,6 +241,14 @@ static NSMutableDictionary* s_registry = nil;
 
 - (void) addArrayProperty:(NSString*) name withArrayTypes:(NSArray*) types {
     [self addPropertyArrayTypes:types forPropertyName:name];
+}
+
+- (void) addContainerType:(FLPropertyDescriber*) describer forContainerProperty:(NSString*) name {
+    FLPropertyDescriber* prop = [self propertyForName:name];
+    FLAssertNotNil(prop);
+    if(prop) {
+        [prop addContainedProperty:describer];
+    }
 }
 @end
 

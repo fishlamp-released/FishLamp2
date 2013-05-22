@@ -8,7 +8,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLParsedItem.h"
+#import "FLParsedXmlElement.h"
 
 #define FLXmlParserDomain @"FLXmlParserDomain"
 
@@ -30,16 +30,16 @@ typedef enum {
     NSMutableArray* _stack;
     NSError* _error;
     
-    FLParsedItem* _rootElement;
+    FLParsedXmlElement* _rootElement;
 }
 
 + (id) xmlParser;
 
-- (FLParsedItem*) parseFileAtPath:(NSString*) path;
+- (FLParsedXmlElement*) parseFileAtPath:(NSString*) path;
 
-- (FLParsedItem*) parseFileAtURL:(NSURL*) url;
+- (FLParsedXmlElement*) parseFileAtURL:(NSURL*) url;
 
-- (FLParsedItem*) parseData:(NSData*) data;
+- (FLParsedXmlElement*) parseData:(NSData*) data;
 
 // optional override
 - (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser;

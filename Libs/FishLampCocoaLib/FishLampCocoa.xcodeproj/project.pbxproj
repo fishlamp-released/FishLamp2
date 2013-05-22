@@ -520,15 +520,15 @@
 		271D356616FE077D009CD00F /* FLObjectXmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317B16FE0775009CD00F /* FLObjectXmlElement.m */; };
 		271D356716FE077D009CD00F /* FLObjectXmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317B16FE0775009CD00F /* FLObjectXmlElement.m */; };
 		271D356816FE077D009CD00F /* FLObjectXmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317B16FE0775009CD00F /* FLObjectXmlElement.m */; };
-		271D356916FE077D009CD00F /* FLParsedItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D317C16FE0775009CD00F /* FLParsedItem.h */; };
-		271D356A16FE077D009CD00F /* FLParsedItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D317C16FE0775009CD00F /* FLParsedItem.h */; };
-		271D356B16FE077D009CD00F /* FLParsedItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D317C16FE0775009CD00F /* FLParsedItem.h */; };
-		271D356C16FE077D009CD00F /* FLParsedItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D317C16FE0775009CD00F /* FLParsedItem.h */; };
-		271D356D16FE077D009CD00F /* FLParsedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317D16FE0775009CD00F /* FLParsedItem.m */; };
-		271D356E16FE077D009CD00F /* FLParsedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317D16FE0775009CD00F /* FLParsedItem.m */; };
-		271D356F16FE077D009CD00F /* FLParsedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317D16FE0775009CD00F /* FLParsedItem.m */; };
-		271D357016FE077D009CD00F /* FLParsedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317D16FE0775009CD00F /* FLParsedItem.m */; };
-		271D357116FE077D009CD00F /* FLParsedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317D16FE0775009CD00F /* FLParsedItem.m */; };
+		271D356916FE077D009CD00F /* FLParsedXmlElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D317C16FE0775009CD00F /* FLParsedXmlElement.h */; };
+		271D356A16FE077D009CD00F /* FLParsedXmlElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D317C16FE0775009CD00F /* FLParsedXmlElement.h */; };
+		271D356B16FE077D009CD00F /* FLParsedXmlElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D317C16FE0775009CD00F /* FLParsedXmlElement.h */; };
+		271D356C16FE077D009CD00F /* FLParsedXmlElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D317C16FE0775009CD00F /* FLParsedXmlElement.h */; };
+		271D356D16FE077D009CD00F /* FLParsedXmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317D16FE0775009CD00F /* FLParsedXmlElement.m */; };
+		271D356E16FE077D009CD00F /* FLParsedXmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317D16FE0775009CD00F /* FLParsedXmlElement.m */; };
+		271D356F16FE077D009CD00F /* FLParsedXmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317D16FE0775009CD00F /* FLParsedXmlElement.m */; };
+		271D357016FE077D009CD00F /* FLParsedXmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317D16FE0775009CD00F /* FLParsedXmlElement.m */; };
+		271D357116FE077D009CD00F /* FLParsedXmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D317D16FE0775009CD00F /* FLParsedXmlElement.m */; };
 		271D357216FE077D009CD00F /* FLXmlComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D317E16FE0775009CD00F /* FLXmlComment.h */; };
 		271D357316FE077D009CD00F /* FLXmlComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D317E16FE0775009CD00F /* FLXmlComment.h */; };
 		271D357416FE077D009CD00F /* FLXmlComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D317E16FE0775009CD00F /* FLXmlComment.h */; };
@@ -3482,8 +3482,8 @@
 		271D317816FE0775009CD00F /* FLSoapStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSoapStringBuilder.m; sourceTree = "<group>"; };
 		271D317A16FE0775009CD00F /* FLObjectXmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectXmlElement.h; sourceTree = "<group>"; };
 		271D317B16FE0775009CD00F /* FLObjectXmlElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjectXmlElement.m; sourceTree = "<group>"; };
-		271D317C16FE0775009CD00F /* FLParsedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLParsedItem.h; sourceTree = "<group>"; };
-		271D317D16FE0775009CD00F /* FLParsedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLParsedItem.m; sourceTree = "<group>"; };
+		271D317C16FE0775009CD00F /* FLParsedXmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLParsedXmlElement.h; sourceTree = "<group>"; };
+		271D317D16FE0775009CD00F /* FLParsedXmlElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLParsedXmlElement.m; sourceTree = "<group>"; };
 		271D317E16FE0775009CD00F /* FLXmlComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXmlComment.h; sourceTree = "<group>"; };
 		271D317F16FE0775009CD00F /* FLXmlComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLXmlComment.m; sourceTree = "<group>"; };
 		271D318016FE0775009CD00F /* FLXmlDocumentBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXmlDocumentBuilder.h; sourceTree = "<group>"; };
@@ -5412,8 +5412,8 @@
 			children = (
 				271D318616FE0775009CD00F /* FLXmlParser.h */,
 				271D318716FE0775009CD00F /* FLXmlParser.m */,
-				271D317C16FE0775009CD00F /* FLParsedItem.h */,
-				271D317D16FE0775009CD00F /* FLParsedItem.m */,
+				271D317C16FE0775009CD00F /* FLParsedXmlElement.h */,
+				271D317D16FE0775009CD00F /* FLParsedXmlElement.m */,
 				2743D2E417397745003BC70A /* FLXmlObjectBuilder.h */,
 				2743D2E517397745003BC70A /* FLXmlObjectBuilder.m */,
 				2743D2EF1739775B003BC70A /* FLObjectDescriber+FLXmlObjectBuilder.h */,
@@ -5990,7 +5990,7 @@
 				271D354E16FE077C009CD00F /* FLSoapParser.h in Headers */,
 				271D355716FE077D009CD00F /* FLSoapStringBuilder.h in Headers */,
 				271D356016FE077D009CD00F /* FLObjectXmlElement.h in Headers */,
-				271D356916FE077D009CD00F /* FLParsedItem.h in Headers */,
+				271D356916FE077D009CD00F /* FLParsedXmlElement.h in Headers */,
 				271D357216FE077D009CD00F /* FLXmlComment.h in Headers */,
 				271D357B16FE077D009CD00F /* FLXmlDocumentBuilder.h in Headers */,
 				271D358416FE077D009CD00F /* FLXmlElement.h in Headers */,
@@ -6377,7 +6377,7 @@
 				271D355016FE077D009CD00F /* FLSoapParser.h in Headers */,
 				271D355916FE077D009CD00F /* FLSoapStringBuilder.h in Headers */,
 				271D356216FE077D009CD00F /* FLObjectXmlElement.h in Headers */,
-				271D356B16FE077D009CD00F /* FLParsedItem.h in Headers */,
+				271D356B16FE077D009CD00F /* FLParsedXmlElement.h in Headers */,
 				271D357416FE077D009CD00F /* FLXmlComment.h in Headers */,
 				271D357D16FE077D009CD00F /* FLXmlDocumentBuilder.h in Headers */,
 				271D358616FE077D009CD00F /* FLXmlElement.h in Headers */,
@@ -6764,7 +6764,7 @@
 				271D354F16FE077D009CD00F /* FLSoapParser.h in Headers */,
 				271D355816FE077D009CD00F /* FLSoapStringBuilder.h in Headers */,
 				271D356116FE077D009CD00F /* FLObjectXmlElement.h in Headers */,
-				271D356A16FE077D009CD00F /* FLParsedItem.h in Headers */,
+				271D356A16FE077D009CD00F /* FLParsedXmlElement.h in Headers */,
 				271D357316FE077D009CD00F /* FLXmlComment.h in Headers */,
 				271D357C16FE077D009CD00F /* FLXmlDocumentBuilder.h in Headers */,
 				271D358516FE077D009CD00F /* FLXmlElement.h in Headers */,
@@ -7151,7 +7151,7 @@
 				271D355116FE077D009CD00F /* FLSoapParser.h in Headers */,
 				271D355A16FE077D009CD00F /* FLSoapStringBuilder.h in Headers */,
 				271D356316FE077D009CD00F /* FLObjectXmlElement.h in Headers */,
-				271D356C16FE077D009CD00F /* FLParsedItem.h in Headers */,
+				271D356C16FE077D009CD00F /* FLParsedXmlElement.h in Headers */,
 				271D357516FE077D009CD00F /* FLXmlComment.h in Headers */,
 				271D357E16FE077D009CD00F /* FLXmlDocumentBuilder.h in Headers */,
 				271D358716FE077D009CD00F /* FLXmlElement.h in Headers */,
@@ -7713,7 +7713,7 @@
 				271D355316FE077D009CD00F /* FLSoapParser.m in Sources */,
 				271D355C16FE077D009CD00F /* FLSoapStringBuilder.m in Sources */,
 				271D356516FE077D009CD00F /* FLObjectXmlElement.m in Sources */,
-				271D356E16FE077D009CD00F /* FLParsedItem.m in Sources */,
+				271D356E16FE077D009CD00F /* FLParsedXmlElement.m in Sources */,
 				271D357716FE077D009CD00F /* FLXmlComment.m in Sources */,
 				271D358016FE077D009CD00F /* FLXmlDocumentBuilder.m in Sources */,
 				271D358916FE077D009CD00F /* FLXmlElement.m in Sources */,
@@ -8064,7 +8064,7 @@
 				271D355516FE077D009CD00F /* FLSoapParser.m in Sources */,
 				271D355E16FE077D009CD00F /* FLSoapStringBuilder.m in Sources */,
 				271D356716FE077D009CD00F /* FLObjectXmlElement.m in Sources */,
-				271D357016FE077D009CD00F /* FLParsedItem.m in Sources */,
+				271D357016FE077D009CD00F /* FLParsedXmlElement.m in Sources */,
 				271D357916FE077D009CD00F /* FLXmlComment.m in Sources */,
 				271D358216FE077D009CD00F /* FLXmlDocumentBuilder.m in Sources */,
 				271D358B16FE077D009CD00F /* FLXmlElement.m in Sources */,
@@ -8417,7 +8417,7 @@
 				271D355216FE077D009CD00F /* FLSoapParser.m in Sources */,
 				271D355B16FE077D009CD00F /* FLSoapStringBuilder.m in Sources */,
 				271D356416FE077D009CD00F /* FLObjectXmlElement.m in Sources */,
-				271D356D16FE077D009CD00F /* FLParsedItem.m in Sources */,
+				271D356D16FE077D009CD00F /* FLParsedXmlElement.m in Sources */,
 				271D357616FE077D009CD00F /* FLXmlComment.m in Sources */,
 				271D357F16FE077D009CD00F /* FLXmlDocumentBuilder.m in Sources */,
 				271D358816FE077D009CD00F /* FLXmlElement.m in Sources */,
@@ -8758,7 +8758,7 @@
 				271D355416FE077D009CD00F /* FLSoapParser.m in Sources */,
 				271D355D16FE077D009CD00F /* FLSoapStringBuilder.m in Sources */,
 				271D356616FE077D009CD00F /* FLObjectXmlElement.m in Sources */,
-				271D356F16FE077D009CD00F /* FLParsedItem.m in Sources */,
+				271D356F16FE077D009CD00F /* FLParsedXmlElement.m in Sources */,
 				271D357816FE077D009CD00F /* FLXmlComment.m in Sources */,
 				271D358116FE077D009CD00F /* FLXmlDocumentBuilder.m in Sources */,
 				271D358A16FE077D009CD00F /* FLXmlElement.m in Sources */,
@@ -9117,7 +9117,7 @@
 				271D355616FE077D009CD00F /* FLSoapParser.m in Sources */,
 				271D355F16FE077D009CD00F /* FLSoapStringBuilder.m in Sources */,
 				271D356816FE077D009CD00F /* FLObjectXmlElement.m in Sources */,
-				271D357116FE077D009CD00F /* FLParsedItem.m in Sources */,
+				271D357116FE077D009CD00F /* FLParsedXmlElement.m in Sources */,
 				271D357A16FE077D009CD00F /* FLXmlComment.m in Sources */,
 				271D358316FE077D009CD00F /* FLXmlDocumentBuilder.m in Sources */,
 				271D358C16FE077D009CD00F /* FLXmlElement.m in Sources */,

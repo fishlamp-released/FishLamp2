@@ -9,7 +9,7 @@
 
 #import "FLPropertyDescriber+XmlObjectBuilder.h"
 #import "FLXmlObjectBuilder.h"
-#import "FLParsedItem.h"
+#import "FLParsedXmlElement.h"
 #import "FLModelObject.h"
 #import "NSArray+FLXmlObjectBuilder.h"
 #import "FLDataEncoder.h"
@@ -17,18 +17,18 @@
 
 @implementation FLPropertyDescriber (XmlObjectBuilder)
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-inflateObjectWithElement:(FLParsedItem*) element {
+inflateObjectWithElement:(FLParsedXmlElement*) element {
     
-    if(FLStringIsNotEmpty([element value])) {
+    if(FLStringIsNotEmpty([element elementValue])) {
     
         NSString* encodingKey = self.stringEncodingKeyForRepresentedData;
         FLAssertNotNilWithComment(encodingKey, @"no encoder found for property: %@", self.propertyName);
 
         if(encodingKey) {
-            id object = [builder.decoder objectFromString:[element value] encodingKey:encodingKey];
+            id object = [builder.decoder objectFromString:[element elementValue] encodingKey:encodingKey];
             
             FLAssertNotNilWithComment(object,
-                    @"object not expanded for %@:%@", [element elementName], [element value]);
+                    @"object not expanded for %@:%@", [element elementName], [element elementValue]);
             
             return object;
         }
@@ -36,10 +36,7 @@ inflateObjectWithElement:(FLParsedItem*) element {
     return nil;
 }
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
- inflateElementContents:(id) element {
-
-    FLAssert([element isKindOfClass:[FLParsedItem class]]);
-
+ inflateElementContents:(FLParsedXmlElement*) element {
     return [self xmlObjectBuilder:builder inflateObjectWithElement:element];
 }
 
@@ -50,7 +47,7 @@ inflateObjectWithElement:(FLParsedItem*) element {
 //- (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
 // inflateElementContents:(id) element {
 //
-//    FLAssert([element isKindOfClass:[FLParsedItem class]]);
+//    FLAssert([element isKindOfClass:[FLParsedXmlElement class]]);
 //
 //    return [self xmlObjectBuilder:builder inflateObjectWithElement:element];
 //}
@@ -61,7 +58,7 @@ inflateObjectWithElement:(FLParsedItem*) element {
 @implementation FLModelObjectPropertyDescriber (FLXmlObjectBuilder)
 
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-inflateObjectWithElement:(FLParsedItem*) item {
+inflateObjectWithElement:(FLParsedXmlElement*) item {
     return [self.representedObjectClass objectWithXmlElement:item withObjectBuilder:builder];
 }
 
@@ -70,7 +67,7 @@ inflateObjectWithElement:(FLParsedItem*) item {
 @implementation FLArrayPropertyDescriber (FLXmlObjectBuilder) 
 
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
- inflateElementContents:(id) contents {
+ inflateElementContents:(FLParsedXmlElement*) contents {
     return [contents xmlObjectBuilder:builder arrayWithElementContents:self];
 }
 

@@ -9,12 +9,12 @@
 
 #import "FLPropertyDescriber.h"
 @class FLXmlObjectBuilder;
-@class FLParsedItem;
+@class FLParsedXmlElement;
 
 @interface FLPropertyDescriber (XmlObjectBuilder)
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-inflateObjectWithElement:(FLParsedItem*) element;
+inflateObjectWithElement:(FLParsedXmlElement*) element;
 
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
- inflateElementContents:(id) element;
+ inflateElementContents:(FLParsedXmlElement*) element;
 @end

@@ -43,7 +43,7 @@
 	if(data && data.length >0 ) {
 		char* first = strnstr((const char*) [data bytes], "Fault", MIN([data length], (unsigned int) MAX_ERR_LEN));
         if(first) {
-            FLParsedItem* soap = [[FLSoapParser soapParser] parseData:data];
+            FLParsedXmlElement* soap = [[FLSoapParser soapParser] parseData:data];
             
             FLSoapFault11* soapFault = [FLSoapFault11 objectWithXmlElement:soap 
                                                                elementName:@"Fault"
@@ -139,7 +139,7 @@
     FLLog(FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]));
 #endif    
 
-    FLParsedItem* parsedSoap = [[FLSoapParser soapParser] parseData:data];
+    FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:data];
     
     if(_handleSoapResponseBlock) {
         return _handleSoapResponseBlock(parsedSoap);

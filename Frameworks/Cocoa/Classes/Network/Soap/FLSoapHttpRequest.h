@@ -10,9 +10,9 @@
 #import "FLHttpRequest.h"
 #import "FLSoapFault11.h"
 #import "FLStringEncoder.h"
-#import "FLParsedItem.h"
+#import "FLParsedXmlElement.h"
 
-typedef FLPromisedResult (^FLHandleSoapResponseBlock)(FLParsedItem* parsedSoap);
+typedef FLPromisedResult (^FLHandleSoapResponseBlock)(FLParsedXmlElement* parsedSoap);
 
 @interface FLSoapHttpRequest : FLHttpRequest {
 @private

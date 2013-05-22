@@ -13,7 +13,7 @@
 @property (readwrite, strong, nonatomic) NSMutableArray* stack;
 @property (readwrite, strong, nonatomic) NSXMLParser* parser; // only valid during parse
 @property (readwrite, strong, nonatomic) NSError* error; // only valid during parse
-@property (readwrite, strong, nonatomic) FLParsedItem* rootElement;
+@property (readwrite, strong, nonatomic) FLParsedXmlElement* rootElement;
 @end
 
 
@@ -47,13 +47,13 @@
 	[parser setShouldResolveExternalEntities:NO];
 }
 
-- (void) pushElement:(FLParsedItem*) newElement {
+- (void) pushElement:(FLParsedXmlElement*) newElement {
     if(!_rootElement) {
         self.rootElement = newElement;
     }
     else {
-        FLParsedItem* item = [self.stack lastObject];
-        [item addElement:newElement];
+        FLParsedXmlElement* item = [self.stack lastObject];
+        [item addChildElement:newElement];
     }
     
     [self.stack addObject:newElement];
@@ -69,7 +69,7 @@ didStartElement:(NSString *)elementName
  qualifiedName:(NSString *)qName 
     attributes:(NSDictionary *)attributes {
         
-    FLParsedItem* newElement = [FLParsedItem parsedItem];
+    FLParsedXmlElement* newElement = [FLParsedXmlElement parsedXmlElement];
     newElement.elementName = elementName;
     newElement.namespaceURI = namespaceURI;
     newElement.qualifiedName = qName;
@@ -77,7 +77,7 @@ didStartElement:(NSString *)elementName
     if(attributes && attributes.count) {
         newElement.attributes = attributes;
         for(NSString* attributeName in attributes) {
-            [newElement addElement:[FLParsedItem parsedItem:attributeName elementValue:[attributes objectForKey:attributeName]]];
+            [newElement addChildElement:[FLParsedXmlElement parsedXmlElement:attributeName elementValue:[attributes objectForKey:attributeName]]];
         }
     }
 
@@ -93,10 +93,13 @@ didStartElement:(NSString *)elementName
 	namespaceURI:(NSString *)namespaceURI 
 	qualifiedName:(NSString *)qName {
     
-#if DEBUG    
-    FLParsedItem* lastElement = FLRetainWithAutorelease([self.stack lastObject]);
+    FLParsedXmlElement* lastElement = FLRetainWithAutorelease([self.stack lastObject]);
     FLAssertObjectsAreEqual(elementName, lastElement.elementName);
-#endif
+    
+    if(FLStringIsNotEmpty(lastElement.elementValue)) {
+        lastElement.elementValue = [lastElement.elementValue trimmedString];
+    }
+
     
     [self popElement];
 }
@@ -111,10 +114,10 @@ didStartElement:(NSString *)elementName
     [parser abortParsing];
 }
 
-- (FLParsedItem*) parseData:(NSData*) data {
+- (FLParsedXmlElement*) parseData:(NSData*) data {
 
     self.stack = [NSMutableArray array];
-//    [self.stack addObject:[FLParsedItem parsedItem]];
+//    [self.stack addObject:[FLParsedXmlElement parsedXmlElement]];
 
     @try {
         FLAutoreleasePool(
@@ -127,6 +130,9 @@ didStartElement:(NSString *)elementName
 
         FLThrowIfError(self.error);
         
+        FLPrettyString* string = [FLPrettyString prettyString];
+        [self.rootElement describeToStringFormatter:string];
+        
         return FLRetainWithAutorelease(self.rootElement);
     }
     @finally {
@@ -138,11 +144,11 @@ didStartElement:(NSString *)elementName
     }
 }
 
-- (FLParsedItem*) parseFileAtPath:(NSString*) path {
+- (FLParsedXmlElement*) parseFileAtPath:(NSString*) path {
     return [self parseFileAtURL:[NSURL fileURLWithPath:path]];
 }
 
-- (FLParsedItem*) parseFileAtURL:(NSURL*) url {
+- (FLParsedXmlElement*) parseFileAtURL:(NSURL*) url {
     NSError* err = nil;
     NSData* data = [NSData dataWithContentsOfURL:url options:0  error:&err];
     FLThrowIfError(FLAutorelease(err));

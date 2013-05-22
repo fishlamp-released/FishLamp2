@@ -15,8 +15,8 @@
 
 #if OLD
 @interface FLXmlObjectBuilder ()
-- (id) inflatePropertyObject:(FLPropertyDescriber*) propertyDescriber withElement:(FLParsedItem*) element;
-- (void) addPropertiesToModelObject:(id) object withElement:(FLParsedItem*) element;
+- (id) inflatePropertyObject:(FLPropertyDescriber*) propertyDescriber withElement:(FLParsedXmlElement*) element;
+- (void) addPropertiesToModelObject:(id) object withElement:(FLParsedXmlElement*) element;
 @end
 #endif
 
@@ -50,15 +50,15 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (FLParsedItem*) findElementForBuilding:(NSString*) objectName inParentElement:(FLParsedItem*) parentElement {
+- (FLParsedXmlElement*) findElementForBuilding:(NSString*) objectName inParentElement:(FLParsedXmlElement*) parentElement {
 
     if(FLStringsAreEqual(parentElement.elementName, objectName)) {
         return parentElement;
     }
 
-    FLParsedItem* subElement = [parentElement elementForElementName:objectName];
-    if(subElement) {
-        return subElement;
+    FLParsedXmlElement* childElement = [parentElement childElementForName:objectName];
+    if(childElement) {
+        return childElement;
     }
 
     FLThrowErrorCodeWithComment(NSCocoaErrorDomain, NSFileNoSuchFileError, @"XmlObjectBuilder: \"%@\" not found in \"%@\"", objectName, parentElement.elementName);
@@ -69,7 +69,7 @@
 
 
 //
-//- (id) buildObjectForClass:(Class) objectClass withXmlElement:(FLParsedItem*) element {
+//- (id) buildObjectForClass:(Class) objectClass withXmlElement:(FLParsedXmlElement*) element {
 //    
 //    FLAssertNotNil(self.decoder);
 //    FLAssertNotNil(element);
@@ -78,7 +78,7 @@
 //    FLObjectDescriber* objectDescriber = [objectClass objectDescriber];
 //    return [objectDescriber xmlObjectBuilder:self inflateObjectWithXml:element];
 //}
-//- (void) inflateElement:(FLParsedItem*) element 
+//- (void) inflateElement:(FLParsedXmlElement*) element 
 //              intoArray:(NSMutableArray*) newArray
 //           propertyDescriber:(FLPropertyDescriber*) propertyDescriber {
 //
@@ -94,12 +94,12 @@
 //        FLConfirmNotNilWithComment(arrayType, @"arrayType for element \"%@\" not found", elementName);
 //        
 //        if([elementOrArray isArray]) {
-//            for(FLParsedItem* child in elementOrArray) {			
+//            for(FLParsedXmlElement* child in elementOrArray) {			
 //                [newArray addObject:[self inflatePropertyObject:arrayType withElement:child]];
 //            }
 //        }
 //        else {
-//            FLAssert([elementOrArray isKindOfClass:[FLParsedItem class]]);
+//            FLAssert([elementOrArray isKindOfClass:[FLParsedXmlElement class]]);
 //            id value = [self inflatePropertyObject:arrayType withElement:elementOrArray];
 //            if(value) {
 //                [newArray addObject:value];
@@ -112,7 +112,7 @@
 //}
 //
 //- (id) inflatePropertyObject:(FLPropertyDescriber*) property 
-//                 withElement:(FLParsedItem*) element  {
+//                 withElement:(FLParsedXmlElement*) element  {
 //                                
 //    FLAssertNotNil(property);
 //    
@@ -144,7 +144,7 @@
 //
 //
 //- (void) addPropertiesToModelObject:(id) object 
-//                        withElement:(FLParsedItem*) element {
+//                        withElement:(FLParsedXmlElement*) element {
 //    
 //    FLAssertNotNil(object);
 //    FLAssert([[object class] isModelObject]);
@@ -173,7 +173,7 @@
 //            
 //            // we're building array from array of xmlElements
 //            
-//                for(FLParsedItem* child in elementOrArray) {
+//                for(FLParsedXmlElement* child in elementOrArray) {
 //                    [self inflateElement:child
 //                               intoArray:array 
 //                       propertyDescriber:propertyDescriber];
@@ -185,7 +185,7 @@
 //            // we're building the array from an xmlElement
 //            
 //                id xmlElement = [element.elements objectForKey:elementName];
-//                FLAssert([xmlElement isKindOfClass:[FLParsedItem class]]);
+//                FLAssert([xmlElement isKindOfClass:[FLParsedXmlElement class]]);
 //                
 //                [self inflateElement:xmlElement
 //                           intoArray:array 
@@ -202,7 +202,7 @@
 //        // we're inflating a single object
 //        
 //            id xmlElement = [element.elements objectForKey:elementName];
-//            FLAssert([xmlElement isKindOfClass:[FLParsedItem class]]);
+//            FLAssert([xmlElement isKindOfClass:[FLParsedXmlElement class]]);
 //            
 //            id newObject = [self inflatePropertyObject:propertyDescriber 
 //                                           withElement:xmlElement];
@@ -216,11 +216,11 @@
 //    }
 //}
 //
-//- (FLParsedItem*) willBuildObjectsWithXML:(FLParsedItem*) element {
+//- (FLParsedXmlElement*) willBuildObjectsWithXML:(FLParsedXmlElement*) element {
 //    return element;
 //}
 //
-//- (id) buildObjectWithXmlElement:(FLParsedItem*) element 
+//- (id) buildObjectWithXmlElement:(FLParsedXmlElement*) element 
 //             withObjectDescriber:(FLObjectDescriber*) objectDescriber {
 //    
 //    FLAssertNotNil(self.decoder);

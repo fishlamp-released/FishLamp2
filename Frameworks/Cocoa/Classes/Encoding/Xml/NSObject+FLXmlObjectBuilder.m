@@ -8,12 +8,12 @@
 //
 
 #import "NSObject+FLXmlObjectBuilder.h"
-#import "FLParsedItem.h"
+#import "FLParsedXmlElement.h"
 #import "FLXmlObjectBuilder.h"
 #import "FLObjectDescriber+FLXmlObjectBuilder.h"
 
 @implementation NSObject (FLXmlObjectBuilder)
-+ (id) objectWithXmlElement:(FLParsedItem*) xmlElement 
++ (id) objectWithXmlElement:(FLParsedXmlElement*) xmlElement 
           withObjectBuilder:(FLXmlObjectBuilder*) builder {
           
     FLAssertNotNil(builder);
@@ -25,7 +25,7 @@
 }
 
 
-+ (id) objectWithXmlElement:(FLParsedItem*) xmlElement 
++ (id) objectWithXmlElement:(FLParsedXmlElement*) xmlElement 
                 elementName:(NSString*) elementName
           withObjectBuilder:(FLXmlObjectBuilder*) builder {
 
@@ -33,7 +33,7 @@
     FLAssertNotNil(builder.decoder);
     FLAssertNotNil(xmlElement);
     
-    FLParsedItem* buildElement = [builder findElementForBuilding:elementName inParentElement:xmlElement];
+    FLParsedXmlElement* buildElement = [builder findElementForBuilding:elementName inParentElement:xmlElement];
     
     return [self objectWithXmlElement:buildElement withObjectBuilder:builder];
                       

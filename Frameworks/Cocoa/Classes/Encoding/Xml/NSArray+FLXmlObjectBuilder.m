@@ -9,13 +9,13 @@
 
 #import "NSArray+FLXmlObjectBuilder.h"
 #import "FLXmlObjectBuilder.h"
-#import "FLParsedItem.h"
+#import "FLParsedXmlElement.h"
 #import "FLModelObject.h"
 #import "FLPropertyDescriber+XmlObjectBuilder.h"
 
 @implementation NSArray (FLXmlObjectBuilder) 
 
-//- (void) inflateElement:(FLParsedItem*) element 
+//- (void) inflateElement:(FLParsedXmlElement*) element 
 //              intoArray:(NSMutableArray*) newArray
 //           propertyDescriber:(FLPropertyDescriber*) propertyDescriber {
 //
@@ -31,12 +31,12 @@
 //        FLConfirmNotNilWithComment(arrayType, @"arrayType for element \"%@\" not found", elementName);
 //        
 //        if([elementOrArray isArray]) {
-//            for(FLParsedItem* child in elementOrArray) {			
+//            for(FLParsedXmlElement* child in elementOrArray) {			
 //                [newArray addObject:[self inflatePropertyObject:arrayType withElement:child]];
 //            }
 //        }
 //        else {
-//            FLAssert([elementOrArray isKindOfClass:[FLParsedItem class]]);
+//            FLAssert([elementOrArray isKindOfClass:[FLParsedXmlElement class]]);
 //            id value = [self inflatePropertyObject:arrayType withElement:elementOrArray];
 //            if(value) {
 //                [newArray addObject:value];
@@ -55,7 +55,7 @@ arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
 
     // we're building array from array of xmlElements
     
-    for(FLParsedItem* element in self) {
+    for(FLParsedXmlElement* element in self) {
         FLPropertyDescriber* elementDescriber = [propertyDescriber containedTypeForName:element.elementName];
         FLConfirmNotNilWithComment(elementDescriber, @"arrayType for element \"%@\" not found", element.elementName);
         
@@ -82,40 +82,39 @@ arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
 }
 @end
 
-@implementation FLParsedItem (FLXmlObjectBuilder)
+@implementation FLParsedXmlElement (FLXmlObjectBuilder)
 
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
 arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
 
-    NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:self.elements.count];
+    NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:self.childElements.count];
     
-    for(id elementOrArray in [self.elements objectEnumerator]) {
+    for(FLParsedXmlElement* element in [self.childElements objectEnumerator]) {
         
-        if([elementOrArray isArray]) {
-            FLAssert([elementOrArray isKindOfClass:[NSArray class]]);
-
-            for(FLParsedItem* child in elementOrArray) {			
-                FLPropertyDescriber* arrayType = [propertyDescriber containedTypeForName:child.elementName];
-                id object = [arrayType xmlObjectBuilder:builder inflateElementContents:child];
+        if(element.siblingElement != nil) {
+            FLParsedXmlElement* walker = element;
+            while(walker != nil) {
+                FLPropertyDescriber* arrayType = [propertyDescriber containedTypeForName:walker.elementName];
+                id object = [arrayType xmlObjectBuilder:builder inflateElementContents:walker];
                 if(object) {
                     [newArray addObject:object];
                 }
                 else {
-                    FLLog(@"Unable to inflate xml element %@:%@", child.elementName, [child description]);
+                    FLLog(@"Unable to inflate xml element %@:%@", walker.elementName, [walker description]);
                 }
+                
+                walker = walker.siblingElement;
             }
         }
         else {
-            FLAssert([elementOrArray isKindOfClass:[FLParsedItem class]]);
-
-            FLPropertyDescriber* arrayType = [propertyDescriber containedTypeForName:[elementOrArray elementName]];
+            FLPropertyDescriber* arrayType = [propertyDescriber containedTypeForName:[element elementName]];
                 
-            id object = [arrayType xmlObjectBuilder:builder inflateElementContents:elementOrArray];
+            id object = [arrayType xmlObjectBuilder:builder inflateElementContents:element];
             if(object) {
                 [newArray addObject:object];
             }
             else {
-                FLLog(@"Unable to inflate xml element %@:%@", [elementOrArray elementName], [elementOrArray description]);
+                FLLog(@"Unable to inflate xml element %@:%@", [element elementName], [element description]);
             }
         }
     }

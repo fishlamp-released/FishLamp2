@@ -9,14 +9,14 @@
 
 #import "FLObjectDescriber+FLXmlObjectBuilder.h"
 #import "FLXmlObjectBuilder.h"
-#import "FLParsedItem.h"
+#import "FLParsedXmlElement.h"
 #import "FLModelObject.h"
 #import "FLPropertyDescriber+XmlObjectBuilder.h"
 
 @implementation FLObjectDescriber (FLXmlObjectBuilder)
 
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-   inflateRootObjectWithXML:(FLParsedItem*) element {
+   inflateRootObjectWithXML:(FLParsedXmlElement*) element {
 
 //    NSString* encodingKey = typeDesc.stringEncodingKeyForRepresentedData;
 //    if(encodingKey) {
@@ -36,13 +36,13 @@
 @implementation FLModelObjectDescriber (FLXmlObjectBuilder)
 
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-   inflateRootObjectWithXML:(FLParsedItem*) element {
+   inflateRootObjectWithXML:(FLParsedXmlElement*) element {
 
     FLAssert([self.objectClass isModelObject]);
     
     id outObject = FLAutorelease([[self.objectClass alloc] init]);
     
-    for(id elementName in element.elements) {
+    for(id elementName in element.childElements) {
         
         FLPropertyDescriber* propertyDescriber = [self propertyForName:elementName];
         if(!propertyDescriber) {
@@ -50,11 +50,10 @@
             continue;
         }
         
-        // this can be either an array or another FLParsedItem
-        id elementContents = [element.elements objectForKey:elementName];
+        FLParsedXmlElement* childElement = [element childElementForName:elementName];
             
         id object = [propertyDescriber xmlObjectBuilder:builder  
-                                 inflateElementContents:elementContents];
+                                 inflateElementContents:childElement];
         
         if(object) {
             [outObject setValue:object forKey:elementName];

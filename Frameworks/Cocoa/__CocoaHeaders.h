@@ -96,7 +96,7 @@
 
 // Classes/Encoding/Xml
 #import "FLObjectXmlElement.h"
-#import "FLParsedItem.h"
+#import "FLParsedXmlElement.h"
 #import "FLXmlComment.h"
 #import "FLXmlDocumentBuilder.h"
 #import "FLXmlElement.h"

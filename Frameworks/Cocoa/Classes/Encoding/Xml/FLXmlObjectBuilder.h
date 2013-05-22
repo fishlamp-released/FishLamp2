@@ -9,7 +9,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FLDataEncoder.h"
-#import "FLParsedItem.h"
+#import "FLParsedXmlElement.h"
 #import "FLObjectDescriber.h"
 #import "FLModelObject.h"
 #import "NSObject+FLXmlObjectBuilder.h"
@@ -24,8 +24,8 @@
 + (id) xmlObjectBuilder:(id<FLDataDecoding>) decoder;
 + (id) xmlObjectBuilder;
              
-- (FLParsedItem*) findElementForBuilding:(NSString*) objectName 
-                         inParentElement:(FLParsedItem*) parentElement;
+- (FLParsedXmlElement*) findElementForBuilding:(NSString*) objectName 
+                         inParentElement:(FLParsedXmlElement*) parentElement;
 
 @end
 

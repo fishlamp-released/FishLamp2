@@ -47,7 +47,7 @@
 - (void) addProperty:(FLPropertyDescriber*) subtype;
 
 - (void) addPropertyArrayTypes:(NSArray*) arrayTypes forPropertyName:(NSString*) propertyName;
-
+- (void) addContainerType:(FLPropertyDescriber*) describer forContainerProperty:(NSString*) name;
 
 // deprected
 - (void) addPropertyWithName:(NSString*) name withArrayTypes:(NSArray*) types;

@@ -1,5 +1,5 @@
 //
-//  FLParsedItem.m
+//  FLParsedXmlElement.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 3/13/13.
@@ -7,23 +7,23 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLParsedItem.h"
+#import "FLParsedXmlElement.h"
 
-@interface FLParsedItem ()
-@property (readwrite, assign, nonatomic) FLParsedItem* parent;
+@interface FLParsedXmlElement ()
+@property (readwrite, assign, nonatomic) FLParsedXmlElement* parent;
 
 @end
 
-@implementation FLParsedItem
+@implementation FLParsedXmlElement
 
 @synthesize attributes = _attributes;
 @synthesize namespaceURI = _namespace;
 @synthesize elementName = _elementName;
 @synthesize qualifiedName = _qualifiedName;
 @synthesize elementValue = _elementValue;
-@synthesize elements = _elements;
+@synthesize childElements = _elements;
 @synthesize parent = _parent;
-@synthesize nextParsedItem = _nextParsedItem;
+@synthesize siblingElement = _siblingElement;
 
 - (id) initWithName:(NSString*) name elementValue:(NSString*) elementValue {	
 	self = [super init];
@@ -34,23 +34,16 @@
 	return self;
 }
 
-+ (id) parsedItem {
++ (id) parsedXmlElement {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-+ (id) parsedItem:(NSString*) name elementValue:(NSString*) elementValue {
++ (id) parsedXmlElement:(NSString*) name elementValue:(NSString*) elementValue {
     return FLAutorelease([[[self class] alloc] initWithName:name elementValue:elementValue]);
 }
 
-- (void) appendStringToelementValue:(NSString*) string {
-    if(FLStringIsNotEmpty(string)) {
-        if(_elementValue) {
-            [_elementValue appendString:string];
-        }
-        else {
-            _elementValue = [string mutableCopy];
-        }
-    }
+- (void) setElementValue:(NSString*) string {
+    FLSetObjectWithMutableCopy(_elementValue, string);
 }
 
 - (void) appendStringToValue:(NSString*) string {
@@ -64,27 +57,22 @@
     }
 }
 
-- (void) addElement:(FLParsedItem*) element {
+- (void) addChildElement:(FLParsedXmlElement*) element {
     if(!_elements) {
         _elements = [[NSMutableDictionary alloc] init];
     }
-    FLParsedItem* existing = [_elements objectForKey:element.elementName];
-    if(existing) {
-        element.nextParsedItem = existing;
-    }
-    else {
-        [_elements setObject:element forKey:element.elementName];
-    }
+    element.siblingElement = [_elements objectForKey:element.elementName];
+    [_elements setObject:element forKey:element.elementName];
     element.parent = self;
 }
 
-- (FLParsedItem*) elementForElementName:(NSString*) name {
+- (FLParsedXmlElement*) childElementForName:(NSString*) name {
     return [_elements objectForKey:name];
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_nextParsedItem release];
+    [_siblingElement release];
     [_attributes release];
     [_namespace release];
     [_elementName release];
@@ -95,8 +83,8 @@
 }
 #endif
 
-- (FLParsedItem*) findElementWithName:(NSString*) name maxDepth:(NSInteger) maxDepth {
-    FLParsedItem* item = [_elements objectForKey:name];
+- (FLParsedXmlElement*) findChildElementWithName:(NSString*) name maxDepth:(NSInteger) maxDepth {
+    FLParsedXmlElement* item = [_elements objectForKey:name];
     if(item) {
         return item;
     }
@@ -104,8 +92,8 @@
     if(maxDepth > 0) {
         maxDepth--;
         
-        for(FLParsedItem* subElement in [_elements objectEnumerator]) {
-            FLParsedItem* found = [subElement findElementWithName:name maxDepth:maxDepth];
+        for(FLParsedXmlElement* childElement in [_elements objectEnumerator]) {
+            FLParsedXmlElement* found = [childElement findChildElementWithName:name maxDepth:maxDepth];
             if(found) {
                 return found;
             }
@@ -115,49 +103,81 @@
     return nil;
 }
 
-- (FLParsedItem*) elementAtPath:(NSString*) path {
-    FLParsedItem* obj = self;
+- (FLParsedXmlElement*) childElementAtPath:(NSString*) path {
+    FLParsedXmlElement* obj = self;
     NSArray* pathComponents = [path pathComponents];
     for(NSString* component in pathComponents) {
-        obj = [obj elementForElementName:component];
+        obj = [obj childElementForName:component];
     }
     return obj;
 }
 
-- (NSDictionary*) childrenAtPath:(NSString*) parentalPath {
-    return [[self elementAtPath:parentalPath] elements];
+//- (NSDictionary*) childrenAtPath:(NSString*) parentalPath {
+//    return [[self elementAtPath:parentalPath] childElement];
+//}
+
+- (void) describeToStringFormatter:(id<FLStringFormatter>) stringFormatter {
+    [stringFormatter appendFormat:@"<%@", self.elementName];
+    if(FLStringIsNotEmpty(self.namespaceURI)) {
+        [stringFormatter appendFormat:@" %@=\"%@\"", @"namespace", self.namespaceURI];
+    }
+    if(FLStringIsNotEmpty(self.qualifiedName)) {
+        [stringFormatter appendFormat:@" %@=\"%@\"", @"qualifiedName", self.qualifiedName];
+    }
+    for(NSString* attr in self.attributes) {
+        [stringFormatter appendFormat:@" %@=\"%@\"", attr, [self.attributes objectForKey:attr]];
+    }
+    [stringFormatter appendLine:@">"];
+    [stringFormatter indent:^{
+        if(FLStringIsNotEmpty(self.elementValue)) {
+            [stringFormatter appendLineWithFormat:@"%@", self.elementValue];
+        }
+        for(FLParsedXmlElement* element in [self.childElements objectEnumerator]) {
+            [element describeToStringFormatter:stringFormatter];
+        }
+    }];
+    
+    [stringFormatter appendLineWithFormat:@"<%@>", self.elementName];
+
+    if(self.siblingElement) {
+        [self.siblingElement describeToStringFormatter:stringFormatter];
+    }
 }
 
 - (NSString*) description {
 
-    return [NSString stringWithFormat:@"elementName:%@, namespace:%@, qualifiedName:%@, attributes:%@, elementValue:%@, elements:%@ \n",
-        FLEmptyStringOrString(self.elementName),
-        FLEmptyStringOrString(self.namespaceURI),
-        FLEmptyStringOrString(self.qualifiedName),
-        FLEmptyStringOrString([self.attributes description]),
-        FLEmptyStringOrString(self.elementValue),
-        FLEmptyStringOrString([self.elements description])
-    ];
+    FLPrettyString* prettyString = [FLPrettyString prettyString];
+    [self describeToStringFormatter:prettyString];
+    return prettyString.string;
+
+//    return [NSString stringWithFormat:@"elementName:%@, namespace:%@, qualifiedName:%@, attributes:%@, elementValue:%@, elements:%@ \n",
+//        FLEmptyStringOrString(self.elementName),
+//        FLEmptyStringOrString(self.namespaceURI),
+//        FLEmptyStringOrString(self.qualifiedName),
+//        FLEmptyStringOrString([self.attributes description]),
+//        FLEmptyStringOrString(self.elementValue),
+//        FLEmptyStringOrString([self.elements description])
+//    ];
 }
 
 @end
 
 ////
-////  FLParsedItem.m
+////  FLParsedXmlElement.m
 ////  FishLampCocoa
 ////
 ////  Created by Mike Fullerton on 3/13/13.
 ////  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 ////
 //
-//#import "FLParsedItem.h"
+//#import "FLParsedXmlElement.h"
 //
-//@interface FLParsedItem ()
-//@property (readwrite, assign, nonatomic) FLParsedItem* parent;
+//@interface FLParsedXmlElement ()
+//@property (readwrite, assign, nonatomic) FLParsedXmlElement* parent;
 //
 //@end
 //
-//@implementation FLParsedItem
+//@implementation FLParsedXmlElement
 //
 //@synthesize attributes = _attributes;
 //@synthesize namespaceURI = _namespace;
@@ -176,11 +196,11 @@
 //	return self;
 //}
 //
-//+ (id) parsedItem {
+//+ (id) parsedXmlElement {
 //    return FLAutorelease([[[self class] alloc] init]);
 //}
 //
-//+ (id) parsedItem:(NSString*) name value:(NSString*) value {
+//+ (id) parsedXmlElement:(NSString*) name value:(NSString*) value {
 //    return FLAutorelease([[[self class] alloc] initWithName:name value:value]);
 //}
 //
@@ -195,7 +215,7 @@
 //    }
 //}
 //
-//- (void) addElement:(FLParsedItem*) element {
+//- (void) addElement:(FLParsedXmlElement*) element {
 //    if(!_elements) {
 //        _elements = [[NSMutableDictionary alloc] init];
 //    }
@@ -213,7 +233,7 @@
 //    element.parent = self;
 //}
 //
-//- (FLParsedItem*) elementForElementName:(NSString*) name {
+//- (FLParsedXmlElement*) elementForElementName:(NSString*) name {
 //    return [_elements objectForKey:name];
 //}
 //
@@ -229,8 +249,8 @@
 //}
 //#endif
 //
-//- (FLParsedItem*) findElementWithName:(NSString*) name maxDepth:(NSInteger) maxDepth {
-//    FLParsedItem* item = [_elements objectForKey:name];
+//- (FLParsedXmlElement*) findElementWithName:(NSString*) name maxDepth:(NSInteger) maxDepth {
+//    FLParsedXmlElement* item = [_elements objectForKey:name];
 //    if(item) {
 //        return item;
 //    }
@@ -238,8 +258,8 @@
 //    if(maxDepth > 0) {
 //        maxDepth--;
 //        
-//        for(FLParsedItem* subElement in [_elements objectEnumerator]) {
-//            FLParsedItem* found = [subElement findElementWithName:name maxDepth:maxDepth];
+//        for(FLParsedXmlElement* childElement in [_elements objectEnumerator]) {
+//            FLParsedXmlElement* found = [childElement findElementWithName:name maxDepth:maxDepth];
 //            if(found) {
 //                return found;
 //            }
@@ -249,8 +269,8 @@
 //    return nil;
 //}
 //
-//- (FLParsedItem*) elementAtPath:(NSString*) path {
-//    FLParsedItem* obj = self;
+//- (FLParsedXmlElement*) elementAtPath:(NSString*) path {
+//    FLParsedXmlElement* obj = self;
 //    NSArray* pathComponents = [path pathComponents];
 //    for(NSString* component in pathComponents) {
 //        obj = [obj elementForElementName:component];

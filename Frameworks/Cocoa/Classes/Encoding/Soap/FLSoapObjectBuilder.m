@@ -72,9 +72,9 @@ FLSynthesizeSingleton(FLSoapObjectBuilder);
     return self;
 }
 
-- (FLParsedItem*) findElementForBuilding:(NSString*) objectName inParentElement:(FLParsedItem*) parentElement  {
+- (FLParsedXmlElement*) findElementForBuilding:(NSString*) objectName inParentElement:(FLParsedXmlElement*) parentElement  {
 
-    FLParsedItem* newParent = [parentElement elementForElementName:@"Body"];
+    FLParsedXmlElement* newParent = [parentElement childElementForName:@"Body"];
 
     return [super findElementForBuilding:objectName inParentElement:(newParent != nil ? newParent : parentElement)];
 }

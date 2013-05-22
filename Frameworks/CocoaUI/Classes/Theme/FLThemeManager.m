@@ -9,7 +9,7 @@
 
 #import "FLThemeManager.h"
 #import "FLXmlParser.h"
-#import "FLParsedItem.h"
+#import "FLParsedXmlElement.h"
 #import "FLObjectDescriber.h"
 #import "FLXmlObjectBuilder.h"
 #import "FLObjcRuntime.h"
@@ -129,7 +129,7 @@ FLSynthesizeSingleton(FLThemeManager)
     }   
 
 
-//    FLParsedItem* xml = [[FLXmlParser xmlParser] parseFileAtURL:fileURL];
+//    FLParsedXmlElement* xml = [[FLXmlParser xmlParser] parseFileAtURL:fileURL];
 //    if(xml) {
 //        
 //        FLObjectDescriber* themeType = [FLPropertyDescriber propertyDescriber:@"theme" objectClass:themeClass];
@@ -164,7 +164,7 @@ FLSynthesizeSingleton(FLThemeManager)
     }   
 
 
-//    FLParsedItem* xml = [[FLXmlParser xmlParser] parseFileAtURL:fileURL];
+//    FLParsedXmlElement* xml = [[FLXmlParser xmlParser] parseFileAtURL:fileURL];
 //    if(xml) {
 //        
 //        FLObjectDescriber* themeType = [FLPropertyDescriber propertyDescriber:@"theme" objectClass:themeClass];

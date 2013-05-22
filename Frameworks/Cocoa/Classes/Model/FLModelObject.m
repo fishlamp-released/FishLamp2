@@ -194,13 +194,13 @@ void FLMergeObjects(id dest, id src, FLMergeMode mergeMode) {
 				else {
 					FLPropertyDescriber* srcProp = [srcDescriber propertyForName:srcPropName];
                     
-                    if(![srcProp representsModelObject]) {
+                    if(srcProp.containedTypes.count > 0) {
+						FLMergeObjectArrays(destObject, srcObject, mergeMode, [srcProp containedTypes]);
+					}
+                    else if(![srcProp representsModelObject]) {
 					   if(mergeMode == FLMergeModeSourceWins) {
 							[dest setValue:srcObject forKey:srcPropName];
 					   }
-					}
-					else if(srcProp.containedTypes.count > 0) {
-						FLMergeObjectArrays(destObject, srcObject, mergeMode, [srcProp containedTypes]);
 					}
 					else {
 						FLMergeObjects(destObject, srcObject, mergeMode);

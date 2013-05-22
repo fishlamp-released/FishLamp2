@@ -11,11 +11,11 @@
 #import "FLObjectDescriber.h"
 
 @class FLXmlObjectBuilder;
-@class FLParsedItem;
+@class FLParsedXmlElement;
 
 @interface FLObjectDescriber (FLXmlObjectBuilder)
 
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-   inflateRootObjectWithXML:(FLParsedItem*) element;
+   inflateRootObjectWithXML:(FLParsedXmlElement*) element;
    
 @end

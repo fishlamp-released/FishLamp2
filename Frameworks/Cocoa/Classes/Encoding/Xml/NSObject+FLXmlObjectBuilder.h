@@ -8,14 +8,14 @@
 //
 
 #import "FishLamp.h"
-@class FLParsedItem;
+@class FLParsedXmlElement;
 @class FLXmlObjectBuilder;
 
 @interface NSObject (FLXmlObjectBuilder)
-+ (id) objectWithXmlElement:(FLParsedItem*) xmlElement 
++ (id) objectWithXmlElement:(FLParsedXmlElement*) xmlElement 
           withObjectBuilder:(FLXmlObjectBuilder*) builder;
 
-+ (id) objectWithXmlElement:(FLParsedItem*) xmlElement 
++ (id) objectWithXmlElement:(FLParsedXmlElement*) xmlElement 
                 elementName:(NSString*) elementName
           withObjectBuilder:(FLXmlObjectBuilder*) builder;
 
