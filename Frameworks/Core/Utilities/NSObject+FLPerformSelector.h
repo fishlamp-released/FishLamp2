@@ -26,7 +26,7 @@
 
 // send in 100 if you want. see if I care.
 - (void) performSelector:(SEL) selector 
-           withArguments:(id*) objects
+           withArguments:(id __strong *) objects
          argumumentCount:(NSUInteger) argCount;
 
     

@@ -57,7 +57,7 @@ void FLConfirmNoReturnObject(id obj) {
 }
 
 - (void) performSelector:(SEL) selector 
-           withArguments:(id*) objects
+           withArguments:(id __strong *) objects
          argumumentCount:(NSUInteger) argCount {
 
     FLConfirmIsNotNil(selector);

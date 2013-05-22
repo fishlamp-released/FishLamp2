@@ -56,11 +56,11 @@
 
     BOOL isAcceptable = NO;
     
-    CFStringRef fileExtension = (CFStringRef) [url pathExtension];
+    CFStringRef fileExtension = FLBridge(CFStringRef, [url pathExtension]);
     CFStringRef fileUTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension, NULL);
 
     for(NSString* uti in utiTypes) {
-        if(UTTypeConformsTo(fileUTI, (CFStringRef) uti)) {
+        if(UTTypeConformsTo(fileUTI, FLBridge(CFStringRef, uti))) {
             isAcceptable = YES;
             break;
         }

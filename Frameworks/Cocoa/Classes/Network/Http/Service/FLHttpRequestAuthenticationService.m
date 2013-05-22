@@ -22,6 +22,10 @@
 @synthesize asyncQueue = _asyncQueue;
 @synthesize operationContext = _operationContext;
 
++ (id) httpRequestAuthenticationService {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
 - (id) init {
     self = [super initWithRootNameForDelegateMethods:@"httpRequestAuthenticationService"];
     if(self) {

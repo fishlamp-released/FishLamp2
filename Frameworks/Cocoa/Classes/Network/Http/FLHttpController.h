@@ -15,17 +15,14 @@
 #import "FLHttpUser.h"
 #import "FLHttpRequestAuthenticationService.h"
 
+// TODO (MWF): removing this coupling
+#import "FLDatabaseObjectStorageService.h"
+
 extern NSString* const FLHttpControllerDidLogoutUserNotification;
 
-@protocol FLHttpControllerImplementation <NSObject>
-- (FLHttpUser*) createHttpUserForCredentials:(id<FLCredentials>) credentials;
-- (FLUserService*) createUserService;
-- (FLStorageService*) createStorageService;
-- (FLHttpRequestAuthenticationService*) createHttpRequestAuthenticationService;
-@end
-
 @interface FLHttpController : FLNetworkOperationContext<
-    FLHttpRequestAuthenticationServiceDelegate, FLUserLoginServiceDelegate,  FLHttpRequestContext> {
+    FLHttpRequestAuthenticationServiceDelegate, FLUserLoginServiceDelegate,  FLHttpRequestContext,
+    FLDatabaseObjectStorageServiceDelegate> {
 @private
     id _httpUser;
     FLUserService* _userLoginService;
@@ -35,7 +32,6 @@ extern NSString* const FLHttpControllerDidLogoutUserNotification;
     FLNetworkStreamSecurity _streamSecurity;
 
     __unsafe_unretained id _delegate;
-    __unsafe_unretained id<FLHttpControllerImplementation> _implementation;
 }
 
 @property (readwrite, nonatomic) FLNetworkStreamSecurity streamSecurity;
@@ -48,11 +44,17 @@ extern NSString* const FLHttpControllerDidLogoutUserNotification;
 @property (readonly, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
 @property (readonly, strong) id httpUser;
 
-- (id) initWithImplementation:(id<FLHttpControllerImplementation>) implementation;
-
 - (void) logoutUser;
 
 - (void) openUserService;
+
+
+// TODO (MWF): Not too happy with this construction abstraction.
+// optional overrides
+- (FLHttpUser*) createHttpUserForCredentials:(id<FLCredentials>) credentials;
+- (FLUserService*) createUserService;
+- (FLStorageService*) createStorageService;
+- (FLHttpRequestAuthenticationService*) createHttpRequestAuthenticationService;
 
 @end
 
@@ -68,3 +70,5 @@ extern NSString* const FLHttpControllerDidLogoutUserNotification;
 - (void) httpControllerDidClose:(FLHttpController*) controller;
 - (void) httpControllerDidOpen:(FLHttpController*) controller;
 @end
+
+
