@@ -9,7 +9,8 @@
 
 #import "FLHttpController.h"
 #import "FLReachableNetwork.h" 
-
+#import "FLDatabaseObjectStorageService.h"
+#import "FLAppInfo.h"
 #import "FLSynchronousOperation.h"
 
 NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDidLogoutUserNotification";
@@ -20,8 +21,6 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 @property (readwrite, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
 @property (readwrite, strong) FLService* authenticatedServices;
 @property (readwrite, strong) id httpUser;
-@property (readwrite, assign) id<FLHttpControllerImplementation> implementation;
-
 @end
 
 @implementation FLHttpController
@@ -32,33 +31,24 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 @synthesize authenticatedServices = _authenticatedServices;
 @synthesize streamSecurity = _streamSecurity;
 @synthesize httpUser = _httpUser;
-@synthesize implementation = _implementation;
 
 - (id) init {
-    return [self initWithImplementation:nil];
-}
-
-- (id) initWithImplementation:(id<FLHttpControllerImplementation>) implementation {
 
     self = [super init]; 
     if(self) {
-        FLAssertNotNil(implementation);
-        
-        self.implementation = implementation;
-    
         self.authenticatedServices = [FLService service];
                          
-        self.userService = [self.implementation createUserService];
+        self.userService = [self createUserService];
     
         FLAssertNotNil(self.userService);
         self.userService.delegate = self;
 
-        self.httpRequestAuthenticator = [self.implementation createHttpRequestAuthenticationService];
+        self.httpRequestAuthenticator = [self createHttpRequestAuthenticationService];
         FLAssertNotNil(self.httpRequestAuthenticator);
         self.httpRequestAuthenticator.delegate = self;
         [self.userService addSubService:self.httpRequestAuthenticator];    
     
-        self.storageService = [self.implementation createStorageService];
+        self.storageService = [self createStorageService];
         FLAssertNotNil(self.storageService);
         [self.authenticatedServices addSubService:self.storageService];
      
@@ -72,7 +62,7 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 }
 
 - (void) userServiceDidOpen:(FLUserService*) service {
-    self.httpUser = [self.implementation createHttpUserForCredentials:service.credentials];
+    self.httpUser = [self createHttpUserForCredentials:service.credentials];
 }
 
 - (void) userServiceDidClose:(FLUserService*) service {
@@ -145,13 +135,10 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
     }
 }
 
-
 - (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
                          operationContext:(FLOperationContext**) outOperationContext {
     *outOperationContext = FLRetain(self);
 }                         
-
-
 
 - (FLOperationContext*) httpRequestAuthenticationServiceGetWorkerContext:(FLHttpRequestAuthenticationService*) service {
     return self;
@@ -161,4 +148,27 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
     return self.httpUser;
 }
 
+- (FLUserService*) createUserService {
+    return [FLUserService userService];
+}
+
+- (FLStorageService*) createStorageService {
+    return [FLDatabaseObjectStorageService databaseObjectStorageService:self];
+}
+
+- (FLHttpUser*) createHttpUserForCredentials:(id<FLCredentials>) credentials {
+    return  [FLHttpUser httpUser:[FLUserLogin userLoginWithCredentials:credentials]];
+}
+
+- (FLHttpRequestAuthenticationService*) createHttpRequestAuthenticationService {
+    return [FLHttpRequestAuthenticationService httpRequestAuthenticationService];
+}
+
+- (NSString*) databaseObjectStorageServiceGetDatabasePath:(FLDatabaseObjectStorageService*) service {
+    return [[self.httpUser userDataFolderPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", [FLAppInfo bundleIdentifier]]];
+}
+
+
 @end
+
+

@@ -5,4 +5,4 @@
 //
 
 #include "FishLampBuildSupport/FishLampTargetSettings-OSX-3264-MRC.xcconfig"
-#include "TARGETFOLDERNAME/SharedTargetSettings.xcconfig"
+#include "Narcissist/SharedTargetSettings.xcconfig"

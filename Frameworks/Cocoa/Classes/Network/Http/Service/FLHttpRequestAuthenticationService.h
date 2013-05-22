@@ -22,6 +22,8 @@
     
     __unsafe_unretained FLOperationContext* _operationContext;
 }
++ (id) httpRequestAuthenticationService;
+
 @property (readonly, assign) FLOperationContext* operationContext;
 
 // required overrides

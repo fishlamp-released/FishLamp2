@@ -16,14 +16,13 @@
 // and do nothing. 
 // if you know for sure the target responds to the selector, use the NSObject methods instead.
 
-extern BOOL FLPerformSelector(id target, SEL selector, id* arguments, int argCount);
+extern BOOL FLPerformSelector(id target, SEL selector, id __strong * arguments, int argCount);
 extern BOOL FLPerformSelector0(id target, SEL selector);
 extern BOOL FLPerformSelector1(id target, SEL selector, id object);
 extern BOOL FLPerformSelector2(id target, SEL selector, id object1, id object2);
 extern BOOL FLPerformSelector3(id target, SEL selector, id object1, id object2, id object3);
 extern BOOL FLPerformSelector4(id target, SEL selector, id object1, id object2, id object3, id object4);
 
-extern BOOL FLPerformSelectorOnMainThread(id target, SEL selector, id* arguments, int argCount);
 extern BOOL FLPerformSelectorOnMainThread0(id target, SEL selector);
 extern BOOL FLPerformSelectorOnMainThread1(id target, SEL selector, id object);
 extern BOOL FLPerformSelectorOnMainThread2(id target, SEL selector, id object1, id object2);
