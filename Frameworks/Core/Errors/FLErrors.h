@@ -21,6 +21,8 @@
 #import "FLErrorException.h"
 
 #import "FLAssertions.h"
+
+#import "FLCancelError.h"
 /*
 // sdk files with error codes:
 https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ErrorHandlingCocoa/ErrorObjectsDomains/ErrorObjectsDomains.html

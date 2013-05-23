@@ -22,13 +22,18 @@
     return [self.view.window showModalWindow:windowController withDefaultButton:nil];
 }
 
+
+
 @end
 
-@implementation NSWindow (NSModalAdditions)
+@implementation NSWindowController (NSModalAdditions)
 
 - (NSButton*) closeModalWindowButton {
     return nil;
 }
+@end
+
+@implementation NSWindow (NSModalAdditions)
 
 - (IBAction) closeModalWindow:(id) sender {
     [[NSApplication sharedApplication] endSheet:self];
