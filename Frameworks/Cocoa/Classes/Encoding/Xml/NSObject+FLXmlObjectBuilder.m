@@ -11,6 +11,7 @@
 #import "FLParsedXmlElement.h"
 #import "FLXmlObjectBuilder.h"
 #import "FLObjectDescriber+FLXmlObjectBuilder.h"
+#import "FLXmlParser.h"
 
 @implementation NSObject (FLXmlObjectBuilder)
 + (id) objectWithXmlElement:(FLParsedXmlElement*) xmlElement 
@@ -38,5 +39,15 @@
     return [self objectWithXmlElement:buildElement withObjectBuilder:builder];
                       
 }          
+
++ (id) objectWithXmlFile:(NSString*) xmlFilePath {
+    FLParsedXmlElement* xml = [[FLXmlParser xmlParser] parseFileAtPath:xmlFilePath];
+    if(!xml) {
+        return nil;
+    }
+    
+    return [self objectWithXmlElement:xml 
+                    withObjectBuilder:[FLXmlObjectBuilder xmlObjectBuilder]];
+}
 
 @end

@@ -19,4 +19,6 @@
                 elementName:(NSString*) elementName
           withObjectBuilder:(FLXmlObjectBuilder*) builder;
 
++ (id) objectWithXmlFile:(NSString*) xmlFilePath;
+
 @end

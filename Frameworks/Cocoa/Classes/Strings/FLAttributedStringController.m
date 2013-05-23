@@ -62,7 +62,7 @@
 - (void) setAttributedString:(NSAttributedString*) string {
     FLSetObjectWithRetain(_attributedString, string);
     self.attributes = nil;
-    [self.delegate performOptionalSelector:@selector(attributedStringControllerDidChangeString:)];
+    [self.delegate performOptionalSelector:@selector(attributedStringControllerDidChangeString:) withObject:self];
 }
 
 - (void) setDisplayState:(FLStringDisplayState) displayState {
@@ -84,7 +84,7 @@
 
 - (void) setAttributes:(NSDictionary*) attributes {
     FLSetObjectWithRetain(_attributes, attributes);
-    [self.delegate performOptionalSelector:@selector(attributedStringControllerDidChangeString:)];
+    [self.delegate performOptionalSelector:@selector(attributedStringControllerDidChangeString:) withObject:self];
 }
 
 - (NSDictionary*) attributes {
