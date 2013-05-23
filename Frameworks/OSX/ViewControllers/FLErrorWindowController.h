@@ -7,12 +7,13 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import <Cocoa/Cocoa.h>
+#import "FishLamp.h"
+#import "FLErrors.h"
 
 @interface FLErrorWindowController : NSWindowController {
 @private
     IBOutlet NSTextField* _titleField;
-    IBOutlet NSTextField* _explanationField;
+    IBOutlet NSTextView* _explanationField;
     IBOutlet __unsafe_unretained NSButton* _okButton;
     NSString* _title;
     NSString* _explanation;
@@ -22,4 +23,12 @@
 
 + (id) errorWindowController:(NSString*) title explanation:(NSString*) explanation;
 
+@end
+
+@interface NSViewController (FLErrorWindowController)
+- (void) showErrorAlert:(NSString*) title caption:(NSString*) caption error:(NSError*) error;
+@end
+
+@interface NSWindowController (FLErrorWindowController)
+- (void) showErrorAlert:(NSString*) title caption:(NSString*) caption error:(NSError*) error;
 @end
