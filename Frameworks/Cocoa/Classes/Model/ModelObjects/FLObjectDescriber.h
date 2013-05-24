@@ -16,10 +16,19 @@
 @class FLStringEncoder;
 @class FLObjectDescriber;
 
+typedef void (^FLPropertyVisitor)(NSString* propertyName, id value, BOOL* stop);
+typedef void (^FLPropertyDescriberVisitor)(FLPropertyDescriber* propertyDescriber, BOOL* stop);
+typedef void (^FLPropertyDescriberVisitorRecursive)(FLObjectDescriber* object, FLPropertyDescriber* propertyDescriber, BOOL* stop);
+
 @interface NSObject (FLObjectDescriber)
 + (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer;
 + (FLObjectDescriber*) objectDescriber;
 - (FLObjectDescriber*) objectDescriber;
+
+- (void) visitEachProperty:(FLPropertyVisitor) visitor;
+- (void) visitEachPropertyDescriber:(FLPropertyDescriberVisitor) visitor;
+- (void) visitEachPropertyRecursively:(FLPropertyDescriberVisitorRecursive) visitor;
+
 @end
 
 @interface FLObjectDescriber : NSObject<NSCopying> {

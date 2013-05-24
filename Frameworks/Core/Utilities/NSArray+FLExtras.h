@@ -78,4 +78,13 @@
 @interface NSArray (FLThreadAndMutationSafe)
 - (void) forwardObjectVisitor:(void (^)(id operation, BOOL* stop)) visitor;
 - (BOOL) reverseObjectVisitor:(void (^)(id object, BOOL* stop)) visitor;
+
+
 @end
+
+@interface NSObject (FLLameWorkaroundForArrayRTTI)
+// there are issues with isKindOfClass:[NSArray class] 
+// this works around this.
+- (BOOL) isArray;
+@end
+

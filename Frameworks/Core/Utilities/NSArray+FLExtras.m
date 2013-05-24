@@ -11,7 +11,17 @@
 #import "FLAssertions.h"
 #import "FLStringUtils.h"
 
+@implementation NSObject (FLLameWorkaroundForArrayRTTI)
+- (BOOL) isArray {
+    return NO;
+}
+@end
+
 @implementation NSArray (FLExtras)
+- (BOOL) isArray {
+    return YES;
+}
+
 - (NSUInteger) indexOfLastObject {
 	return self.count > 0 ? self.count - 1 : NSNotFound;
 }

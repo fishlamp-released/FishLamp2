@@ -114,6 +114,10 @@
     }
 }
 
+- (void) addPanel:(FLPanelViewController*) panel {
+    [self addPanel:panel forIdentifier:[[panel class] panelIdentifier] withDelegate:self];
+}
+
 - (void) addPanel:(FLPanelViewController*) panel withDelegate:(id) delegate {
     [self addPanel:panel forIdentifier:[[panel class] panelIdentifier] withDelegate:delegate];
 }

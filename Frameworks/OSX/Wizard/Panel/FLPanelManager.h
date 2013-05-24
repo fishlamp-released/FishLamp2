@@ -53,6 +53,7 @@ typedef void (^FLPanelViewControllerBlock)(FLPanelViewController* panel);
 
 - (void) showPanelsInView:(NSView*) window;
 
+- (void) addPanel:(FLPanelViewController*) panel;
 - (void) addPanel:(FLPanelViewController*) panel forIdentifier:(id) identifier;
 - (void) addPanel:(FLPanelViewController*) panel withDelegate:(id) delegate;
 - (void) addPanel:(FLPanelViewController*) panel forIdentifier:(id) identifier withDelegate:(id) delegate;

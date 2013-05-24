@@ -70,17 +70,7 @@ arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
 
 @end
 
-@implementation NSObject (FLLameWorkaround)
-- (BOOL) isArray {
-    return NO;
-}
-@end
 
-@implementation NSArray (FLLameWorkaround)
-- (BOOL) isArray {
-    return YES;
-}
-@end
 
 @implementation FLParsedXmlElement (FLXmlObjectBuilder)
 

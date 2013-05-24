@@ -250,6 +250,37 @@ static NSMutableDictionary* s_registry = nil;
         [prop addContainedProperty:describer];
     }
 }
+
+- (BOOL) visitRecursively:(FLPropertyDescriberVisitorRecursive) visitor{
+        
+    BOOL stop = NO;
+    
+    for(FLPropertyDescriber* prop in [self.properties objectEnumerator]) {
+    
+        visitor(self, prop, &stop);
+        
+        if(stop) {
+            return YES;
+        }
+        
+        if([prop representsModelObject]) {
+            stop = [[[prop representedObjectClass] objectDescriber] visitRecursively:visitor];
+        }
+        else if([prop representsArray]) {
+            for(FLPropertyDescriber* containedType in prop.containedTypes) {
+                if([containedType representsModelObject]) {
+                    stop = [[[containedType representedObjectClass] objectDescriber] visitRecursively:visitor];
+                }
+            }
+        }
+        
+        if(stop) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 @end
 
 @implementation FLModelObjectDescriber
@@ -300,6 +331,7 @@ static NSMutableDictionary* s_registry = nil;
 }
 
 
+
 @end
 
 @implementation FLAbstractObjectType
@@ -314,4 +346,44 @@ static NSMutableDictionary* s_registry = nil;
 - (FLObjectDescriber*) objectDescriber {
     return [[self class] objectDescriber];
 }
+
+- (void) visitEachProperty:(FLPropertyVisitor) visitor {
+    if ([[self class] isModelObject]) {
+        BOOL stop = NO;
+        FLObjectDescriber* describer = [self objectDescriber];
+        for(NSString* propertyName in describer.properties) {
+            visitor(propertyName, [self valueForKey:propertyName], &stop);
+            
+            if(stop) {
+                break;
+            }
+        }
+    
+    }
+}
+
+- (void) visitEachPropertyDescriber:(FLPropertyDescriberVisitor) visitor {
+    if ([[self class] isModelObject]) {
+        BOOL stop = NO;
+        FLObjectDescriber* describer = [self objectDescriber];
+
+        for(FLPropertyDescriber* prop in [describer.properties objectEnumerator]) {
+            visitor(prop, &stop);
+            
+            if(stop) {
+                break;
+            }
+        }
+    
+    }
+}
+
+
+
+- (void) visitEachPropertyRecursively:(FLPropertyDescriberVisitorRecursive) visitor{
+    if ([[self class] isModelObject]) {
+        [[self objectDescriber] visitRecursively:visitor];
+    }
+}
+
 @end

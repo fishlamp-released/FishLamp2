@@ -34,7 +34,7 @@
 {
 	if(data)
 	{
-		if([data isKindOfClass:[NSArray class]])
+		if([data isArray])
 		{
 			NSMutableString* outStr = [NSMutableString stringWithString:@""];
 				
