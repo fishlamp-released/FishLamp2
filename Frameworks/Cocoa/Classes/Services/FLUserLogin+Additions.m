@@ -1,18 +1,16 @@
-// [Generated]
 //
 // FLUserLogin.m
 // Project: FishLamp
 // Schema: FLGeneratedCoreObject
 //
-// Copywrite (C) 2012 GreenTongue Software, LLC. 
+// Copywrite (C) 2013 GreenTongue Software, LLC., Mike Fullerton
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-// [/Generated]
 
-#import "__FLUserLogin.h"
 #import "FLUserLogin.h"
+#import "FLCredentials.h"
 
-@implementation FLUserLogin (ObjC)
+@implementation FLUserLogin (c)
 
 + (id) userLogin:(NSString*) userName password:(NSString*) password {
     FLUserLogin* userLogin = [FLUserLogin userLogin];

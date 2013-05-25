@@ -46,7 +46,7 @@
 }
 
 - (BOOL) isLoginAuthenticated {
-    return _userLogin.isAuthenticatedValue;
+    return _userLogin.isAuthenticated;
 }
 
 - (void) setLoginUnathenticated {

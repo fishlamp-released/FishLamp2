@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project projectName="FishLamp">
-<organization name="GreenTongue Software, LLC"/>    
-	<generatorOptions>
-     	<typePrefix>FL</typePrefix>
-        <objectsFolderName>SessionObjects</objectsFolderName>
-    </generatorOptions>
+    <generatorOptions typePrefix="FL"/>
+    <organization name="GreenTongue Software LLC, Mike Fullerton"/>
+    <license>
+        <licenseName>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</licenseName>
+    </license>
     <objects>
-        <object typeName="FLApplicationSession" protocols="NSCopying, NSCoding">
+        <object className="FLApplicationSession">
             <properties>
                 <property type="int" name="sessionId">
                     <storageOptions isPrimaryKey="YES"/>
@@ -14,7 +14,7 @@
                 <property type="NSString" name="userGuid"/>
             </properties>
         </object>
-        <object typeName="FLLastUpdateTime" protocols="NSCopying, NSCoding">
+        <object className="FLLastUpdateTime">
             <properties>
                 <property type="string" name="lastUpdateId">
                     <storageOptions isPrimaryKey="YES"/>
@@ -22,7 +22,7 @@
                 <property type="date" name="lastUpdate"/>
             </properties>
         </object>
-        <object typeName="FLUserLogin" protocols="NSCopying, NSCoding">
+        <object className="FLUserLogin">
             <properties>
                 <property type="NSString" name="userGuid">
                     <storageOptions isPrimaryKey="YES"/>
@@ -42,7 +42,7 @@
                 <property type="dictionary" name="userInfo"/>
             </properties>
         </object>
- 		<object typeName="FLApplicationDataVersion">
+        <object className="FLApplicationDataVersion">
             <properties>
                 <property type="string" name="userGuid">
                     <storageOptions isPrimaryKey="YES"/>
