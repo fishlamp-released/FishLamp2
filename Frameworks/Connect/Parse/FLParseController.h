@@ -12,8 +12,12 @@
 @class PFObject;
 @class FLParseClassLink;
 @class FLUserLogin;
+@class FLParseCredentials;
 
-@interface FLParseController : NSObject
+@interface FLParseController : NSObject {
+@private
+    FLParseCredentials* _credentials;
+}
 
 FLSingletonProperty(FLParseController);
 
@@ -25,7 +29,8 @@ FLSingletonProperty(FLParseController);
 
 - (id) readObject:(FLParseClassLink*) object;
 
-- (void) setApplicationId:(NSString*) appID clientKey:(NSString*) clientKey;
+- (FLPromise*) openParseController:(FLParseCredentials*) credentials
+                        completion:(fl_completion_block_t) completion;
 
 - (FLPromise*) beginLoggingInUser:(FLUserLogin*) userLogin 
                        completion:(fl_completion_block_t) completion;

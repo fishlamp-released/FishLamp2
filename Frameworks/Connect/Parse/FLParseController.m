@@ -11,7 +11,7 @@
 #import "FLParseClassLink.h"
 #import <ParseOSX/ParseOSX.h>
 #import "FLUserLogin.h"
-
+#import "FLParseCredentials.h"
 #import "FLTrace.h"
 
 @interface FLParseController ()
@@ -177,8 +177,12 @@ FLSynthesizeSingleton(FLParseController);
     return nil;
 }
 
-- (void) setApplicationId:(NSString*) appID clientKey:(NSString*) clientKey {
-    [Parse setApplicationId:appID clientKey:clientKey];
+- (void) setAppCredentialials:(FLParseCredentials*) creds {
+    FLAssertNotNil(creds);
+
+    FLSetObjectWithRetain(_credentials, creds);
+
+    [Parse setApplicationId:creds.applicationID clientKey:creds.clientKey];
 
     PFACL *defaultACL = [PFACL ACL];
     [defaultACL setPublicReadAccess:YES];
@@ -202,6 +206,31 @@ FLSynthesizeSingleton(FLParseController);
         [finisher setFinishedWithResult:userLogin];
     } completion:nil ];
 }
+
+//    if(![[FLParseController instance] isAuthenticated]) {
+//        FLUserLogin* login = nil; 
+//
+//                // TODO bring up login window
+//    
+//        [[FLParseController instance] beginLoggingInUser:login completion:^(id result) {
+//            if([result error]) {
+//                FLLog(@"login failed");
+//                
+//                // TODO bring up login window
+//            }
+//        }];
+//    }
+
+- (FLPromise*) openParseController:(FLParseCredentials*) credentials
+                        completion:(fl_completion_block_t) completion {
+                        
+    [self setAppCredentialials:credentials];
+    FLUserLogin* userLogin = [FLUserLogin userLogin:credentials.username password:credentials.password];
+    
+    return [self beginLoggingInUser:userLogin completion:completion];
+}                        
+
+
 
 - (BOOL) isAuthenticated {
     return [PFUser currentUser] != nil;

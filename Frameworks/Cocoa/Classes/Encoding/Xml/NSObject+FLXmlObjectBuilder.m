@@ -40,7 +40,7 @@
                       
 }          
 
-+ (id) objectWithXmlFile:(NSString*) xmlFilePath {
++ (id) objectWithXmlFilePath:(NSString*) xmlFilePath {
     FLParsedXmlElement* xml = [[FLXmlParser xmlParser] parseFileAtPath:xmlFilePath];
     if(!xml) {
         return nil;
@@ -49,5 +49,19 @@
     return [self objectWithXmlElement:xml 
                     withObjectBuilder:[FLXmlObjectBuilder xmlObjectBuilder]];
 }
+
++ (id) objectWithXmlFile:(NSString*) xmlFileName inBundle:(NSBundle*) bundle {
+    
+    if(!bundle) {
+        bundle = [NSBundle mainBundle];
+    }
+    
+    NSString* pathToFile = [bundle pathForResource:[xmlFileName stringByDeletingPathExtension] ofType:[xmlFileName pathExtension]];
+    
+    FLConfirmNotNilWithComment(pathToFile, @"%@ not found in bundle", xmlFileName);
+    
+    return [self objectWithXmlFilePath:pathToFile];
+}
+
 
 @end

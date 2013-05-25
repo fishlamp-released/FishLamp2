@@ -19,6 +19,8 @@
                 elementName:(NSString*) elementName
           withObjectBuilder:(FLXmlObjectBuilder*) builder;
 
-+ (id) objectWithXmlFile:(NSString*) xmlFilePath;
++ (id) objectWithXmlFilePath:(NSString*) xmlFilePath;
+
++ (id) objectWithXmlFile:(NSString*) xmlFileName inBundle:(NSBundle*) bundleOrNil;
 
 @end

@@ -60,6 +60,15 @@
 		27733E00173C310A00B93AB1 /* libFishLampConnect-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43AC415CDCCCB001CB13E /* libFishLampConnect-OSX-64-MRC.a */; };
 		27733E01173C310A00B93AB1 /* libFishLampCocoa-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DD1173C307000B93AB1 /* libFishLampCocoa-OSX-64-MRC.a */; };
 		27733E02173C310A00B93AB1 /* libFishLampCore-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DE4173C307000B93AB1 /* libFishLampCore-OSX-64-MRC.a */; };
+		2797B80B17512476001E0FED /* FLParseCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 2797B80817512476001E0FED /* FLParseCredentials.h */; };
+		2797B80C17512476001E0FED /* FLParseCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 2797B80817512476001E0FED /* FLParseCredentials.h */; };
+		2797B80D17512476001E0FED /* FLParseCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 2797B80817512476001E0FED /* FLParseCredentials.h */; };
+		2797B80E17512476001E0FED /* FLParseCredentials.h in Headers */ = {isa = PBXBuildFile; fileRef = 2797B80817512476001E0FED /* FLParseCredentials.h */; };
+		2797B80F17512476001E0FED /* FLParseCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 2797B80917512476001E0FED /* FLParseCredentials.m */; };
+		2797B81017512476001E0FED /* FLParseCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 2797B80917512476001E0FED /* FLParseCredentials.m */; };
+		2797B81117512476001E0FED /* FLParseCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 2797B80917512476001E0FED /* FLParseCredentials.m */; };
+		2797B81217512476001E0FED /* FLParseCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 2797B80917512476001E0FED /* FLParseCredentials.m */; };
+		2797B81317512476001E0FED /* FLParseCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = 2797B80917512476001E0FED /* FLParseCredentials.m */; };
 		27EA230616B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
 		27EA230716B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
 		27EA230816B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27EA230516B84DCA0018CDB2 /* FishLampConnect-Prefix.pch */; };
@@ -283,6 +292,9 @@
 		27733DF4173C30DD00B93AB1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		27733DF5173C30DD00B93AB1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		27733DF6173C30DD00B93AB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2797B80817512476001E0FED /* FLParseCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLParseCredentials.h; sourceTree = "<group>"; };
+		2797B80917512476001E0FED /* FLParseCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLParseCredentials.m; sourceTree = "<group>"; };
+		2797B80A17512476001E0FED /* ParseCredentials.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ParseCredentials.flproj; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampConnect-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampConnect-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampConnect-OSX-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-OSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -390,6 +402,9 @@
 		27337EB1174C4EFA002DEC7D /* Parse */ = {
 			isa = PBXGroup;
 			children = (
+				2797B80817512476001E0FED /* FLParseCredentials.h */,
+				2797B80917512476001E0FED /* FLParseCredentials.m */,
+				2797B80A17512476001E0FED /* ParseCredentials.flproj */,
 				27337EBB174C4F20002DEC7D /* FLParseService.h */,
 				27337EBC174C4F20002DEC7D /* FLParseService.m */,
 				27337EC6174C5002002DEC7D /* FLParseServiceStorage.h */,
@@ -544,6 +559,7 @@
 				27337EC8174C5002002DEC7D /* FLParseServiceStorage.h in Headers */,
 				273EFD02174FB96E00ABFB46 /* FLParseClassLink.h in Headers */,
 				273EFD0D174FBE8900ABFB46 /* FLParseController.h in Headers */,
+				2797B80B17512476001E0FED /* FLParseCredentials.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +572,7 @@
 				27337ECA174C5002002DEC7D /* FLParseServiceStorage.h in Headers */,
 				273EFD04174FB96E00ABFB46 /* FLParseClassLink.h in Headers */,
 				273EFD0F174FBE8900ABFB46 /* FLParseController.h in Headers */,
+				2797B80D17512476001E0FED /* FLParseCredentials.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +585,7 @@
 				27337EC9174C5002002DEC7D /* FLParseServiceStorage.h in Headers */,
 				273EFD03174FB96E00ABFB46 /* FLParseClassLink.h in Headers */,
 				273EFD0E174FBE8900ABFB46 /* FLParseController.h in Headers */,
+				2797B80C17512476001E0FED /* FLParseCredentials.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +598,7 @@
 				27337ECB174C5002002DEC7D /* FLParseServiceStorage.h in Headers */,
 				273EFD05174FB96E00ABFB46 /* FLParseClassLink.h in Headers */,
 				273EFD10174FBE8900ABFB46 /* FLParseController.h in Headers */,
+				2797B80E17512476001E0FED /* FLParseCredentials.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,6 +885,7 @@
 				27337ECD174C5002002DEC7D /* FLParseServiceStorage.m in Sources */,
 				273EFD07174FB96E00ABFB46 /* FLParseClassLink.m in Sources */,
 				273EFD12174FBE8900ABFB46 /* FLParseController.m in Sources */,
+				2797B81017512476001E0FED /* FLParseCredentials.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,6 +897,7 @@
 				27337ECF174C5002002DEC7D /* FLParseServiceStorage.m in Sources */,
 				273EFD09174FB96E00ABFB46 /* FLParseClassLink.m in Sources */,
 				273EFD14174FBE8900ABFB46 /* FLParseController.m in Sources */,
+				2797B81217512476001E0FED /* FLParseCredentials.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -888,6 +909,7 @@
 				27337ECC174C5002002DEC7D /* FLParseServiceStorage.m in Sources */,
 				273EFD06174FB96E00ABFB46 /* FLParseClassLink.m in Sources */,
 				273EFD11174FBE8900ABFB46 /* FLParseController.m in Sources */,
+				2797B80F17512476001E0FED /* FLParseCredentials.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,6 +921,7 @@
 				27337ECE174C5002002DEC7D /* FLParseServiceStorage.m in Sources */,
 				273EFD08174FB96E00ABFB46 /* FLParseClassLink.m in Sources */,
 				273EFD13174FBE8900ABFB46 /* FLParseController.m in Sources */,
+				2797B81117512476001E0FED /* FLParseCredentials.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -910,6 +933,7 @@
 				27337ED0174C5002002DEC7D /* FLParseServiceStorage.m in Sources */,
 				273EFD0A174FB96E00ABFB46 /* FLParseClassLink.m in Sources */,
 				273EFD15174FBE8900ABFB46 /* FLParseController.m in Sources */,
+				2797B81317512476001E0FED /* FLParseCredentials.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

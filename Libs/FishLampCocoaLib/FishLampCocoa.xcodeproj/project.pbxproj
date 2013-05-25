@@ -1762,15 +1762,15 @@
 		271D3B1E16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F316FE0776009CD00F /* NSError+FLServiceRequest.m */; };
 		271D3B1F16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F316FE0776009CD00F /* NSError+FLServiceRequest.m */; };
 		271D3B2016FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D32F316FE0776009CD00F /* NSError+FLServiceRequest.m */; };
-		271D3B6016FE0794009CD00F /* FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330316FE0776009CD00F /* FLUserLogin.h */; };
-		271D3B6116FE0794009CD00F /* FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330316FE0776009CD00F /* FLUserLogin.h */; };
-		271D3B6216FE0794009CD00F /* FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330316FE0776009CD00F /* FLUserLogin.h */; };
-		271D3B6316FE0794009CD00F /* FLUserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330316FE0776009CD00F /* FLUserLogin.h */; };
-		271D3B6416FE0794009CD00F /* FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330416FE0776009CD00F /* FLUserLogin.m */; };
-		271D3B6516FE0794009CD00F /* FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330416FE0776009CD00F /* FLUserLogin.m */; };
-		271D3B6616FE0794009CD00F /* FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330416FE0776009CD00F /* FLUserLogin.m */; };
-		271D3B6716FE0794009CD00F /* FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330416FE0776009CD00F /* FLUserLogin.m */; };
-		271D3B6816FE0794009CD00F /* FLUserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330416FE0776009CD00F /* FLUserLogin.m */; };
+		271D3B6016FE0794009CD00F /* FLUserLogin+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330316FE0776009CD00F /* FLUserLogin+Additions.h */; };
+		271D3B6116FE0794009CD00F /* FLUserLogin+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330316FE0776009CD00F /* FLUserLogin+Additions.h */; };
+		271D3B6216FE0794009CD00F /* FLUserLogin+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330316FE0776009CD00F /* FLUserLogin+Additions.h */; };
+		271D3B6316FE0794009CD00F /* FLUserLogin+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330316FE0776009CD00F /* FLUserLogin+Additions.h */; };
+		271D3B6416FE0794009CD00F /* FLUserLogin+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330416FE0776009CD00F /* FLUserLogin+Additions.m */; };
+		271D3B6516FE0794009CD00F /* FLUserLogin+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330416FE0776009CD00F /* FLUserLogin+Additions.m */; };
+		271D3B6616FE0794009CD00F /* FLUserLogin+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330416FE0776009CD00F /* FLUserLogin+Additions.m */; };
+		271D3B6716FE0794009CD00F /* FLUserLogin+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330416FE0776009CD00F /* FLUserLogin+Additions.m */; };
+		271D3B6816FE0794009CD00F /* FLUserLogin+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 271D330416FE0776009CD00F /* FLUserLogin+Additions.m */; };
 		271D3B6916FE0794009CD00F /* FLDatabaseLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330616FE0776009CD00F /* FLDatabaseLink.h */; };
 		271D3B6A16FE0794009CD00F /* FLDatabaseLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330616FE0776009CD00F /* FLDatabaseLink.h */; };
 		271D3B6B16FE0794009CD00F /* FLDatabaseLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 271D330616FE0776009CD00F /* FLDatabaseLink.h */; };
@@ -3764,8 +3764,8 @@
 		271D32F116FE0776009CD00F /* FLUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserService.m; sourceTree = "<group>"; };
 		271D32F216FE0776009CD00F /* NSError+FLServiceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+FLServiceRequest.h"; sourceTree = "<group>"; };
 		271D32F316FE0776009CD00F /* NSError+FLServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+FLServiceRequest.m"; sourceTree = "<group>"; };
-		271D330316FE0776009CD00F /* FLUserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUserLogin.h; sourceTree = "<group>"; };
-		271D330416FE0776009CD00F /* FLUserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUserLogin.m; sourceTree = "<group>"; };
+		271D330316FE0776009CD00F /* FLUserLogin+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLUserLogin+Additions.h"; sourceTree = "<group>"; };
+		271D330416FE0776009CD00F /* FLUserLogin+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLUserLogin+Additions.m"; sourceTree = "<group>"; };
 		271D330616FE0776009CD00F /* FLDatabaseLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDatabaseLink.h; sourceTree = "<group>"; };
 		271D330716FE0776009CD00F /* FLDatabaseLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDatabaseLink.m; sourceTree = "<group>"; };
 		271D331616FE0776009CD00F /* FLStorageStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStorageStrategy.h; sourceTree = "<group>"; };
@@ -5183,8 +5183,8 @@
 			children = (
 				27C16EDF173EC08000C8B8FA /* __FLUserLogin.h */,
 				27C16EE0173EC08000C8B8FA /* __FLUserLogin.m */,
-				271D330316FE0776009CD00F /* FLUserLogin.h */,
-				271D330416FE0776009CD00F /* FLUserLogin.m */,
+				271D330316FE0776009CD00F /* FLUserLogin+Additions.h */,
+				271D330416FE0776009CD00F /* FLUserLogin+Additions.m */,
 			);
 			path = SessionObjects;
 			sourceTree = "<group>";
@@ -6137,7 +6137,7 @@
 				271D3B0616FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B0F16FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1816FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
-				271D3B6016FE0794009CD00F /* FLUserLogin.h in Headers */,
+				271D3B6016FE0794009CD00F /* FLUserLogin+Additions.h in Headers */,
 				271D3B6916FE0794009CD00F /* FLDatabaseLink.h in Headers */,
 				271D3BB116FE0796009CD00F /* FLStorageStrategy.h in Headers */,
 				271D3BBA16FE0796009CD00F /* __FLCachedImageBaseClass.h in Headers */,
@@ -6524,7 +6524,7 @@
 				271D3B0816FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B1116FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1A16FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
-				271D3B6216FE0794009CD00F /* FLUserLogin.h in Headers */,
+				271D3B6216FE0794009CD00F /* FLUserLogin+Additions.h in Headers */,
 				271D3B6B16FE0794009CD00F /* FLDatabaseLink.h in Headers */,
 				271D3BB316FE0796009CD00F /* FLStorageStrategy.h in Headers */,
 				271D3BBC16FE0796009CD00F /* __FLCachedImageBaseClass.h in Headers */,
@@ -6911,7 +6911,7 @@
 				271D3B0716FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B1016FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1916FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
-				271D3B6116FE0794009CD00F /* FLUserLogin.h in Headers */,
+				271D3B6116FE0794009CD00F /* FLUserLogin+Additions.h in Headers */,
 				271D3B6A16FE0794009CD00F /* FLDatabaseLink.h in Headers */,
 				271D3BB216FE0796009CD00F /* FLStorageStrategy.h in Headers */,
 				271D3BBB16FE0796009CD00F /* __FLCachedImageBaseClass.h in Headers */,
@@ -7298,7 +7298,7 @@
 				271D3B0916FE0793009CD00F /* FLUserDataStorageService.h in Headers */,
 				271D3B1216FE0793009CD00F /* FLUserService.h in Headers */,
 				271D3B1B16FE0793009CD00F /* NSError+FLServiceRequest.h in Headers */,
-				271D3B6316FE0794009CD00F /* FLUserLogin.h in Headers */,
+				271D3B6316FE0794009CD00F /* FLUserLogin+Additions.h in Headers */,
 				271D3B6C16FE0794009CD00F /* FLDatabaseLink.h in Headers */,
 				271D3BB416FE0796009CD00F /* FLStorageStrategy.h in Headers */,
 				271D3BBD16FE0796009CD00F /* __FLCachedImageBaseClass.h in Headers */,
@@ -7844,7 +7844,7 @@
 				271D3ADE16FE0792009CD00F /* FLService.m in Sources */,
 				271D3B1416FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1D16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
-				271D3B6516FE0794009CD00F /* FLUserLogin.m in Sources */,
+				271D3B6516FE0794009CD00F /* FLUserLogin+Additions.m in Sources */,
 				271D3B6E16FE0794009CD00F /* FLDatabaseLink.m in Sources */,
 				271D3BB616FE0796009CD00F /* FLStorageStrategy.m in Sources */,
 				271D3BC816FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
@@ -8195,7 +8195,7 @@
 				271D3AE016FE0792009CD00F /* FLService.m in Sources */,
 				271D3B1616FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1F16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
-				271D3B6716FE0794009CD00F /* FLUserLogin.m in Sources */,
+				271D3B6716FE0794009CD00F /* FLUserLogin+Additions.m in Sources */,
 				271D3B7016FE0795009CD00F /* FLDatabaseLink.m in Sources */,
 				271D3BB816FE0796009CD00F /* FLStorageStrategy.m in Sources */,
 				271D3BCA16FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
@@ -8547,7 +8547,7 @@
 				271D3ADD16FE0792009CD00F /* FLService.m in Sources */,
 				271D3B1316FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1C16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
-				271D3B6416FE0794009CD00F /* FLUserLogin.m in Sources */,
+				271D3B6416FE0794009CD00F /* FLUserLogin+Additions.m in Sources */,
 				271D3B6D16FE0794009CD00F /* FLDatabaseLink.m in Sources */,
 				271D3BB516FE0796009CD00F /* FLStorageStrategy.m in Sources */,
 				271D3BC716FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
@@ -8889,7 +8889,7 @@
 				271D3ADF16FE0792009CD00F /* FLService.m in Sources */,
 				271D3B1516FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B1E16FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
-				271D3B6616FE0794009CD00F /* FLUserLogin.m in Sources */,
+				271D3B6616FE0794009CD00F /* FLUserLogin+Additions.m in Sources */,
 				271D3B6F16FE0794009CD00F /* FLDatabaseLink.m in Sources */,
 				271D3BB716FE0796009CD00F /* FLStorageStrategy.m in Sources */,
 				271D3BC916FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
@@ -9248,7 +9248,7 @@
 				271D3AE116FE0792009CD00F /* FLService.m in Sources */,
 				271D3B1716FE0793009CD00F /* FLUserService.m in Sources */,
 				271D3B2016FE0793009CD00F /* NSError+FLServiceRequest.m in Sources */,
-				271D3B6816FE0794009CD00F /* FLUserLogin.m in Sources */,
+				271D3B6816FE0794009CD00F /* FLUserLogin+Additions.m in Sources */,
 				271D3B7116FE0795009CD00F /* FLDatabaseLink.m in Sources */,
 				271D3BB916FE0796009CD00F /* FLStorageStrategy.m in Sources */,
 				271D3BCB16FE0796009CD00F /* FLCachedImageBaseClass.m in Sources */,
