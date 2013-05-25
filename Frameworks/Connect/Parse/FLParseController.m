@@ -10,7 +10,7 @@
 #import "FLModelObject.h"
 #import "FLParseClassLink.h"
 #import <ParseOSX/ParseOSX.h>
-#import "FLUserLogin.h"
+#import "FLUserLogin+Additions.h"
 #import "FLParseCredentials.h"
 #import "FLTrace.h"
 
@@ -188,6 +188,8 @@ FLSynthesizeSingleton(FLParseController);
     [defaultACL setPublicReadAccess:YES];
     [defaultACL setPublicWriteAccess:NO];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    
+    FLTrace(@"set appId and default ACL");
 }
 
 - (FLPromise*) beginLoggingInUser:(FLUserLogin*) userLogin 
@@ -202,9 +204,12 @@ FLSynthesizeSingleton(FLParseController);
                          error:&error];
         FLThrowIfError(error);
         
-        userLogin.isAuthenticatedValue = YES;
+        userLogin.isAuthenticated = YES;
         [finisher setFinishedWithResult:userLogin];
-    } completion:nil ];
+        
+        FLTrace(@"logged in %@ ok", userLogin.userName);
+        
+    } completion:completion ];
 }
 
 //    if(![[FLParseController instance] isAuthenticated]) {

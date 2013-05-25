@@ -81,7 +81,7 @@ arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
     
     for(FLParsedXmlElement* element in [self.childElements objectEnumerator]) {
         
-        if(element.siblingElement != nil) {
+        if(element.sibling != nil) {
             FLParsedXmlElement* walker = element;
             while(walker != nil) {
                 FLPropertyDescriber* arrayType = [propertyDescriber containedTypeForName:walker.elementName];
@@ -90,10 +90,14 @@ arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
                     [newArray addObject:object];
                 }
                 else {
-                    FLLog(@"Unable to inflate xml element %@:%@", walker.elementName, [walker description]);
+#if DEBUG
+                    if(FLStringIsNotEmpty(walker.elementValue)) {
+                        FLLog(@"Unable to inflate xml element %@:%@", walker.elementName, [walker description]);
+                    }
+#endif                    
                 }
                 
-                walker = walker.siblingElement;
+                walker = walker.sibling;
             }
         }
         else {

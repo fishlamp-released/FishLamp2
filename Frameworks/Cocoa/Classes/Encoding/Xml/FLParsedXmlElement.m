@@ -23,7 +23,7 @@
 @synthesize elementValue = _elementValue;
 @synthesize childElements = _elements;
 @synthesize parent = _parent;
-@synthesize siblingElement = _siblingElement;
+@synthesize sibling = _sibling;
 
 - (id) initWithName:(NSString*) name elementValue:(NSString*) elementValue {	
 	self = [super init];
@@ -57,13 +57,29 @@
     }
 }
 
+- (void) addSibling:(FLParsedXmlElement*) sibling {
+    FLParsedXmlElement* walker = self;
+    while(walker.sibling) {
+        walker = walker.sibling;
+    }
+    FLAssertNotNil(walker);
+    FLAssertIsNil(walker.sibling);
+    walker.sibling = sibling;
+}
+
 - (void) addChildElement:(FLParsedXmlElement*) element {
     if(!_elements) {
         _elements = [[NSMutableDictionary alloc] init];
     }
-    element.siblingElement = [_elements objectForKey:element.elementName];
-    [_elements setObject:element forKey:element.elementName];
     element.parent = self;
+
+    FLParsedXmlElement* current = [_elements objectForKey:element.elementName];
+    if(current) {
+        [current addSibling:element];
+    }
+    else {
+        [_elements setObject:element forKey:element.elementName];
+    }
 }
 
 - (FLParsedXmlElement*) childElementForName:(NSString*) name {
@@ -72,7 +88,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_siblingElement release];
+    [_sibling release];
     [_attributes release];
     [_namespace release];
     [_elementName release];
@@ -139,8 +155,8 @@
     
     [stringFormatter appendLineWithFormat:@"<%@>", self.elementName];
 
-    if(self.siblingElement) {
-        [self.siblingElement describeToStringFormatter:stringFormatter];
+    if(self.sibling) {
+        [self.sibling describeToStringFormatter:stringFormatter];
     }
 }
 

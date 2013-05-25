@@ -17,7 +17,7 @@
     NSString* _qualifiedName;
     NSMutableString* _elementValue;
     NSMutableDictionary* _elements;
-    FLParsedXmlElement* _siblingElement;
+    FLParsedXmlElement* _sibling;
 
     __unsafe_unretained FLParsedXmlElement* _parent;
 }
@@ -38,7 +38,7 @@
 @property (readonly, assign, nonatomic) FLParsedXmlElement* parent;
 
 // siblings
-@property (readwrite, strong, nonatomic) FLParsedXmlElement* siblingElement;
+@property (readwrite, strong, nonatomic) FLParsedXmlElement* sibling;
 
 // childElements 
 @property (readonly, strong, nonatomic) NSDictionary* childElements;
