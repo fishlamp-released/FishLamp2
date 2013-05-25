@@ -12,7 +12,7 @@
 #import "FLDatabaseObjectStorageService.h"
 #import "FLAppInfo.h"
 #import "FLSynchronousOperation.h"
-
+#import "FLUserLogin+Additions.h"
 NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDidLogoutUserNotification";
 
 @interface FLHttpController ()

@@ -45,15 +45,15 @@ extern FLWillThrowExceptionHandler* FLGetWillThrowExceptionHandler();
                                         } \
                                     } while(0)
 
-#define FLThrowErrorCodeWithComment(__DOMAIN_OBJECT_OR_STRING__, __CODE__, __FORMAT__, ...) \
-            FLThrowError([NSError errorWithDomain:__DOMAIN_OBJECT_OR_STRING__ \
+#define FLThrowErrorCodeWithComment(__DOMAIN__, __CODE__, __FORMAT__, ...) \
+            FLThrowError([NSError errorWithDomain:__DOMAIN__ \
                             code:(__CODE__) \
                             localizedDescription: nil \
                             userInfo:nil \
                             comment:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__)])
 
-#define FLThrowErrorCode(__DOMAIN_OBJECT_OR_STRING__, __CODE__) \
-            FLThrowError([NSError errorWithDomain:__DOMAIN_OBJECT_OR_STRING__ \
+#define FLThrowErrorCode(__DOMAIN__, __CODE__) \
+            FLThrowError([NSError errorWithDomain:__DOMAIN__ \
                             code:(__CODE__) \
                             localizedDescription:nil \
                             userInfo:nil \
