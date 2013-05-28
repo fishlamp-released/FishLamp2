@@ -32,8 +32,6 @@ else
 	echo "";
 fi
 
-exit 0;
-
 tag="v$build_version"
 git tag $tag || { echo "##! adding git tag failed"; exit 1; }
 echo "# added tag $tag ok"
