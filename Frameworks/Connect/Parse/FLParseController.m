@@ -72,6 +72,9 @@ FLSynthesizeSingleton(FLParseController);
     for(NSString* key in object.allKeys) {
     
         id propertyValue = [object objectForKey:key];
+        if([propertyValue isKindOfClass:[NSNull class]]) {
+            continue;
+        }
     
         FLPropertyDescriber* property = [objectDescriber propertyForName:key];
 
