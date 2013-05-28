@@ -17,10 +17,10 @@ status=`git status -s`
 branch=`git rev-parse --abbrev-ref HEAD`
 build_version=`version-get "$plist_file"` || { exit 1; }
 
-# if [ "$status" != "" ]; then 
-# 	echo "##! your git repo has uncommitted changes - please commit changes before tagging version."
-# 	exit 1;
-# fi
+if [ "$status" != "" ]; then 
+	echo "##! your git repo has uncommitted changes - please commit changes before tagging version."
+	exit 1;
+fi
 
 if [ `fishlamp-ynq \"Bump version?\"` == "yes" ]; then
 	echo "";

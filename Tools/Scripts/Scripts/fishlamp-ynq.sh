@@ -14,7 +14,7 @@ done
 
 done="no"
 
-read -p "$prompt (Y, N,Q): " -n 1 -r
+read -p "$prompt (Y, N, Q): " -n 1 -r
 
 while [ "$done" == "no" ]; do
 
