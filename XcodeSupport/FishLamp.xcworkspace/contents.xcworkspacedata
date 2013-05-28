@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "container:"
+      name = "Lib Projects">
+      <FileRef
+         location = "group:Projects/Libs/FishLampOSXLib/FishLampOSX.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Projects/Libs/FishLampiOSLib/FishLampiOS.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Projects/Libs/FishLampCoreLib/FishLampCore.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Projects/Libs/FishLampConnectLib/FishLampConnect.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Projects/Libs/FishLampCocoaUILib/FishLampCocoaUI.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Projects/Libs/FishLampCocoaLib/FishLampCocoa.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Projects/Libs/FishLampAnimationLib/FishLampAnimation.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "App Projects">
+      <FileRef
+         location = "group:Projects/Apps/FishLampOSXApp/FishLampCocoaApp.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>
