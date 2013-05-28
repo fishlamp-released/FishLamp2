@@ -355,10 +355,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		270E726617137E3C002E2FB1 /* lib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		27636547171B590F00F44096 /* lib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		279A1CA616A0886B004794BB /* lib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		27B4F2E5169A3E4500D56DFA /* lib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		270E726617137E3C002E2FB1 /* libFishLampCocoaApp-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaApp-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27636547171B590F00F44096 /* libFishLampCocoaApp-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaApp-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		279A1CA616A0886B004794BB /* libFishLampCocoaApp-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaApp-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27B4F2E5169A3E4500D56DFA /* libFishLampCocoaApp-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaApp-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B4F2F9169A3E5500D56DFA /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../../Libs/FishLampCoreLib/FishLampCore.xcodeproj; sourceTree = SOURCE_ROOT; };
 		27B4F2FC169A3E5500D56DFA /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../../Libs/FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = SOURCE_ROOT; };
 		27B4F302169A3E5500D56DFA /* FishLampCocoaUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoaUI.xcodeproj; path = ../../Libs/FishLampCocoaUILib/FishLampCocoaUI.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -451,10 +451,10 @@
 		27B4F2E6169A3E4500D56DFA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27B4F2E5169A3E4500D56DFA /* lib.a */,
-				279A1CA616A0886B004794BB /* lib.a */,
-				270E726617137E3C002E2FB1 /* lib.a */,
-				27636547171B590F00F44096 /* lib.a */,
+				27B4F2E5169A3E4500D56DFA /* libFishLampCocoaApp-ARC.a */,
+				279A1CA616A0886B004794BB /* libFishLampCocoaApp-64-MRC.a */,
+				270E726617137E3C002E2FB1 /* libFishLampCocoaApp-3264-MRC.a */,
+				27636547171B590F00F44096 /* libFishLampCocoaApp-32-MRC.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -605,7 +605,7 @@
 			);
 			name = "FishLampCocoaApp-3264-MRC";
 			productName = FishLampCocoaApp;
-			productReference = 270E726617137E3C002E2FB1 /* lib.a */;
+			productReference = 270E726617137E3C002E2FB1 /* libFishLampCocoaApp-3264-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		27636531171B590F00F44096 /* FishLampCocoaApp-32-MRC */ = {
@@ -627,7 +627,7 @@
 			);
 			name = "FishLampCocoaApp-32-MRC";
 			productName = FishLampCocoaApp;
-			productReference = 27636547171B590F00F44096 /* lib.a */;
+			productReference = 27636547171B590F00F44096 /* libFishLampCocoaApp-32-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		279A1C8E16A0886B004794BB /* FishLampCocoaApp-64-MRC */ = {
@@ -649,7 +649,7 @@
 			);
 			name = "FishLampCocoaApp-64-MRC";
 			productName = FishLampCocoaApp;
-			productReference = 279A1CA616A0886B004794BB /* lib.a */;
+			productReference = 279A1CA616A0886B004794BB /* libFishLampCocoaApp-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		27B4F2E4169A3E4500D56DFA /* FishLampCocoaApp-ARC */ = {
@@ -671,7 +671,7 @@
 			);
 			name = "FishLampCocoaApp-ARC";
 			productName = FishLampCocoaApp;
-			productReference = 27B4F2E5169A3E4500D56DFA /* lib.a */;
+			productReference = 27B4F2E5169A3E4500D56DFA /* libFishLampCocoaApp-ARC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */

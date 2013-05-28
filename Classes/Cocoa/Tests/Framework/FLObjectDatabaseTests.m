@@ -29,6 +29,7 @@
     NSInteger _NSInteger;
     NSUInteger _NSUInteger;
     FLDatabaseTestObject* _childObject;
+    unsigned int _identifier;
 }
 @property (readwrite, strong, nonatomic) NSString* string;
 @property (readwrite, strong, nonatomic) NSDate* date;

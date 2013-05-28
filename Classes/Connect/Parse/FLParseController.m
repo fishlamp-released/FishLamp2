@@ -9,15 +9,14 @@
 #import "FLParseController.h"
 #import "FLModelObject.h"
 #import "FLParseClassLink.h"
-#import <ParseOSX/ParseOSX.h>
 #import "FLUserLogin+Additions.h"
 #import "FLParseCredentials.h"
 #import "FLTrace.h"
 
+#import <ParseOSX/ParseOSX.h>
+
 @interface FLParseController ()
 - (void) deleteObject:(PFObject*) object;
-
-
 @end
 
 @implementation FLParseController

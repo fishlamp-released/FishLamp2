@@ -27,7 +27,7 @@ fi
 
 echo ""
 
-cd Scripts
+cd "$MY_PATH/Scripts"
 
 # reset install folder
 if [ -d "$INSTALL_PATH" ]; then

@@ -26,7 +26,8 @@
 
 #if FL_MRC
 - (void) dealloc {
-	[_encodedString release];
+	[_objectClass release];
+	[_objectId release];
 	[super dealloc];
 }
 #endif

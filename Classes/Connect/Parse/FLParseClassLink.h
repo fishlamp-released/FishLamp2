@@ -10,7 +10,7 @@
 
 @interface FLParseClassLink : NSObject {
 @private
-    NSString* _objectClassString;
+    NSString* _objectClass;
     NSString* _objectId;
 }
 
