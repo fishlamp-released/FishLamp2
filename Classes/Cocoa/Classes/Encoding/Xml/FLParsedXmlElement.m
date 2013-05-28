@@ -152,12 +152,10 @@
             [element describeToStringFormatter:stringFormatter];
         }
     }];
-    
-    [stringFormatter appendLineWithFormat:@"<%@>", self.elementName];
 
-    if(self.sibling) {
-        [self.sibling describeToStringFormatter:stringFormatter];
-    }
+    [stringFormatter appendLineWithFormat:@"</%@>", self.elementName];
+
+    [stringFormatter appendLineWithFormat:@"<!-- %d siblings -->", self.siblingCount];
 }
 
 - (NSString*) description {
@@ -174,6 +172,18 @@
 //        FLEmptyStringOrString(self.elementValue),
 //        FLEmptyStringOrString([self.elements description])
 //    ];
+}
+
+- (NSUInteger) siblingCount {
+    NSUInteger count = 0;
+    FLParsedXmlElement* walker = self;
+    while(walker.sibling) {
+        walker = walker.sibling;
+        
+        ++count;
+    }
+    
+    return count;
 }
 
 @end

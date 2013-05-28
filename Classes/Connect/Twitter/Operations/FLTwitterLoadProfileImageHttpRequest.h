@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
+#if REFACTOR
 
 #import "FLCocoaRequired.h"
 
@@ -24,3 +25,4 @@
 @property (readwrite, retain, nonatomic) NSString* imageSize; // defaults to normal
 
 @end
+#endif

@@ -9,8 +9,6 @@
 
 #import "FLService.h"
 
-#import "FacebookEnums.h"
-#import "FLFacebookAll.h"
 #import "FLFacebookNetworkSession.h"
 #import "FLFacebookHttpRequest.h"
 #import "FLFacebookAuthenticationResponse.h"
@@ -32,7 +30,7 @@ typedef enum {
 
 #define FLFacebookPostStatusOnlyPermissions [NSArray arrayWithObjects:kFLFacebookUserWritePermissionPublishStream, kFLFacebookUserWritePermissionOfflineAccess, nil ]
 
-@interface FLFacebookService : FLObjectStorageService {
+@interface FLFacebookService : FLService {
 @private
 	FLFacebookNetworkSession* _facebookNetworkSession; // 
 	NSString* _appId;

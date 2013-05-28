@@ -39,6 +39,7 @@
 
 // siblings
 @property (readwrite, strong, nonatomic) FLParsedXmlElement* sibling;
+@property (readonly, assign, nonatomic) NSUInteger siblingCount;
 
 // childElements 
 @property (readonly, strong, nonatomic) NSDictionary* childElements;

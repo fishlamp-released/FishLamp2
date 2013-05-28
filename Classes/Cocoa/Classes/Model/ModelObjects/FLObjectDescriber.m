@@ -16,7 +16,6 @@
 //#import "FLTrace.h"
 
 @interface FLPropertyDescriber (Internal)
-@property (readwrite) NSString* propertyName;
 @property (readwrite) FLObjectDescriber* representedObjectDescriber;
 @property (readwrite, copy) NSArray* containedTypes;
 
@@ -91,7 +90,25 @@ static NSMutableDictionary* s_registry = nil;
 
 - (FLObjectDescriber*) propertyForName:(NSString*) propertyName {
     @synchronized(self) {
-        return [_properties objectForKey:propertyName];
+        return [_properties objectForKey:[propertyName lowercaseString]];
+    }
+}
+
+- (FLPropertyDescriber*) propertyForContainerTypeByName:(NSString*) name {
+    @synchronized(self) {
+        
+        FLPropertyDescriber* outDescriber = nil;
+        for(FLPropertyDescriber* describer in [_properties objectEnumerator]) {
+            FLPropertyDescriber* contained = [describer containedTypeForName:name];
+            if(contained) {
+                if(outDescriber) {
+                    FLLog(@"duplicated contained type for %@", name);
+                }
+                outDescriber = describer;
+            }
+        }
+    
+        return outDescriber;
     }
 }
 
@@ -114,7 +131,7 @@ static NSMutableDictionary* s_registry = nil;
         _properties = [[NSMutableDictionary alloc] init];
     }
    
-    FLPropertyDescriber* existing = [_properties objectForKey:property.propertyName];
+    FLPropertyDescriber* existing = [_properties objectForKey:property.propertyKey];
     if(existing) {
         FLTrace(@"replacing property %@ to %@", property.propertyName, NSStringFromClass(self.objectClass));
         existing.representedObjectDescriber = property.representedObjectDescriber;
@@ -122,7 +139,7 @@ static NSMutableDictionary* s_registry = nil;
     } 
     else {
         FLTrace(@"added property %@ to %@", property.propertyName, NSStringFromClass(self.objectClass));
-        [_properties setObject:property forKey:property.propertyName];
+        [_properties setObject:property forKey:property.propertyKey];
     }
 }
 
@@ -222,7 +239,8 @@ static NSMutableDictionary* s_registry = nil;
 }
 
 - (void) addPropertyArrayTypes:(NSArray*) types forPropertyName:(NSString*) name {
-    FLPropertyDescriber* property = [self.properties objectForKey:name];
+
+    FLPropertyDescriber* property = [self.properties objectForKey:[name lowercaseString]];
     FLAssertNotNil(property);
    
     if(![property representsClass:[NSMutableArray class]] ) {
@@ -351,8 +369,8 @@ static NSMutableDictionary* s_registry = nil;
     if ([[self class] isModelObject]) {
         BOOL stop = NO;
         FLObjectDescriber* describer = [self objectDescriber];
-        for(NSString* propertyName in describer.properties) {
-            visitor(propertyName, [self valueForKey:propertyName], &stop);
+        for(FLPropertyDescriber* property in [describer.properties objectEnumerator]) {
+            visitor(property.propertyName, [self valueForKey:property.propertyName], &stop);
             
             if(stop) {
                 break;

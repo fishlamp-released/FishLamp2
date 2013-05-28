@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
+#if REFACTOR
 
 #import "FLTwitterLoadProfileImageHttpRequest.h"
 #import "FLTwitterService.h"
@@ -38,7 +39,7 @@
 	FLSuperDealloc();
 }
 
-//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+//- (FLPromisedResult) runOperationInContext:(id) context withObserver:(id) observer {
 //    self.twitterURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.twitter.com/1/users/profile_image/%@.json?size=%@", _username, _imageSize]];
 //    FLAssertNotNil(self.httpRequestURL);
 //    
@@ -52,3 +53,4 @@
 //}
 
 @end
+#endif

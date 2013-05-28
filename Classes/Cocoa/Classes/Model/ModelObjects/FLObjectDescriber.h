@@ -47,6 +47,7 @@ typedef void (^FLPropertyDescriberVisitorRecursive)(FLObjectDescriber* object, F
 
 // helpers
 - (FLPropertyDescriber*) propertyForName:(NSString*) identifier;
+- (FLPropertyDescriber*) propertyForContainerTypeByName:(NSString*) identifier;
 
 // type registration
 

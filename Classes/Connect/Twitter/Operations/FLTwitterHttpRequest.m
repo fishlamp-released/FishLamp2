@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
+#if REFACTOR
 
 #import "FLTwitterHttpRequest.h"
 #import "FLOAuthAuthorizationHeader.h"
@@ -41,7 +42,7 @@
 	return YES;
 }
 
-- (FLResult) authenticateHTTPRequest:(FLHttpRequest*) httpRequest {
+- (FLPromisedResult) authenticateHTTPRequest:(FLHttpRequest*) httpRequest {
 	
     FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
 	
@@ -89,7 +90,7 @@
 }
 
 
-//- (FLResult) runOperationInContext:(id) context withObserver:(id) observer {
+//- (FLPromisedResult) runOperationInContext:(id) context withObserver:(id) observer {
 //
 //    FLHttpRequest* httpRequest = [FLHttpRequest httpPostRequestWithURL:self.twitterURL];
 //
@@ -116,3 +117,4 @@
 	
 
 @end
+#endif

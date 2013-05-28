@@ -74,6 +74,22 @@ arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
 
 @implementation FLParsedXmlElement (FLXmlObjectBuilder)
 
+
+- (id) objectForArray:(FLParsedXmlElement*) element 
+    propertyDescriber:(FLPropertyDescriber*) propertyDescriber 
+    objectBuilder:(FLXmlObjectBuilder*) builder {
+  
+    FLPropertyDescriber* arrayType = [propertyDescriber containedTypeForName:element.elementName];
+    id object = [arrayType xmlObjectBuilder:builder inflateElementContents:element];
+    
+    return object;
+ 
+    
+//[propertyDescriber xmlObjectBuilder:builder  
+//                                 inflateElementContents:childElement];
+                  
+}    
+
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
 arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
 
@@ -84,8 +100,7 @@ arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
         if(element.sibling != nil) {
             FLParsedXmlElement* walker = element;
             while(walker != nil) {
-                FLPropertyDescriber* arrayType = [propertyDescriber containedTypeForName:walker.elementName];
-                id object = [arrayType xmlObjectBuilder:builder inflateElementContents:walker];
+                id object = [self objectForArray:walker propertyDescriber:propertyDescriber objectBuilder:builder];
                 if(object) {
                     [newArray addObject:object];
                 }
@@ -101,9 +116,11 @@ arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
             }
         }
         else {
-            FLPropertyDescriber* arrayType = [propertyDescriber containedTypeForName:[element elementName]];
-                
-            id object = [arrayType xmlObjectBuilder:builder inflateElementContents:element];
+//            FLPropertyDescriber* arrayType = [propertyDescriber containedTypeForName:[element elementName]];
+//                
+//            id object = [arrayType xmlObjectBuilder:builder inflateElementContents:element];
+            
+            id object = [self objectForArray:element propertyDescriber:propertyDescriber objectBuilder:builder];
             if(object) {
                 [newArray addObject:object];
             }

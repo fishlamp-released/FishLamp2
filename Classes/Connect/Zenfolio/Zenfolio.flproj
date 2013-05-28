@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project projectName="Zenfolio Web API">
+    <organization name="GreenTongue Software LLC, Mike Fullerton"/>
+    
+	<license>
+        <licenseName>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</licenseName>
+    </license>
+    
+	<generatorOptions>
+        <generateAllIncludesFile>YES</generateAllIncludesFile>
+        <objectsFolderName>v1.7</objectsFolderName>
+        <typePrefix>FL</typePrefix>
+    </generatorOptions>
+    
+	<typeDefinition typeName="FLZenfolioParsedCategory" dataType="object" import="FLZenfolioParsedCategory.h"/>
+	<import path="http://www.zenfolio.com/api/1.7/zfapi.asmx?WSDL" type="Wsdl"/>
+
+    <objects>
+        <object className="FLZenfolioPhoto">
+            <properties>
+                <property name="categoryArray" type="array">
+                    <arrayTypes>
+                        <arrayType name="parsedCategory" typeName="FLZenfolioParsedCategory"/>
+                    </arrayTypes>
+                </property>
+                <property name="Id">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object className="FLZenfolioGroupElement">
+            <properties>
+                <property name="Id">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object className="FLZenfolioUser">
+            <properties>
+                <property name="LoginName">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object className="FLZenfolioAccessDescriptor">
+            <properties>
+                <property name="password" type="string"/>
+                <property name="protectedObjectClassName" type="string"/>
+            </properties>
+        </object>
+    </objects>
+</project>

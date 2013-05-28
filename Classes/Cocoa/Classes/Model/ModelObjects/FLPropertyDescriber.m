@@ -42,6 +42,7 @@
 
 @interface FLPropertyDescriber ()
 @property (readwrite, strong) NSString* propertyName;
+@property (readwrite, strong) NSString* propertyKey;
 @property (readwrite, strong) FLObjectDescriber* representedObjectDescriber;
 @property (readwrite, strong) NSArray* containedTypes;
 @property (readwrite, assign) FLPropertyAttributes_t attributes;
@@ -56,6 +57,7 @@
 @synthesize propertyName = _propertyName;
 @synthesize representedObjectDescriber = _representedObjectDescriber;
 @synthesize containedTypes = _containedTypes;
+@synthesize propertyKey = _propertyKey;
 
 LazyStringGetter(structName, _structName, _attributes.structName)
 LazyStringGetter(unionName, _unionName, _attributes.unionName)
@@ -142,6 +144,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     FLAssertNotNilWithComment(property, @"propertyDescriber not created for %@", propertyName);
 
     property.propertyName = propertyName;
+    property.propertyKey = [propertyName lowercaseString];
     property.attributes = attributes;
 
     return property;
@@ -150,6 +153,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 + (id) propertyDescriber:(NSString*) name propertyClass:(Class) aClass {
     FLPropertyDescriber* describer = [FLPropertyDescriber propertyDescriber:aClass];
     describer.propertyName = name;
+    describer.propertyKey = [name lowercaseString];
     return describer;
 }
 
@@ -163,8 +167,9 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
 - (FLPropertyDescriber*) containedTypeForName:(NSString*) name {
     @synchronized(self) {
+        name = [name lowercaseString];
         for(FLPropertyDescriber* property in _containedTypes) {
-            if(FLStringsAreEqual(property.propertyName, name)) {
+            if(FLStringsAreEqual(property.propertyKey, name)) {
                 return property;
             }
         }
@@ -242,6 +247,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
 #if FL_MRC
 - (void) dealloc {
+    [_propertyKey release];
     [_representedObjectDescriber release];
 	[_propertyName release];
     [_containedTypes release];

@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
+#if REFACTOR
 
 #import "FLCocoaRequired.h"
 
@@ -17,7 +18,7 @@
 
 #define FLTwitterDefaultUserID [NSString zeroGuidString]
 
-@interface FLTwitterService : FLObjectStorageService {
+@interface FLTwitterService : FLService {
 @private
     FLOAuthApp* _oauthInfo;
 	FLOAuthSession* _oauthSession;
@@ -35,3 +36,5 @@
 - (void) openTwitterService:(FLTwitterService*) service;
 - (void) closeTwitterService:(FLTwitterService*) service;
 @end
+
+#endif

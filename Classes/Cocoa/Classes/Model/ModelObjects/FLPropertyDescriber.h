@@ -16,6 +16,7 @@
 @interface FLPropertyDescriber : NSObject {
 @private
     NSString* _propertyName;
+    NSString* _propertyKey;
     FLObjectDescriber* _representedObjectDescriber;
     NSMutableArray* _containedTypes;
     
@@ -30,6 +31,8 @@
 
 // property attributes
 @property (readonly, strong) NSString* propertyName;
+@property (readonly, strong) NSString* propertyKey; // lowercase version of name
+
 @property (readonly, strong, nonatomic) NSString* structName;
 @property (readonly, strong, nonatomic) NSString* ivarName;
 @property (readonly, strong, nonatomic) NSString* unionName;

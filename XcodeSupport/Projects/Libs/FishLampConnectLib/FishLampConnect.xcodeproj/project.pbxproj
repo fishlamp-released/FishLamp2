@@ -19,6 +19,64 @@
 		27733E00173C310A00B93AB1 /* libFishLampConnect-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43AC415CDCCCB001CB13E /* libFishLampConnect-OSX-64-MRC.a */; };
 		27733E01173C310A00B93AB1 /* libFishLampCocoa-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DD1173C307000B93AB1 /* libFishLampCocoa-OSX-64-MRC.a */; };
 		27733E02173C310A00B93AB1 /* libFishLampCore-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DE4173C307000B93AB1 /* libFishLampCore-OSX-64-MRC.a */; };
+		277CA656175548950035EB6D /* FLTwitterService.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA637175548950035EB6D /* FLTwitterService.h */; };
+		277CA657175548950035EB6D /* FLTwitterService.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA637175548950035EB6D /* FLTwitterService.h */; };
+		277CA658175548950035EB6D /* FLTwitterService.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA637175548950035EB6D /* FLTwitterService.h */; };
+		277CA659175548950035EB6D /* FLTwitterService.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA637175548950035EB6D /* FLTwitterService.h */; };
+		277CA65A175548950035EB6D /* FLTwitterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA638175548950035EB6D /* FLTwitterService.m */; };
+		277CA65B175548950035EB6D /* FLTwitterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA638175548950035EB6D /* FLTwitterService.m */; };
+		277CA65C175548950035EB6D /* FLTwitterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA638175548950035EB6D /* FLTwitterService.m */; };
+		277CA65D175548950035EB6D /* FLTwitterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA638175548950035EB6D /* FLTwitterService.m */; };
+		277CA65E175548950035EB6D /* FLTwitterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA638175548950035EB6D /* FLTwitterService.m */; };
+		277CA694175548950035EB6D /* FLTwitterHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA647175548950035EB6D /* FLTwitterHttpRequest.h */; };
+		277CA695175548950035EB6D /* FLTwitterHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA647175548950035EB6D /* FLTwitterHttpRequest.h */; };
+		277CA696175548950035EB6D /* FLTwitterHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA647175548950035EB6D /* FLTwitterHttpRequest.h */; };
+		277CA697175548950035EB6D /* FLTwitterHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA647175548950035EB6D /* FLTwitterHttpRequest.h */; };
+		277CA698175548950035EB6D /* FLTwitterHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA648175548950035EB6D /* FLTwitterHttpRequest.m */; };
+		277CA699175548950035EB6D /* FLTwitterHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA648175548950035EB6D /* FLTwitterHttpRequest.m */; };
+		277CA69A175548950035EB6D /* FLTwitterHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA648175548950035EB6D /* FLTwitterHttpRequest.m */; };
+		277CA69B175548950035EB6D /* FLTwitterHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA648175548950035EB6D /* FLTwitterHttpRequest.m */; };
+		277CA69C175548950035EB6D /* FLTwitterHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA648175548950035EB6D /* FLTwitterHttpRequest.m */; };
+		277CA69D175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA649175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h */; };
+		277CA69E175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA649175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h */; };
+		277CA69F175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA649175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h */; };
+		277CA6A0175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA649175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h */; };
+		277CA6A1175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA64A175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m */; };
+		277CA6A2175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA64A175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m */; };
+		277CA6A3175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA64A175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m */; };
+		277CA6A4175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA64A175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m */; };
+		277CA6A5175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA64A175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m */; };
+		277CA6A6175548950035EB6D /* FLTwitterPostStatusHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA64B175548950035EB6D /* FLTwitterPostStatusHttpRequest.h */; };
+		277CA6A7175548950035EB6D /* FLTwitterPostStatusHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA64B175548950035EB6D /* FLTwitterPostStatusHttpRequest.h */; };
+		277CA6A8175548950035EB6D /* FLTwitterPostStatusHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA64B175548950035EB6D /* FLTwitterPostStatusHttpRequest.h */; };
+		277CA6A9175548950035EB6D /* FLTwitterPostStatusHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA64B175548950035EB6D /* FLTwitterPostStatusHttpRequest.h */; };
+		277CA6AA175548950035EB6D /* FLTwitterPostStatusHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA64C175548950035EB6D /* FLTwitterPostStatusHttpRequest.m */; };
+		277CA6AB175548950035EB6D /* FLTwitterPostStatusHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA64C175548950035EB6D /* FLTwitterPostStatusHttpRequest.m */; };
+		277CA6AC175548950035EB6D /* FLTwitterPostStatusHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA64C175548950035EB6D /* FLTwitterPostStatusHttpRequest.m */; };
+		277CA6AD175548950035EB6D /* FLTwitterPostStatusHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA64C175548950035EB6D /* FLTwitterPostStatusHttpRequest.m */; };
+		277CA6AE175548950035EB6D /* FLTwitterPostStatusHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA64C175548950035EB6D /* FLTwitterPostStatusHttpRequest.m */; };
+		277CA6BE175552900035EB6D /* FishLampTwitter.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6B9175552900035EB6D /* FishLampTwitter.h */; };
+		277CA6BF175552900035EB6D /* FishLampTwitter.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6B9175552900035EB6D /* FishLampTwitter.h */; };
+		277CA6C0175552900035EB6D /* FishLampTwitter.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6B9175552900035EB6D /* FishLampTwitter.h */; };
+		277CA6C1175552900035EB6D /* FishLampTwitter.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6B9175552900035EB6D /* FishLampTwitter.h */; };
+		277CA6C2175552900035EB6D /* FLTwitterError.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6BA175552900035EB6D /* FLTwitterError.h */; };
+		277CA6C3175552900035EB6D /* FLTwitterError.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6BA175552900035EB6D /* FLTwitterError.h */; };
+		277CA6C4175552900035EB6D /* FLTwitterError.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6BA175552900035EB6D /* FLTwitterError.h */; };
+		277CA6C5175552900035EB6D /* FLTwitterError.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6BA175552900035EB6D /* FLTwitterError.h */; };
+		277CA6C6175552900035EB6D /* FLTwitterError.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA6BB175552900035EB6D /* FLTwitterError.m */; };
+		277CA6C7175552900035EB6D /* FLTwitterError.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA6BB175552900035EB6D /* FLTwitterError.m */; };
+		277CA6C8175552900035EB6D /* FLTwitterError.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA6BB175552900035EB6D /* FLTwitterError.m */; };
+		277CA6C9175552900035EB6D /* FLTwitterError.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA6BB175552900035EB6D /* FLTwitterError.m */; };
+		277CA6CA175552900035EB6D /* FLTwitterError.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA6BB175552900035EB6D /* FLTwitterError.m */; };
+		277CA6CB175552900035EB6D /* FLTwitterStatusUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6BC175552900035EB6D /* FLTwitterStatusUpdate.h */; };
+		277CA6CC175552900035EB6D /* FLTwitterStatusUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6BC175552900035EB6D /* FLTwitterStatusUpdate.h */; };
+		277CA6CD175552900035EB6D /* FLTwitterStatusUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6BC175552900035EB6D /* FLTwitterStatusUpdate.h */; };
+		277CA6CE175552900035EB6D /* FLTwitterStatusUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 277CA6BC175552900035EB6D /* FLTwitterStatusUpdate.h */; };
+		277CA6CF175552900035EB6D /* FLTwitterStatusUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA6BD175552900035EB6D /* FLTwitterStatusUpdate.m */; };
+		277CA6D0175552900035EB6D /* FLTwitterStatusUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA6BD175552900035EB6D /* FLTwitterStatusUpdate.m */; };
+		277CA6D1175552900035EB6D /* FLTwitterStatusUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA6BD175552900035EB6D /* FLTwitterStatusUpdate.m */; };
+		277CA6D2175552900035EB6D /* FLTwitterStatusUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA6BD175552900035EB6D /* FLTwitterStatusUpdate.m */; };
+		277CA6D3175552900035EB6D /* FLTwitterStatusUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 277CA6BD175552900035EB6D /* FLTwitterStatusUpdate.m */; };
 		27B4D20117553002008540B8 /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4D20017553002008540B8 /* ParseOSX.framework */; };
 		27B4D20217553002008540B8 /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4D20017553002008540B8 /* ParseOSX.framework */; };
 		27B4D20317553002008540B8 /* ParseOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4D20017553002008540B8 /* ParseOSX.framework */; };
@@ -239,6 +297,20 @@
 		27733DF4173C30DD00B93AB1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		27733DF5173C30DD00B93AB1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		27733DF6173C30DD00B93AB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		277CA634175548950035EB6D /* FishLampTwitter.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FishLampTwitter.flproj; sourceTree = "<group>"; };
+		277CA637175548950035EB6D /* FLTwitterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTwitterService.h; sourceTree = "<group>"; };
+		277CA638175548950035EB6D /* FLTwitterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTwitterService.m; sourceTree = "<group>"; };
+		277CA647175548950035EB6D /* FLTwitterHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTwitterHttpRequest.h; sourceTree = "<group>"; };
+		277CA648175548950035EB6D /* FLTwitterHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTwitterHttpRequest.m; sourceTree = "<group>"; };
+		277CA649175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTwitterLoadProfileImageHttpRequest.h; sourceTree = "<group>"; };
+		277CA64A175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTwitterLoadProfileImageHttpRequest.m; sourceTree = "<group>"; };
+		277CA64B175548950035EB6D /* FLTwitterPostStatusHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTwitterPostStatusHttpRequest.h; sourceTree = "<group>"; };
+		277CA64C175548950035EB6D /* FLTwitterPostStatusHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTwitterPostStatusHttpRequest.m; sourceTree = "<group>"; };
+		277CA6B9175552900035EB6D /* FishLampTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampTwitter.h; sourceTree = "<group>"; };
+		277CA6BA175552900035EB6D /* FLTwitterError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTwitterError.h; sourceTree = "<group>"; };
+		277CA6BB175552900035EB6D /* FLTwitterError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTwitterError.m; sourceTree = "<group>"; };
+		277CA6BC175552900035EB6D /* FLTwitterStatusUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTwitterStatusUpdate.h; sourceTree = "<group>"; };
+		277CA6BD175552900035EB6D /* FLTwitterStatusUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTwitterStatusUpdate.m; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampConnect-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampConnect-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampConnect-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B4D20017553002008540B8 /* ParseOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseOSX.framework; sourceTree = "<group>"; };
@@ -370,6 +442,43 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		277CA633175548950035EB6D /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				277CA634175548950035EB6D /* FishLampTwitter.flproj */,
+				277CA637175548950035EB6D /* FLTwitterService.h */,
+				277CA638175548950035EB6D /* FLTwitterService.m */,
+				277CA6B8175552900035EB6D /* GeneratedObjects */,
+				277CA646175548950035EB6D /* Operations */,
+			);
+			path = Twitter;
+			sourceTree = "<group>";
+		};
+		277CA646175548950035EB6D /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				277CA647175548950035EB6D /* FLTwitterHttpRequest.h */,
+				277CA648175548950035EB6D /* FLTwitterHttpRequest.m */,
+				277CA649175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h */,
+				277CA64A175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m */,
+				277CA64B175548950035EB6D /* FLTwitterPostStatusHttpRequest.h */,
+				277CA64C175548950035EB6D /* FLTwitterPostStatusHttpRequest.m */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		277CA6B8175552900035EB6D /* GeneratedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				277CA6B9175552900035EB6D /* FishLampTwitter.h */,
+				277CA6BA175552900035EB6D /* FLTwitterError.h */,
+				277CA6BB175552900035EB6D /* FLTwitterError.m */,
+				277CA6BC175552900035EB6D /* FLTwitterStatusUpdate.h */,
+				277CA6BD175552900035EB6D /* FLTwitterStatusUpdate.m */,
+			);
+			path = GeneratedObjects;
+			sourceTree = "<group>";
+		};
 		27A43A7115CDCC1B001CB13E = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +550,7 @@
 		27EA1EB216B84D7F0018CDB2 /* Connect */ = {
 			isa = PBXGroup;
 			children = (
+				277CA633175548950035EB6D /* Twitter */,
 			);
 			name = Connect;
 			path = ../../../../Classes/Connect;
@@ -482,6 +592,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				27EA230616B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */,
+				277CA656175548950035EB6D /* FLTwitterService.h in Headers */,
+				277CA694175548950035EB6D /* FLTwitterHttpRequest.h in Headers */,
+				277CA69D175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h in Headers */,
+				277CA6A6175548950035EB6D /* FLTwitterPostStatusHttpRequest.h in Headers */,
+				277CA6BE175552900035EB6D /* FishLampTwitter.h in Headers */,
+				277CA6C2175552900035EB6D /* FLTwitterError.h in Headers */,
+				277CA6CB175552900035EB6D /* FLTwitterStatusUpdate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +607,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				27EA230816B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */,
+				277CA658175548950035EB6D /* FLTwitterService.h in Headers */,
+				277CA696175548950035EB6D /* FLTwitterHttpRequest.h in Headers */,
+				277CA69F175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h in Headers */,
+				277CA6A8175548950035EB6D /* FLTwitterPostStatusHttpRequest.h in Headers */,
+				277CA6C0175552900035EB6D /* FishLampTwitter.h in Headers */,
+				277CA6C4175552900035EB6D /* FLTwitterError.h in Headers */,
+				277CA6CD175552900035EB6D /* FLTwitterStatusUpdate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +622,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				27EA230716B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */,
+				277CA657175548950035EB6D /* FLTwitterService.h in Headers */,
+				277CA695175548950035EB6D /* FLTwitterHttpRequest.h in Headers */,
+				277CA69E175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h in Headers */,
+				277CA6A7175548950035EB6D /* FLTwitterPostStatusHttpRequest.h in Headers */,
+				277CA6BF175552900035EB6D /* FishLampTwitter.h in Headers */,
+				277CA6C3175552900035EB6D /* FLTwitterError.h in Headers */,
+				277CA6CC175552900035EB6D /* FLTwitterStatusUpdate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +637,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				27EA230916B84DCA0018CDB2 /* FishLampConnect-Prefix.pch in Headers */,
+				277CA659175548950035EB6D /* FLTwitterService.h in Headers */,
+				277CA697175548950035EB6D /* FLTwitterHttpRequest.h in Headers */,
+				277CA6A0175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.h in Headers */,
+				277CA6A9175548950035EB6D /* FLTwitterPostStatusHttpRequest.h in Headers */,
+				277CA6C1175552900035EB6D /* FishLampTwitter.h in Headers */,
+				277CA6C5175552900035EB6D /* FLTwitterError.h in Headers */,
+				277CA6CE175552900035EB6D /* FLTwitterStatusUpdate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,6 +926,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277CA65B175548950035EB6D /* FLTwitterService.m in Sources */,
+				277CA699175548950035EB6D /* FLTwitterHttpRequest.m in Sources */,
+				277CA6A2175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m in Sources */,
+				277CA6AB175548950035EB6D /* FLTwitterPostStatusHttpRequest.m in Sources */,
+				277CA6C7175552900035EB6D /* FLTwitterError.m in Sources */,
+				277CA6D0175552900035EB6D /* FLTwitterStatusUpdate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,6 +939,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277CA65D175548950035EB6D /* FLTwitterService.m in Sources */,
+				277CA69B175548950035EB6D /* FLTwitterHttpRequest.m in Sources */,
+				277CA6A4175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m in Sources */,
+				277CA6AD175548950035EB6D /* FLTwitterPostStatusHttpRequest.m in Sources */,
+				277CA6C9175552900035EB6D /* FLTwitterError.m in Sources */,
+				277CA6D2175552900035EB6D /* FLTwitterStatusUpdate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +952,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277CA65A175548950035EB6D /* FLTwitterService.m in Sources */,
+				277CA698175548950035EB6D /* FLTwitterHttpRequest.m in Sources */,
+				277CA6A1175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m in Sources */,
+				277CA6AA175548950035EB6D /* FLTwitterPostStatusHttpRequest.m in Sources */,
+				277CA6C6175552900035EB6D /* FLTwitterError.m in Sources */,
+				277CA6CF175552900035EB6D /* FLTwitterStatusUpdate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,6 +965,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277CA65C175548950035EB6D /* FLTwitterService.m in Sources */,
+				277CA69A175548950035EB6D /* FLTwitterHttpRequest.m in Sources */,
+				277CA6A3175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m in Sources */,
+				277CA6AC175548950035EB6D /* FLTwitterPostStatusHttpRequest.m in Sources */,
+				277CA6C8175552900035EB6D /* FLTwitterError.m in Sources */,
+				277CA6D1175552900035EB6D /* FLTwitterStatusUpdate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,6 +978,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277CA65E175548950035EB6D /* FLTwitterService.m in Sources */,
+				277CA69C175548950035EB6D /* FLTwitterHttpRequest.m in Sources */,
+				277CA6A5175548950035EB6D /* FLTwitterLoadProfileImageHttpRequest.m in Sources */,
+				277CA6AE175548950035EB6D /* FLTwitterPostStatusHttpRequest.m in Sources */,
+				277CA6CA175552900035EB6D /* FLTwitterError.m in Sources */,
+				277CA6D3175552900035EB6D /* FLTwitterStatusUpdate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

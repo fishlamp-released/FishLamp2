@@ -16,7 +16,7 @@
 @implementation NSObject (FLXmlObjectBuilder)
 + (id) objectWithXmlElement:(FLParsedXmlElement*) xmlElement 
           withObjectBuilder:(FLXmlObjectBuilder*) builder {
-          
+
     FLAssertNotNil(builder);
     FLAssertNotNil(builder.decoder);
     FLAssertNotNil(xmlElement);

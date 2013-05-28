@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
+#if REFACTOR
 
 #import "FLTwitterService.h"
 #import "NSString+GUID.h"
 #import "FLService.h"
 #import "FLDatabase.h"
-#import "FLServiceKeys.h"
 
 @interface FLTwitterService ()
 @property (readwrite, strong) FLOAuthSession* oauthSession;
@@ -113,3 +113,4 @@
 
 @end
 
+#endif

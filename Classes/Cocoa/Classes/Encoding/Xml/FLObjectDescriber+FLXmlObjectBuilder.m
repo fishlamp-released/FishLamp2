@@ -36,31 +36,56 @@
 @implementation FLModelObjectDescriber (FLXmlObjectBuilder)
 
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-   inflateRootObjectWithXML:(FLParsedXmlElement*) element {
+   inflateRootObjectWithXML:(FLParsedXmlElement*) parentElement {
 
     FLAssert([self.objectClass isModelObject]);
+
+//    FLConfirmIsNilWithComment(element.sibling, @"duplicate elements for property \"%@\"", element.elementName);   
     
     id outObject = FLAutorelease([[self.objectClass alloc] init]);
     
-    for(id elementName in element.childElements) {
+    for(FLParsedXmlElement* element in [parentElement.childElements objectEnumerator]) {
         
-        FLPropertyDescriber* propertyDescriber = [self propertyForName:elementName];
-        if(!propertyDescriber) {
-            FLLog(@"object builder skipped missing propertyDescriber named: %@:%@", NSStringFromClass(self.objectClass),elementName);
-            continue;
-        }
-        
-        FLParsedXmlElement* childElement = [element childElementForName:elementName];
+        FLPropertyDescriber* propertyDescriber = [self propertyForName:element.elementName];
+        if(propertyDescriber) {
+                
+            id object = [propertyDescriber xmlObjectBuilder:builder  
+                                     inflateElementContents:element];
             
-        id object = [propertyDescriber xmlObjectBuilder:builder  
-                                 inflateElementContents:childElement];
-        
-        if(object) {
-            [outObject setValue:object forKey:elementName];
+            if(object) {
+                FLAssertNil([outObject valueForKey:element.elementName]);
+            
+                [outObject setValue:object forKey:element.elementName];
+            }
+            else {
+                FLLog(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.elementName);
+            }
         }
         else {
-            FLLog(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), elementName);
+            propertyDescriber = [self propertyForContainerTypeByName:element.elementName];
+            if(propertyDescriber) {
+            
+                NSMutableArray* array = [outObject valueForKey:propertyDescriber.propertyName];
+                if(!array) {
+                    array = [NSMutableArray array];
+                    [outObject setValue:array forKey:propertyDescriber.propertyName];
+                }
+                
+                FLPropertyDescriber* containedType = [propertyDescriber containedTypeForName:element.elementName];
+                id objectForArray = [containedType xmlObjectBuilder:builder inflateElementContents:element];
+                
+                if(objectForArray) {
+                    [array addObject:objectForArray];
+                }
+                else {
+                    FLLog(@"array object not inflated for %@.%@", NSStringFromClass([outObject class]), element.elementName);
+                }
+            }
+            else {
+                FLLog(@"object builder skipped missing propertyDescriber named: %@:%@", NSStringFromClass(self.objectClass),element.elementName);
+            }
         }
+        
     }
     
     return outObject;
