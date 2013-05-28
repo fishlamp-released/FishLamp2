@@ -14,20 +14,26 @@ done
 
 done="no"
 
+read -p "$prompt (Y, N,Q): " -n 1 -r
+
 while [ "$done" == "no" ]; do
 
-	read -p "$prompt (ynq): " -n 1 -r; echo ""
-
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
+	if [[ $REPLY =~ ^[Yy]*$ ]]; then
+		echo ""
 		echo "yes"
 		exit 0
-	elif [[ $REPLY =~ ^[Nn]$ ]]; then
+	elif [[ $REPLY =~ ^[Nn]*$ ]]; then
+		echo ""
 		echo "no";
 		exit 0
-	elif [[ $REPLY =~ ^[Qq]$ ]]; then
+	elif [[ $REPLY =~ ^[Qq]*$ ]]; then
+		echo ""
 		echo "quit";
 		exit 1
+	else
+		read -n 1 -r
 	fi
+
 
 done
 

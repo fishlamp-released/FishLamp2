@@ -17,39 +17,32 @@ status=`git status -s`
 branch=`git rev-parse --abbrev-ref HEAD`
 build_version=`version-get "$plist_file"` || { exit 1; }
 
-if [ "$status" != "" ]; then 
-	echo "##! your git repo has uncommitted changes - please commit changes before tagging version."
-	exit 1;
-fi
+# if [ "$status" != "" ]; then 
+# 	echo "##! your git repo has uncommitted changes - please commit changes before tagging version."
+# 	exit 1;
+# fi
 
-bump=`fislamp-ynq \"Bump version?\"` || { exit 1; }
-
-
-if [ `fislamp-ynq \"Bump version?\"` == "yes" ]; then
-	echo "hi";
-fi
-
-exit 0;
-
-if [ "$bump" == "yes" ]; then 
+if [ `fishlamp-ynq \"Bump version?\"` == "yes" ]; then
+	echo "";
 	version-bump "$plist_file" || { exit 1; }
 	build_version=`version-get "$plist_file"` || { exit 1; }
 	git add "$plist_file"
 	git commit -a -m "new version: $build_version"
+else 
+	echo "";
 fi
+
+exit 0;
 
 tag="v$build_version"
 git tag $tag || { echo "##! adding git tag failed"; exit 1; }
+echo "# added tag $tag ok"
 
-read -p "Push Changes? (y or n): " -n 1 -r; echo ""
-
-if [[ $REPLY =~ ^[Yy]$ ]]; then
+if [ `fishlamp-ynq Push Changes?` == "yes" ]; then
+	echo "";
 	git push --tags origin $branch || { echo "##! pushing tag failed"; exit 1; }
-elif [[ $REPLY =~ ^[Nn]$ ]]; then
-	echo "no pushing";
-else
-	echo "##! huh?"; 
-	exit 1;
+else 
+	echo "";
 fi
 
-echo "# added tag $tag ok"
+
