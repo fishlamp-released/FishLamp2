@@ -10,22 +10,22 @@
     <objects>
         <object className="FLWsdlDefinitions">
             <properties>
-                <property name="types" type="NSMutableArray">
+                <property name="types" type="array">
                     <arrayTypes>
                         <arrayType name="schema" typeName="FLWsdlSchema"/>
                     </arrayTypes>
                 </property>
-                <property name="message" type="NSMutableArray" isWildcardArray="YES">
+                <property name="messages" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType name="message" typeName="FLWsdlMessage"/>
                     </arrayTypes>
                 </property>
-                <property name="portType" type="NSMutableArray" isWildcardArray="YES">
+                <property name="portTypes" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType name="portType" typeName="FLWsdlPortType"/>
                     </arrayTypes>
                 </property>
-                <property name="binding" type="NSMutableArray" isWildcardArray="YES">
+                <property name="bindings" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType name="binding" typeName="FLWsdlBinding"/>
                     </arrayTypes>
@@ -37,17 +37,17 @@
         </object>
         <object className="FLWsdlElementBaseType">
             <properties>
-                <property name="element" type="NSMutableArray" isWildcardArray="YES">
+                <property name="elements" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType name="element" typeName="FLWsdlElement"/>
                     </arrayTypes>
                 </property>
-                <property name="simpleType" type="NSMutableArray" isWildcardArray="YES">
+                <property name="simpleTypes" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType name="simpleType" typeName="FLWsdlSimpleType"/>
                     </arrayTypes>
                 </property>
-                <property name="complexType" type="NSMutableArray" isWildcardArray="YES">
+                <property name="complexTypes" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType name="complexType" typeName="FLWsdlComplexType"/>
                     </arrayTypes>
@@ -58,14 +58,14 @@
             <properties>
                 <property name="elementFormDefault" type="NSString"/>
                 <property name="targetNamespace" type="NSString"/>
-                <property name="import" type="NSMutableArray" isWildcardArray="YES">
+                <property name="imports" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType name="import" typeName="FLWsdlImport"/>
                     </arrayTypes>
                 </property>
             </properties>
         </object>
-        <object className="FLWsdlElement">
+        <object className="FLWsdlElement" superclass="FLWsdlElementBaseType">
             <properties>
                 <property name="minOccurs" type="NSString"/>
                 <property name="maxOccurs" type="NSString"/>
@@ -80,9 +80,10 @@
             <properties>
                 <property name="minOccurs" type="NSString"/>
                 <property name="maxOccurs" type="NSString"/>
-                <property name="sequence" type="NSMutableArray">
+                <property name="sequences" type="array">
                     <arrayTypes>
                         <arrayType name="element" typeName="FLWsdlElement"/>
+                        <arrayType name="sequence" typeName="FLWsdlElement"/>
                     </arrayTypes>
                 </property>
             </properties>
@@ -95,12 +96,12 @@
         <object className="FLWsdlRestrictionArray" superclass="FLWsdlSequenceArray">
             <properties>
                 <property name="base" type="NSString"/>
-                <property name="enumeration" type="NSMutableArray" isWildcardArray="YES">
+                <property name="enumerations" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType name="enumeration" typeName="FLWsdlEnumeration"/>
                     </arrayTypes>
                 </property>
-                <property name="element" type="NSMutableArray">
+                <property name="elements" type="array">
                     <arrayTypes>
                         <arrayType name="element" typeName="FLWsdlElement"/>
                     </arrayTypes>
@@ -147,7 +148,7 @@
         <object className="FLWsdlMessage">
             <properties>
                 <property name="name" type="NSString"/>
-                <property name="part" type="NSMutableArray" isWildcardArray="YES">
+                <property name="parts" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType typeName="FLWsdlPart" name="part"/>
                     </arrayTypes>
@@ -171,7 +172,7 @@
                 <property name="name" type="NSString"/>
                 <property name="binding" type="NSString"/>
                 <property name="address" type="FLWsdlServiceAddress"/>
-                <property name="operation" type="NSMutableArray" isWildcardArray="YES">
+                <property name="operations" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType name="operation" typeName="FLWsdlOperation"/>
                     </arrayTypes>
@@ -202,16 +203,17 @@
         </object>
         <object className="FLWsdlBinding">
             <properties>
+                <property name="style" type="NSString"/>
                 <property name="name" type="NSString"/>
                 <property name="transport" type="NSString"/>
                 <property name="verb" type="NSString"/>
                 <property name="type" type="NSString"/>
-                <property name="binding" type="NSMutableArray" isWildcardArray="YES">
+                <property name="bindings" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType typeName="FLWsdlBinding" name="binding"/>
                     </arrayTypes>
                 </property>
-                <property name="operation" type="NSMutableArray" isWildcardArray="YES">
+                <property name="operations" type="array" isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType typeName="FLWsdlOperation" name="operation"/>
                     </arrayTypes>
@@ -222,7 +224,7 @@
             <properties>
                 <property name="name" type="NSString"/>
                 <property name="documentation" type="NSString"/>
-                <property name="port" type="NSMutableArray"  isWildcardArray="YES">
+                <property name="ports" type="array"  isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType name="port" typeName="FLWsdlPortType"/>
                     </arrayTypes>
@@ -233,7 +235,7 @@
             <properties>
                 <property name="minOccurs" type="NSString"/>
                 <property name="maxOccurs" type="NSString"/>
-                <property name="element" type="NSMutableArray"  isWildcardArray="YES">
+                <property name="elements" type="array"  isWildcardArray="YES">
                     <arrayTypes>
                         <arrayType name="element" typeName="FLWsdlElement"/>
                     </arrayTypes>

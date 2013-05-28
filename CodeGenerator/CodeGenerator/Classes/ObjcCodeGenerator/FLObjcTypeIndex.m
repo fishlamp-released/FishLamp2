@@ -95,6 +95,10 @@
 
     for(FLCodeTypeDefinition* def in self.project.typeDefinitions) {
     
+        if(FLStringIsEmpty(def.typeName)) {
+            FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeMissingName, @"Type definition does not have 'typeName'");
+        }
+    
         FLObjcImportedName* name = [FLObjcImportedName objcImportedName:def.typeName];
     
         switch(def.dataTypeAsEnum) {
@@ -120,10 +124,19 @@
     
 // we're adding REFERENCES to these only right now    
 	for(FLCodeEnumType* aEnum in self.project.enumTypes) {
+        if(FLStringIsEmpty(aEnum.typeName)) {
+            FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeMissingName, @"Enum does not have 'typeName'");
+        }
+
         FLObjcEnumName* name = [FLObjcEnumName objcEnumName:aEnum.typeName prefix:prefix];
         [self setObjcType:[FLObjcEnumType objcEnumType:name importFileName:nil]];
 	}   
     for(FLCodeObject* object in self.project.objects) {
+        
+        if(FLStringIsEmpty(object.className)) {
+            FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeMissingName, @"Object does not have 'className'");
+        }
+    
         FLObjcClassName* name = [FLObjcClassName objcClassName:object.className prefix:prefix];
         [self setObjcType:[FLObjcObjectType objcObjectType:name importFileName:nil]];
     } 

@@ -18,7 +18,8 @@ typedef enum {
     FLCodeGeneratorErrorCodeUnexpectedlyEmptyString     = 4, 
     FLCodeGeneratorErrorCodeUnknownType                 = 5, 
     FLCodeGeneratorErrorCodeTranslatorFailed            = 6, 
-    FLCodeGeneratorErrorCodeProjectNotFound             = 7 
+    FLCodeGeneratorErrorCodeProjectNotFound             = 7, 
+    FLCodeGeneratorErrorCodeMissingName                 = 8 
 } FLCodeGeneratorErrorCode;
 
 #define FLThrowCodeGeneratorError(__CODE__, __FORMAT__, ...) \

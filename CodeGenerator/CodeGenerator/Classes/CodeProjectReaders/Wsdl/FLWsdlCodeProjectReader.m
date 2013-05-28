@@ -56,6 +56,10 @@
 
 - (FLCodeProject*) createProjectFromWsdlDefinitions:(FLParsedXmlElement*) soap {
 
+    FLWsdlDefinitions* definitions = [FLWsdlDefinitions objectWithXmlElement:soap withObjectBuilder:[FLSoapObjectBuilder instance]];
+    
+    
+
 //    FLSetObjectWithRetain(_soap, soap);
 //    _project = [[FLCodeProject alloc] init];
 //	_project.canLazyCreate = NO;

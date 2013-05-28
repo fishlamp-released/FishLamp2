@@ -79,6 +79,8 @@
 }
 
 - (void) didLoadProject:(FLCodeProject*) project fromLocation:(FLCodeProjectLocation*) location {
+    FLConfirmNotNilWithComment(project, @"project was not created");
+    
     project.projectPath = location.URL;
 	if(FLStringIsEmpty(project.projectName)){
 		project.projectName = [[project.projectPath lastPathComponent] stringByDeletingPathExtension];

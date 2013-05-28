@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		271C8E6017553488006924AF /* libFishLampCocoaApp-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4D225175530F1008540B8 /* libFishLampCocoaApp-64-MRC.a */; };
+		271C8E6C175547E8006924AF /* FLErrorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 271C8E6B175547E8006924AF /* FLErrorWindowController.xib */; };
 		273121B11755043E00F4DC0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4ADE161268AA0069944E /* Foundation.framework */; };
 		273121B41755043E00F4DC0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273121B31755043E00F4DC0B /* main.m */; };
 		273121B81755043E00F4DC0B /* Whittle.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 273121B71755043E00F4DC0B /* Whittle.1 */; };
@@ -29,6 +30,8 @@
 		274A4AE5161268AA0069944E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4AE4161268AA0069944E /* Security.framework */; };
 		274A4AE7161268AB0069944E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4AE6161268AA0069944E /* SystemConfiguration.framework */; };
 		274A4B72161269590069944E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4B71161269590069944E /* libsqlite3.0.dylib */; };
+		277CA62D1755483E0035EB6D /* attention.png in Resources */ = {isa = PBXBuildFile; fileRef = 277CA62B1755483E0035EB6D /* attention.png */; };
+		277CA62E1755483E0035EB6D /* attention@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 277CA62C1755483E0035EB6D /* attention@2x.png */; };
 		27B4D2391755316E008540B8 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D22B1755316E008540B8 /* Credits.rtf */; };
 		27B4D23A1755316E008540B8 /* DefaultXmlFile.xml in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D22C1755316E008540B8 /* DefaultXmlFile.xml */; };
 		27B4D23B1755316E008540B8 /* FLCodeGeneratorDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D22D1755316E008540B8 /* FLCodeGeneratorDocument.xib */; };
@@ -122,6 +125,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		271C8E6B175547E8006924AF /* FLErrorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FLErrorWindowController.xib; path = ../../../../../FishLamp/Classes/OSX/ViewControllers/FLErrorWindowController.xib; sourceTree = "<group>"; };
 		273121B01755043E00F4DC0B /* Whittle */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Whittle; sourceTree = BUILT_PRODUCTS_DIR; };
 		273121B31755043E00F4DC0B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		273121B61755043E00F4DC0B /* Whittle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Whittle-Prefix.pch"; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 		274A4AEA161268AB0069944E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		274A4AEB161268AB0069944E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		274A4B71161269590069944E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		277CA62B1755483E0035EB6D /* attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = attention.png; path = ../../../../../FishLamp/Classes/OSX/ViewControllers/attention.png; sourceTree = "<group>"; };
+		277CA62C1755483E0035EB6D /* attention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attention@2x.png"; path = "../../../../../FishLamp/Classes/OSX/ViewControllers/attention@2x.png"; sourceTree = "<group>"; };
 		2787B68E174161CC0010C2C6 /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		2787B68F174161CC0010C2C6 /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 		2787B6921741626D0010C2C6 /* PackMule-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PackMule-Prefix.pch"; sourceTree = "<group>"; };
@@ -356,10 +362,10 @@
 		27B4D21C175530F1008540B8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27B4D223175530F1008540B8 /* lib.a */,
+				27B4D223175530F1008540B8 /* libFishLampCocoaApp-ARC.a */,
 				27B4D225175530F1008540B8 /* libFishLampCocoaApp-64-MRC.a */,
-				27B4D227175530F1008540B8 /* lib.a */,
-				27B4D229175530F1008540B8 /* lib.a */,
+				27B4D227175530F1008540B8 /* libFishLampCocoaApp-3264-MRC.a */,
+				27B4D229175530F1008540B8 /* libFishLampCocoaApp-32-MRC.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -367,8 +373,11 @@
 		27B4D22A1755316E008540B8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				277CA62B1755483E0035EB6D /* attention.png */,
+				277CA62C1755483E0035EB6D /* attention@2x.png */,
 				27B4D22B1755316E008540B8 /* Credits.rtf */,
 				27B4D22C1755316E008540B8 /* DefaultXmlFile.xml */,
+				271C8E6B175547E8006924AF /* FLErrorWindowController.xib */,
 				27B4D22D1755316E008540B8 /* FLCodeGeneratorDocument.xib */,
 				27B4D22F1755316E008540B8 /* FLWsdlDocument.xib */,
 				27B4D2311755316E008540B8 /* MainMenu.xib */,
@@ -476,7 +485,7 @@
 			remoteRef = 2787B67B174161B50010C2C6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27B4D223175530F1008540B8 /* lib.a */ = {
+		27B4D223175530F1008540B8 /* libFishLampCocoaApp-ARC.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libFishLampCocoaApp-ARC.a";
@@ -490,14 +499,14 @@
 			remoteRef = 27B4D224175530F1008540B8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27B4D227175530F1008540B8 /* lib.a */ = {
+		27B4D227175530F1008540B8 /* libFishLampCocoaApp-3264-MRC.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libFishLampCocoaApp-3264-MRC.a";
 			remoteRef = 27B4D226175530F1008540B8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27B4D229175530F1008540B8 /* lib.a */ = {
+		27B4D229175530F1008540B8 /* libFishLampCocoaApp-32-MRC.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libFishLampCocoaApp-32-MRC.a";
@@ -531,6 +540,9 @@
 				27B4D2411755316E008540B8 /* mule.icns in Resources */,
 				27B4D2421755316E008540B8 /* muledoc.icns in Resources */,
 				27B4D2431755316E008540B8 /* pmdoc.png in Resources */,
+				271C8E6C175547E8006924AF /* FLErrorWindowController.xib in Resources */,
+				277CA62D1755483E0035EB6D /* attention.png in Resources */,
+				277CA62E1755483E0035EB6D /* attention@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
