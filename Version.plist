@@ -12,12 +12,10 @@
 	<string>FishLamp Framework</string>
 	<key>CFBundleShortVersionString</key>
 	<string>3.0.0.17</string>
-	<key>CFBundleSignature</key>
-	<string>GTSW</string>
 	<key>CFBundleVersion</key>
 	<string>3.0.0.17</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2013 GreenTongue Software, LLC. All rights reserverd.</string>
+	<string>Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</string>
 	<key>URL</key>
 	<string>http://www.fishlamp.com</string>
 </dict>
