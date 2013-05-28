@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		271C8E6017553488006924AF /* libFishLampCocoaApp-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4D225175530F1008540B8 /* libFishLampCocoaApp-64-MRC.a */; };
 		273121B11755043E00F4DC0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4ADE161268AA0069944E /* Foundation.framework */; };
 		273121B41755043E00F4DC0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273121B31755043E00F4DC0B /* main.m */; };
 		273121B81755043E00F4DC0B /* Whittle.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 273121B71755043E00F4DC0B /* Whittle.1 */; };
@@ -20,9 +21,6 @@
 		273121EA175504C100F4DC0B /* FLWsdlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 273121DC175504C100F4DC0B /* FLWsdlDocument.m */; };
 		273121EB175504C100F4DC0B /* FLXmlDocumentFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 273121DE175504C100F4DC0B /* FLXmlDocumentFormatter.m */; };
 		273121EC175504C100F4DC0B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 273121DF175504C100F4DC0B /* main.m */; };
-		27469993174D8E0E00350E73 /* FLErrorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27469992174D8E0E00350E73 /* FLErrorWindowController.xib */; };
-		274699A7174D8E7E00350E73 /* attention.png in Resources */ = {isa = PBXBuildFile; fileRef = 274699A5174D8E7E00350E73 /* attention.png */; };
-		274699A8174D8E7E00350E73 /* attention@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 274699A6174D8E7E00350E73 /* attention@2x.png */; };
 		274A4ADB161268AA0069944E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4ADA161268AA0069944E /* AppKit.framework */; };
 		274A4ADD161268AA0069944E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4ADC161268AA0069944E /* Cocoa.framework */; };
 		274A4ADF161268AA0069944E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4ADE161268AA0069944E /* Foundation.framework */; };
@@ -31,9 +29,17 @@
 		274A4AE5161268AA0069944E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4AE4161268AA0069944E /* Security.framework */; };
 		274A4AE7161268AB0069944E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4AE6161268AA0069944E /* SystemConfiguration.framework */; };
 		274A4B72161269590069944E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4B71161269590069944E /* libsqlite3.0.dylib */; };
-		276AF68916BC5C7100205E0F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 276AF68816BC5C7100205E0F /* InfoPlist.strings */; };
-		2776018A16BB15BD006CB2A7 /* DefaultXmlFile.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2776018916BB15BD006CB2A7 /* DefaultXmlFile.xml */; };
-		2776018F16BB40EB006CB2A7 /* FLResultsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2776018D16BB40EB006CB2A7 /* FLResultsWindowController.xib */; };
+		27B4D2391755316E008540B8 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D22B1755316E008540B8 /* Credits.rtf */; };
+		27B4D23A1755316E008540B8 /* DefaultXmlFile.xml in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D22C1755316E008540B8 /* DefaultXmlFile.xml */; };
+		27B4D23B1755316E008540B8 /* FLCodeGeneratorDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D22D1755316E008540B8 /* FLCodeGeneratorDocument.xib */; };
+		27B4D23C1755316E008540B8 /* FLWsdlDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D22F1755316E008540B8 /* FLWsdlDocument.xib */; };
+		27B4D23D1755316E008540B8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D2311755316E008540B8 /* MainMenu.xib */; };
+		27B4D23E1755316E008540B8 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D2331755316E008540B8 /* folder.png */; };
+		27B4D23F1755316E008540B8 /* folder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D2341755316E008540B8 /* folder@2x.png */; };
+		27B4D2401755316E008540B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D2351755316E008540B8 /* InfoPlist.strings */; };
+		27B4D2411755316E008540B8 /* mule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D2361755316E008540B8 /* mule.icns */; };
+		27B4D2421755316E008540B8 /* muledoc.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D2371755316E008540B8 /* muledoc.icns */; };
+		27B4D2431755316E008540B8 /* pmdoc.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B4D2381755316E008540B8 /* pmdoc.png */; };
 		27B4F07F169A314B00D56DFA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F07D169A314B00D56DFA /* CoreGraphics.framework */; };
 		27B4F080169A314B00D56DFA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F07E169A314B00D56DFA /* CoreText.framework */; };
 		27B4F083169A318600D56DFA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F081169A318600D56DFA /* CFNetwork.framework */; };
@@ -41,54 +47,50 @@
 		27B4F086169A31B700D56DFA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F085169A31B700D56DFA /* QuartzCore.framework */; };
 		27B4F088169A31C500D56DFA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F087169A31C500D56DFA /* ImageIO.framework */; };
 		27B4F1F3169A3A8F00D56DFA /* libCodeGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F1D7169A3A7200D56DFA /* libCodeGenerator.a */; };
-		27C16F36173FEC3C00C8B8FA /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 27C16F34173FEC3C00C8B8FA /* folder.png */; };
-		27C16F37173FEC3C00C8B8FA /* folder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27C16F35173FEC3C00C8B8FA /* folder@2x.png */; };
-		27C16F3E173FFA2800C8B8FA /* FLInputWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27C16F3C173FFA2800C8B8FA /* FLInputWindowController.xib */; };
-		27FC37E21699F45F001F4228 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 27FC37D71699F45F001F4228 /* Credits.rtf */; };
-		27FC37E31699F45F001F4228 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FC37D81699F45F001F4228 /* MainMenu.xib */; };
-		27FC37E41699F45F001F4228 /* FLCodeGeneratorDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FC37DA1699F45F001F4228 /* FLCodeGeneratorDocument.xib */; };
-		27FC37E51699F45F001F4228 /* FLWsdlDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27FC37DC1699F45F001F4228 /* FLWsdlDocument.xib */; };
-		27FC37E61699F45F001F4228 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27FC37DE1699F45F001F4228 /* InfoPlist.strings */; };
-		27FC37E71699F45F001F4228 /* mule.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27FC37DF1699F45F001F4228 /* mule.icns */; };
-		27FC37E81699F45F001F4228 /* muledoc.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27FC37E01699F45F001F4228 /* muledoc.icns */; };
-		27FC37E91699F45F001F4228 /* pmdoc.png in Resources */ = {isa = PBXBuildFile; fileRef = 27FC37E11699F45F001F4228 /* pmdoc.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		27312211175506FF00F4DC0B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 27B4F2E5169A3E4500D56DFA;
-			remoteInfo = "FishLampCocoaApp-ARC";
-		};
-		27312213175506FF00F4DC0B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 279A1CA616A0886B004794BB;
-			remoteInfo = "FishLampCocoaApp-64-MRC";
-		};
-		27312215175506FF00F4DC0B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 270E726617137E3C002E2FB1;
-			remoteInfo = "FishLampCocoaApp-3264-MRC";
-		};
-		27312217175506FF00F4DC0B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 27636547171B590F00F44096;
-			remoteInfo = "FishLampCocoaApp-32-MRC";
-		};
 		2787B67B174161B50010C2C6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 27B4F164169A3A2200D56DFA /* CodeGenerator.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 2787B46117415B720010C2C6;
 			remoteInfo = CodeGeneratorTester;
+		};
+		27B4D222175530F1008540B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27B4F2E5169A3E4500D56DFA;
+			remoteInfo = "FishLampCocoaApp-ARC";
+		};
+		27B4D224175530F1008540B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 279A1CA616A0886B004794BB;
+			remoteInfo = "FishLampCocoaApp-64-MRC";
+		};
+		27B4D226175530F1008540B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 270E726617137E3C002E2FB1;
+			remoteInfo = "FishLampCocoaApp-3264-MRC";
+		};
+		27B4D228175530F1008540B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27636547171B590F00F44096;
+			remoteInfo = "FishLampCocoaApp-32-MRC";
+		};
+		27B4D2451755324D008540B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 279A1C8E16A0886B004794BB;
+			remoteInfo = "FishLampCocoaApp-64-MRC";
 		};
 		27B4F1D6169A3A7200D56DFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -141,11 +143,8 @@
 		273121DD175504C100F4DC0B /* FLXmlDocumentFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXmlDocumentFormatter.h; sourceTree = "<group>"; };
 		273121DE175504C100F4DC0B /* FLXmlDocumentFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLXmlDocumentFormatter.m; sourceTree = "<group>"; };
 		273121DF175504C100F4DC0B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoaApp.xcodeproj; path = ../../FishLamp/Apps/FishLampCocoaApp/FishLampCocoaApp.xcodeproj; sourceTree = "<group>"; };
-		27469992174D8E0E00350E73 /* FLErrorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FLErrorWindowController.xib; path = ../../FishLamp/Frameworks/OSX/ViewControllers/FLErrorWindowController.xib; sourceTree = "<group>"; };
-		274699A5174D8E7E00350E73 /* attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = attention.png; path = ../../FishLamp/Frameworks/OSX/ViewControllers/attention.png; sourceTree = "<group>"; };
-		274699A6174D8E7E00350E73 /* attention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "attention@2x.png"; path = "../../FishLamp/Frameworks/OSX/ViewControllers/attention@2x.png"; sourceTree = "<group>"; };
-		274A4AD6161268AA0069944E /* .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoaApp.xcodeproj; path = ../../../FishLamp/XcodeSupport/Projects/Apps/FishLampOSXApp/FishLampCocoaApp.xcodeproj; sourceTree = "<group>"; };
+		274A4AD6161268AA0069944E /* PackMule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PackMule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		274A4ADA161268AA0069944E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		274A4ADC161268AA0069944E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		274A4ADE161268AA0069944E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -157,14 +156,23 @@
 		274A4AEA161268AB0069944E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		274A4AEB161268AB0069944E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		274A4B71161269590069944E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		276AF68816BC5C7100205E0F /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		2776018916BB15BD006CB2A7 /* DefaultXmlFile.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DefaultXmlFile.xml; sourceTree = "<group>"; };
-		2776018D16BB40EB006CB2A7 /* FLResultsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FLResultsWindowController.xib; path = ../Classes/FLResultsWindowController.xib; sourceTree = "<group>"; };
 		2787B68E174161CC0010C2C6 /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		2787B68F174161CC0010C2C6 /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 		2787B6921741626D0010C2C6 /* PackMule-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PackMule-Prefix.pch"; sourceTree = "<group>"; };
 		2787B6931741626D0010C2C6 /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		2787B694174162DE0010C2C6 /* PackMuleTargetSettings-64-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "PackMuleTargetSettings-64-MRC.xcconfig"; sourceTree = "<group>"; };
+		27B4D22B1755316E008540B8 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		27B4D22C1755316E008540B8 /* DefaultXmlFile.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = DefaultXmlFile.xml; sourceTree = "<group>"; };
+		27B4D22E1755316E008540B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLCodeGeneratorDocument.xib; sourceTree = "<group>"; };
+		27B4D2301755316E008540B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLWsdlDocument.xib; sourceTree = "<group>"; };
+		27B4D2321755316E008540B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		27B4D2331755316E008540B8 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
+		27B4D2341755316E008540B8 /* folder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder@2x.png"; sourceTree = "<group>"; };
+		27B4D2351755316E008540B8 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		27B4D2361755316E008540B8 /* mule.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = mule.icns; sourceTree = "<group>"; };
+		27B4D2371755316E008540B8 /* muledoc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = muledoc.icns; sourceTree = "<group>"; };
+		27B4D2381755316E008540B8 /* pmdoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pmdoc.png; sourceTree = "<group>"; };
+		27B4D2441755321C008540B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27B4F07D169A314B00D56DFA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		27B4F07E169A314B00D56DFA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
 		27B4F081169A318600D56DFA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
@@ -172,18 +180,6 @@
 		27B4F085169A31B700D56DFA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		27B4F087169A31C500D56DFA /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
 		27B4F164169A3A2200D56DFA /* CodeGenerator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodeGenerator.xcodeproj; path = ../CodeGenerator/Lib/CodeGenerator.xcodeproj; sourceTree = "<group>"; };
-		27C16F34173FEC3C00C8B8FA /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
-		27C16F35173FEC3C00C8B8FA /* folder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "folder@2x.png"; sourceTree = "<group>"; };
-		27C16F3C173FFA2800C8B8FA /* FLInputWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FLInputWindowController.xib; path = ../Classes/FLInputWindowController.xib; sourceTree = "<group>"; };
-		27FC37D71699F45F001F4228 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
-		27FC37D91699F45F001F4228 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		27FC37DB1699F45F001F4228 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLCodeGeneratorDocument.xib; sourceTree = "<group>"; };
-		27FC37DD1699F45F001F4228 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLWsdlDocument.xib; sourceTree = "<group>"; };
-		27FC37DE1699F45F001F4228 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		27FC37DF1699F45F001F4228 /* mule.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = mule.icns; sourceTree = "<group>"; };
-		27FC37E01699F45F001F4228 /* muledoc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = muledoc.icns; sourceTree = "<group>"; };
-		27FC37E11699F45F001F4228 /* pmdoc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pmdoc.png; sourceTree = "<group>"; };
-		27FC380B1699F4A6001F4228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				271C8E6017553488006924AF /* libFishLampCocoaApp-64-MRC.a in Frameworks */,
 				27B4F1F3169A3A8F00D56DFA /* libCodeGenerator.a in Frameworks */,
 				27B4F088169A31C500D56DFA /* ImageIO.framework in Frameworks */,
 				27B4F086169A31B700D56DFA /* QuartzCore.framework in Frameworks */,
@@ -241,6 +238,7 @@
 		273121CD175504C100F4DC0B /* PackMule */ = {
 			isa = PBXGroup;
 			children = (
+				27B4D22A1755316E008540B8 /* Resources */,
 				273121EF175504D200F4DC0B /* Supporting Files */,
 				273121CE175504C100F4DC0B /* Classes */,
 			);
@@ -274,7 +272,7 @@
 		273121EF175504D200F4DC0B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				27FC380B1699F4A6001F4228 /* Info.plist */,
+				27B4D2441755321C008540B8 /* Info.plist */,
 				2787B6921741626D0010C2C6 /* PackMule-Prefix.pch */,
 				2787B6931741626D0010C2C6 /* SharedTargetSettings.xcconfig */,
 				2787B694174162DE0010C2C6 /* PackMuleTargetSettings-64-MRC.xcconfig */,
@@ -282,22 +280,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2731220B175506FF00F4DC0B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				27312212175506FF00F4DC0B /* libFishLampCocoaApp-ARC.a */,
-				27312214175506FF00F4DC0B /* libFishLampCocoaApp-64-MRC.a */,
-				27312216175506FF00F4DC0B /* libFishLampCocoaApp-3264-MRC.a */,
-				27312218175506FF00F4DC0B /* libFishLampCocoaApp-32-MRC.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		274A4ACB161268AA0069944E = {
 			isa = PBXGroup;
 			children = (
 				274A4AF8161268AB0069944E /* Supporting Files */,
-				27FC37D61699F45F001F4228 /* Resources */,
 				273121B21755043E00F4DC0B /* Whittle */,
 				274A4AD9161268AA0069944E /* Frameworks */,
 				274A4AD7161268AA0069944E /* Products */,
@@ -308,7 +294,7 @@
 		274A4AD7161268AA0069944E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				274A4AD6161268AA0069944E /* .app */,
+				274A4AD6161268AA0069944E /* PackMule.app */,
 				273121B01755043E00F4DC0B /* Whittle */,
 			);
 			name = Products;
@@ -367,6 +353,35 @@
 			path = FishLampBuildSupport/FishLampProjectSettings;
 			sourceTree = SOURCE_ROOT;
 		};
+		27B4D21C175530F1008540B8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27B4D223175530F1008540B8 /* lib.a */,
+				27B4D225175530F1008540B8 /* libFishLampCocoaApp-64-MRC.a */,
+				27B4D227175530F1008540B8 /* lib.a */,
+				27B4D229175530F1008540B8 /* lib.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27B4D22A1755316E008540B8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				27B4D22B1755316E008540B8 /* Credits.rtf */,
+				27B4D22C1755316E008540B8 /* DefaultXmlFile.xml */,
+				27B4D22D1755316E008540B8 /* FLCodeGeneratorDocument.xib */,
+				27B4D22F1755316E008540B8 /* FLWsdlDocument.xib */,
+				27B4D2311755316E008540B8 /* MainMenu.xib */,
+				27B4D2331755316E008540B8 /* folder.png */,
+				27B4D2341755316E008540B8 /* folder@2x.png */,
+				27B4D2351755316E008540B8 /* InfoPlist.strings */,
+				27B4D2361755316E008540B8 /* mule.icns */,
+				27B4D2371755316E008540B8 /* muledoc.icns */,
+				27B4D2381755316E008540B8 /* pmdoc.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		27B4F1D1169A3A7200D56DFA /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,46 +389,6 @@
 				2787B67C174161B50010C2C6 /* CodeGeneratorTester */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		27C16F38173FF9C100C8B8FA /* nib */ = {
-			isa = PBXGroup;
-			children = (
-				27469992174D8E0E00350E73 /* FLErrorWindowController.xib */,
-				27C16F3C173FFA2800C8B8FA /* FLInputWindowController.xib */,
-				27FC37D81699F45F001F4228 /* MainMenu.xib */,
-				27FC37DC1699F45F001F4228 /* FLWsdlDocument.xib */,
-				2776018D16BB40EB006CB2A7 /* FLResultsWindowController.xib */,
-				27FC37DA1699F45F001F4228 /* FLCodeGeneratorDocument.xib */,
-			);
-			name = nib;
-			sourceTree = "<group>";
-		};
-		27C16F39173FF9DA00C8B8FA /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				274699A5174D8E7E00350E73 /* attention.png */,
-				274699A6174D8E7E00350E73 /* attention@2x.png */,
-				27C16F34173FEC3C00C8B8FA /* folder.png */,
-				27FC37DF1699F45F001F4228 /* mule.icns */,
-				27FC37E01699F45F001F4228 /* muledoc.icns */,
-				27FC37E11699F45F001F4228 /* pmdoc.png */,
-				27C16F35173FEC3C00C8B8FA /* folder@2x.png */,
-			);
-			name = Images;
-			sourceTree = "<group>";
-		};
-		27FC37D61699F45F001F4228 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				27C16F39173FF9DA00C8B8FA /* Images */,
-				27C16F38173FF9C100C8B8FA /* nib */,
-				27FC37D71699F45F001F4228 /* Credits.rtf */,
-				27FC37DE1699F45F001F4228 /* InfoPlist.strings */,
-				2776018916BB15BD006CB2A7 /* DefaultXmlFile.xml */,
-				276AF68816BC5C7100205E0F /* InfoPlist.strings */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,11 +422,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				27B4D2461755324D008540B8 /* PBXTargetDependency */,
 				27E6A6A3173DC6FF00DB5E9A /* PBXTargetDependency */,
 			);
 			name = PackMule;
 			productName = PackMule;
-			productReference = 274A4AD6161268AA0069944E /* .app */;
+			productReference = 274A4AD6161268AA0069944E /* PackMule.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -480,7 +456,7 @@
 					ProjectRef = 27B4F164169A3A2200D56DFA /* CodeGenerator.xcodeproj */;
 				},
 				{
-					ProductGroup = 2731220B175506FF00F4DC0B /* Products */;
+					ProductGroup = 27B4D21C175530F1008540B8 /* Products */;
 					ProjectRef = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
 				},
 			);
@@ -493,39 +469,39 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		27312212175506FF00F4DC0B /* libFishLampCocoaApp-ARC.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libFishLampCocoaApp-ARC.a";
-			remoteRef = 27312211175506FF00F4DC0B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		27312214175506FF00F4DC0B /* libFishLampCocoaApp-64-MRC.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libFishLampCocoaApp-64-MRC.a";
-			remoteRef = 27312213175506FF00F4DC0B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		27312216175506FF00F4DC0B /* libFishLampCocoaApp-3264-MRC.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libFishLampCocoaApp-3264-MRC.a";
-			remoteRef = 27312215175506FF00F4DC0B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		27312218175506FF00F4DC0B /* libFishLampCocoaApp-32-MRC.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libFishLampCocoaApp-32-MRC.a";
-			remoteRef = 27312217175506FF00F4DC0B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		2787B67C174161B50010C2C6 /* CodeGeneratorTester */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = CodeGeneratorTester;
 			remoteRef = 2787B67B174161B50010C2C6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27B4D223175530F1008540B8 /* lib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampCocoaApp-ARC.a";
+			remoteRef = 27B4D222175530F1008540B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27B4D225175530F1008540B8 /* libFishLampCocoaApp-64-MRC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampCocoaApp-64-MRC.a";
+			remoteRef = 27B4D224175530F1008540B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27B4D227175530F1008540B8 /* lib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampCocoaApp-3264-MRC.a";
+			remoteRef = 27B4D226175530F1008540B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27B4D229175530F1008540B8 /* lib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libFishLampCocoaApp-32-MRC.a";
+			remoteRef = 27B4D228175530F1008540B8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		27B4F1D7169A3A7200D56DFA /* libCodeGenerator.a */ = {
@@ -542,25 +518,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC37E21699F45F001F4228 /* Credits.rtf in Resources */,
-				27FC37E31699F45F001F4228 /* MainMenu.xib in Resources */,
-				27FC37E41699F45F001F4228 /* FLCodeGeneratorDocument.xib in Resources */,
-				27FC37E51699F45F001F4228 /* FLWsdlDocument.xib in Resources */,
-				27FC37E61699F45F001F4228 /* InfoPlist.strings in Resources */,
-				27FC37E71699F45F001F4228 /* mule.icns in Resources */,
-				27FC37E81699F45F001F4228 /* muledoc.icns in Resources */,
-				27FC37E91699F45F001F4228 /* pmdoc.png in Resources */,
-				2776018A16BB15BD006CB2A7 /* DefaultXmlFile.xml in Resources */,
-				2776018F16BB40EB006CB2A7 /* FLResultsWindowController.xib in Resources */,
-				276AF68916BC5C7100205E0F /* InfoPlist.strings in Resources */,
-				27C16F36173FEC3C00C8B8FA /* folder.png in Resources */,
-				27C16F37173FEC3C00C8B8FA /* folder@2x.png in Resources */,
-				27C16F3E173FFA2800C8B8FA /* FLInputWindowController.xib in Resources */,
-				27469993174D8E0E00350E73 /* FLErrorWindowController.xib in Resources */,
-				274699A7174D8E7E00350E73 /* attention.png in Resources */,
-				274699A8174D8E7E00350E73 /* attention@2x.png in Resources */,
 				273121E7175504C100F4DC0B /* FLInputWindowController.xib in Resources */,
 				273121E9175504C100F4DC0B /* FLResultsWindowController.xib in Resources */,
+				27B4D2391755316E008540B8 /* Credits.rtf in Resources */,
+				27B4D23A1755316E008540B8 /* DefaultXmlFile.xml in Resources */,
+				27B4D23B1755316E008540B8 /* FLCodeGeneratorDocument.xib in Resources */,
+				27B4D23C1755316E008540B8 /* FLWsdlDocument.xib in Resources */,
+				27B4D23D1755316E008540B8 /* MainMenu.xib in Resources */,
+				27B4D23E1755316E008540B8 /* folder.png in Resources */,
+				27B4D23F1755316E008540B8 /* folder@2x.png in Resources */,
+				27B4D2401755316E008540B8 /* InfoPlist.strings in Resources */,
+				27B4D2411755316E008540B8 /* mule.icns in Resources */,
+				27B4D2421755316E008540B8 /* muledoc.icns in Resources */,
+				27B4D2431755316E008540B8 /* pmdoc.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +563,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		27B4D2461755324D008540B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FishLampCocoaApp-64-MRC";
+			targetProxy = 27B4D2451755324D008540B8 /* PBXContainerItemProxy */;
+		};
 		27E6A6A3173DC6FF00DB5E9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CodeGenerator;
@@ -601,28 +576,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		27FC37D81699F45F001F4228 /* MainMenu.xib */ = {
+		27B4D22D1755316E008540B8 /* FLCodeGeneratorDocument.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				27FC37D91699F45F001F4228 /* en */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		27FC37DA1699F45F001F4228 /* FLCodeGeneratorDocument.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				27FC37DB1699F45F001F4228 /* en */,
+				27B4D22E1755316E008540B8 /* en */,
 			);
 			name = FLCodeGeneratorDocument.xib;
 			sourceTree = "<group>";
 		};
-		27FC37DC1699F45F001F4228 /* FLWsdlDocument.xib */ = {
+		27B4D22F1755316E008540B8 /* FLWsdlDocument.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				27FC37DD1699F45F001F4228 /* en */,
+				27B4D2301755316E008540B8 /* en */,
 			);
 			name = FLWsdlDocument.xib;
+			sourceTree = "<group>";
+		};
+		27B4D2311755316E008540B8 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27B4D2321755316E008540B8 /* en */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -707,12 +682,14 @@
 		};
 		274A4B11161268AB0069944E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2787B694174162DE0010C2C6 /* PackMuleTargetSettings-64-MRC.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
 		};
 		274A4B12161268AB0069944E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2787B694174162DE0010C2C6 /* PackMuleTargetSettings-64-MRC.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;

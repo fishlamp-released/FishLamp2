@@ -508,7 +508,7 @@
 		2787B6E51741D1020010C2C6 /* FLMyEnum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMyEnum.m; sourceTree = "<group>"; };
 		2787B6E81741D2A10010C2C6 /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../../FishLamp/Libs/FishLampCoreLib/FishLampCore.xcodeproj; sourceTree = "<group>"; };
 		2787B6E91741D2A10010C2C6 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../../FishLamp/Libs/FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
-		2788768C1603E98600C8B7B6 /* lib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2788768C1603E98600C8B7B6 /* libCodeGenerator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCodeGenerator.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E0E1DE1741D309005CB744 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = ../../../../../../System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<group>"; };
 		27E0E1DF1741D309005CB744 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = ../../../../../../System/Library/Frameworks/Cocoa.framework; sourceTree = "<group>"; };
 		27E0E1E01741D309005CB744 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = ../../../../../../System/Library/Frameworks/Security.framework; sourceTree = "<group>"; };
@@ -996,7 +996,7 @@
 		2788768D1603E98600C8B7B6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2788768C1603E98600C8B7B6 /* lib.a */,
+				2788768C1603E98600C8B7B6 /* libCodeGenerator.a */,
 				2787B46117415B720010C2C6 /* CodeGeneratorTester */,
 			);
 			name = Products;
@@ -1328,7 +1328,7 @@
 			);
 			name = CodeGenerator;
 			productName = CodeGenerator;
-			productReference = 2788768C1603E98600C8B7B6 /* lib.a */;
+			productReference = 2788768C1603E98600C8B7B6 /* libCodeGenerator.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */

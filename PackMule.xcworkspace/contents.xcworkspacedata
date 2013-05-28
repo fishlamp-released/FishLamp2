@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../FishLamp/Apps/FishLampCocoaApp/FishLampCocoaApp.xcodeproj">
+      location = "group:../../FishLamp/XcodeSupport/Projects/Apps/FishLampOSXApp/FishLampCocoaApp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:CodeGenerator/Lib/CodeGenerator.xcodeproj">
