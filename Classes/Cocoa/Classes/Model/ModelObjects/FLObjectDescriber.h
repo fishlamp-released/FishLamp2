@@ -27,7 +27,9 @@ typedef void (^FLPropertyDescriberVisitorRecursive)(FLObjectDescriber* object, F
 
 - (void) visitEachProperty:(FLPropertyVisitor) visitor;
 - (void) visitEachPropertyDescriber:(FLPropertyDescriberVisitor) visitor;
-- (void) visitEachPropertyRecursively:(FLPropertyDescriberVisitorRecursive) visitor;
+
+- (Class) propertyClassForName:(NSString*) aClass;
+- (id) lazyValueForKey:(NSString*) propertyName;
 
 @end
 
@@ -76,3 +78,4 @@ typedef void (^FLPropertyDescriberVisitorRecursive)(FLObjectDescriber* object, F
 
 @interface FLAbstractObjectType : NSObject
 @end
+

@@ -53,7 +53,11 @@
                                      inflateElementContents:element];
             
             if(object) {
-                FLAssertNil([outObject valueForKey:element.elementName]);
+                if([outObject valueForKey:element.elementName]) {
+                    FLLog(@"replacing non-nil value for [%@ %@]", NSStringFromClass([object class]),  element.elementName);
+                } 
+            
+//                FLAssertNil([outObject valueForKey:element.elementName]);
             
                 [outObject setValue:object forKey:element.elementName];
             }
@@ -71,14 +75,18 @@
                     [outObject setValue:array forKey:propertyDescriber.propertyName];
                 }
                 
-                FLPropertyDescriber* containedType = [propertyDescriber containedTypeForName:element.elementName];
-                id objectForArray = [containedType xmlObjectBuilder:builder inflateElementContents:element];
-                
-                if(objectForArray) {
-                    [array addObject:objectForArray];
-                }
-                else {
-                    FLLog(@"array object not inflated for %@.%@", NSStringFromClass([outObject class]), element.elementName);
+                FLParsedXmlElement* walker = element;
+                while(walker){ 
+                    FLPropertyDescriber* containedType = [propertyDescriber containedTypeForName:walker.elementName];
+                    id objectForArray = [containedType xmlObjectBuilder:builder inflateElementContents:walker];
+                    
+                    if(objectForArray) {
+                        [array addObject:objectForArray];
+                    }
+                    else {
+                        FLLog(@"array object not inflated for %@.%@", NSStringFromClass([outObject class]), walker.elementName);
+                    }
+                    walker = walker.sibling;
                 }
             }
             else {

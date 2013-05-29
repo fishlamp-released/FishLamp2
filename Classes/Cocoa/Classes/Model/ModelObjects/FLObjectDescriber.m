@@ -396,12 +396,33 @@ static NSMutableDictionary* s_registry = nil;
     }
 }
 
-
-
 - (void) visitEachPropertyRecursively:(FLPropertyDescriberVisitorRecursive) visitor{
     if ([[self class] isModelObject]) {
         [[self objectDescriber] visitRecursively:visitor];
     }
+}
+
+- (Class) propertyClassForName:(NSString*) name {
+    FLPropertyDescriber* objectDescriber = [[self objectDescriber] propertyForName:name];
+    return [objectDescriber representedObjectClass];
+}
+
+- (id) lazyValueForKey:(NSString*) propertyName {
+    if([[self class] isModelObject] &&
+        [self valueForKey:propertyName] == nil) {
+        Class aClass = [self propertyClassForName:propertyName];
+        if(aClass) {
+            id object = FLAutorelease([[aClass alloc] init]);
+            if(object) {
+                [object setValue:object forKey:propertyName];
+            }   
+            return object;
+        }
+        
+    }
+
+    return nil;
+
 }
 
 @end
