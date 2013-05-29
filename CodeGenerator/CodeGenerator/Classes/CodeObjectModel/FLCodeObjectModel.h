@@ -9,7 +9,6 @@
 #import "FLCodeAll.h"
 #import "FLCodeObject+Additions.h"
 #import "FLCodeProject+Additions.h"
-#import "FLCodeType+Additions.h"
 #import "FLCodeTypeDefinition+Additions.h"
 #import "FLCodeMethod+Additions.h"
 

@@ -29,7 +29,7 @@
 /// @brief: This is the optional value of the enum, e.g. 5
 @property (readwrite, assign, nonatomic) int value;
 
-+ (FLCodeEnum*) enum; 
++ (FLCodeEnum*) codeEnum; 
 
 @end
 

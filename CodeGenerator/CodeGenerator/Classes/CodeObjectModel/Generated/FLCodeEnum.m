@@ -24,7 +24,7 @@
     FLSuperDealloc();
 }
 
-+ (FLCodeEnum*) enum
++ (FLCodeEnum*) codeEnum
 {
     return FLAutorelease([[FLCodeEnum alloc] init]);
 }

@@ -21,14 +21,14 @@
 @synthesize wildcardProperty = __wildcardProperty;
 
 // Getter will create __wildcardProperty if nil. Alternately, use the wildcardPropertyObject property, which will not lazy create it.
-- (FLCodeProperty*) wildcardProperty
-{
-    if(!__wildcardProperty)
-    {
-        __wildcardProperty = [[FLCodeProperty alloc] init];
-    }
-    return __wildcardProperty;
-}
+//- (FLCodeProperty*) wildcardProperty
+//{
+//    if(!__wildcardProperty)
+//    {
+//        __wildcardProperty = [[FLCodeProperty alloc] init];
+//    }
+//    return __wildcardProperty;
+//}
 
 + (NSString*) wildcardPropertyKey
 {

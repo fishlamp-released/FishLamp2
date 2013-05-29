@@ -29,6 +29,7 @@
     }
     return __globalDefine;
 }
+
 @synthesize objectsFolderName = __objectsFolderName;
 @synthesize typePrefix = __typePrefix;
 @synthesize useGeneratedFolder = __useGeneratedFolder;

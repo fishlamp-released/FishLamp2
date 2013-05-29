@@ -15,204 +15,89 @@
 #import "FLSoapParser.h"
 #import "FLXmlObjectBuilder.h"
 #import "FLSoapObjectBuilder.h"
-#import "FLCodeType.h"
 #import "FLCodeTypeDefinition.h"
-
-@interface FLWsdlCodeProjectReader ()
-- (FLCodeProject*) createProjectFromWsdlDefinitions:(FLParsedXmlElement*) definitions;
-- (void) createObjectFromSimpleType:(FLParsedXmlElement*) simpleType 
-                       optionalName:(NSString*) optionalName;
-- (void) createObjectFromComplexType:(FLParsedXmlElement*) complexType 
-                                type:(NSString*) type;
-- (void) createObjectFromElement:(FLParsedXmlElement*) element;
-- (void) createMessageObject:(FLParsedXmlElement*) element;
-- (void) createServiceManager:(FLParsedXmlElement*) binding;
-
-- (void) createNewOperationObject:(FLParsedXmlElement*) operation 
-                         portName:(NSString*) portName;
-
-@end
-
-@implementation FLWsdlCodeProjectReader
-
-+ (FLWsdlCodeProjectReader*) wsdlCodeReader {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-- (BOOL) canReadProjectFromLocation:(FLCodeProjectLocation*) location {
-    return [location isLocationType:FLCodeProjectLocationTypeWsdl];
-}
-
-- (FLCodeProject *)readProjectFromLocation:(FLCodeProjectLocation *)descriptor {
-	NSData* xml = [descriptor loadDataInResource];
-
-    FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:xml];
-    return [self createProjectFromWsdlDefinitions:parsedSoap];
-}
-
-#define ELEMENTS(obj, key) [[[obj elementForElementName:key] elements] objectEnumerator]
-#define ElementArray(obj, key) [obj elementForElementName:key ]
-#define ElementValue(obj, key) [[obj elementForElementName:key] elementValue]
-
-- (FLCodeProject*) createProjectFromWsdlDefinitions:(FLParsedXmlElement*) soap {
-
-    FLWsdlDefinitions* definitions = [FLWsdlDefinitions objectWithXmlElement:soap withObjectBuilder:[FLSoapObjectBuilder instance]];
-    
-    
-
-//    FLSetObjectWithRetain(_soap, soap);
-//    _project = [[FLCodeProject alloc] init];
-//	_project.canLazyCreate = NO;
-//
-//// TODO: abstract away objc
-//
-//	FLCodeTypeDefinition* define1 = [FLCodeTypeDefinition typeDefinition];
-//	define1.typeName = @"FLNetworkServerContext";
-//	define1.import = @"FLNetworkServerContext.h";
-//	[_project.typeDefinitions addObject:define1];
-//
-//	FLCodeTypeDefinition* define2 = [FLCodeTypeDefinition typeDefinition];
-//	define2.typeName = @"FLHttpOperation";
-//	define2.import = @"FLHttpOperation.h";
-//	[_project.typeDefinitions addObject:define2];
-//
-////	FLTypeDefinition* define3 = [FLTypeDefinition TypeDefinition];
-////	define3.typeName = @"FLNetworkEndpointHelper";
-////	define3.import @"FLNetworkEndpointHelper.h";
-////	[_project.typeDefinitions addObject:define3];
-//    
-//    FLParsedXmlElement* documentation = [_soap elementForElementName:@"documentation"];
-//    if(FLStringIsNotEmpty(documentation.elementValue)) {
-//		_project.comment = documentation.elementValue;
-//	}
-//
-//    NSArray* elements = [soap elementAtPath:@"types/schema"];
-//    for(NSParsedItem* item in _elements) {
-//        if(item)
-//    }
-    
-
-//	for(FLParsedXmlElement* element in ELEMENTS(typesElement, @"types")) {
-//    
-//		if(FLStringsAreEqual(element.elementName, @"simpleType")) {
-//			[self createObjectFromSimpleType:element optionalName:nil];
-//		}
-//		if(FLStringsAreEqual(element.elementName, @"complexType")) {
-//			[self createObjectFromComplexType:element type:nil];
-//		}
-//		if(FLStringsAreEqual(element.elementName, @"element")) {
-//			[self createObjectFromElement:element];
-//		}
-//	}
-    
-//	for(FLParsedXmlElement* message in Elements(_soap, @"message")) {
-//		[self createMessageObject:message];
-//	}
-//	for(FLParsedXmlElement* binding in Elements(_soap, @"binding")) {
-//		[self createServiceManager:binding];  
-//	}
-//	for(FLParsedXmlElement* portType in Elements(_soap, @"portType")) {
-//		for(FLParsedXmlElement* operation in Elements(portType, @"operation")) {
-//			[self createNewOperationObject:operation portName:ElementValue(portType, @"name")];
-//		}
-//    }
-//	for(FLWsdlPortType* portType in definitions.portTypes) {
-//		for(FLWsdlOperation* operation in portType.operations) {
-//			[self createNewOperationObject:operation portName:portType.name project:project];
-//		}
-//	}
-//	
-//	[self prepareObjects];
-    
-    return _project;
-}
-
-- (void) createObjectFromSimpleType:(FLParsedXmlElement*) simpleType               
-                       optionalName:(NSString*) optionalName{
-}
-
-- (void) createObjectFromComplexType:(FLParsedXmlElement*) complexType 
-                                type:(NSString*) type {
-}                                
-
-- (void) createObjectFromElement:(FLParsedXmlElement*) element {
-}
-
-- (void) createMessageObject:(FLParsedXmlElement*) element {
-
-}
-
-- (void) createServiceManager:(FLParsedXmlElement*) binding {
-}
-
-- (void) createNewOperationObject:(FLParsedXmlElement*) operation 
-                         portName:(NSString*) portName {
-                         
-}                         
-
-
-@end
-
-#if REFACTOR
-
+#import "FLCodeBuilder.h"
+#import "FLCodeGeneratorErrors.h"
 #import "FLWsdlCodeProjectReader.h"
 #import "FLSoapParser.h"
 #import "FLStringUtils.h"
 #import "FLXmlDocumentBuilder.h"
 #import "FLNetworkServerContext.h"
 #import "FLStringUtils.h"
-
 #import "FLCodeProperty.h"
+
+//BOOL FLCreatePropertyIfNil(id object, NSString* propertyName) {
+//    
+//    if([object valueForKey:propertyName] == nil) {
+//        Class aClass = [[object propertyClassForName:propertyName];
+//        if(aClass) {
+//            id object = FLAutorelease([[aClass alloc] init]);
+//            if(object) {
+//                [object setValue:object forKey:propertyName];
+//                return YES;
+//            }   
+//        }
+//        
+//    }
+//
+//    return NO;
+//}
+
+@implementation FLCodeProject (Wsdl)
+
+- (id) objectForTypeName:(NSString*) name {
+    FLAssertFailed();
+    return nil;
+}
+
+@end
+
+NSString* DeleteNamespacePrefix(NSString* string) {
+    NSRange range = [string rangeOfString:@":"];
+    if(range.length) {
+        return [string substringFromIndex:range.location + 1];
+    }
+    return string;
+} 
 
 @interface FLWsdlCodeProjectReader ()
 @property (readwrite, assign, nonatomic) FLCodeProject* project;
 @property (readwrite, strong, nonatomic) FLWsdlDefinitions* wsdlDefinitions;
-@property (readwrite, strong, nonatomic) FLCodeBuilder* output;
-//
-//- (void) buildCodeGeneratorSchemaFromWsdlDefinitions:(FLWsdlDefinitions*) definitions 
-//	project:(FLCodeProject*) project;
+//@property (readwrite, strong, nonatomic) FLCodeBuilder* output;
 @end
 
 @implementation FLWsdlCodeProjectReader
 
-@synthesize project = _codeSchema;
-@synthesize wsdlDefinitions = _definitions;
-@synthesize output = _output;
+@synthesize project = _project;
+@synthesize wsdlDefinitions = _wsdlDefinitions;
+//@synthesize output = _output;
 
 - (id) init {
 	if((self = [super init])) {
-		_operations = [[NSMutableArray alloc] init];
+//		_operations = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
 
-- (void) _clear {
-
-}
-
-+ (FLWsdlCodeProjectReader*) wsdlCodeReader {
-    return FLAutorelease([[FLWsdlCodeProjectReader alloc] init]);
-}
-
 #if FL_DEALLOC
 - (void) dealloc {	
-	[_operations release];
-	[_codeSchema release];
-	[_definitions release];
-	[_output release];
+//	[_operations release];
+	[_project release];
+	[_wsdlDefinitions release];
+//	[_output release];
 	[super dealloc];
 }
 #endif
 
 - (NSString*) fixTypeString:(NSString*) wsdlType {
-	wsdlType = [FLSoapParser stringWithDeletedNamespacePrefix:wsdlType];
+    wsdlType = DeleteNamespacePrefix(wsdlType);
 	return wsdlType;
 }
 
 - (BOOL) isEnum:(FLWsdlElement*) element {
-	FLConfirmNotNil_(element);
+	FLConfirmNotNil(element);
 
-	for(FLEnumType* anEnum in self.project.enumTypes) {
+	for(FLCodeEnumType* anEnum in self.project.enumTypes) {
 		if([anEnum.typeName isEqualToString:element.type]) {
 			return YES;
 		}
@@ -221,19 +106,18 @@
 	return NO;
 }
 
-- (void) appendElementArrayAsProperties:(FLObject*) bizObj elementArray:(NSArray*) elementArray
+- (void) appendElementArrayAsProperties:(FLCodeObject*) bizObj elementArray:(NSArray*) elementArray
 {
 	for(FLWsdlElement* obj in elementArray) {
-		FLProperty* prop = [FLProperty property];
+		FLCodeProperty* prop = [FLCodeProperty property];
 		if([obj.maxOccurs isEqualToString:@"unbounded"]) {
 		//	FLThrowIfNoValue(obj, type);
 			prop.name = [NSString stringWithFormat:@"%@Array", obj.name];
 			prop.type = @"array";
-			prop.isWildcardArrayValue = YES;
 			
-			FLArrayType* type = [FLArrayType arrayType];
+			FLCodeArrayType* type = [FLCodeArrayType arrayType];
 			type.name = obj.name; //obj.name;
-			type.typeName = [self fixTypeString:obj.type];
+			type.typeName = DeleteNamespacePrefix(obj.type);
 			[prop.arrayTypes addObject:type];
 		}
 		else if([self isEnum:obj]) {
@@ -243,11 +127,11 @@
 		}
 		else if(FLStringIsNotEmpty(obj.ref)) {
 			prop.name = obj.ref;
-			prop.type = [self fixTypeString:obj.ref];
+			prop.type = DeleteNamespacePrefix(obj.ref);
 		}
 		else {
 			prop.name = obj.name;
-			prop.type = [self fixTypeString:obj.type];
+			prop.type = DeleteNamespacePrefix(obj.type);
 		}
 	
 		[bizObj.properties addObject:prop];
@@ -261,86 +145,89 @@
 		type = complexType.name;
 	}
 	
-	FLConfirmStringIsNotEmpty_(type);
+	FLConfirmStringIsNotEmpty(type);
 
-	if([complexType complexContentObject]) {
-		if([complexType.complexContent extensionObject]) {
-			FLObject* bizObj = [FLObject object];
+	if([complexType complexContent]) {
+		if([complexType.complexContent extension]) {
+			FLCodeObject* bizObj = [FLCodeObject object];
 			bizObj.protocols = @"NSCoding, NSCopying";
-			bizObj.typeName = [self fixTypeString:type];
-			bizObj.superclass = [FLSoapParser stringWithDeletedNamespacePrefix:complexType.complexContent.extension.base];
-			FLConfirmStringIsNotEmpty_(bizObj.superclass);
-			[self appendElementArrayAsProperties:bizObj elementArray:complexType.complexContent.extension.sequence];
-			[_codeSchema.objects addObject:bizObj];
+			bizObj.className = DeleteNamespacePrefix(type);
+			bizObj.superclass = DeleteNamespacePrefix(complexType.complexContent.extension.base);
+            
+			FLConfirmStringIsNotEmpty(bizObj.superclass);
+			
+            [self appendElementArrayAsProperties:bizObj elementArray:complexType.complexContent.extension.sequences];
+			
+            [self.project.objects addObject:bizObj];
 		}
-		else if([complexType.complexContent restrictionObject]) {
-			BOOL isArray = complexType.complexContent.restriction.sequenceObject &&
-						[[[complexType.complexContent.restriction.sequence objectAtIndex:0] maxOccurs] isEqualToString:@"unbounded"];
+		else if([complexType.complexContent restriction]) {
+			BOOL isArray = complexType.complexContent.restriction.sequences &&
+						[[[complexType.complexContent.restriction.sequences objectAtIndex:0] maxOccurs] isEqualToString:@"unbounded"];
 		
 			if(isArray) {
-				FLArray* array = [FLArray array];
+				FLCodeArray* array = [FLCodeArray array];
 				array.name = type;
 				   
-				for(FLWsdlElement* obj in complexType.complexContent.restriction.sequence) {	  
-					FLArrayType* newType = [FLArrayType arrayType];
+				for(FLWsdlElement* obj in complexType.complexContent.restriction.sequences) {	  
+					FLCodeArrayType* newType = [FLCodeArrayType arrayType];
 					newType.name = obj.name;
-					newType.typeName = [self fixTypeString:obj.type];
+					newType.typeName = DeleteNamespacePrefix(obj.type);
 				
 					[array.types addObject:newType];
 				}
 			
-				[_codeSchema.arrays addObject:array];
+				[self.project.arrays addObject:array];
 			}
 
 		}
 	}
-	else if([complexType sequenceObject]) {
-		BOOL isArray = complexType.sequence.count == 1 && 
-			[[[complexType.sequence objectAtIndex:0] maxOccurs] isEqualToString:@"unbounded"];
+	else if([complexType sequences]) {
+		BOOL isArray = complexType.sequences.count == 1 && 
+			[[[complexType.sequences objectAtIndex:0] maxOccurs] isEqualToString:@"unbounded"];
 				
 		if(isArray) {
-			FLArray* array = [[FLArray alloc] init];
+			FLCodeArray* array = [[FLCodeArray alloc] init];
 			array.name = type;
 			   
-			for(FLWsdlElement* obj in complexType.sequence) {	  
-				FLArrayType* newType = [FLArrayType arrayType];
+			for(FLWsdlElement* obj in complexType.sequences) {	  
+				FLCodeArrayType* newType = [FLCodeArrayType arrayType];
 				newType.name = obj.name;
-				newType.typeName = [self fixTypeString:obj.type];
+				newType.typeName = DeleteNamespacePrefix(obj.type);
 			
 				[array.types addObject:newType];
 			}
 		
-			[_codeSchema.arrays addObject:array];
+			[self.project.arrays addObject:array];
 		}
 		else {
-			FLObject* bizObj = [FLObject object];
+			FLCodeObject* bizObj = [FLCodeObject object];
 			bizObj.protocols = @"NSCoding, NSCopying";
-			bizObj.typeName = [self fixTypeString:type];
+			bizObj.className = DeleteNamespacePrefix(type);
 			
-			[self appendElementArrayAsProperties:bizObj elementArray:complexType.sequence];
-			[_codeSchema.objects addObject:bizObj];
+			[self appendElementArrayAsProperties:bizObj elementArray:complexType.sequences];
+			[self.project.objects addObject:bizObj];
 		}
 	}
-	else if([complexType choiceObject]) {
-		FLArray* array = [FLArray array];
+	else if([complexType choice]) {
+		FLCodeArray* array = [FLCodeArray array];
 		array.name = type;
 		   
 		for(FLWsdlElement* obj in complexType.choice.elements) {	  
-			FLArrayType* newType = [FLArrayType arrayType];
+			FLCodeArrayType* newType = [FLCodeArrayType arrayType];
 			newType.name = obj.name;
-			newType.typeName = [self fixTypeString:obj.type];
+			newType.typeName = DeleteNamespacePrefix(obj.type);
 		
 			[array.types addObject:newType];
 		}
 	
-		[_codeSchema.arrays addObject:array];
+		[self.project.arrays addObject:array];
 	}
 	else {
 // create empty object? 
-		FLObject* bizObj = [FLObject object];
+		FLCodeObject* bizObj = [FLCodeObject object];
 		bizObj.protocols = @"NSCoding, NSCopying";
-		bizObj.typeName = [self fixTypeString:type];	
-		[_codeSchema.objects addObject:bizObj];
+		bizObj.className = DeleteNamespacePrefix(type);	
+		[self.project.objects addObject:bizObj];
 	}
 }
 
@@ -354,7 +241,7 @@
 		partType = part.element;
 	}
 	
-	FLConfirmNotNil_(partType);
+	FLConfirmNotNil(partType);
 
 	return [self.project objectForTypeName:partType] != nil;
 //    getObjectByType: type:partType] != nil;
@@ -380,30 +267,30 @@
 		}
 	}
 
-	FLObject* bizObj = [FLObject object];
+	FLCodeObject* bizObj = [FLCodeObject object];
 	bizObj.protocols = @"NSCoding, NSCopying";
-	bizObj.typeName = msg.name;
+	bizObj.className = msg.name;
 	
 	for(FLWsdlPart* part in msg.parts) {
-		FLProperty* prop = [FLProperty property];
+		FLCodeProperty* prop = [FLCodeProperty property];
 		prop.name = part.name;
 		
 		if(FLStringIsNotEmpty(part.type)) {
-			prop.type = [self fixTypeString:part.type];
+			prop.type = DeleteNamespacePrefix(part.type);
 		}
 		else if(FLStringIsNotEmpty(part.element)) {
-			prop.type = [self fixTypeString:part.element];
+			prop.type = DeleteNamespacePrefix(part.element);
 		}
 		[bizObj.properties addObject:prop];
 	}
 	
-	[_codeSchema.objects addObject:bizObj];
+	[self.project.objects addObject:bizObj];
 }
 
 
 
 - (FLWsdlMessage*) getMessageObject:(NSString*) name  {
-	name = [FLSoapParser stringWithDeletedNamespacePrefix:name];
+	name = DeleteNamespacePrefix(name);
 
 	for(FLWsdlMessage* msg in self.wsdlDefinitions.messages) {
 		if([msg.name isEqualToString:name]) {
@@ -411,21 +298,21 @@
 		}
 	}
 	
-	FLConfirmationFailure_v(@"Didn't find expected message object %@ (object referenced but not defined)", name);
+	FLConfirmationFailureWithComment(@"Didn't find expected message object %@ (object referenced but not defined)", name);
 	
 	return nil;
 
 }  
 
-- (void) addPropertyForMessage:(FLObject*) bizObj
+- (void) addPropertyForMessage:(FLCodeObject*) bizObj
 	isInput:(BOOL) isInput
 	operation:(FLWsdlOperation*) operation 
 	io:(FLWsdlInputOutput*) io
 	overrideInputOutputNames:(BOOL) overrideInputOutputNames {
 	FLWsdlMessage* msg = [self getMessageObject:io.message];	
-	FLConfirmNotNil_(msg);
+	FLConfirmNotNil(msg);
 	
-	FLProperty* ioOp = [FLProperty property];
+	FLCodeProperty* ioOp = [FLCodeProperty property];
 	
 	ioOp.type = msg.name;
 	
@@ -448,20 +335,20 @@
 
 	} 
     
-    ioOp.type = [self fixTypeString:ioOp.type];
+    ioOp.type = DeleteNamespacePrefix(ioOp.type);
 	ioOp.name = isInput ? @"input" : @"output";
 	[bizObj.properties addObject:ioOp];
 }
 
 
-- (void) propertyForMessage:(FLObject*) bizObj
+- (void) propertyForMessage:(FLCodeObject*) bizObj
 	isInput:(BOOL) isInput
 	operation:(FLWsdlOperation*) operation 
 	io:(FLWsdlInputOutput*) io
 	overrideInputOutputNames:(BOOL) overrideInputOutputNames {
 			
 	FLWsdlMessage* msg = [self getMessageObject:io.message];	
-	FLConfirmNotNil_(msg);
+	FLConfirmNotNil(msg);
 	
 	
 	BOOL setProperties = NO;
@@ -471,7 +358,7 @@
 		if(!setProperties) {
 			setProperties = YES;
 			if(isInput) {
-				FLProperty* opName = [FLProperty property];
+				FLCodeProperty* opName = [FLCodeProperty property];
 				opName.type = @"string";
 				opName.name = @"includeInputNamespaceAttribute";
 				opName.isImmutable = [NSNumber numberWithBool:YES];
@@ -479,7 +366,7 @@
 				[bizObj.properties addObject:opName];
 			
 
-				FLProperty* xmlParameterName = [FLProperty property];
+				FLCodeProperty* xmlParameterName = [FLCodeProperty property];
 				xmlParameterName.isImmutable = [NSNumber numberWithBool:YES];
 				xmlParameterName.type = @"string";
 				xmlParameterName.name = @"operationParameterName";
@@ -488,15 +375,15 @@
 			}
 		}
 
-		FLProperty* outProp = [FLProperty property];
+		FLCodeProperty* outProp = [FLCodeProperty property];
 		
 		if(isElement) {
 			outProp.type = part.element;
 		}
 		else  {
-			NSString* type = [self fixTypeString:part.type];
+			NSString* type = DeleteNamespacePrefix(part.type);
 
-FLAssertFailed_v(@"fixme");
+FLAssertFailedWithComment(@"fixme");
 
 FIXME("Not sure what this is doing, it's prob important tho")
 //			if(FLStringIsNumber(type) || FLStringIsBool(type))
@@ -524,10 +411,10 @@ FIXME("Not sure what this is doing, it's prob important tho")
 	}
 }
 
-- (void) addOperationName:(FLObject*) object
+- (void) addOperationName:(FLCodeObject*) object
 	operation:(FLWsdlOperation*) operation 
 	project:(FLCodeProject*) project {
-	FLMethod* method = [FLMethod method];
+	FLCodeMethod* method = [FLCodeMethod method];
 	method.name = @"operationName";
 	method.isPrivate = [NSNumber numberWithBool:YES];
 	method.isStatic = [NSNumber numberWithBool:NO];
@@ -536,17 +423,17 @@ FIXME("Not sure what this is doing, it's prob important tho")
 	[object.methods addObject:method];
 }
 
-- (void) addContextInit:(FLObject*) object
+- (void) addContextInit:(FLCodeObject*) object
              initValues:(NSMutableDictionary*) initValues {
     
-    FLMethod* initMethod = [FLMethod method];
+    FLCodeMethod* initMethod = [FLCodeMethod method];
     initMethod.name = @"init";
 
     initMethod.isPrivate = [NSNumber numberWithBool:YES];
     initMethod.isStatic = [NSNumber numberWithBool:NO];
     initMethod.returnType = @"id";
 
-    FLCodeBuilder* builder = [FLCodeBuilder codeBuilder];
+    FLPrettyString* builder = [FLPrettyString prettyString];
 
     [builder appendLineWithFormat:@"if((self = [super init])) {"];
     [builder indent: ^{
@@ -558,7 +445,7 @@ FIXME("Not sure what this is doing, it's prob important tho")
     [builder appendLine:@"}"];
     [builder appendLine:@"return self;"];
     
-    initMethod.code.lines = builder.string;
+    initMethod.code.lines = [builder string];
     
     [object.methods addObject:initMethod];
 }
@@ -567,16 +454,15 @@ FIXME("Not sure what this is doing, it's prob important tho")
                          portName:(NSString*) portName
                           project:(FLCodeProject*) project {
 	
-    FLObject* bizObj = [FLObject object];
-	bizObj.typeName = [NSString stringWithFormat:@"%@%@", portName, operation.name];
+    FLCodeObject* bizObj = [FLCodeObject object];
+	bizObj.className = [NSString stringWithFormat:@"%@%@", portName, operation.name];
 	bizObj.superclass = @"FLHttpOperation";
 	bizObj.comment = operation.documentation;
-	bizObj.canLazyCreateValue = YES;
 	
-	[_operations addObject:bizObj];
+//	[_operations addObject:bizObj];
 	
 	// add operation name property
-//	FLProperty* opName = [[FLProperty property] autorelease];
+//	FLCodeProperty* opName = [[FLCodeProperty property] autorelease];
 //	  opName.name = @"operationName";
 //	  opName.type = @"string";
 //	  opName.defaultValue = operation.name;
@@ -602,16 +488,16 @@ FIXME("Not sure what this is doing, it's prob important tho")
 	
 
 
-	[_codeSchema.objects addObject:bizObj];
+	[self.project.objects addObject:bizObj];
 }
 
-- (FLProperty*) createBindingOperationObject:(FLWsdlOperation*) operation {
-	FLProperty* prop = [FLProperty property];
+- (FLCodeProperty*) createBindingOperationObject:(FLWsdlOperation*) operation {
+	FLCodeProperty* prop = [FLCodeProperty property];
 	prop.name = operation.name;
 	prop.type = @"string";
-	prop.isImmutableValue = YES;
+	prop.isImmutable = YES;
 	
-	if(operation.operationObject) {
+	if(operation.operation) {
 		FLWsdlOperation* childOperation = operation.operation;
 	
 		if(FLStringIsNotEmpty(childOperation.soapAction)) {
@@ -627,7 +513,7 @@ FIXME("Not sure what this is doing, it's prob important tho")
 }
 
 - (NSString*) getServicePortLocationFromBinding:(FLWsdlBinding*) binding {
-	FLConfirmStringIsNotEmpty_(binding.name);
+	FLConfirmStringIsNotEmpty(binding.name);
 	
 	// this is attempting to get the binding attribute from the port element
 	// in the superclass service element, using the name of the bindings array
@@ -663,48 +549,48 @@ FIXME("Not sure what this is doing, it's prob important tho")
 	</wsdl:service>
 
 */				
-	for(FLWsdlPortType* port in _definitions.service.ports) {
+	for(FLWsdlPortType* port in self.wsdlDefinitions.service.ports) {
 		if([port.binding isEqualToString:binding.type]) {
 			return port.address.location;
 		}
 	}
 	
-    FLThrowErrorCode_v(FLCodeGeneratorErrorDomain, FLErrorTranslatorFailed, @"Service location string not found in service %@", _definitions.service.name);
+    FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeTranslatorFailed, @"Service location string not found in service %@", self.wsdlDefinitions.service.name);
 	return nil;
 }
 
 - (void) createServiceManager:(FLWsdlBinding*) binding {
-	FLObject* bizObj = [FLObject object];
-	bizObj.typeName = binding.name;
+	FLCodeObject* bizObj = [FLCodeObject object];
+	bizObj.className = binding.name;
 	bizObj.superclass =	 @"FLNetworkServerContext";
 	bizObj.isSingleton = [NSNumber numberWithBool:YES];
 
 	
 	NSString* url = [self getServicePortLocationFromBinding:binding];
-	FLConfirmStringIsNotEmpty_(url);
+	FLConfirmStringIsNotEmpty(url);
 	
-	FLProperty* urlProp = [FLProperty property];
+	FLCodeProperty* urlProp = [FLCodeProperty property];
 	urlProp.name = @"url";
 	urlProp.type = @"string";		
 	urlProp.defaultValue = url;		   
 	urlProp.isImmutable = [NSNumber numberWithBool:YES];
 					
 	
-	FLProperty* targetNamespace = [FLProperty property];
+	FLCodeProperty* targetNamespace = [FLCodeProperty property];
 	targetNamespace.name = @"targetNamespace";	
 	targetNamespace.type = @"string";	
 			
-	if(FLStringIsNotEmpty(_definitions.targetNamespace)) {
-		targetNamespace.defaultValue = _definitions.targetNamespace;
+	if(FLStringIsNotEmpty(self.wsdlDefinitions.targetNamespace)) {
+		targetNamespace.defaultValue = self.wsdlDefinitions.targetNamespace;
 		targetNamespace.isImmutable = [NSNumber numberWithBool:YES];
 	}
 			
 	NSMutableDictionary* initValues = [NSMutableDictionary dictionary];
 	[initValues setObject:url forKey:FLNetworkServerPropertyKeyUrl];
-	[initValues setObject:_definitions.targetNamespace forKey:FLNetworkServerPropertyKeyTargetNamespace];
+	[initValues setObject:self.wsdlDefinitions.targetNamespace forKey:FLNetworkServerPropertyKeyTargetNamespace];
 
 	for(FLWsdlOperation* op in binding.operations) {
-		FLProperty* prop = 
+		FLCodeProperty* prop = 
 			[self createBindingOperationObject:(FLWsdlOperation*) op];
 		[initValues setObject:prop.defaultValue forKey:prop.name];
 	}
@@ -717,13 +603,13 @@ FIXME("Not sure what this is doing, it's prob important tho")
 	}
 
 	
-	[_codeSchema.objects addObject:bizObj];
+	[self.project.objects addObject:bizObj];
 }
 
-- (FLProperty*) propForName:(FLObject*) obj name:(NSString*) name {
-//	FLProperty* input = 
+- (FLCodeProperty*) propForName:(FLCodeObject*) obj name:(NSString*) name {
+//	FLCodeProperty* input = 
 
-	for(FLProperty* prop in obj.properties) {
+	for(FLCodeProperty* prop in obj.properties) {
 		if(FLStringsAreEqual(prop.name, name)) {
 			return prop;
 		}
@@ -734,9 +620,9 @@ FIXME("Not sure what this is doing, it's prob important tho")
 
 
 - (void) prepareObjects {
-	for(FLObject* obj in self.project.objects) {
-		for(FLProperty* prop in obj.properties) {
-			prop.type = [self fixTypeString:prop.type];
+	for(FLCodeObject* obj in self.project.objects) {
+		for(FLCodeProperty* prop in obj.properties) {
+			prop.type = DeleteNamespacePrefix(prop.type);
 		}
 	}
 }
@@ -744,71 +630,104 @@ FIXME("Not sure what this is doing, it's prob important tho")
 - (void) createObjectFromSimpleType:(FLWsdlSimpleType*) simpleType
 	optionalName:(NSString*) optionalName {
 	
-    if([simpleType restrictionObject]) {
-		FLEnumType* enumType = [FLEnumType enumType];
+    if([simpleType restriction]) {
+		FLCodeEnumType* enumType = [FLCodeEnumType enumType];
 
 		enumType.typeName = optionalName ? optionalName : simpleType.name;
 
 		for(FLWsdlEnumeration* wsdlEnum in simpleType.restriction.enumerations) {
 		
-			FLEnum* newEnum = [FLEnum enum];
+			FLCodeEnum* newEnum = [FLCodeEnum codeEnum];
 			newEnum.name = wsdlEnum.value;
 			
 			[enumType.enums addObject:newEnum];
 			
 		}
 		
-		[_codeSchema.enumTypes addObject:enumType];
+		[self.project.enumTypes addObject:enumType];
 	}
 	
-	if([simpleType listObject]) {
+	if([simpleType list]) {
 		[self createObjectFromSimpleType:simpleType.list.simpleType optionalName:simpleType.name];
 	}
 }
 
 - (void) createObjectFromElement:(FLWsdlElement*) element
 {
-	if([element complexTypeObject]) {
+	if([element complexType]) {
 		[self createObjectFromComplexType:element.complexType type:element.name];
 	}
 	else {
-		[_output appendLineWithFormat:@"Skipping element with no complexType content: %@", [[element description] trimmedStringWithNoLFCR]];
+//		[_output appendLineWithFormat:@"Skipping element with no complexType content: %@", [[element description] trimmedStringWithNoLFCR]];
 	}
 }
 
-
-- (FLWsdlDefinitions*) _parseWsdl:(NSData*) xml 
-{
-	FLSoapParser* parser = [FLSoapParser soapParser:xml];
-	FLWsdlDefinitions* defs = [FLWsdlDefinitions wsdlDefinitions];
-	[parser buildObjects:defs];
-	return defs;
++ (FLWsdlCodeProjectReader*) wsdlCodeReader {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) buildCodeGeneratorSchema:(NSString*) fromFilePath 
-/*	project:(FLCodeProject*) project */
-	project:(FLCodeProject*) project
-{
-//	NSData* xml = [NSData dataWithContentsOfURL:[NSURL URLWithString:project.fileUrl]];
-//
-//	FLWsdlDefinitions* definitions = [FLWsdlCodeProjectReader parseWsdl:xml];
-//
-//	[self buildCodeGeneratorSchemaFromWsdlDefinitions:definitions project:project];
-//	
-//	NSString* intermediatePath = [NSString stringWithFormat:@"%@.cgwsdl", [[project parentProjectPath] stringByDeletingLastPathComponent], project.schemaName];
-//	
-//	FLXmlBuilder* xmlBuilder = [FLXmlBuilder xmlBuilder];
-//	[xmlBuilder addVersionAndEncodingHeader];
-//	[xmlBuilder openElement:@"schema"];
-//
-//#if NEW_BUILDER
-//	[xmlBuilder addObjectAsXML:project];
-//#else
-//	[xmlBuilder streamObject:project];
-//#endif
-//	[xmlBuilder closeElement];
-//	
-//	[xmlBuilder.string writeToFile:intermediatePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+- (BOOL) canReadProjectFromLocation:(FLCodeProjectLocation*) location {
+    return [location isLocationType:FLCodeProjectLocationTypeWsdl];
+}
+
+- (FLCodeProject *)readProjectFromLocation:(FLCodeProjectLocation *)descriptor {
+
+	NSData* xml = [descriptor loadDataInResource];
+
+    FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:xml];
+
+    self.wsdlDefinitions = [FLWsdlDefinitions objectWithXmlElement:parsedSoap withObjectBuilder:[FLSoapObjectBuilder instance]];
+	
+    self.project = [FLCodeProject project];
+
+// TODO: abstract away objc
+
+	FLCodeTypeDefinition* define1 = [FLCodeTypeDefinition typeDefinition];
+	define1.typeName = @"FLNetworkServerContext";
+	define1.import = @"FLNetworkServerContext.h";
+	[self.project.typeDefinitions addObject:define1];
+
+	FLCodeTypeDefinition* define2 = [FLCodeTypeDefinition typeDefinition];
+	define2.typeName = @"FLHttpOperation";
+	define2.import = @"FLHttpOperation.h";
+	[self.project.typeDefinitions addObject:define2];
+
+//	FLTypeDefinition* define3 = [FLTypeDefinition TypeDefinition];
+//	define3.typeName = @"FLNetworkEndpointHelper";
+//	define3.import @"FLNetworkEndpointHelper.h";
+//	[project.typeDefinitions addObject:define3];
+
+	if(FLStringIsNotEmpty(self.wsdlDefinitions.documentation)) {
+		self.project.comment = self.wsdlDefinitions.documentation;
+	}
+	
+	for(FLWsdlSchema* schema in self.wsdlDefinitions.types) {
+		for(FLWsdlSimpleType* simpleType in schema.simpleTypes) {
+			[self createObjectFromSimpleType:simpleType optionalName:nil];
+		}
+		for(FLWsdlComplexType* complexType in schema.complexTypes) {
+			[self createObjectFromComplexType:complexType type:nil];
+		}
+		for(FLWsdlElement* element in schema.elements) {
+			[self createObjectFromElement:element];
+		}
+	}
+	for(FLWsdlMessage* message in self.wsdlDefinitions.messages) {
+		[self createMessageObject:message];
+	}
+	for(FLWsdlBinding* binding in self.wsdlDefinitions.bindings) {
+		[self createServiceManager:binding];  
+	}
+	for(FLWsdlPortType* portType in self.wsdlDefinitions.portTypes) {
+		for(FLWsdlOperation* operation in portType.operations) {
+			[self createNewOperationObject:operation portName:portType.name project:self.project];
+		}
+	}
+	
+	[self prepareObjects];
+    
+    return self.project;
+
 }
 
 
@@ -816,4 +735,3 @@ FIXME("Not sure what this is doing, it's prob important tho")
 
 @end
 
-#endif

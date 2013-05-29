@@ -16,15 +16,13 @@ FLSynthesizeSingleton(FLCodeCodeGeneratorEnumLookup);
 
 - (id) init {
     if((self = [super init])) {
-        self.enumDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
-            [NSNumber numberWithInt:FLCodeDataTypeObject], kFLCodeDataTypeObject, 
-            [NSNumber numberWithInt:FLCodeDataTypeValue], kFLCodeDataTypeValue, 
-            [NSNumber numberWithInt:FLCodeTypeEnum], kFLCodeDataTypeEnum, 
-            [NSNumber numberWithInt:FLCodeDataTypeImmuteable], kFLCodeDataTypeImmuteable, 
-            [NSNumber numberWithInt:FLCodeInputTypeHttp], kFLCodeInputTypeHttp, 
-            [NSNumber numberWithInt:FLCodeInputTypeFile], kFLCodeInputTypeFile, 
-            [NSNumber numberWithInt:FLCodeInputTypeWsdl], kFLCodeInputTypeWsdl, 
-         nil];
+        [self addEnum:FLCodeDataTypeObject withName:kFLCodeDataTypeObject];
+        [self addEnum:FLCodeDataTypeValue withName:kFLCodeDataTypeValue];
+        [self addEnum:FLCodeTypeEnum withName:kFLCodeDataTypeEnum];
+        [self addEnum:FLCodeDataTypeImmuteable withName:kFLCodeDataTypeImmuteable];
+        [self addEnum:FLCodeInputTypeHttp withName:kFLCodeInputTypeHttp];
+        [self addEnum:FLCodeInputTypeFile withName:kFLCodeInputTypeFile];
+        [self addEnum:FLCodeInputTypeWsdl withName:kFLCodeInputTypeWsdl];
     }
     return self;
 }

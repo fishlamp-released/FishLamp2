@@ -9,12 +9,14 @@
 @class FLCodeProject;
 @class FLCodeBuilder;
 @class FLParsedXmlElement;
+@class FLWsdlDefinitions;
 
 @interface FLWsdlCodeProjectReader : NSObject<FLCodeProjectReader> {
 @private
     FLCodeProject* _project;
-    FLParsedXmlElement* _soap;
-	FLCodeBuilder* _output;
+    FLWsdlDefinitions* _wsdlDefinitions;
+    
+    FLCodeBuilder* _output;
 	NSMutableArray* _operations;
 }
 

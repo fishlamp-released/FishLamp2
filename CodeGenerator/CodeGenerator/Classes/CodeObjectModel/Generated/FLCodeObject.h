@@ -20,7 +20,7 @@
 @class FLCodeCodeSnippet;
 
 // FLCodeObject
-@interface FLCodeObject : FLCodeType<NSCopying> { 
+@interface FLCodeObject : FLModelObject<NSCopying> { 
 @private
     NSString* __protocols;
     NSString* __className;

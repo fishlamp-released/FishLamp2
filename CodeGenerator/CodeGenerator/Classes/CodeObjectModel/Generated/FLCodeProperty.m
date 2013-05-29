@@ -24,14 +24,14 @@
 @synthesize arrayTypes = __arrayTypes;
 
 // Getter will create __arrayTypes if nil. Alternately, use the arrayTypesObject property, which will not lazy create it.
-- (NSMutableArray*) arrayTypes
-{
-    if(!__arrayTypes)
-    {
-        __arrayTypes = [[NSMutableArray alloc] init];
-    }
-    return __arrayTypes;
-}
+//- (NSMutableArray*) arrayTypes
+//{
+//    if(!__arrayTypes)
+//    {
+//        __arrayTypes = [[NSMutableArray alloc] init];
+//    }
+//    return __arrayTypes;
+//}
 @synthesize canLazyCreate = __canLazyCreate;
 @synthesize comment = __comment;
 @synthesize defaultValue = __defaultValue;
