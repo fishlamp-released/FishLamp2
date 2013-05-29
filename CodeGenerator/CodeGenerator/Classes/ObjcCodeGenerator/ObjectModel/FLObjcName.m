@@ -25,12 +25,22 @@
 + (id) objcIvarName:(NSString*) ivarName {
     return FLAutorelease([[[self class] alloc] initWithIdentifierName:ivarName prefix:@"_" suffix:nil]);
 }
+
+- (NSString*) generatedName {
+    return [NSString stringWithFormat:@"%@%@%@", self.prefix, [self.identifierName stringWithLowercaseFirstLetter], self.suffix];
+}
+
 @end
 
 @implementation FLObjcClassName 
 + (id) objcClassName:(NSString*) className prefix:(NSString*) prefix {
     return FLAutorelease([[[self class] alloc] initWithIdentifierName:className prefix:prefix suffix:nil]);
 }
+
+- (NSString*) generatedName {
+    return [NSString stringWithFormat:@"%@%@%@", self.prefix, [self.identifierName stringWithUpperCaseFirstLetter], self.suffix];
+}
+
 @end
 
 @implementation FLObjcMethodName : FLObjcName
@@ -48,6 +58,11 @@
 + (id) objcPropertyName:(NSString*) propertyName {
     return FLAutorelease([[[self class] alloc] initWithIdentifierName:propertyName prefix:nil suffix:nil]);
 }
+
+- (NSString*) generatedName {
+    return [NSString stringWithFormat:@"%@%@%@", self.prefix, [self.identifierName stringWithLowercaseFirstLetter], self.suffix];
+}
+
 @end
 
 

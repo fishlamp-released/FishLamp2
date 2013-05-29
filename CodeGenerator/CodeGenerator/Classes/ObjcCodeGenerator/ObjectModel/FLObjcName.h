@@ -47,7 +47,6 @@
 + (id) objcParameterName:(NSString*) name;
 @end
 
-
 //@interface FLObjcVariableName : FLObjcName {
 //}
 //

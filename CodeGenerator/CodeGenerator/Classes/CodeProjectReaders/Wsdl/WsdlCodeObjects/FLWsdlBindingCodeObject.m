@@ -1,12 +1,12 @@
 //
-//  FLWsdlServiceManagerCodeObject.m
+//  FLWsdlBindingCodeObject.m
 //  CodeGenerator
 //
 //  Created by Mike Fullerton on 5/29/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLWsdlServiceManagerCodeObject.h"
+#import "FLWsdlBindingCodeObject.h"
 #import "FLWsdlCodeProjectReader.h"
 #import "FLWsdlCodeProperty.h"
 #import "FLNetworkServerContext.h"
@@ -15,7 +15,7 @@
 #import "FLCodeObject+Additions.h"
 #import "FLWsdlDefinitions.h"
 
-@implementation FLWsdlServiceManagerCodeObject
+@implementation FLWsdlBindingCodeObject
 
 + (FLCodeProperty*) addBindingOperationProperty:(FLWsdlOperation*) operation toObject:(FLWsdlCodeObject*) object {
 
@@ -38,7 +38,7 @@
 }
 
 
-+ (id) wsdlServiceManagerCodeObject:(FLWsdlBinding*) binding codeReader:(FLWsdlCodeProjectReader*) reader {
++ (id) wsdlBindingCodeObject:(FLWsdlBinding*) binding codeReader:(FLWsdlCodeProjectReader*) reader {
 
     NSString* url = [reader servicePortLocationFromBinding:binding];		   
     FLConfirmStringIsNotEmpty(url);
@@ -46,7 +46,7 @@
     NSString* targetNamespace = reader.wsdlDefinitions.targetNamespace;
     FLConfirmStringIsNotEmpty(targetNamespace);
 
-	FLWsdlCodeObject* object = [FLWsdlServiceManagerCodeObject wsdlCodeObject:binding.name superclassName:@"FLNetworkServerContext"];
+	FLWsdlCodeObject* object = [FLWsdlBindingCodeObject wsdlCodeObject:binding.name superclassName:@"FLNetworkServerContext"];
 	object.isSingleton = YES;
 	
 	FLCodeProperty* urlProp = [object addProperty:@"url" propertyType:@"string"];

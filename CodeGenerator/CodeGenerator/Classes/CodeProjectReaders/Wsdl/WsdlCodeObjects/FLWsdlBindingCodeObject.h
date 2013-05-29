@@ -1,5 +1,5 @@
 //
-//  FLWsdlServiceManagerCodeObject.h
+//  FLWsdlBindingCodeObject.h
 //  CodeGenerator
 //
 //  Created by Mike Fullerton on 5/29/13.
@@ -10,9 +10,9 @@
 @class FLWsdlBinding;
 @class FLWsdlCodeProjectReader;
 
-@interface FLWsdlServiceManagerCodeObject : FLWsdlCodeObject
+@interface FLWsdlBindingCodeObject : FLWsdlCodeObject
 
-+ (id) wsdlServiceManagerCodeObject:(FLWsdlBinding*) binding 
-                         codeReader:(FLWsdlCodeProjectReader*) reader;
++ (id) wsdlBindingCodeObject:(FLWsdlBinding*) binding 
+                  codeReader:(FLWsdlCodeProjectReader*) reader;
                          
 @end

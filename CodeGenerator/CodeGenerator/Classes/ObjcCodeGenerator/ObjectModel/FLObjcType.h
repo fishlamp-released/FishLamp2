@@ -101,5 +101,8 @@
 @interface FLObjcGeometryType : FLObjcValueType
 @end
 
-
+@interface FLObjcArrayType : FLObjcContainerType 
++ (id) objcArrayType:(FLObjcName*) typeName 
+       importFileName:(NSString*) importFileName;
+@end
 

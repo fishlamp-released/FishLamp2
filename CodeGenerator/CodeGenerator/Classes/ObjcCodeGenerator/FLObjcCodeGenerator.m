@@ -59,6 +59,13 @@
             [typeIndex setObjcType:forwardDecl];
         }
 
+        for(FLCodeArray* codeArray in project.arrays) {
+            FLObjcClassName* className = [FLObjcClassName objcClassName:codeArray.name prefix:typeIndex.classPrefix];
+            FLObjcType* forwardDecl = [FLObjcArrayType objcArrayType:className importFileName:[NSString stringWithFormat:@"%@.h", className.generatedName]];
+            [typeIndex setObjcType:forwardDecl];
+        }
+
+
         NSMutableArray* objects = [NSMutableArray array];
         for(FLCodeObject* object in project.objects) {
             FLObjcObject* objcObject = [FLObjcObject objcObject:typeIndex];
@@ -84,3 +91,5 @@
 
 
 @end
+
+

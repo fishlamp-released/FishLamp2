@@ -36,6 +36,8 @@
 }
 
 - (void) configureWithCodeProperty:(FLCodeProperty*) codeProperty {
+    
+    FLConfirmStringIsNotEmptyWithComment(codeProperty.type, @"code property '%@' type is nil", codeProperty.name);
 
     self.codeProperty = codeProperty;
 

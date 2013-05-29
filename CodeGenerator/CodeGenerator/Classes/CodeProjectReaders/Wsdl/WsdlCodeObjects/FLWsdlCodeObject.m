@@ -28,8 +28,6 @@
     return FLAutorelease([[[self class] alloc] initWithClassName:className superclassName:superclassName]);
 }
 
-
-
 - (void) setClassName:(NSString*) className {
     [super setClassName:FLDeleteNamespacePrefix(className)];
     FLConfirmStringIsNotEmptyWithComment(self.className, @"object needs a className");
@@ -89,6 +87,10 @@
                        propertyType:(NSString*) propertyType {
 
     FLWsdlCodeProperty* property = [FLWsdlCodeProperty wsdlCodeProperty:propertyName propertyType:propertyType];
+    
+    FLAssertStringIsNotEmpty(property.name);
+    FLAssertStringIsNotEmpty(property.type);
+    
     [self.properties addObject:property];
     
     return property;

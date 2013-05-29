@@ -80,20 +80,20 @@
             <properties>
                 <property name="minOccurs" type="NSString"/>
                 <property name="maxOccurs" type="NSString"/>
-                <property name="sequences" type="array">
+                <property name="elements" type="array">
                     <arrayTypes>
                         <arrayType name="element" typeName="FLWsdlElement"/>
-                        <arrayType name="sequence" typeName="FLWsdlElement"/>
-                    </arrayTypes>
+	               </arrayTypes>
                 </property>
             </properties>
         </object>
-        <object className="FLWsdlExtension" superclass="FLWsdlSequenceArray">
+        <object className="FLWsdlExtension">
             <properties>
                 <property name="base" type="NSString"/>
+                <property name="sequence" type="FLWsdlSequenceArray"/>
             </properties>
         </object>
-        <object className="FLWsdlRestrictionArray" superclass="FLWsdlSequenceArray">
+        <object className="FLWsdlRestrictionArray">
             <properties>
                 <property name="base" type="NSString"/>
                 <property name="enumerations" type="array" isWildcardArray="YES">
@@ -101,11 +101,8 @@
                         <arrayType name="enumeration" typeName="FLWsdlEnumeration"/>
                     </arrayTypes>
                 </property>
-                <property name="elements" type="array">
-                    <arrayTypes>
-                        <arrayType name="element" typeName="FLWsdlElement"/>
-                    </arrayTypes>
-                </property>
+                <property name="sequence" type="FLWsdlSequenceArray"/>
+
             </properties>
         </object>
         <object className="FLWsdlEnumeration">
@@ -132,11 +129,12 @@
                 <property name="restriction" type="FLWsdlRestrictionArray"/>
             </properties>
         </object>
-        <object className="FLWsdlComplexType" superclass="FLWsdlSequenceArray">
+        <object className="FLWsdlComplexType">
             <properties>
                 <property name="name" type="NSString"/>
                 <property name="choice" type="FLWsdlChoiceArray"/>
                 <property name="complexContent" type="FLWsdlComplexContent"/>
+                <property name="sequence" type="FLWsdlSequenceArray"/>
             </properties>
         </object>
         <object className="FLWsdlImport">

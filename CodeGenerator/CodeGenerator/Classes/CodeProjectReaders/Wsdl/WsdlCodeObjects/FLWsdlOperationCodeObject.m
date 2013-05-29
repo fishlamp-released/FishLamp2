@@ -155,7 +155,7 @@
                     codeReader:(FLWsdlCodeProjectReader*) codeReader {
 	
     FLWsdlOperationCodeObject* object = [FLWsdlOperationCodeObject wsdlCodeObject:[NSString stringWithFormat:@"%@%@", portType.name, operation.name]
-                                                                                              superclassName:@"FLHttpOperation"];
+                                                                                              superclassName:/*@"FLHttpOperation"*/ nil];
                                                                                               
 	object.comment = operation.documentation;
 	

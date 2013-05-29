@@ -245,3 +245,22 @@
 
 @implementation FLObjcGeometryType 
 @end
+
+@implementation FLObjcArrayType
+
+//- (id) init {	
+//	return [super initWithTypeName:[FLObjcImportedName objcImportedName:@"NSMutableArray"] importedFileName:nil];
+//}
+
+- (NSString*) generatedName {
+    return @"NSMutableArray";
+}
+
+
++ (id) objcArrayType:(FLObjcName*) typeName 
+       importFileName:(NSString*) importFileName {
+       return [super objcObjectType:typeName importFileName:importFileName];
+}
+
+
+@end

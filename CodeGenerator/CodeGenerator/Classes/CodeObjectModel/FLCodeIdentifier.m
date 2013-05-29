@@ -39,12 +39,20 @@
             suffix = @"";
         }
         
-        if(prefix.length && [name hasPrefix:prefix]) {
-            name = [name substringFromIndex:prefix.length];
+        
+        if(prefix.length) {
+            NSRange range = [name rangeOfString:prefix options:NSCaseInsensitiveSearch];
+            if(range.location == 0 && range.length) {
+                name = [name substringFromIndex:range.length];
+            }
         }
 
-        if(suffix.length && [name hasSuffix:suffix]) {
-            name = [name substringToIndex:(name.length - suffix.length)];
+        if(suffix.length) { 
+            NSRange range = [name rangeOfString:prefix options:NSCaseInsensitiveSearch | NSBackwardsSearch];
+            if(range.location == name.length - range.length) {
+                name = [name substringToIndex:range.location];
+            }
+
         }
 
         self.prefix = prefix;

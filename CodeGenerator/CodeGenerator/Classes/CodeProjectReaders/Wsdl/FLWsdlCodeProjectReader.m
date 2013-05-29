@@ -34,9 +34,11 @@
 #import "FLWsdlSimpleTypeEnumCodeType.h"
 #import "FLWsdlComplexTypeCodeObject.h"
 #import "FLWsdlMessageCodeObject.h"
-#import "FLWsdlServiceManagerCodeObject.h"
+#import "FLWsdlBindingCodeObject.h"
 #import "FLWsdlPortTypeCodeObject.h"
 #import "FLWsdlOperationCodeObject.h"
+#import "FLWsdlPortCodeObject.h"
+#import "FLWsdlServiceCodeObject.h"
 
 @interface FLWsdlCodeProjectReader ()
 //@property (readwrite, assign, nonatomic) FLCodeProject* project;
@@ -50,14 +52,21 @@
 - (id) init {
 	if((self = [super init])) {
         _objects = [[NSMutableDictionary alloc] init];
+        _messages = [[NSMutableDictionary alloc] init];
         _enums = [[NSMutableDictionary alloc] init];
         _arrays = [[NSMutableDictionary alloc] init];
+        _declaredTypes = [[NSMutableDictionary alloc] init];
+        _bindingObjects = [[NSMutableDictionary alloc] init];
+        _portObjects = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
 
 #if FL_DEALLOC
 - (void) dealloc {	
+    [_portObjects release];
+    [_bindingObjects release];
+    [_declaredTypes release];
 	[_array release];
     [_enums release];
     [_objects release];
@@ -98,6 +107,10 @@
     [_arrays setObject:array forKey:FLStringToKey(array.name)];
 }
 
+- (FLWsdlCodeArray*) arrayForName:(NSString*) name {
+    return [_arrays objectForKey:FLStringToKey(name)];
+}
+
 
 - (BOOL) isEnum:(FLWsdlElement*) element {
 	FLConfirmNotNil(element);
@@ -130,17 +143,17 @@
 			FLWsdlCodeObject* object = [FLWsdlComplexTypeCodeObject wsdlCodeObject:type 
                                                          superclassName:complexType.complexContent.extension.base];
                                                          
-            [object appendElementArrayAsProperties:complexType.complexContent.extension.sequences codeReader:self];
+            [object appendElementArrayAsProperties:complexType.complexContent.extension.sequence.elements codeReader:self];
             [self addCodeObject:object];
 		}
 		else if([complexType.complexContent restriction]) {
-			BOOL isArray = complexType.complexContent.restriction.sequences &&
-						[[[complexType.complexContent.restriction.sequences objectAtIndex:0] maxOccurs] isEqualToString:@"unbounded"];
+			BOOL isArray = complexType.complexContent.restriction.sequence.elements &&
+						[[[complexType.complexContent.restriction.sequence.elements objectAtIndex:0] maxOccurs] isEqualToString:@"unbounded"];
 		
 			if(isArray) {
 				FLWsdlCodeArray* array = [FLWsdlCodeArray wsdlCodeArray:type];
 				   
-				for(FLWsdlElement* obj in complexType.complexContent.restriction.sequences) {	  
+				for(FLWsdlElement* obj in complexType.complexContent.restriction.sequence.elements) {	  
                     [array addContainedType:obj.type identifier:obj.name];
 				}
                 
@@ -148,14 +161,15 @@
 			}
 		}
 	}
-	else if([complexType sequences]) {
-		BOOL isArray = complexType.sequences.count == 1 && 
-			[[[complexType.sequences objectAtIndex:0] maxOccurs] isEqualToString:@"unbounded"];
+	else if(complexType.sequence.elements) {
+		
+        BOOL isArray = complexType.sequence.elements.count == 1 && 
+			[[[complexType.sequence.elements objectAtIndex:0] maxOccurs] isEqualToString:@"unbounded"];
 				
 		if(isArray) {
             FLWsdlCodeArray* array = [FLWsdlCodeArray wsdlCodeArray:type];
 							   
-			for(FLWsdlElement* obj in complexType.sequences) {	  
+			for(FLWsdlElement* obj in complexType.sequence.elements) {	  
                 [array addContainedType:obj.type identifier:obj.name];
 			}
 		
@@ -164,7 +178,7 @@
 		else {
 			FLWsdlCodeObject* object = [FLWsdlComplexTypeCodeObject wsdlCodeObject:type superclassName:nil];
             
-            [object appendElementArrayAsProperties:complexType.sequences codeReader:self];
+            [object appendElementArrayAsProperties:complexType.sequence.elements codeReader:self];
             
             [self addCodeObject:object];
 		}
@@ -296,9 +310,16 @@
             [self createObjectFromComplexType:element.complexType type:element.name];
         }
         else {
-            FLLog(@"Skipping element with no complexType content: %@", [[element description] trimmedStringWithNoLFCR]);
+            [_declaredTypes setObject:[FLWsdlCodeObject wsdlCodeObject:element.name superclassName:element.type] forKey:FLStringToKey(element.type)];
+        
+//            FLLog(@"Skipping element with no complexType content: name:%@, type:%@", element.name, element.type);
         }
     }
+}
+
+- (void) addMessageObject:(FLWsdlMessageCodeObject*) object {
+    [_messages setObject:object forKey:FLStringToKey(object.className)];
+    [_objects setObject:object forKey:FLStringToKey(object.className)];
 }
 
 - (void) addMessageObjects:(NSArray*) messages {
@@ -316,27 +337,58 @@
     //			  <wsdl:message name="GetChallengeSoapIn">
     //			  <wsdl:part name="parameters" element="tns:GetChallenge"/>
     //			  </wsdl:message>
+
+                FLLog(@"skipping part - name:%@, element: %@", part.name, part.element);
                 
-                return;
+                continue;
             }
         }
 
-        [self addCodeObject:[FLWsdlMessageCodeObject wsdlMessageCodeObject:message]];
+        [self addMessageObject:[FLWsdlMessageCodeObject wsdlMessageCodeObject:message]];
 	}
+}
+
+- (void) addBindingObject:(FLWsdlBindingCodeObject*) bindingObject {
+    [_bindingObjects setObject:bindingObject forKey:FLStringToKey(bindingObject.className)];
+    [_objects setObject:bindingObject forKey:FLStringToKey(bindingObject.className)];
 }
 
 - (void) addBindingObjects:(NSArray*) bindings {
 	for(FLWsdlBinding* binding in bindings) {
-		[self addCodeObject:[FLWsdlServiceManagerCodeObject wsdlServiceManagerCodeObject:binding codeReader:self]];;
+        [self addBindingObject:[FLWsdlBindingCodeObject wsdlBindingCodeObject:binding codeReader:self]];
 	}
+}
+
+- (void) addPortObject:(FLWsdlOperationCodeObject*) portObject {
+    [_portObjects setObject:portObject forKey:FLStringToKey(portObject.className)];
+    [_objects setObject:portObject forKey:FLStringToKey(portObject.className)];
+
+}
+
+- (FLWsdlPortCodeObject*) portObjectForName:(NSString*) name {
+    return [_portObjects objectForKey:FLStringToKey(name)];
 }
 
 - (void) addPortObjects:(NSArray*) portTypes {
     for(FLWsdlPortType* portType in portTypes) {
+        
+        FLWsdlPortCodeObject* portObject = [FLWsdlPortCodeObject wsdlPortCodeObject:portType codeReader:self];
+    
 		for(FLWsdlOperation* operation in portType.operations) {
-            [self addCodeObject:[FLWsdlOperationCodeObject wsdlOperationCodeObject:operation portType:portType codeReader:self]];
+            FLWsdlOperationCodeObject* operationCodeObject =
+                [FLWsdlOperationCodeObject wsdlOperationCodeObject:operation portType:portType codeReader:self];
+
+            [self addCodeObject:operationCodeObject];
+            
+            [portObject addOperationCodeObject:operationCodeObject];
 		}
+
+        [self addCodeObject:portObject];
 	}
+}
+
+- (void) addServiceObject:(FLWsdlService*) service {
+    [self addCodeObject:[FLWsdlServiceCodeObject wsdlServiceCodeObject:service codeReader:self]];
 }
 
 - (FLCodeProject *)readProjectFromLocation:(FLCodeProjectLocation *)descriptor {
@@ -376,10 +428,15 @@
     [self addBindingObjects:self.wsdlDefinitions.bindings];
     [self addPortObjects:self.wsdlDefinitions.portTypes];
 
+    [self addServiceObject:self.wsdlDefinitions.service];
+
     FLCodeProject* project = [FLCodeProject project];
 	if(FLStringIsNotEmpty(self.wsdlDefinitions.documentation)) {
 		project.comment = self.wsdlDefinitions.documentation;
 	}
+    [project.objects addObjectsFromArray:[_objects allValues]];
+    [project.arrays addObjectsFromArray:[_arrays allValues]];
+    [project.enumTypes addObjectsFromArray:[_enums allValues]];
 
     return project;
 

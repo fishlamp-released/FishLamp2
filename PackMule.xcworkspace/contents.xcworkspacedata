@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../../../../../Desktop/ZenfolioApi/v1.7/ZFUser.m">
+   </FileRef>
+   <FileRef
+      location = "group:../../../../../Desktop/ZenfolioApi/v1.7/ZFUser.h">
+   </FileRef>
+   <FileRef
+      location = "group:../../../../../Desktop/ZenfolioApi/v1.7/ZFGroup.m">
+   </FileRef>
+   <FileRef
+      location = "group:../../../../../Desktop/ZenfolioApi/v1.7/ZFGroup.h">
+   </FileRef>
+   <FileRef
       location = "group:../../FishLamp/XcodeSupport/Projects/Apps/FishLampOSXApp/FishLampCocoaApp.xcodeproj">
    </FileRef>
    <FileRef

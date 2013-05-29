@@ -33,7 +33,7 @@
 #endif
 
 - (id) objectForKey:(NSString*) name {
-    id object = [_names objectForKey:name];
+    id object = [_names objectForKey:[name lowercaseString]];
     if(!object) {
         object = [_generatedStrings objectForKey:name];
     }
@@ -41,7 +41,7 @@
 }
 
 - (void) setObject:(id) object forKey:(FLObjcName*) key {
-    [_names setObject:object forKey:key.identifierName];
+    [_names setObject:object forKey:[key.identifierName lowercaseString]];
     [_generatedStrings setObject:object forKey:key.generatedName];
 }
 
