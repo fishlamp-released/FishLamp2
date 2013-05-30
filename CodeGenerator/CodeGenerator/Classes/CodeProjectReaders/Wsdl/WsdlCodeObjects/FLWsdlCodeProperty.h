@@ -7,13 +7,13 @@
 //
 
 #import "FLCodeProperty.h"
-@class FLWsdlCodeArrayType;
+@class FLWsdlCodeArrayContainedType;
 
 @interface FLWsdlCodeProperty : FLCodeProperty
 
 + (id) wsdlCodeProperty:(NSString*) propertyName propertyType:(NSString*) propertyType;
 
-- (void) addContainedType:(FLWsdlCodeArrayType*) type;
+- (void) addContainedType:(FLWsdlCodeArrayContainedType*) type;
 - (void) addContainedType:(NSString*) typeName identifier:(NSString*) identifier;
 
 @end

@@ -1,21 +1,21 @@
 //
-//  FLWsdlCodeArrayType.m
+//  FLWsdlCodeArrayContainedType.m
 //  CodeGenerator
 //
 //  Created by Mike Fullerton on 5/29/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLWsdlCodeArrayType.h"
+#import "FLWsdlCodeArrayContainedType.h"
 #import "FLWsdlCodeProjectReader.h"
 
-@implementation FLWsdlCodeArrayType
+@implementation FLWsdlCodeArrayContainedType
 
-- (id) initWithArrayName:(NSString*) name
-                typeName:(NSString*) typeName {
+- (id) initWithTypeName:(NSString*) typeName
+                identifier:(NSString*) identifier {
 	self = [super init];
 	if(self) {
-        self.name = name;
+        self.name = identifier;
         self.typeName = typeName;
 	}
 	return self;
@@ -31,8 +31,8 @@
     FLConfirmStringIsNotEmptyWithComment(self.typeName, @"array type needs a typeName");
 }
 
-+ (id) wsdlCodeArrayType:(NSString*) name typeName:(NSString*) typeName {
-    return FLAutorelease([[[self class] alloc] initWithArrayName:name typeName:typeName]);
++ (id) wsdlCodeArrayContainedType:(NSString*) typeName identifier:(NSString*) identifier {
+    return FLAutorelease([[[self class] alloc] initWithTypeName:typeName identifier:identifier]);
 }
 
 

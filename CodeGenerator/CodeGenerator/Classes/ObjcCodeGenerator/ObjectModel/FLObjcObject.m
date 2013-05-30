@@ -128,6 +128,12 @@
         [self addProperty:prop];
     }
     
+    for(FLCodeMethod* method in codeObject.methods) {
+        FLObjcMethod* objcMethod = [FLObjcMethod objcMethod:self.typeIndex];
+        [objcMethod configureWithCodeMethod:method];
+        [self addMethod:objcMethod];
+    }
+    
     [self addMethod:[FLObjcDidRegisterObjectDescriberMethod objcDidRegisterObjectDescriberMethod:self.typeIndex]];
     [self addMethod:[FLObjcClassInitializerMethod objcMethod:self.typeIndex]];
     [self addMethod:[FLObjcDeallocMethod objcMethod:self.typeIndex]];

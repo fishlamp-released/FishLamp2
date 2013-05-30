@@ -104,6 +104,8 @@
 }
 
 - (void) addArray:(FLWsdlCodeArray*) array {
+    FLConfirm(array.types.count > 0);
+
     [_arrays setObject:array forKey:FLStringToKey(array.name)];
 }
 
@@ -429,6 +431,10 @@
     [self addPortObjects:self.wsdlDefinitions.portTypes];
 
     [self addServiceObject:self.wsdlDefinitions.service];
+
+    for(FLWsdlCodeObject* object in [_objects objectEnumerator]) {
+        [object replacePlaceholderArrays:self];
+    }
 
     FLCodeProject* project = [FLCodeProject project];
 	if(FLStringIsNotEmpty(self.wsdlDefinitions.documentation)) {

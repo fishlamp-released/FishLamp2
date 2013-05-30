@@ -8,7 +8,7 @@
 
 #import "FLWsdlCodeProperty.h"
 #import "FLWsdlCodeProjectReader.h"
-#import "FLWsdlCodeArrayType.h"
+#import "FLWsdlCodeArrayContainedType.h"
 
 @implementation FLWsdlCodeProperty
 
@@ -29,12 +29,12 @@
     FLConfirmStringIsNotEmptyWithComment(self.type, @"property needs a propertyType");
 }
 
-- (void) addContainedType:(FLWsdlCodeArrayType*) type {
+- (void) addContainedType:(FLWsdlCodeArrayContainedType*) type {
     [self.arrayTypes addObject:type];
 }
 
 - (void) addContainedType:(NSString*) typeName identifier:(NSString*) identifier {
-    [self addContainedType:[FLWsdlCodeArrayType wsdlCodeArrayType:typeName typeName:identifier]];
+    [self addContainedType:[FLWsdlCodeArrayContainedType wsdlCodeArrayContainedType:typeName identifier:identifier]];
 }
 
 

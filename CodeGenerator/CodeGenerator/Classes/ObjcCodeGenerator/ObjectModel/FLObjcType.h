@@ -21,6 +21,7 @@
 @property (readonly, strong, nonatomic) FLObjcName* typeName;
 @property (readonly, strong, nonatomic) NSString* importFileName;
 @property (readonly, assign, nonatomic) BOOL isObject;
+@property (readonly, strong, nonatomic) NSString* generatedObjectClassName;
 @end
 
 @interface FLObjcObjectType : FLObjcType

@@ -27,6 +27,8 @@
 
 - (FLCodeProperty*) propertyForName:(NSString*) name;
 
+- (void) replacePlaceholderArrays:(FLWsdlCodeProjectReader*) codeReader;
+
 @end
 
 

@@ -15,7 +15,9 @@
 #import "FLObjcObject.h"
 
 #import "FLCodeMethod.h"
+#import "FLCodeMethod+Additions.h"
 #import "FLObjcTypeIndex.h"
+#import "FLCodeCodeSnippet.h"
 
 @implementation FLObjcMethod
 
@@ -30,7 +32,8 @@
 	self = [super initWithTypeIndex:index];
 	if(self) {
         _parameters = [[NSMutableArray alloc] init];
-	}
+	    _statement = [[FLObjcBlockStatement alloc] init];
+    }
 	return self;
 }
 
@@ -89,6 +92,11 @@
     self.isPrivate = codeMethod.isPrivate;
     self.isStatic = codeMethod.isStatic;
     self.methodName = [FLObjcMethodName objcMethodName:codeMethod.name];
+    if(codeMethod.hasLines) {
+        FLObjcStringStatement* statement = [FLObjcStringStatement objcStringStatement];
+        [statement.string appendLine:codeMethod.code.lines];
+        [self addStatement:statement];
+    }
     if(FLStringIsNotEmpty(codeMethod.returnType)) {
         self.returnType = [self.typeIndex objcTypeForTypeName:codeMethod.returnType];
     }

@@ -13,6 +13,7 @@
 #import "FLWsdlCodeProperty.h"
 #import "FLWsdlCodeProjectReader.h"
 #import "FLWsdlServiceAddress.h"
+#import "FLWsdlCodeMethod.h"
 
 @implementation FLWsdlServiceCodeObject
 
@@ -21,16 +22,21 @@
     object.comment = service.documentation; 
     
     for(FLWsdlPortType* portType in service.ports) {
-        FLWsdlPortCodeObject* portCodeObject = [reader portObjectForName:portType.name];
+        FLWsdlCodeObject* portCodeObject = [reader codeObjectForClassName:portType.name];
         
         if(FLStringIsNotEmpty(portType.address.location)) {
             FLWsdlCodeProperty* location = [portCodeObject addProperty:@"location" propertyType:@"string"];
             location.isImmutable = YES;
+            location.isPrivate = YES;
             location.isReadOnly = YES;
             location.defaultValue = portType.address.location;
         }
         
-        [object addMethod:portType.name methodReturnType:portCodeObject.className];
+        FLWsdlCodeMethod* method =
+            [object addMethod:portType.name methodReturnType:portCodeObject.className];
+            
+        [method addLines:[NSString stringWithFormat:@"return FLAutorelease([[%@ alloc] init]);", portType.name]];    
+        
         
         
     }

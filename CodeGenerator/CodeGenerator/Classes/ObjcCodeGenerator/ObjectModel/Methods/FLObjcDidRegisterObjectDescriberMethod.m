@@ -41,6 +41,9 @@
 
 - (void) writeCodeToSourceFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
     
+    FLAssertNotNil(self.parentObject);
+    FLAssertNotNil(codeBuilder);
+    
     BOOL foundContainerTypes = NO;
     for(FLObjcProperty* property in [self.parentObject.properties objectEnumerator]) {
         NSArray* containerTypes = property.containerTypes;
@@ -58,7 +61,7 @@
                 if(containerTypes && containerTypes.count) {
                     
                     for(FLObjcContainerSubType* subType in containerTypes) {
-                        NSString* propertyDescriber = [NSString stringWithFormat:@"[FLPropertyDescriber propertyDescriber:@\"%@\" propertyClass:[%@ class]]", subType.subTypeName, subType.objcType.generatedName];
+                        NSString* propertyDescriber = [NSString stringWithFormat:@"[FLPropertyDescriber propertyDescriber:@\"%@\" propertyClass:[%@ class]]", subType.subTypeName, subType.objcType.generatedObjectClassName];
                     
                         [codeBuilder appendLineWithFormat:@"[describer addContainerType:%@ forContainerProperty:@\"%@\"];", propertyDescriber, property.propertyName.generatedName];
                     }

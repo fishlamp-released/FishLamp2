@@ -29,6 +29,8 @@
          @"NSMutableArray", @"array",
          @"NSMutableArray", @"mutablearray",
          @"NSMutableDictionary", @"dictionary",
+		 @"unsigned int", @"unsignedint",
+		 @"unsigned int", @"unsigned",
 
 // TODO: abstract this.
          @"NSData", @"base64binary",
@@ -78,8 +80,6 @@
 		{ @"FLObjcNumberValueType", @"NSInteger", nil },
 		{ @"FLObjcNumberValueType", @"NSUInteger", nil },
 		{ @"FLObjcNumberValueType", @"unsigned int", nil },
-		{ @"FLObjcNumberValueType", @"unsignedint", nil },
-		{ @"FLObjcNumberValueType", @"unsigned", nil },
 		{ @"FLObjcNumberValueType", @"UInt32", nil },
 		{ @"FLObjcNumberValueType", @"Int32", nil },
 		{ @"FLObjcNumberValueType", @"SInt32", nil },

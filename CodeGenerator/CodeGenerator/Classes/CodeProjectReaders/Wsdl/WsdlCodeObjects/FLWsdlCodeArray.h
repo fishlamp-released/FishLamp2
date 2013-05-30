@@ -8,13 +8,13 @@
 
 #import "FLCodeArray.h"
 
-@class FLWsdlCodeArrayType;
+@class FLWsdlCodeArrayContainedType;
 
 @interface FLWsdlCodeArray : FLCodeArray
 
 + (id) wsdlCodeArray:(NSString*) arrayName;
 
-- (void) addContainedType:(FLWsdlCodeArrayType*) type;
+- (void) addContainedType:(FLWsdlCodeArrayContainedType*) type;
 - (void) addContainedType:(NSString*) typeName identifier:(NSString*) identifier;
 
 @end

@@ -17,6 +17,8 @@
 #import "FLCodeArray.h"
 #import "FLCodeArrayType.h"
 #import "FLObjcCodeBuilder.h"
+#import "FLObjcMethod.h"
+#import "FLObjcStatement.h"
 
 @interface FLObjcProperty ()
 @property (readwrite, strong, nonatomic) FLCodeProperty* codeProperty;
@@ -56,9 +58,10 @@
         self.containerTypes = containerTypes;
     }
     
-    FLObjcIvarName* name = [FLObjcIvarName objcIvarName:[codeProperty name]];
-        
-    self.ivar = [FLObjcIvar objcIvar:name ivarType:self.propertyType];
+    if(!codeProperty.isImmutable) {
+        FLObjcIvarName* name = [FLObjcIvarName objcIvarName:[codeProperty name]];
+        self.ivar = [FLObjcIvar objcIvar:name ivarType:self.propertyType];
+    }
     self.propertyName = [FLObjcPropertyName objcPropertyName:[codeProperty name]];
 }
 
@@ -80,9 +83,12 @@
 - (void) didMoveToObject:(FLObjcObject*) object {
     self.parentObject = object;
     
-    [self.parentObject addDependency:self.ivar.variableType];
+    if(self.ivar) {
+        [self.parentObject addDependency:self.ivar.variableType];
+        [self.parentObject addIvar:self.ivar];
+    }
+    
     [self.parentObject addDependency:self.propertyType];
-    [self.parentObject addIvar:self.ivar];
     
     if(self.containerTypes && self.containerTypes.count) {
         [self.parentObject addDependency:[self.typeIndex objcTypeForClass:[FLObjectDescriber class]]];
@@ -105,12 +111,12 @@
     }
     else {
         FLObjcPropertyTypeEnum ownership = FLObjcPropertyTypeAssign;
-        if(self.ivar.variableType.isObject) {
+        if(self.propertyType.isObject) {
             ownership = FLObjcPropertyTypeStrong;
         }
 
         [codeBuilder appendPropertyDeclaration:self.propertyName.generatedName 
-                                          type:self.ivar.variableType.generatedReference 
+                                          type:self.propertyType.generatedReference 
                                         atomic:NO 
                                      ownership:ownership 
                                      readwrite:![self.codeProperty isReadOnly] 
@@ -123,7 +129,19 @@
 - (void) writeCodeToSourceFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
     
     if([self.codeProperty isStatic]) {
-    
+    }
+    else if(self.codeProperty.isImmutable)  {
+        FLObjcMethod* method = [FLObjcMethod objcMethod:self.typeIndex];
+        method.isStatic = NO;
+        method.methodName = self.propertyName;
+        method.returnType = self.propertyType;
+        FLObjcStringStatement* stringStatement = [FLObjcStringStatement objcStringStatement];
+        
+        [stringStatement.string appendLineWithFormat:@"return @\"%@\";", self.codeProperty.defaultValue];
+        [method addStatement:stringStatement];
+        
+        [method writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
+
     }
     else {
         [codeBuilder appendSynthesize:self.propertyName.generatedReference ivarName:self.ivar.variableName.generatedName];

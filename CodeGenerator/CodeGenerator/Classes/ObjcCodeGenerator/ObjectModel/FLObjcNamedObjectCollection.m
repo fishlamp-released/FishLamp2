@@ -33,16 +33,21 @@
 #endif
 
 - (id) objectForKey:(NSString*) name {
-    id object = [_names objectForKey:[name lowercaseString]];
+    name = [name lowercaseString];
+    id object = [_names objectForKey:name];
     if(!object) {
-        object = [_generatedStrings objectForKey:name];
+        NSString* key = [_generatedStrings objectForKey:name];
+        if(key) {
+            object = [_names objectForKey:[key lowercaseString]];
+        }
     }
     return object;
 }
 
 - (void) setObject:(id) object forKey:(FLObjcName*) key {
-    [_names setObject:object forKey:[key.identifierName lowercaseString]];
-    [_generatedStrings setObject:object forKey:key.generatedName];
+    NSString* masterKey = [key.identifierName lowercaseString];
+    [_names setObject:object forKey:masterKey];
+    [_generatedStrings setObject:masterKey forKey:[key.generatedName lowercaseString]];
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained [])buffer count:(NSUInteger)len {

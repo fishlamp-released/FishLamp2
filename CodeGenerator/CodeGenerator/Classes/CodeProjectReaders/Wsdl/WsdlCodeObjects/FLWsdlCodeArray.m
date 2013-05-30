@@ -8,7 +8,7 @@
 
 #import "FLWsdlCodeArray.h"
 #import "FLWsdlCodeProjectReader.h"
-#import "FLWsdlCodeArrayType.h"
+#import "FLWsdlCodeArrayContainedType.h"
 
 @implementation FLWsdlCodeArray
 
@@ -29,13 +29,13 @@
     FLConfirmStringIsNotEmptyWithComment(self.name, @"array cannot be empty");
 }
 
-- (void) addContainedType:(FLWsdlCodeArrayType*) type {
+- (void) addContainedType:(FLWsdlCodeArrayContainedType*) type {
     FLConfirmNotNil(type);
     [self.types addObject:type];
 }
 
 - (void) addContainedType:(NSString*) typeName identifier:(NSString*) identifier {
-    [self addContainedType:[FLWsdlCodeArrayType wsdlCodeArrayType:typeName typeName:identifier]];
+    [self addContainedType:[FLWsdlCodeArrayContainedType wsdlCodeArrayContainedType:typeName identifier:identifier]];
 }
 
 

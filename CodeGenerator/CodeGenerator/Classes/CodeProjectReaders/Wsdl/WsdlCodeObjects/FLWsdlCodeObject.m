@@ -11,6 +11,7 @@
 #import "FLWsdlCodeProjectReader.h"
 #import "FLWsdlElement.h"
 #import "FLWsdlCodeMethod.h"
+#import "FLWsdlCodeArray.h"
 
 @implementation FLWsdlCodeObject
 
@@ -42,7 +43,7 @@
     for(FLWsdlElement* obj in elementArray) {
 
 		if([obj.maxOccurs isEqualToString:@"unbounded"]) {
-            FLWsdlCodeProperty* prop = [self addProperty:[NSString stringWithFormat:@"%@Array", obj.name] propertyType:@"array"];
+            FLWsdlCodeProperty* prop = [self addProperty:obj.name propertyType:@"array"];
             [prop addContainedType:obj.type identifier:obj.name];
             
             
@@ -104,6 +105,29 @@
     
     return method;
                
+}
+
+- (void) replacePlaceholderArrays:(FLWsdlCodeProjectReader*) codeReader {
+
+    for(FLWsdlCodeProperty* property in self.properties) {
+        FLWsdlCodeArray* array = [codeReader arrayForName:property.type];
+        if(array) {
+            FLWsdlCodeObject* codeObject = [codeReader codeObjectForClassName:property.type];
+
+            property.type = @"array";
+            FLLog(@"found array: %@", property.name);
+            
+            [property.arrayTypes removeAllObjects];
+            for(FLCodeArrayType* subtype in array.types) {
+                [property addContainedType:subtype.typeName  identifier:subtype.name];
+            }
+            
+            FLConfirm(property.arrayTypes.count > 0);
+            
+        }
+    }
+    
+
 }
 
 

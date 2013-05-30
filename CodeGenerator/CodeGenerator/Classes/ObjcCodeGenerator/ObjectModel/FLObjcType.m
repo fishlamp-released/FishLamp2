@@ -71,6 +71,10 @@
     return self.typeName.generatedName;
 }
 
+- (NSString*) generatedObjectClassName {
+    return self.typeName.generatedName;
+}
+
 - (id) copyWithZone:(NSZone*) zone {
     return [[[self class] alloc] initWithTypeName:self.typeName importFileName:self.importFileName];
 }
@@ -221,6 +225,11 @@
 @end
 
 @implementation FLObjcNumberValueType 
+
+- (NSString*) generatedObjectClassName {
+    return @"NSNumber";
+}
+
 @end
 
 @implementation FLObjcBoolType 

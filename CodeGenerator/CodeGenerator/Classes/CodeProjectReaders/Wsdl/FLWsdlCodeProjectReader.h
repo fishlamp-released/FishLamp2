@@ -40,7 +40,7 @@
 - (BOOL) isEnum:(FLWsdlElement*) element;
 
 - (void) addArray:(FLWsdlCodeArray*) array;
-//- (FLWsdlCodeArray*) arrayForName:(NSString*) name;
+- (FLWsdlCodeArray*) arrayForName:(NSString*) name;
 
 - (void) addCodeEnum:(FLWsdlCodeEnumType*) enumType;
 - (FLCodeEnumType*) enumForKey:(NSString*) key;

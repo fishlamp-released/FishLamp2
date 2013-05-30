@@ -29,8 +29,8 @@
 		2705D7E5175673D2003B000D /* FLWsdlPortTypeCodeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D7E3175673D1003B000D /* FLWsdlPortTypeCodeObject.m */; };
 		2705D7E8175679B6003B000D /* FLWsdlOperationCodeObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705D7E6175679B3003B000D /* FLWsdlOperationCodeObject.h */; };
 		2705D7E9175679B6003B000D /* FLWsdlOperationCodeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D7E7175679B4003B000D /* FLWsdlOperationCodeObject.m */; };
-		2705D7EC17567ED4003B000D /* FLWsdlCodeArrayType.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705D7EA17567ED1003B000D /* FLWsdlCodeArrayType.h */; };
-		2705D7ED17567ED4003B000D /* FLWsdlCodeArrayType.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D7EB17567ED2003B000D /* FLWsdlCodeArrayType.m */; };
+		2705D7EC17567ED4003B000D /* FLWsdlCodeArrayContainedType.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705D7EA17567ED1003B000D /* FLWsdlCodeArrayContainedType.h */; };
+		2705D7ED17567ED4003B000D /* FLWsdlCodeArrayContainedType.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D7EB17567ED2003B000D /* FLWsdlCodeArrayContainedType.m */; };
 		2705D7F01756834F003B000D /* FLWsdlCodeEnum.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705D7EE1756834B003B000D /* FLWsdlCodeEnum.h */; };
 		2705D7F11756834F003B000D /* FLWsdlCodeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D7EF1756834D003B000D /* FLWsdlCodeEnum.m */; };
 		2705D7F417569D07003B000D /* FLWsdlServiceCodeObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705D7F217569D00003B000D /* FLWsdlServiceCodeObject.h */; };
@@ -394,8 +394,8 @@
 		2705D7E3175673D1003B000D /* FLWsdlPortTypeCodeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWsdlPortTypeCodeObject.m; sourceTree = "<group>"; };
 		2705D7E6175679B3003B000D /* FLWsdlOperationCodeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWsdlOperationCodeObject.h; sourceTree = "<group>"; };
 		2705D7E7175679B4003B000D /* FLWsdlOperationCodeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWsdlOperationCodeObject.m; sourceTree = "<group>"; };
-		2705D7EA17567ED1003B000D /* FLWsdlCodeArrayType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWsdlCodeArrayType.h; sourceTree = "<group>"; };
-		2705D7EB17567ED2003B000D /* FLWsdlCodeArrayType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWsdlCodeArrayType.m; sourceTree = "<group>"; };
+		2705D7EA17567ED1003B000D /* FLWsdlCodeArrayContainedType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWsdlCodeArrayContainedType.h; sourceTree = "<group>"; };
+		2705D7EB17567ED2003B000D /* FLWsdlCodeArrayContainedType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWsdlCodeArrayContainedType.m; sourceTree = "<group>"; };
 		2705D7EE1756834B003B000D /* FLWsdlCodeEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWsdlCodeEnum.h; sourceTree = "<group>"; };
 		2705D7EF1756834D003B000D /* FLWsdlCodeEnum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWsdlCodeEnum.m; sourceTree = "<group>"; };
 		2705D7F217569D00003B000D /* FLWsdlServiceCodeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWsdlServiceCodeObject.h; sourceTree = "<group>"; };
@@ -740,8 +740,8 @@
 				2705D7E3175673D1003B000D /* FLWsdlPortTypeCodeObject.m */,
 				2705D7E6175679B3003B000D /* FLWsdlOperationCodeObject.h */,
 				2705D7E7175679B4003B000D /* FLWsdlOperationCodeObject.m */,
-				2705D7EA17567ED1003B000D /* FLWsdlCodeArrayType.h */,
-				2705D7EB17567ED2003B000D /* FLWsdlCodeArrayType.m */,
+				2705D7EA17567ED1003B000D /* FLWsdlCodeArrayContainedType.h */,
+				2705D7EB17567ED2003B000D /* FLWsdlCodeArrayContainedType.m */,
 				2705D7EE1756834B003B000D /* FLWsdlCodeEnum.h */,
 				2705D7EF1756834D003B000D /* FLWsdlCodeEnum.m */,
 				2705D7F217569D00003B000D /* FLWsdlServiceCodeObject.h */,
@@ -1390,7 +1390,7 @@
 				2705D7E017566D45003B000D /* FLWsdlBindingCodeObject.h in Headers */,
 				2705D7E4175673D2003B000D /* FLWsdlPortTypeCodeObject.h in Headers */,
 				2705D7E8175679B6003B000D /* FLWsdlOperationCodeObject.h in Headers */,
-				2705D7EC17567ED4003B000D /* FLWsdlCodeArrayType.h in Headers */,
+				2705D7EC17567ED4003B000D /* FLWsdlCodeArrayContainedType.h in Headers */,
 				2705D7F01756834F003B000D /* FLWsdlCodeEnum.h in Headers */,
 				2705D7F417569D07003B000D /* FLWsdlServiceCodeObject.h in Headers */,
 				2705D7F817569F09003B000D /* FLWsdlPortCodeObject.h in Headers */,
@@ -1707,7 +1707,7 @@
 				2705D7E117566D45003B000D /* FLWsdlBindingCodeObject.m in Sources */,
 				2705D7E5175673D2003B000D /* FLWsdlPortTypeCodeObject.m in Sources */,
 				2705D7E9175679B6003B000D /* FLWsdlOperationCodeObject.m in Sources */,
-				2705D7ED17567ED4003B000D /* FLWsdlCodeArrayType.m in Sources */,
+				2705D7ED17567ED4003B000D /* FLWsdlCodeArrayContainedType.m in Sources */,
 				2705D7F11756834F003B000D /* FLWsdlCodeEnum.m in Sources */,
 				2705D7F517569D07003B000D /* FLWsdlServiceCodeObject.m in Sources */,
 				2705D7F917569F09003B000D /* FLWsdlPortCodeObject.m in Sources */,
