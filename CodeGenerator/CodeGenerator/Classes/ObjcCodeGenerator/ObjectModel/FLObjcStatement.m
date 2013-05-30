@@ -7,7 +7,7 @@
 //
 
 #import "FLObjcStatement.h"
-
+#import "FLObjcType.h"
 
 @implementation FLObjcStatement
 //+ (id) objcStatement:(FLObjcTypeIndex*) typeIndex {
@@ -111,4 +111,24 @@
 + (id) objcStringStatement {
     return FLAutorelease([[[self class] alloc] init]);
 }
+
+- (void) addCodeLine:(FLCodeLine*) codeLine withTypeIndex:(FLObjcTypeIndex*) typeIndex {
+
+    switch(codeLine.codeLineType) {
+        case FLCodeLineTypeReturnNewObject:{
+            FLObjcType* theType = [typeIndex objcTypeForTypeName:[codeLine parameterForKey:FLCodeLineClassName]];
+            [self.string appendLineWithFormat:@"return FLAutorelease([[%@ alloc] init]);", theType.generatedName];
+        }
+        break;
+        
+        case FLCodeLineTypeReturnString:
+            [self.string appendLineWithFormat:@"return @\"%@\";", [codeLine parameterForKey:FLCodeLineString]];
+        break;
+        
+        default:
+        break;
+    
+    }
+}
+
 @end

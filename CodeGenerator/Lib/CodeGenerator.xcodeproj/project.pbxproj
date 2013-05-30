@@ -37,6 +37,8 @@
 		2705D7F517569D07003B000D /* FLWsdlServiceCodeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D7F317569D03003B000D /* FLWsdlServiceCodeObject.m */; };
 		2705D7F817569F09003B000D /* FLWsdlPortCodeObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705D7F617569F01003B000D /* FLWsdlPortCodeObject.h */; };
 		2705D7F917569F09003B000D /* FLWsdlPortCodeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705D7F717569F03003B000D /* FLWsdlPortCodeObject.m */; };
+		2705EE4B1756EC00003B000D /* FLCodeLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705EE491756EBF4003B000D /* FLCodeLine.h */; };
+		2705EE4C1756EC00003B000D /* FLCodeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2705EE4A1756EBFA003B000D /* FLCodeLine.m */; };
 		27469967174C7E8E00350E73 /* FLImportedTestObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 27469965174C7E8D00350E73 /* FLImportedTestObject.h */; };
 		27469972174C7E9500350E73 /* FLImportedTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 27469966174C7E8E00350E73 /* FLImportedTestObject.m */; };
 		27515B0917557E22007DDB7B /* FLCodeAll.h in Headers */ = {isa = PBXBuildFile; fileRef = 27515ADA17557E22007DDB7B /* FLCodeAll.h */; };
@@ -402,6 +404,8 @@
 		2705D7F317569D03003B000D /* FLWsdlServiceCodeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWsdlServiceCodeObject.m; sourceTree = "<group>"; };
 		2705D7F617569F01003B000D /* FLWsdlPortCodeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWsdlPortCodeObject.h; sourceTree = "<group>"; };
 		2705D7F717569F03003B000D /* FLWsdlPortCodeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWsdlPortCodeObject.m; sourceTree = "<group>"; };
+		2705EE491756EBF4003B000D /* FLCodeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeLine.h; sourceTree = "<group>"; };
+		2705EE4A1756EBFA003B000D /* FLCodeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeLine.m; sourceTree = "<group>"; };
 		27469965174C7E8D00350E73 /* FLImportedTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImportedTestObject.h; sourceTree = "<group>"; };
 		27469966174C7E8E00350E73 /* FLImportedTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImportedTestObject.m; sourceTree = "<group>"; };
 		27515ADA17557E22007DDB7B /* FLCodeAll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeAll.h; sourceTree = "<group>"; };
@@ -892,6 +896,8 @@
 				27515AD917557E22007DDB7B /* Generated */,
 				2787B4DA17415C330010C2C6 /* GeneratedAdditions */,
 				2787B4E517415C330010C2C6 /* ObjectModel.flproj */,
+				2705EE491756EBF4003B000D /* FLCodeLine.h */,
+				2705EE4A1756EBFA003B000D /* FLCodeLine.m */,
 			);
 			path = CodeObjectModel;
 			sourceTree = "<group>";
@@ -1394,6 +1400,7 @@
 				2705D7F01756834F003B000D /* FLWsdlCodeEnum.h in Headers */,
 				2705D7F417569D07003B000D /* FLWsdlServiceCodeObject.h in Headers */,
 				2705D7F817569F09003B000D /* FLWsdlPortCodeObject.h in Headers */,
+				2705EE4B1756EC00003B000D /* FLCodeLine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1711,6 +1718,7 @@
 				2705D7F11756834F003B000D /* FLWsdlCodeEnum.m in Sources */,
 				2705D7F517569D07003B000D /* FLWsdlServiceCodeObject.m in Sources */,
 				2705D7F917569F09003B000D /* FLWsdlPortCodeObject.m in Sources */,
+				2705EE4C1756EC00003B000D /* FLCodeLine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

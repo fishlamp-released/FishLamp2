@@ -87,16 +87,20 @@
     }
 }
 
+
 - (void) configureWithCodeMethod:(FLCodeMethod*) codeMethod   {
 
     self.isPrivate = codeMethod.isPrivate;
     self.isStatic = codeMethod.isStatic;
     self.methodName = [FLObjcMethodName objcMethodName:codeMethod.name];
-    if(codeMethod.hasLines) {
-        FLObjcStringStatement* statement = [FLObjcStringStatement objcStringStatement];
-        [statement.string appendLine:codeMethod.code.lines];
-        [self addStatement:statement];
+    FLObjcStringStatement* statement = [FLObjcStringStatement objcStringStatement];
+    
+    for(FLCodeLine* codeLine in codeMethod.codeLines) {
+        [statement addCodeLine:codeLine withTypeIndex:self.typeIndex];
     }
+    
+    [self addStatement:statement];
+
     if(FLStringIsNotEmpty(codeMethod.returnType)) {
         self.returnType = [self.typeIndex objcTypeForTypeName:codeMethod.returnType];
     }

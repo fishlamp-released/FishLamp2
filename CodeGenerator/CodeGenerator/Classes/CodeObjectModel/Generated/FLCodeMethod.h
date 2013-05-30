@@ -10,7 +10,7 @@
 //
 
 #import "FLModelObject.h"
-
+#import "FLCodeLine.h"
 
 @class FLCodeCodeSnippet;
 @class FLCodeVariable;
@@ -25,10 +25,12 @@
     NSString* __comment;
     FLCodeCodeSnippet* __code;
     NSMutableArray* __parameters;
+    
+    NSMutableArray* _codeLines;
 }
 
 /// @brief: Getter will create __code if nil. Alternately, use the codeObject property, which will not lazy create it.
-@property (readwrite, strong, nonatomic) FLCodeCodeSnippet* code;
+//@property (readwrite, strong, nonatomic) FLCodeCodeSnippet* code;
 
 /// @brief: comment about this method
 @property (readwrite, strong, nonatomic) NSString* comment;
@@ -61,6 +63,10 @@
 - (void) createCodeIfNil; 
 
 - (void) createParametersIfNil; 
+
+@property (readwrite, strong, nonatomic) NSMutableArray* codeLines;
+
+
 @end
 
 // [/Generated]

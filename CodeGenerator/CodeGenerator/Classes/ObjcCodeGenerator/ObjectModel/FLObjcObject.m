@@ -126,12 +126,17 @@
         FLObjcProperty* prop = [FLObjcProperty objcProperty:self.typeIndex];
         [prop configureWithCodeProperty:codeProp];
         [self addProperty:prop];
+        
+        [self addDependency:prop.propertyType];
     }
     
     for(FLCodeMethod* method in codeObject.methods) {
         FLObjcMethod* objcMethod = [FLObjcMethod objcMethod:self.typeIndex];
         [objcMethod configureWithCodeMethod:method];
         [self addMethod:objcMethod];
+
+        [self addDependency:objcMethod.returnType];
+
     }
     
     [self addMethod:[FLObjcDidRegisterObjectDescriberMethod objcDidRegisterObjectDescriberMethod:self.typeIndex]];

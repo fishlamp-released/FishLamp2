@@ -122,32 +122,27 @@
     property.isPrivate = YES;
     property.isStatic = YES;
     property.defaultValue = [NSString stringWithFormat:@"@\"%@\"", operation.name];
-    
-//    FLWsdlCodeMethod* method = [object addMethod:@"operationName" returnType:@"string"];
-//	method.isPrivate = YES;
-//	method.isStatic = NO;
-//	[method addLines:[NSString stringWithFormat:@"return @\"%@\";", operation.name]];
 }
 
 - (void) addInitWithValues:(NSMutableDictionary*) initValues {
-
-    FLWsdlCodeMethod* initMethod = [self addMethod:@"init" methodReturnType:@"id"];
-    initMethod.isPrivate = YES;
-    initMethod.isStatic = NO;
-
-    FLPrettyString* builder = [FLPrettyString prettyString];
-
-    [builder appendLineWithFormat:@"if((self = [super init])) {"];
-    [builder indent: ^{
-        for(NSString* key in initValues) {
-            [builder appendLineWithFormat:@"[self.properties setObject:@\"%@\" forKey:@\"%@\"];", [initValues objectForKey:key], key];
-        }
-    }];
-
-    [builder appendLine:@"}"];
-    [builder appendLine:@"return self;"];
-    
-    [initMethod addLines:[builder string]];
+//
+//    FLWsdlCodeMethod* initMethod = [self addMethod:@"init" methodReturnType:@"id"];
+//    initMethod.isPrivate = YES;
+//    initMethod.isStatic = NO;
+//
+//    FLPrettyString* builder = [FLPrettyString prettyString];
+//
+//    [builder appendLineWithFormat:@"if((self = [super init])) {"];
+//    [builder indent: ^{
+//        for(NSString* key in initValues) {
+//            [builder appendLineWithFormat:@"[self.properties setObject:@\"%@\" forKey:@\"%@\"];", [initValues objectForKey:key], key];
+//        }
+//    }];
+//
+//    [builder appendLine:@"}"];
+//    [builder appendLine:@"return self;"];
+//    
+//    [initMethod addLines:[builder string]];
 }
 
 + (id) wsdlOperationCodeObject:(FLWsdlOperation*) operation 

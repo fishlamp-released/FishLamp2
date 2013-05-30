@@ -15,7 +15,7 @@
 
 @implementation FLCodeMethod
 
-@synthesize code = __code;
+//@synthesize code = __code;
 
 // Getter will create __code if nil. Alternately, use the codeObject property, which will not lazy create it.
 - (FLCodeCodeSnippet*) code
@@ -43,7 +43,15 @@
 }
 @synthesize returnType = __returnType;
 
-
+- (NSMutableArray*) codeLines
+{
+    if(!_codeLines)
+    {
+        _codeLines = [[NSMutableArray alloc] init];
+    }
+    return _codeLines;
+}
+@synthesize codeLines = _codeLines;
 
 - (void) dealloc
 {

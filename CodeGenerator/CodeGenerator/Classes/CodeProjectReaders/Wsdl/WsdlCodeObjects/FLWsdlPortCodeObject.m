@@ -11,6 +11,7 @@
 #import "FLWsdlPortType.h"
 #import "FLWsdlOperationCodeObject.h"
 #import "FLWsdlCodeMethod.h"
+#import "FLCodeLine.h"
 
 @implementation FLWsdlPortCodeObject
 
@@ -24,8 +25,10 @@
 
 - (void) addOperationCodeObject:(FLWsdlOperationCodeObject*) operation {
     FLWsdlCodeMethod* method = [self addMethod:operation.className methodReturnType:operation.className];
-    NSString* lines = [NSString stringWithFormat:@"return FLAutorelease([[%@ alloc] init]);", operation.className];
-    [method addLines:lines];
+    
+    FLCodeLine* codeLine = [FLCodeLine codeLine:FLCodeLineTypeReturnNewObject];
+    [codeLine addParameter:operation.className forKey:FLCodeLineClassName];
+    [method.codeLines addObject:codeLine];
 }
 
 

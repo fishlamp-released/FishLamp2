@@ -15,6 +15,7 @@
 #import "FLObjcVariable.h"
 #import "FLObjcObject.h"
 #import "FLObjcCodeBuilder.h"
+#import "FLObjcStatement.h"
 
 @implementation FLObjcDidRegisterObjectDescriberMethod
 
@@ -53,26 +54,31 @@
     }
     
     if(foundContainerTypes) {
-        [super writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
-        [codeBuilder scope:^{
-    
-            for(FLObjcProperty* property in [self.parentObject.properties objectEnumerator]) {
-                NSArray* containerTypes = property.containerTypes;
-                if(containerTypes && containerTypes.count) {
+        FLObjcStringStatement* statement = nil;
+        for(FLObjcProperty* property in [self.parentObject.properties objectEnumerator]) {
+            NSArray* containerTypes = property.containerTypes;
+            if(containerTypes && containerTypes.count) {
+                
+                if(!statement) {
+                    statement = [FLObjcStringStatement objcStringStatement]; 
+                }
+                
+                for(FLObjcContainerSubType* subType in containerTypes) {
+                    NSString* propertyDescriber = [NSString stringWithFormat:@"[FLPropertyDescriber propertyDescriber:@\"%@\" propertyClass:[%@ class]]", subType.subTypeName, subType.objcType.generatedObjectClassName];
+                
                     
-                    for(FLObjcContainerSubType* subType in containerTypes) {
-                        NSString* propertyDescriber = [NSString stringWithFormat:@"[FLPropertyDescriber propertyDescriber:@\"%@\" propertyClass:[%@ class]]", subType.subTypeName, subType.objcType.generatedObjectClassName];
-                    
-                        [codeBuilder appendLineWithFormat:@"[describer addContainerType:%@ forContainerProperty:@\"%@\"];", propertyDescriber, property.propertyName.generatedName];
-                    }
+                
+                    [statement.string appendLineWithFormat:@"[describer addContainerType:%@ forContainerProperty:@\"%@\"];", propertyDescriber, property.propertyName.generatedName];
                 }
             }
-                            
-        }];
-        
+        }
+
+        if(statement) {
+            [self addStatement:statement];
+        }
     }
     
-
+    [super writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
 }
 
 

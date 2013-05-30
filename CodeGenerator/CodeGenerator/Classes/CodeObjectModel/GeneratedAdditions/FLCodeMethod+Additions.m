@@ -11,18 +11,18 @@
 
 @implementation FLCodeMethod (Additions)
 
-- (BOOL) hasLines {
-	return FLStringIsNotEmpty(self.code.lines);
-}
-
-- (void) addLines:(NSString*) lines {
-
-    NSString* existingLines = self.code.lines;
-    if(!existingLines) {
-        existingLines = @"";
-    }
-
-    self.code.lines = [NSString stringWithFormat:@"%@%@", existingLines, lines];
-}
+//- (BOOL) hasLines {
+//	return FLStringIsNotEmpty(self.code.lines);
+//}
+//
+//- (void) addLines:(NSString*) lines {
+//
+//    NSString* existingLines = self.code.lines;
+//    if(!existingLines) {
+//        existingLines = @"";
+//    }
+//
+//    self.code.lines = [NSString stringWithFormat:@"%@%@", existingLines, lines];
+//}
 
 @end

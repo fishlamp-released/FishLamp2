@@ -26,10 +26,10 @@
 		FLWsdlOperation* childOperation = operation.operation;
 	
 		if(FLStringIsNotEmpty(childOperation.soapAction)) {
-			prop.defaultValue = childOperation.soapAction;
+			prop.defaultValue = [FLCodeLine codeLineReturnString:childOperation.soapAction];
 		}
 		else if(FLStringIsNotEmpty(childOperation.location)) {
-			prop.defaultValue = childOperation.location;
+			prop.defaultValue = [FLCodeLine codeLineReturnString:childOperation.location];
 		}
 	}
 	
@@ -51,10 +51,10 @@
 	
 	FLCodeProperty* urlProp = [object addProperty:@"url" propertyType:@"string"];
 	urlProp.isImmutable = YES;
-	urlProp.defaultValue = url;
+	urlProp.defaultValue = [FLCodeLine codeLineReturnString:targetNamespace];
 
 	FLCodeProperty* targetNamespaceProp = [object addProperty:@"targetNamespace" propertyType:@"string"];
-	targetNamespaceProp.defaultValue = targetNamespace;
+	targetNamespaceProp.defaultValue = [FLCodeLine codeLineReturnString:targetNamespace];
 	targetNamespaceProp.isImmutable = YES;
 			
 	NSMutableDictionary* initValues = [NSMutableDictionary dictionary];

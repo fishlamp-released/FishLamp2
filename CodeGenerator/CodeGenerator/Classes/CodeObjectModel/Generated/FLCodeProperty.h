@@ -15,6 +15,7 @@
 @class FLCodeMethod;
 @class FLCodeEnumType;
 @class FLCodeArrayType;
+#import "FLCodeLine.h"
 
 // FLCodeProperty
 @interface FLCodeProperty : FLModelObject { 
@@ -23,7 +24,7 @@
     NSString* __type;
     FLCodeStorageOptions* __storageOptions;
     NSString* __memberName;
-    NSString* __defaultValue;
+    FLCodeLine* __defaultValue;
     NSString* __comment;
     FLCodeMethod* __getter;
     FLCodeMethod* __setter;
@@ -50,7 +51,7 @@
 /// @brief: comment about this property
 @property (readwrite, strong, nonatomic) NSString* comment;
 
-@property (readwrite, strong, nonatomic) NSString* defaultValue;
+@property (readwrite, strong, nonatomic) FLCodeLine* defaultValue;
 
 /// @brief: Getter will create __enumType if nil. Alternately, use the enumTypeObject property, which will not lazy create it.
 @property (readwrite, strong, nonatomic) FLCodeEnumType* enumType;

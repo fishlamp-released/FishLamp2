@@ -135,10 +135,13 @@
         method.isStatic = NO;
         method.methodName = self.propertyName;
         method.returnType = self.propertyType;
+        
         FLObjcStringStatement* stringStatement = [FLObjcStringStatement objcStringStatement];
         
-        [stringStatement.string appendLineWithFormat:@"return @\"%@\";", self.codeProperty.defaultValue];
-        [method addStatement:stringStatement];
+        if(self.codeProperty.defaultValue) {
+            [stringStatement addCodeLine:self.codeProperty.defaultValue withTypeIndex:self.typeIndex];
+            [method addStatement:stringStatement];
+        }
         
         [method writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
 

@@ -8,6 +8,8 @@
 
 #import "FLObjcCodeElement.h"
 #import "FLObjcCodeBuilder.h"
+#import "FLCodeLine.h"
+#import "FLObjcTypeIndex.h"
 
 @class FLObjcRuntimeValue;
 
@@ -45,6 +47,8 @@
 + (id) objcStringStatement;
 
 @property (readonly, strong, nonatomic) FLCodeChunk* string;
+
+- (void) addCodeLine:(FLCodeLine*) codeLine withTypeIndex:(FLObjcTypeIndex*) typeIndex;
 
 @end
 

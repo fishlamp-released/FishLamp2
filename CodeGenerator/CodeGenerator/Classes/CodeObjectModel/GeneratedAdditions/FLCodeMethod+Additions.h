@@ -9,6 +9,6 @@
 #import "FLCodeMethod.h"
 
 @interface FLCodeMethod (Additions)
-@property (readonly, assign, nonatomic) BOOL hasLines;	
-- (void) addLines:(NSString*) lines;
+//@property (readonly, assign, nonatomic) BOOL hasLines;	
+//- (void) addLines:(NSString*) lines;
 @end

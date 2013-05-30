@@ -29,15 +29,16 @@
             location.isImmutable = YES;
             location.isPrivate = YES;
             location.isReadOnly = YES;
-            location.defaultValue = portType.address.location;
+            location.defaultValue = [FLCodeLine codeLineReturnString:portType.address.location];
         }
         
         FLWsdlCodeMethod* method =
             [object addMethod:portType.name methodReturnType:portCodeObject.className];
-            
-        [method addLines:[NSString stringWithFormat:@"return FLAutorelease([[%@ alloc] init]);", portType.name]];    
-        
-        
+                    
+        FLCodeLine* codeLine = [FLCodeLine codeLine:FLCodeLineTypeReturnNewObject];
+        [codeLine addParameter:portType.name forKey:FLCodeLineClassName];
+        [method.codeLines addObject:codeLine];
+
         
     }
     
