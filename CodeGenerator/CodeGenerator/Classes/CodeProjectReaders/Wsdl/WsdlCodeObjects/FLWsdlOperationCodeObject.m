@@ -15,6 +15,9 @@
 #import "FLWsdlCodeProperty.h"
 #import "FLWsdlCodeMethod.h"
 #import "FLWsdlCodeProjectReader.h"
+#import "FLWsdlBinding.h"
+#import "FLWsdlDefinitions.h"
+#import "FLHttpRequestDescriptor.h"
 
 @implementation FLWsdlOperationCodeObject
 
@@ -82,7 +85,13 @@
 //	}
 //}
 
-
+- (id) init {	
+	self = [super init];
+	if(self) {
+        self.protocols = NSStringFromProtocol(@protocol(FLHttpRequestDescriptor));
+    }
+	return self;
+}
 
 - (void) addPropertiesForWsdlMessage:(FLWsdlMessage*) message
                              isInput:(BOOL) isInput
@@ -118,10 +127,12 @@
 
 - (void) addOperationNameProperty:(FLWsdlOperation*) operation {
     
-    FLWsdlCodeProperty* property = [self addProperty:@"operationName" propertyType:@"string"];
-    property.isPrivate = YES;
-    property.isStatic = YES;
-    property.defaultValue = [NSString stringWithFormat:@"@\"%@\"", operation.name];
+    if([self propertyForName:@"operationName"] == nil) {
+        FLWsdlCodeProperty* property = [self addProperty:@"operationName" propertyType:@"string"];
+        property.isReadOnly = YES;
+        property.isImmutable = YES;
+        property.defaultValue = [FLCodeLine codeLineReturnString:operation.name];
+    }
 }
 
 - (void) addInitWithValues:(NSMutableDictionary*) initValues {
@@ -145,32 +156,100 @@
 //    [initMethod addLines:[builder string]];
 }
 
-+ (id) wsdlOperationCodeObject:(FLWsdlOperation*) operation 
-                      portType:(FLWsdlPortType*) portType 
-                    codeReader:(FLWsdlCodeProjectReader*) codeReader {
-	
-    FLWsdlOperationCodeObject* object = [FLWsdlOperationCodeObject wsdlCodeObject:[NSString stringWithFormat:@"%@%@", portType.name, operation.name]
-                                                                                              superclassName:/*@"FLHttpOperation"*/ nil];
-                                                                                              
-	object.comment = operation.documentation;
-	
-	
-	[object addOperationNameProperty:operation]; 
-	   
-    [object addPropertiesForWsdlMessage:[codeReader wsdlMessageForName:operation.input.message]
-                        isInput:YES 
-                      operation:operation 
-                             io:operation.input 
-       overrideInputOutputNames:NO];
++ (NSString*) operationClassName:(NSString*) binding operationName:(NSString*) operationName {
+    return [NSString stringWithFormat:@"%@%@", binding, operationName];
+}
 
-    [object addPropertiesForWsdlMessage:[codeReader wsdlMessageForName:operation.output.message] 
-                        isInput:NO 
-                      operation:operation 
-                             io:operation.output
-       overrideInputOutputNames:NO];
++ (id) wsdlOperationCodeObject:(FLWsdlOperation*) operation 
+                   bindingName:(NSString*) bindingName 
+                    codeReader:(FLWsdlCodeProjectReader*) codeReader {
+
+    NSString* className = [[self class] operationClassName:bindingName operationName:operation.name];
+
+    FLWsdlOperationCodeObject* object = [codeReader codeObjectForClassName:className];
+    if(!object) {
+        object = [FLWsdlOperationCodeObject wsdlCodeObject:className superclassName:nil];  
+    }
+    
+    [object addPropertiesWithOperation:operation codeReader:codeReader];
 
 
     return object;
+}     
+
+- (void) addPropertiesWithOperation:(FLWsdlOperation*) operation codeReader:(FLWsdlCodeProjectReader*) codeReader  {
+    
+    if(FLStringIsNotEmpty(operation.documentation)) {
+        self.comment = operation.documentation;
+    }
+    
+  	[self addOperationNameProperty:operation]; 
+    
+    if(operation.input.message) {
+        [self addPropertiesForWsdlMessage:[codeReader wsdlMessageForName:operation.input.message]
+                            isInput:YES 
+                          operation:operation 
+                                 io:operation.input 
+           overrideInputOutputNames:NO];
+    }
+
+    if(operation.output.message) {
+        [self addPropertiesForWsdlMessage:[codeReader wsdlMessageForName:operation.output.message] 
+                            isInput:NO 
+                          operation:operation 
+                                 io:operation.output
+           overrideInputOutputNames:NO];
+    }
+}               
+
+- (void) addPropertiesWithPortType:(FLWsdlPortType*) portType  codeReader:(FLWsdlCodeProjectReader*) reader {
+
+}
+
+- (void) addPropertiesWithBinding:(FLWsdlBinding*) binding withOperation:(FLWsdlOperation*) operation codeReader:(FLWsdlCodeProjectReader*) reader {
+    
+    [self addPropertiesWithOperation:operation codeReader:reader];
+    
+    if(FLStringIsNotEmpty(binding.verb) && [self propertyForName:@"verb"] == nil) {
+        FLWsdlCodeProperty* prop = [self addProperty:@"verb" propertyType:@"string"];
+        prop.isImmutable = YES;
+        prop.isReadOnly = YES;
+        prop.defaultValue = [FLCodeLine codeLineReturnString:binding.verb];
+    }
+
+    NSString* url = [reader servicePortLocationFromBinding:binding];		   
+    FLConfirmStringIsNotEmpty(url);
+    
+    NSString* targetNamespace = reader.wsdlDefinitions.targetNamespace;
+    FLConfirmStringIsNotEmpty(targetNamespace);
+
+    if(FLStringIsNotEmpty(targetNamespace)) {
+        FLWsdlCodeProperty* prop = [self addProperty:@"targetNamespace" propertyType:@"string"];
+        prop.isImmutable = YES;
+        prop.isReadOnly = YES;
+        prop.defaultValue = [FLCodeLine codeLineReturnString:targetNamespace];
+    }
+    
+    NSString* location = url;
+    
+    FLWsdlOperation* subOperation = operation.operation;
+    if(subOperation) {
+        if(FLStringIsNotEmpty(subOperation.soapAction)) {
+            FLWsdlCodeProperty* prop = [self addProperty:@"soapAction" propertyType:@"string"];
+            prop.isImmutable = YES;
+            prop.isReadOnly = YES;
+            prop.defaultValue = [FLCodeLine codeLineReturnString:subOperation.soapAction];
+        }
+        
+        if(FLStringIsNotEmpty(subOperation.location)) {
+            location = [url stringByAppendingPathComponent:subOperation.location];
+        }
+    }
+
+    FLWsdlCodeProperty* prop = [self addProperty:@"location" propertyType:@"string"];
+    prop.isImmutable = YES;
+    prop.isReadOnly = YES;
+    prop.defaultValue = [FLCodeLine codeLineReturnString:location];
 }
 
 

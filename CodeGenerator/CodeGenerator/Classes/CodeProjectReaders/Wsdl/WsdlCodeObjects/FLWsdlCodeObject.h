@@ -26,6 +26,7 @@
                methodReturnType:(NSString*) methodReturnType;
 
 - (FLCodeProperty*) propertyForName:(NSString*) name;
+- (FLCodeMethod*) methodForName:(NSString*) name;
 
 - (void) replacePlaceholderArrays:(FLWsdlCodeProjectReader*) codeReader;
 

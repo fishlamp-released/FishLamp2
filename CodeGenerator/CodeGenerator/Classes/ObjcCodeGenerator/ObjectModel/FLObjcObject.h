@@ -28,6 +28,7 @@
     NSMutableArray* _methods;
     NSMutableSet* _dependencies;
     FLCodeObject* _codeObject;
+    NSMutableArray* _protocols;
 }
 
 @property (readonly, strong, nonatomic) FLObjcNamedObjectCollection* properties;

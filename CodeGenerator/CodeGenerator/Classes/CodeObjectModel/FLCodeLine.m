@@ -46,5 +46,11 @@
     return codeLine;
 }
 
++ (id) codeLineReturnNewObject:(NSString*) objectClass {
+    FLCodeLine* codeLine = [FLCodeLine codeLine:FLCodeLineTypeReturnNewObject];
+    [codeLine addParameter:objectClass forKey:FLCodeLineClassName];
+    return codeLine;
+}
+
 
 @end

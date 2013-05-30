@@ -16,7 +16,7 @@
 @implementation FLWsdlCodeObject
 
 - (id) initWithClassName:(NSString*) className superclassName:(NSString*) superclassName {	
-	self = [super init];
+	self = [self init];
 	if(self) {
 //		self.protocols = @"NSCoding, NSCopying";
         self.className = className;
@@ -70,6 +70,21 @@
 	}
 }
 
+
+- (FLCodeMethod*) methodForName:(NSString*) name {
+//	FLCodeProperty* input = 
+
+    name = FLStringToKey(name);
+
+	for(FLCodeMethod* method in self.methods) {
+		if(FLStringsAreEqual(FLStringToKey(method.name), name)) {
+			return method;
+		}
+	}
+
+	return nil;
+} 
+
 - (FLCodeProperty*) propertyForName:(NSString*) name {
 //	FLCodeProperty* input = 
 
@@ -86,13 +101,14 @@
 
 - (FLWsdlCodeProperty*) addProperty:(NSString*) propertyName 
                        propertyType:(NSString*) propertyType {
-
-    FLWsdlCodeProperty* property = [FLWsdlCodeProperty wsdlCodeProperty:propertyName propertyType:propertyType];
     
+    FLWsdlCodeProperty* property = [FLWsdlCodeProperty wsdlCodeProperty:propertyName propertyType:propertyType];
+    FLConfirmNilWithComment([self propertyForName:propertyName], @"property %@ already added", propertyName);
+
+    [self.properties addObject:property];
     FLAssertStringIsNotEmpty(property.name);
     FLAssertStringIsNotEmpty(property.type);
-    
-    [self.properties addObject:property];
+
     
     return property;
 }                       
@@ -100,7 +116,10 @@
 - (FLWsdlCodeMethod*) addMethod:(NSString*) methodName 
                methodReturnType:(NSString*) methodReturnType {
 
+
     FLWsdlCodeMethod* method = [FLWsdlCodeMethod wsdlCodeMethod:methodName methodReturnType:methodReturnType];
+    FLConfirmNilWithComment([self methodForName:methodName], @"method %@ already added", methodName);
+
     [self.methods addObject:method];
     
     return method;
@@ -115,7 +134,7 @@
             FLWsdlCodeObject* codeObject = [codeReader codeObjectForClassName:property.type];
 
             property.type = @"array";
-            FLLog(@"found array: %@", property.name);
+            FLTrace(@"found array: %@", property.name);
             
             [property.arrayTypes removeAllObjects];
             for(FLCodeArrayType* subtype in array.types) {

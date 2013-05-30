@@ -87,8 +87,18 @@
     [method didMoveToObject:self];
 }
 
+- (void) addProtocol:(FLObjcType*) type {
+    if(!_protocols) {
+        _protocols = [[NSMutableArray alloc] init];
+    }
+    [_protocols addObject:type];
+    [self addDependency:type];
+
+}
+
 #if FL_MRC
 - (void) dealloc {
+    [_protocols release];
     [_codeObject release];
 	[_superclass release];
     [_objectName release];
@@ -102,6 +112,15 @@
 
 - (void) configureWithCodeObject:(FLCodeObject*) codeObject {
     
+    if(FLStringIsNotEmpty(codeObject.protocols)) {
+        NSArray* protocols = [[codeObject protocols] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ,"] allowEmptyStrings:NO];
+
+        for(NSString* protocol in protocols) {
+            FLObjcType* type = [self.typeIndex objcTypeForTypeName:protocol];
+            [self addProtocol:type];
+        }
+    }
+    
     self.codeObject = codeObject;
     
     FLObjcType* superclass = nil;
@@ -114,7 +133,8 @@
    
     [self addDependency:superclass];
    
-    self.objectName = [FLObjcClassName objcClassName:codeObject.className prefix:self.typeIndex.classPrefix];
+    self.objectName = 
+        [FLObjcClassName objcClassName:codeObject.className prefix:self.typeIndex.classPrefix];
     
     self.objectType = [FLObjcObjectType objcObjectType:self.objectName importFileName:[NSString stringWithFormat:@"%@.h", self.objectName.generatedName]];
     
@@ -194,7 +214,19 @@
         }
     }
     
-    [codeBuilder appendInterfaceDeclaration:self.objectName.generatedName superClass:self.superclassType.generatedName protocols:nil appendMemberDeclarations:^{
+    NSMutableArray* protocols = nil;
+    if(_protocols) {
+        protocols = [NSMutableArray array];
+        
+        for(FLObjcType* type in _protocols) {
+            [protocols addObject:type.generatedName];
+        }
+    }
+    
+    [codeBuilder appendInterfaceDeclaration:self.objectName.generatedName 
+                                 superClass:self.superclassType.generatedName 
+                                  protocols:protocols 
+                   appendMemberDeclarations:^{
     
         for(FLObjcIvar* ivar in [_ivars objectEnumerator]) {
             [ivar writeCodeToHeaderFile:file withCodeBuilder:codeBuilder];

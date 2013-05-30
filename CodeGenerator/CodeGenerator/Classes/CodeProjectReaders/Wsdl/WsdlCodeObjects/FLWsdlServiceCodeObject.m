@@ -9,7 +9,6 @@
 #import "FLWsdlServiceCodeObject.h"
 #import "FLWsdlService.h"
 #import "FLWsdlPortType.h"
-#import "FLWsdlPortCodeObject.h"
 #import "FLWsdlCodeProperty.h"
 #import "FLWsdlCodeProjectReader.h"
 #import "FLWsdlServiceAddress.h"
@@ -33,13 +32,9 @@
         }
         
         FLWsdlCodeMethod* method =
-            [object addMethod:portType.name methodReturnType:portCodeObject.className];
-                    
-        FLCodeLine* codeLine = [FLCodeLine codeLine:FLCodeLineTypeReturnNewObject];
-        [codeLine addParameter:portType.name forKey:FLCodeLineClassName];
-        [method.codeLines addObject:codeLine];
+            [object addMethod:[portType.name stringWithDeletedSubstring:service.name] methodReturnType:portCodeObject.className];
 
-        
+        [method.codeLines addObject:[FLCodeLine codeLineReturnNewObject:portType.name]];
     }
     
     return object;

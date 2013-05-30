@@ -26,6 +26,8 @@ typedef enum {
 
 - (void) appendPreprocessorIf:(NSString*) condition;
 - (void) appendPreprocessorEndIf;
+- (void) appendDefine:(NSString*) name value:(NSString*) value;
+- (void) appendDefine:(NSString*) name stringValue:(NSString*) value;
 
 - (void) appendImport:(NSString*) fileName;
 - (void) appendClassDeclaration:(NSString*) className;
@@ -65,6 +67,14 @@ typedef enum {
 
 - (void) scope:(dispatch_block_t) block;
 
+// switch blocks
+- (void) appendSwitchBlock:(NSString*) variable caseStatements:(dispatch_block_t) caseStatements;
+- (void) appendCaseStatement:(NSString*) var statement:(dispatch_block_t) statement;
+
+- (void) appendReturnValue:(NSString*) returnValue;
+
+- (void) appendRunOnceBlock:(NSString*) predicateName block:(dispatch_block_t) block;
+- (void) appendStaticVariable:(NSString*) type name:(NSString*) name initialValue:(NSString*) initialValue;
 @end
 
 @interface FLObjcComment : FLCodeChunk

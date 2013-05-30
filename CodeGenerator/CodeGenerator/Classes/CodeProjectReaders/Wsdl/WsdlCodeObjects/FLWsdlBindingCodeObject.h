@@ -9,10 +9,17 @@
 #import "FLWsdlCodeObject.h"
 @class FLWsdlBinding;
 @class FLWsdlCodeProjectReader;
+@class FLWsdlPortType;
 
 @interface FLWsdlBindingCodeObject : FLWsdlCodeObject
 
-+ (id) wsdlBindingCodeObject:(FLWsdlBinding*) binding 
++ (id) wsdlBindingCodeObject:(NSString*) name codeReader:(FLWsdlCodeProjectReader*) reader;
+
++ (id) wsdlBindingCodeObjectWithBinding:(FLWsdlBinding*) binding 
                   codeReader:(FLWsdlCodeProjectReader*) reader;
+
++ (id) wsdlBindingCodeObjectWithPortType:(FLWsdlPortType*) portType 
+                              codeReader:(FLWsdlCodeProjectReader*) reader;
+
                          
 @end

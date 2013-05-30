@@ -40,9 +40,22 @@
 @property (readwrite, strong, nonatomic) FLObjcName* methodName;
 @property (readwrite, strong, nonatomic) FLObjcType* returnType;
 
+
+// parameters
 - (void) addParameter:(FLObjcParameter*) parameter;
+- (void) addOrReplaceParameter:(FLObjcParameter*) parameter;
+
+- (void) removeParameter:(FLObjcParameter*) parameter;
+
+- (FLObjcParameter*) parameterForName:(NSString*) variableIdentifierName;
+
+- (void) replaceParameter:(FLObjcParameter*) oldParameter 
+            withParameter:(FLObjcParameter*) newParameter;
+
+// statement
 - (void) addStatement:(FLObjcStatement*) statement;
 
+// mise
 - (void) didMoveToObject:(FLObjcObject*) object;
 
 - (void) configureWithCodeMethod:(FLCodeMethod*) codeMethod ;

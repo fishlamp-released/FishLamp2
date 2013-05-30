@@ -10,11 +10,23 @@
 @class FLWsdlOperation;
 @class FLWsdlPortType;
 @class FLWsdlCodeProjectReader;
+@class FLWsdlBinding;
 
 @interface FLWsdlOperationCodeObject : FLWsdlCodeObject {
 
 }
 
-+ (id) wsdlOperationCodeObject:(FLWsdlOperation*) operation portType:(FLWsdlPortType*) portType  codeReader:(FLWsdlCodeProjectReader*) codeReader;
++ (NSString*) operationClassName:(NSString*) binding operationName:(NSString*) operationName;
+
++ (id) wsdlOperationCodeObject:(FLWsdlOperation*) operation 
+                   bindingName:(NSString*) bindingName 
+                    codeReader:(FLWsdlCodeProjectReader*) codeReader;
+
+- (void) addPropertiesWithOperation:(FLWsdlOperation*) operation codeReader:(FLWsdlCodeProjectReader*) reader ;
+- (void) addPropertiesWithPortType:(FLWsdlPortType*) portType  codeReader:(FLWsdlCodeProjectReader*) reader;
+
+- (void) addPropertiesWithBinding:(FLWsdlBinding*) binding 
+                    withOperation:(FLWsdlOperation*) operation 
+                       codeReader:(FLWsdlCodeProjectReader*) reader;
 
 @end

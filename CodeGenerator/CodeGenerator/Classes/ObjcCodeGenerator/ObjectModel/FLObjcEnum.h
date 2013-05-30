@@ -18,6 +18,8 @@
     NSMutableArray* _enumValues;
     FLObjcType* _enumType;
     FLObjcName* _enumName;
+    
+    NSMutableDictionary* _defines;
 }
 
 + (id) objcEnum:(FLObjcTypeIndex*) typeIndex;
@@ -33,9 +35,9 @@
 
 @interface FLObjcEnumValue : FLObjcValueType {
 @private
-    NSString* _enumValue;
+    NSUInteger _enumValue;
 }
-@property (readwrite, strong, nonatomic) NSString* enumValue;
+@property (readwrite, assign, nonatomic) NSUInteger enumValue;
 
-+ (id) objcEnumValue:(FLObjcName*) name value:(NSString*) valueOrNil;
++ (id) objcEnumValue:(FLObjcName*) name value:(NSUInteger) value;
 @end

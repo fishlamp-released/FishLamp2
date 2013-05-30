@@ -127,6 +127,10 @@
     return FLAutorelease([[[self class] alloc] initWithTypeName:typeName importFileName:importFileName]);
 }
 
+- (NSString*) generatedReference {
+    return [NSString stringWithFormat:@"id<%@>", [super generatedReference]];
+}
+
 @end
 
 @implementation FLObjcAbstractObjectType 

@@ -14,18 +14,37 @@
 #import "FLWsdlList.h"
 #import "FLWsdlCodeEnum.h"
 
+
 @implementation FLWsdlSimpleTypeEnumCodeType
 
-+ (id) wsdlSimpleTypeEnumCodeType:(FLWsdlSimpleType*) simpleType
-                     optionalName:(NSString*) optionalName {
+- (void) addEnumTypesFromList:(FLWsdlRestrictionArray*) list {
+    for(FLWsdlEnumeration* wsdlEnum in list.enumerations) {
+        [self addEnum:wsdlEnum.value enumValue:nil];
+    }
+    
+    FLAssertNil(list.sequence);
+    
+}
+
+- (void) addEnumerationsFromSimpleType:(FLWsdlSimpleType*) simpleType {
+    if([simpleType restriction]) {
+        [self addEnumTypesFromList:simpleType.restriction];
+        FLAssert(self.enums.count == simpleType.restriction.enumerations.count);
+    }
+    if([simpleType list]) {
+        [self addEnumerationsFromSimpleType:simpleType.list.simpleType];
+    }
+
+    FLAssert(self.enums.count > 0);
+}
+
++ (id) wsdlSimpleTypeEnumCodeType:(FLWsdlSimpleType*) simpleType {
 	
     FLWsdlSimpleTypeEnumCodeType* enumType = FLAutorelease([[[self class] alloc] init]);
-    enumType.typeName = optionalName ? optionalName : simpleType.name;
-
-    for(FLWsdlEnumeration* wsdlEnum in simpleType.restriction.enumerations) {
-        [enumType addEnum:wsdlEnum.value enumValue:nil];
-    }
-	
+    enumType.typeName = simpleType.name;
+    FLConfirmStringIsNotEmptyWithComment(enumType.typeName, @"expecting a name for the simple type here");
+    
+    [enumType addEnumerationsFromSimpleType:simpleType];
 	return enumType;
 }
 

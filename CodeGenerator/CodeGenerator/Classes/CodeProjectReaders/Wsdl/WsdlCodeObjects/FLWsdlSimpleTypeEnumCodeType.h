@@ -13,7 +13,6 @@
 
 @interface FLWsdlSimpleTypeEnumCodeType : FLWsdlCodeEnumType
 
-+ (id) wsdlSimpleTypeEnumCodeType:(FLWsdlSimpleType*) simpleType
-                   optionalName:(NSString*) optionalName;
++ (id) wsdlSimpleTypeEnumCodeType:(FLWsdlSimpleType*) simpleType;
 
 @end

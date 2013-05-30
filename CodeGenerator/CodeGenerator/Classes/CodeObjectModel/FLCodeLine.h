@@ -31,5 +31,6 @@ typedef enum {
 - (id) parameterForKey:(id) key;
 
 + (id) codeLineReturnString:(NSString*) string;
++ (id) codeLineReturnNewObject:(NSString*) objectClass;
 
 @end

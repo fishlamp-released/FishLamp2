@@ -52,7 +52,43 @@
 }
 
 - (void) addParameter:(FLObjcParameter*) parameter {
+    FLConfirmWithComment([self parameterForName:parameter.variableName.identifierName] == nil, @"parameter for %@ already exists", parameter.variableName.identifierName);
+    
     [_parameters addObject:parameter];
+}
+
+- (FLObjcParameter*) parameterForName:(NSString*) name {
+
+    for(FLObjcParameter* parameter in _parameters) {
+        if(FLStringsAreEqual(name, parameter.variableName.identifierName)) {
+            return parameter;
+        }
+    }
+    
+    return nil;
+}
+
+- (void) replaceParameter:(FLObjcParameter*) oldParameter 
+            withParameter:(FLObjcParameter*) newParameter {
+            
+    NSUInteger idx = [_parameters indexOfObject:oldParameter];
+    if(idx != NSNotFound) {
+        [_parameters replaceObjectAtIndex:idx withObject:newParameter];
+    }
+}
+
+- (void) addOrReplaceParameter:(FLObjcParameter*) parameter {
+    FLObjcParameter* oldParam = [self parameterForName:parameter.variableName.identifierName];
+    if(oldParam) {
+        [self replaceParameter:oldParam withParameter:parameter];
+    }
+    else {
+        [self addParameter:parameter];
+    }
+}
+
+- (void) removeParameter:(FLObjcParameter*) parameter {
+    [_parameters removeObject:parameter];
 }
 
 - (void) addStatement:(FLObjcStatement*) statement {

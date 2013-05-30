@@ -45,6 +45,8 @@
 
         NSMutableArray* enums = [NSMutableArray array];
         for(FLCodeEnumType* codeEnum in project.enumTypes) {
+            FLAssert(codeEnum.enums.count > 0);
+            
             FLObjcEnum* anEnum = [FLObjcEnum objcEnum:typeIndex];
             [anEnum configureWithCodeEnumType:codeEnum];
             [enums addObject:anEnum];

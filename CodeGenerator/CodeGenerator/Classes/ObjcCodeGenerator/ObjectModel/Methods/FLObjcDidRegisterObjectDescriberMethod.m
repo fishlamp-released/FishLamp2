@@ -73,12 +73,12 @@
             }
         }
 
+        // only write the method if we have content
         if(statement) {
             [self addStatement:statement];
+            [super writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
         }
     }
-    
-    [super writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
 }
 
 

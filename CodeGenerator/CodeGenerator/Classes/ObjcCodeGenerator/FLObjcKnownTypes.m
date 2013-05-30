@@ -114,6 +114,8 @@
 		{ @"FLObjcObjectType", @"FLModelObject", @"FLModelObject.h" },
 		{ @"FLObjcObjectType", @"FLGuid", @"FLGuid.h" },
         
+        { @"FLObjcProtocolType", @"FLHttpRequestDescriptor", @"FLHttpRequestDescriptor.h" },
+        
         { nil, nil, nil }
 	};
     

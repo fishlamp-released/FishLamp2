@@ -17,7 +17,6 @@
 @class FLWsdlCodeEnumType;
 @class FLWsdlCodeObject;
 @class FLWsdlBinding;
-@class FLWsdlPortCodeObject;
 
 @interface FLWsdlCodeProjectReader : NSObject<FLCodeProjectReader> {
 @private
@@ -27,9 +26,6 @@
     NSMutableDictionary* _enums;
     NSMutableDictionary* _arrays;
     NSMutableDictionary* _declaredTypes;
-    NSMutableDictionary* _messages;
-    NSMutableDictionary* _bindingObjects;
-    NSMutableDictionary* _portObjects;
 }
 
 @property (readonly, strong, nonatomic) FLWsdlDefinitions* wsdlDefinitions;
@@ -46,12 +42,11 @@
 - (FLCodeEnumType*) enumForKey:(NSString*) key;
 
 - (void) addCodeObject:(FLWsdlCodeObject*) object;
-- (FLWsdlCodeObject*) codeObjectForClassName:(NSString*) className;
+- (id) codeObjectForClassName:(NSString*) className;
 
 - (BOOL) partTypeIsObject:(FLWsdlPart*) part;
 - (NSString*) servicePortLocationFromBinding:(FLWsdlBinding*) binding;
 
-- (FLWsdlPortCodeObject*) portObjectForName:(NSString*) name;
 
 @end
 

@@ -167,6 +167,42 @@
     [self appendLine:@"}"];
 }
 
+- (void) appendDefine:(NSString*) name value:(NSString*) value {
+    [self appendLineWithFormat:@"#define %@ %@", name, value];
+}
+
+- (void) appendDefine:(NSString*) name stringValue:(NSString*) value {
+    [self appendLineWithFormat:@"#define %@ @\"%@\"", name, value];
+}
+
+- (void) appendCaseStatement:(NSString*) var statement:(dispatch_block_t) statement {
+    [self appendLineWithFormat:@"case %@:{", var];
+    [self indent:statement];
+    [self appendLine:@"}"];
+    [self appendLine:@"break;"];
+}
+
+- (void) appendSwitchBlock:(NSString*) variable caseStatements:(dispatch_block_t) caseStatements {
+    [self appendLineWithFormat:@"switch(%@) {", variable];
+    [self indent:caseStatements];
+    [self appendLine:@"}"];
+}
+
+- (void) appendReturnValue:(NSString*) returnValue {
+    [self appendLineWithFormat:@"return %@;", returnValue];
+}
+
+- (void) appendRunOnceBlock:(NSString*) predicateName block:(dispatch_block_t) block {
+    [self appendLineWithFormat:@"static dispatch_once_t %@ = 0;", predicateName];
+    [self appendLineWithFormat:@"dispatch_once(&%@, ^{", predicateName];
+    [self indent:block];
+    [self appendLine:@"});"];
+}
+
+- (void) appendStaticVariable:(NSString*) type name:(NSString*) name initialValue:(NSString*) initialValue {
+    [self appendLineWithFormat:@"static %@ %@ = %@;", type, name, initialValue];
+}
+
 @end
 
 @implementation FLObjcComment

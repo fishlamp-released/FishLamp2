@@ -37,7 +37,6 @@
 #import "FLWsdlBindingCodeObject.h"
 #import "FLWsdlPortTypeCodeObject.h"
 #import "FLWsdlOperationCodeObject.h"
-#import "FLWsdlPortCodeObject.h"
 #import "FLWsdlServiceCodeObject.h"
 
 @interface FLWsdlCodeProjectReader ()
@@ -52,20 +51,15 @@
 - (id) init {
 	if((self = [super init])) {
         _objects = [[NSMutableDictionary alloc] init];
-        _messages = [[NSMutableDictionary alloc] init];
         _enums = [[NSMutableDictionary alloc] init];
         _arrays = [[NSMutableDictionary alloc] init];
         _declaredTypes = [[NSMutableDictionary alloc] init];
-        _bindingObjects = [[NSMutableDictionary alloc] init];
-        _portObjects = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
 
 #if FL_DEALLOC
 - (void) dealloc {	
-    [_portObjects release];
-    [_bindingObjects release];
     [_declaredTypes release];
 	[_array release];
     [_enums release];
@@ -76,7 +70,7 @@
 #endif
 
 
-- (FLWsdlCodeObject*) codeObjectForClassName:(NSString*) key {
+- (id) codeObjectForClassName:(NSString*) key {
     return [_objects objectForKey:FLStringToKey(key)];
 }
 
@@ -95,12 +89,13 @@
 }
 
 - (void) setEnum:(FLCodeEnumType*) theEnum forKey:(NSString*) key {
+    FLAssert(theEnum.enums.count > 0);
     [_enums setObject:theEnum forKey:FLStringToKey(key)];
 }
 
 
 - (void) addCodeEnum:(FLWsdlCodeEnumType*) enumType {
-    [_enums setObject:enumType forKey:FLStringToKey(enumType.typeName)];
+    [self setEnum:enumType forKey:enumType.typeName];
 }
 
 - (void) addArray:(FLWsdlCodeArray*) array {
@@ -289,15 +284,9 @@
 
 - (void) addEnumerationsInSimpleTypes:(NSArray*) simpleTypes {
     for(FLWsdlSimpleType* simpleType in simpleTypes) {
-    
-        if([simpleType restriction]) {
-            [self addCodeEnum:[FLWsdlSimpleTypeEnumCodeType wsdlSimpleTypeEnumCodeType:simpleType optionalName:nil]];
-        }
-
-        if([simpleType list]) {
-            [self addCodeEnum:[FLWsdlSimpleTypeEnumCodeType wsdlSimpleTypeEnumCodeType:simpleType optionalName:simpleType.name]];
-        }
+        [self addCodeEnum:[FLWsdlSimpleTypeEnumCodeType wsdlSimpleTypeEnumCodeType:simpleType]];
     }
+    
 }
 
 - (void) addObjectsInComplexTypes:(NSArray*) complexTypes {
@@ -313,14 +302,11 @@
         }
         else {
             [_declaredTypes setObject:[FLWsdlCodeObject wsdlCodeObject:element.name superclassName:element.type] forKey:FLStringToKey(element.type)];
-        
-//            FLLog(@"Skipping element with no complexType content: name:%@, type:%@", element.name, element.type);
         }
     }
 }
 
 - (void) addMessageObject:(FLWsdlMessageCodeObject*) object {
-    [_messages setObject:object forKey:FLStringToKey(object.className)];
     [_objects setObject:object forKey:FLStringToKey(object.className)];
 }
 
@@ -340,7 +326,7 @@
     //			  <wsdl:part name="parameters" element="tns:GetChallenge"/>
     //			  </wsdl:message>
 
-                FLLog(@"skipping part - name:%@, element: %@", part.name, part.element);
+                FLTrace(@"skipping part - name:%@, element: %@", part.name, part.element);
                 
                 continue;
             }
@@ -351,39 +337,18 @@
 }
 
 - (void) addBindingObject:(FLWsdlBindingCodeObject*) bindingObject {
-    [_bindingObjects setObject:bindingObject forKey:FLStringToKey(bindingObject.className)];
     [_objects setObject:bindingObject forKey:FLStringToKey(bindingObject.className)];
 }
 
 - (void) addBindingObjects:(NSArray*) bindings {
 	for(FLWsdlBinding* binding in bindings) {
-        [self addBindingObject:[FLWsdlBindingCodeObject wsdlBindingCodeObject:binding codeReader:self]];
+        [self addBindingObject:[FLWsdlBindingCodeObject wsdlBindingCodeObjectWithBinding:binding codeReader:self]];
 	}
-}
-
-- (void) addPortObject:(FLWsdlOperationCodeObject*) portObject {
-    [_portObjects setObject:portObject forKey:FLStringToKey(portObject.className)];
-    [_objects setObject:portObject forKey:FLStringToKey(portObject.className)];
-
-}
-
-- (FLWsdlPortCodeObject*) portObjectForName:(NSString*) name {
-    return [_portObjects objectForKey:FLStringToKey(name)];
 }
 
 - (void) addPortObjects:(NSArray*) portTypes {
     for(FLWsdlPortType* portType in portTypes) {
-        
-        FLWsdlPortCodeObject* portObject = [FLWsdlPortCodeObject wsdlPortCodeObject:portType codeReader:self];
-    
-		for(FLWsdlOperation* operation in portType.operations) {
-            FLWsdlOperationCodeObject* operationCodeObject =
-                [FLWsdlOperationCodeObject wsdlOperationCodeObject:operation portType:portType codeReader:self];
-
-            [self addCodeObject:operationCodeObject];
-            
-            [portObject addOperationCodeObject:operationCodeObject];
-		}
+        FLWsdlBindingCodeObject* portObject = [FLWsdlBindingCodeObject wsdlBindingCodeObjectWithPortType:portType codeReader:self];
 
         [self addCodeObject:portObject];
 	}

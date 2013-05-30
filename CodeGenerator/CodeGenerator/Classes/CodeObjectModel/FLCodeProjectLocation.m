@@ -60,12 +60,9 @@
 //        if(![[NSFileManager defaultManager] fileExistsAtPath:path]) {
 //            FLThrowErrorCodeWithComment(FLErrorDomain, FLCodeProjectNotFound, @"Project not found: %@", path);
 //        }
-            
     NSError* err = nil;
 	NSData* data = [NSData dataWithContentsOfURL:_url options:NSDataReadingUncached error:&err];
-    if(err) {
-        FLThrowIfError(FLAutorelease(err));
-    }
+    FLThrowIfError(err);
     FLAssertNotNil(data);
     
     return data;
