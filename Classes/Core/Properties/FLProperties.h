@@ -15,19 +15,19 @@
 #import "FLDefaultProperty.h"
 #import "FLBitFlagsProperty.h"
 
-#define FLSynthesizeLazyCreateGetterWithInit(__NAME__, __TYPE__, /*[[type alloc] init]*/ ...) \
+#define FLSynthesizeLazyCreateGetterWithInit(__NAME__, __TYPE__, __IVAR__, /*[[type alloc] init]*/ ...) \
     - (__TYPE__*) __NAME__ { \
-            if ( _##__NAME__ == nil ) { \
+            if ( __IVAR__ == nil ) { \
                 id var = __VA_ARGS__; \
-                if ( OSAtomicCompareAndSwapPtrBarrier(nil, var, bridge_(void*, &_##__NAME__)) == false ) { \
+                if ( OSAtomicCompareAndSwapPtrBarrier(nil, var, bridge_(void*, &__IVAR__)) == false ) { \
                     FLRelease(var); /* already set by another thread, so release this one */ \
                 } \
             } \
-        return _##__NAME__; \
+        return __IVAR__; \
     }
 
-#define FLSynthesizeLazyCreateGetter(__NAME__, __TYPE__) \
-            FLSynthesizeLazyCreateGetterWithInit(__NAME__, __TYPE__, [[__TYPE alloc] init])
+#define FLSynthesizeLazyGetter(__NAME__, __TYPE__, __IVAR__) \
+            FLSynthesizeLazyCreateGetterWithInit(__NAME__, __TYPE__, __IVAR__, [[__TYPE alloc] init])
 
 #define FLSynthesizeDictionaryGetterProperty(__GETTER__, __TYPE__, __KEY__, __DICTIONARY__) \
     - (__TYPE__) __GETTER__ { \
@@ -42,16 +42,6 @@
         if(object) [__DICTIONARY__ setObject:object forKey:__KEY__]; \
         else [__DICTIONARY__ removeObjectForKey:__KEY__]; \
     }
-
-//#define FLSynthesizeLazyGetterCustom(__NAME__, __MEMBER__, __TYPE__, ...) \
-//    - (__TYPE__*) __NAME__ { \
-//        static dispatch_once_t s_pred = 0; \
-//        dispatch_once(&s_pred, ^{ if(!__MEMBER__) __MEMBER__ = __VA_ARGS__; }); \
-//        return __MEMBER__; \
-//    } 
-//
-//#define FLSynthesizeLazyGetter(__NAME__, __TYPE__) \
-//            FLSynthesizeLazyGetterCustom(__NAME__, _##__NAME__, __TYPE__, [[__TYPE__ alloc] init])
 
 
 

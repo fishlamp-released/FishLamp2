@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2705EE611757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705EE601757DE6E003B000D /* FLHttpRequestDescriptor.h */; };
+		2705EE621757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705EE601757DE6E003B000D /* FLHttpRequestDescriptor.h */; };
+		2705EE631757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705EE601757DE6E003B000D /* FLHttpRequestDescriptor.h */; };
+		2705EE641757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705EE601757DE6E003B000D /* FLHttpRequestDescriptor.h */; };
 		27069FB017075E1B001D4AC9 /* NSBundle+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27069FAE17075E1B001D4AC9 /* NSBundle+FLAdditions.h */; };
 		27069FB117075E1B001D4AC9 /* NSBundle+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27069FAE17075E1B001D4AC9 /* NSBundle+FLAdditions.h */; };
 		27069FB217075E1B001D4AC9 /* NSBundle+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27069FAE17075E1B001D4AC9 /* NSBundle+FLAdditions.h */; };
@@ -3381,6 +3385,7 @@
 
 /* Begin PBXFileReference section */
 		27048EF0161CB58600C38ADA /* libFishLampCocoa-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2705EE601757DE6E003B000D /* FLHttpRequestDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpRequestDescriptor.h; sourceTree = "<group>"; };
 		27069FAE17075E1B001D4AC9 /* NSBundle+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+FLAdditions.h"; sourceTree = "<group>"; };
 		27069FAF17075E1B001D4AC9 /* NSBundle+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+FLAdditions.m"; sourceTree = "<group>"; };
 		27069FB9170761AC001D4AC9 /* SDKApplication+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKApplication+FLAdditions.h"; sourceTree = "<group>"; };
@@ -4763,6 +4768,7 @@
 				272662B31707DBA000109AC2 /* FLHttpController.m */,
 				27E6788417286AE700599503 /* FLHttpOperation.h */,
 				27E6788517286AE800599503 /* FLHttpOperation.m */,
+				2705EE601757DE6E003B000D /* FLHttpRequestDescriptor.h */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -6292,6 +6298,7 @@
 				27C4AFD817513A9800E16AE7 /* FLApplicationSession.h in Headers */,
 				27C4AFE117513A9800E16AE7 /* FLLastUpdateTime.h in Headers */,
 				27C4AFEA17513A9800E16AE7 /* FLUserLogin.h in Headers */,
+				2705EE611757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6681,6 +6688,7 @@
 				27C4AFDA17513A9800E16AE7 /* FLApplicationSession.h in Headers */,
 				27C4AFE317513A9800E16AE7 /* FLLastUpdateTime.h in Headers */,
 				27C4AFEC17513A9800E16AE7 /* FLUserLogin.h in Headers */,
+				2705EE631757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7070,6 +7078,7 @@
 				27C4AFD917513A9800E16AE7 /* FLApplicationSession.h in Headers */,
 				27C4AFE217513A9800E16AE7 /* FLLastUpdateTime.h in Headers */,
 				27C4AFEB17513A9800E16AE7 /* FLUserLogin.h in Headers */,
+				2705EE621757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7459,6 +7468,7 @@
 				27C4AFDB17513A9800E16AE7 /* FLApplicationSession.h in Headers */,
 				27C4AFE417513A9800E16AE7 /* FLLastUpdateTime.h in Headers */,
 				27C4AFED17513A9800E16AE7 /* FLUserLogin.h in Headers */,
+				2705EE641757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
