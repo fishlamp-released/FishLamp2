@@ -1,6 +1,6 @@
 body {
-	background: black;
-	font-family: "tahoma", "Courier New", Courier, monospace;
+	background: silver;
+	font-family: "menlo","tahoma", "Courier New", Courier, monospace;
 	font-size: 12pt;	
 	color: gray;
 }
@@ -106,4 +106,66 @@ a:hover {
 .button:active {
 	position: relative;
 	top: 1px;
+}
+
+.page-content {
+	border: 1px solid #444;
+	padding: 20px;
+	background-color: white;
+	font-size: .9em;
+	color: black;
+}
+
+.page-content a {
+	color: blue;
+}
+
+.page-content p {
+/* 	margin-bottom: 10px; */
+}
+
+.page-content ul {
+	margin: 10px;
+}
+
+.page-title {
+	padding: 10px;
+	font-size: 1.0em;
+	font-weight: bold;
+/* 	border-bottom: 1px solid #888; */
+/* 	margin-bottom: 20px; */
+	color: #eee;
+}
+
+.container {
+}
+
+.page {
+	padding: 10px;
+	background-color: #444;
+}
+
+blockquote p {
+	font-size: .8em;
+	font-style: italic;
+}
+
+blockquote {
+	background-color: lightyellow;
+	padding: 10px;
+}
+.page-footer {
+
+	font-size:.6em;
+	padding: 2px;
+	margin: 0px;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	height:18px;
+}
+.footer a {
+	padding: 2px;
+	margin: 0px;
+	padding-left: 10px;
 }
