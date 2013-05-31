@@ -99,7 +99,7 @@
 }
 
 - (void) appendMethodDeclarationToCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
-    [codeBuilder appendMethodDeclaration:self.methodName.generatedName type:self.returnType.generatedReference isInstanceMethod:![self isStatic]];
+    [codeBuilder appendMethodDeclaration:self.methodName.generatedName type:self.returnType.generatedReference isInstanceMethod:![self isStatic] closeLine:NO];
     
     for(int i = 0; i < _parameters.count; i++) {
         FLObjcParameter* param = [_parameters objectAtIndex:i];

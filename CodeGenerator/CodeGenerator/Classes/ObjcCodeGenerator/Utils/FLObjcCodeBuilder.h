@@ -54,7 +54,8 @@ typedef enum {
 
 - (void) appendMethodDeclaration:(NSString*) name 
                             type:(NSString*) type
-                isInstanceMethod:(BOOL) isInstanceMethod;
+                isInstanceMethod:(BOOL) isInstanceMethod // e.g. is NOT static (class) method
+                       closeLine:(BOOL) closeLine;
                 
 - (void) appendMethodParameter:(NSString*) name type:(NSString*) type key:(NSString*) key isFirst:(BOOL) isFirst;                
 

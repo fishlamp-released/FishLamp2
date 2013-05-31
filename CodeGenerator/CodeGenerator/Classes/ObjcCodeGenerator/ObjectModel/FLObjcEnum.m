@@ -13,6 +13,7 @@
 #import "FLObjcName.h"
 #import "FLCodeEnum.h"
 #import "FLObjcCodeBuilder.h"
+#import "FLTypeSpecificEnumSet.h"
 
 @implementation FLObjcEnum
 @synthesize enumType = _enumType;
@@ -85,6 +86,9 @@
 - (void) writeCodeToHeaderFile:(FLObjcFile*) file 
     withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
     
+    [codeBuilder appendImport:NSStringFromClass([FLTypeSpecificEnumSet class])];
+    [codeBuilder appendBlankLine];
+    
     [codeBuilder appendLine:@"typedef enum {"];
     [codeBuilder indent:^{
         for(FLObjcEnumValue* value in _enumValues) {
@@ -104,6 +108,21 @@
     [codeBuilder appendLineWithFormat:@"extern NSString* %@StringFromEnum(%@ theEnum);", self.enumType.generatedName, self.enumType.generatedName];
     [codeBuilder appendLineWithFormat:@"extern %@ %@EnumFromString(NSString* theString);", self.enumType.generatedName, self.enumType.generatedName];
     
+    
+    [codeBuilder appendBlankLine];
+
+    NSString* className = [NSString stringWithFormat:@"%@EnumSet", self.enumType.generatedName];
+
+    [codeBuilder appendInterfaceDeclaration:className
+                                 superClass:NSStringFromClass([FLTypeSpecificEnumSet class]) 
+                                  protocols:nil appendMemberDeclarations:nil];
+
+    [codeBuilder appendMethodDeclaration:@"enumSet" type:@"id" isInstanceMethod:NO closeLine:YES];
+    
+    [codeBuilder appendEnd];
+                                  
+    
+    
 }
 - (void) writeCodeToSourceFile:(FLObjcFile*) file 
                withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
@@ -121,7 +140,6 @@
             }
         }];
         
-        [codeBuilder appendLine:@"FLAssertFailedWithComment(@\"Unknown enum value %d\", theEnum);"];
         [codeBuilder appendReturnValue:@"nil"];
     }];
     [codeBuilder appendLine:@"}"];
@@ -142,12 +160,23 @@
         
         }];
 
-
-        [codeBuilder appendReturnValue:@"[[s_enumLookup objectForKey:[theString lowercaseString]] integerValue]"];
+        [codeBuilder appendLineWithFormat:@"NSNumber* value = [s_enumLookup objectForKey:[theString lowercaseString]];"];
+        [codeBuilder appendReturnValue:@"value == nil ? NSNotFound : [value integerValue]"];
         
     }];
     [codeBuilder appendLine:@"}"];
                
+    [codeBuilder appendBlankLine];
+    
+    NSString* className = [NSString stringWithFormat:@"%@EnumSet", self.enumType.generatedName];
+    
+    [codeBuilder appendImplementation:className];
+    [codeBuilder appendMethodDeclaration:@"enumSet" type:@"id" isInstanceMethod:NO closeLine:NO];
+    [codeBuilder scope:^{
+        [codeBuilder appendReturnValue:[NSString stringWithFormat:@"FLAutorelease([[[self class] alloc] initWithValueLookup:(FLEnumSetEnumValueLookup*)  %@EnumFromString stringLookup:(FLEnumSetEnumStringLookup*) %@StringFromEnum])", self.enumType.generatedName, self.enumType.generatedName]];
+    }];
+    [codeBuilder appendEnd];
+
 
 }
 @end

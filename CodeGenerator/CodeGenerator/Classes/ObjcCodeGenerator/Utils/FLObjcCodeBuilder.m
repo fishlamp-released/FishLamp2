@@ -51,19 +51,25 @@
            appendMemberDeclarations:(dispatch_block_t) appendMembers {
 
     [self appendFormat:@"@interface %@ : %@", className, superClass];
+    
     if(protocols && protocols.count) {
         [self appendFormat:@"<%@>", [NSString concatStringArray:protocols]];
     }
     
-    [self appendLine:@" {"];
-    [self appendString:@"@private"];
-    [self indent:^{
-        if(appendMembers) {
-            appendMembers();
-        }
-    }];
-    [self appendString:@"}"];
-    [self appendBlankLine];
+    if(appendMembers) {
+        [self appendLine:@" {"];
+        [self appendString:@"@private"];
+        [self indent:^{
+            if(appendMembers) {
+                appendMembers();
+            }
+        }];
+        [self appendString:@"}"];
+        [self appendBlankLine];
+    }
+    else {
+        [self closeLine];
+    }
 }           
 
 - (void) appendImplementation:(NSString*) className {
@@ -140,13 +146,18 @@
 
 - (void) appendMethodDeclaration:(NSString*) name 
                             type:(NSString*) type 
-                isInstanceMethod:(BOOL) isInstanceMethod {
+                isInstanceMethod:(BOOL) isInstanceMethod 
+                       closeLine:(BOOL) closeLine{
 
     if(FLStringIsEmpty(type)) {
         type = @"void";
     }
 
-    [self appendFormat:@"%@(%@) %@", isInstanceMethod ? @"-" : @"+", type, name];
+    [self appendFormat:@"%@ (%@) %@", isInstanceMethod ? @"-" : @"+", type, name];
+    
+    if(closeLine) {
+        [self appendLine:@";"];
+    }
 }
 
 - (void) closeLineWithSemiColon {
