@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project projectName="FishLamp">
+    <generatorOptions typePrefix="FL"/>
+    <organization name="GreenTongue Software LLC, Mike Fullerton"/>
+    <license>
+        <licenseName>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</licenseName>
+    </license>
+    <objects>
+        <object className="FLApplicationSession">
+            <properties>
+                <property type="int" name="sessionId">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="NSString" name="userGuid"/>
+            </properties>
+        </object>
+        <object className="FLLastUpdateTime">
+            <properties>
+                <property type="string" name="lastUpdateId">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="date" name="lastUpdate"/>
+            </properties>
+        </object>
+        <object className="FLUserLogin">
+            <properties>
+                <property type="NSString" name="userGuid">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="NSString" name="userName">
+                    <storageOptions isIndexed="YES" isUnique="YES"/>
+                </property>
+                <property type="NSString" name="password">
+                    <storageOptions isStorable="NO"/>
+                </property>
+                <property type="BOOL" name="isAuthenticated"/>
+                <property type="NSString" name="authToken"/>
+                <property type="NSString" name="email">
+                    <storageOptions isIndexed="YES" isUnique="YES"/>
+                </property>
+                <property type="double" name="authTokenLastUpdateTime"/>
+                <property type="dictionary" name="userInfo"/>
+            </properties>
+        </object>
+        <object className="FLApplicationDataVersion">
+            <properties>
+                <property type="string" name="userGuid">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="string" name="versionString"/>
+            </properties>
+        </object>
+    </objects>
+</project>

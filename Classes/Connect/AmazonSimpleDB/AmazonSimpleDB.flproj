@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<code projectName="Amazon Simple DB">
+    <organization name="GreenTongue Software LLC, Mike Fullerton"/>
+    <license>
+        <licenseName>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</licenseName>
+    </license>
+    <generatorOptions>
+        <generateAllIncludesFile>YES</generateAllIncludesFile>
+        <objectsFolderName>GeneratedObjects</objectsFolderName>
+        <typePrefix>FL</typePrefix>
+    </generatorOptions>
+    <imports>
+        <import path="http://sdb.amazonaws.com/doc/2009-04-15/AmazonSimpleDB.wsdl" type="Wsdl"/>
+    </imports>
+</code>
