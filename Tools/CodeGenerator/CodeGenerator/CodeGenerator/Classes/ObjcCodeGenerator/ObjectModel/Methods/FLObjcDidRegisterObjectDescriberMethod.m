@@ -7,15 +7,9 @@
 //
 
 #import "FLObjcDidRegisterObjectDescriberMethod.h"
-#import "FLObjcProperty.h"
-#import "FLObjcType.h"
-#import "FLObjcName.h"
+#import "FLObjcCodeGeneratorHeaders.h"
+
 #import "FLObjectDescriber.h"
-#import "FLObjcTypeIndex.h"
-#import "FLObjcVariable.h"
-#import "FLObjcObject.h"
-#import "FLObjcCodeBuilder.h"
-#import "FLObjcStatement.h"
 
 @implementation FLObjcDidRegisterObjectDescriberMethod
 

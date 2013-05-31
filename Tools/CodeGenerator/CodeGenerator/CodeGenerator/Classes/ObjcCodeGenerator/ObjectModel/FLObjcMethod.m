@@ -7,17 +7,13 @@
 //
 
 #import "FLObjcMethod.h"
-#import "FLObjcTypeIndex.h"
-#import "FLObjcName.h"
-#import "FLObjcVariable.h"
-#import "FLObjcStatement.h"
-#import "FLObjcType.h"
-#import "FLObjcObject.h"
+
+#import "FLObjcCodeGeneratorHeaders.h"
 
 #import "FLCodeMethod.h"
 #import "FLCodeMethod+Additions.h"
-#import "FLObjcTypeIndex.h"
 #import "FLCodeCodeSnippet.h"
+
 
 @implementation FLObjcMethod
 

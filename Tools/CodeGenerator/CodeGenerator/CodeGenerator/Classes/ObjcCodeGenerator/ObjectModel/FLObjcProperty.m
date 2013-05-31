@@ -7,18 +7,12 @@
 //
 
 #import "FLObjcProperty.h"
-#import "FLObjcVariable.h"
-#import "FLObjcObject.h"
+#import "FLObjcCodeGeneratorHeaders.h"
+
 #import "FLCodeProperty.h"
-#import "FLObjcName.h"
-#import "FLObjcVariable.h"
-#import "FLObjcType.h"
-#import "FLObjcTypeIndex.h"
 #import "FLCodeArray.h"
 #import "FLCodeArrayType.h"
-#import "FLObjcCodeBuilder.h"
-#import "FLObjcMethod.h"
-#import "FLObjcStatement.h"
+
 
 @interface FLObjcProperty ()
 @property (readwrite, strong, nonatomic) NSArray* containerTypes;

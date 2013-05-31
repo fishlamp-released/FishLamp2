@@ -1,7 +1,7 @@
 
-FISHLAMP = ../../../FishLamp
+FISHLAMP = ../../../../FishLamp
 
-FISHLAMP_CLASSES = ../../../FishLamp/Classes
+FISHLAMP_CLASSES = ../../../../FishLamp/Classes
 
 FISHLAMP_ALL = $(FISHLAMP_CLASSES)/**
 

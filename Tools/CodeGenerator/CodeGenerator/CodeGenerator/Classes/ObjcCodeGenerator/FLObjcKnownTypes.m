@@ -9,6 +9,7 @@
 #import "FLObjcKnownTypes.h"
 #import "FLObjcType.h"
 #import "FLObjcName.h"
+#import "FLObjcCodeGeneratorHeaders.h"
 
 @implementation FLObjcKnownTypes
 

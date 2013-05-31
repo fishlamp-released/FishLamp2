@@ -99,4 +99,8 @@
     return [NSString stringWithFormat:@"identifier: %@", self.generatedName];
 }
 
+- (id) copyWithNewName:(NSString*) newName {
+    return [[[self class] alloc] initWithIdentifierName:newName prefix:self.prefix suffix:self.suffix];
+}
+
 @end

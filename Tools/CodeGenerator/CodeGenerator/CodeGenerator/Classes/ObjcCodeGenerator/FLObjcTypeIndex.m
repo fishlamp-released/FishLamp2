@@ -7,14 +7,7 @@
 //
 
 #import "FLObjcTypeIndex.h"
-#import "FLObjcKnownTypes.h"
-
-#import "FLObjcType.h"
-#import "FLObjcNamedObjectCollection.h"
-#import "FLObjcObject.h"
-#import "FLObjcFileHeader.h"
-#import "FLObjcName.h"
-#import "FLObjcEnum.h"
+#import "FLObjcCodeGeneratorHeaders.h"
 
 #import "FLCodeProject.h"
 #import "FLCodeDataTypeCollection.h"

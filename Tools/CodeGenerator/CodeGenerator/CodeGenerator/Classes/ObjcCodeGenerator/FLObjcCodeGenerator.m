@@ -7,22 +7,12 @@
 //
 
 #import "FLObjcCodeGenerator.h"
-#import "FLCodeProject.h"
-#import "FLObjcTypeIndex.h"
+#import "FLObjcCodeGeneratorHeaders.h"
 
-#import "FLObjcType.h"
-#import "FLObjcNamedObjectCollection.h"
-#import "FLObjcObject.h"
-#import "FLObjcFileHeader.h"
-#import "FLObjcName.h"
+#import "FLCodeProject.h"
 #import "FLCodeMethod.h"
-#import "FLObjcEnum.h"
-#import "FLObjcFile.h"
-#import "FLObjcCodeBuilder.h"
 #import "FLCodeObject.h"
 #import "FLCodeEnum.h"
-#import "FLObjcFileManager.h"
-#import "FLObjcAllIncludesHeaderFile.h"
 #import "FLCodeProjectLocation.h"
 
 @interface FLObjcCodeGenerator ()

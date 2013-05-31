@@ -134,8 +134,6 @@
 		2787B5EF17415C330010C2C6 /* FLObjcFileHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2787B53117415C330010C2C6 /* FLObjcFileHeader.m */; };
 		2787B5F017415C330010C2C6 /* FLObjcMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 2787B53217415C330010C2C6 /* FLObjcMethod.h */; };
 		2787B5F117415C330010C2C6 /* FLObjcMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 2787B53317415C330010C2C6 /* FLObjcMethod.m */; };
-		2787B5F217415C330010C2C6 /* FLObjcName.h in Headers */ = {isa = PBXBuildFile; fileRef = 2787B53417415C330010C2C6 /* FLObjcName.h */; };
-		2787B5F317415C330010C2C6 /* FLObjcName.m in Sources */ = {isa = PBXBuildFile; fileRef = 2787B53517415C330010C2C6 /* FLObjcName.m */; };
 		2787B5F417415C330010C2C6 /* FLObjcNamedObjectCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2787B53617415C330010C2C6 /* FLObjcNamedObjectCollection.h */; };
 		2787B5F517415C330010C2C6 /* FLObjcNamedObjectCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2787B53717415C330010C2C6 /* FLObjcNamedObjectCollection.m */; };
 		2787B5F617415C330010C2C6 /* FLObjcObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 2787B53817415C330010C2C6 /* FLObjcObject.h */; };
@@ -148,8 +146,6 @@
 		2787B5FD17415C330010C2C6 /* FLObjcRuntimeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2787B53F17415C330010C2C6 /* FLObjcRuntimeValue.m */; };
 		2787B5FE17415C330010C2C6 /* FLObjcStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = 2787B54017415C330010C2C6 /* FLObjcStatement.h */; };
 		2787B5FF17415C330010C2C6 /* FLObjcStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 2787B54117415C330010C2C6 /* FLObjcStatement.m */; };
-		2787B60017415C330010C2C6 /* FLObjcType.h in Headers */ = {isa = PBXBuildFile; fileRef = 2787B54217415C330010C2C6 /* FLObjcType.h */; };
-		2787B60117415C330010C2C6 /* FLObjcType.m in Sources */ = {isa = PBXBuildFile; fileRef = 2787B54317415C330010C2C6 /* FLObjcType.m */; };
 		2787B60217415C330010C2C6 /* FLObjcVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2787B54417415C330010C2C6 /* FLObjcVariable.h */; };
 		2787B60317415C330010C2C6 /* FLObjcVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2787B54517415C330010C2C6 /* FLObjcVariable.m */; };
 		2787B60417415C330010C2C6 /* FLObjcDidRegisterObjectDescriberMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 2787B54717415C330010C2C6 /* FLObjcDidRegisterObjectDescriberMethod.h */; };
@@ -169,6 +165,55 @@
 		2787B6E31741AB860010C2C6 /* FLObjcFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2787B6E11741AB820010C2C6 /* FLObjcFileManager.m */; };
 		2787B6E61741D1020010C2C6 /* FLMyEnum.h in Headers */ = {isa = PBXBuildFile; fileRef = 2787B6E41741D1020010C2C6 /* FLMyEnum.h */; };
 		2787B6E71741D1020010C2C6 /* FLMyEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = 2787B6E51741D1020010C2C6 /* FLMyEnum.m */; };
+		27B83D951759497B00B49A06 /* FLObjcObjectType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83D931759497B00B49A06 /* FLObjcObjectType.h */; };
+		27B83D961759497B00B49A06 /* FLObjcObjectType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83D941759497B00B49A06 /* FLObjcObjectType.m */; };
+		27B83D991759499A00B49A06 /* FLObjcEnumType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83D971759499A00B49A06 /* FLObjcEnumType.h */; };
+		27B83D9A1759499A00B49A06 /* FLObjcEnumType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83D981759499A00B49A06 /* FLObjcEnumType.m */; };
+		27B83DA517594A0900B49A06 /* FLObjcVoidType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DA317594A0900B49A06 /* FLObjcVoidType.h */; };
+		27B83DA617594A0900B49A06 /* FLObjcVoidType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DA417594A0900B49A06 /* FLObjcVoidType.m */; };
+		27B83DA917594A2600B49A06 /* FLObjcContainerSubType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DA717594A2500B49A06 /* FLObjcContainerSubType.h */; };
+		27B83DAA17594A2600B49A06 /* FLObjcContainerSubType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DA817594A2600B49A06 /* FLObjcContainerSubType.m */; };
+		27B83DAD17594A4500B49A06 /* FLObjcContainerType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DAB17594A4500B49A06 /* FLObjcContainerType.h */; };
+		27B83DAE17594A4500B49A06 /* FLObjcContainerType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DAC17594A4500B49A06 /* FLObjcContainerType.m */; };
+		27B83DB117594A5D00B49A06 /* FLObjcNumberObjectType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DAF17594A5C00B49A06 /* FLObjcNumberObjectType.h */; };
+		27B83DB217594A5D00B49A06 /* FLObjcNumberObjectType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DB017594A5C00B49A06 /* FLObjcNumberObjectType.m */; };
+		27B83DB517594A7000B49A06 /* FLObjcNumberValueType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DB317594A6F00B49A06 /* FLObjcNumberValueType.h */; };
+		27B83DB617594A7000B49A06 /* FLObjcNumberValueType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DB417594A6F00B49A06 /* FLObjcNumberValueType.m */; };
+		27B83DB917594A8800B49A06 /* FLObjcBoolType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DB717594A8800B49A06 /* FLObjcBoolType.h */; };
+		27B83DBA17594A8800B49A06 /* FLObjcBoolType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DB817594A8800B49A06 /* FLObjcBoolType.m */; };
+		27B83DBD17594A9A00B49A06 /* FLObjcGeometryType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DBB17594A9900B49A06 /* FLObjcGeometryType.h */; };
+		27B83DBE17594A9A00B49A06 /* FLObjcGeometryType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DBC17594A9900B49A06 /* FLObjcGeometryType.m */; };
+		27B83DC117594AB200B49A06 /* FLObjcArrayType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DBF17594AB100B49A06 /* FLObjcArrayType.h */; };
+		27B83DC217594AB200B49A06 /* FLObjcArrayType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DC017594AB200B49A06 /* FLObjcArrayType.m */; };
+		27B83DC517594AC500B49A06 /* FLObjcAbstractObjectType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DC317594AC400B49A06 /* FLObjcAbstractObjectType.h */; };
+		27B83DC917594B1900B49A06 /* FLObjcValueType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DC717594B1700B49A06 /* FLObjcValueType.h */; };
+		27B83DCA17594B1900B49A06 /* FLObjcValueType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DC817594B1800B49A06 /* FLObjcValueType.m */; };
+		27B83DCD17594B6D00B49A06 /* FLObjcProtocolType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DCB17594B6B00B49A06 /* FLObjcProtocolType.h */; };
+		27B83DCE17594B6D00B49A06 /* FLObjcProtocolType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DCC17594B6C00B49A06 /* FLObjcProtocolType.m */; };
+		27B83DD117594DC600B49A06 /* FLObjcIvarName.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DCF17594DC600B49A06 /* FLObjcIvarName.h */; };
+		27B83DD217594DC600B49A06 /* FLObjcIvarName.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DD017594DC600B49A06 /* FLObjcIvarName.m */; };
+		27B83DD517594DE100B49A06 /* FLObjcClassName.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DD317594DE100B49A06 /* FLObjcClassName.h */; };
+		27B83DD617594DE100B49A06 /* FLObjcClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DD417594DE100B49A06 /* FLObjcClassName.m */; };
+		27B83DD917594DEE00B49A06 /* FLObjcMethodName.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DD717594DEE00B49A06 /* FLObjcMethodName.h */; };
+		27B83DDA17594DEE00B49A06 /* FLObjcMethodName.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DD817594DEE00B49A06 /* FLObjcMethodName.m */; };
+		27B83DDD17594DFD00B49A06 /* FLObjectPropertyName.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DDB17594DFC00B49A06 /* FLObjectPropertyName.h */; };
+		27B83DDE17594DFD00B49A06 /* FLObjectPropertyName.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DDC17594DFC00B49A06 /* FLObjectPropertyName.m */; };
+		27B83DE117594E0B00B49A06 /* FLObjcImportedName.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DDF17594E0A00B49A06 /* FLObjcImportedName.h */; };
+		27B83DE217594E0B00B49A06 /* FLObjcImportedName.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DE017594E0A00B49A06 /* FLObjcImportedName.m */; };
+		27B83DE517594E1C00B49A06 /* FLObjcEnumName.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DE317594E1B00B49A06 /* FLObjcEnumName.h */; };
+		27B83DE617594E1C00B49A06 /* FLObjcEnumName.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DE417594E1B00B49A06 /* FLObjcEnumName.m */; };
+		27B83DE917594E2F00B49A06 /* FLObjcEnumValueName.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DE717594E2E00B49A06 /* FLObjcEnumValueName.h */; };
+		27B83DEA17594E2F00B49A06 /* FLObjcEnumValueName.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DE817594E2F00B49A06 /* FLObjcEnumValueName.m */; };
+		27B83DED17594E4100B49A06 /* FLObjcParameterName.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DEB17594E4000B49A06 /* FLObjcParameterName.h */; };
+		27B83DEE17594E4100B49A06 /* FLObjcParameterName.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DEC17594E4000B49A06 /* FLObjcParameterName.m */; };
+		27B83DF017594FA000B49A06 /* FLObjcCodeGeneratorHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83DEF17594F9C00B49A06 /* FLObjcCodeGeneratorHeaders.h */; };
+		27B83DF4175950DF00B49A06 /* FLObjcEnumValueType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DF2175950DA00B49A06 /* FLObjcEnumValueType.m */; };
+		27B83DF61759520500B49A06 /* FLObjcAbstractObjectType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83DF51759520200B49A06 /* FLObjcAbstractObjectType.m */; };
+		27B83E0A1759528700B49A06 /* FLObjcName.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83E061759528600B49A06 /* FLObjcName.h */; };
+		27B83E0B1759528700B49A06 /* FLObjcName.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83E071759528600B49A06 /* FLObjcName.m */; };
+		27B83E0C1759528700B49A06 /* FLObjcType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83E081759528600B49A06 /* FLObjcType.h */; };
+		27B83E0D1759528700B49A06 /* FLObjcType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B83E091759528600B49A06 /* FLObjcType.m */; };
+		27B83E0F1759542A00B49A06 /* FLObjcEnumValueType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B83E0E1759542A00B49A06 /* FLObjcEnumValueType.h */; };
 		27E0E1DC1741D2EA005CB744 /* libFishLampCocoa-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CAA7C01741D2B6002FA02B /* libFishLampCocoa-OSX-64-MRC.a */; };
 		27E0E1DD1741D2EA005CB744 /* libFishLampCore-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CAA7AE1741D2B6002FA02B /* libFishLampCore-OSX-64-MRC.a */; };
 		27E0E1E71741D309005CB744 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E0E1DE1741D309005CB744 /* SystemConfiguration.framework */; };
@@ -507,8 +552,6 @@
 		2787B53117415C330010C2C6 /* FLObjcFileHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcFileHeader.m; sourceTree = "<group>"; };
 		2787B53217415C330010C2C6 /* FLObjcMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcMethod.h; sourceTree = "<group>"; };
 		2787B53317415C330010C2C6 /* FLObjcMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcMethod.m; sourceTree = "<group>"; };
-		2787B53417415C330010C2C6 /* FLObjcName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcName.h; sourceTree = "<group>"; };
-		2787B53517415C330010C2C6 /* FLObjcName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcName.m; sourceTree = "<group>"; };
 		2787B53617415C330010C2C6 /* FLObjcNamedObjectCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcNamedObjectCollection.h; sourceTree = "<group>"; };
 		2787B53717415C330010C2C6 /* FLObjcNamedObjectCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcNamedObjectCollection.m; sourceTree = "<group>"; };
 		2787B53817415C330010C2C6 /* FLObjcObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcObject.h; sourceTree = "<group>"; };
@@ -521,8 +564,6 @@
 		2787B53F17415C330010C2C6 /* FLObjcRuntimeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcRuntimeValue.m; sourceTree = "<group>"; };
 		2787B54017415C330010C2C6 /* FLObjcStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcStatement.h; sourceTree = "<group>"; };
 		2787B54117415C330010C2C6 /* FLObjcStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcStatement.m; sourceTree = "<group>"; };
-		2787B54217415C330010C2C6 /* FLObjcType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcType.h; sourceTree = "<group>"; };
-		2787B54317415C330010C2C6 /* FLObjcType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcType.m; sourceTree = "<group>"; };
 		2787B54417415C330010C2C6 /* FLObjcVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcVariable.h; sourceTree = "<group>"; };
 		2787B54517415C330010C2C6 /* FLObjcVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcVariable.m; sourceTree = "<group>"; };
 		2787B54717415C330010C2C6 /* FLObjcDidRegisterObjectDescriberMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcDidRegisterObjectDescriberMethod.h; sourceTree = "<group>"; };
@@ -565,6 +606,55 @@
 		2787B6E81741D2A10010C2C6 /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../../FishLamp/Libs/FishLampCoreLib/FishLampCore.xcodeproj; sourceTree = "<group>"; };
 		2787B6E91741D2A10010C2C6 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../../FishLamp/Libs/FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
 		2788768C1603E98600C8B7B6 /* libCodeGenerator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCodeGenerator.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		27B83D931759497B00B49A06 /* FLObjcObjectType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcObjectType.h; sourceTree = "<group>"; };
+		27B83D941759497B00B49A06 /* FLObjcObjectType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcObjectType.m; sourceTree = "<group>"; };
+		27B83D971759499A00B49A06 /* FLObjcEnumType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcEnumType.h; sourceTree = "<group>"; };
+		27B83D981759499A00B49A06 /* FLObjcEnumType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcEnumType.m; sourceTree = "<group>"; };
+		27B83DA317594A0900B49A06 /* FLObjcVoidType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcVoidType.h; sourceTree = "<group>"; };
+		27B83DA417594A0900B49A06 /* FLObjcVoidType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcVoidType.m; sourceTree = "<group>"; };
+		27B83DA717594A2500B49A06 /* FLObjcContainerSubType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcContainerSubType.h; sourceTree = "<group>"; };
+		27B83DA817594A2600B49A06 /* FLObjcContainerSubType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcContainerSubType.m; sourceTree = "<group>"; };
+		27B83DAB17594A4500B49A06 /* FLObjcContainerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcContainerType.h; sourceTree = "<group>"; };
+		27B83DAC17594A4500B49A06 /* FLObjcContainerType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcContainerType.m; sourceTree = "<group>"; };
+		27B83DAF17594A5C00B49A06 /* FLObjcNumberObjectType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcNumberObjectType.h; sourceTree = "<group>"; };
+		27B83DB017594A5C00B49A06 /* FLObjcNumberObjectType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcNumberObjectType.m; sourceTree = "<group>"; };
+		27B83DB317594A6F00B49A06 /* FLObjcNumberValueType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcNumberValueType.h; sourceTree = "<group>"; };
+		27B83DB417594A6F00B49A06 /* FLObjcNumberValueType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcNumberValueType.m; sourceTree = "<group>"; };
+		27B83DB717594A8800B49A06 /* FLObjcBoolType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcBoolType.h; sourceTree = "<group>"; };
+		27B83DB817594A8800B49A06 /* FLObjcBoolType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcBoolType.m; sourceTree = "<group>"; };
+		27B83DBB17594A9900B49A06 /* FLObjcGeometryType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcGeometryType.h; sourceTree = "<group>"; };
+		27B83DBC17594A9900B49A06 /* FLObjcGeometryType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcGeometryType.m; sourceTree = "<group>"; };
+		27B83DBF17594AB100B49A06 /* FLObjcArrayType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcArrayType.h; sourceTree = "<group>"; };
+		27B83DC017594AB200B49A06 /* FLObjcArrayType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcArrayType.m; sourceTree = "<group>"; };
+		27B83DC317594AC400B49A06 /* FLObjcAbstractObjectType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcAbstractObjectType.h; sourceTree = "<group>"; };
+		27B83DC717594B1700B49A06 /* FLObjcValueType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcValueType.h; sourceTree = "<group>"; };
+		27B83DC817594B1800B49A06 /* FLObjcValueType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcValueType.m; sourceTree = "<group>"; };
+		27B83DCB17594B6B00B49A06 /* FLObjcProtocolType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcProtocolType.h; sourceTree = "<group>"; };
+		27B83DCC17594B6C00B49A06 /* FLObjcProtocolType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcProtocolType.m; sourceTree = "<group>"; };
+		27B83DCF17594DC600B49A06 /* FLObjcIvarName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcIvarName.h; sourceTree = "<group>"; };
+		27B83DD017594DC600B49A06 /* FLObjcIvarName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcIvarName.m; sourceTree = "<group>"; };
+		27B83DD317594DE100B49A06 /* FLObjcClassName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcClassName.h; sourceTree = "<group>"; };
+		27B83DD417594DE100B49A06 /* FLObjcClassName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcClassName.m; sourceTree = "<group>"; };
+		27B83DD717594DEE00B49A06 /* FLObjcMethodName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcMethodName.h; sourceTree = "<group>"; };
+		27B83DD817594DEE00B49A06 /* FLObjcMethodName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcMethodName.m; sourceTree = "<group>"; };
+		27B83DDB17594DFC00B49A06 /* FLObjectPropertyName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectPropertyName.h; sourceTree = "<group>"; };
+		27B83DDC17594DFC00B49A06 /* FLObjectPropertyName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjectPropertyName.m; sourceTree = "<group>"; };
+		27B83DDF17594E0A00B49A06 /* FLObjcImportedName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcImportedName.h; sourceTree = "<group>"; };
+		27B83DE017594E0A00B49A06 /* FLObjcImportedName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcImportedName.m; sourceTree = "<group>"; };
+		27B83DE317594E1B00B49A06 /* FLObjcEnumName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcEnumName.h; sourceTree = "<group>"; };
+		27B83DE417594E1B00B49A06 /* FLObjcEnumName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcEnumName.m; sourceTree = "<group>"; };
+		27B83DE717594E2E00B49A06 /* FLObjcEnumValueName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcEnumValueName.h; sourceTree = "<group>"; };
+		27B83DE817594E2F00B49A06 /* FLObjcEnumValueName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcEnumValueName.m; sourceTree = "<group>"; };
+		27B83DEB17594E4000B49A06 /* FLObjcParameterName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcParameterName.h; sourceTree = "<group>"; };
+		27B83DEC17594E4000B49A06 /* FLObjcParameterName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcParameterName.m; sourceTree = "<group>"; };
+		27B83DEF17594F9C00B49A06 /* FLObjcCodeGeneratorHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcCodeGeneratorHeaders.h; sourceTree = "<group>"; };
+		27B83DF2175950DA00B49A06 /* FLObjcEnumValueType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcEnumValueType.m; sourceTree = "<group>"; };
+		27B83DF51759520200B49A06 /* FLObjcAbstractObjectType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcAbstractObjectType.m; sourceTree = "<group>"; };
+		27B83E061759528600B49A06 /* FLObjcName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcName.h; sourceTree = "<group>"; };
+		27B83E071759528600B49A06 /* FLObjcName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcName.m; sourceTree = "<group>"; };
+		27B83E081759528600B49A06 /* FLObjcType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcType.h; sourceTree = "<group>"; };
+		27B83E091759528600B49A06 /* FLObjcType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcType.m; sourceTree = "<group>"; };
+		27B83E0E1759542A00B49A06 /* FLObjcEnumValueType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcEnumValueType.h; sourceTree = "<group>"; };
 		27E0E1DE1741D309005CB744 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = ../../../../../../System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<group>"; };
 		27E0E1DF1741D309005CB744 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = ../../../../../../System/Library/Frameworks/Cocoa.framework; sourceTree = "<group>"; };
 		27E0E1E01741D309005CB744 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = ../../../../../../System/Library/Frameworks/Security.framework; sourceTree = "<group>"; };
@@ -928,6 +1018,7 @@
 		2787B52217415C330010C2C6 /* ObjcCodeGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				27B83DEF17594F9C00B49A06 /* FLObjcCodeGeneratorHeaders.h */,
 				2787B6AF174171DB0010C2C6 /* FLObjcTypeIndex.h */,
 				2787B6B0174171E00010C2C6 /* FLObjcTypeIndex.m */,
 				2787B52317415C330010C2C6 /* FLObjcCodeGenerator.h */,
@@ -949,8 +1040,14 @@
 		2787B52B17415C330010C2C6 /* ObjectModel */ = {
 			isa = PBXGroup;
 			children = (
-				2787B54217415C330010C2C6 /* FLObjcType.h */,
-				2787B54317415C330010C2C6 /* FLObjcType.m */,
+				27B83E061759528600B49A06 /* FLObjcName.h */,
+				27B83E071759528600B49A06 /* FLObjcName.m */,
+				27B83E081759528600B49A06 /* FLObjcType.h */,
+				27B83E091759528600B49A06 /* FLObjcType.m */,
+				27B83D891759491400B49A06 /* Names */,
+				27B83D8C1759491400B49A06 /* Types */,
+				27B83E1017595A2800B49A06 /* Statements */,
+				27B83E1117595A3200B49A06 /* Variables */,
 				2787B6AB174166390010C2C6 /* FLObjcEnum.h */,
 				2787B6AC174166390010C2C6 /* FLObjcEnum.m */,
 				2787B52C17415C330010C2C6 /* FLObjcCodeBlock.h */,
@@ -961,8 +1058,6 @@
 				2787B53117415C330010C2C6 /* FLObjcFileHeader.m */,
 				2787B53217415C330010C2C6 /* FLObjcMethod.h */,
 				2787B53317415C330010C2C6 /* FLObjcMethod.m */,
-				2787B53417415C330010C2C6 /* FLObjcName.h */,
-				2787B53517415C330010C2C6 /* FLObjcName.m */,
 				2787B53617415C330010C2C6 /* FLObjcNamedObjectCollection.h */,
 				2787B53717415C330010C2C6 /* FLObjcNamedObjectCollection.m */,
 				2787B53817415C330010C2C6 /* FLObjcObject.h */,
@@ -1112,6 +1207,80 @@
 				2787B43D17415ACF0010C2C6 /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27B83D891759491400B49A06 /* Names */ = {
+			isa = PBXGroup;
+			children = (
+				27B83DCF17594DC600B49A06 /* FLObjcIvarName.h */,
+				27B83DD017594DC600B49A06 /* FLObjcIvarName.m */,
+				27B83DD317594DE100B49A06 /* FLObjcClassName.h */,
+				27B83DD417594DE100B49A06 /* FLObjcClassName.m */,
+				27B83DD717594DEE00B49A06 /* FLObjcMethodName.h */,
+				27B83DD817594DEE00B49A06 /* FLObjcMethodName.m */,
+				27B83DDB17594DFC00B49A06 /* FLObjectPropertyName.h */,
+				27B83DDC17594DFC00B49A06 /* FLObjectPropertyName.m */,
+				27B83DDF17594E0A00B49A06 /* FLObjcImportedName.h */,
+				27B83DE017594E0A00B49A06 /* FLObjcImportedName.m */,
+				27B83DE317594E1B00B49A06 /* FLObjcEnumName.h */,
+				27B83DE417594E1B00B49A06 /* FLObjcEnumName.m */,
+				27B83DE717594E2E00B49A06 /* FLObjcEnumValueName.h */,
+				27B83DE817594E2F00B49A06 /* FLObjcEnumValueName.m */,
+				27B83DEB17594E4000B49A06 /* FLObjcParameterName.h */,
+				27B83DEC17594E4000B49A06 /* FLObjcParameterName.m */,
+			);
+			path = Names;
+			sourceTree = "<group>";
+		};
+		27B83D8C1759491400B49A06 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				27B83DC317594AC400B49A06 /* FLObjcAbstractObjectType.h */,
+				27B83DF51759520200B49A06 /* FLObjcAbstractObjectType.m */,
+				27B83DBF17594AB100B49A06 /* FLObjcArrayType.h */,
+				27B83DC017594AB200B49A06 /* FLObjcArrayType.m */,
+				27B83DB717594A8800B49A06 /* FLObjcBoolType.h */,
+				27B83DB817594A8800B49A06 /* FLObjcBoolType.m */,
+				27B83DA717594A2500B49A06 /* FLObjcContainerSubType.h */,
+				27B83DA817594A2600B49A06 /* FLObjcContainerSubType.m */,
+				27B83DAB17594A4500B49A06 /* FLObjcContainerType.h */,
+				27B83DAC17594A4500B49A06 /* FLObjcContainerType.m */,
+				27B83D971759499A00B49A06 /* FLObjcEnumType.h */,
+				27B83D981759499A00B49A06 /* FLObjcEnumType.m */,
+				27B83E0E1759542A00B49A06 /* FLObjcEnumValueType.h */,
+				27B83DF2175950DA00B49A06 /* FLObjcEnumValueType.m */,
+				27B83DBB17594A9900B49A06 /* FLObjcGeometryType.h */,
+				27B83DBC17594A9900B49A06 /* FLObjcGeometryType.m */,
+				27B83DAF17594A5C00B49A06 /* FLObjcNumberObjectType.h */,
+				27B83DB017594A5C00B49A06 /* FLObjcNumberObjectType.m */,
+				27B83DB317594A6F00B49A06 /* FLObjcNumberValueType.h */,
+				27B83DB417594A6F00B49A06 /* FLObjcNumberValueType.m */,
+				27B83D931759497B00B49A06 /* FLObjcObjectType.h */,
+				27B83D941759497B00B49A06 /* FLObjcObjectType.m */,
+				27B83DCB17594B6B00B49A06 /* FLObjcProtocolType.h */,
+				27B83DCC17594B6C00B49A06 /* FLObjcProtocolType.m */,
+				27B83DC717594B1700B49A06 /* FLObjcValueType.h */,
+				27B83DC817594B1800B49A06 /* FLObjcValueType.m */,
+				27B83DA317594A0900B49A06 /* FLObjcVoidType.h */,
+				27B83DA417594A0900B49A06 /* FLObjcVoidType.m */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
+		27B83E1017595A2800B49A06 /* Statements */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Statements;
+			path = ../Statements;
+			sourceTree = "<group>";
+		};
+		27B83E1117595A3200B49A06 /* Variables */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Variables;
+			path = ../Variables;
 			sourceTree = "<group>";
 		};
 		27CAA7A21741D2B6002FA02B /* Products */ = {
@@ -1308,14 +1477,12 @@
 				2787B5EC17415C330010C2C6 /* FLObjcCodeElement.h in Headers */,
 				2787B5EE17415C330010C2C6 /* FLObjcFileHeader.h in Headers */,
 				2787B5F017415C330010C2C6 /* FLObjcMethod.h in Headers */,
-				2787B5F217415C330010C2C6 /* FLObjcName.h in Headers */,
 				2787B5F417415C330010C2C6 /* FLObjcNamedObjectCollection.h in Headers */,
 				2787B5F617415C330010C2C6 /* FLObjcObject.h in Headers */,
 				2787B5F817415C330010C2C6 /* FLObjcProperty.h in Headers */,
 				2787B5FA17415C330010C2C6 /* FLObjcReference.h in Headers */,
 				2787B5FC17415C330010C2C6 /* FLObjcRuntimeValue.h in Headers */,
 				2787B5FE17415C330010C2C6 /* FLObjcStatement.h in Headers */,
-				2787B60017415C330010C2C6 /* FLObjcType.h in Headers */,
 				2787B60217415C330010C2C6 /* FLObjcVariable.h in Headers */,
 				2787B60417415C330010C2C6 /* FLObjcDidRegisterObjectDescriberMethod.h in Headers */,
 				2787B60A17415C330010C2C6 /* FLObjcCodeGenerator+Types.h in Headers */,
@@ -1394,6 +1561,31 @@
 				2705D7F01756834F003B000D /* FLWsdlCodeEnum.h in Headers */,
 				2705D7F417569D07003B000D /* FLWsdlServiceCodeObject.h in Headers */,
 				2705EE4B1756EC00003B000D /* FLCodeLine.h in Headers */,
+				27B83D951759497B00B49A06 /* FLObjcObjectType.h in Headers */,
+				27B83D991759499A00B49A06 /* FLObjcEnumType.h in Headers */,
+				27B83DA517594A0900B49A06 /* FLObjcVoidType.h in Headers */,
+				27B83DA917594A2600B49A06 /* FLObjcContainerSubType.h in Headers */,
+				27B83DAD17594A4500B49A06 /* FLObjcContainerType.h in Headers */,
+				27B83DB117594A5D00B49A06 /* FLObjcNumberObjectType.h in Headers */,
+				27B83DB517594A7000B49A06 /* FLObjcNumberValueType.h in Headers */,
+				27B83DB917594A8800B49A06 /* FLObjcBoolType.h in Headers */,
+				27B83DBD17594A9A00B49A06 /* FLObjcGeometryType.h in Headers */,
+				27B83DC117594AB200B49A06 /* FLObjcArrayType.h in Headers */,
+				27B83DC517594AC500B49A06 /* FLObjcAbstractObjectType.h in Headers */,
+				27B83DC917594B1900B49A06 /* FLObjcValueType.h in Headers */,
+				27B83DCD17594B6D00B49A06 /* FLObjcProtocolType.h in Headers */,
+				27B83DD117594DC600B49A06 /* FLObjcIvarName.h in Headers */,
+				27B83DD517594DE100B49A06 /* FLObjcClassName.h in Headers */,
+				27B83DD917594DEE00B49A06 /* FLObjcMethodName.h in Headers */,
+				27B83DDD17594DFD00B49A06 /* FLObjectPropertyName.h in Headers */,
+				27B83DE117594E0B00B49A06 /* FLObjcImportedName.h in Headers */,
+				27B83DE517594E1C00B49A06 /* FLObjcEnumName.h in Headers */,
+				27B83DE917594E2F00B49A06 /* FLObjcEnumValueName.h in Headers */,
+				27B83DED17594E4100B49A06 /* FLObjcParameterName.h in Headers */,
+				27B83DF017594FA000B49A06 /* FLObjcCodeGeneratorHeaders.h in Headers */,
+				27B83E0A1759528700B49A06 /* FLObjcName.h in Headers */,
+				27B83E0C1759528700B49A06 /* FLObjcType.h in Headers */,
+				27B83E0F1759542A00B49A06 /* FLObjcEnumValueType.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1630,14 +1822,12 @@
 				2787B5ED17415C330010C2C6 /* FLObjcCodeElement.m in Sources */,
 				2787B5EF17415C330010C2C6 /* FLObjcFileHeader.m in Sources */,
 				2787B5F117415C330010C2C6 /* FLObjcMethod.m in Sources */,
-				2787B5F317415C330010C2C6 /* FLObjcName.m in Sources */,
 				2787B5F517415C330010C2C6 /* FLObjcNamedObjectCollection.m in Sources */,
 				2787B5F717415C330010C2C6 /* FLObjcObject.m in Sources */,
 				2787B5F917415C330010C2C6 /* FLObjcProperty.m in Sources */,
 				2787B5FB17415C330010C2C6 /* FLObjcReference.m in Sources */,
 				2787B5FD17415C330010C2C6 /* FLObjcRuntimeValue.m in Sources */,
 				2787B5FF17415C330010C2C6 /* FLObjcStatement.m in Sources */,
-				2787B60117415C330010C2C6 /* FLObjcType.m in Sources */,
 				2787B60317415C330010C2C6 /* FLObjcVariable.m in Sources */,
 				2787B60517415C330010C2C6 /* FLObjcDidRegisterObjectDescriberMethod.m in Sources */,
 				2787B61117415C330010C2C6 /* FLObjcCodeBuilder.m in Sources */,
@@ -1711,6 +1901,30 @@
 				2705D7F11756834F003B000D /* FLWsdlCodeEnum.m in Sources */,
 				2705D7F517569D07003B000D /* FLWsdlServiceCodeObject.m in Sources */,
 				2705EE4C1756EC00003B000D /* FLCodeLine.m in Sources */,
+				27B83D961759497B00B49A06 /* FLObjcObjectType.m in Sources */,
+				27B83D9A1759499A00B49A06 /* FLObjcEnumType.m in Sources */,
+				27B83DA617594A0900B49A06 /* FLObjcVoidType.m in Sources */,
+				27B83DAA17594A2600B49A06 /* FLObjcContainerSubType.m in Sources */,
+				27B83DAE17594A4500B49A06 /* FLObjcContainerType.m in Sources */,
+				27B83DB217594A5D00B49A06 /* FLObjcNumberObjectType.m in Sources */,
+				27B83DB617594A7000B49A06 /* FLObjcNumberValueType.m in Sources */,
+				27B83DBA17594A8800B49A06 /* FLObjcBoolType.m in Sources */,
+				27B83DBE17594A9A00B49A06 /* FLObjcGeometryType.m in Sources */,
+				27B83DC217594AB200B49A06 /* FLObjcArrayType.m in Sources */,
+				27B83DCA17594B1900B49A06 /* FLObjcValueType.m in Sources */,
+				27B83DCE17594B6D00B49A06 /* FLObjcProtocolType.m in Sources */,
+				27B83DD217594DC600B49A06 /* FLObjcIvarName.m in Sources */,
+				27B83DD617594DE100B49A06 /* FLObjcClassName.m in Sources */,
+				27B83DDA17594DEE00B49A06 /* FLObjcMethodName.m in Sources */,
+				27B83DDE17594DFD00B49A06 /* FLObjectPropertyName.m in Sources */,
+				27B83DE217594E0B00B49A06 /* FLObjcImportedName.m in Sources */,
+				27B83DE617594E1C00B49A06 /* FLObjcEnumName.m in Sources */,
+				27B83DEA17594E2F00B49A06 /* FLObjcEnumValueName.m in Sources */,
+				27B83DEE17594E4100B49A06 /* FLObjcParameterName.m in Sources */,
+				27B83DF4175950DF00B49A06 /* FLObjcEnumValueType.m in Sources */,
+				27B83DF61759520500B49A06 /* FLObjcAbstractObjectType.m in Sources */,
+				27B83E0B1759528700B49A06 /* FLObjcName.m in Sources */,
+				27B83E0D1759528700B49A06 /* FLObjcType.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

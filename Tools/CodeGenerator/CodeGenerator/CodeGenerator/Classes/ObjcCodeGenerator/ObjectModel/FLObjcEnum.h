@@ -11,7 +11,7 @@
 
 @class FLObjcTypeIndex;
 @class FLCodeEnumType;
-@class FLObjcEnumValue;
+@class FLObjcEnumValueType;
 
 @interface FLObjcEnum : FLObjcCodeElement {
 @private
@@ -28,16 +28,7 @@
 @property (readwrite, strong, nonatomic) FLObjcType* enumType;
 @property (readwrite, strong, nonatomic) FLObjcName* enumName;
 
-- (void) addValue:(FLObjcEnumValue*) enumValueType;
+- (void) addValue:(FLObjcEnumValueType*) enumValueType;
 - (void) configureWithCodeEnumType:(FLCodeEnumType*) codeEnumType;
 @end
 
-
-@interface FLObjcEnumValue : FLObjcValueType {
-@private
-    NSUInteger _enumValue;
-}
-@property (readwrite, assign, nonatomic) NSUInteger enumValue;
-
-+ (id) objcEnumValue:(FLObjcName*) name value:(NSUInteger) value;
-@end

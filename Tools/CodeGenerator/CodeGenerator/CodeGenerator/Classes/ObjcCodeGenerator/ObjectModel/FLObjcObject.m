@@ -7,17 +7,10 @@
 //
 
 #import "FLObjcObject.h"
-#import "FLObjcNamedObjectCollection.h"
+#import "FLObjcCodeGeneratorHeaders.h"
+
 #import "FLCodeObject.h"
-#import "FLObjcName.h"
-#import "FLObjcType.h"
-#import "FLObjcVariable.h"
-#import "FLObjcProperty.h"
-#import "FLObjcStatement.h"
-#import "FLObjcMethod.h"
-#import "FLObjcTypeIndex.h"
-#import "FLObjcFile.h"
-#import "FLObjcDidRegisterObjectDescriberMethod.h"
+#import "FLCodeStorageOptions.h"
 
 @interface FLObjcObject ()
 @property (readwrite, strong, nonatomic) FLCodeObject* codeObject;
@@ -110,6 +103,36 @@
 }
 #endif
 
+- (NSString*) storageMaskForStorageOptions:(FLCodeStorageOptions*) option {
+	NSMutableString* storageMask = [NSMutableString string];
+
+	if(!option.isStorable) {
+		[storageMask appendString:@"FLStorageAttributeNotStored"];
+	}
+	else {
+		[storageMask appendString:@"FLStorageAttributeStored"];
+	}
+	
+    if(option.isPrimaryKey) {
+		[storageMask appendString:@"|FLStorageAttributePrimaryKey"];
+	}
+	
+    if(option.isIndexed) {
+		[storageMask appendString:@"|FLStorageAttributeIndexed"];
+	}
+	
+    if(option.isRequired) {
+		[storageMask appendString:@"|FLStorageAttributeRequired"];
+	}
+	
+    if(option.isUnique) {
+		[storageMask appendString:@"|FLStorageAttributeUnique"];
+	}
+	
+	return storageMask;
+}
+
+
 - (void) configureWithCodeObject:(FLCodeObject*) codeObject {
     
     if(FLStringIsNotEmpty(codeObject.protocols)) {
@@ -148,6 +171,10 @@
         [self addProperty:prop];
         
         [self addDependency:prop.propertyType];
+    }
+    
+    for(FLObjcProperty* objcProp in self.properties) {
+        [[objcProp propertyType] addAdditionalStuffToObject:self forProperty:objcProp];
     }
     
     for(FLCodeMethod* method in codeObject.methods) {

@@ -7,12 +7,11 @@
 //
 
 #import "FLObjcEnum.h"
+#import "FLObjcCodeGeneratorHeaders.h"
 
 #import "FLCodeEnumType.h"
-#import "FLObjcTypeIndex.h"
-#import "FLObjcName.h"
 #import "FLCodeEnum.h"
-#import "FLObjcCodeBuilder.h"
+
 #import "FLTypeSpecificEnumSet.h"
 
 @implementation FLObjcEnum
@@ -45,7 +44,7 @@
     return FLAutorelease([[[self class] alloc] initWithTypeIndex:typeIndex]);
 }
 
-- (void) addValue:(FLObjcEnumValue*) enumValueType {
+- (void) addValue:(FLObjcEnumValueType*) enumValueType {
     [_enumValues addObject:enumValueType];
 }
 
@@ -70,7 +69,7 @@
             value = ++counter;
         }
     
-        FLObjcEnumValue* enumValue = [FLObjcEnumValue objcEnumValue:name value:value]; 
+        FLObjcEnumValueType* enumValue = [FLObjcEnumValueType objcEnumValue:name value:value]; 
         [self addValue:enumValue];
     }
 }
@@ -91,7 +90,7 @@
     
     [codeBuilder appendLine:@"typedef enum {"];
     [codeBuilder indent:^{
-        for(FLObjcEnumValue* value in _enumValues) {
+        for(FLObjcEnumValueType* value in _enumValues) {
             [codeBuilder appendLineWithFormat:@"%@ = %ld,", value.generatedName, value.enumValue];
          
         } 
@@ -181,25 +180,3 @@
 }
 @end
 
-@implementation FLObjcEnumValue
-@synthesize enumValue = _enumValue;
-#if FL_MRC
-- (void) dealloc {
-//	[_enumValue release];
-	[super dealloc];
-}
-#endif
-
-- (id) initWithName:(FLObjcName*) name value:(NSUInteger) value {	
-	self = [super initWithTypeName:name importFileName:nil];
-	if(self) {
-		self.enumValue = value;
-	}
-	return self;
-}
-
-+ (id) objcEnumValue:(FLObjcName*) name value:(NSUInteger) value {
-    return FLAutorelease([[[self class] alloc] initWithName:name value:value]);
-}
-
-@end
