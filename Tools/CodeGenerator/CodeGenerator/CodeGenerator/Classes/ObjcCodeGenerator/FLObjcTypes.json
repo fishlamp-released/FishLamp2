@@ -1,0 +1,21 @@
+ {
+    "object-types": [
+        {
+            "dataType": "NSString", 
+            "names": [
+                "string",
+                "nsstring"
+            ]
+        }
+    ],
+    "value-types": [
+        {
+            "dataType": "NSInteger",
+            "names": [
+                "int",
+                "integer",
+                "NSInteger"
+            ]
+        }
+    ]
+}

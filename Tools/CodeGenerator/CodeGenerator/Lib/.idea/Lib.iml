@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="CIDR_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGenerator.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGenerator.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGenerator.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGenerator.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorDataType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorDataType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorDataType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorDataType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorDataTypeCollection.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorDataTypeCollection.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorDataTypeCollection.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorDataTypeCollection.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorErrors.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorErrors.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorErrors.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorErrors.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorFile.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorFile.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorFile.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorFile.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorObjectModel.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorObjectModel.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorResult.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorResult.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorResult.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorResult.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorResult_Internal.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorResult_Internal.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorSession.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorSession.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorSession.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeGeneratorSession.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeReader.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeReader.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeTranslator.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeTranslator.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeWriter.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeWriter.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeWriter.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeWriter.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeWriterFactory.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeWriterFactory.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeWriterFactory.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLCodeWriterFactory.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLFileWritingOutputHandler.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLFileWritingOutputHandler.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLFileWritingOutputHandler.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLFileWritingOutputHandler.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLGeneratedObject.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLGeneratedObject.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLGeneratedObject.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLGeneratedObject.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLOutputHandler.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLOutputHandler.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLResourceDescriptor.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLResourceDescriptor.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLResourceDescriptor.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/FLResourceDescriptor.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorAll.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorAll.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorArray.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorArray.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorArray.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorArray.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorArrayType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorArrayType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorArrayType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorArrayType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCodeLicense.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCodeLicense.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCodeLicense.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCodeLicense.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCodeSnippet.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCodeSnippet.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCodeSnippet.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCodeSnippet.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorComment.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorComment.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorComment.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorComment.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCompany.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCompany.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCompany.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorCompany.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorDefine.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorDefine.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorDefine.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorDefine.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnum.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnum.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnum.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnum.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnumType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnumType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnumType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnumType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnums.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnums.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnums.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorEnums.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorGeneratorOptions.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorGeneratorOptions.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorGeneratorOptions.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorGeneratorOptions.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorImport.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorImport.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorImport.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorImport.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorKeyValuePair.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorKeyValuePair.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorKeyValuePair.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorKeyValuePair.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorMethod.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorMethod.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorMethod.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorMethod.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObject.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObject.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObject.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObject.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObjectCategory.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObjectCategory.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObjectCategory.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObjectCategory.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObjectMemberType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObjectMemberType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObjectMemberType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorObjectMemberType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorProject.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorProject.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorProject.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorProject.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorProperty.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorProperty.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorProperty.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorProperty.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorStorageOptions.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorStorageOptions.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorStorageOptions.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorStorageOptions.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorTypeDefinition.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorTypeDefinition.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorTypeDefinition.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorTypeDefinition.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorVariable.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorVariable.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorVariable.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/Generated/FLCodeGeneratorVariable.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorMethod+Additions.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorMethod+Additions.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorMethod+Additions.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorMethod+Additions.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorObject+Additions.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorObject+Additions.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorObject+Additions.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorObject+Additions.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorProject+Additions.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorProject+Additions.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorProject+Additions.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorProject+Additions.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorType+Additions.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorType+Additions.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorType+Additions.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorType+Additions.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorTypeDefinition+Additions.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorTypeDefinition+Additions.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorTypeDefinition+Additions.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/GeneratedAdditions/FLCodeGeneratorTypeDefinition+Additions.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/ObjectModel.flproj">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/ObjectModel.flproj" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/CodeGenerator/WhittleSdk.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/CodeGenerator/WhittleSdk.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/JsonFileReader/FLJsonFileReader.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/JsonFileReader/FLJsonFileReader.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/JsonFileReader/FLJsonFileReader.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/JsonFileReader/FLJsonFileReader.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorEnum+Objc.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorEnum+Objc.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorEnum+Objc.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorEnum+Objc.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorEnumType+Objc.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorEnumType+Objc.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorEnumType+Objc.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorEnumType+Objc.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorObject+Objc.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorObject+Objc.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorObject+Objc.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorObject+Objc.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorProject+Objc.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorProject+Objc.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorProject+Objc.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorProject+Objc.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorProperty+Objc.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorProperty+Objc.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorProperty+Objc.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorProperty+Objc.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorStorageOptions+Objc.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorStorageOptions+Objc.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorStorageOptions+Objc.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorStorageOptions+Objc.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorTypeDefinition+Objc.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorTypeDefinition+Objc.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorTypeDefinition+Objc.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeGeneratorObjects+Objc/FLCodeGeneratorTypeDefinition+Objc.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcAllIncludesFileWriter.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcAllIncludesFileWriter.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcAllIncludesFileWriter.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcAllIncludesFileWriter.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcCategoryWriter.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcCategoryWriter.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcCategoryWriter.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcCategoryWriter.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcEnumCodeWriter.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcEnumCodeWriter.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcEnumCodeWriter.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcEnumCodeWriter.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcMethodWriter.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcMethodWriter.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcMethodWriter.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcMethodWriter.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcMyCodeObjectCodeWriter.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcMyCodeObjectCodeWriter.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcMyCodeObjectCodeWriter.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcMyCodeObjectCodeWriter.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcObjectCodeWriter.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcObjectCodeWriter.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcObjectCodeWriter.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcObjectCodeWriter.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcPropertyWriter.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcPropertyWriter.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcPropertyWriter.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcPropertyWriter.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcSnippetCodeWriter.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcSnippetCodeWriter.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcSnippetCodeWriter.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/CodeWriters/FLObjcSnippetCodeWriter.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/FLObjcCodeGenerator.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/FLObjcCodeGenerator.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/FLObjcCodeGenerator.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/FLObjcCodeGenerator.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/FLObjcDataTypes.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/FLObjcDataTypes.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/FLObjcDataTypes.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/FLObjcDataTypes.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/FLObjcObjectModel.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/FLObjcObjectModel.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorObject+ObjcSetup.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorObject+ObjcSetup.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorObject+ObjcSetup.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorObject+ObjcSetup.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorProject+ObjcSetup.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorProject+ObjcSetup.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorProject+ObjcSetup.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorProject+ObjcSetup.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorProperty+ObjcSetup.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorProperty+ObjcSetup.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorProperty+ObjcSetup.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Setup/FLCodeGeneratorProperty+ObjcSetup.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLDataTypeIDUtilities.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLDataTypeIDUtilities.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLDataTypeIDUtilities.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLDataTypeIDUtilities.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcCodeBuilder.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcCodeBuilder.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcCodeBuilder.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcCodeBuilder.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcCodeGeneratorSession.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcCodeGeneratorSession.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcCodeGeneratorSession.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcCodeGeneratorSession.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcFile.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcFile.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcFile.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/ObjcCodeGenerator/Utils/FLObjcFile.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/FLWSDLTranslator.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/FLWSDLTranslator.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/FLWSDLTranslator.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/FLWSDLTranslator.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema.flproj">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema.flproj" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWSDLSchemaAll.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWSDLSchemaAll.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlBinding.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlBinding.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlBinding.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlBinding.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlChoiceArray.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlChoiceArray.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlChoiceArray.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlChoiceArray.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlComplexContent.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlComplexContent.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlComplexContent.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlComplexContent.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlComplexType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlComplexType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlComplexType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlComplexType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlContent.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlContent.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlContent.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlContent.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlDefinitions.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlDefinitions.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlDefinitions.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlDefinitions.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlElement.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlElement.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlElement.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlElement.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlElementBaseType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlElementBaseType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlElementBaseType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlElementBaseType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlEnumeration.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlEnumeration.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlEnumeration.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlEnumeration.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlExtension.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlExtension.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlExtension.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlExtension.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlImport.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlImport.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlImport.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlImport.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlInputOutput.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlInputOutput.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlInputOutput.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlInputOutput.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlList.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlList.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlList.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlList.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMessage.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMessage.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMessage.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMessage.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMessageBody.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMessageBody.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMessageBody.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMessageBody.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMime.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMime.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMime.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlMime.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlOperation.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlOperation.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlOperation.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlOperation.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlPart.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlPart.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlPart.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlPart.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlPortType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlPortType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlPortType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlPortType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlRestrictionArray.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlRestrictionArray.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlRestrictionArray.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlRestrictionArray.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSchema.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSchema.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSchema.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSchema.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSequenceArray.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSequenceArray.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSequenceArray.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSequenceArray.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlService.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlService.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlService.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlService.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlServiceAddress.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlServiceAddress.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlServiceAddress.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlServiceAddress.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSimpleType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSimpleType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSimpleType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FLWsdlSimpleType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FishLamp CodeWriter WSDL Interpreter.strings">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/FishLamp CodeWriter WSDL Interpreter.strings" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWSDLSchemaAll.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWSDLSchemaAll.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlBinding.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlBinding.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlBinding.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlBinding.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlChoiceArray.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlChoiceArray.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlChoiceArray.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlChoiceArray.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlComplexContent.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlComplexContent.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlComplexContent.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlComplexContent.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlComplexType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlComplexType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlComplexType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlComplexType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlContent.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlContent.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlContent.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlContent.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlDefinitions.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlDefinitions.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlDefinitions.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlDefinitions.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlElement.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlElement.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlElement.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlElement.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlElementBaseType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlElementBaseType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlElementBaseType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlElementBaseType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlEnumeration.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlEnumeration.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlEnumeration.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlEnumeration.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlExtension.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlExtension.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlExtension.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlExtension.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlImport.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlImport.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlImport.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlImport.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlInputOutput.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlInputOutput.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlInputOutput.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlInputOutput.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlList.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlList.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlList.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlList.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMessage.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMessage.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMessage.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMessage.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMessageBody.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMessageBody.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMessageBody.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMessageBody.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMime.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMime.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMime.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlMime.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlOperation.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlOperation.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlOperation.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlOperation.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlPart.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlPart.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlPart.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlPart.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlPortType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlPortType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlPortType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlPortType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlRestrictionArray.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlRestrictionArray.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlRestrictionArray.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlRestrictionArray.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSchema.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSchema.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSchema.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSchema.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSequenceArray.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSequenceArray.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSequenceArray.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSequenceArray.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlService.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlService.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlService.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlService.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlServiceAddress.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlServiceAddress.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlServiceAddress.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlServiceAddress.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSimpleType.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSimpleType.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSimpleType.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/WsdlInterpreter/WSDLSchema/__FLWsdlSimpleType.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/XmlFileReader/FLXmlFileReader.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/XmlFileReader/FLXmlFileReader.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Classes/XmlFileReader/FLXmlFileReader.m">
+      <sourceFolder url="file://$MODULE_DIR$/../Classes/XmlFileReader/FLXmlFileReader.m" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project projectName="FishLamp Connect Zenfolio API">
+    <generatorOptions>
+        <disabled>NO</disabled>
+        <generateAllIncludesFile>YES</generateAllIncludesFile>
+        <objectsFolderName>zfapi1_6</objectsFolderName>
+        <typePrefix>ZF</typePrefix>
+    </generatorOptions>
+    <organization name="GreenTongue Software, LLC">
+        <website>http://www.greentongue.com</website>
+    </organization>
+    <license>
+        <licenseName>Individual licensees only.</licenseName>
+    </license>
+	<defines>
+        <define define="FLZenfolioApiVersion1_6" value="1" isString="NO" comment=""/>
+    </defines>
+    <typeDefinitions>
+        <typeDefinition typeName="FLZenfolioParsedCategory" dataType="object" import="FLZenfolioParsedCategory.h"/>
+    </typeDefinitions>
+	<imports>
+		<import path="http://www.zenfolio.com/api/1.6/zfapi.asmx?WSDL" type="Wsdl"/>
+	</imports>
+    <objects>
+        <object typeName="FLZenfolioPhoto">
+            <properties>
+                <property name="categoryArray" type="array">
+                    <arrayTypes>
+                        <arrayType name="parsedCategory" typeName="FLZenfolioParsedCategory"/>
+                    </arrayTypes>
+                </property>
+                <property name="Id">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object typeName="FLZenfolioGroupElement">
+            <properties>
+                <property name="Id">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object typeName="FLZenfolioUser">
+            <properties>
+                <property name="LoginName">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object typeName="FLZenfolioAccessDescriptor">
+            <properties>
+                <property name="password" type="string"/>
+                <property name="protectedObjectClassName" type="string"/>
+            </properties>
+        </object>
+    </objects>
+</project>

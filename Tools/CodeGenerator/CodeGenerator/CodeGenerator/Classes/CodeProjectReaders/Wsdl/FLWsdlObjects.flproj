@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema  projectName="FishLamp CodeWriter WSDL Interpreter" canLazyCreate="YES">
+    <generatorOptions>
+        <disabled>NO</disabled>
+        <generateAllIncludesFile>YES</generateAllIncludesFile>
+        <objectsFolderName>WsdlSchema</objectsFolderName>
+        <typePrefix>FL</typePrefix>
+    </generatorOptions>
+    <organization name="GreenTongue Software, LLC"/>
+    <objects>
+        <object className="FLWsdlDefinitions">
+            <properties>
+                <property name="types" type="array">
+                    <arrayTypes>
+                        <arrayType name="schema" typeName="FLWsdlSchema"/>
+                    </arrayTypes>
+                </property>
+                <property name="messages" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="message" typeName="FLWsdlMessage"/>
+                    </arrayTypes>
+                </property>
+                <property name="portTypes" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="portType" typeName="FLWsdlPortType"/>
+                    </arrayTypes>
+                </property>
+                <property name="bindings" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="binding" typeName="FLWsdlBinding"/>
+                    </arrayTypes>
+                </property>
+                <property name="service" type="FLWsdlService"/>
+                <property name="targetNamespace" type="NSString"/>
+                <property name="documentation" type="NSString"/>
+            </properties>
+        </object>
+        <object className="FLWsdlElementBaseType">
+            <properties>
+                <property name="elements" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="element" typeName="FLWsdlElement"/>
+                    </arrayTypes>
+                </property>
+                <property name="simpleTypes" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="simpleType" typeName="FLWsdlSimpleType"/>
+                    </arrayTypes>
+                </property>
+                <property name="complexTypes" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="complexType" typeName="FLWsdlComplexType"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLWsdlSchema" superclass="FLWsdlElementBaseType">
+            <properties>
+                <property name="elementFormDefault" type="NSString"/>
+                <property name="targetNamespace" type="NSString"/>
+                <property name="imports" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="import" typeName="FLWsdlImport"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLWsdlElement" superclass="FLWsdlElementBaseType">
+            <properties>
+                <property name="minOccurs" type="NSString"/>
+                <property name="maxOccurs" type="NSString"/>
+                <property name="name" type="NSString"/>
+                <property name="type" type="NSString"/>
+                <property name="ref" type="NSString"/>
+                <property name="nillable" type="BOOL"/>
+                <property name="complexType" type="FLWsdlComplexType"/>
+            </properties>
+        </object>
+        <object className="FLWsdlSequenceArray">
+            <properties>
+                <property name="minOccurs" type="NSString"/>
+                <property name="maxOccurs" type="NSString"/>
+                <property name="elements" type="array">
+                    <arrayTypes>
+                        <arrayType name="element" typeName="FLWsdlElement"/>
+	               </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLWsdlExtension">
+            <properties>
+                <property name="base" type="NSString"/>
+                <property name="sequence" type="FLWsdlSequenceArray"/>
+            </properties>
+        </object>
+        <object className="FLWsdlRestrictionArray">
+            <properties>
+                <property name="base" type="NSString"/>
+                <property name="enumerations" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="enumeration" typeName="FLWsdlEnumeration"/>
+                    </arrayTypes>
+                </property>
+                <property name="sequence" type="FLWsdlSequenceArray"/>
+
+            </properties>
+        </object>
+        <object className="FLWsdlEnumeration">
+            <properties>
+                <property type="NSString" name="value"/>
+            </properties>
+        </object>
+        <object className="FLWsdlList">
+            <properties>
+                <property name="simpleType" type="FLWsdlSimpleType"/>
+            </properties>
+        </object>
+        <object className="FLWsdlSimpleType">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="restriction" type="FLWsdlRestrictionArray"/>
+                <property name="list" type="FLWsdlList"/>
+            </properties>
+        </object>
+        <object className="FLWsdlComplexContent">
+            <properties>
+                <property name="mixed" type="NSString"/>
+                <property name="extension" type="FLWsdlExtension"/>
+                <property name="restriction" type="FLWsdlRestrictionArray"/>
+            </properties>
+        </object>
+        <object className="FLWsdlComplexType">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="choice" type="FLWsdlChoiceArray"/>
+                <property name="complexContent" type="FLWsdlComplexContent"/>
+                <property name="sequence" type="FLWsdlSequenceArray"/>
+            </properties>
+        </object>
+        <object className="FLWsdlImport">
+            <properties>
+                <property name="import" type="NSString"/>
+                <property name="namespace" type="NSString"/>
+            </properties>
+        </object>
+        <object className="FLWsdlMessage">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="parts" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType typeName="FLWsdlPart" name="part"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLWsdlPart">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="element" type="NSString"/>
+                <property name="type" type="NSString"/>
+            </properties>
+        </object>
+        <object className="FLWsdlServiceAddress">
+            <properties>
+                <property name="location" type="NSString"/>
+            </properties>
+        </object>
+        <object className="FLWsdlPortType">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="binding" type="NSString"/>
+                <property name="address" type="FLWsdlServiceAddress"/>
+                <property name="operations" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="operation" typeName="FLWsdlOperation"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLWsdlOperation">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="location" type="NSString"/>
+                <property name="soapAction" type="NSString"/>
+                <property name="style" type="NSString"/>
+                <property name="documentation" type="NSString"/>
+                <property name="input" type="FLWsdlInputOutput"/>
+                <property name="output" type="FLWsdlInputOutput"/>
+                <property name="operation" type="FLWsdlOperation"/>
+            </properties>
+        </object>
+        <object className="FLWsdlInputOutput">
+            <properties>
+                <property name="message" type="NSString"/>
+                <property name="type" type="NSString"/>
+                <property name="body" type="FLWsdlMessageBody"/>
+                <property name="content" type="FLWsdlContent"/>
+                <property name="urlEncoded" type="NSString"/>
+                <property name="mimeXml" type="FLWsdlMime"/>
+            </properties>
+        </object>
+        <object className="FLWsdlBinding">
+            <properties>
+                <property name="style" type="NSString"/>
+                <property name="name" type="NSString"/>
+                <property name="transport" type="NSString"/>
+                <property name="verb" type="NSString"/>
+                <property name="type" type="NSString"/>
+                <property name="bindings" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType typeName="FLWsdlBinding" name="binding"/>
+                    </arrayTypes>
+                </property>
+                <property name="operations" type="array" isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType typeName="FLWsdlOperation" name="operation"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLWsdlService">
+            <properties>
+                <property name="name" type="NSString"/>
+                <property name="documentation" type="NSString"/>
+                <property name="ports" type="array"  isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="port" typeName="FLWsdlPortType"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLWsdlChoiceArray">
+            <properties>
+                <property name="minOccurs" type="NSString"/>
+                <property name="maxOccurs" type="NSString"/>
+                <property name="elements" type="array"  isWildcardArray="YES">
+                    <arrayTypes>
+                        <arrayType name="element" typeName="FLWsdlElement"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLWsdlMime">
+            <properties>
+                <property name="part" type="NSString"/>
+            </properties>
+        </object>
+        <object className="FLWsdlContent">
+            <properties>
+                <property name="type" type="NSString"/>
+            </properties>
+        </object>
+        <object className="FLWsdlMessageBody">
+            <properties>
+                <property name="use" type="NSString"/>
+            </properties>
+        </object>
+    </objects>
+</schema>
