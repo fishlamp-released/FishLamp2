@@ -7,6 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270504BB17583091003B000D /* FLTypeSpecificEnumSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504B91758308F003B000D /* FLTypeSpecificEnumSet.h */; };
+		270504BC17583091003B000D /* FLTypeSpecificEnumSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504B91758308F003B000D /* FLTypeSpecificEnumSet.h */; };
+		270504BD17583091003B000D /* FLTypeSpecificEnumSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504B91758308F003B000D /* FLTypeSpecificEnumSet.h */; };
+		270504BE17583091003B000D /* FLTypeSpecificEnumSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504B91758308F003B000D /* FLTypeSpecificEnumSet.h */; };
+		270504BF17583091003B000D /* FLTypeSpecificEnumSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504BA17583090003B000D /* FLTypeSpecificEnumSet.m */; };
+		270504C017583091003B000D /* FLTypeSpecificEnumSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504BA17583090003B000D /* FLTypeSpecificEnumSet.m */; };
+		270504C117583091003B000D /* FLTypeSpecificEnumSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504BA17583090003B000D /* FLTypeSpecificEnumSet.m */; };
+		270504C217583091003B000D /* FLTypeSpecificEnumSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504BA17583090003B000D /* FLTypeSpecificEnumSet.m */; };
+		270504C317583091003B000D /* FLTypeSpecificEnumSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504BA17583090003B000D /* FLTypeSpecificEnumSet.m */; };
+		270504C6175830D1003B000D /* FLEnumSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504C4175830CE003B000D /* FLEnumSet.h */; };
+		270504C7175830D1003B000D /* FLEnumSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504C4175830CE003B000D /* FLEnumSet.h */; };
+		270504C8175830D1003B000D /* FLEnumSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504C4175830CE003B000D /* FLEnumSet.h */; };
+		270504C9175830D1003B000D /* FLEnumSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504C4175830CE003B000D /* FLEnumSet.h */; };
+		270504CA175830D1003B000D /* FLEnumSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504C5175830CF003B000D /* FLEnumSet.m */; };
+		270504CB175830D1003B000D /* FLEnumSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504C5175830CF003B000D /* FLEnumSet.m */; };
+		270504CC175830D1003B000D /* FLEnumSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504C5175830CF003B000D /* FLEnumSet.m */; };
+		270504CD175830D1003B000D /* FLEnumSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504C5175830CF003B000D /* FLEnumSet.m */; };
+		270504CE175830D1003B000D /* FLEnumSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504C5175830CF003B000D /* FLEnumSet.m */; };
+		270504DC17583187003B000D /* FLEnumPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504DA17583183003B000D /* FLEnumPair.h */; };
+		270504DD17583187003B000D /* FLEnumPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504DA17583183003B000D /* FLEnumPair.h */; };
+		270504DE17583187003B000D /* FLEnumPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504DA17583183003B000D /* FLEnumPair.h */; };
+		270504DF17583187003B000D /* FLEnumPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 270504DA17583183003B000D /* FLEnumPair.h */; };
+		270504E017583187003B000D /* FLEnumPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504DB17583185003B000D /* FLEnumPair.m */; };
+		270504E117583187003B000D /* FLEnumPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504DB17583185003B000D /* FLEnumPair.m */; };
+		270504E217583187003B000D /* FLEnumPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504DB17583185003B000D /* FLEnumPair.m */; };
+		270504E317583187003B000D /* FLEnumPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504DB17583185003B000D /* FLEnumPair.m */; };
+		270504E417583187003B000D /* FLEnumPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 270504DB17583185003B000D /* FLEnumPair.m */; };
 		2705EE611757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705EE601757DE6E003B000D /* FLHttpRequestDescriptor.h */; };
 		2705EE621757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705EE601757DE6E003B000D /* FLHttpRequestDescriptor.h */; };
 		2705EE631757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2705EE601757DE6E003B000D /* FLHttpRequestDescriptor.h */; };
@@ -3385,6 +3412,12 @@
 
 /* Begin PBXFileReference section */
 		27048EF0161CB58600C38ADA /* libFishLampCocoa-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		270504B91758308F003B000D /* FLTypeSpecificEnumSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTypeSpecificEnumSet.h; sourceTree = "<group>"; };
+		270504BA17583090003B000D /* FLTypeSpecificEnumSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTypeSpecificEnumSet.m; sourceTree = "<group>"; };
+		270504C4175830CE003B000D /* FLEnumSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEnumSet.h; sourceTree = "<group>"; };
+		270504C5175830CF003B000D /* FLEnumSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEnumSet.m; sourceTree = "<group>"; };
+		270504DA17583183003B000D /* FLEnumPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEnumPair.h; sourceTree = "<group>"; };
+		270504DB17583185003B000D /* FLEnumPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEnumPair.m; sourceTree = "<group>"; };
 		2705EE601757DE6E003B000D /* FLHttpRequestDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLHttpRequestDescriptor.h; sourceTree = "<group>"; };
 		27069FAE17075E1B001D4AC9 /* NSBundle+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+FLAdditions.h"; sourceTree = "<group>"; };
 		27069FAF17075E1B001D4AC9 /* NSBundle+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+FLAdditions.m"; sourceTree = "<group>"; };
@@ -4690,6 +4723,12 @@
 				271D31DE16FE0775009CD00F /* FLParseInfo.m */,
 				2755F92C1725E8C500C8D860 /* FLPropertyDescriber.h */,
 				2755F92D1725E8C500C8D860 /* FLPropertyDescriber.m */,
+				270504B91758308F003B000D /* FLTypeSpecificEnumSet.h */,
+				270504BA17583090003B000D /* FLTypeSpecificEnumSet.m */,
+				270504C4175830CE003B000D /* FLEnumSet.h */,
+				270504C5175830CF003B000D /* FLEnumSet.m */,
+				270504DA17583183003B000D /* FLEnumPair.h */,
+				270504DB17583185003B000D /* FLEnumPair.m */,
 			);
 			path = ModelObjects;
 			sourceTree = "<group>";
@@ -6299,6 +6338,9 @@
 				27C4AFE117513A9800E16AE7 /* FLLastUpdateTime.h in Headers */,
 				27C4AFEA17513A9800E16AE7 /* FLUserLogin.h in Headers */,
 				2705EE611757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */,
+				270504BB17583091003B000D /* FLTypeSpecificEnumSet.h in Headers */,
+				270504C6175830D1003B000D /* FLEnumSet.h in Headers */,
+				270504DC17583187003B000D /* FLEnumPair.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6689,6 +6731,9 @@
 				27C4AFE317513A9800E16AE7 /* FLLastUpdateTime.h in Headers */,
 				27C4AFEC17513A9800E16AE7 /* FLUserLogin.h in Headers */,
 				2705EE631757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */,
+				270504BD17583091003B000D /* FLTypeSpecificEnumSet.h in Headers */,
+				270504C8175830D1003B000D /* FLEnumSet.h in Headers */,
+				270504DE17583187003B000D /* FLEnumPair.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7079,6 +7124,9 @@
 				27C4AFE217513A9800E16AE7 /* FLLastUpdateTime.h in Headers */,
 				27C4AFEB17513A9800E16AE7 /* FLUserLogin.h in Headers */,
 				2705EE621757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */,
+				270504BC17583091003B000D /* FLTypeSpecificEnumSet.h in Headers */,
+				270504C7175830D1003B000D /* FLEnumSet.h in Headers */,
+				270504DD17583187003B000D /* FLEnumPair.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7469,6 +7517,9 @@
 				27C4AFE417513A9800E16AE7 /* FLLastUpdateTime.h in Headers */,
 				27C4AFED17513A9800E16AE7 /* FLUserLogin.h in Headers */,
 				2705EE641757DE6F003B000D /* FLHttpRequestDescriptor.h in Headers */,
+				270504BE17583091003B000D /* FLTypeSpecificEnumSet.h in Headers */,
+				270504C9175830D1003B000D /* FLEnumSet.h in Headers */,
+				270504DF17583187003B000D /* FLEnumPair.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8011,6 +8062,9 @@
 				27C4AFDD17513A9800E16AE7 /* FLApplicationSession.m in Sources */,
 				27C4AFE617513A9800E16AE7 /* FLLastUpdateTime.m in Sources */,
 				27C4AFEF17513A9800E16AE7 /* FLUserLogin.m in Sources */,
+				270504C017583091003B000D /* FLTypeSpecificEnumSet.m in Sources */,
+				270504CB175830D1003B000D /* FLEnumSet.m in Sources */,
+				270504E117583187003B000D /* FLEnumPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8364,6 +8418,9 @@
 				27C4AFDF17513A9800E16AE7 /* FLApplicationSession.m in Sources */,
 				27C4AFE817513A9800E16AE7 /* FLLastUpdateTime.m in Sources */,
 				27C4AFF117513A9800E16AE7 /* FLUserLogin.m in Sources */,
+				270504C217583091003B000D /* FLTypeSpecificEnumSet.m in Sources */,
+				270504CD175830D1003B000D /* FLEnumSet.m in Sources */,
+				270504E317583187003B000D /* FLEnumPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8709,6 +8766,9 @@
 				27C4AFDC17513A9800E16AE7 /* FLApplicationSession.m in Sources */,
 				27C4AFE517513A9800E16AE7 /* FLLastUpdateTime.m in Sources */,
 				27C4AFEE17513A9800E16AE7 /* FLUserLogin.m in Sources */,
+				270504BF17583091003B000D /* FLTypeSpecificEnumSet.m in Sources */,
+				270504CA175830D1003B000D /* FLEnumSet.m in Sources */,
+				270504E017583187003B000D /* FLEnumPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9062,6 +9122,9 @@
 				27C4AFDE17513A9800E16AE7 /* FLApplicationSession.m in Sources */,
 				27C4AFE717513A9800E16AE7 /* FLLastUpdateTime.m in Sources */,
 				27C4AFF017513A9800E16AE7 /* FLUserLogin.m in Sources */,
+				270504C117583091003B000D /* FLTypeSpecificEnumSet.m in Sources */,
+				270504CC175830D1003B000D /* FLEnumSet.m in Sources */,
+				270504E217583187003B000D /* FLEnumPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9423,6 +9486,9 @@
 				27C4AFE017513A9800E16AE7 /* FLApplicationSession.m in Sources */,
 				27C4AFE917513A9800E16AE7 /* FLLastUpdateTime.m in Sources */,
 				27C4AFF217513A9800E16AE7 /* FLUserLogin.m in Sources */,
+				270504C317583091003B000D /* FLTypeSpecificEnumSet.m in Sources */,
+				270504CE175830D1003B000D /* FLEnumSet.m in Sources */,
+				270504E417583187003B000D /* FLEnumPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

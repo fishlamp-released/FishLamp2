@@ -8,32 +8,7 @@
 //
 
 #import "FLEnumHandler.h"
-
-@implementation FLEnumPair 
-@synthesize name = _name;
-@synthesize value = _value;
-
-- (id) initWithName:(NSString*) name value:(NSInteger) value {	
-	self = [super init];
-	if(self) {
-		_name = [name copy];
-        _value = value;
-	}
-	return self;
-}
-
-+ (id) enumPair:(NSString*) name value:(NSInteger) value {
-    return FLAutorelease([[[self class] alloc] initWithName:name value:value]);
-}
-
-#if FL_MRC
-- (void) dealloc {
-	[_name release];
-	[super dealloc];
-}
-#endif
-
-@end
+#import "FLEnumPair.h"
 
 @implementation FLEnumHandler 
 
@@ -59,11 +34,11 @@
 }
 #endif
 
-- (void) addEnum:(NSInteger) value withName:(NSString*) name  {
-    FLEnumPair* pair = [FLEnumPair enumPair:name value:value];
-    [_enums setObject:pair forKey:[name lowercaseString]];
+- (void) addEnum:(NSInteger) enumValue withName:(NSString*) enumName  {
+    FLEnumPair* pair = [FLEnumPair enumPair:enumName enumValue:enumValue];
+    [_enums setObject:pair forKey:[enumName lowercaseString]];
     
-    [_enums setObject:pair forKey:[NSNumber numberWithInteger:value]];
+    [_enums setObject:pair forKey:[NSNumber numberWithInteger:enumValue]];
 }
 
 - (NSInteger) enumFromString:(NSString*) inString {
@@ -74,18 +49,18 @@
     FLEnumPair* pair = [_enums objectForKey:[inString lowercaseString]];
     if(!pair) { 
         FLThrowErrorCodeWithComment(FLErrorDomain, FLErrorUnknownEnumValue, 
-            [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum value: %@", nil)), inString]); 
+            [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum enumValue: %@", nil)), inString]); 
     } 
-    return pair.value;
+    return pair.enumValue;
 }
 
 - (NSString*) stringFromEnumValue:(NSInteger) enumValue {
     FLEnumPair* pair = [_enums objectForKey:[NSNumber numberWithInteger:enumValue]];
     if(!pair) { 
         FLThrowErrorCodeWithComment(FLErrorDomain, FLErrorUnknownEnumValue, 
-            [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum value: %d", nil)), enumValue]); 
+            [NSString stringWithFormat:(NSLocalizedString(@"Unknown enum enumValue: %d", nil)), enumValue]); 
     } 
-    return pair.name;
+    return pair.enumName;
 }
 
 - (NSSet*) enumsFromString:(NSString*) stringList  
@@ -137,12 +112,12 @@
         NSUInteger count = sizeof(enums) / sizeof(NSInteger);
     
         for(int i = 0; i < count; i++) {
-            NSInteger value = enums[i];
+            NSInteger enumValue = enums[i];
             if(i == 0) {
-                [string appendFormat:@"%ld", (long) value];
+                [string appendFormat:@"%ld", (long) enumValue];
             }
             else {
-                [string appendFormat:@"%@%ld",self.delimiter, (long) value];
+                [string appendFormat:@"%@%ld",self.delimiter, (long) enumValue];
             }
         }
     }
@@ -166,7 +141,7 @@
                 if(FLStringIsNotEmpty(key)) {
                     NSNumber* num = [_enums objectForKey:key];
                     if(!num) {
-                        FLThrowErrorCodeWithComment(FLErrorDomain, FLErrorUnknownEnumValue, (NSLocalizedString(@"Unknown enum value (case sensitive): %@", nil)), key); 
+                        FLThrowErrorCodeWithComment(FLErrorDomain, FLErrorUnknownEnumValue, (NSLocalizedString(@"Unknown enum enumValue (case sensitive): %@", nil)), key); 
                     }
                     
                     if(count + 1 >= *maxCount) {
@@ -186,3 +161,6 @@
 
 
 @end
+
+
+

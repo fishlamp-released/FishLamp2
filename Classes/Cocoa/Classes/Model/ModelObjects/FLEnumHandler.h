@@ -9,19 +9,6 @@
 
 #import "FLCocoaRequired.h"
 
-@interface FLEnumPair : NSObject {
-@private
-    NSString* _name;
-    NSInteger _value;
-}
-@property (readonly, strong, nonatomic) NSString* name;
-@property (readonly, assign, nonatomic) NSInteger value;
-
-+ (id) enumPair:(NSString*) name value:(NSInteger) value;
-
-@end
-
-
 @interface FLEnumHandler : NSObject {
 @private
     NSMutableDictionary* _enums;
@@ -48,3 +35,6 @@
 - (NSString*) stringFromEnumSet:(NSSet*) enums;
 
 @end
+
+
+
