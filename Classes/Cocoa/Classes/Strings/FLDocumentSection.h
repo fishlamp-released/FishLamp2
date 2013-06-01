@@ -16,23 +16,15 @@
 @private
     NSMutableArray* _lines;
     BOOL _needsLine;
-    __unsafe_unretained id _parent;
 }
 + (id) stringBuilder;
 
 @property (readonly, strong, nonatomic) NSArray* lines;
-@property (readwrite, assign, nonatomic) id parent;
 
-- (void) addStringBuilder:(FLDocumentSection*) stringBuilder;
-
-// optional overrides
-//- (NSMutableString*) willOpenLine;
-//- (void) willCloseLine:(NSMutableString*) line;
+- (void) appendStringFormatter:(id<FLStringFormatter, FLBuildableString>) stringBuilder;
 
 - (void) willBuildWithStringFormatter:(id<FLStringFormatter>) stringFormatter;
 - (void) didBuildWithStringFormatter:(id<FLStringFormatter>) stringFormatter;
-
-- (void) didMoveToParent:(id) parent;
 
 @end
 

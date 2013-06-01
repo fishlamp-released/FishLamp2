@@ -55,7 +55,8 @@
 		else if([codeReader isEnum:obj]) {
         
 // TODO: ENUM PROPERTY        
-            [self addProperty:obj.name propertyType:@"string"];
+//            [self addProperty:obj.name propertyType:@"enum"];
+            [self addProperty:obj.name propertyType:obj.type];
 		}
 		else if(FLStringIsNotEmpty(obj.ref)) {
             [self addProperty:obj.ref propertyType:obj.ref];

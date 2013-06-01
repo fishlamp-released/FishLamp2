@@ -8,6 +8,7 @@
 //
 
 #import "FLCodeBuilder.h"
+#import "FLCodeChunk.h"
 
 @implementation FLCodeBuilder
 
@@ -15,51 +16,21 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) addCodeChunk:(FLCodeChunk*) codeChunk {
-    [self addSection:codeChunk];
-}
-
-- (void) openCodeChunk:(FLCodeChunk*) codeChunk {
-    [self openSection:codeChunk];
-}
-
-- (void) closeCodeChunk {
-    [self closeSection];
-}
-
-@end
-
-@implementation FLCodeChunk
-
-@synthesize openScopeString = _openScopeString;
-@synthesize closeScopeString = _closeScopeString;
-
-+ (id) codeChunk {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_openScopeString release];
-    [_closeScopeString release];
-    [super dealloc];
-}
-#endif
-
-- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
-    if(FLStringIsNotEmpty(_openScopeString)) {
-        [stringFormatter appendLine:_openScopeString];
-        [stringFormatter indent:^{
-            [super buildStringIntoStringFormatter:stringFormatter];
-        }];
-        
-        if(FLStringIsNotEmpty(_closeScopeString)) {
-            [stringFormatter appendLine:_closeScopeString];
-        }
-    }
-    else {
-        [super buildStringIntoStringFormatter:stringFormatter];
-    }
-}
+//- (void) addCodeChunk:(FLCodeChunk*) codeChunk {
+//    [self addSection:codeChunk];
+//}
+//
+//- (void) openCodeChunk:(FLCodeChunk*) codeChunk {
+//    [self openSection:codeChunk];
+//}
+//
+//- (void) closeCodeChunk {
+//    [self closeSection];
+//}
+//
+//- (void) appendCodeBuilder:(FLCodeBuilder*) codeBuilder {
+//
+//}
 
 @end
+

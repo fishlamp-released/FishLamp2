@@ -59,7 +59,6 @@
 @implementation FLDocumentSection 
 
 @synthesize lines = _lines;
-@synthesize parent = _parent;
 
 - (id) init {
     self = [super init];
@@ -98,7 +97,8 @@
     _needsLine = YES;    
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
+            appendString:(NSString*) string {
     if(_needsLine) {
         [_lines addObject:FLAutorelease([string mutableCopy])];
         _needsLine = NO;
@@ -110,8 +110,10 @@
 
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString {
-    [self stringFormatter:stringFormatter appendString:attributedString.string];
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
+  appendAttributedString:(NSAttributedString*) attributedString {
+  
+      [self stringFormatter:stringFormatter appendString:attributedString.string];
 }
 
 - (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
@@ -175,18 +177,11 @@
     [self didBuildWithStringFormatter:stringFormatter];
 }
 
-- (void) addStringBuilder:(FLDocumentSection*) stringBuilder {
+- (void) appendStringFormatter:(id<FLStringFormatter, FLBuildableString>) stringBuilder {
+
     [_lines addObject:stringBuilder];
     [stringBuilder setParent:self];
     _needsLine = YES;
-}
-
-- (void) setParent:(id) parent {
-    _parent = parent;
-    [self didMoveToParent:_parent];
-}
-
-- (void) didMoveToParent:(id) parent {
 }
 
 - (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) formatter {

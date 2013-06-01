@@ -42,6 +42,11 @@
             [enums addObject:anEnum];
             
             [typeIndex setObjcType:anEnum.enumType];
+            
+            NSString* className = [NSString stringWithFormat:@"%@EnumSet", anEnum.enumType.generatedName];
+            
+            [typeIndex setObjcType:[FLObjcObjectType objcObjectType:[FLObjcImportedName objcImportedName:className] 
+                                                     importFileName:[NSString stringWithFormat:@"%@.h", anEnum.enumType.generatedName]]];
         }
         [fileManager addFilesWithArrayOfCodeElements:enums typeIndex:typeIndex];
 

@@ -43,7 +43,7 @@
 //    [[self openedSection] stringFormatter:stringFormatter appendString:string appendAttributedString:attributedString lineUpdate:lineUpdate];
 //}                                                 
 
-- (FLDocumentSection*) openedSection {
+- (id<FLStringFormatter, FLBuildableString>) openedSection {
     return [_document openedStringBuilder];
 }
 
@@ -51,12 +51,12 @@
     [_document.rootStringBuilder buildStringIntoStringFormatter:stringFormatter];
 }
 
-- (void) openSection:(FLDocumentSection*) element {
+- (void) openSection:(id<FLStringFormatter, FLBuildableString>) element {
     [self.document openStringBuilder:element];
 }
 
-- (void) addSection:(FLDocumentSection*) element {
-    [self.document addStringBuilder:element];
+- (void) appendStringFormatter:(id<FLStringFormatter, FLBuildableString>) element {
+    [self.document appendStringFormatter:element];
 }
 
 - (void) closeSection {
@@ -104,5 +104,10 @@
 - (id) parent {
     return nil;
 }
+
+- (void) appendDocument:(FLDocumentBuilder*) document {
+
+}
+
 
 @end

@@ -18,7 +18,7 @@
 - (void) appendComment:(NSString*) aComment {
     FLObjcComment* comment = [FLObjcComment objcComment];
     [comment appendStringContainingMultipleLines:aComment];
-    [self addSection:comment];
+    [self appendStringFormatter:comment];
 }
 
 - (void) appendPreprocessorIf:(NSString*) condition {

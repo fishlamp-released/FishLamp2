@@ -21,70 +21,6 @@
 
 @implementation FLWsdlOperationCodeObject
 
-// 	FLWsdlMessage* message = [self getMessageObject:io.message];	
-//	FLConfirmNotNil(message);
-
-//- (void) addPropertiesForWsdlMessage:(FLWsdlMessage*) message
-//                             isInput:(BOOL) isInput
-//                           operation:(FLWsdlOperation*) operation 
-//                                  io:(FLWsdlInputOutput*) io
-//            overrideInputOutputNames:(BOOL) overrideInputOutputNames {
-//			
-//	
-//	BOOL setProperties = NO;
-//	for(FLWsdlPart* part in message.parts) {
-//
-//		BOOL isElement = FLStringIsNotEmpty(part.element);
-//		
-//		if(!setProperties) {
-//			setProperties = YES;
-//			if(isInput) {
-//                FLWsdlCodeProperty* opName = [self addProperty:@"includeInputNamespaceAttribute" propertyType:@"string"];
-//                opName.isImmutable = YES;
-//                opName.defaultValue = isElement ? @"YES" : @"NO";
-//
-//                FLWsdlCodeProperty* xmlParameterName = [self addProperty:@"operationParameterName" propertyType:@"string"];
-//                xmlParameterName.isImmutable = YES;
-//				xmlParameterName.defaultValue = isElement ? operation.name : part.name;
-//
-//			}
-//		}
-//
-//        NSString* propertyType = nil;
-//		if(isElement) {
-//			propertyType = part.element;
-//		}
-//		else  {
-//			NSString* type = part.type;
-//
-//FLAssertFailedWithComment(@"fixme");
-//
-//// FIXME "Not sure what this is doing, it's prob important tho"
-////			if(FLStringIsNumber(type) || FLStringIsBool(type))
-////			{
-////				propertyType = message.name;
-////			}
-////			else
-//            {
-//				propertyType = type;
-//			}
-//		}
-//		
-//		if(FLStringIsEmpty(propertyType)) {
-//			propertyType = @"string";
-//		}
-//	
-//        NSString* propertyName = part.name;
-//		if(message.parts.count == 1 && overrideInputOutputNames) {
-//			propertyName = isInput ? @"input" : @"output";
-//		}
-//    
-//        [self addProperty:propertyName propertyType:propertyType];
-//		
-////		[object.properties addObject:outProp];
-//	}
-//}
-
 - (id) init {	
 	self = [super init];
 	if(self) {
@@ -135,26 +71,26 @@
     }
 }
 
-- (void) addInitWithValues:(NSMutableDictionary*) initValues {
-//
-//    FLWsdlCodeMethod* initMethod = [self addMethod:@"init" methodReturnType:@"id"];
-//    initMethod.isPrivate = YES;
-//    initMethod.isStatic = NO;
-//
-//    FLPrettyString* builder = [FLPrettyString prettyString];
-//
-//    [builder appendLineWithFormat:@"if((self = [super init])) {"];
-//    [builder indent: ^{
-//        for(NSString* key in initValues) {
-//            [builder appendLineWithFormat:@"[self.properties setObject:@\"%@\" forKey:@\"%@\"];", [initValues objectForKey:key], key];
-//        }
-//    }];
-//
-//    [builder appendLine:@"}"];
-//    [builder appendLine:@"return self;"];
-//    
-//    [initMethod addLines:[builder string]];
-}
+//- (void) addInitWithValues:(NSMutableDictionary*) initValues {
+////
+////    FLWsdlCodeMethod* initMethod = [self addMethod:@"init" methodReturnType:@"id"];
+////    initMethod.isPrivate = YES;
+////    initMethod.isStatic = NO;
+////
+////    FLPrettyString* builder = [FLPrettyString prettyString];
+////
+////    [builder appendLineWithFormat:@"if((self = [super init])) {"];
+////    [builder indent: ^{
+////        for(NSString* key in initValues) {
+////            [builder appendLineWithFormat:@"[self.properties setObject:@\"%@\" forKey:@\"%@\"];", [initValues objectForKey:key], key];
+////        }
+////    }];
+////
+////    [builder appendLine:@"}"];
+////    [builder appendLine:@"return self;"];
+////    
+////    [initMethod addLines:[builder string]];
+//}
 
 + (NSString*) operationClassName:(NSString*) binding operationName:(NSString*) operationName {
     return [NSString stringWithFormat:@"%@%@", binding, operationName];

@@ -88,7 +88,7 @@
 }
 
 - (void) addElement:(FLXmlElement*) element {
-    [self addStringBuilder:element];
+    [self appendStringFormatter:element];
 }
 
 - (NSString*) xmlOpenTag:(BOOL) isEmpty {

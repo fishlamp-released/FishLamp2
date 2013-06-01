@@ -18,6 +18,7 @@
 @implementation FLStringFormatter
 
 @synthesize stringFormatterOutput = _output;
+@synthesize parent = _parent;
 
 - (void) appendString:(NSString*) string {
     FLAssertNotNil(string);
@@ -157,7 +158,8 @@
                         
 }
 
-- (void) appendLines:(NSString**) lines count:(NSInteger) count{
+- (void) appendLines:(NSString**) lines 
+               count:(NSInteger) count{
     FLAssertNotNil(lines);
         if(lines) {for(int i = 0; i < count; i++) {
             [self appendLine:lines[i]];
@@ -186,7 +188,8 @@
     [self appendString:string];
 }
 
-- (void) appendFormat:(NSString*) format arguments:(va_list)argList {
+- (void) appendFormat:(NSString*) format 
+            arguments:(va_list)argList {
 	[self appendString:FLAutorelease([[NSString alloc] initWithFormat:format arguments:argList])];
 }
 
@@ -228,7 +231,8 @@
 	return string;
 }
 
-- (void) appendStringContainingMultipleLines:(NSString*) inLines trimWhitespace:(BOOL) trimWhitespace {
+- (void) appendStringContainingMultipleLines:(NSString*) inLines 
+                              trimWhitespace:(BOOL) trimWhitespace {
     FLAssertNotNil(inLines);
 
 	NSString* string = trimWhitespace ? [self _preprocessLines:inLines] : inLines;
@@ -266,5 +270,19 @@
         [_output  stringFormatterCloseLine:self];
     }
     [_output stringFormatterOutdent:self];
+}
+
+- (void) setParent:(id) parent {
+    _parent = parent;
+    [self didMoveToParent:_parent];
+}
+
+- (void) didMoveToParent:(id) parent {
+}
+
+- (void) appendStringFormatter:(id<FLStringFormatter>) stringBuilder {
+
+    FLAssertFailedWithComment(@"not implemented");
+    
 }
 @end

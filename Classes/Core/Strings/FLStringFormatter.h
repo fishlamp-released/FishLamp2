@@ -56,6 +56,10 @@
 // text will not be indented.
 - (void) indent:(void (^)()) block;
 
+- (void) appendStringFormatter:(id<FLStringFormatter>) stringBuilder;
+
+@property (readwrite, assign, nonatomic) id parent;
+
 @end
 
 @protocol FLStringFormatterOutput;
@@ -64,8 +68,14 @@
 @private
     BOOL _editingLine;
     __unsafe_unretained id<FLStringFormatterOutput> _output;
+    __unsafe_unretained id _parent;
 }
+@property (readwrite, assign, nonatomic) id parent;
+
 @property (readwrite, nonatomic, assign) __unsafe_unretained id<FLStringFormatterOutput> stringFormatterOutput;
+
+- (void) didMoveToParent:(id) parent;
+
 @end
 
 @protocol FLStringFormatterOutput <NSObject>

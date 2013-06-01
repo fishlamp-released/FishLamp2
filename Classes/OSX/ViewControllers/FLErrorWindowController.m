@@ -44,7 +44,9 @@
     [super windowDidLoad];
     
     _titleField.stringValue = _title;
-    [_explanationField.textStorage appendAttributedString:FLAutorelease([[NSAttributedString alloc] initWithString:_explanation]) ];
+    if(FLStringIsNotEmpty(_explanation)) {
+        [_explanationField.textStorage appendAttributedString:FLAutorelease([[NSAttributedString alloc] initWithString:_explanation]) ];
+    }
 }
 
 

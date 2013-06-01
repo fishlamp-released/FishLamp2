@@ -62,7 +62,7 @@
 }
 
 - (void) addElement:(FLXmlElement*) element {
-    [self addSection:element];
+    [self appendStringFormatter:element];
 }
 
 - (void) closeElement {
