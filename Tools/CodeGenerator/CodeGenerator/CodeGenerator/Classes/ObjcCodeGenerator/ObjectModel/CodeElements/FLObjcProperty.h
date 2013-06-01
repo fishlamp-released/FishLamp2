@@ -11,7 +11,7 @@
 @class FLObjcName;
 @class FLCodeProperty;
 @class FLObjcObject;
-@class FLObjcTypeIndex;
+@class FLObjcProject;
 @class FLObjcType;
 @class FLObjcMethod;
 
@@ -28,7 +28,7 @@
     FLObjcMethod* _getter;
     __unsafe_unretained FLObjcObject* _parentObject;
 }
-+ (id) objcProperty:(FLObjcTypeIndex*) typeIndex;
++ (id) objcProperty:(FLObjcProject*) project;
 
 @property (readwrite, assign, nonatomic) FLObjcObject* parentObject;
 

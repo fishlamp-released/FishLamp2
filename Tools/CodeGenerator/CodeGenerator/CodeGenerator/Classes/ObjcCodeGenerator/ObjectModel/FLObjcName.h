@@ -9,20 +9,4 @@
 #import "FLCodeIdentifier.h"
 
 @interface FLObjcName : FLCodeIdentifier 
-
-//+ (id) objcName:(NSString*) name  prefix:(NSString*) prefix suffix:(NSString*) suffix;
-//+ (id) objcName:(NSString*) name;
-
 @end
-
-
-
-//@interface FLObjcVariableName : FLObjcName {
-//}
-//
-//@end
-//
-//@interface FLObjcParameterName : FLObjcName
-//@end
-
-

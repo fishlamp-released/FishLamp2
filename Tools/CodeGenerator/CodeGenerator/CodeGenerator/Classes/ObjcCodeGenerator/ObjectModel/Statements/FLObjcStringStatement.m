@@ -37,11 +37,11 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) addCodeLine:(FLCodeLine*) codeLine withTypeIndex:(FLObjcTypeIndex*) typeIndex {
+- (void) addCodeLine:(FLCodeLine*) codeLine withTypeRegistry:(FLObjcProject*) project {
 
     switch(codeLine.codeLineType) {
         case FLCodeLineTypeReturnNewObject:{
-            FLObjcType* theType = [typeIndex objcTypeForTypeName:[codeLine parameterForKey:FLCodeLineClassName]];
+            FLObjcType* theType = [project.typeRegistry typeForKey:[codeLine parameterForKey:FLCodeLineClassName]];
             [self.string appendLineWithFormat:@"return FLAutorelease([[%@ alloc] init]);", theType.generatedName];
         }
         break;

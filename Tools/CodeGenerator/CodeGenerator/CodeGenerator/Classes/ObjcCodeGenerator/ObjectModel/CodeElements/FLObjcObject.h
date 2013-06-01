@@ -16,7 +16,7 @@
 @class FLCodeObject;
 @class FLObjcNamedObjectCollection;
 @class FLObjcMethod;
-@class FLObjcTypeIndex;
+@class FLObjcProject;
 
 @interface FLObjcObject : FLObjcCodeElement {
 @private
@@ -38,7 +38,7 @@
 @property (readwrite, strong, nonatomic) FLObjcName* objectName;
 @property (readwrite, strong, nonatomic) FLObjcType* superclassType;
 
-+ (id) objcObject:(FLObjcTypeIndex*) typeIndex;
++ (id) objcObject:(FLObjcProject*) project;
 
 - (void) configureWithCodeObject:(FLCodeObject*) codeObject;
 

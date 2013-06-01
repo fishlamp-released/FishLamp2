@@ -16,10 +16,14 @@
     return FLAutorelease([[[self class] alloc] initWithTypeName:typeName importFileName:importFileName]);
 }
 
-- (void) addAdditionalStuffToObject:(FLObjcObject*) object forProperty:(FLObjcProperty*) property {
+- (void) addAdditionalStuffToObject:(FLObjcObject*) object 
+                        forProperty:(FLObjcProperty*) property
+                          project:(FLObjcProject*) project {
+    
+ //   FLObjcEnum* theEnum [project ]
     
 //    {
-//    FLObjcCustomProperty* newProperty = [FLObjcCustomProperty objcCustomProperty:object.typeIndex];
+//    FLObjcCustomProperty* newProperty = [FLObjcCustomProperty objcCustomProperty:object.project];
 //    NSString* newName = [NSString stringWithFormat:@"%@Enum", property.propertyName.generatedName];
 //    newProperty.propertyName = [[property propertyName] copyWithNewName:newName];
 //    newProperty.propertyType = [FLObjcValueType objcValueType:[FLObjcImportedName objcImportedName:self.generatedName] importFileName:nil];
@@ -36,7 +40,7 @@
 //    }
 //    
 //    {
-//    FLObjcCustomProperty* newProperty2 = [FLObjcCustomProperty objcCustomProperty:object.typeIndex];
+//    FLObjcCustomProperty* newProperty2 = [FLObjcCustomProperty objcCustomProperty:object.project];
 //    NSString* newName2 = [NSString stringWithFormat:@"%@EnumSet", property.propertyName.generatedName];
 //    newProperty2.propertyName = [[property propertyName] copyWithNewName:newName2];
 //    newProperty2.propertyType = [FLObjcObjectType objcObjectType:[FLObjcImportedName objcImportedName:[NSString stringWithFormat:@"%@EnumSet", self.generatedName]] importFileName:nil];

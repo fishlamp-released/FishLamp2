@@ -13,12 +13,15 @@
 @implementation FLObjcDeallocStatement  
 @synthesize object = object;
 
-- (void) writeCodeToSourceFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder  {
+- (void) writeCodeToSourceFile:(FLObjcFile*) file 
+               withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder  {
+               
     for(FLObjcIvar* ivar in [self.object.ivars objectEnumerator]) {
         if(ivar.variableType.isObject) {
             [codeBuilder appendRelease:ivar.variableName.generatedName];
         }
     }
+    
     [codeBuilder appendSuperDealloc];
 }
 

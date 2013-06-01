@@ -15,7 +15,7 @@
 
 @implementation FLObjcKnownTypes
 
-+ (NSDictionary*) parseableTypes {
++ (NSDictionary*) knownTypeAliases {
     return [NSDictionary dictionaryWithObjectsAndKeys:
          @"FLGuid",@"guid", 
          @"NSDate" ,@"date", 
@@ -24,7 +24,6 @@
          @"NSString" ,@"string", 
          @"NSNumber" ,@"number", 
          @"BOOL",@"boolean", 
-         @"BOOL",@"bool", 
          @"int", @"integer", 
          @"SDKPoint", @"point", 
          @"SDKRect", @"rect", 
@@ -34,6 +33,7 @@
          @"NSMutableDictionary", @"dictionary",
 		 @"unsigned int", @"unsignedint",
 		 @"unsigned int", @"unsigned",
+         @"id", @"object",
 
 // TODO: abstract this.
          @"NSData", @"base64binary",
@@ -52,6 +52,7 @@
 
 	static FLTypeHeader s_knownTypes[] = {
 // objects
+		{ @"FLObjcObjectType", @"NSObject", nil },
 		{ @"FLObjcObjectType", @"NSValue", nil },
 		{ @"FLObjcObjectType", @"NSDate", nil },
 		{ @"FLObjcObjectType", @"NSData", nil },
@@ -108,9 +109,9 @@
 		{ @"FLObjcGeometryType", @"NSRect", nil },
 		{ @"FLObjcGeometryType", @"NSSize", nil },
         
-        { @"FLObjcBoolType", nil, nil },
-        { @"FLObjcVoidType", nil, nil },
-		{ @"FLObjcAbstractObjectType", nil, nil },
+        { @"FLObjcBoolType", @"BOOL", nil },
+        { @"FLObjcVoidType", @"void", nil },
+		{ @"FLObjcAbstractObjectType", @"id", nil },
         
 // fishlamp
         { @"FLObjcObjectType", @"FLDatabaseTable", @"FLDatabaseTable.h" },
@@ -119,6 +120,9 @@
 		{ @"FLObjcObjectType", @"FLGuid", @"FLGuid.h" },
         
         { @"FLObjcProtocolType", @"FLHttpRequestDescriptor", @"FLHttpRequestDescriptor.h" },
+        
+        { @"FLObjcProtocolType", @"NSCopying", nil },
+        { @"FLObjcProtocolType", @"NSCoding", nil },
         
         { nil, nil, nil }
 	};

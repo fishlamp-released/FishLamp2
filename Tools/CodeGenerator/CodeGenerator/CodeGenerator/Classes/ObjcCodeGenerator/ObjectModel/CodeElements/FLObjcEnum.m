@@ -19,8 +19,8 @@
 @synthesize enumValues = _enumValues;
 @synthesize enumName = _enumName;
 
-- (id) initWithTypeIndex:(FLObjcTypeIndex*) typeIndex {	
-	self = [super initWithTypeIndex:typeIndex];
+- (id) initWithProject:(FLObjcProject*) project {	
+	self = [super initWithProject:project];
 	if(self) {
 		_enumValues = [[NSMutableArray alloc] init];
         _defines = [[NSMutableDictionary alloc] init];
@@ -40,8 +40,8 @@
 #endif
 
 
-+ (id) objcEnum:(FLObjcTypeIndex*) typeIndex {
-    return FLAutorelease([[[self class] alloc] initWithTypeIndex:typeIndex]);
++ (id) objcEnum:(FLObjcProject*) project {
+    return FLAutorelease([[[self class] alloc] initWithProject:project]);
 }
 
 - (void) addValue:(FLObjcEnumValueType*) enumValueType {
@@ -50,7 +50,8 @@
 
 
 - (void) configureWithCodeEnumType:(FLCodeEnumType*) codeEnumType  {
-    self.enumName = [FLObjcEnumName objcEnumName:codeEnumType.typeName prefix:self.typeIndex.classPrefix];
+    
+    self.enumName = [FLObjcEnumName objcEnumName:codeEnumType.typeName prefix:self.project.classPrefix];
 
     self.enumType = [FLObjcEnumType objcEnumType:self.enumName importFileName:[NSString stringWithFormat:@"%@.h", self.enumName.generatedName]];
     

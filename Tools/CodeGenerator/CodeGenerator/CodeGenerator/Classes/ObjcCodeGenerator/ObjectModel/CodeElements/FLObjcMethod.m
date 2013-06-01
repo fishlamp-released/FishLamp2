@@ -24,8 +24,8 @@
 @synthesize parentObject = _parentObject;
 @synthesize statement = _statement;
 
-- (id) initWithTypeIndex:(FLObjcTypeIndex*) index {	
-	self = [super initWithTypeIndex:index];
+- (id) initWithProject:(FLObjcProject*) project {	
+	self = [super initWithProject:project];
 	if(self) {
         _parameters = [[NSMutableArray alloc] init];
 	    _statement = [[FLObjcBlockStatement alloc] init];
@@ -43,8 +43,8 @@
 }
 #endif
 
-+ (id) objcMethod:(FLObjcTypeIndex*) typeIndex {
-    return FLAutorelease([[[self class] alloc] initWithTypeIndex:typeIndex]);
++ (id) objcMethod:(FLObjcProject*) project {
+    return FLAutorelease([[[self class] alloc] initWithProject:project]);
 }
 
 - (void) addParameter:(FLObjcParameter*) parameter {
@@ -128,13 +128,13 @@
     FLObjcStringStatement* statement = [FLObjcStringStatement objcStringStatement];
     
     for(FLCodeLine* codeLine in codeMethod.codeLines) {
-        [statement addCodeLine:codeLine withTypeIndex:self.typeIndex];
+        [statement addCodeLine:codeLine withTypeRegistry:self.project];
     }
     
     [self addStatement:statement];
 
     if(FLStringIsNotEmpty(codeMethod.returnType)) {
-        self.returnType = [self.typeIndex objcTypeForTypeName:codeMethod.returnType];
+        self.returnType = [self.project.typeRegistry typeForKey:codeMethod.returnType];
     }
 }
 

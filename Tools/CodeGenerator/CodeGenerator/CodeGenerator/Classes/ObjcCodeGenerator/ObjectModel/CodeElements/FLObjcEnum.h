@@ -9,7 +9,7 @@
 #import "FLObjcCodeElement.h"
 #import "FLObjcType.h"
 
-@class FLObjcTypeIndex;
+@class FLObjcProject;
 @class FLCodeEnumType;
 @class FLObjcEnumValueType;
 
@@ -22,7 +22,7 @@
     NSMutableDictionary* _defines;
 }
 
-+ (id) objcEnum:(FLObjcTypeIndex*) typeIndex;
++ (id) objcEnum:(FLObjcProject*) project;
 
 @property (readonly, strong, nonatomic) NSArray* enumValues;
 @property (readwrite, strong, nonatomic) FLObjcType* enumType;

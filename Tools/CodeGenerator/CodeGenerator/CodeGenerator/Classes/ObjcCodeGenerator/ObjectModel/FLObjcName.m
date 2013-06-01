@@ -10,15 +10,6 @@
 #import "FLStringUtils.h"
 
 @implementation FLObjcName
-
-//+ (id) objcName:(NSString*) name  prefix:(NSString*) prefix suffix:(NSString*) suffix {
-//    return FLAutorelease([[self class] alloc] initWithIdentifierName:name prefix:prefix suffix:suffix]);
-//}
-//
-//+ (id) objcName:(NSString*) name {
-//    return FLAutorelease([[[self class] alloc] initWithIdentifierName:name prefix:nil suffix:nil]);
-//}
-
 @end
 
 

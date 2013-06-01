@@ -7,21 +7,21 @@
 //
 
 #import "FLObjcFile.h"
-@class FLObjcTypeIndex;
-@class FLCodeProject;
+@class FLObjcTypeRegistry;
+@class FLObjcProject;
 @class FLCodeGeneratorResult;
 
 @interface FLObjcFileManager : NSObject {
 @private
     NSMutableArray* _files;
-    FLCodeProject* _codeProject;
+    __unsafe_unretained FLObjcProject* _project;
 }
 @property (readonly, strong, nonatomic) NSArray* files;
+@property (readonly, assign, nonatomic) FLObjcProject* project;
 
-+ (id) objcFileManager:(FLCodeProject*) codeProject;
++ (id) objcFileManager:(FLObjcProject*) codeProject;
 
-- (void) addFilesWithArrayOfCodeElements:(NSArray*) elementList  
-                               typeIndex:(FLObjcTypeIndex*) typeIndex;
+- (void) addFilesWithArrayOfCodeElements:(NSArray*) elementList;
 
 - (void) addFile:(FLObjcFile*) file;
 

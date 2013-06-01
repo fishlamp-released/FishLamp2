@@ -9,7 +9,7 @@
 #import "FLObjcStatement.h"
 
 @class FLCodeChunk;
-@class FLObjcTypeIndex;
+@class FLObjcProject;
 @class FLCodeLine;
 @class FLObjcCodeBuilder;
 
@@ -21,7 +21,7 @@
 
 @property (readonly, strong, nonatomic) FLObjcCodeBuilder* string;
 
-- (void) addCodeLine:(FLCodeLine*) codeLine withTypeIndex:(FLObjcTypeIndex*) typeIndex;
+- (void) addCodeLine:(FLCodeLine*) codeLine withTypeRegistry:(FLObjcProject*) project;
 
 @end
 

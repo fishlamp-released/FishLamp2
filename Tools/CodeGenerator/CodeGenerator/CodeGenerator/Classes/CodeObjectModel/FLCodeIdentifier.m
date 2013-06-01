@@ -96,7 +96,7 @@
 #endif
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"identifier: %@", self.generatedName];
+    return [NSString stringWithFormat:@"identifier: %@, generated: %@", self.identifierName, self.generatedName];
 }
 
 - (id) copyWithNewName:(NSString*) newName {

@@ -13,8 +13,8 @@
 
 @implementation FLObjcDidRegisterObjectDescriberMethod
 
-- (id) initWithTypeIndex:(FLObjcTypeIndex *)index {	
-	self = [super initWithTypeIndex:index ];
+- (id) initWithProject:(FLObjcProject *)project {	
+	self = [super initWithProject:project ];
 	if(self) {
         self.returnType = [FLObjcVoidType objcVoidType];
         self.methodName = [FLObjcMethodName objcMethodName:@"didRegisterObjectDescriber"];
@@ -22,7 +22,7 @@
         self.isPrivate = YES;
                 
         FLObjcParameterName* parameterName = [FLObjcParameterName objcParameterName:@"describer"];
-        FLObjcType* type = [index objcTypeForClass:[FLObjectDescriber class]];
+        FLObjcType* type = [project.typeRegistry typeForClass:[FLObjectDescriber class]];
         
         FLObjcParameter* parameter = [FLObjcParameter objcParameter:parameterName parameterType:type key:@"describer"];
         [self addParameter:parameter];
@@ -30,8 +30,8 @@
     return self;
 }
 
-+ (id) objcDidRegisterObjectDescriberMethod:(FLObjcTypeIndex*) typeIndex {
-    return FLAutorelease([[[self class] alloc] initWithTypeIndex:typeIndex]);
++ (id) objcDidRegisterObjectDescriberMethod:(FLObjcProject*) project {
+    return FLAutorelease([[[self class] alloc] initWithProject:project]);
 }
 
 - (void) writeCodeToSourceFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {

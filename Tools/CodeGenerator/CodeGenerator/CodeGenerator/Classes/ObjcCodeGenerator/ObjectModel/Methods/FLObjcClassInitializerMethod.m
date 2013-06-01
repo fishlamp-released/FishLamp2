@@ -11,8 +11,8 @@
 
 @implementation FLObjcClassInitializerMethod
 
-- (id) initWithTypeIndex:(FLObjcTypeIndex *)index {	
-	self = [super initWithTypeIndex:index ];
+- (id) initWithProject:(FLObjcProject *)project {	
+	self = [super initWithProject:project ];
 	if(self) {
 		
 	}
@@ -35,7 +35,7 @@
 //    [self.parentObject addIvar:self.ivar];
 //    
 //    if(self.containerTypes && self.containerTypes.count) {
-//        [self.parentObject addDependency:[self.typeIndex objcTypeForClass:[FLObjectDescriber class]]];
+//        [self.parentObject addDependency:[self.project typeForKey:[FLObjectDescriber class]]];
 //     
 //        for(FLObjcContainerSubType* subType in self.containerTypes) {
 //            [self.parentObject addDependency:subType.objcType];

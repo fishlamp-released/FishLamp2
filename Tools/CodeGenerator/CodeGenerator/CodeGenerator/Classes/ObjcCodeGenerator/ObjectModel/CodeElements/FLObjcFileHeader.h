@@ -13,8 +13,8 @@
 @private
     FLCodeProject* _codeProject;
 }
-- (void) configureWithCodeProject:(FLCodeProject*) codeProject;
+- (void) configureWithInputProject:(FLCodeProject*) codeProject;
 
-+ (id) objcFileHeader:(FLObjcTypeIndex*) typeIndex; 
++ (id) objcFileHeader:(FLObjcProject*) project; 
 
 @end

@@ -30,12 +30,12 @@
 @synthesize getter = _getter;
 @synthesize setter = _setter;
 
-- (id) initWithTypeIndex:(FLObjcTypeIndex*) typeIndex {	
-	self = [super initWithTypeIndex:typeIndex];
+- (id) initWithProject:(FLObjcProject*) project {	
+	self = [super initWithProject:project];
 	if(self) {
-		_setter = [[FLObjcMethod alloc] initWithTypeIndex:typeIndex];
-        _setter.returnType = [typeIndex objcTypeForTypeName:@"void"];
-		_getter = [[FLObjcMethod alloc] initWithTypeIndex:typeIndex];
+		_setter = [[FLObjcMethod alloc] initWithProject:project];
+        _setter.returnType = [project.typeRegistry typeForKey:@"void"];
+		_getter = [[FLObjcMethod alloc] initWithProject:project];
 	}
 	return self;
 }
@@ -68,8 +68,8 @@
     _setter.methodName = [NSString stringWithFormat:@"set%@", [name.generatedName stringWithUpperCaseFirstLetter]];
 }
 
-+ (id) objcProperty:(FLObjcTypeIndex*) typeIndex {
-    return FLAutorelease([[[self class] alloc] initWithTypeIndex:typeIndex]);
++ (id) objcProperty:(FLObjcProject*) project {
+    return FLAutorelease([[[self class] alloc] initWithProject:project]);
 }
 
 #if DEBUG
@@ -109,17 +109,13 @@
     
     FLConfirmStringIsNotEmptyWithComment(codeProperty.type, @"code property '%@' type is nil", codeProperty.name);
 
-    if([[codeProperty type] isEqual:@"enum"]) {
-        FLLog(@"fuck");
-    }
-
     self.useForEquality = codeProperty.useForEquality;
     self.lazyCreate = codeProperty.canLazyCreate;
     self.isReadOnly = codeProperty.isReadOnly;
     self.isImmutable = codeProperty.isImmutable;
     self.isPrivate = codeProperty.isPrivate;
     self.isStatic = codeProperty.isStatic;
-    self.propertyType = [self.typeIndex objcTypeForTypeName:[codeProperty type]];
+    self.propertyType = [self.project.typeRegistry typeForKey:[codeProperty type]];
     if(!self.isImmutable) {
         FLObjcIvarName* name = [FLObjcIvarName objcIvarName:[codeProperty name]];
         self.ivar = [FLObjcIvar objcIvar:name ivarType:self.propertyType];
@@ -132,7 +128,7 @@
         FLAssert([self.propertyType isKindOfClass:[FLObjcContainerType class]]);
         
         for(FLCodeArrayType* codeArrayType in codeProperty.arrayTypes) {
-            FLObjcType* typeForSubType = [self.typeIndex objcTypeForTypeName:[codeArrayType typeName]];
+            FLObjcType* typeForSubType = [self.project.typeRegistry typeForKey:[codeArrayType typeName]];
             [containerTypes addObject:[FLObjcContainerSubType objcContainerSubType:codeArrayType.name objcType:typeForSubType]];
         }
         
@@ -141,7 +137,7 @@
         
     if(codeProperty.defaultValue) {
         FLObjcStringStatement* stringStatement = [FLObjcStringStatement objcStringStatement];
-        [stringStatement addCodeLine:codeProperty.defaultValue withTypeIndex:self.typeIndex];
+        [stringStatement addCodeLine:codeProperty.defaultValue withTypeRegistry:self.project];
         [_getter addStatement:stringStatement];
     }
 }
@@ -162,7 +158,7 @@
     [self.parentObject addDependency:self.propertyType];
     
     if(self.containerTypes && self.containerTypes.count) {
-        [self.parentObject addDependency:[self.typeIndex objcTypeForClass:[FLObjectDescriber class]]];
+        [self.parentObject addDependency:[self.project.typeRegistry typeForClass:[FLObjectDescriber class]]];
      
         for(FLObjcContainerSubType* subType in self.containerTypes) {
             [self.parentObject addDependency:subType.objcType];

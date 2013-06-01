@@ -10,6 +10,6 @@
 
 @interface FLObjcCustomProperty : FLObjcProperty
 
-+ (id) objcCustomProperty:(FLObjcTypeIndex*) typeIndex;
++ (id) objcCustomProperty:(FLObjcProject*) project;
 
 @end

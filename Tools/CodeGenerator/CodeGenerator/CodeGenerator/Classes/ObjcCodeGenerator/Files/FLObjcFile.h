@@ -26,8 +26,7 @@
 
 - (NSString*) counterPartFileName;
                            
-- (void) willGenerateFileWithFileManager:(FLObjcFileManager*) fileManager 
-                          withCodeProject:(FLCodeProject*) codeProject;
+- (void) willGenerateFileWithFileManager:(FLObjcFileManager*) fileManager  ;
 
 - (BOOL) isHeaderFile; 
                            

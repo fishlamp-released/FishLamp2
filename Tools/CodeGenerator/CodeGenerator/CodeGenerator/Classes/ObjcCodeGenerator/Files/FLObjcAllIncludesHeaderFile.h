@@ -7,15 +7,16 @@
 //
 
 #import "FLObjcGeneratedHeaderFile.h"
-@class FLObjcTypeIndex;
+@class FLObjcProject;
 @class FLCodeProjectLocation;
 
 @interface FLObjcAllIncludesHeaderFile : FLObjcGeneratedHeaderFile {
 @private
     NSMutableArray* _files;
-    FLObjcTypeIndex* _typeIndex;
+    __unsafe_unretained FLObjcProject* _project;
 }
 
-+ (id) allIncludesHeaderFile:(FLObjcTypeIndex*) typeIndex  fileName:(NSString*) fileName;
++ (id) allIncludesHeaderFile:(FLObjcProject*) project  
+                    fileName:(NSString*) fileName;
 
 @end

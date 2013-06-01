@@ -10,8 +10,8 @@
 
 @implementation FLObjcCustomProperty
 
-+ (id) objcCustomProperty:(FLObjcTypeIndex*) typeIndex {
-    return [super objcProperty:typeIndex];
++ (id) objcCustomProperty:(FLObjcProject*) project {
+    return [super objcProperty:project];
 }
 
 - (void) writeCodeToSourceFile:(FLObjcFile*) file 

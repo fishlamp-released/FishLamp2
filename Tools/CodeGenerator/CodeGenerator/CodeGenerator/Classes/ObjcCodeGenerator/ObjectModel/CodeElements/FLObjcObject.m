@@ -26,8 +26,8 @@
 @synthesize objectType = _objectType;
 @synthesize properties = _properties;
 
-- (id) initWithTypeIndex:(FLObjcTypeIndex*) index {	
-	self = [super initWithTypeIndex:index];
+- (id) initWithProject:(FLObjcProject*) project {	
+	self = [super initWithProject:project];
 	if(self) {
         _ivars = [[FLObjcNamedObjectCollection alloc] init];
         _properties = [[FLObjcNamedObjectCollection alloc] init];
@@ -38,8 +38,8 @@
 	return self;
 }
 
-+ (id) objcObject:(FLObjcTypeIndex*) typeIndex {
-    return FLAutorelease([[[self class] alloc] initWithTypeIndex:typeIndex]);
++ (id) objcObject:(FLObjcProject*) project {
+    return FLAutorelease([[[self class] alloc] initWithProject:project]);
 }
 
 - (BOOL) isObject {
@@ -63,11 +63,11 @@
 }
 
 - (void) addIvar:(FLObjcIvar*) ivar {
-    [_ivars setObject:ivar forKey:ivar.variableName];
+    [_ivars addObject:ivar forObjcName:ivar.variableName];
 }
 
 - (void) addProperty:(FLObjcProperty*) property {
-    [_properties setObject:property forKey:property.propertyName];
+    [_properties addObject:property forObjcName:property.propertyName];
     [property didMoveToObject:self];
 }
 
@@ -142,7 +142,7 @@
         NSArray* protocols = [[codeObject protocols] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ,"] allowEmptyStrings:NO];
 
         for(NSString* protocol in protocols) {
-            FLObjcType* type = [self.typeIndex objcTypeForTypeName:protocol];
+            FLObjcType* type = [self.project.typeRegistry typeForKey:protocol];
             [self addProtocol:type];
         }
     }
@@ -151,16 +151,16 @@
     
     FLObjcType* superclass = nil;
     if(FLStringIsNotEmpty(codeObject.superclass)) {
-        superclass = [self.typeIndex objcTypeForTypeName:codeObject.superclass];
+        superclass = [self.project.typeRegistry typeForKey:codeObject.superclass];
     }
     else {
-        superclass = [self.typeIndex objcTypeForTypeName:NSStringFromClass([FLModelObject class])];
+        superclass = [self.project.typeRegistry typeForKey:NSStringFromClass([FLModelObject class])];
     }
    
     [self addDependency:superclass];
    
     self.objectName = 
-        [FLObjcClassName objcClassName:codeObject.className prefix:self.typeIndex.classPrefix];
+        [FLObjcClassName objcClassName:codeObject.className prefix:self.project.classPrefix];
     
     self.objectType = [FLObjcObjectType objcObjectType:self.objectName importFileName:[NSString stringWithFormat:@"%@.h", self.objectName.generatedName]];
     
@@ -169,7 +169,7 @@
     
     for(FLCodeProperty* codeProp in codeObject.properties) {
     
-        FLObjcProperty* prop = [FLObjcProperty objcProperty:self.typeIndex];
+        FLObjcProperty* prop = [FLObjcProperty objcProperty:self.project];
         [prop configureWithCodeProperty:codeProp];
         [self addProperty:prop];
         
@@ -178,11 +178,11 @@
 
     NSArray* copyOfProperties = FLCopyWithAutorelease([self.properties allValues]);
     for(FLObjcProperty* objcProp in copyOfProperties) {
-        [[objcProp propertyType] addAdditionalStuffToObject:self forProperty:objcProp];
+        [[objcProp propertyType] addAdditionalStuffToObject:self forProperty:objcProp withTypeRegistry:self.project];
     }
     
     for(FLCodeMethod* method in codeObject.methods) {
-        FLObjcMethod* objcMethod = [FLObjcMethod objcMethod:self.typeIndex];
+        FLObjcMethod* objcMethod = [FLObjcMethod objcMethod:self.project];
         [objcMethod configureWithCodeMethod:method];
         [self addMethod:objcMethod];
 
@@ -190,9 +190,9 @@
 
     }
     
-    [self addMethod:[FLObjcDidRegisterObjectDescriberMethod objcDidRegisterObjectDescriberMethod:self.typeIndex]];
-    [self addMethod:[FLObjcClassInitializerMethod objcMethod:self.typeIndex]];
-    [self addMethod:[FLObjcDeallocMethod objcMethod:self.typeIndex]];
+    [self addMethod:[FLObjcDidRegisterObjectDescriberMethod objcDidRegisterObjectDescriberMethod:self.project]];
+    [self addMethod:[FLObjcClassInitializerMethod objcMethod:self.project]];
+    [self addMethod:[FLObjcDeallocMethod objcMethod:self.project]];
 }
 
 - (NSString*) description {
@@ -230,7 +230,7 @@
     }
     
     for(NSString* dependencyName in _dependencies) {
-        FLObjcType* dependency = [self.typeIndex objcTypeForTypeName:dependencyName];
+        FLObjcType* dependency = [self.project.typeRegistry typeForKey:dependencyName];
         if(dependency == superclass) {
             continue;
         }
@@ -280,7 +280,7 @@
     [codeBuilder appendImport:file.counterPartFileName];
     
     for(NSString* dependencyName in _dependencies) {
-        FLObjcType* dependency = [self.typeIndex objcTypeForTypeName:dependencyName];
+        FLObjcType* dependency = [self.project.typeRegistry typeForKey:dependencyName];
 
         if(FLStringIsNotEmpty(dependency.importFileName)) {
             [codeBuilder appendImport:dependency.importFileName];

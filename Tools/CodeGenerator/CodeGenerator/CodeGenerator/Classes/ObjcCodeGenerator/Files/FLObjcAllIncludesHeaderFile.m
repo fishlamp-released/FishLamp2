@@ -11,42 +11,41 @@
 #import "FLObjcFileHeader.h"
 #import "FLObjcFile.h"
 #import "FLObjcFileManager.h"
-#import "FLObjcTypeIndex.h"
+#import "FLObjcProject.h"
 #import "FLCodeProjectLocation.h"
 
 @interface FLObjcAllIncludesHeaderFile ()
-@property (readwrite, strong, nonatomic) FLObjcTypeIndex* typeIndex;
+@property (readwrite, assign, nonatomic) FLObjcProject* project;
 @end
 
 @implementation FLObjcAllIncludesHeaderFile
-@synthesize typeIndex = _typeIndex;
+@synthesize project = _project;
 
-- (id) initWithTypeIndex:(FLObjcTypeIndex*) typeIndex fileName:(NSString*) fileName {	
+- (id) initWithProject:(FLObjcProject*) project fileName:(NSString*) fileName {	
 	self = [super initWithFileName:fileName];
 	if(self) {  
-        self.typeIndex = typeIndex;
+        self.project = project;
 		_files = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
 
-+ (id) allIncludesHeaderFile:(FLObjcTypeIndex*) index  fileName:(NSString*) fileName {
-    return FLAutorelease([[[self class] alloc] initWithTypeIndex:index fileName:fileName]);
++ (id) allIncludesHeaderFile:(FLObjcProject*) project  fileName:(NSString*) fileName {
+    return FLAutorelease([[[self class] alloc] initWithProject:project fileName:fileName]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_typeIndex release];
     [_files release];
 	[super dealloc];
 }
 #endif
 
-- (void) willGenerateFileWithFileManager:(FLObjcFileManager*) fileManager 
-                          withCodeProject:(FLCodeProject*) codeProject {
+- (void) willGenerateFileWithFileManager:(FLObjcFileManager*) fileManager  {
 
-    FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:self.typeIndex];
-    [fileHeader configureWithCodeProject:codeProject];
+    FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:self.project];
+    [fileHeader configureWithInputProject:fileManager.project.inputProject];
+    
     [self addFileElement:fileHeader];
 
     for(FLObjcFile* file in fileManager.files) {

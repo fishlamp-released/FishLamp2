@@ -15,8 +15,8 @@
 //    return FLAutorelease([[[self class] alloc] init]);
 //}
 
-- (id) initWithTypeIndex:(FLObjcTypeIndex *)index {	
-	self = [super initWithTypeIndex:index ];
+- (id) initWithProject:(FLObjcProject *)project {	
+	self = [super initWithProject:project ];
 	if(self) {
 		_deallocStatement = [[FLObjcDeallocStatement alloc] init];
         self.methodName = [FLObjcMethodName objcMethodName:@"dealloc"];

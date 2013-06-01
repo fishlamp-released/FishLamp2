@@ -7,7 +7,7 @@
 //
 
 #import "FLObjcFile.h"
-#import "FLObjcTypeIndex.h"
+#import "FLObjcProject.h"
 #import "FLObjcCodeElement.h"
 
 @interface FLObjcFile ()
@@ -56,7 +56,7 @@
     return nil;
 }
 
-- (void) willGenerateFileWithFileManager:(FLObjcFileManager*) fileManager withCodeProject:(FLCodeProject*) codeProject {
+- (void) willGenerateFileWithFileManager:(FLObjcFileManager*) fileManager {
 }
 
 - (BOOL) isHeaderFile {

@@ -10,6 +10,7 @@
 @class FLObjcName;
 @class FLObjcObject;
 @class FLObjcProperty;
+@class FLObjcProject;
 
 @interface FLObjcType : NSObject<FLGenerated, NSCopying> {
 @private
@@ -25,7 +26,9 @@
 @property (readonly, assign, nonatomic) BOOL isObject;
 @property (readonly, strong, nonatomic) NSString* generatedObjectClassName;
 
-- (void) addAdditionalStuffToObject:(FLObjcObject*) object forProperty:(FLObjcProperty*) property;
+- (void) addAdditionalStuffToObject:(FLObjcObject*) object 
+                        forProperty:(FLObjcProperty*) property
+                   withTypeRegistry:(FLObjcProject*) registry;
 
 @end
 

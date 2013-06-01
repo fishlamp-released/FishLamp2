@@ -14,36 +14,41 @@
 
 #import "FLObjcCodeGeneratorHeaders.h"
 
+@interface FLObjcFileManager ()
+@property (readwrite, assign, nonatomic) FLObjcProject* project;
+@end
+
 @implementation FLObjcFileManager
 @synthesize files = _files;
+@synthesize project = _project;
 
-- (id) initWithCodeProject:(FLCodeProject*) codeProject {	
+- (id) initWithProject:(FLObjcProject*) project {	
 	self = [super init];
 	if(self) {
 		_files = [[NSMutableArray alloc] init];
-        FLSetObjectWithRetain(_codeProject, codeProject);
+        self.project = project;
 	}
 	return self;
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_codeProject release];
-    
 	[_files release];
 	[super dealloc];
 }
 #endif
 
-+ (id) objcFileManager:(FLCodeProject*) codeProject {
-    return FLAutorelease([[[self class] alloc] initWithCodeProject:codeProject]);
++ (id) objcFileManager:(FLObjcProject*) codeProject {
+    return FLAutorelease([[[self class] alloc] initWithProject:codeProject]);
 }
 
-- (NSString*) outputFolderPath:(FLCodeProject*) project  {
-    NSString* outPath = project.projectFolderPath;
+- (NSString*) outputFolderPath  {
 
-	if(FLStringIsNotEmpty(project.generatorOptions.objectsFolderName)) { 
-        outPath = [outPath stringByAppendingPathComponent:project.generatorOptions.objectsFolderName];
+// TODO: abstract away dependency on inputProject
+    NSString* outPath = self.project.inputProject.projectFolderPath;
+
+	if(FLStringIsNotEmpty(self.project.inputProject.generatorOptions.objectsFolderName)) { 
+        outPath = [outPath stringByAppendingPathComponent:self.project.inputProject.generatorOptions.objectsFolderName];
     }
 
     return outPath;
@@ -65,7 +70,7 @@
     }
 }
 
-- (FLCodeGeneratorResult*) writeFilesToDiskWithProject:(FLCodeProject*) project {
+- (FLCodeGeneratorResult*) writeFilesToDisk {
 
 // TODO: refactor this.
 	
@@ -93,11 +98,12 @@
         return result;
     }
 
-    NSString* folderPath = [self outputFolderPath:project];
+    NSString* folderPath = [self outputFolderPath];
 
     [self createGeneratedDirectoryIfNeeded:folderPath];
 
-// TODO:
+// TODO: 
+// Make this an atomic operation.
 // 1. copy changed file to temp folder
 // 2. if there's a failure, restore the file.
 
@@ -107,7 +113,7 @@
 
         FLObjcCodeBuilder* codeBuilder = [FLObjcCodeBuilder objcCodeBuilder];
 
-        [file willGenerateFileWithFileManager:self withCodeProject:project];
+        [file willGenerateFileWithFileManager:self];
         
         FLCodeGeneratorFileWriteResult writeResult = [file writeFileToPath:srcPath withCodeBuilder:codeBuilder];
 
@@ -136,15 +142,11 @@
     [_files addObject:file];
 }
 
-- (FLCodeGeneratorResult*) writeFilesToDisk {
-    return [self writeFilesToDiskWithProject:_codeProject];
-}
 
-- (void) addFilesWithArrayOfCodeElements:(NSArray*) elementList  
-                               typeIndex:(FLObjcTypeIndex*) typeIndex {
+- (void) addFilesWithArrayOfCodeElements:(NSArray*) elementList {
 
-    FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:typeIndex];
-    [fileHeader configureWithCodeProject:_codeProject];
+    FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:self.project];
+    [fileHeader configureWithInputProject:self.project.inputProject];
 
     for(FLObjcCodeElement* element in elementList) {
         

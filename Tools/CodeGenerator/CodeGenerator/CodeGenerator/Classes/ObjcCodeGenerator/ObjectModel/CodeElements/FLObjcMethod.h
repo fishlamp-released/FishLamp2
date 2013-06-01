@@ -16,7 +16,7 @@
 @class FLObjcBlockStatement;
 @class FLObjcObject;
 @protocol FLObjcType;
-@class FLObjcTypeIndex;
+@class FLObjcProject;
 @class FLCodeMethod;
 
 @interface FLObjcMethod : FLObjcCodeElement {
@@ -29,7 +29,7 @@
     BOOL _isStatic;
     __unsafe_unretained FLObjcObject* _parentObject;
 }
-+ (id) objcMethod:(FLObjcTypeIndex*) typeIndex;
++ (id) objcMethod:(FLObjcProject*) project;
 
 @property (readwrite, strong, nonatomic) FLObjcBlockStatement* statement;
 

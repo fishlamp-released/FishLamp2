@@ -23,8 +23,8 @@
 
 @synthesize codeProject = _codeProject;
 
-+ (id) objcFileHeader:(FLObjcTypeIndex*) typeIndex {
-    return FLAutorelease([[[self class] alloc] initWithTypeIndex:typeIndex]);
++ (id) objcFileHeader:(FLObjcProject*) project {
+    return FLAutorelease([[[self class] alloc] initWithProject:project]);
 }
 
 #if FL_MRC
@@ -34,7 +34,7 @@
 }
 #endif
 
-- (void) configureWithCodeProject:(FLCodeProject*) codeProject {
+- (void) configureWithInputProject:(FLCodeProject*) codeProject {
     self.codeProject = codeProject;
 }
 

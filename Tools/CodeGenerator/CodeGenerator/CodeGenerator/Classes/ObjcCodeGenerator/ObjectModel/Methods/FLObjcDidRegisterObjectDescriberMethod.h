@@ -9,5 +9,5 @@
 #import "FLObjcMethod.h"
 
 @interface FLObjcDidRegisterObjectDescriberMethod : FLObjcMethod
-+ (id) objcDidRegisterObjectDescriberMethod:(FLObjcTypeIndex*) typeIndex;
++ (id) objcDidRegisterObjectDescriberMethod:(FLObjcProject*) project;
 @end

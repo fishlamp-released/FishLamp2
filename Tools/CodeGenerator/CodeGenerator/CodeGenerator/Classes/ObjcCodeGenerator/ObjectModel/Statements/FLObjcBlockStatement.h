@@ -15,6 +15,7 @@
 @property (readonly, strong, nonatomic) NSArray* statements;
 
 + (id) objcBlockStatement;
+
 - (void) addStatement:(FLObjcStatement*) statement;
 
 @end

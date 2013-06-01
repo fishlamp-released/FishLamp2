@@ -10,8 +10,8 @@
 #import "FLObjcType.h"
 
 @implementation FLObjcStatement
-//+ (id) objcStatement:(FLObjcTypeIndex*) typeIndex {
-//    return FLAutorelease([[[self class] alloc] initWithTypeIndex:typeIndex]);
+//+ (id) objcStatement:(FLObjcProject*) project {
+//    return FLAutorelease([[[self class] alloc] initWithProject:project]);
 //}
 - (void) writeCodeToHeaderFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
 }

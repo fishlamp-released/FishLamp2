@@ -79,7 +79,9 @@
     return [[[self class] alloc] initWithTypeName:self.typeName importFileName:self.importFileName];
 }
 
-- (void) addAdditionalStuffToObject:(FLObjcObject*) object forProperty:(FLObjcProperty*) property {
+- (void) addAdditionalStuffToObject:(FLObjcObject*) object 
+                        forProperty:(FLObjcProperty*) property 
+                   withTypeRegistry:(FLObjcProject*) registry{
 
 }
 

@@ -11,6 +11,6 @@
 @interface FLObjcKnownTypes : NSObject
 
 + (NSArray*) loadKnownTypes;
-+ (NSDictionary*) parseableTypes;
++ (NSDictionary*) knownTypeAliases;
 
 @end

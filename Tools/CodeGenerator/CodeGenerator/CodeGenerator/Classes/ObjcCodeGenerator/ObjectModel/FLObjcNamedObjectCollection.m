@@ -7,15 +7,17 @@
 //
 
 #import "FLObjcNamedObjectCollection.h"
-#import "FLObjcName.h"
+#import "FLObjcCodeGeneratorHeaders.h"
 
 @implementation FLObjcNamedObjectCollection
 
 - (id) init {	
 	self = [super init];
 	if(self) {
-		_names = [[NSMutableDictionary alloc] init];
-        _generatedStrings = [[NSMutableDictionary alloc] init];
+        _objects = [FLCarefulDictionary carefulDictionary:^id(id key) {
+            FLAssertWithComment([key isKindOfClass:[NSString class]], @"expecting the key to be a string");
+            return [key lowercaseString]; 
+        }];
 	}
 	return self;
 }
@@ -24,47 +26,82 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-#if FL_MRC
-- (void) dealloc {
-	[_names release];
-	[_generatedStrings release];
-	[super dealloc];
+- (NSString*) keyFromObjcName:(FLObjcName*) name {
+    return name.identifierName;
 }
-#endif
 
-- (id) objectForKey:(NSString*) name {
-    name = [name lowercaseString];
-    id object = [_names objectForKey:name];
-    if(!object) {
-        NSString* key = [_generatedStrings objectForKey:name];
-        if(key) {
-            object = [_names objectForKey:[key lowercaseString]];
-        }
+//- (FLObjcType*) objectForKey:(NSString*) typeName {
+//   typeName = [typeName stringByReplacingOccurrencesOfString:@"*" withString:@""];
+//   
+//   FLObjcType* type = [super objectForKey:typeName];
+//   if(type == nil) {
+//        NSString* newType = [_parseableTypes objectForKey:[typeName lowercaseString]];
+//        if(newType) {
+//            type = [super objectForKey:newType];
+//        }
+//   }
+//   
+//   if(!type) {
+//        FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeUnknownType, @"Unknown type \"%@\"", typeName);
+//   }
+//   
+//   return type;
+//}
+
+- (void) addObject:(id) object forObjcName:(FLObjcName*) name {
+    id key = [self keyFromObjcName:name];
+    [_objects addObject:object forKey:key];
+    if(FLStringsAreNotEqual(name.generatedName, key)) {
+        [_objects addAlias:name.generatedName forKey:key];
     }
-    return object;
 }
 
-- (void) setObject:(id) object forKey:(FLObjcName*) key {
-    NSString* masterKey = [key.identifierName lowercaseString];
-    [_names setObject:object forKey:masterKey];
-    [_generatedStrings setObject:masterKey forKey:[key.generatedName lowercaseString]];
+- (void) replaceObject:(id) object forObjcName:(FLObjcName*) name {
+    [_objects replaceObject:object forKey:[self keyFromObjcName:name]];
 }
 
-- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained [])buffer count:(NSUInteger)len {
-    return [_names countByEnumeratingWithState:state objects:buffer count:len];
+- (id) objectForClass:(Class) aClass {
+    return [_objects objectForKey:NSStringFromClass(aClass)];
+}
+
+- (BOOL) hasObjcName:(FLObjcName*) name {
+    return [_objects hasKey:[self keyFromObjcName:name]];
+}
+
+- (id) objectForObjcName:(FLObjcName*) name {
+    return [_objects objectForKey:[self keyFromObjcName:name]];
+}
+
+- (NSEnumerator *)keyEnumerator {
+    return [_objects keyEnumerator];
 }
 
 - (NSEnumerator *)objectEnumerator {
-    return [_names objectEnumerator];
+    return [_objects objectEnumerator];
 }
 
 - (NSArray *)allKeys {
-    return [_names allKeys];
+    return [_objects allKeys];
 }
 
 - (NSArray *)allValues {
-    return [_names allValues];
+    return [_objects allValues];
 }
 
+- (void) addAlias:(NSString*) alias forObjcName:(FLObjcName*) name {
+    [_objects addAlias:alias forKey:[self keyFromObjcName:name]];
+}
+
+- (id) objectForKey:(NSString*) key {
+    return [_objects objectForKey:key];
+}
+
+- (BOOL) hasKey:(NSString*) key {
+    return [_objects hasKey:key];
+}
+
+- (void) removeObjectForObjcName:(FLObjcName*) name {
+    [_objects removeObjectWithKey:[self keyFromObjcName:name]];
+}
 
 @end
