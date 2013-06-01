@@ -6,9 +6,7 @@
     </license>
     <generatorOptions typePrefix="FL"/>
     <object className="FLTwoObjects" superclass="NSObject">
-        <properties>
-            <property name="object1" type="object"/>
-            <property name="object2" type="object"/>
-        </properties>
+        <property name="object1" type="object"/>
+        <property name="object2" type="object"/>
     </object>
 </code>
