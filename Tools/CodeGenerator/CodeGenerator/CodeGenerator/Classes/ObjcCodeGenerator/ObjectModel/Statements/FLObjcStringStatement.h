@@ -19,9 +19,7 @@
 }
 + (id) objcStringStatement;
 
-@property (readonly, strong, nonatomic) FLObjcCodeBuilder* string;
-
-- (void) addCodeLine:(FLCodeLine*) codeLine withTypeRegistry:(FLObjcProject*) project;
+@property (readonly, strong, nonatomic) FLObjcCodeBuilder* codeBuilder;
 
 @end
 

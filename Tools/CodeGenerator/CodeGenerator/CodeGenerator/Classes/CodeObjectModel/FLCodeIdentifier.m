@@ -95,8 +95,13 @@
 }
 #endif
 
+- (void) describeSelf:(FLPrettyString *)string {
+    [string appendLineWithFormat:@"identifierName=%@", self.identifierName];
+    [string appendLineWithFormat:@"generatedName=%@", self.generatedName];
+}
+
 - (NSString*) description {
-    return [NSString stringWithFormat:@"identifier: %@, generated: %@", self.identifierName, self.generatedName];
+    return [self prettyDescription];
 }
 
 - (id) copyWithNewName:(NSString*) newName {

@@ -59,8 +59,14 @@
     return FLStringsAreEqual([object generatedName], [self generatedName]);
 }
 
+- (void) describeSelf:(FLPrettyString *)string {
+    [string appendLineWithFormat:@"typeName=%@", self.typeName];
+    [string appendLineWithFormat:@"generatedName=%@", self.generatedName];
+    [string appendLineWithFormat:@"import=\"%@\"", _importFileName ? _importFileName : @""];
+}
+
 - (NSString*) description {
-    return [NSString stringWithFormat:@"%@: %@", [super description], self.generatedName];
+    return [self prettyDescription];
 }
 
 - (NSString*) generatedReference {
@@ -82,6 +88,10 @@
 - (void) objcObject:(FLObjcObject*) object 
 didConfigureProperty:(FLObjcProperty*) property {
 
+}
+
+- (BOOL) canForwardReference {
+    return self.isObject;
 }
 
 @end

@@ -190,7 +190,7 @@
 //	return 0;
 //}
 //
-////- (void) describeSelf:(FLFancyString*) builder
+////- (void) prettyDescription:(FLFancyString*) builder
 ////{
 ////#if IOS
 ////	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];

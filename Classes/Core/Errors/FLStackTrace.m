@@ -133,7 +133,7 @@ FLStackTrace_t FLStackTraceMake(FLLocationInSourceFile_t loc, BOOL withCallStack
     return _stackTrace.stack.depth;
 }
 
-- (void) describe:(FLPrettyString*) string {
+- (void) describeSelf:(FLPrettyString*) string {
     [string appendLine:[NSString stringWithFormat:@"%s:%d, %s", 
                             FLFileNameFromLocation(&_stackTrace.location),
                             _stackTrace.location.line, 
@@ -147,9 +147,7 @@ FLStackTrace_t FLStackTraceMake(FLLocationInSourceFile_t loc, BOOL withCallStack
 }
 
 - (NSString*) description {
-    FLPrettyString* str = [FLPrettyString prettyString];
-    [self describe:str];
-    return [str string];
+    return [self prettyDescription];
 }
 
 //- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state 

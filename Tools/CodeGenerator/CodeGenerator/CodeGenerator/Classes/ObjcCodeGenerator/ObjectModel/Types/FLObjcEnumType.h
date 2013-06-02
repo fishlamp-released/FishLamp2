@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcType.h"
+#import "FLObjcObjectType.h"
 @class FLObjcName;
 
-@interface FLObjcEnumType : FLObjcType 
+@interface FLObjcEnumType : FLObjcObjectType 
 + (id) objcEnumType:(FLObjcName*) typeName 
        importFileName:(NSString*) importFileName;
 @end

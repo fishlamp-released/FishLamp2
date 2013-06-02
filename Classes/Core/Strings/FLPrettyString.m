@@ -124,40 +124,6 @@
     --_indentLevel;
 }
 
-
-//- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-//            appendString:(NSString*) string
-//  appendAttributedString:(NSAttributedString*) attributedString
-//              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
-//
-//
-//    if(lineUpdate.closePreviousLine) {
-//        [self appendEOL];
-//    }
-//
-//    if(lineUpdate.prependBlankLine) {
-//        [self appendEOL];
-//    }
-//
-//    if(lineUpdate.openLine) {
-//        if(_whitespace) { 
-//            [self appendStringToStorage:[_whitespace tabStringForScope:self.indentLevel]];
-//        } 
-//    }
-//    
-//    if(string) {
-//        [self appendStringToStorage:string];
-//    }
-//    
-//    if(attributedString) {
-//        [self appendAttributedStringToStorage:attributedString];
-//    }
-//    
-//    if(lineUpdate.closeLine) {
-//        [self appendEOL];
-//    }
-//}            
-
 - (void) appendPrettyString:(FLPrettyString*) string {
     [self appendStringContainingMultipleLines:string.string];
 }
@@ -178,14 +144,28 @@
 
 @implementation NSObject (FLPrettyString)
 
-- (void) describe:(FLPrettyString*) formatter {
-    [formatter appendLine:[self description]];
+- (void) describeToString:(FLPrettyString*) string {
+    [string appendInScope:[NSString stringWithFormat:@"%@ {", NSStringFromClass([self class])] 
+               closeScope:@"}"
+                withBlock:^{
+                    [self describeSelf:string];
+                }]; 
 }
 
 - (NSString*) prettyDescription {
     FLPrettyString* str = [FLPrettyString prettyString];
-    [self describe:str];
+    [self describeToString:str];
     return [str string];
+}
+
+- (void) prettyDescription:(FLPrettyString*) string {
+    [string indent: ^{
+        [self describeSelf:string];
+    }];
+}
+
+- (void) describeSelf:(FLPrettyString*) string {
+    [string appendLine:[self description]];
 }
 
 @end
@@ -246,3 +226,4 @@
 }
 
 @end
+

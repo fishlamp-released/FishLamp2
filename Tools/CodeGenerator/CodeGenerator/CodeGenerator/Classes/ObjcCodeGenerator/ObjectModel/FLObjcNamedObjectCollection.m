@@ -33,9 +33,7 @@
 - (void) addObject:(id) object forObjcName:(FLObjcName*) name {
     id key = [self keyFromObjcName:name];
     [_objects addObject:object forKey:key];
-    if(FLStringsAreNotEqual(name.generatedName, key)) {
-        [_objects addAlias:name.generatedName forKey:key];
-    }
+    [_objects addAlias:name.generatedName forKey:key];
 }
 
 - (void) replaceObject:(id) object forObjcName:(FLObjcName*) name {
@@ -84,6 +82,10 @@
 
 - (void) removeObjectForObjcName:(FLObjcName*) name {
     [_objects removeObjectWithKey:[self keyFromObjcName:name]];
+}
+
+- (NSString*) description {
+    return [_objects description];
 }
 
 @end

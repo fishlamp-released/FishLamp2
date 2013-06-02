@@ -15,14 +15,16 @@
 @class FLObjcMethodName;
 @class FLObjcBlockStatement;
 @class FLObjcObject;
-@protocol FLObjcType;
 @class FLObjcProject;
 @class FLCodeMethod;
+@class FLObjcCodeBuilder;
+@class FLObjcStringStatement;
 
 @interface FLObjcMethod : FLObjcCodeElement {
 @private
     NSMutableArray* _parameters;
     FLObjcBlockStatement* _statement;
+    FLObjcStringStatement* _stringStatement;
     FLObjcType* _returnType;
     FLObjcName* _methodName;
     BOOL _isPrivate;
@@ -54,6 +56,7 @@
 
 // statement
 - (void) addStatement:(FLObjcStatement*) statement;
+- (FLObjcCodeBuilder*) code;
 
 // mise
 - (void) didMoveToObject:(FLObjcObject*) object;

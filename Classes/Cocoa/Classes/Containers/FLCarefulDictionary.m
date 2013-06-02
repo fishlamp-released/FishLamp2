@@ -69,8 +69,8 @@
     return nil;
 }
 
-- (id) hasKey:(id) key {
-    return [self resolveKey:key];
+- (BOOL) hasKey:(id) key {
+    return [self resolveKey:key] != nil;
 }   
 
 - (id) confirmedKey:(id) key {
@@ -148,10 +148,6 @@
     return [_objects count];
 }
 
-- (NSString*) description {
-    return [_objects description];
-}
-
 - (void) addAlias:(NSString*) alias forKey:(id) key {
     FLAssertNotNil(alias);
     FLAssertNotNil(key);
@@ -160,9 +156,27 @@
         _aliases = [[NSMutableDictionary alloc] init];
     }
     alias = [self mutateKey:alias];
-    FLConfirmWithComment([self resolveKey:alias] == nil, @"alias %@ already exists or is key", alias);
+
+    FLConfirmWithComment([_aliases objectForKey:alias] == nil, @"alias already exists %@", key);
 
     [_aliases setObject:[self confirmedKey:key] forKey:alias];
+}
+
+- (NSString*) description {
+    return [self prettyDescription];
+}
+
+- (void) describeSelf:(FLPrettyString *)string {
+
+    for(id key in _objects) {
+        [string appendLineWithFormat:@"%@ = %@", key, [_objects objectForKey:key]];
+    }
+        
+    if(_aliases) {
+        for(id key in _aliases) {
+            [string appendLineWithFormat:@"%@ = %@ (alias)", key, [_aliases objectForKey:key]];
+        }
+    }
 }
 
 

@@ -29,6 +29,8 @@
 	if(self) {
         _parameters = [[NSMutableArray alloc] init];
 	    _statement = [[FLObjcBlockStatement alloc] init];
+        _stringStatement = [[FLObjcStringStatement alloc] init];
+        [_statement addStatement:_stringStatement];
     }
 	return self;
 }
@@ -39,6 +41,7 @@
     [_methodName release];
     [_returnType release];
     [_parameters release];
+    [_stringStatement release];
     [super dealloc];
 }
 #endif
@@ -119,27 +122,27 @@
     }
 }
 
-
 - (void) configureWithCodeMethod:(FLCodeMethod*) codeMethod   {
 
     self.isPrivate = codeMethod.isPrivate;
     self.isStatic = codeMethod.isStatic;
     self.methodName = [FLObjcMethodName objcMethodName:codeMethod.name];
-    FLObjcStringStatement* statement = [FLObjcStringStatement objcStringStatement];
     
-    for(FLCodeLine* codeLine in codeMethod.codeLines) {
-        [statement addCodeLine:codeLine withTypeRegistry:self.project];
-    }
-    
-    [self addStatement:statement];
-
     if(FLStringIsNotEmpty(codeMethod.returnType)) {
         self.returnType = [self.project.typeRegistry typeForKey:codeMethod.returnType];
+    }
+
+    for(FLCodeLine* codeLine in codeMethod.codeLines) {
+        [self.code appendCodeLine:codeLine withProject:self.project];
     }
 }
 
 - (void) didMoveToObject:(FLObjcObject*) object {
     self.parentObject = object;
+}
+
+- (FLObjcCodeBuilder*) code {
+    return _stringStatement.codeBuilder;
 }
 
 

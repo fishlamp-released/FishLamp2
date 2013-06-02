@@ -25,6 +25,7 @@
 @property (readonly, strong, nonatomic) NSString* importFileName;
 @property (readonly, assign, nonatomic) BOOL isObject;
 @property (readonly, strong, nonatomic) NSString* generatedObjectClassName;
+@property (readonly, assign, nonatomic) BOOL canForwardReference;
 
 - (void) objcObject:(FLObjcObject*) object 
 didConfigureProperty:(FLObjcProperty*) property;

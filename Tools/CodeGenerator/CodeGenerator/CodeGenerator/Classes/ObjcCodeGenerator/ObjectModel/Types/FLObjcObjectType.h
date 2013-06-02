@@ -9,7 +9,6 @@
 #import "FLObjcType.h"
 @class FLObjcName;
 
-
 @interface FLObjcObjectType : FLObjcType
          
 + (id) objcObjectType:(FLObjcName*) typeName 

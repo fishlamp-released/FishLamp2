@@ -12,17 +12,20 @@
 #import "FLCodeLine.h"
 
 @implementation FLObjcStringStatement
-@synthesize string = _string;
+
+@synthesize codeBuilder = _codeBulder;
+
 - (id) init {	
 	self = [super init];
 	if(self) {
-		_string = [[FLObjcCodeBuilder alloc] init];
+		_codeBulder = [[FLObjcCodeBuilder alloc] init];
 	}
 	return self;
 }
+
 #if FL_MRC
 - (void) dealloc {
-	[_string release];
+	[_codeBulder release];
 	[super dealloc];
 }
 #endif
@@ -30,30 +33,12 @@
 - (void) writeCodeToSourceFile:(FLObjcFile*) file 
                withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
                
-    [codeBuilder appendStringFormatter:_string];
+    [codeBuilder appendStringFormatter:_codeBulder];
 }
 
 + (id) objcStringStatement {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) addCodeLine:(FLCodeLine*) codeLine withTypeRegistry:(FLObjcProject*) project {
-
-    switch(codeLine.codeLineType) {
-        case FLCodeLineTypeReturnNewObject:{
-            FLObjcType* theType = [project.typeRegistry typeForKey:[codeLine parameterForKey:FLCodeLineClassName]];
-            [self.string appendLineWithFormat:@"return FLAutorelease([[%@ alloc] init]);", theType.generatedName];
-        }
-        break;
-        
-        case FLCodeLineTypeReturnString:
-            [self.string appendLineWithFormat:@"return @\"%@\";", [codeLine parameterForKey:FLCodeLineString]];
-        break;
-        
-        default:
-        break;
-    
-    }
-}
 
 @end

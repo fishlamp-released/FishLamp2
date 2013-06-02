@@ -17,7 +17,7 @@
 }
 
 - (void) objcObject:(FLObjcObject*) object didConfigureProperty:(FLObjcProperty *)property  {
-    FLObjcEnum* theEnum = [object.project.generatedEnums objectForObjcName:property.propertyName];
+    FLObjcEnum* theEnum = [object.project.generatedEnums objectForObjcName:property.propertyType.typeName];
     [theEnum objcObject:object didConfigureProperty:property];
 }
 
@@ -26,5 +26,8 @@
     return @"NSString*";
 }
 
+- (BOOL) canForwardReference {
+    return NO;
+}
 
 @end

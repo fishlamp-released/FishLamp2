@@ -219,27 +219,38 @@
 }
 
 - (void) writeCodeToHeaderFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
+
+    NSMutableSet* fwdRefs = [NSMutableSet set];
+    NSMutableSet* imports = [NSMutableSet set];
     
     FLObjcType* superclass = self.superclassType;
     
     if(FLStringIsNotEmpty(superclass.importFileName)) {
-        [codeBuilder appendImport:superclass.importFileName];
+        [imports addObject:superclass];
     }
     
     for(NSString* dependencyName in _dependencies) {
         FLObjcType* dependency = [self.project.typeRegistry typeForKey:dependencyName];
-        if(dependency == superclass) {
-            continue;
-        }
         
         if(FLStringIsNotEmpty(dependency.importFileName)) {
-            if(dependency.isObject) {
-                [codeBuilder appendClassDeclaration:dependency.generatedName];
+            if(dependency.canForwardReference) {
+                [fwdRefs addObject:dependency];
             }
             else {
-                [codeBuilder appendImport:dependency.importFileName];
+                [imports addObject:dependency];
             }
         }
+    }
+
+    for(FLObjcType* import in imports) {
+        [codeBuilder appendImport:import.importFileName];
+        [fwdRefs removeObject:import];
+    }
+
+    [codeBuilder appendBlankLine];
+
+    for(FLObjcType* fwdRef in fwdRefs) {
+        [codeBuilder appendClassDeclaration:fwdRef.generatedName];
     }
     
     NSMutableArray* protocols = nil;
@@ -251,6 +262,7 @@
         }
     }
     
+    [codeBuilder appendBlankLine];
     [codeBuilder appendInterfaceDeclaration:self.objectName.generatedName 
                                  superClass:self.superclassType.generatedName 
                                   protocols:protocols 
@@ -261,39 +273,82 @@
         }
     }];
 
-    for(FLObjcProperty* prop in [_properties objectEnumerator]) {
+    NSMutableArray* props = FLMutableCopyWithAutorelease([_properties allValues]);
+    
+    [props sortUsingComparator:^NSComparisonResult(FLObjcProperty* obj1, FLObjcProperty* obj2) {
+        return [obj1.propertyName.generatedName compare:obj2.propertyName.generatedName];
+    }];
+    
+    for(FLObjcProperty* prop in props) {
         [prop writeCodeToHeaderFile:file withCodeBuilder:codeBuilder];
     }
 
+    [codeBuilder appendBlankLine];
     for(FLObjcMethod* method in _methods) {
         [method writeCodeToHeaderFile:file withCodeBuilder:codeBuilder];
     }
 
+    [codeBuilder appendBlankLine];
     [codeBuilder appendEnd];
 }
 
+// need ugly cast - conflict between propertyName 
+#define NameForSorting(obj) \
+            [obj respondsToSelector:@selector(propertyName)] ? ((FLObjcProperty*)obj).propertyName.generatedName : [[obj methodName] generatedName]
+            
+
 - (void) writeCodeToSourceFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
 
-    [codeBuilder appendImport:file.counterPartFileName];
-    
+    [codeBuilder appendBlankLine];
+
+    NSMutableSet* imports = [NSMutableSet set];
+    [imports addObject:file.counterPartFileName];
+
     for(NSString* dependencyName in _dependencies) {
         FLObjcType* dependency = [self.project.typeRegistry typeForKey:dependencyName];
-
-        if(FLStringIsNotEmpty(dependency.importFileName)) {
-            [codeBuilder appendImport:dependency.importFileName];
+        
+        if(FLStringIsNotEmpty(dependency.importFileName) && dependency.canForwardReference) {
+            [imports addObject:dependency.importFileName];
         }
     }
+
+    for(NSString* import in imports) {
+        [codeBuilder appendImport:import];
+    }
+
     
+    [codeBuilder appendBlankLine];
     [codeBuilder appendImplementation:self.objectName.generatedName];
 
-    for(FLObjcProperty* prop in [_properties objectEnumerator]) {
-        [prop writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
+    [codeBuilder appendBlankLine];
+    
+    NSMutableArray* all = FLMutableCopyWithAutorelease([_properties allValues]);
+    
+    [all addObjectsFromArray:_methods];
+    
+    [all sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    
+        NSString* lhs = NameForSorting(obj1);
+        NSString* rhs = NameForSorting(obj2);
+        
+        if([lhs hasPrefix:@"@"] && [rhs hasPrefix:@"@"]) {
+            return [lhs compare:rhs];
+        }
+        else if([lhs hasPrefix:@"@"]) {
+            return NSOrderedAscending;
+        }
+        else if([rhs hasPrefix:@"@"]) {
+            return NSOrderedDescending;
+        }
+
+        return [lhs compare:rhs];
+    }];
+    
+    for(id thing in all) {
+        [thing writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
     }
 
-    for(FLObjcMethod* method in _methods) {
-        [method writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
-    }
-
+    [codeBuilder appendBlankLine];
     [codeBuilder appendEnd];
 }
 

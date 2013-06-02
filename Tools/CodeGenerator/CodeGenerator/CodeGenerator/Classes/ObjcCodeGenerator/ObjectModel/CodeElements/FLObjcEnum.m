@@ -83,6 +83,20 @@
     return self.enumType.generatedReference;
 }
 
+- (void) describeSelf:(FLPrettyString*) string {
+    [string appendLineWithFormat:@"enumName = %@", self.enumName];
+    [string appendLineWithFormat:@"enumType = %@", self.enumType];
+    [string appendInScope:@"values {" closeScope:@"}" withBlock:^{
+        for(id obj in _enumValues) {
+            [string appendLine:[obj description]];
+        }
+    }];
+}
+
+- (NSString*) description {
+    return [self prettyDescription];
+}
+
 - (NSString*) enumSetClassName {
     return  [NSString stringWithFormat:@"%@EnumSet", self.generatedName];
 }
@@ -100,7 +114,7 @@
 }
 
 - (NSString*) enumFromStringFunctionPrototype {
-    return [NSString stringWithFormat:@"%@ %@(NSString* theString)", self.generatedName, self.stringFromEnumFunctionName];
+    return [NSString stringWithFormat:@"%@ %@(NSString* theString)", self.generatedName, self.enumFromStringFunctionName];
 }
 
 
@@ -137,6 +151,7 @@
                                   protocols:nil appendMemberDeclarations:nil];
 
     [codeBuilder appendMethodDeclaration:@"enumSet" type:@"id" isInstanceMethod:NO closeLine:YES];
+    [codeBuilder appendMethodDeclaration:@"enumSet:(NSString*) concatenatedEnumString" type:@"id" isInstanceMethod:NO closeLine:YES];
     
     [codeBuilder appendEnd];
 }
@@ -193,6 +208,18 @@
     [codeBuilder scope:^{
         [codeBuilder appendReturnValue:[NSString stringWithFormat:@"FLAutorelease([[[self class] alloc] initWithValueLookup:(FLEnumSetEnumValueLookup*)  %@EnumFromString stringLookup:(FLEnumSetEnumStringLookup*) %@StringFromEnum])", self.enumType.generatedName, self.enumType.generatedName]];
     }];
+
+    [codeBuilder appendMethodDeclaration:@"enumSet:(NSString*) concatenatedEnumString " type:@"id" isInstanceMethod:NO closeLine:NO];
+    [codeBuilder scope:^{
+        [codeBuilder appendLineWithFormat:@"%@* outObject = FLAutorelease([[[self class] alloc] initWithValueLookup:(FLEnumSetEnumValueLookup*)  %@ stringLookup:(FLEnumSetEnumStringLookup*) %@]);",    
+                self.enumSetClassName,
+                self.enumFromStringFunctionName, 
+                self.stringFromEnumFunctionName];
+        
+        [codeBuilder appendLine:@"[outObject setConcatenatedString:concatenatedEnumString];"];
+        [codeBuilder appendReturnValue:@"outObject"];
+    }];
+
     [codeBuilder appendEnd];
 }
 
@@ -205,24 +232,35 @@
     newProperty.propertyType = [FLObjcValueType objcValueType:[FLObjcImportedName objcImportedName:self.generatedName] importFileName:nil];
     [object addProperty:newProperty];
     
-//    FLDocumentBuilder* 
-//    
-//    FLObjcStringStatement* getter = [FLObjcStringStatement objcStringStatement];
-//    
-//    
-//    
-//    newProperty.getter.statement
+    [newProperty.getter.code appendReturnValue:[NSString stringWithFormat:@"%@(self.%@)", 
+        [self enumFromStringFunctionName], 
+        property.propertyName.generatedName]];
+
+
+    [newProperty.setter.code appendAssignment:[NSString stringWithFormat:@"%@(value)", self.stringFromEnumFunctionName]
+        to:[NSString stringWithFormat:@"self.%@", property.propertyName.generatedName]]; 
+
+
 }
 
 - (void) addEnumSetPropertyToObject:(FLObjcObject*) object withProperty:(FLObjcProperty*) property {
-    FLObjcCustomProperty* newProperty2 = [FLObjcCustomProperty objcCustomProperty:object.project];
+    FLObjcCustomProperty* newProperty = [FLObjcCustomProperty objcCustomProperty:object.project];
     
     NSString* newName2 = [NSString stringWithFormat:@"%@EnumSet", property.propertyName.generatedName];
     
-    newProperty2.propertyName = [[property propertyName] copyWithNewName:newName2];
-    newProperty2.propertyType = [FLObjcObjectType objcObjectType:[FLObjcImportedName objcImportedName:[NSString stringWithFormat:@"%@EnumSet", self.generatedName]] importFileName:nil];
+    newProperty.propertyName = [[property propertyName] copyWithNewName:newName2];
+    newProperty.propertyType = [FLObjcObjectType objcObjectType:[FLObjcImportedName objcImportedName:[NSString stringWithFormat:@"%@EnumSet", self.generatedName]] importFileName:nil];
     
-    [object addProperty:newProperty2];
+    [object addProperty:newProperty];
+
+    [newProperty.getter.code appendReturnValue:[NSString stringWithFormat:@"%@(self.%@)", 
+        [self enumFromStringFunctionName], 
+        property.propertyName.generatedName]];
+
+
+    [newProperty.setter.code appendAssignment:@"value.concatenatedString"
+        to:[NSString stringWithFormat:@"self.%@", property.propertyName.generatedName]]; 
+
 }
 
 

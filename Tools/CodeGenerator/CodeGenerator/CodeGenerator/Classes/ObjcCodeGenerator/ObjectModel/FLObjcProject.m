@@ -130,6 +130,9 @@
 }
 
 - (void) generateEnums:(FLCodeProject*) inputProject {
+
+//    FLLog(@"%@", self.typeRegistry);
+
 // add generated enums.
 // these need to come first because other objects need them to be in the registry
 // when the objects themeselves are generated
@@ -139,10 +142,15 @@
         FLObjcEnum* anEnum = [FLObjcEnum objcEnum:self];
         [anEnum configureWithCodeEnumType:codeEnum];
 
-        [self.typeRegistry addType:anEnum.enumType];
+        if([self.typeRegistry hasType:anEnum.enumType]) {
+            [self.typeRegistry replaceType:anEnum.enumType];
+        }
+        else {
+            [self.typeRegistry addType:anEnum.enumType];
+        }
 
         [self.generatedEnums addObject:anEnum forObjcName:anEnum.enumName];
-        
+
         NSString* className = [NSString stringWithFormat:@"%@EnumSet", anEnum.enumType.generatedName];
         
         [self.typeRegistry addType:[FLObjcObjectType objcObjectType:[FLObjcImportedName objcImportedName:className] 

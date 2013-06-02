@@ -11,6 +11,10 @@
 typedef NSInteger FLEnumSetEnumValueLookup(NSString* string);
 typedef NSString* FLEnumSetEnumStringLookup(NSInteger theEnum);
 
+#define FLTypeSpecificEnumSetDefaultDelimeter @","
+#define FLTypeSpecificEnumSetDefaultParseDelimeters @" ,"
+
+
 @interface FLTypeSpecificEnumSet : FLEnumSet {
 @private
     FLEnumSetEnumValueLookup* _valueLookup;
@@ -23,9 +27,9 @@ typedef NSString* FLEnumSetEnumStringLookup(NSInteger theEnum);
 - (id) initWithValueLookup:(FLEnumSetEnumValueLookup*) valueLookup 
               stringLookup:(FLEnumSetEnumStringLookup*) stringLookup;
 
-- (void) setWithConcatenatedString:(NSString*) string;
+@property (readwrite, strong, nonatomic) NSString* concatenatedString;
 
-- (NSString*) concatenatedString;
-- (NSString*) concatenatedStringWithDelimiter:(NSString*) delimeter;
+//- (NSString*) concatenatedStringWithDelimiter:(NSString*) delimeter;
+//- (void) setConcatenatedString:(NSString*) string withParseDelimiter:(NSString*) delimeter;
 
 @end

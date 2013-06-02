@@ -26,9 +26,8 @@
     self.returnType = self.parentObject.objectType;
     self.isStatic = YES;
     
-    FLObjcStringStatement* statement = [FLObjcStringStatement objcStringStatement];
-    [statement.string appendLine:@"return FLAutorelease([[[self class] alloc] init]);"];
-    [self addStatement:statement];
+    [self.code appendReturnValue:@"FLAutorelease([[[self class] alloc] init])"];
+    
     
 //    [self.parentObject addDependency:self.ivar.variableType];
 //    [self.parentObject addDependency:self.propertyType];

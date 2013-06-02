@@ -65,7 +65,7 @@
 
 - (void) setPropertyName:(FLObjcName*) name {
     _getter.methodName = name;
-    _setter.methodName = [NSString stringWithFormat:@"set%@", [name.generatedName stringWithUpperCaseFirstLetter]];
+    _setter.methodName = [FLObjcMethodName objcMethodName:[NSString stringWithFormat:@"set%@", [name.generatedName stringWithUpperCaseFirstLetter]]];
 }
 
 + (id) objcProperty:(FLObjcProject*) project {
@@ -136,9 +136,7 @@
     }
         
     if(codeProperty.defaultValue) {
-        FLObjcStringStatement* stringStatement = [FLObjcStringStatement objcStringStatement];
-        [stringStatement addCodeLine:codeProperty.defaultValue withTypeRegistry:self.project];
-        [_getter addStatement:stringStatement];
+        [self.getter.code appendCodeLine:codeProperty.defaultValue withProject:self.project];
     }
 }
 

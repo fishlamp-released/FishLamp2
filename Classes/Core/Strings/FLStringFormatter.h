@@ -9,9 +9,12 @@
 
 #import "FLRequired.h"
 
+typedef void (^FLStringFormatterBlock)();
 
 
 @protocol FLStringFormatter <NSObject>
+
+@property (readonly, assign, nonatomic) BOOL lineIsOpen;
 
 /// ends currently open line, opens a new one.
 - (void) openLineWithString:(NSString*) string;
@@ -54,7 +57,11 @@
 
 // if delegate doesn't implement indentLevel, then the block is executed anyway and resulting
 // text will not be indented.
-- (void) indent:(void (^)()) block;
+- (void) indent:(FLStringFormatterBlock) block;
+
+- (void) appendInScope:(NSString*) openScope 
+            closeScope:(NSString*) closeScope 
+             withBlock:(FLStringFormatterBlock) block;
 
 - (void) appendStringFormatter:(id<FLStringFormatter>) stringBuilder;
 

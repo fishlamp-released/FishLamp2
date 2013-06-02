@@ -33,7 +33,7 @@ typedef id (^FLCarefulDictionaryKeyMutator)(id key);
 - (NSArray *)allKeys;
 - (NSArray *)allValues;
 
-- (id) hasKey:(id) key;
+- (BOOL) hasKey:(id) key;
 - (id) objectForKey:(id) key;
 
 - (void) addObject:(id) object forKey:(id) key;
