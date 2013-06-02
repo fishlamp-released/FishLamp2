@@ -174,11 +174,8 @@
         [self addProperty:prop];
         
         [self addDependency:prop.propertyType];
-    }
 
-    NSArray* copyOfProperties = FLCopyWithAutorelease([self.properties allValues]);
-    for(FLObjcProperty* objcProp in copyOfProperties) {
-        [[objcProp propertyType] addAdditionalStuffToObject:self forProperty:objcProp withTypeRegistry:self.project];
+        [[prop propertyType] objcObject:self didConfigureProperty:prop];
     }
     
     for(FLCodeMethod* method in codeObject.methods) {

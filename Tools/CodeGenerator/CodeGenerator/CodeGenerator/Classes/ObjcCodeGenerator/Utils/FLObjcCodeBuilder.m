@@ -172,11 +172,7 @@
     [self appendLine:@"[super dealloc];"];
 }
 
-- (void) scope:(dispatch_block_t) block {
-    [self appendLine:@"{"];
-    [self indent:block];
-    [self appendLine:@"}"];
-}
+
 
 - (void) appendDefine:(NSString*) name value:(NSString*) value {
     [self appendLineWithFormat:@"#define %@ %@", name, value];
@@ -212,6 +208,23 @@
 
 - (void) appendStaticVariable:(NSString*) type name:(NSString*) name initialValue:(NSString*) initialValue {
     [self appendLineWithFormat:@"static %@ %@ = %@;", type, name, initialValue];
+}
+
+- (void) scope:(dispatch_block_t) block {
+    [self appendLine:@"{"];
+    [self indent:block];
+    [self appendLine:@"}"];
+}
+
+- (void) appendScopedCode:(NSString*) leaderOrNil block:(dispatch_block_t) block {
+    if(FLStringIsNotEmpty(leaderOrNil)) {
+        [self appendLineWithFormat:@"%@ {", leaderOrNil];
+    }
+    else {
+        [self appendLine:@"{"];
+    }
+    [self indent:block];
+    [self appendLine:@"}"];
 }
 
 @end

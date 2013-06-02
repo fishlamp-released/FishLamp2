@@ -30,24 +30,6 @@
     return name.identifierName;
 }
 
-//- (FLObjcType*) objectForKey:(NSString*) typeName {
-//   typeName = [typeName stringByReplacingOccurrencesOfString:@"*" withString:@""];
-//   
-//   FLObjcType* type = [super objectForKey:typeName];
-//   if(type == nil) {
-//        NSString* newType = [_parseableTypes objectForKey:[typeName lowercaseString]];
-//        if(newType) {
-//            type = [super objectForKey:newType];
-//        }
-//   }
-//   
-//   if(!type) {
-//        FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeUnknownType, @"Unknown type \"%@\"", typeName);
-//   }
-//   
-//   return type;
-//}
-
 - (void) addObject:(id) object forObjcName:(FLObjcName*) name {
     id key = [self keyFromObjcName:name];
     [_objects addObject:object forKey:key];

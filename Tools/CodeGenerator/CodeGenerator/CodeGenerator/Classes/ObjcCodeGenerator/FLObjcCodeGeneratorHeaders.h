@@ -57,3 +57,5 @@
 #import "FLObjcGeneratedHeaderFile.h"
 #import "FLObjcProject.h"
 #import "FLObjcTypeRegistry.h"
+#import "FLObjcEnumRegistry.h"
+#import "FLObjcCustomProperty.h"

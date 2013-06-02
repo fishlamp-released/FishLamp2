@@ -9,21 +9,10 @@
 #import "FLObjcTypeRegistry.h"
 #import "FLObjcCodeGeneratorHeaders.h"
 
-#import "FLCodeProject.h"
-#import "FLCodeDataTypeCollection.h"
-#import "FLCodeEnumType.h"
-#import "FLCodeTypeDefinition.h"
-#import "FLCodeGeneratorOptions.h"
-#import "FLCodeObject.h"
-#import "FLCodeMethod.h"
-#import "FLCodeGeneratorErrors.h"
-
 @interface FLObjcTypeRegistry ()
-//@property (readwrite, strong, nonatomic) NSDictionary* knownTypeAliases;
 @end
 
 @implementation FLObjcTypeRegistry
-//@synthesize knownTypeAliases = _parseableTypes;
 
 + (id) objcTypeRegistry {
     return FLAutorelease([[[self class] alloc] init]);
@@ -52,30 +41,5 @@
 - (id) typeForName:(FLObjcName*) name {
     return [self objectForObjcName:name];
 }
-
-//- (FLObjcType*) objectForKey:(NSString*) typeName {
-//   typeName = [typeName stringByReplacingOccurrencesOfString:@"*" withString:@""];
-//   
-//   FLObjcType* type = [super objectForKey:typeName];
-//   if(type == nil) {
-//        NSString* newType = [_parseableTypes objectForKey:[typeName lowercaseString]];
-//        if(newType) {
-//            type = [super objectForKey:newType];
-//        }
-//   }
-//   
-//   if(!type) {
-//        FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeUnknownType, @"Unknown type \"%@\"", typeName);
-//   }
-//   
-//   return type;
-//}
-
-//#if FL_MRC
-//- (void) dealloc {
-//	[_parseableTypes release];
-//	[super dealloc];
-//}
-//#endif
 
 @end

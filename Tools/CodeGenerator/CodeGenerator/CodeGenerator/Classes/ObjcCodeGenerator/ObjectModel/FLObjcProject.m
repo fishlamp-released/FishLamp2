@@ -20,6 +20,10 @@
 @property (readwrite, strong, nonatomic) FLObjcFileManager* fileManager;
 @property (readwrite, strong, nonatomic) FLObjcTypeRegistry* typeRegistry;
 @property (readwrite, strong, nonatomic) FLCodeProject* inputProject;
+
+@property (readwrite, strong, nonatomic) FLObjcNamedObjectCollection* generatedEnums;
+@property (readwrite, strong, nonatomic) FLObjcNamedObjectCollection* generatedObjects;
+
 - (void) addKnownTypes;
 @end
 
@@ -27,6 +31,9 @@
 @synthesize fileManager = _fileManager;
 @synthesize typeRegistry = _typeRegistry;
 @synthesize inputProject = _inputProject;
+@synthesize generatedObjects = _generatedObjects;
+@synthesize generatedEnums = _generatedEnums;
+
 
 - (id) init {	
 	self = [super init];
@@ -38,6 +45,17 @@
 + (id) objcProject {
     return FLAutorelease([[[self class] alloc] init]);
 }
+
+#if FL_MRC
+- (void) dealloc {
+	[_inputProject release];
+    [_fileManager release];
+    [_generatedObjects release];
+    [_generatedEnums release];
+    [_typeRegistry release];
+	[super dealloc];
+}
+#endif
 
 - (void) addKnownTypes {
 
@@ -56,8 +74,12 @@
 
 }
 
-- (void) addTypesFromInputProject:(FLCodeProject*) project {
-    
+- (void) addForwardDeclarationsForTypesFromInputProject:(FLCodeProject*) project {
+
+// we're adding REFERENCES to the enums and objects only right now    
+// we're also doing a bit of error checking and preflighting the code generation
+// we will replace these in the next step
+
     for(FLCodeTypeDefinition* def in project.typeDefinitions) {
     
         if(FLStringIsEmpty(def.typeName)) {
@@ -87,7 +109,6 @@
     
     NSString* prefix = [project.generatorOptions typePrefix];
     
-// we're adding REFERENCES to these only right now    
 	for(FLCodeEnumType* aEnum in project.enumTypes) {
         if(FLStringIsEmpty(aEnum.typeName)) {
             FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeMissingName, @"Enum does not have 'typeName'");
@@ -108,59 +129,87 @@
     } 
 }
 
-
-
-- (void) configureWithProjectInput:(FLCodeProject*) inputProject {
-
-    self.inputProject = inputProject;
-
-    self.fileManager = [FLObjcFileManager objcFileManager:self];
-    self.typeRegistry  = [FLObjcTypeRegistry objcTypeRegistry];
-
-    [self addKnownTypes];
-    [self addTypesFromInputProject:inputProject];
-
-    NSMutableArray* enums = [NSMutableArray array];
+- (void) generateEnums:(FLCodeProject*) inputProject {
+// add generated enums.
+// these need to come first because other objects need them to be in the registry
+// when the objects themeselves are generated
     for(FLCodeEnumType* codeEnum in inputProject.enumTypes) {
         FLAssert(codeEnum.enums.count > 0);
         
         FLObjcEnum* anEnum = [FLObjcEnum objcEnum:self];
         [anEnum configureWithCodeEnumType:codeEnum];
-        [enums addObject:anEnum];
-        
+
         [self.typeRegistry addType:anEnum.enumType];
+
+        [self.generatedEnums addObject:anEnum forObjcName:anEnum.enumName];
         
         NSString* className = [NSString stringWithFormat:@"%@EnumSet", anEnum.enumType.generatedName];
         
         [self.typeRegistry addType:[FLObjcObjectType objcObjectType:[FLObjcImportedName objcImportedName:className] 
                                                  importFileName:[NSString stringWithFormat:@"%@.h", anEnum.enumType.generatedName]]];
     }
-    [self.fileManager addFilesWithArrayOfCodeElements:enums];
 
+}
+
+- (void) updateTypeReferences:(FLCodeProject*) inputProject {
+// update the objects with a input file name
     for(FLCodeObject* object in inputProject.objects) {
         FLObjcClassName* className = [FLObjcClassName objcClassName:object.className prefix:self.classPrefix];
         FLObjcType* forwardDecl = [FLObjcObjectType objcObjectType:className importFileName:[NSString stringWithFormat:@"%@.h", className.generatedName]];
         [self.typeRegistry replaceType:forwardDecl];
     }
 
+// add arrays to type registry - these are placeholders - object will replace these with objc arrays
     for(FLCodeArray* codeArray in inputProject.arrays) {
         FLObjcClassName* className = [FLObjcClassName objcClassName:codeArray.name prefix:self.classPrefix];
         FLObjcType* forwardDecl = [FLObjcArrayType objcArrayType:className importFileName:[NSString stringWithFormat:@"%@.h", className.generatedName]];
         [self.typeRegistry addType:forwardDecl];
     }
+}
 
+- (void) generateObjects:(FLCodeProject*) inputProject {
+// now actually generate the objects - now that all of the dependencies 
+// and arrays and enums are ready to go.
 
-    NSMutableArray* objects = [NSMutableArray array];
     for(FLCodeObject* object in inputProject.objects) {
         FLObjcObject* objcObject = [FLObjcObject objcObject:self];
         [objcObject configureWithCodeObject:object];
-        [objects addObject:objcObject];
+
+        [self.generatedObjects addObject:objcObject forObjcName:objcObject.objectName];
     }
 
-    [self.fileManager addFilesWithArrayOfCodeElements:objects];
+}
 
-    if(inputProject.generatorOptions.generateAllIncludesFile) {
+
+- (void) configureWithProjectInput:(FLCodeProject*) inputProject {
+
+    self.inputProject = inputProject;
+
+// create registries and lists of objects use by code generator
+    self.fileManager = [FLObjcFileManager objcFileManager:self];
+    self.typeRegistry  = [FLObjcTypeRegistry objcTypeRegistry];
+    self.generatedObjects = [FLObjcNamedObjectCollection objcNamedObjectCollection];
+    self.generatedEnums = [FLObjcNamedObjectCollection objcNamedObjectCollection];
+
+// add all the known types (like NSObject, NSString, NSArray, etc..)
+    [self addKnownTypes];
     
+// add the types declared in the input project - this is adding placeholders to the type
+// registry so we have all the types declared we need to generate all the objects    
+    [self addForwardDeclarationsForTypesFromInputProject:inputProject];
+
+    [self generateEnums:inputProject];
+
+    [self updateTypeReferences:inputProject];
+
+    [self generateObjects:inputProject];
+
+// add the objects and enums to the file manager, who writes the files.
+    [self.fileManager addFilesWithArrayOfCodeElements:self.generatedObjects.allValues];
+    [self.fileManager addFilesWithArrayOfCodeElements:self.generatedEnums.allValues];
+
+// add a all includes file if needed
+    if(inputProject.generatorOptions.generateAllIncludesFile) {
         [self.fileManager addFile:[FLObjcAllIncludesHeaderFile allIncludesHeaderFile:self fileName:inputProject.schemaName]];
     }
 }
@@ -174,13 +223,6 @@
 }
 
 
-#if FL_MRC
-- (void) dealloc {
-	[_inputProject release];
-    [_fileManager release];
-    
-	[super dealloc];
-}
-#endif
+
 
 @end

@@ -83,12 +83,34 @@
     return self.enumType.generatedReference;
 }
 
+- (NSString*) enumSetClassName {
+    return  [NSString stringWithFormat:@"%@EnumSet", self.generatedName];
+}
+
+- (NSString*) stringFromEnumFunctionName {
+    return [NSString stringWithFormat:@"%@StringFromEnum", self.generatedName];
+}
+
+- (NSString*) enumFromStringFunctionName {
+    return [NSString stringWithFormat:@"%@EnumFromString", self.generatedName];
+}
+
+- (NSString*) stringFromEnumFunctionPrototype {
+    return [NSString stringWithFormat:@"NSString* %@(%@ theEnum)", self.stringFromEnumFunctionName, self.generatedName];
+}
+
+- (NSString*) enumFromStringFunctionPrototype {
+    return [NSString stringWithFormat:@"%@ %@(NSString* theString)", self.generatedName, self.stringFromEnumFunctionName];
+}
+
+
 - (void) writeCodeToHeaderFile:(FLObjcFile*) file 
     withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
     
     [codeBuilder appendImport:NSStringFromClass([FLTypeSpecificEnumSet class])];
     [codeBuilder appendBlankLine];
-    
+
+// define typedefs    
     [codeBuilder appendLine:@"typedef enum {"];
     [codeBuilder indent:^{
         for(FLObjcEnumValueType* value in _enumValues) {
@@ -104,33 +126,29 @@
     }
     [codeBuilder appendBlankLine];
 
-// TODO: abstract this
-    [codeBuilder appendLineWithFormat:@"extern NSString* %@StringFromEnum(%@ theEnum);", self.enumType.generatedName, self.enumType.generatedName];
-    [codeBuilder appendLineWithFormat:@"extern %@ %@EnumFromString(NSString* theString);", self.enumType.generatedName, self.enumType.generatedName];
-    
-    
+// external conversion functions
+    [codeBuilder appendLineWithFormat:@"extern %@;", self.stringFromEnumFunctionPrototype];
+    [codeBuilder appendLineWithFormat:@"extern %@;", self.enumFromStringFunctionPrototype];
     [codeBuilder appendBlankLine];
 
-    NSString* className = [NSString stringWithFormat:@"%@EnumSet", self.enumType.generatedName];
-
-    [codeBuilder appendInterfaceDeclaration:className
+// interface def for enumSet object
+    [codeBuilder appendInterfaceDeclaration:self.enumSetClassName
                                  superClass:NSStringFromClass([FLTypeSpecificEnumSet class]) 
                                   protocols:nil appendMemberDeclarations:nil];
 
     [codeBuilder appendMethodDeclaration:@"enumSet" type:@"id" isInstanceMethod:NO closeLine:YES];
     
     [codeBuilder appendEnd];
-                                  
-    
-    
 }
+
 - (void) writeCodeToSourceFile:(FLObjcFile*) file 
                withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
 
     [codeBuilder appendImport:self.enumType.generatedName];
     [codeBuilder appendBlankLine];
                
-    [codeBuilder appendLineWithFormat:@"NSString* %@StringFromEnum(%@ theEnum) {", self.enumType.generatedName, self.enumType.generatedName];
+// string from enum function               
+    [codeBuilder appendLineWithFormat:@"%@ {", self.stringFromEnumFunctionPrototype];
     [codeBuilder indent: ^{
         [codeBuilder appendSwitchBlock:@"theEnum" caseStatements:^{
             for(NSString* define in _defines) {
@@ -145,7 +163,8 @@
     [codeBuilder appendLine:@"}"];
     [codeBuilder appendBlankLine];
 
-    [codeBuilder appendLineWithFormat:@"%@ %@EnumFromString(NSString* theString) {", self.enumType.generatedName, self.enumType.generatedName];
+// enum from string function
+    [codeBuilder appendLineWithFormat:@"%@ {", self.enumFromStringFunctionPrototype];
     [codeBuilder indent: ^{
         [codeBuilder appendStaticVariable:@"NSDictionary*" name:@"s_enumLookup" initialValue:@"nil"];
         [codeBuilder appendRunOnceBlock:@"s_lookupPredicate" block:^{
@@ -167,17 +186,51 @@
     [codeBuilder appendLine:@"}"];
                
     [codeBuilder appendBlankLine];
-    
-    NSString* className = [NSString stringWithFormat:@"%@EnumSet", self.enumType.generatedName];
-    
-    [codeBuilder appendImplementation:className];
+
+// enumSet factory class implementation        
+    [codeBuilder appendImplementation:self.enumSetClassName];
     [codeBuilder appendMethodDeclaration:@"enumSet" type:@"id" isInstanceMethod:NO closeLine:NO];
     [codeBuilder scope:^{
         [codeBuilder appendReturnValue:[NSString stringWithFormat:@"FLAutorelease([[[self class] alloc] initWithValueLookup:(FLEnumSetEnumValueLookup*)  %@EnumFromString stringLookup:(FLEnumSetEnumStringLookup*) %@StringFromEnum])", self.enumType.generatedName, self.enumType.generatedName]];
     }];
     [codeBuilder appendEnd];
+}
 
+
+
+- (void) addEnumPropertyToObject:(FLObjcObject*) object withProperty:(FLObjcProperty*) property {
+    FLObjcCustomProperty* newProperty = [FLObjcCustomProperty objcCustomProperty:object.project];
+    NSString* newName = [NSString stringWithFormat:@"%@Enum", property.propertyName.generatedName];
+    newProperty.propertyName = [[property propertyName] copyWithNewName:newName];
+    newProperty.propertyType = [FLObjcValueType objcValueType:[FLObjcImportedName objcImportedName:self.generatedName] importFileName:nil];
+    [object addProperty:newProperty];
+    
+//    FLDocumentBuilder* 
+//    
+//    FLObjcStringStatement* getter = [FLObjcStringStatement objcStringStatement];
+//    
+//    
+//    
+//    newProperty.getter.statement
+}
+
+- (void) addEnumSetPropertyToObject:(FLObjcObject*) object withProperty:(FLObjcProperty*) property {
+    FLObjcCustomProperty* newProperty2 = [FLObjcCustomProperty objcCustomProperty:object.project];
+    
+    NSString* newName2 = [NSString stringWithFormat:@"%@EnumSet", property.propertyName.generatedName];
+    
+    newProperty2.propertyName = [[property propertyName] copyWithNewName:newName2];
+    newProperty2.propertyType = [FLObjcObjectType objcObjectType:[FLObjcImportedName objcImportedName:[NSString stringWithFormat:@"%@EnumSet", self.generatedName]] importFileName:nil];
+    
+    [object addProperty:newProperty2];
+}
+
+
+- (void) objcObject:(FLObjcObject*) object didConfigureProperty:(FLObjcProperty *)property  {
+    [self addEnumPropertyToObject:object withProperty:property];
+    [self addEnumSetPropertyToObject:object withProperty:property];
 
 }
+
 @end
 

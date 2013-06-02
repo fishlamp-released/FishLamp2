@@ -30,5 +30,11 @@
 
 - (void) addValue:(FLObjcEnumValueType*) enumValueType;
 - (void) configureWithCodeEnumType:(FLCodeEnumType*) codeEnumType;
+
+
+// called from FLObjcEnumType
+- (void) objcObject:(FLObjcObject*) object 
+didConfigureProperty:(FLObjcProperty *)property;
+
 @end
 

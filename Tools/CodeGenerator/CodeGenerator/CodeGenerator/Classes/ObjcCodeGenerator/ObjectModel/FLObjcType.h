@@ -26,9 +26,8 @@
 @property (readonly, assign, nonatomic) BOOL isObject;
 @property (readonly, strong, nonatomic) NSString* generatedObjectClassName;
 
-- (void) addAdditionalStuffToObject:(FLObjcObject*) object 
-                        forProperty:(FLObjcProperty*) property
-                   withTypeRegistry:(FLObjcProject*) registry;
+- (void) objcObject:(FLObjcObject*) object 
+didConfigureProperty:(FLObjcProperty*) property;
 
 @end
 
