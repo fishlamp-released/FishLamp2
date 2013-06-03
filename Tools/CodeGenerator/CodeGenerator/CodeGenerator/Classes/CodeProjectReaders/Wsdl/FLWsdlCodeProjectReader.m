@@ -382,7 +382,7 @@
         [object replacePlaceholderArrays:self];
     }
 
-    FLCodeProject* project = [FLCodeProject project];
+    FLCodeProject* project = [FLCodeProject codeProject];
 	if(FLStringIsNotEmpty(self.wsdlDefinitions.documentation)) {
 		project.comment = self.wsdlDefinitions.documentation;
 	}

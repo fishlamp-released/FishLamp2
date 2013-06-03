@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FLModelObject.h"
 
 typedef enum {
   FLCodeLineTypeReturnSelf,
@@ -18,7 +18,7 @@ typedef enum {
 #define FLCodeLineClassName @"ClassName"
 #define FLCodeLineString @"String"
 
-@interface FLCodeLine : NSObject {
+@interface FLCodeLine : FLModelObject {
 @private
     FLCodeLineType _codeLineType;
     NSMutableDictionary* _parameters;

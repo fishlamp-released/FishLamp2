@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project projectName="FishLamp Code Generator">
-    <organization name="GreenTongue Software LLC, Mike Fullerton"/>
+<project projectName="FishLamp Code Generator" canLazyCreate="YES">
+    
+<organization name="GreenTongue Software LLC, Mike Fullerton" />
     <license>
         <licenseName>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</licenseName>
     </license>
     <generatorOptions>
-	    <generateAllIncludesFile>YES</generateAllIncludesFile>
-        <objectsFolderName>GeneratedNew</objectsFolderName>
+        <generateAllIncludesFile>YES</generateAllIncludesFile>
+        <objectsFolderName>Generated</objectsFolderName>
         <typePrefix>FL</typePrefix>
     </generatorOptions>
-<!--    
+    <typeDefinition import="FLCodeLine.h" typeName="FLCodeLine" dataType="object"/>
+    <!--    
     <defines>
         <define define="FLDataTypeObject" value="object" isString="YES" comment="used for dataType in dataTypeDefinition"/>
         <define define="FLDataTypeValue" value="value" isString="YES" comment="used for dataType in dataTypeDefinition"/>
@@ -18,7 +20,7 @@
     </defines>
 -->
     <enumTypes>
-        <enumType typeName="FLCodeTypeID">
+        <enumType typeName="FLDataType">
             <enums>
                 <enum name="Object"/>
                 <enum name="Value"/>
@@ -41,11 +43,11 @@
                 <property name="type" type="FLCodeInputType" comment="import wsdl url (file or HTTP)"/>
             </properties>
         </object>
-    
         <object className="FLCodeStorageOptions" protocols="NSCopying">
             <properties>
                 <!-- defaults to NO -->
-                <property name="isStorable" type="bool" defaultValue="YES" comment="this defaults to NO. Note that storage options are ignored if the superclass object is not storable."/>
+                <!-- defaultValue="YES" -->
+                <property name="isStorable" type="bool" comment="this defaults to NO. Note that storage options are ignored if the superclass object is not storable."/>
                 <property name="isPrimaryKey" type="bool" comment="set this property to be a primary key in the data store"/>
                 <property name="isIndexed" type="bool" comment="set this property to be indexed for fast searches on it"/>
                 <property name="isUnique" type="bool" comment="make sure this value is unique is the data store for this type"/>
@@ -65,7 +67,7 @@
         </object>
         <object className="FLCodeTypeDefinition" protocols="NSCopying">
             <properties>
-                <property name="dataType" type="string" comment="the dataType of the type, e.g. object, struct, int, array" useForEquality="YES"/>
+                <property name="dataType" type="FLDataType" comment="the dataType of the type, e.g. object, struct, int, array" useForEquality="YES"/>
                 <property name="typeName" type="string" comment="name of the type, e.g. MyObject" useForEquality="YES"/>
                 <property name="import" type="string"/>
                 <property name="importIsPrivate" type="BOOL"/>
@@ -181,7 +183,7 @@
         <object className="FLCodeObject" protocols="NSCopying" superclass="FLCodeType">
             <properties>
                 <property name="protocols" type="string" comment="comma delimeted string"/>
-                <property name="name" type="string" comment="name of the type, e.g. bagelCount"/>
+                <property name="className" type="string" comment="name of the type, e.g. bagelCount"/>
                 <property name="storageOptions" type="FLCodeStorageOptions"/>
                 <property name="comment" type="string" comment="comment for this object"/>
                 <property name="superclass" type="string" comment="superclass for the object. by default this is set to NSObject"/>
@@ -288,6 +290,10 @@
                 <property name="name" type="string" comment="name of the method" useForEquality="YES"/>
                 <property name="comment" type="string" comment="comment about this method"/>
                 <property name="code" type="FLCodeCodeSnippet" comment=""/>
+                <property name="codeLines" type="array">
+				<arrayType name="codeLine" typeName="string"/>
+			  </property>
+
                 <property name="parameters" type="array" comment="list of parameters (FLCodeVariable) for this method">
                     <arrayTypes>
                         <arrayType name="parameter" typeName="FLCodeVariable"/>

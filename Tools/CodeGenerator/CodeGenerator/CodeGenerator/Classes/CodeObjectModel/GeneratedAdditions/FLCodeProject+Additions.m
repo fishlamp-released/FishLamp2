@@ -14,7 +14,9 @@
 @implementation FLCodeProject (Additions)
 
 - (NSString*) projectFolderPath {
-    return [[self.projectPath path] stringByDeletingLastPathComponent];
+//    return [[self.projectPath path] stringByDeletingLastPathComponent];
+
+    return [self.projectPath stringByDeletingLastPathComponent];
 }
 
 @end

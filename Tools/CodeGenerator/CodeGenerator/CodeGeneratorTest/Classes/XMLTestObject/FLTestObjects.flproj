@@ -17,7 +17,6 @@
         </enumType>
     </enumTypes>
     <typeDefinitions>
-        <typeDefinition typeName="FLGuid" import="FLGuid.h" dataType="Object"/>
         <typeDefinition typeName="FLXmlParser" import="FLXmlParser.h" dataType="Object"/>
     </typeDefinitions>
 	<imports>	
