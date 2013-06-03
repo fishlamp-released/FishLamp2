@@ -11,7 +11,6 @@
 
 @interface FLObjcObjectType : FLObjcType
          
-+ (id) objcObjectType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName;
+// use subclass, either immutable or mutable
 
 @end

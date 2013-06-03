@@ -249,7 +249,7 @@
     NSString* newName2 = [NSString stringWithFormat:@"%@EnumSet", property.propertyName.generatedName];
     
     newProperty.propertyName = [[property propertyName] copyWithNewName:newName2];
-    newProperty.propertyType = [FLObjcObjectType objcObjectType:[FLObjcImportedName objcImportedName:[NSString stringWithFormat:@"%@EnumSet", self.generatedName]] importFileName:nil];
+    newProperty.propertyType = [FLObjcImmutableObjectType objcImmutableObjectType:[FLObjcImportedName objcImportedName:[NSString stringWithFormat:@"%@EnumSet", self.generatedName]] importFileName:nil];
     
     [object addProperty:newProperty];
 

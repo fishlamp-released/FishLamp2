@@ -94,6 +94,10 @@ didConfigureProperty:(FLObjcProperty*) property {
     return self.isObject;
 }
 
+- (BOOL) isMutableObject {
+    return NO;
+}
+
 @end
 
 

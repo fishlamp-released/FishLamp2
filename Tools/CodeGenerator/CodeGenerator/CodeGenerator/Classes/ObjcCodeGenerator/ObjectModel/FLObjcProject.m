@@ -90,7 +90,7 @@
     
         switch(def.dataTypeAsEnum) {
             case FLCodeDataTypeObject:
-                [self.typeRegistry addType:[FLObjcObjectType objcObjectType:name importFileName:def.import]];
+                [self.typeRegistry addType:[FLObjcMutableObjectType objcMutableObjectType:name importFileName:def.import]];
             break;
             
             case FLCodeDataTypeValue:
@@ -102,7 +102,7 @@
             break;
             
             case FLCodeDataTypeImmuteable:
-                // not sure what this is
+                [self.typeRegistry addType:[FLObjcImmutableObjectType objcImmutableObjectType:name importFileName:def.import]];
             break;
         }
     }
@@ -125,7 +125,7 @@
         }
     
         FLObjcClassName* name = [FLObjcClassName objcClassName:object.className prefix:prefix];
-        [self.typeRegistry addType:[FLObjcObjectType objcObjectType:name importFileName:nil]];
+        [self.typeRegistry addType:[FLObjcMutableObjectType objcMutableObjectType:name importFileName:nil]];
     } 
 }
 
@@ -153,7 +153,7 @@
 
         NSString* className = [NSString stringWithFormat:@"%@EnumSet", anEnum.enumType.generatedName];
         
-        [self.typeRegistry addType:[FLObjcObjectType objcObjectType:[FLObjcImportedName objcImportedName:className] 
+        [self.typeRegistry addType:[FLObjcImmutableObjectType objcImmutableObjectType:[FLObjcImportedName objcImportedName:className] 
                                                  importFileName:[NSString stringWithFormat:@"%@.h", anEnum.enumType.generatedName]]];
     }
 
@@ -163,7 +163,7 @@
 // update the objects with a input file name
     for(FLCodeObject* object in inputProject.objects) {
         FLObjcClassName* className = [FLObjcClassName objcClassName:object.className prefix:self.classPrefix];
-        FLObjcType* forwardDecl = [FLObjcObjectType objcObjectType:className importFileName:[NSString stringWithFormat:@"%@.h", className.generatedName]];
+        FLObjcType* forwardDecl = [FLObjcMutableObjectType objcMutableObjectType:className importFileName:[NSString stringWithFormat:@"%@.h", className.generatedName]];
         [self.typeRegistry replaceType:forwardDecl];
     }
 

@@ -20,6 +20,14 @@
 
 @implementation FLCodeObject
 
+- (id) init {	
+	self = [super init];
+	if(self) {
+		
+	}
+	return self;
+}
+
 @synthesize canLazyCreate = __canLazyCreate;
 @synthesize categories = __categories;
 
