@@ -5,7 +5,7 @@
       location = "container:"
       name = "Tools">
       <FileRef
-         location = "absolute:/Users/mikefullerton/Enlistments/FishLamp/Tools/CodeGenerator/PackMule/../CodeGenerator/Lib/CodeGenerator.xcodeproj">
+         location = "group:../Tools/CodeGenerator/CodeGenerator/Lib/CodeGenerator.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:../Tools/CodeGenerator/PackMule/PackMule.xcodeproj">

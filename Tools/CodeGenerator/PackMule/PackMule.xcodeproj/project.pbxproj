@@ -48,9 +48,25 @@
 		27B4F088169A31C500D56DFA /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B4F087169A31C500D56DFA /* ImageIO.framework */; };
 		27B83D651759463000B49A06 /* attention.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B83D631759463000B49A06 /* attention.png */; };
 		27B83D661759463000B49A06 /* attention@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27B83D641759463000B49A06 /* attention@2x.png */; };
+		27DACB27175CFD8C00364292 /* libCodeGenerator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 781D1935175C23EA008CCDC9 /* libCodeGenerator.a */; };
+		27DACB28175CFD8C00364292 /* libFishLampCocoaApp-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 781D192B175C23EA008CCDC9 /* libFishLampCocoaApp-64-MRC.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		27DACB23175CFD7600364292 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27B4F164169A3A2200D56DFA /* CodeGenerator.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2788768B1603E98600C8B7B6;
+			remoteInfo = CodeGenerator;
+		};
+		27DACB25175CFD7600364292 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 279A1C8E16A0886B004794BB;
+			remoteInfo = "FishLampCocoaApp-64-MRC";
+		};
 		781D1928175C23EA008CCDC9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2731220A175506FF00F4DC0B /* FishLampCocoaApp.xcodeproj */;
@@ -185,6 +201,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27DACB27175CFD8C00364292 /* libCodeGenerator.a in Frameworks */,
+				27DACB28175CFD8C00364292 /* libFishLampCocoaApp-64-MRC.a in Frameworks */,
 				27B4F088169A31C500D56DFA /* ImageIO.framework in Frameworks */,
 				27B4F086169A31B700D56DFA /* QuartzCore.framework in Frameworks */,
 				27B4F083169A318600D56DFA /* CFNetwork.framework in Frameworks */,
@@ -271,11 +289,11 @@
 		274A4ACB161268AA0069944E = {
 			isa = PBXGroup;
 			children = (
-				274A4AF8161268AB0069944E /* Supporting Files */,
 				273121B21755043E00F4DC0B /* Whittle */,
+				273121CD175504C100F4DC0B /* PackMule */,
+				274A4AF8161268AB0069944E /* Supporting Files */,
 				274A4AD9161268AA0069944E /* Frameworks */,
 				274A4AD7161268AA0069944E /* Products */,
-				273121CD175504C100F4DC0B /* PackMule */,
 			);
 			sourceTree = "<group>";
 		};
@@ -413,6 +431,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				27DACB24175CFD7600364292 /* PBXTargetDependency */,
+				27DACB26175CFD7600364292 /* PBXTargetDependency */,
 			);
 			name = PackMule;
 			productName = PackMule;
@@ -553,6 +573,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		27DACB24175CFD7600364292 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CodeGenerator;
+			targetProxy = 27DACB23175CFD7600364292 /* PBXContainerItemProxy */;
+		};
+		27DACB26175CFD7600364292 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FishLampCocoaApp-64-MRC";
+			targetProxy = 27DACB25175CFD7600364292 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		27B4D22D1755316E008540B8 /* FLCodeGeneratorDocument.xib */ = {

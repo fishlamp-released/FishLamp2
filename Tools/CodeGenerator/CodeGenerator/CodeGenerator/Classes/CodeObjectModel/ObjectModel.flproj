@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project projectName="FishLamp Code Generator">
-    <organization name="GreenTongue Software LLC, Mike Fullerton"/>
+<project projectName="FishLamp Code Generator" canLazyCreate="YES">
+    
+<organization name="GreenTongue Software LLC, Mike Fullerton" />
     <license>
         <licenseName>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</licenseName>
     </license>
     <generatorOptions>
         <generateAllIncludesFile>YES</generateAllIncludesFile>
-        <objectsFolderName>GeneratedNew</objectsFolderName>
+        <objectsFolderName>Generated</objectsFolderName>
         <typePrefix>FL</typePrefix>
     </generatorOptions>
     <typeDefinition import="FLCodeLine.h" typeName="FLCodeLine" dataType="object"/>
