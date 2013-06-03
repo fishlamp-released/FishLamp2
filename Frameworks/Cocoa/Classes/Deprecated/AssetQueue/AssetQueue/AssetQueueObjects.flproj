@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema projectName="FishLamp Mobile">
+	<organization name="GreenTongue Software, LLC" />   
+<generatorOptions>
+        <typePrefix>FL</typePrefix>
+    </generatorOptions>
+    <typeDefinitions>
+        <typeDefinition typeName="FLAsset" dataType="Object" import="FLAsset.h"/>
+        <typeDefinition typeName="SDKImage" dataType="Object" import=""/>
+    </typeDefinitions>
+    <objects>
+        <object className="FLUploadedAsset" superclass="FLModelObject">
+            <properties>
+                <property type="string" name="queueUID">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="int" name="uploadedAssetUID">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="int" name="assetType">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="string" name="assetURL">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="string" name="assetUID"/>
+                <property type="string" name="uploadedAssetURL"/>
+                <property type="long" name="uploadedAssetId"/>
+                <property type="long" name="uploadDestinationId"/>
+                <property type="string" name="uploadDestinationName"/>
+                <property type="string" name="uploadDestinationURL"/>
+                <property type="string" name="assetName"/>
+                <property type="SDKImage" name="thumbnail"/>
+                <property type="NSDate" name="uploadedDate"/>
+            </properties>
+        </object>
+        <object className="FLExportedAsset" superclass="FLModelObject">
+            <properties>
+                <property type="string" name="originalID">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="string" name="assetURL">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="NSDate" name="exportedDate">
+                    <storageOptions isRequired="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object className="FLQueuedAsset" superclass="FLModelObject">
+            <properties>
+                <property type="string" name="queueUID">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="string" name="assetUID">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="string" name="assetURL">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="int" name="assetType">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="int" name="positionInQueue">
+                    <storageOptions isIndexed="YES"/>
+                </property>
+                <property type="int" name="assetState"/>
+                <property type="NSDate" name="queuedDate">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="NSDate" name="createdDate">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="NSDate" name="modifiedDate">
+                    <storageOptions isIndexed="YES" isRequired="YES"/>
+                </property>
+                <property type="string" name="uploadedAssetURL"/>
+                <property type="long" name="uploadedAssetId"/>
+                <property type="long" name="uploadDestinationId"/>
+                <property type="string" name="uploadDestinationName"/>
+                <property type="string" name="uploadDestinationURL"/>
+                <property type="long" name="assetSize"/>
+                <property type="string" name="assetName"/>
+                <property type="string" name="assetDescription"/>
+                <property type="string" name="assetFileName"/>
+                <property type="string" name="copyright"/>
+                <property type="array" name="keywords"/>
+                <property type="FLAsset" name="assetObject">
+                    <storageOptions isStorable="NO"/>
+                </property>
+            </properties>
+        </object>
+        <object className="FLAssetQueueState" superclass="FLModelObject">
+            <properties>
+                <property type="string" name="queueUID">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="int" name="sortOrder"/>
+                <property type="long" name="totalAssetsAdded"/>
+                <property type="int" name="firstQueuePosition"/>
+                <property type="int" name="lastQueuePosition"/>
+            </properties>
+        </object>
+    </objects>
+</schema>

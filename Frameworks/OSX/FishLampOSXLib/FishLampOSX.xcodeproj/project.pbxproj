@@ -7,270 +7,270 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2702EF63172B02230084066F /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EF61172B02230084066F /* FLFileDropTableViewController.h */; };
-		2702EF64172B02230084066F /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EF61172B02230084066F /* FLFileDropTableViewController.h */; };
-		2702EF65172B02230084066F /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EF61172B02230084066F /* FLFileDropTableViewController.h */; };
-		2702EF66172B02230084066F /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EF61172B02230084066F /* FLFileDropTableViewController.h */; };
-		2702EF67172B02230084066F /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EF62172B02230084066F /* FLFileDropTableViewController.m */; };
-		2702EF68172B02230084066F /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EF62172B02230084066F /* FLFileDropTableViewController.m */; };
-		2702EF69172B02230084066F /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EF62172B02230084066F /* FLFileDropTableViewController.m */; };
-		2702EF6A172B02230084066F /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EF62172B02230084066F /* FLFileDropTableViewController.m */; };
-		272D0381172DC73900302B2E /* FLCustomButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D037F172DC73900302B2E /* FLCustomButton.h */; };
-		272D0382172DC73900302B2E /* FLCustomButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D037F172DC73900302B2E /* FLCustomButton.h */; };
-		272D0383172DC73900302B2E /* FLCustomButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D037F172DC73900302B2E /* FLCustomButton.h */; };
-		272D0384172DC73900302B2E /* FLCustomButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D037F172DC73900302B2E /* FLCustomButton.h */; };
-		272D0385172DC73900302B2E /* FLCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D0380172DC73900302B2E /* FLCustomButton.m */; };
-		272D0386172DC73900302B2E /* FLCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D0380172DC73900302B2E /* FLCustomButton.m */; };
-		272D0387172DC73900302B2E /* FLCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D0380172DC73900302B2E /* FLCustomButton.m */; };
-		272D0388172DC73900302B2E /* FLCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D0380172DC73900302B2E /* FLCustomButton.m */; };
-		272D039A172DD76000302B2E /* FLLinkTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D0398172DD76000302B2E /* FLLinkTextField.h */; };
-		272D039B172DD76000302B2E /* FLLinkTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D0398172DD76000302B2E /* FLLinkTextField.h */; };
-		272D039C172DD76000302B2E /* FLLinkTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D0398172DD76000302B2E /* FLLinkTextField.h */; };
-		272D039D172DD76000302B2E /* FLLinkTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D0398172DD76000302B2E /* FLLinkTextField.h */; };
-		272D039E172DD76000302B2E /* FLLinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D0399172DD76000302B2E /* FLLinkTextField.m */; };
-		272D039F172DD76000302B2E /* FLLinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D0399172DD76000302B2E /* FLLinkTextField.m */; };
-		272D03A0172DD76000302B2E /* FLLinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D0399172DD76000302B2E /* FLLinkTextField.m */; };
-		272D03A1172DD76000302B2E /* FLLinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D0399172DD76000302B2E /* FLLinkTextField.m */; };
-		272D03EA172DF98700302B2E /* FLProgressPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D03E7172DF98600302B2E /* FLProgressPanel.h */; };
-		272D03EB172DF98700302B2E /* FLProgressPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D03E7172DF98600302B2E /* FLProgressPanel.h */; };
-		272D03EC172DF98700302B2E /* FLProgressPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D03E7172DF98600302B2E /* FLProgressPanel.h */; };
-		272D03ED172DF98700302B2E /* FLProgressPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D03E7172DF98600302B2E /* FLProgressPanel.h */; };
-		272D03EE172DF98700302B2E /* FLProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D03E8172DF98600302B2E /* FLProgressPanel.m */; };
-		272D03EF172DF98700302B2E /* FLProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D03E8172DF98600302B2E /* FLProgressPanel.m */; };
-		272D03F0172DF98700302B2E /* FLProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D03E8172DF98600302B2E /* FLProgressPanel.m */; };
-		272D03F1172DF98700302B2E /* FLProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 272D03E8172DF98600302B2E /* FLProgressPanel.m */; };
-		272EE7ED1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */; };
-		272EE7EE1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */; };
-		272EE7EF1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */; };
-		272EE7F01732F8010025CFD6 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */; };
-		272EE7F11732F8020025CFD6 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */; };
-		272EE7F21732F8020025CFD6 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */; };
-		272EE7F31732F8020025CFD6 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */; };
-		272EE7F41732F8020025CFD6 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */; };
-		2743D31E1739BE08003BC70A /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2743D31B1739BE08003BC70A /* FLErrorWindowController.h */; };
-		2743D31F1739BE08003BC70A /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2743D31B1739BE08003BC70A /* FLErrorWindowController.h */; };
-		2743D3201739BE08003BC70A /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2743D31B1739BE08003BC70A /* FLErrorWindowController.h */; };
-		2743D3211739BE08003BC70A /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2743D31B1739BE08003BC70A /* FLErrorWindowController.h */; };
-		2743D3221739BE08003BC70A /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2743D31C1739BE08003BC70A /* FLErrorWindowController.m */; };
-		2743D3231739BE08003BC70A /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2743D31C1739BE08003BC70A /* FLErrorWindowController.m */; };
-		2743D3241739BE08003BC70A /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2743D31C1739BE08003BC70A /* FLErrorWindowController.m */; };
-		2743D3251739BE08003BC70A /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2743D31C1739BE08003BC70A /* FLErrorWindowController.m */; };
-		2744B3F0171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
-		2744B3F1171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
-		2744B3F2171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
-		2744B3F3171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */; };
-		2744B3F4171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */; };
-		2744B3F5171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */; };
-		2744B3F6171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */; };
-		2744B3F7171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */; };
-		2744B465172042930090B70D /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B447172042930090B70D /* FLPanelWizard.h */; };
-		2744B466172042930090B70D /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B447172042930090B70D /* FLPanelWizard.h */; };
-		2744B467172042930090B70D /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B447172042930090B70D /* FLPanelWizard.h */; };
-		2744B468172042930090B70D /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B447172042930090B70D /* FLPanelWizard.h */; };
-		2744B469172042930090B70D /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B448172042930090B70D /* FLPanelWizard.m */; };
-		2744B46A172042930090B70D /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B448172042930090B70D /* FLPanelWizard.m */; };
-		2744B46B172042930090B70D /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B448172042930090B70D /* FLPanelWizard.m */; };
-		2744B46C172042930090B70D /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B448172042930090B70D /* FLPanelWizard.m */; };
-		2744B46D172042930090B70D /* FLPanelManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B44A172042930090B70D /* FLPanelManager.h */; };
-		2744B46E172042930090B70D /* FLPanelManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B44A172042930090B70D /* FLPanelManager.h */; };
-		2744B46F172042930090B70D /* FLPanelManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B44A172042930090B70D /* FLPanelManager.h */; };
-		2744B470172042930090B70D /* FLPanelManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B44A172042930090B70D /* FLPanelManager.h */; };
-		2744B471172042930090B70D /* FLPanelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B44B172042930090B70D /* FLPanelManager.m */; };
-		2744B472172042930090B70D /* FLPanelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B44B172042930090B70D /* FLPanelManager.m */; };
-		2744B473172042930090B70D /* FLPanelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B44B172042930090B70D /* FLPanelManager.m */; };
-		2744B474172042930090B70D /* FLPanelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B44B172042930090B70D /* FLPanelManager.m */; };
-		2744B475172042930090B70D /* FLPanelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B44C172042930090B70D /* FLPanelViewController.h */; };
-		2744B476172042930090B70D /* FLPanelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B44C172042930090B70D /* FLPanelViewController.h */; };
-		2744B477172042930090B70D /* FLPanelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B44C172042930090B70D /* FLPanelViewController.h */; };
-		2744B478172042930090B70D /* FLPanelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B44C172042930090B70D /* FLPanelViewController.h */; };
-		2744B479172042930090B70D /* FLPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B44D172042930090B70D /* FLPanelViewController.m */; };
-		2744B47A172042930090B70D /* FLPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B44D172042930090B70D /* FLPanelViewController.m */; };
-		2744B47B172042930090B70D /* FLPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B44D172042930090B70D /* FLPanelViewController.m */; };
-		2744B47C172042930090B70D /* FLPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B44D172042930090B70D /* FLPanelViewController.m */; };
-		2744B485172042930090B70D /* FLPanelHostView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B451172042930090B70D /* FLPanelHostView.h */; };
-		2744B486172042930090B70D /* FLPanelHostView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B451172042930090B70D /* FLPanelHostView.h */; };
-		2744B487172042930090B70D /* FLPanelHostView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B451172042930090B70D /* FLPanelHostView.h */; };
-		2744B488172042930090B70D /* FLPanelHostView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B451172042930090B70D /* FLPanelHostView.h */; };
-		2744B489172042930090B70D /* FLPanelHostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B452172042930090B70D /* FLPanelHostView.m */; };
-		2744B48A172042930090B70D /* FLPanelHostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B452172042930090B70D /* FLPanelHostView.m */; };
-		2744B48B172042930090B70D /* FLPanelHostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B452172042930090B70D /* FLPanelHostView.m */; };
-		2744B48C172042930090B70D /* FLPanelHostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B452172042930090B70D /* FLPanelHostView.m */; };
-		2744B48D172042930090B70D /* FLSmallPanelView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B453172042930090B70D /* FLSmallPanelView.h */; };
-		2744B48E172042930090B70D /* FLSmallPanelView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B453172042930090B70D /* FLSmallPanelView.h */; };
-		2744B48F172042930090B70D /* FLSmallPanelView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B453172042930090B70D /* FLSmallPanelView.h */; };
-		2744B490172042930090B70D /* FLSmallPanelView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B453172042930090B70D /* FLSmallPanelView.h */; };
-		2744B491172042930090B70D /* FLSmallPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B454172042930090B70D /* FLSmallPanelView.m */; };
-		2744B492172042930090B70D /* FLSmallPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B454172042930090B70D /* FLSmallPanelView.m */; };
-		2744B493172042930090B70D /* FLSmallPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B454172042930090B70D /* FLSmallPanelView.m */; };
-		2744B494172042930090B70D /* FLSmallPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B454172042930090B70D /* FLSmallPanelView.m */; };
-		2744B495172042930090B70D /* FLLoginPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B458172042930090B70D /* FLLoginPanel.h */; };
-		2744B496172042930090B70D /* FLLoginPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B458172042930090B70D /* FLLoginPanel.h */; };
-		2744B497172042930090B70D /* FLLoginPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B458172042930090B70D /* FLLoginPanel.h */; };
-		2744B498172042930090B70D /* FLLoginPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B458172042930090B70D /* FLLoginPanel.h */; };
-		2744B499172042930090B70D /* FLLoginPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B459172042930090B70D /* FLLoginPanel.m */; };
-		2744B49A172042930090B70D /* FLLoginPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B459172042930090B70D /* FLLoginPanel.m */; };
-		2744B49B172042930090B70D /* FLLoginPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B459172042930090B70D /* FLLoginPanel.m */; };
-		2744B49C172042930090B70D /* FLLoginPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B459172042930090B70D /* FLLoginPanel.m */; };
-		2744B49D172042930090B70D /* FLWizardButtonViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B45D172042930090B70D /* FLWizardButtonViewController.h */; };
-		2744B49E172042930090B70D /* FLWizardButtonViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B45D172042930090B70D /* FLWizardButtonViewController.h */; };
-		2744B49F172042930090B70D /* FLWizardButtonViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B45D172042930090B70D /* FLWizardButtonViewController.h */; };
-		2744B4A0172042930090B70D /* FLWizardButtonViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B45D172042930090B70D /* FLWizardButtonViewController.h */; };
-		2744B4A1172042930090B70D /* FLWizardButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B45E172042930090B70D /* FLWizardButtonViewController.m */; };
-		2744B4A2172042930090B70D /* FLWizardButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B45E172042930090B70D /* FLWizardButtonViewController.m */; };
-		2744B4A3172042930090B70D /* FLWizardButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B45E172042930090B70D /* FLWizardButtonViewController.m */; };
-		2744B4A4172042930090B70D /* FLWizardButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B45E172042930090B70D /* FLWizardButtonViewController.m */; };
-		2744B4A5172042930090B70D /* FLWizardHeaderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B45F172042930090B70D /* FLWizardHeaderViewController.h */; };
-		2744B4A6172042930090B70D /* FLWizardHeaderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B45F172042930090B70D /* FLWizardHeaderViewController.h */; };
-		2744B4A7172042930090B70D /* FLWizardHeaderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B45F172042930090B70D /* FLWizardHeaderViewController.h */; };
-		2744B4A8172042930090B70D /* FLWizardHeaderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B45F172042930090B70D /* FLWizardHeaderViewController.h */; };
-		2744B4A9172042930090B70D /* FLWizardHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B460172042930090B70D /* FLWizardHeaderViewController.m */; };
-		2744B4AA172042930090B70D /* FLWizardHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B460172042930090B70D /* FLWizardHeaderViewController.m */; };
-		2744B4AB172042930090B70D /* FLWizardHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B460172042930090B70D /* FLWizardHeaderViewController.m */; };
-		2744B4AC172042930090B70D /* FLWizardHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B460172042930090B70D /* FLWizardHeaderViewController.m */; };
-		2744B4AD172042930090B70D /* FLWizardNavigationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B461172042930090B70D /* FLWizardNavigationViewController.h */; };
-		2744B4AE172042930090B70D /* FLWizardNavigationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B461172042930090B70D /* FLWizardNavigationViewController.h */; };
-		2744B4AF172042930090B70D /* FLWizardNavigationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B461172042930090B70D /* FLWizardNavigationViewController.h */; };
-		2744B4B0172042930090B70D /* FLWizardNavigationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B461172042930090B70D /* FLWizardNavigationViewController.h */; };
-		2744B4B1172042930090B70D /* FLWizardNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B462172042930090B70D /* FLWizardNavigationViewController.m */; };
-		2744B4B2172042930090B70D /* FLWizardNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B462172042930090B70D /* FLWizardNavigationViewController.m */; };
-		2744B4B3172042930090B70D /* FLWizardNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B462172042930090B70D /* FLWizardNavigationViewController.m */; };
-		2744B4B4172042930090B70D /* FLWizardNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B462172042930090B70D /* FLWizardNavigationViewController.m */; };
-		2744B4B5172042930090B70D /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B463172042930090B70D /* FLWizardViewController.h */; };
-		2744B4B6172042930090B70D /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B463172042930090B70D /* FLWizardViewController.h */; };
-		2744B4B7172042930090B70D /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B463172042930090B70D /* FLWizardViewController.h */; };
-		2744B4B8172042930090B70D /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B463172042930090B70D /* FLWizardViewController.h */; };
-		2744B4B9172042930090B70D /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B464172042930090B70D /* FLWizardViewController.m */; };
-		2744B4BA172042930090B70D /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B464172042930090B70D /* FLWizardViewController.m */; };
-		2744B4BB172042930090B70D /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B464172042930090B70D /* FLWizardViewController.m */; };
-		2744B4BC172042930090B70D /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B464172042930090B70D /* FLWizardViewController.m */; };
-		2744B4BF172042F80090B70D /* FLFramedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4BD172042F80090B70D /* FLFramedView.h */; };
-		2744B4C0172042F80090B70D /* FLFramedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4BD172042F80090B70D /* FLFramedView.h */; };
-		2744B4C1172042F80090B70D /* FLFramedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4BD172042F80090B70D /* FLFramedView.h */; };
-		2744B4C2172042F80090B70D /* FLFramedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4BD172042F80090B70D /* FLFramedView.h */; };
-		2744B4C3172042F80090B70D /* FLFramedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4BE172042F80090B70D /* FLFramedView.m */; };
-		2744B4C4172042F80090B70D /* FLFramedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4BE172042F80090B70D /* FLFramedView.m */; };
-		2744B4C5172042F80090B70D /* FLFramedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4BE172042F80090B70D /* FLFramedView.m */; };
-		2744B4C6172042F80090B70D /* FLFramedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4BE172042F80090B70D /* FLFramedView.m */; };
-		2744B4C9172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4C7172046080090B70D /* NSViewController+FLErrorSheet.h */; };
-		2744B4CA172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4C7172046080090B70D /* NSViewController+FLErrorSheet.h */; };
-		2744B4CB172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4C7172046080090B70D /* NSViewController+FLErrorSheet.h */; };
-		2744B4CC172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4C7172046080090B70D /* NSViewController+FLErrorSheet.h */; };
-		2744B4CD172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4C8172046080090B70D /* NSViewController+FLErrorSheet.m */; };
-		2744B4CE172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4C8172046080090B70D /* NSViewController+FLErrorSheet.m */; };
-		2744B4CF172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4C8172046080090B70D /* NSViewController+FLErrorSheet.m */; };
-		2744B4D0172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4C8172046080090B70D /* NSViewController+FLErrorSheet.m */; };
-		2744B4FF17204EE10090B70D /* NSImage+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4FD17204EE10090B70D /* NSImage+FLAdditions.h */; };
-		2744B50017204EE10090B70D /* NSImage+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4FD17204EE10090B70D /* NSImage+FLAdditions.h */; };
-		2744B50117204EE10090B70D /* NSImage+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4FD17204EE10090B70D /* NSImage+FLAdditions.h */; };
-		2744B50217204EE10090B70D /* NSImage+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2744B4FD17204EE10090B70D /* NSImage+FLAdditions.h */; };
-		2744B50317204EE10090B70D /* NSImage+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4FE17204EE10090B70D /* NSImage+FLAdditions.m */; };
-		2744B50417204EE10090B70D /* NSImage+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4FE17204EE10090B70D /* NSImage+FLAdditions.m */; };
-		2744B50517204EE10090B70D /* NSImage+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4FE17204EE10090B70D /* NSImage+FLAdditions.m */; };
-		2744B50617204EE10090B70D /* NSImage+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2744B4FE17204EE10090B70D /* NSImage+FLAdditions.m */; };
 		274932B81699F667008E8EC5 /* FishLampOSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 274932B71699F667008E8EC5 /* FishLampOSX-Prefix.pch */; };
 		274932B91699F667008E8EC5 /* FishLampOSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 274932B71699F667008E8EC5 /* FishLampOSX-Prefix.pch */; };
 		274932BA1699F667008E8EC5 /* FishLampOSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 274932B71699F667008E8EC5 /* FishLampOSX-Prefix.pch */; };
 		274932BB1699F667008E8EC5 /* FishLampOSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 274932B71699F667008E8EC5 /* FishLampOSX-Prefix.pch */; };
-		2749338B1699FADD008E8EC5 /* FishLampOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933891699FADD008E8EC5 /* FishLampOSX.h */; };
-		2749338C1699FADD008E8EC5 /* FishLampOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933891699FADD008E8EC5 /* FishLampOSX.h */; };
-		2749338D1699FADD008E8EC5 /* FishLampOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933891699FADD008E8EC5 /* FishLampOSX.h */; };
-		2749338E1699FADD008E8EC5 /* FishLampOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 274933891699FADD008E8EC5 /* FishLampOSX.h */; };
-		2749340C169A0D74008E8EC5 /* __OSXHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749340B169A0D74008E8EC5 /* __OSXHeaders.h */; };
-		2749340D169A0D74008E8EC5 /* __OSXHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749340B169A0D74008E8EC5 /* __OSXHeaders.h */; };
-		2749340E169A0D74008E8EC5 /* __OSXHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749340B169A0D74008E8EC5 /* __OSXHeaders.h */; };
-		2749340F169A0D74008E8EC5 /* __OSXHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 2749340B169A0D74008E8EC5 /* __OSXHeaders.h */; };
-		2779DBD816A7223200EAB16A /* FLTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2779DBD616A7223200EAB16A /* FLTextFieldCell.h */; };
-		2779DBD916A7223200EAB16A /* FLTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2779DBD616A7223200EAB16A /* FLTextFieldCell.h */; };
-		2779DBDA16A7223200EAB16A /* FLTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2779DBD616A7223200EAB16A /* FLTextFieldCell.h */; };
-		2779DBDB16A7223200EAB16A /* FLTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 2779DBD616A7223200EAB16A /* FLTextFieldCell.h */; };
-		2779DBDC16A7223200EAB16A /* FLTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2779DBD716A7223200EAB16A /* FLTextFieldCell.m */; };
-		2779DBDD16A7223200EAB16A /* FLTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2779DBD716A7223200EAB16A /* FLTextFieldCell.m */; };
-		2779DBDE16A7223200EAB16A /* FLTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2779DBD716A7223200EAB16A /* FLTextFieldCell.m */; };
-		2779DBDF16A7223200EAB16A /* FLTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2779DBD716A7223200EAB16A /* FLTextFieldCell.m */; };
-		277AF47216E3B54400C284BF /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 277AF47016E3B54400C284BF /* FLButtonCell.h */; };
-		277AF47316E3B54400C284BF /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 277AF47016E3B54400C284BF /* FLButtonCell.h */; };
-		277AF47416E3B54400C284BF /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 277AF47016E3B54400C284BF /* FLButtonCell.h */; };
-		277AF47516E3B54400C284BF /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 277AF47016E3B54400C284BF /* FLButtonCell.h */; };
-		277AF47616E3B54400C284BF /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 277AF47116E3B54400C284BF /* FLButtonCell.m */; };
-		277AF47716E3B54400C284BF /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 277AF47116E3B54400C284BF /* FLButtonCell.m */; };
-		277AF47816E3B54400C284BF /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 277AF47116E3B54400C284BF /* FLButtonCell.m */; };
-		277AF47916E3B54400C284BF /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 277AF47116E3B54400C284BF /* FLButtonCell.m */; };
-		278DB49E16EE887A0087374D /* FLCickableImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB49C16EE887A0087374D /* FLCickableImageView.h */; };
-		278DB49F16EE887A0087374D /* FLCickableImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB49C16EE887A0087374D /* FLCickableImageView.h */; };
-		278DB4A016EE887A0087374D /* FLCickableImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB49C16EE887A0087374D /* FLCickableImageView.h */; };
-		278DB4A116EE887A0087374D /* FLCickableImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB49C16EE887A0087374D /* FLCickableImageView.h */; };
-		278DB4A216EE887A0087374D /* FLCickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB49D16EE887A0087374D /* FLCickableImageView.m */; };
-		278DB4A316EE887A0087374D /* FLCickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB49D16EE887A0087374D /* FLCickableImageView.m */; };
-		278DB4A416EE887A0087374D /* FLCickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB49D16EE887A0087374D /* FLCickableImageView.m */; };
-		278DB4A516EE887A0087374D /* FLCickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB49D16EE887A0087374D /* FLCickableImageView.m */; };
-		278DB4AD16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB4AB16EE93EB0087374D /* FLImagePlaceholderView.h */; };
-		278DB4AE16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB4AB16EE93EB0087374D /* FLImagePlaceholderView.h */; };
-		278DB4AF16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB4AB16EE93EB0087374D /* FLImagePlaceholderView.h */; };
-		278DB4B016EE93EB0087374D /* FLImagePlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278DB4AB16EE93EB0087374D /* FLImagePlaceholderView.h */; };
-		278DB4B116EE93EB0087374D /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */; };
-		278DB4B216EE93EB0087374D /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */; };
-		278DB4B316EE93EB0087374D /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */; };
-		278DB4B416EE93EB0087374D /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */; };
-		27A848881732FB1600115833 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848861732FB1600115833 /* FLPanelManagerState.h */; };
-		27A848891732FB1600115833 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848861732FB1600115833 /* FLPanelManagerState.h */; };
-		27A8488A1732FB1600115833 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848861732FB1600115833 /* FLPanelManagerState.h */; };
-		27A8488B1732FB1600115833 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A848861732FB1600115833 /* FLPanelManagerState.h */; };
-		27A8488C1732FB1600115833 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848871732FB1600115833 /* FLPanelManagerState.m */; };
-		27A8488D1732FB1600115833 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848871732FB1600115833 /* FLPanelManagerState.m */; };
-		27A8488E1732FB1600115833 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848871732FB1600115833 /* FLPanelManagerState.m */; };
-		27A8488F1732FB1600115833 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A848871732FB1600115833 /* FLPanelManagerState.m */; };
-		27BC8A5017171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */; };
-		27BC8A5117171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */; };
-		27BC8A5217171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */; };
-		27BC8A5317171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */; };
-		27BC8A5417171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */; };
-		27BC8A5517171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */; };
-		27BC8A5617171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */; };
-		27BC8A5717171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */; };
-		27C77D61172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */; };
-		27C77D62172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */; };
-		27C77D63172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */; };
-		27C77D64172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */; };
-		27C77D65172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C77D60172E07480027AE3E /* FLHttpController+UserLogin.m */; };
-		27C77D66172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C77D60172E07480027AE3E /* FLHttpController+UserLogin.m */; };
-		27C77D67172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C77D60172E07480027AE3E /* FLHttpController+UserLogin.m */; };
-		27C77D68172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C77D60172E07480027AE3E /* FLHttpController+UserLogin.m */; };
-		27E80324170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */; };
-		27E80325170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */; };
-		27E80326170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */; };
-		27E80327170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */; };
-		27E80328170346AC0012BFDD /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80320170346AC0012BFDD /* FLCommandLineTool.h */; };
-		27E80329170346AC0012BFDD /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80320170346AC0012BFDD /* FLCommandLineTool.h */; };
-		27E8032A170346AC0012BFDD /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80320170346AC0012BFDD /* FLCommandLineTool.h */; };
-		27E8032B170346AC0012BFDD /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80320170346AC0012BFDD /* FLCommandLineTool.h */; };
-		27E8032C170346AC0012BFDD /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80321170346AC0012BFDD /* FLCommandLineTool.m */; };
-		27E8032D170346AC0012BFDD /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80321170346AC0012BFDD /* FLCommandLineTool.m */; };
-		27E8032E170346AC0012BFDD /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80321170346AC0012BFDD /* FLCommandLineTool.m */; };
-		27E8032F170346AC0012BFDD /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80321170346AC0012BFDD /* FLCommandLineTool.m */; };
-		27E80330170346AC0012BFDD /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommand.h */; };
-		27E80331170346AC0012BFDD /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommand.h */; };
-		27E80332170346AC0012BFDD /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommand.h */; };
-		27E80333170346AC0012BFDD /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E80322170346AC0012BFDD /* FLShellCommand.h */; };
-		27E80334170346AC0012BFDD /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommand.m */; };
-		27E80335170346AC0012BFDD /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommand.m */; };
-		27E80336170346AC0012BFDD /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommand.m */; };
-		27E80337170346AC0012BFDD /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E80323170346AC0012BFDD /* FLShellCommand.m */; };
-		27FC38191699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
-		27FC381A1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
-		27FC381B1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
-		27FC381C1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */; };
-		27FC381D1699F5E1001F4228 /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC38151699F5E1001F4228 /* FLGlobalMenuController.m */; };
-		27FC381E1699F5E1001F4228 /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC38151699F5E1001F4228 /* FLGlobalMenuController.m */; };
-		27FC381F1699F5E1001F4228 /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC38151699F5E1001F4228 /* FLGlobalMenuController.m */; };
-		27FC38201699F5E1001F4228 /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC38151699F5E1001F4228 /* FLGlobalMenuController.m */; };
-		27FC38211699F5E1001F4228 /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38171699F5E1001F4228 /* NSView+FLAdditions.h */; };
-		27FC38221699F5E1001F4228 /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38171699F5E1001F4228 /* NSView+FLAdditions.h */; };
-		27FC38231699F5E1001F4228 /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38171699F5E1001F4228 /* NSView+FLAdditions.h */; };
-		27FC38241699F5E1001F4228 /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FC38171699F5E1001F4228 /* NSView+FLAdditions.h */; };
-		27FC38251699F5E1001F4228 /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC38181699F5E1001F4228 /* NSView+FLAdditions.m */; };
-		27FC38261699F5E1001F4228 /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC38181699F5E1001F4228 /* NSView+FLAdditions.m */; };
-		27FC38271699F5E1001F4228 /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC38181699F5E1001F4228 /* NSView+FLAdditions.m */; };
-		27FC38281699F5E1001F4228 /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC38181699F5E1001F4228 /* NSView+FLAdditions.m */; };
+		27821626175D449B007C5F26 /* __OSXHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D1175D449B007C5F26 /* __OSXHeaders.h */; };
+		27821627175D449B007C5F26 /* __OSXHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D1175D449B007C5F26 /* __OSXHeaders.h */; };
+		27821628175D449B007C5F26 /* __OSXHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D1175D449B007C5F26 /* __OSXHeaders.h */; };
+		27821629175D449B007C5F26 /* __OSXHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D1175D449B007C5F26 /* __OSXHeaders.h */; };
+		2782162A175D449B007C5F26 /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D3175D449B007C5F26 /* FishLampCommandLineTool.h */; };
+		2782162B175D449B007C5F26 /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D3175D449B007C5F26 /* FishLampCommandLineTool.h */; };
+		2782162C175D449B007C5F26 /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D3175D449B007C5F26 /* FishLampCommandLineTool.h */; };
+		2782162D175D449B007C5F26 /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D3175D449B007C5F26 /* FishLampCommandLineTool.h */; };
+		2782162E175D449B007C5F26 /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D4175D449B007C5F26 /* FLCommandLineTool.h */; };
+		2782162F175D449B007C5F26 /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D4175D449B007C5F26 /* FLCommandLineTool.h */; };
+		27821630175D449B007C5F26 /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D4175D449B007C5F26 /* FLCommandLineTool.h */; };
+		27821631175D449B007C5F26 /* FLCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D4175D449B007C5F26 /* FLCommandLineTool.h */; };
+		27821632175D449B007C5F26 /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215D5175D449B007C5F26 /* FLCommandLineTool.m */; };
+		27821633175D449B007C5F26 /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215D5175D449B007C5F26 /* FLCommandLineTool.m */; };
+		27821634175D449B007C5F26 /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215D5175D449B007C5F26 /* FLCommandLineTool.m */; };
+		27821635175D449B007C5F26 /* FLCommandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215D5175D449B007C5F26 /* FLCommandLineTool.m */; };
+		27821636175D449B007C5F26 /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D6175D449B007C5F26 /* FLShellCommand.h */; };
+		27821637175D449B007C5F26 /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D6175D449B007C5F26 /* FLShellCommand.h */; };
+		27821638175D449B007C5F26 /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D6175D449B007C5F26 /* FLShellCommand.h */; };
+		27821639175D449B007C5F26 /* FLShellCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D6175D449B007C5F26 /* FLShellCommand.h */; };
+		2782163A175D449B007C5F26 /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215D7175D449B007C5F26 /* FLShellCommand.m */; };
+		2782163B175D449B007C5F26 /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215D7175D449B007C5F26 /* FLShellCommand.m */; };
+		2782163C175D449B007C5F26 /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215D7175D449B007C5F26 /* FLShellCommand.m */; };
+		2782163D175D449B007C5F26 /* FLShellCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215D7175D449B007C5F26 /* FLShellCommand.m */; };
+		2782163E175D449B007C5F26 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D9175D449B007C5F26 /* FLModelObjectDocument.h */; };
+		2782163F175D449B007C5F26 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D9175D449B007C5F26 /* FLModelObjectDocument.h */; };
+		27821640175D449B007C5F26 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D9175D449B007C5F26 /* FLModelObjectDocument.h */; };
+		27821641175D449B007C5F26 /* FLModelObjectDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D9175D449B007C5F26 /* FLModelObjectDocument.h */; };
+		27821642175D449B007C5F26 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215DA175D449B007C5F26 /* FLModelObjectDocument.m */; };
+		27821643175D449B007C5F26 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215DA175D449B007C5F26 /* FLModelObjectDocument.m */; };
+		27821644175D449B007C5F26 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215DA175D449B007C5F26 /* FLModelObjectDocument.m */; };
+		27821645175D449B007C5F26 /* FLModelObjectDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215DA175D449B007C5F26 /* FLModelObjectDocument.m */; };
+		27821646175D449B007C5F26 /* FishLampOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DB175D449B007C5F26 /* FishLampOSX.h */; };
+		27821647175D449B007C5F26 /* FishLampOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DB175D449B007C5F26 /* FishLampOSX.h */; };
+		27821648175D449B007C5F26 /* FishLampOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DB175D449B007C5F26 /* FishLampOSX.h */; };
+		27821649175D449B007C5F26 /* FishLampOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DB175D449B007C5F26 /* FishLampOSX.h */; };
+		2782164A175D449B007C5F26 /* FLHttpController+UserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DC175D449B007C5F26 /* FLHttpController+UserLogin.h */; };
+		2782164B175D449B007C5F26 /* FLHttpController+UserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DC175D449B007C5F26 /* FLHttpController+UserLogin.h */; };
+		2782164C175D449B007C5F26 /* FLHttpController+UserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DC175D449B007C5F26 /* FLHttpController+UserLogin.h */; };
+		2782164D175D449B007C5F26 /* FLHttpController+UserLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DC175D449B007C5F26 /* FLHttpController+UserLogin.h */; };
+		2782164E175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215DD175D449B007C5F26 /* FLHttpController+UserLogin.m */; };
+		2782164F175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215DD175D449B007C5F26 /* FLHttpController+UserLogin.m */; };
+		27821650175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215DD175D449B007C5F26 /* FLHttpController+UserLogin.m */; };
+		27821651175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215DD175D449B007C5F26 /* FLHttpController+UserLogin.m */; };
+		27821652175D449B007C5F26 /* NSImage+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DF175D449B007C5F26 /* NSImage+FLAdditions.h */; };
+		27821653175D449B007C5F26 /* NSImage+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DF175D449B007C5F26 /* NSImage+FLAdditions.h */; };
+		27821654175D449B007C5F26 /* NSImage+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DF175D449B007C5F26 /* NSImage+FLAdditions.h */; };
+		27821655175D449B007C5F26 /* NSImage+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215DF175D449B007C5F26 /* NSImage+FLAdditions.h */; };
+		27821656175D449B007C5F26 /* NSImage+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E0175D449B007C5F26 /* NSImage+FLAdditions.m */; };
+		27821657175D449B007C5F26 /* NSImage+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E0175D449B007C5F26 /* NSImage+FLAdditions.m */; };
+		27821658175D449B007C5F26 /* NSImage+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E0175D449B007C5F26 /* NSImage+FLAdditions.m */; };
+		27821659175D449B007C5F26 /* NSImage+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E0175D449B007C5F26 /* NSImage+FLAdditions.m */; };
+		2782165A175D449B007C5F26 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E2175D449B007C5F26 /* FLGlobalMenuController.h */; };
+		2782165B175D449B007C5F26 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E2175D449B007C5F26 /* FLGlobalMenuController.h */; };
+		2782165C175D449B007C5F26 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E2175D449B007C5F26 /* FLGlobalMenuController.h */; };
+		2782165D175D449B007C5F26 /* FLGlobalMenuController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E2175D449B007C5F26 /* FLGlobalMenuController.h */; };
+		2782165E175D449B007C5F26 /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E3175D449B007C5F26 /* FLGlobalMenuController.m */; };
+		2782165F175D449B007C5F26 /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E3175D449B007C5F26 /* FLGlobalMenuController.m */; };
+		27821660175D449B007C5F26 /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E3175D449B007C5F26 /* FLGlobalMenuController.m */; };
+		27821661175D449B007C5F26 /* FLGlobalMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E3175D449B007C5F26 /* FLGlobalMenuController.m */; };
+		27821662175D449B007C5F26 /* FLActivityLogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E7175D449B007C5F26 /* FLActivityLogViewController.h */; };
+		27821663175D449B007C5F26 /* FLActivityLogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E7175D449B007C5F26 /* FLActivityLogViewController.h */; };
+		27821664175D449B007C5F26 /* FLActivityLogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E7175D449B007C5F26 /* FLActivityLogViewController.h */; };
+		27821665175D449B007C5F26 /* FLActivityLogViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E7175D449B007C5F26 /* FLActivityLogViewController.h */; };
+		27821666175D449B007C5F26 /* FLActivityLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E8175D449B007C5F26 /* FLActivityLogViewController.m */; };
+		27821667175D449B007C5F26 /* FLActivityLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E8175D449B007C5F26 /* FLActivityLogViewController.m */; };
+		27821668175D449B007C5F26 /* FLActivityLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E8175D449B007C5F26 /* FLActivityLogViewController.m */; };
+		27821669175D449B007C5F26 /* FLActivityLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215E8175D449B007C5F26 /* FLActivityLogViewController.m */; };
+		2782166A175D449B007C5F26 /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E9175D449B007C5F26 /* FLErrorWindowController.h */; };
+		2782166B175D449B007C5F26 /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E9175D449B007C5F26 /* FLErrorWindowController.h */; };
+		2782166C175D449B007C5F26 /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E9175D449B007C5F26 /* FLErrorWindowController.h */; };
+		2782166D175D449B007C5F26 /* FLErrorWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215E9175D449B007C5F26 /* FLErrorWindowController.h */; };
+		2782166E175D449B007C5F26 /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215EA175D449B007C5F26 /* FLErrorWindowController.m */; };
+		2782166F175D449B007C5F26 /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215EA175D449B007C5F26 /* FLErrorWindowController.m */; };
+		27821670175D449B007C5F26 /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215EA175D449B007C5F26 /* FLErrorWindowController.m */; };
+		27821671175D449B007C5F26 /* FLErrorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215EA175D449B007C5F26 /* FLErrorWindowController.m */; };
+		27821672175D449B007C5F26 /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215EC175D449B007C5F26 /* FLFileDropTableViewController.h */; };
+		27821673175D449B007C5F26 /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215EC175D449B007C5F26 /* FLFileDropTableViewController.h */; };
+		27821674175D449B007C5F26 /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215EC175D449B007C5F26 /* FLFileDropTableViewController.h */; };
+		27821675175D449B007C5F26 /* FLFileDropTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215EC175D449B007C5F26 /* FLFileDropTableViewController.h */; };
+		27821676175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215ED175D449B007C5F26 /* FLFileDropTableViewController.m */; };
+		27821677175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215ED175D449B007C5F26 /* FLFileDropTableViewController.m */; };
+		27821678175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215ED175D449B007C5F26 /* FLFileDropTableViewController.m */; };
+		27821679175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215ED175D449B007C5F26 /* FLFileDropTableViewController.m */; };
+		2782167A175D449B007C5F26 /* NSViewController+FLErrorSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215EE175D449B007C5F26 /* NSViewController+FLErrorSheet.h */; };
+		2782167B175D449B007C5F26 /* NSViewController+FLErrorSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215EE175D449B007C5F26 /* NSViewController+FLErrorSheet.h */; };
+		2782167C175D449B007C5F26 /* NSViewController+FLErrorSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215EE175D449B007C5F26 /* NSViewController+FLErrorSheet.h */; };
+		2782167D175D449B007C5F26 /* NSViewController+FLErrorSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215EE175D449B007C5F26 /* NSViewController+FLErrorSheet.h */; };
+		2782167E175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215EF175D449B007C5F26 /* NSViewController+FLErrorSheet.m */; };
+		2782167F175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215EF175D449B007C5F26 /* NSViewController+FLErrorSheet.m */; };
+		27821680175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215EF175D449B007C5F26 /* NSViewController+FLErrorSheet.m */; };
+		27821681175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215EF175D449B007C5F26 /* NSViewController+FLErrorSheet.m */; };
+		27821682175D449B007C5F26 /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F0175D449B007C5F26 /* NSWindowController+FLModalAdditions.h */; };
+		27821683175D449B007C5F26 /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F0175D449B007C5F26 /* NSWindowController+FLModalAdditions.h */; };
+		27821684175D449B007C5F26 /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F0175D449B007C5F26 /* NSWindowController+FLModalAdditions.h */; };
+		27821685175D449B007C5F26 /* NSWindowController+FLModalAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F0175D449B007C5F26 /* NSWindowController+FLModalAdditions.h */; };
+		27821686175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F1175D449B007C5F26 /* NSWindowController+FLModalAdditions.m */; };
+		27821687175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F1175D449B007C5F26 /* NSWindowController+FLModalAdditions.m */; };
+		27821688175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F1175D449B007C5F26 /* NSWindowController+FLModalAdditions.m */; };
+		27821689175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F1175D449B007C5F26 /* NSWindowController+FLModalAdditions.m */; };
+		2782168A175D449B007C5F26 /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F3175D449B007C5F26 /* FLButtonCell.h */; };
+		2782168B175D449B007C5F26 /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F3175D449B007C5F26 /* FLButtonCell.h */; };
+		2782168C175D449B007C5F26 /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F3175D449B007C5F26 /* FLButtonCell.h */; };
+		2782168D175D449B007C5F26 /* FLButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F3175D449B007C5F26 /* FLButtonCell.h */; };
+		2782168E175D449B007C5F26 /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F4175D449B007C5F26 /* FLButtonCell.m */; };
+		2782168F175D449B007C5F26 /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F4175D449B007C5F26 /* FLButtonCell.m */; };
+		27821690175D449B007C5F26 /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F4175D449B007C5F26 /* FLButtonCell.m */; };
+		27821691175D449B007C5F26 /* FLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F4175D449B007C5F26 /* FLButtonCell.m */; };
+		27821692175D449B007C5F26 /* FLCickableImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F5175D449B007C5F26 /* FLCickableImageView.h */; };
+		27821693175D449B007C5F26 /* FLCickableImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F5175D449B007C5F26 /* FLCickableImageView.h */; };
+		27821694175D449B007C5F26 /* FLCickableImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F5175D449B007C5F26 /* FLCickableImageView.h */; };
+		27821695175D449B007C5F26 /* FLCickableImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F5175D449B007C5F26 /* FLCickableImageView.h */; };
+		27821696175D449B007C5F26 /* FLCickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F6175D449B007C5F26 /* FLCickableImageView.m */; };
+		27821697175D449B007C5F26 /* FLCickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F6175D449B007C5F26 /* FLCickableImageView.m */; };
+		27821698175D449B007C5F26 /* FLCickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F6175D449B007C5F26 /* FLCickableImageView.m */; };
+		27821699175D449B007C5F26 /* FLCickableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F6175D449B007C5F26 /* FLCickableImageView.m */; };
+		2782169A175D449B007C5F26 /* FLCustomButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F7175D449B007C5F26 /* FLCustomButton.h */; };
+		2782169B175D449B007C5F26 /* FLCustomButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F7175D449B007C5F26 /* FLCustomButton.h */; };
+		2782169C175D449B007C5F26 /* FLCustomButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F7175D449B007C5F26 /* FLCustomButton.h */; };
+		2782169D175D449B007C5F26 /* FLCustomButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F7175D449B007C5F26 /* FLCustomButton.h */; };
+		2782169E175D449B007C5F26 /* FLCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F8175D449B007C5F26 /* FLCustomButton.m */; };
+		2782169F175D449B007C5F26 /* FLCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F8175D449B007C5F26 /* FLCustomButton.m */; };
+		278216A0175D449B007C5F26 /* FLCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F8175D449B007C5F26 /* FLCustomButton.m */; };
+		278216A1175D449B007C5F26 /* FLCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215F8175D449B007C5F26 /* FLCustomButton.m */; };
+		278216A2175D449B007C5F26 /* FLFramedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F9175D449B007C5F26 /* FLFramedView.h */; };
+		278216A3175D449B007C5F26 /* FLFramedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F9175D449B007C5F26 /* FLFramedView.h */; };
+		278216A4175D449B007C5F26 /* FLFramedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F9175D449B007C5F26 /* FLFramedView.h */; };
+		278216A5175D449B007C5F26 /* FLFramedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215F9175D449B007C5F26 /* FLFramedView.h */; };
+		278216A6175D449B007C5F26 /* FLFramedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FA175D449B007C5F26 /* FLFramedView.m */; };
+		278216A7175D449B007C5F26 /* FLFramedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FA175D449B007C5F26 /* FLFramedView.m */; };
+		278216A8175D449B007C5F26 /* FLFramedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FA175D449B007C5F26 /* FLFramedView.m */; };
+		278216A9175D449B007C5F26 /* FLFramedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FA175D449B007C5F26 /* FLFramedView.m */; };
+		278216AA175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FB175D449B007C5F26 /* FLImagePlaceholderView.h */; };
+		278216AB175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FB175D449B007C5F26 /* FLImagePlaceholderView.h */; };
+		278216AC175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FB175D449B007C5F26 /* FLImagePlaceholderView.h */; };
+		278216AD175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FB175D449B007C5F26 /* FLImagePlaceholderView.h */; };
+		278216AE175D449B007C5F26 /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FC175D449B007C5F26 /* FLImagePlaceholderView.m */; };
+		278216AF175D449B007C5F26 /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FC175D449B007C5F26 /* FLImagePlaceholderView.m */; };
+		278216B0175D449B007C5F26 /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FC175D449B007C5F26 /* FLImagePlaceholderView.m */; };
+		278216B1175D449B007C5F26 /* FLImagePlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FC175D449B007C5F26 /* FLImagePlaceholderView.m */; };
+		278216B2175D449B007C5F26 /* FLLinkTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FD175D449B007C5F26 /* FLLinkTextField.h */; };
+		278216B3175D449B007C5F26 /* FLLinkTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FD175D449B007C5F26 /* FLLinkTextField.h */; };
+		278216B4175D449B007C5F26 /* FLLinkTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FD175D449B007C5F26 /* FLLinkTextField.h */; };
+		278216B5175D449B007C5F26 /* FLLinkTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FD175D449B007C5F26 /* FLLinkTextField.h */; };
+		278216B6175D449B007C5F26 /* FLLinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FE175D449B007C5F26 /* FLLinkTextField.m */; };
+		278216B7175D449B007C5F26 /* FLLinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FE175D449B007C5F26 /* FLLinkTextField.m */; };
+		278216B8175D449B007C5F26 /* FLLinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FE175D449B007C5F26 /* FLLinkTextField.m */; };
+		278216B9175D449B007C5F26 /* FLLinkTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 278215FE175D449B007C5F26 /* FLLinkTextField.m */; };
+		278216BA175D449B007C5F26 /* FLTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FF175D449B007C5F26 /* FLTextFieldCell.h */; };
+		278216BB175D449B007C5F26 /* FLTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FF175D449B007C5F26 /* FLTextFieldCell.h */; };
+		278216BC175D449B007C5F26 /* FLTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FF175D449B007C5F26 /* FLTextFieldCell.h */; };
+		278216BD175D449B007C5F26 /* FLTextFieldCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215FF175D449B007C5F26 /* FLTextFieldCell.h */; };
+		278216BE175D449B007C5F26 /* FLTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821600175D449B007C5F26 /* FLTextFieldCell.m */; };
+		278216BF175D449B007C5F26 /* FLTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821600175D449B007C5F26 /* FLTextFieldCell.m */; };
+		278216C0175D449B007C5F26 /* FLTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821600175D449B007C5F26 /* FLTextFieldCell.m */; };
+		278216C1175D449B007C5F26 /* FLTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821600175D449B007C5F26 /* FLTextFieldCell.m */; };
+		278216C2175D449B007C5F26 /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821601175D449B007C5F26 /* NSView+FLAdditions.h */; };
+		278216C3175D449B007C5F26 /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821601175D449B007C5F26 /* NSView+FLAdditions.h */; };
+		278216C4175D449B007C5F26 /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821601175D449B007C5F26 /* NSView+FLAdditions.h */; };
+		278216C5175D449B007C5F26 /* NSView+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821601175D449B007C5F26 /* NSView+FLAdditions.h */; };
+		278216C6175D449B007C5F26 /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821602175D449B007C5F26 /* NSView+FLAdditions.m */; };
+		278216C7175D449B007C5F26 /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821602175D449B007C5F26 /* NSView+FLAdditions.m */; };
+		278216C8175D449B007C5F26 /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821602175D449B007C5F26 /* NSView+FLAdditions.m */; };
+		278216C9175D449B007C5F26 /* NSView+FLAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821602175D449B007C5F26 /* NSView+FLAdditions.m */; };
+		278216CA175D449B007C5F26 /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821604175D449B007C5F26 /* FLPanelWizard.h */; };
+		278216CB175D449B007C5F26 /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821604175D449B007C5F26 /* FLPanelWizard.h */; };
+		278216CC175D449B007C5F26 /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821604175D449B007C5F26 /* FLPanelWizard.h */; };
+		278216CD175D449B007C5F26 /* FLPanelWizard.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821604175D449B007C5F26 /* FLPanelWizard.h */; };
+		278216CE175D449B007C5F26 /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821605175D449B007C5F26 /* FLPanelWizard.m */; };
+		278216CF175D449B007C5F26 /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821605175D449B007C5F26 /* FLPanelWizard.m */; };
+		278216D0175D449B007C5F26 /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821605175D449B007C5F26 /* FLPanelWizard.m */; };
+		278216D1175D449B007C5F26 /* FLPanelWizard.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821605175D449B007C5F26 /* FLPanelWizard.m */; };
+		278216D2175D449B007C5F26 /* FLPanelManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821607175D449B007C5F26 /* FLPanelManager.h */; };
+		278216D3175D449B007C5F26 /* FLPanelManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821607175D449B007C5F26 /* FLPanelManager.h */; };
+		278216D4175D449B007C5F26 /* FLPanelManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821607175D449B007C5F26 /* FLPanelManager.h */; };
+		278216D5175D449B007C5F26 /* FLPanelManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821607175D449B007C5F26 /* FLPanelManager.h */; };
+		278216D6175D449B007C5F26 /* FLPanelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821608175D449B007C5F26 /* FLPanelManager.m */; };
+		278216D7175D449B007C5F26 /* FLPanelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821608175D449B007C5F26 /* FLPanelManager.m */; };
+		278216D8175D449B007C5F26 /* FLPanelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821608175D449B007C5F26 /* FLPanelManager.m */; };
+		278216D9175D449B007C5F26 /* FLPanelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821608175D449B007C5F26 /* FLPanelManager.m */; };
+		278216DA175D449B007C5F26 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821609175D449B007C5F26 /* FLPanelManagerState.h */; };
+		278216DB175D449B007C5F26 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821609175D449B007C5F26 /* FLPanelManagerState.h */; };
+		278216DC175D449B007C5F26 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821609175D449B007C5F26 /* FLPanelManagerState.h */; };
+		278216DD175D449B007C5F26 /* FLPanelManagerState.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821609175D449B007C5F26 /* FLPanelManagerState.h */; };
+		278216DE175D449B007C5F26 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160A175D449B007C5F26 /* FLPanelManagerState.m */; };
+		278216DF175D449B007C5F26 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160A175D449B007C5F26 /* FLPanelManagerState.m */; };
+		278216E0175D449B007C5F26 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160A175D449B007C5F26 /* FLPanelManagerState.m */; };
+		278216E1175D449B007C5F26 /* FLPanelManagerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160A175D449B007C5F26 /* FLPanelManagerState.m */; };
+		278216E2175D449B007C5F26 /* FLPanelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782160B175D449B007C5F26 /* FLPanelViewController.h */; };
+		278216E3175D449B007C5F26 /* FLPanelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782160B175D449B007C5F26 /* FLPanelViewController.h */; };
+		278216E4175D449B007C5F26 /* FLPanelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782160B175D449B007C5F26 /* FLPanelViewController.h */; };
+		278216E5175D449B007C5F26 /* FLPanelViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782160B175D449B007C5F26 /* FLPanelViewController.h */; };
+		278216E6175D449B007C5F26 /* FLPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160C175D449B007C5F26 /* FLPanelViewController.m */; };
+		278216E7175D449B007C5F26 /* FLPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160C175D449B007C5F26 /* FLPanelViewController.m */; };
+		278216E8175D449B007C5F26 /* FLPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160C175D449B007C5F26 /* FLPanelViewController.m */; };
+		278216E9175D449B007C5F26 /* FLPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160C175D449B007C5F26 /* FLPanelViewController.m */; };
+		278216EA175D449B007C5F26 /* FLPanelHostView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782160E175D449B007C5F26 /* FLPanelHostView.h */; };
+		278216EB175D449B007C5F26 /* FLPanelHostView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782160E175D449B007C5F26 /* FLPanelHostView.h */; };
+		278216EC175D449B007C5F26 /* FLPanelHostView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782160E175D449B007C5F26 /* FLPanelHostView.h */; };
+		278216ED175D449B007C5F26 /* FLPanelHostView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782160E175D449B007C5F26 /* FLPanelHostView.h */; };
+		278216EE175D449B007C5F26 /* FLPanelHostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160F175D449B007C5F26 /* FLPanelHostView.m */; };
+		278216EF175D449B007C5F26 /* FLPanelHostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160F175D449B007C5F26 /* FLPanelHostView.m */; };
+		278216F0175D449B007C5F26 /* FLPanelHostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160F175D449B007C5F26 /* FLPanelHostView.m */; };
+		278216F1175D449B007C5F26 /* FLPanelHostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782160F175D449B007C5F26 /* FLPanelHostView.m */; };
+		278216F2175D449B007C5F26 /* FLSmallPanelView.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821610175D449B007C5F26 /* FLSmallPanelView.h */; };
+		278216F3175D449B007C5F26 /* FLSmallPanelView.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821610175D449B007C5F26 /* FLSmallPanelView.h */; };
+		278216F4175D449B007C5F26 /* FLSmallPanelView.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821610175D449B007C5F26 /* FLSmallPanelView.h */; };
+		278216F5175D449B007C5F26 /* FLSmallPanelView.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821610175D449B007C5F26 /* FLSmallPanelView.h */; };
+		278216F6175D449B007C5F26 /* FLSmallPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821611175D449B007C5F26 /* FLSmallPanelView.m */; };
+		278216F7175D449B007C5F26 /* FLSmallPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821611175D449B007C5F26 /* FLSmallPanelView.m */; };
+		278216F8175D449B007C5F26 /* FLSmallPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821611175D449B007C5F26 /* FLSmallPanelView.m */; };
+		278216F9175D449B007C5F26 /* FLSmallPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821611175D449B007C5F26 /* FLSmallPanelView.m */; };
+		278216FA175D449B007C5F26 /* FLLoginPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821617175D449B007C5F26 /* FLLoginPanel.h */; };
+		278216FB175D449B007C5F26 /* FLLoginPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821617175D449B007C5F26 /* FLLoginPanel.h */; };
+		278216FC175D449B007C5F26 /* FLLoginPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821617175D449B007C5F26 /* FLLoginPanel.h */; };
+		278216FD175D449B007C5F26 /* FLLoginPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821617175D449B007C5F26 /* FLLoginPanel.h */; };
+		278216FE175D449B007C5F26 /* FLLoginPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821618175D449B007C5F26 /* FLLoginPanel.m */; };
+		278216FF175D449B007C5F26 /* FLLoginPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821618175D449B007C5F26 /* FLLoginPanel.m */; };
+		27821700175D449B007C5F26 /* FLLoginPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821618175D449B007C5F26 /* FLLoginPanel.m */; };
+		27821701175D449B007C5F26 /* FLLoginPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821618175D449B007C5F26 /* FLLoginPanel.m */; };
+		27821702175D449B007C5F26 /* FLProgressPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821619175D449B007C5F26 /* FLProgressPanel.h */; };
+		27821703175D449B007C5F26 /* FLProgressPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821619175D449B007C5F26 /* FLProgressPanel.h */; };
+		27821704175D449B007C5F26 /* FLProgressPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821619175D449B007C5F26 /* FLProgressPanel.h */; };
+		27821705175D449B007C5F26 /* FLProgressPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821619175D449B007C5F26 /* FLProgressPanel.h */; };
+		27821706175D449B007C5F26 /* FLProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782161A175D449B007C5F26 /* FLProgressPanel.m */; };
+		27821707175D449B007C5F26 /* FLProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782161A175D449B007C5F26 /* FLProgressPanel.m */; };
+		27821708175D449B007C5F26 /* FLProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782161A175D449B007C5F26 /* FLProgressPanel.m */; };
+		27821709175D449B007C5F26 /* FLProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782161A175D449B007C5F26 /* FLProgressPanel.m */; };
+		2782170A175D449B007C5F26 /* FLWizardButtonViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782161E175D449B007C5F26 /* FLWizardButtonViewController.h */; };
+		2782170B175D449B007C5F26 /* FLWizardButtonViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782161E175D449B007C5F26 /* FLWizardButtonViewController.h */; };
+		2782170C175D449B007C5F26 /* FLWizardButtonViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782161E175D449B007C5F26 /* FLWizardButtonViewController.h */; };
+		2782170D175D449B007C5F26 /* FLWizardButtonViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782161E175D449B007C5F26 /* FLWizardButtonViewController.h */; };
+		2782170E175D449B007C5F26 /* FLWizardButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782161F175D449B007C5F26 /* FLWizardButtonViewController.m */; };
+		2782170F175D449B007C5F26 /* FLWizardButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782161F175D449B007C5F26 /* FLWizardButtonViewController.m */; };
+		27821710175D449B007C5F26 /* FLWizardButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782161F175D449B007C5F26 /* FLWizardButtonViewController.m */; };
+		27821711175D449B007C5F26 /* FLWizardButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782161F175D449B007C5F26 /* FLWizardButtonViewController.m */; };
+		27821712175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821620175D449B007C5F26 /* FLWizardHeaderViewController.h */; };
+		27821713175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821620175D449B007C5F26 /* FLWizardHeaderViewController.h */; };
+		27821714175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821620175D449B007C5F26 /* FLWizardHeaderViewController.h */; };
+		27821715175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821620175D449B007C5F26 /* FLWizardHeaderViewController.h */; };
+		27821716175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821621175D449B007C5F26 /* FLWizardHeaderViewController.m */; };
+		27821717175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821621175D449B007C5F26 /* FLWizardHeaderViewController.m */; };
+		27821718175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821621175D449B007C5F26 /* FLWizardHeaderViewController.m */; };
+		27821719175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821621175D449B007C5F26 /* FLWizardHeaderViewController.m */; };
+		2782171A175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821622175D449B007C5F26 /* FLWizardNavigationViewController.h */; };
+		2782171B175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821622175D449B007C5F26 /* FLWizardNavigationViewController.h */; };
+		2782171C175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821622175D449B007C5F26 /* FLWizardNavigationViewController.h */; };
+		2782171D175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821622175D449B007C5F26 /* FLWizardNavigationViewController.h */; };
+		2782171E175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821623175D449B007C5F26 /* FLWizardNavigationViewController.m */; };
+		2782171F175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821623175D449B007C5F26 /* FLWizardNavigationViewController.m */; };
+		27821720175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821623175D449B007C5F26 /* FLWizardNavigationViewController.m */; };
+		27821721175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821623175D449B007C5F26 /* FLWizardNavigationViewController.m */; };
+		27821722175D449B007C5F26 /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821624175D449B007C5F26 /* FLWizardViewController.h */; };
+		27821723175D449B007C5F26 /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821624175D449B007C5F26 /* FLWizardViewController.h */; };
+		27821724175D449B007C5F26 /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821624175D449B007C5F26 /* FLWizardViewController.h */; };
+		27821725175D449B007C5F26 /* FLWizardViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821624175D449B007C5F26 /* FLWizardViewController.h */; };
+		27821726175D449B007C5F26 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821625175D449B007C5F26 /* FLWizardViewController.m */; };
+		27821727175D449B007C5F26 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821625175D449B007C5F26 /* FLWizardViewController.m */; };
+		27821728175D449B007C5F26 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821625175D449B007C5F26 /* FLWizardViewController.m */; };
+		27821729175D449B007C5F26 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821625175D449B007C5F26 /* FLWizardViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -319,79 +319,83 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2702EF61172B02230084066F /* FLFileDropTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFileDropTableViewController.h; sourceTree = "<group>"; };
-		2702EF62172B02230084066F /* FLFileDropTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFileDropTableViewController.m; sourceTree = "<group>"; };
 		27048EF0161CB58600C38ADA /* libFishLampOSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
-		272D037F172DC73900302B2E /* FLCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCustomButton.h; sourceTree = "<group>"; };
-		272D0380172DC73900302B2E /* FLCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCustomButton.m; sourceTree = "<group>"; };
-		272D0398172DD76000302B2E /* FLLinkTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLinkTextField.h; sourceTree = "<group>"; };
-		272D0399172DD76000302B2E /* FLLinkTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLinkTextField.m; sourceTree = "<group>"; };
-		272D03E7172DF98600302B2E /* FLProgressPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressPanel.h; sourceTree = "<group>"; };
-		272D03E8172DF98600302B2E /* FLProgressPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressPanel.m; sourceTree = "<group>"; };
-		272D03F4172DFA3600302B2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLProgressPanel.xib; sourceTree = "<group>"; };
-		272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLModelObjectDocument.h; sourceTree = "<group>"; };
-		272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLModelObjectDocument.m; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampOSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2743D31B1739BE08003BC70A /* FLErrorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLErrorWindowController.h; sourceTree = "<group>"; };
-		2743D31C1739BE08003BC70A /* FLErrorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLErrorWindowController.m; sourceTree = "<group>"; };
-		2743D31D1739BE08003BC70A /* FLErrorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLErrorWindowController.xib; sourceTree = "<group>"; };
-		2743D3311739BEB7003BC70A /* attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attention.png; sourceTree = "<group>"; };
-		2743D3321739BEB7003BC70A /* attention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attention@2x.png"; sourceTree = "<group>"; };
-		2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindowController+FLModalAdditions.h"; sourceTree = "<group>"; };
-		2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindowController+FLModalAdditions.m"; sourceTree = "<group>"; };
-		2744B447172042930090B70D /* FLPanelWizard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelWizard.h; sourceTree = "<group>"; };
-		2744B448172042930090B70D /* FLPanelWizard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelWizard.m; sourceTree = "<group>"; };
-		2744B44A172042930090B70D /* FLPanelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelManager.h; sourceTree = "<group>"; };
-		2744B44B172042930090B70D /* FLPanelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelManager.m; sourceTree = "<group>"; };
-		2744B44C172042930090B70D /* FLPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelViewController.h; sourceTree = "<group>"; };
-		2744B44D172042930090B70D /* FLPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelViewController.m; sourceTree = "<group>"; };
-		2744B451172042930090B70D /* FLPanelHostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelHostView.h; sourceTree = "<group>"; };
-		2744B452172042930090B70D /* FLPanelHostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelHostView.m; sourceTree = "<group>"; };
-		2744B453172042930090B70D /* FLSmallPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSmallPanelView.h; sourceTree = "<group>"; };
-		2744B454172042930090B70D /* FLSmallPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSmallPanelView.m; sourceTree = "<group>"; };
-		2744B457172042930090B70D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLLoginPanel.xib; sourceTree = "<group>"; };
-		2744B458172042930090B70D /* FLLoginPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLoginPanel.h; sourceTree = "<group>"; };
-		2744B459172042930090B70D /* FLLoginPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLoginPanel.m; sourceTree = "<group>"; };
-		2744B45C172042930090B70D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLWizardViewController.xib; sourceTree = "<group>"; };
-		2744B45D172042930090B70D /* FLWizardButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardButtonViewController.h; sourceTree = "<group>"; };
-		2744B45E172042930090B70D /* FLWizardButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardButtonViewController.m; sourceTree = "<group>"; };
-		2744B45F172042930090B70D /* FLWizardHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardHeaderViewController.h; sourceTree = "<group>"; };
-		2744B460172042930090B70D /* FLWizardHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardHeaderViewController.m; sourceTree = "<group>"; };
-		2744B461172042930090B70D /* FLWizardNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardNavigationViewController.h; sourceTree = "<group>"; };
-		2744B462172042930090B70D /* FLWizardNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardNavigationViewController.m; sourceTree = "<group>"; };
-		2744B463172042930090B70D /* FLWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardViewController.h; sourceTree = "<group>"; };
-		2744B464172042930090B70D /* FLWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardViewController.m; sourceTree = "<group>"; };
-		2744B4BD172042F80090B70D /* FLFramedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFramedView.h; sourceTree = "<group>"; };
-		2744B4BE172042F80090B70D /* FLFramedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFramedView.m; sourceTree = "<group>"; };
-		2744B4C7172046080090B70D /* NSViewController+FLErrorSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSViewController+FLErrorSheet.h"; sourceTree = "<group>"; };
-		2744B4C8172046080090B70D /* NSViewController+FLErrorSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSViewController+FLErrorSheet.m"; sourceTree = "<group>"; };
-		2744B4FD17204EE10090B70D /* NSImage+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+FLAdditions.h"; sourceTree = "<group>"; };
-		2744B4FE17204EE10090B70D /* NSImage+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+FLAdditions.m"; sourceTree = "<group>"; };
 		274932B71699F667008E8EC5 /* FishLampOSX-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampOSX-Prefix.pch"; sourceTree = "<group>"; };
-		274933891699FADD008E8EC5 /* FishLampOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampOSX.h; sourceTree = "<group>"; };
-		2749340B169A0D74008E8EC5 /* __OSXHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __OSXHeaders.h; sourceTree = "<group>"; };
-		2779DBD616A7223200EAB16A /* FLTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTextFieldCell.h; sourceTree = "<group>"; };
-		2779DBD716A7223200EAB16A /* FLTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTextFieldCell.m; sourceTree = "<group>"; };
-		277AF47016E3B54400C284BF /* FLButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLButtonCell.h; sourceTree = "<group>"; };
-		277AF47116E3B54400C284BF /* FLButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLButtonCell.m; sourceTree = "<group>"; };
-		278DB49C16EE887A0087374D /* FLCickableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCickableImageView.h; sourceTree = "<group>"; };
-		278DB49D16EE887A0087374D /* FLCickableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCickableImageView.m; sourceTree = "<group>"; };
-		278DB4AB16EE93EB0087374D /* FLImagePlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImagePlaceholderView.h; sourceTree = "<group>"; };
-		278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImagePlaceholderView.m; sourceTree = "<group>"; };
+		278215D1175D449B007C5F26 /* __OSXHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __OSXHeaders.h; sourceTree = "<group>"; };
+		278215D3175D449B007C5F26 /* FishLampCommandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCommandLineTool.h; sourceTree = "<group>"; };
+		278215D4175D449B007C5F26 /* FLCommandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCommandLineTool.h; sourceTree = "<group>"; };
+		278215D5175D449B007C5F26 /* FLCommandLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCommandLineTool.m; sourceTree = "<group>"; };
+		278215D6175D449B007C5F26 /* FLShellCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLShellCommand.h; sourceTree = "<group>"; };
+		278215D7175D449B007C5F26 /* FLShellCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLShellCommand.m; sourceTree = "<group>"; };
+		278215D9175D449B007C5F26 /* FLModelObjectDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLModelObjectDocument.h; sourceTree = "<group>"; };
+		278215DA175D449B007C5F26 /* FLModelObjectDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLModelObjectDocument.m; sourceTree = "<group>"; };
+		278215DB175D449B007C5F26 /* FishLampOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampOSX.h; sourceTree = "<group>"; };
+		278215DC175D449B007C5F26 /* FLHttpController+UserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLHttpController+UserLogin.h"; sourceTree = "<group>"; };
+		278215DD175D449B007C5F26 /* FLHttpController+UserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLHttpController+UserLogin.m"; sourceTree = "<group>"; };
+		278215DF175D449B007C5F26 /* NSImage+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+FLAdditions.h"; sourceTree = "<group>"; };
+		278215E0175D449B007C5F26 /* NSImage+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+FLAdditions.m"; sourceTree = "<group>"; };
+		278215E2175D449B007C5F26 /* FLGlobalMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGlobalMenuController.h; sourceTree = "<group>"; };
+		278215E3175D449B007C5F26 /* FLGlobalMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGlobalMenuController.m; sourceTree = "<group>"; };
+		278215E5175D449B007C5F26 /* attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attention.png; sourceTree = "<group>"; };
+		278215E6175D449B007C5F26 /* attention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attention@2x.png"; sourceTree = "<group>"; };
+		278215E7175D449B007C5F26 /* FLActivityLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLActivityLogViewController.h; sourceTree = "<group>"; };
+		278215E8175D449B007C5F26 /* FLActivityLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLActivityLogViewController.m; sourceTree = "<group>"; };
+		278215E9175D449B007C5F26 /* FLErrorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLErrorWindowController.h; sourceTree = "<group>"; };
+		278215EA175D449B007C5F26 /* FLErrorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLErrorWindowController.m; sourceTree = "<group>"; };
+		278215EB175D449B007C5F26 /* FLErrorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLErrorWindowController.xib; sourceTree = "<group>"; };
+		278215EC175D449B007C5F26 /* FLFileDropTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFileDropTableViewController.h; sourceTree = "<group>"; };
+		278215ED175D449B007C5F26 /* FLFileDropTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFileDropTableViewController.m; sourceTree = "<group>"; };
+		278215EE175D449B007C5F26 /* NSViewController+FLErrorSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSViewController+FLErrorSheet.h"; sourceTree = "<group>"; };
+		278215EF175D449B007C5F26 /* NSViewController+FLErrorSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSViewController+FLErrorSheet.m"; sourceTree = "<group>"; };
+		278215F0175D449B007C5F26 /* NSWindowController+FLModalAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindowController+FLModalAdditions.h"; sourceTree = "<group>"; };
+		278215F1175D449B007C5F26 /* NSWindowController+FLModalAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindowController+FLModalAdditions.m"; sourceTree = "<group>"; };
+		278215F3175D449B007C5F26 /* FLButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLButtonCell.h; sourceTree = "<group>"; };
+		278215F4175D449B007C5F26 /* FLButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLButtonCell.m; sourceTree = "<group>"; };
+		278215F5175D449B007C5F26 /* FLCickableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCickableImageView.h; sourceTree = "<group>"; };
+		278215F6175D449B007C5F26 /* FLCickableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCickableImageView.m; sourceTree = "<group>"; };
+		278215F7175D449B007C5F26 /* FLCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCustomButton.h; sourceTree = "<group>"; };
+		278215F8175D449B007C5F26 /* FLCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCustomButton.m; sourceTree = "<group>"; };
+		278215F9175D449B007C5F26 /* FLFramedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFramedView.h; sourceTree = "<group>"; };
+		278215FA175D449B007C5F26 /* FLFramedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFramedView.m; sourceTree = "<group>"; };
+		278215FB175D449B007C5F26 /* FLImagePlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImagePlaceholderView.h; sourceTree = "<group>"; };
+		278215FC175D449B007C5F26 /* FLImagePlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImagePlaceholderView.m; sourceTree = "<group>"; };
+		278215FD175D449B007C5F26 /* FLLinkTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLinkTextField.h; sourceTree = "<group>"; };
+		278215FE175D449B007C5F26 /* FLLinkTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLinkTextField.m; sourceTree = "<group>"; };
+		278215FF175D449B007C5F26 /* FLTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTextFieldCell.h; sourceTree = "<group>"; };
+		27821600175D449B007C5F26 /* FLTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTextFieldCell.m; sourceTree = "<group>"; };
+		27821601175D449B007C5F26 /* NSView+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+FLAdditions.h"; sourceTree = "<group>"; };
+		27821602175D449B007C5F26 /* NSView+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+FLAdditions.m"; sourceTree = "<group>"; };
+		27821604175D449B007C5F26 /* FLPanelWizard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelWizard.h; sourceTree = "<group>"; };
+		27821605175D449B007C5F26 /* FLPanelWizard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelWizard.m; sourceTree = "<group>"; };
+		27821607175D449B007C5F26 /* FLPanelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelManager.h; sourceTree = "<group>"; };
+		27821608175D449B007C5F26 /* FLPanelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelManager.m; sourceTree = "<group>"; };
+		27821609175D449B007C5F26 /* FLPanelManagerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelManagerState.h; sourceTree = "<group>"; };
+		2782160A175D449B007C5F26 /* FLPanelManagerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelManagerState.m; sourceTree = "<group>"; };
+		2782160B175D449B007C5F26 /* FLPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelViewController.h; sourceTree = "<group>"; };
+		2782160C175D449B007C5F26 /* FLPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelViewController.m; sourceTree = "<group>"; };
+		2782160E175D449B007C5F26 /* FLPanelHostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelHostView.h; sourceTree = "<group>"; };
+		2782160F175D449B007C5F26 /* FLPanelHostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelHostView.m; sourceTree = "<group>"; };
+		27821610175D449B007C5F26 /* FLSmallPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLSmallPanelView.h; sourceTree = "<group>"; };
+		27821611175D449B007C5F26 /* FLSmallPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLSmallPanelView.m; sourceTree = "<group>"; };
+		27821614175D449B007C5F26 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLLoginPanel.xib; sourceTree = "<group>"; };
+		27821616175D449B007C5F26 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLProgressPanel.xib; sourceTree = "<group>"; };
+		27821617175D449B007C5F26 /* FLLoginPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLoginPanel.h; sourceTree = "<group>"; };
+		27821618175D449B007C5F26 /* FLLoginPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLLoginPanel.m; sourceTree = "<group>"; };
+		27821619175D449B007C5F26 /* FLProgressPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProgressPanel.h; sourceTree = "<group>"; };
+		2782161A175D449B007C5F26 /* FLProgressPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProgressPanel.m; sourceTree = "<group>"; };
+		2782161D175D449B007C5F26 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLWizardViewController.xib; sourceTree = "<group>"; };
+		2782161E175D449B007C5F26 /* FLWizardButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardButtonViewController.h; sourceTree = "<group>"; };
+		2782161F175D449B007C5F26 /* FLWizardButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardButtonViewController.m; sourceTree = "<group>"; };
+		27821620175D449B007C5F26 /* FLWizardHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardHeaderViewController.h; sourceTree = "<group>"; };
+		27821621175D449B007C5F26 /* FLWizardHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardHeaderViewController.m; sourceTree = "<group>"; };
+		27821622175D449B007C5F26 /* FLWizardNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardNavigationViewController.h; sourceTree = "<group>"; };
+		27821623175D449B007C5F26 /* FLWizardNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardNavigationViewController.m; sourceTree = "<group>"; };
+		27821624175D449B007C5F26 /* FLWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardViewController.h; sourceTree = "<group>"; };
+		27821625175D449B007C5F26 /* FLWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardViewController.m; sourceTree = "<group>"; };
 		27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		27A848861732FB1600115833 /* FLPanelManagerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPanelManagerState.h; sourceTree = "<group>"; };
-		27A848871732FB1600115833 /* FLPanelManagerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPanelManagerState.m; sourceTree = "<group>"; };
-		27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLActivityLogViewController.h; sourceTree = "<group>"; };
-		27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLActivityLogViewController.m; sourceTree = "<group>"; };
-		27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLHttpController+UserLogin.h"; sourceTree = "<group>"; };
-		27C77D60172E07480027AE3E /* FLHttpController+UserLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLHttpController+UserLogin.m"; sourceTree = "<group>"; };
-		27CBC1F416768BA600753D0A /* libFishLampOSX-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCommandLineTool.h; sourceTree = "<group>"; };
-		27E80320170346AC0012BFDD /* FLCommandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCommandLineTool.h; sourceTree = "<group>"; };
-		27E80321170346AC0012BFDD /* FLCommandLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCommandLineTool.m; sourceTree = "<group>"; };
-		27E80322170346AC0012BFDD /* FLShellCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLShellCommand.h; sourceTree = "<group>"; };
-		27E80323170346AC0012BFDD /* FLShellCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLShellCommand.m; sourceTree = "<group>"; };
+		27CBC1F416768BA600753D0A /* libFishLampOSX-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E95866170BB86300587A8F /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27E95867170BB86300587A8F /* TargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-32-MRC.xcconfig"; sourceTree = "<group>"; };
 		27E95868170BB86300587A8F /* TargetSettings-OSX-3264-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-3264-MRC.xcconfig"; sourceTree = "<group>"; };
@@ -400,11 +404,7 @@
 		27E9586B170BB86300587A8F /* TargetSettings-OSX-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
 		27E9586D170BB86E00587A8F /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		27E9586E170BB86E00587A8F /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
-		27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGlobalMenuController.h; sourceTree = "<group>"; };
-		27FC38151699F5E1001F4228 /* FLGlobalMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGlobalMenuController.m; sourceTree = "<group>"; };
-		27FC38171699F5E1001F4228 /* NSView+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+FLAdditions.h"; sourceTree = "<group>"; };
-		27FC38181699F5E1001F4228 /* NSView+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+FLAdditions.m"; sourceTree = "<group>"; };
-		78329B68167E426A0024E8DC /* FishLampPaths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = FishLampPaths.xcconfig; path = FishLampBuildSupport/FishLampPaths.xcconfig; sourceTree = "<group>"; };
+		78329B68167E426A0024E8DC /* FishLampPaths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = FishLampPaths.xcconfig; path = FishLampXcodeConfigs/FishLampPaths.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,15 +452,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		272EE7DE1732F7D70025CFD6 /* Documents */ = {
-			isa = PBXGroup;
-			children = (
-				272EE7EA1732F8010025CFD6 /* FLModelObjectDocument.h */,
-				272EE7EB1732F8010025CFD6 /* FLModelObjectDocument.m */,
-			);
-			path = Documents;
-			sourceTree = "<group>";
-		};
 		2731477B1652D2D30027850D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,85 +463,177 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2744B414172041910090B70D /* Wizard */ = {
+		278215D0175D449B007C5F26 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2744B447172042930090B70D /* FLPanelWizard.h */,
-				2744B448172042930090B70D /* FLPanelWizard.m */,
-				2744B449172042930090B70D /* Panel */,
-				2744B44E172042930090B70D /* Views */,
-				2744B455172042930090B70D /* WizardPanels */,
-				2744B45A172042930090B70D /* WizardViewController */,
+				278215D1175D449B007C5F26 /* __OSXHeaders.h */,
+				278215D2175D449B007C5F26 /* CommandLineTool */,
+				278215D8175D449B007C5F26 /* Documents */,
+				278215DB175D449B007C5F26 /* FishLampOSX.h */,
+				278215DC175D449B007C5F26 /* FLHttpController+UserLogin.h */,
+				278215DD175D449B007C5F26 /* FLHttpController+UserLogin.m */,
+				278215DE175D449B007C5F26 /* Image */,
+				278215E1175D449B007C5F26 /* Menus */,
+				278215E4175D449B007C5F26 /* ViewControllers */,
+				278215F2175D449B007C5F26 /* Views */,
+				27821603175D449B007C5F26 /* Wizard */,
 			);
-			path = Wizard;
+			name = Classes;
+			path = ../Classes;
 			sourceTree = "<group>";
 		};
-		2744B449172042930090B70D /* Panel */ = {
+		278215D2175D449B007C5F26 /* CommandLineTool */ = {
 			isa = PBXGroup;
 			children = (
-				2744B44A172042930090B70D /* FLPanelManager.h */,
-				2744B44B172042930090B70D /* FLPanelManager.m */,
-				2744B44C172042930090B70D /* FLPanelViewController.h */,
-				2744B44D172042930090B70D /* FLPanelViewController.m */,
-				27A848861732FB1600115833 /* FLPanelManagerState.h */,
-				27A848871732FB1600115833 /* FLPanelManagerState.m */,
+				278215D3175D449B007C5F26 /* FishLampCommandLineTool.h */,
+				278215D4175D449B007C5F26 /* FLCommandLineTool.h */,
+				278215D5175D449B007C5F26 /* FLCommandLineTool.m */,
+				278215D6175D449B007C5F26 /* FLShellCommand.h */,
+				278215D7175D449B007C5F26 /* FLShellCommand.m */,
 			);
-			path = Panel;
+			path = CommandLineTool;
 			sourceTree = "<group>";
 		};
-		2744B44E172042930090B70D /* Views */ = {
+		278215D8175D449B007C5F26 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				2744B451172042930090B70D /* FLPanelHostView.h */,
-				2744B452172042930090B70D /* FLPanelHostView.m */,
-				2744B453172042930090B70D /* FLSmallPanelView.h */,
-				2744B454172042930090B70D /* FLSmallPanelView.m */,
+				278215D9175D449B007C5F26 /* FLModelObjectDocument.h */,
+				278215DA175D449B007C5F26 /* FLModelObjectDocument.m */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
+		278215DE175D449B007C5F26 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				278215DF175D449B007C5F26 /* NSImage+FLAdditions.h */,
+				278215E0175D449B007C5F26 /* NSImage+FLAdditions.m */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		278215E1175D449B007C5F26 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				278215E2175D449B007C5F26 /* FLGlobalMenuController.h */,
+				278215E3175D449B007C5F26 /* FLGlobalMenuController.m */,
+			);
+			path = Menus;
+			sourceTree = "<group>";
+		};
+		278215E4175D449B007C5F26 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				278215E5175D449B007C5F26 /* attention.png */,
+				278215E6175D449B007C5F26 /* attention@2x.png */,
+				278215E7175D449B007C5F26 /* FLActivityLogViewController.h */,
+				278215E8175D449B007C5F26 /* FLActivityLogViewController.m */,
+				278215E9175D449B007C5F26 /* FLErrorWindowController.h */,
+				278215EA175D449B007C5F26 /* FLErrorWindowController.m */,
+				278215EB175D449B007C5F26 /* FLErrorWindowController.xib */,
+				278215EC175D449B007C5F26 /* FLFileDropTableViewController.h */,
+				278215ED175D449B007C5F26 /* FLFileDropTableViewController.m */,
+				278215EE175D449B007C5F26 /* NSViewController+FLErrorSheet.h */,
+				278215EF175D449B007C5F26 /* NSViewController+FLErrorSheet.m */,
+				278215F0175D449B007C5F26 /* NSWindowController+FLModalAdditions.h */,
+				278215F1175D449B007C5F26 /* NSWindowController+FLModalAdditions.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		278215F2175D449B007C5F26 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				278215F3175D449B007C5F26 /* FLButtonCell.h */,
+				278215F4175D449B007C5F26 /* FLButtonCell.m */,
+				278215F5175D449B007C5F26 /* FLCickableImageView.h */,
+				278215F6175D449B007C5F26 /* FLCickableImageView.m */,
+				278215F7175D449B007C5F26 /* FLCustomButton.h */,
+				278215F8175D449B007C5F26 /* FLCustomButton.m */,
+				278215F9175D449B007C5F26 /* FLFramedView.h */,
+				278215FA175D449B007C5F26 /* FLFramedView.m */,
+				278215FB175D449B007C5F26 /* FLImagePlaceholderView.h */,
+				278215FC175D449B007C5F26 /* FLImagePlaceholderView.m */,
+				278215FD175D449B007C5F26 /* FLLinkTextField.h */,
+				278215FE175D449B007C5F26 /* FLLinkTextField.m */,
+				278215FF175D449B007C5F26 /* FLTextFieldCell.h */,
+				27821600175D449B007C5F26 /* FLTextFieldCell.m */,
+				27821601175D449B007C5F26 /* NSView+FLAdditions.h */,
+				27821602175D449B007C5F26 /* NSView+FLAdditions.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		2744B455172042930090B70D /* WizardPanels */ = {
+		27821603175D449B007C5F26 /* Wizard */ = {
 			isa = PBXGroup;
 			children = (
-				2744B456172042930090B70D /* FLLoginPanel.xib */,
-				2744B458172042930090B70D /* FLLoginPanel.h */,
-				2744B459172042930090B70D /* FLLoginPanel.m */,
-				272D03E7172DF98600302B2E /* FLProgressPanel.h */,
-				272D03E8172DF98600302B2E /* FLProgressPanel.m */,
-				272D03F5172DFA3600302B2E /* FLProgressPanel.xib */,
+				27821604175D449B007C5F26 /* FLPanelWizard.h */,
+				27821605175D449B007C5F26 /* FLPanelWizard.m */,
+				27821606175D449B007C5F26 /* Panel */,
+				2782160D175D449B007C5F26 /* Views */,
+				27821612175D449B007C5F26 /* WizardPanels */,
+				2782161B175D449B007C5F26 /* WizardViewController */,
+			);
+			path = Wizard;
+			sourceTree = "<group>";
+		};
+		27821606175D449B007C5F26 /* Panel */ = {
+			isa = PBXGroup;
+			children = (
+				27821607175D449B007C5F26 /* FLPanelManager.h */,
+				27821608175D449B007C5F26 /* FLPanelManager.m */,
+				27821609175D449B007C5F26 /* FLPanelManagerState.h */,
+				2782160A175D449B007C5F26 /* FLPanelManagerState.m */,
+				2782160B175D449B007C5F26 /* FLPanelViewController.h */,
+				2782160C175D449B007C5F26 /* FLPanelViewController.m */,
+			);
+			path = Panel;
+			sourceTree = "<group>";
+		};
+		2782160D175D449B007C5F26 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2782160E175D449B007C5F26 /* FLPanelHostView.h */,
+				2782160F175D449B007C5F26 /* FLPanelHostView.m */,
+				27821610175D449B007C5F26 /* FLSmallPanelView.h */,
+				27821611175D449B007C5F26 /* FLSmallPanelView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		27821612175D449B007C5F26 /* WizardPanels */ = {
+			isa = PBXGroup;
+			children = (
+				27821613175D449B007C5F26 /* FLLoginPanel.xib */,
+				27821615175D449B007C5F26 /* FLProgressPanel.xib */,
+				27821617175D449B007C5F26 /* FLLoginPanel.h */,
+				27821618175D449B007C5F26 /* FLLoginPanel.m */,
+				27821619175D449B007C5F26 /* FLProgressPanel.h */,
+				2782161A175D449B007C5F26 /* FLProgressPanel.m */,
 			);
 			path = WizardPanels;
 			sourceTree = "<group>";
 		};
-		2744B45A172042930090B70D /* WizardViewController */ = {
+		2782161B175D449B007C5F26 /* WizardViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2744B45B172042930090B70D /* FLWizardViewController.xib */,
-				2744B45D172042930090B70D /* FLWizardButtonViewController.h */,
-				2744B45E172042930090B70D /* FLWizardButtonViewController.m */,
-				2744B45F172042930090B70D /* FLWizardHeaderViewController.h */,
-				2744B460172042930090B70D /* FLWizardHeaderViewController.m */,
-				2744B461172042930090B70D /* FLWizardNavigationViewController.h */,
-				2744B462172042930090B70D /* FLWizardNavigationViewController.m */,
-				2744B463172042930090B70D /* FLWizardViewController.h */,
-				2744B464172042930090B70D /* FLWizardViewController.m */,
+				2782161C175D449B007C5F26 /* FLWizardViewController.xib */,
+				2782161E175D449B007C5F26 /* FLWizardButtonViewController.h */,
+				2782161F175D449B007C5F26 /* FLWizardButtonViewController.m */,
+				27821620175D449B007C5F26 /* FLWizardHeaderViewController.h */,
+				27821621175D449B007C5F26 /* FLWizardHeaderViewController.m */,
+				27821622175D449B007C5F26 /* FLWizardNavigationViewController.h */,
+				27821623175D449B007C5F26 /* FLWizardNavigationViewController.m */,
+				27821624175D449B007C5F26 /* FLWizardViewController.h */,
+				27821625175D449B007C5F26 /* FLWizardViewController.m */,
 			);
 			path = WizardViewController;
-			sourceTree = "<group>";
-		};
-		2744B4F117204ED00090B70D /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				2744B4FD17204EE10090B70D /* NSImage+FLAdditions.h */,
-				2744B4FE17204EE10090B70D /* NSImage+FLAdditions.m */,
-			);
-			path = Image;
 			sourceTree = "<group>";
 		};
 		27A43A7115CDCC1B001CB13E = {
 			isa = PBXGroup;
 			children = (
-				27FC38121699F5E1001F4228 /* OSX */,
+				278215D0175D449B007C5F26 /* Classes */,
 				27A43A7E15CDCC1B001CB13E /* Frameworks */,
 				27A43A7D15CDCC1B001CB13E /* Products */,
 				2731477B1652D2D30027850D /* Supporting Files */,
@@ -563,7 +646,7 @@
 				27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */,
 				27048EF0161CB58600C38ADA /* libFishLampOSX-32-MRC.a */,
 				27314C79165328400027850D /* libFishLampOSX-64-ARC.a */,
-				27CBC1F416768BA600753D0A /* libFishLampOSX-3264-MRC.a */,
+				27CBC1F416768BA600753D0A /* libFishLampOSX-32-64-MRC.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -574,38 +657,6 @@
 				270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		27BC8A4D17171CDE00ECCEA4 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				27BC8A4E17171CDE00ECCEA4 /* FLActivityLogViewController.h */,
-				27BC8A4F17171CDE00ECCEA4 /* FLActivityLogViewController.m */,
-				2744B3EE171F94C20090B70D /* NSWindowController+FLModalAdditions.h */,
-				2744B3EF171F94C20090B70D /* NSWindowController+FLModalAdditions.m */,
-				2744B4C7172046080090B70D /* NSViewController+FLErrorSheet.h */,
-				2744B4C8172046080090B70D /* NSViewController+FLErrorSheet.m */,
-				2702EF61172B02230084066F /* FLFileDropTableViewController.h */,
-				2702EF62172B02230084066F /* FLFileDropTableViewController.m */,
-				2743D31B1739BE08003BC70A /* FLErrorWindowController.h */,
-				2743D31C1739BE08003BC70A /* FLErrorWindowController.m */,
-				2743D31D1739BE08003BC70A /* FLErrorWindowController.xib */,
-				2743D3311739BEB7003BC70A /* attention.png */,
-				2743D3321739BEB7003BC70A /* attention@2x.png */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		27E8031E170346AC0012BFDD /* CommandLineTool */ = {
-			isa = PBXGroup;
-			children = (
-				27E8031F170346AC0012BFDD /* FishLampCommandLineTool.h */,
-				27E80320170346AC0012BFDD /* FLCommandLineTool.h */,
-				27E80321170346AC0012BFDD /* FLCommandLineTool.m */,
-				27E80322170346AC0012BFDD /* FLShellCommand.h */,
-				27E80323170346AC0012BFDD /* FLShellCommand.m */,
-			);
-			path = CommandLineTool;
 			sourceTree = "<group>";
 		};
 		27E95865170BB86300587A8F /* FishLampOSX */ = {
@@ -628,58 +679,7 @@
 				27E9586E170BB86E00587A8F /* FishLampProjectSettingsRelease.xcconfig */,
 			);
 			name = FishLampProjectSettings;
-			path = FishLampBuildSupport/FishLampProjectSettings;
-			sourceTree = "<group>";
-		};
-		27FC38121699F5E1001F4228 /* OSX */ = {
-			isa = PBXGroup;
-			children = (
-				272EE7DE1732F7D70025CFD6 /* Documents */,
-				2744B4F117204ED00090B70D /* Image */,
-				2744B414172041910090B70D /* Wizard */,
-				27E8031E170346AC0012BFDD /* CommandLineTool */,
-				2749340B169A0D74008E8EC5 /* __OSXHeaders.h */,
-				27FC38131699F5E1001F4228 /* Menus */,
-				27BC8A4D17171CDE00ECCEA4 /* ViewControllers */,
-				27FC38161699F5E1001F4228 /* Views */,
-				274933891699FADD008E8EC5 /* FishLampOSX.h */,
-				27C77D5F172E07480027AE3E /* FLHttpController+UserLogin.h */,
-				27C77D60172E07480027AE3E /* FLHttpController+UserLogin.m */,
-			);
-			name = OSX;
-			path = ../../../../Classes/OSX;
-			sourceTree = "<group>";
-		};
-		27FC38131699F5E1001F4228 /* Menus */ = {
-			isa = PBXGroup;
-			children = (
-				27FC38141699F5E1001F4228 /* FLGlobalMenuController.h */,
-				27FC38151699F5E1001F4228 /* FLGlobalMenuController.m */,
-			);
-			path = Menus;
-			sourceTree = "<group>";
-		};
-		27FC38161699F5E1001F4228 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				2744B4BD172042F80090B70D /* FLFramedView.h */,
-				2744B4BE172042F80090B70D /* FLFramedView.m */,
-				27FC38171699F5E1001F4228 /* NSView+FLAdditions.h */,
-				27FC38181699F5E1001F4228 /* NSView+FLAdditions.m */,
-				2779DBD616A7223200EAB16A /* FLTextFieldCell.h */,
-				2779DBD716A7223200EAB16A /* FLTextFieldCell.m */,
-				277AF47016E3B54400C284BF /* FLButtonCell.h */,
-				277AF47116E3B54400C284BF /* FLButtonCell.m */,
-				278DB49C16EE887A0087374D /* FLCickableImageView.h */,
-				278DB49D16EE887A0087374D /* FLCickableImageView.m */,
-				278DB4AB16EE93EB0087374D /* FLImagePlaceholderView.h */,
-				278DB4AC16EE93EB0087374D /* FLImagePlaceholderView.m */,
-				272D037F172DC73900302B2E /* FLCustomButton.h */,
-				272D0380172DC73900302B2E /* FLCustomButton.m */,
-				272D0398172DD76000302B2E /* FLLinkTextField.h */,
-				272D0399172DD76000302B2E /* FLLinkTextField.m */,
-			);
-			path = Views;
+			path = FishLampXcodeConfigs/FishLampProjectSettings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -689,41 +689,41 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC38191699F5E1001F4228 /* FLGlobalMenuController.h in Headers */,
-				27FC38211699F5E1001F4228 /* NSView+FLAdditions.h in Headers */,
 				274932B81699F667008E8EC5 /* FishLampOSX-Prefix.pch in Headers */,
-				2749338B1699FADD008E8EC5 /* FishLampOSX.h in Headers */,
-				2749340C169A0D74008E8EC5 /* __OSXHeaders.h in Headers */,
-				2779DBD816A7223200EAB16A /* FLTextFieldCell.h in Headers */,
-				277AF47216E3B54400C284BF /* FLButtonCell.h in Headers */,
-				278DB49E16EE887A0087374D /* FLCickableImageView.h in Headers */,
-				278DB4AD16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
-				27E80324170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
-				27E80328170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
-				27E80330170346AC0012BFDD /* FLShellCommand.h in Headers */,
-				27BC8A5017171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
-				2744B3F0171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
-				2744B465172042930090B70D /* FLPanelWizard.h in Headers */,
-				2744B46D172042930090B70D /* FLPanelManager.h in Headers */,
-				2744B475172042930090B70D /* FLPanelViewController.h in Headers */,
-				2744B485172042930090B70D /* FLPanelHostView.h in Headers */,
-				2744B48D172042930090B70D /* FLSmallPanelView.h in Headers */,
-				2744B495172042930090B70D /* FLLoginPanel.h in Headers */,
-				2744B49D172042930090B70D /* FLWizardButtonViewController.h in Headers */,
-				2744B4A5172042930090B70D /* FLWizardHeaderViewController.h in Headers */,
-				2744B4AD172042930090B70D /* FLWizardNavigationViewController.h in Headers */,
-				2744B4B5172042930090B70D /* FLWizardViewController.h in Headers */,
-				2744B4BF172042F80090B70D /* FLFramedView.h in Headers */,
-				2744B4C9172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */,
-				2744B4FF17204EE10090B70D /* NSImage+FLAdditions.h in Headers */,
-				2702EF63172B02230084066F /* FLFileDropTableViewController.h in Headers */,
-				272D0381172DC73900302B2E /* FLCustomButton.h in Headers */,
-				272D039A172DD76000302B2E /* FLLinkTextField.h in Headers */,
-				272D03EA172DF98700302B2E /* FLProgressPanel.h in Headers */,
-				27C77D61172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
-				272EE7ED1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
-				27A848881732FB1600115833 /* FLPanelManagerState.h in Headers */,
-				2743D31E1739BE08003BC70A /* FLErrorWindowController.h in Headers */,
+				27821626175D449B007C5F26 /* __OSXHeaders.h in Headers */,
+				2782162A175D449B007C5F26 /* FishLampCommandLineTool.h in Headers */,
+				2782162E175D449B007C5F26 /* FLCommandLineTool.h in Headers */,
+				27821636175D449B007C5F26 /* FLShellCommand.h in Headers */,
+				2782163E175D449B007C5F26 /* FLModelObjectDocument.h in Headers */,
+				27821646175D449B007C5F26 /* FishLampOSX.h in Headers */,
+				2782164A175D449B007C5F26 /* FLHttpController+UserLogin.h in Headers */,
+				27821652175D449B007C5F26 /* NSImage+FLAdditions.h in Headers */,
+				2782165A175D449B007C5F26 /* FLGlobalMenuController.h in Headers */,
+				27821662175D449B007C5F26 /* FLActivityLogViewController.h in Headers */,
+				2782166A175D449B007C5F26 /* FLErrorWindowController.h in Headers */,
+				27821672175D449B007C5F26 /* FLFileDropTableViewController.h in Headers */,
+				2782167A175D449B007C5F26 /* NSViewController+FLErrorSheet.h in Headers */,
+				27821682175D449B007C5F26 /* NSWindowController+FLModalAdditions.h in Headers */,
+				2782168A175D449B007C5F26 /* FLButtonCell.h in Headers */,
+				27821692175D449B007C5F26 /* FLCickableImageView.h in Headers */,
+				2782169A175D449B007C5F26 /* FLCustomButton.h in Headers */,
+				278216A2175D449B007C5F26 /* FLFramedView.h in Headers */,
+				278216AA175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */,
+				278216B2175D449B007C5F26 /* FLLinkTextField.h in Headers */,
+				278216BA175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
+				278216C2175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
+				278216CA175D449B007C5F26 /* FLPanelWizard.h in Headers */,
+				278216D2175D449B007C5F26 /* FLPanelManager.h in Headers */,
+				278216DA175D449B007C5F26 /* FLPanelManagerState.h in Headers */,
+				278216E2175D449B007C5F26 /* FLPanelViewController.h in Headers */,
+				278216EA175D449B007C5F26 /* FLPanelHostView.h in Headers */,
+				278216F2175D449B007C5F26 /* FLSmallPanelView.h in Headers */,
+				278216FA175D449B007C5F26 /* FLLoginPanel.h in Headers */,
+				27821702175D449B007C5F26 /* FLProgressPanel.h in Headers */,
+				2782170A175D449B007C5F26 /* FLWizardButtonViewController.h in Headers */,
+				27821712175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */,
+				2782171A175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */,
+				27821722175D449B007C5F26 /* FLWizardViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,41 +731,41 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC381B1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */,
-				27FC38231699F5E1001F4228 /* NSView+FLAdditions.h in Headers */,
 				274932BA1699F667008E8EC5 /* FishLampOSX-Prefix.pch in Headers */,
-				2749338D1699FADD008E8EC5 /* FishLampOSX.h in Headers */,
-				2749340E169A0D74008E8EC5 /* __OSXHeaders.h in Headers */,
-				2779DBDA16A7223200EAB16A /* FLTextFieldCell.h in Headers */,
-				277AF47416E3B54400C284BF /* FLButtonCell.h in Headers */,
-				278DB4A016EE887A0087374D /* FLCickableImageView.h in Headers */,
-				278DB4AF16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
-				27E80326170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
-				27E8032A170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
-				27E80332170346AC0012BFDD /* FLShellCommand.h in Headers */,
-				27BC8A5217171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
-				2744B3F2171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
-				2744B467172042930090B70D /* FLPanelWizard.h in Headers */,
-				2744B46F172042930090B70D /* FLPanelManager.h in Headers */,
-				2744B477172042930090B70D /* FLPanelViewController.h in Headers */,
-				2744B487172042930090B70D /* FLPanelHostView.h in Headers */,
-				2744B48F172042930090B70D /* FLSmallPanelView.h in Headers */,
-				2744B497172042930090B70D /* FLLoginPanel.h in Headers */,
-				2744B49F172042930090B70D /* FLWizardButtonViewController.h in Headers */,
-				2744B4A7172042930090B70D /* FLWizardHeaderViewController.h in Headers */,
-				2744B4AF172042930090B70D /* FLWizardNavigationViewController.h in Headers */,
-				2744B4B7172042930090B70D /* FLWizardViewController.h in Headers */,
-				2744B4C1172042F80090B70D /* FLFramedView.h in Headers */,
-				2744B4CB172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */,
-				2744B50117204EE10090B70D /* NSImage+FLAdditions.h in Headers */,
-				2702EF65172B02230084066F /* FLFileDropTableViewController.h in Headers */,
-				272D0383172DC73900302B2E /* FLCustomButton.h in Headers */,
-				272D039C172DD76000302B2E /* FLLinkTextField.h in Headers */,
-				272D03EC172DF98700302B2E /* FLProgressPanel.h in Headers */,
-				27C77D63172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
-				272EE7EF1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
-				27A8488A1732FB1600115833 /* FLPanelManagerState.h in Headers */,
-				2743D3201739BE08003BC70A /* FLErrorWindowController.h in Headers */,
+				27821628175D449B007C5F26 /* __OSXHeaders.h in Headers */,
+				2782162C175D449B007C5F26 /* FishLampCommandLineTool.h in Headers */,
+				27821630175D449B007C5F26 /* FLCommandLineTool.h in Headers */,
+				27821638175D449B007C5F26 /* FLShellCommand.h in Headers */,
+				27821640175D449B007C5F26 /* FLModelObjectDocument.h in Headers */,
+				27821648175D449B007C5F26 /* FishLampOSX.h in Headers */,
+				2782164C175D449B007C5F26 /* FLHttpController+UserLogin.h in Headers */,
+				27821654175D449B007C5F26 /* NSImage+FLAdditions.h in Headers */,
+				2782165C175D449B007C5F26 /* FLGlobalMenuController.h in Headers */,
+				27821664175D449B007C5F26 /* FLActivityLogViewController.h in Headers */,
+				2782166C175D449B007C5F26 /* FLErrorWindowController.h in Headers */,
+				27821674175D449B007C5F26 /* FLFileDropTableViewController.h in Headers */,
+				2782167C175D449B007C5F26 /* NSViewController+FLErrorSheet.h in Headers */,
+				27821684175D449B007C5F26 /* NSWindowController+FLModalAdditions.h in Headers */,
+				2782168C175D449B007C5F26 /* FLButtonCell.h in Headers */,
+				27821694175D449B007C5F26 /* FLCickableImageView.h in Headers */,
+				2782169C175D449B007C5F26 /* FLCustomButton.h in Headers */,
+				278216A4175D449B007C5F26 /* FLFramedView.h in Headers */,
+				278216AC175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */,
+				278216B4175D449B007C5F26 /* FLLinkTextField.h in Headers */,
+				278216BC175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
+				278216C4175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
+				278216CC175D449B007C5F26 /* FLPanelWizard.h in Headers */,
+				278216D4175D449B007C5F26 /* FLPanelManager.h in Headers */,
+				278216DC175D449B007C5F26 /* FLPanelManagerState.h in Headers */,
+				278216E4175D449B007C5F26 /* FLPanelViewController.h in Headers */,
+				278216EC175D449B007C5F26 /* FLPanelHostView.h in Headers */,
+				278216F4175D449B007C5F26 /* FLSmallPanelView.h in Headers */,
+				278216FC175D449B007C5F26 /* FLLoginPanel.h in Headers */,
+				27821704175D449B007C5F26 /* FLProgressPanel.h in Headers */,
+				2782170C175D449B007C5F26 /* FLWizardButtonViewController.h in Headers */,
+				27821714175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */,
+				2782171C175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */,
+				27821724175D449B007C5F26 /* FLWizardViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -773,41 +773,41 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC381A1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */,
-				27FC38221699F5E1001F4228 /* NSView+FLAdditions.h in Headers */,
 				274932B91699F667008E8EC5 /* FishLampOSX-Prefix.pch in Headers */,
-				2749338C1699FADD008E8EC5 /* FishLampOSX.h in Headers */,
-				2749340D169A0D74008E8EC5 /* __OSXHeaders.h in Headers */,
-				2779DBD916A7223200EAB16A /* FLTextFieldCell.h in Headers */,
-				277AF47316E3B54400C284BF /* FLButtonCell.h in Headers */,
-				278DB49F16EE887A0087374D /* FLCickableImageView.h in Headers */,
-				278DB4AE16EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
-				27E80325170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
-				27E80329170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
-				27E80331170346AC0012BFDD /* FLShellCommand.h in Headers */,
-				27BC8A5117171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
-				2744B3F1171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
-				2744B466172042930090B70D /* FLPanelWizard.h in Headers */,
-				2744B46E172042930090B70D /* FLPanelManager.h in Headers */,
-				2744B476172042930090B70D /* FLPanelViewController.h in Headers */,
-				2744B486172042930090B70D /* FLPanelHostView.h in Headers */,
-				2744B48E172042930090B70D /* FLSmallPanelView.h in Headers */,
-				2744B496172042930090B70D /* FLLoginPanel.h in Headers */,
-				2744B49E172042930090B70D /* FLWizardButtonViewController.h in Headers */,
-				2744B4A6172042930090B70D /* FLWizardHeaderViewController.h in Headers */,
-				2744B4AE172042930090B70D /* FLWizardNavigationViewController.h in Headers */,
-				2744B4B6172042930090B70D /* FLWizardViewController.h in Headers */,
-				2744B4C0172042F80090B70D /* FLFramedView.h in Headers */,
-				2744B4CA172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */,
-				2744B50017204EE10090B70D /* NSImage+FLAdditions.h in Headers */,
-				2702EF64172B02230084066F /* FLFileDropTableViewController.h in Headers */,
-				272D0382172DC73900302B2E /* FLCustomButton.h in Headers */,
-				272D039B172DD76000302B2E /* FLLinkTextField.h in Headers */,
-				272D03EB172DF98700302B2E /* FLProgressPanel.h in Headers */,
-				27C77D62172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
-				272EE7EE1732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
-				27A848891732FB1600115833 /* FLPanelManagerState.h in Headers */,
-				2743D31F1739BE08003BC70A /* FLErrorWindowController.h in Headers */,
+				27821627175D449B007C5F26 /* __OSXHeaders.h in Headers */,
+				2782162B175D449B007C5F26 /* FishLampCommandLineTool.h in Headers */,
+				2782162F175D449B007C5F26 /* FLCommandLineTool.h in Headers */,
+				27821637175D449B007C5F26 /* FLShellCommand.h in Headers */,
+				2782163F175D449B007C5F26 /* FLModelObjectDocument.h in Headers */,
+				27821647175D449B007C5F26 /* FishLampOSX.h in Headers */,
+				2782164B175D449B007C5F26 /* FLHttpController+UserLogin.h in Headers */,
+				27821653175D449B007C5F26 /* NSImage+FLAdditions.h in Headers */,
+				2782165B175D449B007C5F26 /* FLGlobalMenuController.h in Headers */,
+				27821663175D449B007C5F26 /* FLActivityLogViewController.h in Headers */,
+				2782166B175D449B007C5F26 /* FLErrorWindowController.h in Headers */,
+				27821673175D449B007C5F26 /* FLFileDropTableViewController.h in Headers */,
+				2782167B175D449B007C5F26 /* NSViewController+FLErrorSheet.h in Headers */,
+				27821683175D449B007C5F26 /* NSWindowController+FLModalAdditions.h in Headers */,
+				2782168B175D449B007C5F26 /* FLButtonCell.h in Headers */,
+				27821693175D449B007C5F26 /* FLCickableImageView.h in Headers */,
+				2782169B175D449B007C5F26 /* FLCustomButton.h in Headers */,
+				278216A3175D449B007C5F26 /* FLFramedView.h in Headers */,
+				278216AB175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */,
+				278216B3175D449B007C5F26 /* FLLinkTextField.h in Headers */,
+				278216BB175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
+				278216C3175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
+				278216CB175D449B007C5F26 /* FLPanelWizard.h in Headers */,
+				278216D3175D449B007C5F26 /* FLPanelManager.h in Headers */,
+				278216DB175D449B007C5F26 /* FLPanelManagerState.h in Headers */,
+				278216E3175D449B007C5F26 /* FLPanelViewController.h in Headers */,
+				278216EB175D449B007C5F26 /* FLPanelHostView.h in Headers */,
+				278216F3175D449B007C5F26 /* FLSmallPanelView.h in Headers */,
+				278216FB175D449B007C5F26 /* FLLoginPanel.h in Headers */,
+				27821703175D449B007C5F26 /* FLProgressPanel.h in Headers */,
+				2782170B175D449B007C5F26 /* FLWizardButtonViewController.h in Headers */,
+				27821713175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */,
+				2782171B175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */,
+				27821723175D449B007C5F26 /* FLWizardViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,41 +815,41 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC381C1699F5E1001F4228 /* FLGlobalMenuController.h in Headers */,
-				27FC38241699F5E1001F4228 /* NSView+FLAdditions.h in Headers */,
 				274932BB1699F667008E8EC5 /* FishLampOSX-Prefix.pch in Headers */,
-				2749338E1699FADD008E8EC5 /* FishLampOSX.h in Headers */,
-				2749340F169A0D74008E8EC5 /* __OSXHeaders.h in Headers */,
-				2779DBDB16A7223200EAB16A /* FLTextFieldCell.h in Headers */,
-				277AF47516E3B54400C284BF /* FLButtonCell.h in Headers */,
-				278DB4A116EE887A0087374D /* FLCickableImageView.h in Headers */,
-				278DB4B016EE93EB0087374D /* FLImagePlaceholderView.h in Headers */,
-				27E80327170346AC0012BFDD /* FishLampCommandLineTool.h in Headers */,
-				27E8032B170346AC0012BFDD /* FLCommandLineTool.h in Headers */,
-				27E80333170346AC0012BFDD /* FLShellCommand.h in Headers */,
-				27BC8A5317171CDE00ECCEA4 /* FLActivityLogViewController.h in Headers */,
-				2744B3F3171F94C20090B70D /* NSWindowController+FLModalAdditions.h in Headers */,
-				2744B468172042930090B70D /* FLPanelWizard.h in Headers */,
-				2744B470172042930090B70D /* FLPanelManager.h in Headers */,
-				2744B478172042930090B70D /* FLPanelViewController.h in Headers */,
-				2744B488172042930090B70D /* FLPanelHostView.h in Headers */,
-				2744B490172042930090B70D /* FLSmallPanelView.h in Headers */,
-				2744B498172042930090B70D /* FLLoginPanel.h in Headers */,
-				2744B4A0172042930090B70D /* FLWizardButtonViewController.h in Headers */,
-				2744B4A8172042930090B70D /* FLWizardHeaderViewController.h in Headers */,
-				2744B4B0172042930090B70D /* FLWizardNavigationViewController.h in Headers */,
-				2744B4B8172042930090B70D /* FLWizardViewController.h in Headers */,
-				2744B4C2172042F80090B70D /* FLFramedView.h in Headers */,
-				2744B4CC172046090090B70D /* NSViewController+FLErrorSheet.h in Headers */,
-				2744B50217204EE10090B70D /* NSImage+FLAdditions.h in Headers */,
-				2702EF66172B02230084066F /* FLFileDropTableViewController.h in Headers */,
-				272D0384172DC73900302B2E /* FLCustomButton.h in Headers */,
-				272D039D172DD76000302B2E /* FLLinkTextField.h in Headers */,
-				272D03ED172DF98700302B2E /* FLProgressPanel.h in Headers */,
-				27C77D64172E07490027AE3E /* FLHttpController+UserLogin.h in Headers */,
-				272EE7F01732F8010025CFD6 /* FLModelObjectDocument.h in Headers */,
-				27A8488B1732FB1600115833 /* FLPanelManagerState.h in Headers */,
-				2743D3211739BE08003BC70A /* FLErrorWindowController.h in Headers */,
+				27821629175D449B007C5F26 /* __OSXHeaders.h in Headers */,
+				2782162D175D449B007C5F26 /* FishLampCommandLineTool.h in Headers */,
+				27821631175D449B007C5F26 /* FLCommandLineTool.h in Headers */,
+				27821639175D449B007C5F26 /* FLShellCommand.h in Headers */,
+				27821641175D449B007C5F26 /* FLModelObjectDocument.h in Headers */,
+				27821649175D449B007C5F26 /* FishLampOSX.h in Headers */,
+				2782164D175D449B007C5F26 /* FLHttpController+UserLogin.h in Headers */,
+				27821655175D449B007C5F26 /* NSImage+FLAdditions.h in Headers */,
+				2782165D175D449B007C5F26 /* FLGlobalMenuController.h in Headers */,
+				27821665175D449B007C5F26 /* FLActivityLogViewController.h in Headers */,
+				2782166D175D449B007C5F26 /* FLErrorWindowController.h in Headers */,
+				27821675175D449B007C5F26 /* FLFileDropTableViewController.h in Headers */,
+				2782167D175D449B007C5F26 /* NSViewController+FLErrorSheet.h in Headers */,
+				27821685175D449B007C5F26 /* NSWindowController+FLModalAdditions.h in Headers */,
+				2782168D175D449B007C5F26 /* FLButtonCell.h in Headers */,
+				27821695175D449B007C5F26 /* FLCickableImageView.h in Headers */,
+				2782169D175D449B007C5F26 /* FLCustomButton.h in Headers */,
+				278216A5175D449B007C5F26 /* FLFramedView.h in Headers */,
+				278216AD175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */,
+				278216B5175D449B007C5F26 /* FLLinkTextField.h in Headers */,
+				278216BD175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
+				278216C5175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
+				278216CD175D449B007C5F26 /* FLPanelWizard.h in Headers */,
+				278216D5175D449B007C5F26 /* FLPanelManager.h in Headers */,
+				278216DD175D449B007C5F26 /* FLPanelManagerState.h in Headers */,
+				278216E5175D449B007C5F26 /* FLPanelViewController.h in Headers */,
+				278216ED175D449B007C5F26 /* FLPanelHostView.h in Headers */,
+				278216F5175D449B007C5F26 /* FLSmallPanelView.h in Headers */,
+				278216FD175D449B007C5F26 /* FLLoginPanel.h in Headers */,
+				27821705175D449B007C5F26 /* FLProgressPanel.h in Headers */,
+				2782170D175D449B007C5F26 /* FLWizardButtonViewController.h in Headers */,
+				27821715175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */,
+				2782171D175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */,
+				27821725175D449B007C5F26 /* FLWizardViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -907,9 +907,9 @@
 			productReference = 27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		27CBBE2916768BA600753D0A /* FishLampOSX-3264-MRC */ = {
+		27CBBE2916768BA600753D0A /* FishLampOSX-32-64-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampOSX-3264-MRC" */;
+			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampOSX-32-64-MRC" */;
 			buildPhases = (
 				27CBBE2A16768BA600753D0A /* Sources */,
 				27CBBFEC16768BA600753D0A /* Frameworks */,
@@ -919,9 +919,9 @@
 			);
 			dependencies = (
 			);
-			name = "FishLampOSX-3264-MRC";
+			name = "FishLampOSX-32-64-MRC";
 			productName = FishLampCommandLine;
-			productReference = 27CBC1F416768BA600753D0A /* libFishLampOSX-3264-MRC.a */;
+			productReference = 27CBC1F416768BA600753D0A /* libFishLampOSX-32-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -955,7 +955,7 @@
 				27048B70161CB58600C38ADA /* FishLampOSX-32-MRC */,
 				27A43AC315CDCCCB001CB13E /* FishLampOSX-64-MRC */,
 				273148B9165328400027850D /* FishLampOSX-64-ARC */,
-				27CBBE2916768BA600753D0A /* FishLampOSX-3264-MRC */,
+				27CBBE2916768BA600753D0A /* FishLampOSX-32-64-MRC */,
 			);
 		};
 /* End PBXProject section */
@@ -1010,37 +1010,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC381D1699F5E1001F4228 /* FLGlobalMenuController.m in Sources */,
-				27FC38251699F5E1001F4228 /* NSView+FLAdditions.m in Sources */,
-				2779DBDC16A7223200EAB16A /* FLTextFieldCell.m in Sources */,
-				277AF47616E3B54400C284BF /* FLButtonCell.m in Sources */,
-				278DB4A216EE887A0087374D /* FLCickableImageView.m in Sources */,
-				278DB4B116EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
-				27E8032C170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
-				27E80334170346AC0012BFDD /* FLShellCommand.m in Sources */,
-				27BC8A5417171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
-				2744B3F4171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
-				2744B469172042930090B70D /* FLPanelWizard.m in Sources */,
-				2744B471172042930090B70D /* FLPanelManager.m in Sources */,
-				2744B479172042930090B70D /* FLPanelViewController.m in Sources */,
-				2744B489172042930090B70D /* FLPanelHostView.m in Sources */,
-				2744B491172042930090B70D /* FLSmallPanelView.m in Sources */,
-				2744B499172042930090B70D /* FLLoginPanel.m in Sources */,
-				2744B4A1172042930090B70D /* FLWizardButtonViewController.m in Sources */,
-				2744B4A9172042930090B70D /* FLWizardHeaderViewController.m in Sources */,
-				2744B4B1172042930090B70D /* FLWizardNavigationViewController.m in Sources */,
-				2744B4B9172042930090B70D /* FLWizardViewController.m in Sources */,
-				2744B4C3172042F80090B70D /* FLFramedView.m in Sources */,
-				2744B4CD172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */,
-				2744B50317204EE10090B70D /* NSImage+FLAdditions.m in Sources */,
-				2702EF67172B02230084066F /* FLFileDropTableViewController.m in Sources */,
-				272D0385172DC73900302B2E /* FLCustomButton.m in Sources */,
-				272D039E172DD76000302B2E /* FLLinkTextField.m in Sources */,
-				272D03EE172DF98700302B2E /* FLProgressPanel.m in Sources */,
-				27C77D65172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
-				272EE7F11732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
-				27A8488C1732FB1600115833 /* FLPanelManagerState.m in Sources */,
-				2743D3221739BE08003BC70A /* FLErrorWindowController.m in Sources */,
+				27821632175D449B007C5F26 /* FLCommandLineTool.m in Sources */,
+				2782163A175D449B007C5F26 /* FLShellCommand.m in Sources */,
+				27821642175D449B007C5F26 /* FLModelObjectDocument.m in Sources */,
+				2782164E175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */,
+				27821656175D449B007C5F26 /* NSImage+FLAdditions.m in Sources */,
+				2782165E175D449B007C5F26 /* FLGlobalMenuController.m in Sources */,
+				27821666175D449B007C5F26 /* FLActivityLogViewController.m in Sources */,
+				2782166E175D449B007C5F26 /* FLErrorWindowController.m in Sources */,
+				27821676175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */,
+				2782167E175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */,
+				27821686175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */,
+				2782168E175D449B007C5F26 /* FLButtonCell.m in Sources */,
+				27821696175D449B007C5F26 /* FLCickableImageView.m in Sources */,
+				2782169E175D449B007C5F26 /* FLCustomButton.m in Sources */,
+				278216A6175D449B007C5F26 /* FLFramedView.m in Sources */,
+				278216AE175D449B007C5F26 /* FLImagePlaceholderView.m in Sources */,
+				278216B6175D449B007C5F26 /* FLLinkTextField.m in Sources */,
+				278216BE175D449B007C5F26 /* FLTextFieldCell.m in Sources */,
+				278216C6175D449B007C5F26 /* NSView+FLAdditions.m in Sources */,
+				278216CE175D449B007C5F26 /* FLPanelWizard.m in Sources */,
+				278216D6175D449B007C5F26 /* FLPanelManager.m in Sources */,
+				278216DE175D449B007C5F26 /* FLPanelManagerState.m in Sources */,
+				278216E6175D449B007C5F26 /* FLPanelViewController.m in Sources */,
+				278216EE175D449B007C5F26 /* FLPanelHostView.m in Sources */,
+				278216F6175D449B007C5F26 /* FLSmallPanelView.m in Sources */,
+				278216FE175D449B007C5F26 /* FLLoginPanel.m in Sources */,
+				27821706175D449B007C5F26 /* FLProgressPanel.m in Sources */,
+				2782170E175D449B007C5F26 /* FLWizardButtonViewController.m in Sources */,
+				27821716175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */,
+				2782171E175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */,
+				27821726175D449B007C5F26 /* FLWizardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,37 +1048,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC381F1699F5E1001F4228 /* FLGlobalMenuController.m in Sources */,
-				27FC38271699F5E1001F4228 /* NSView+FLAdditions.m in Sources */,
-				2779DBDE16A7223200EAB16A /* FLTextFieldCell.m in Sources */,
-				277AF47816E3B54400C284BF /* FLButtonCell.m in Sources */,
-				278DB4A416EE887A0087374D /* FLCickableImageView.m in Sources */,
-				278DB4B316EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
-				27E8032E170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
-				27E80336170346AC0012BFDD /* FLShellCommand.m in Sources */,
-				27BC8A5617171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
-				2744B3F6171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
-				2744B46B172042930090B70D /* FLPanelWizard.m in Sources */,
-				2744B473172042930090B70D /* FLPanelManager.m in Sources */,
-				2744B47B172042930090B70D /* FLPanelViewController.m in Sources */,
-				2744B48B172042930090B70D /* FLPanelHostView.m in Sources */,
-				2744B493172042930090B70D /* FLSmallPanelView.m in Sources */,
-				2744B49B172042930090B70D /* FLLoginPanel.m in Sources */,
-				2744B4A3172042930090B70D /* FLWizardButtonViewController.m in Sources */,
-				2744B4AB172042930090B70D /* FLWizardHeaderViewController.m in Sources */,
-				2744B4B3172042930090B70D /* FLWizardNavigationViewController.m in Sources */,
-				2744B4BB172042930090B70D /* FLWizardViewController.m in Sources */,
-				2744B4C5172042F80090B70D /* FLFramedView.m in Sources */,
-				2744B4CF172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */,
-				2744B50517204EE10090B70D /* NSImage+FLAdditions.m in Sources */,
-				2702EF69172B02230084066F /* FLFileDropTableViewController.m in Sources */,
-				272D0387172DC73900302B2E /* FLCustomButton.m in Sources */,
-				272D03A0172DD76000302B2E /* FLLinkTextField.m in Sources */,
-				272D03F0172DF98700302B2E /* FLProgressPanel.m in Sources */,
-				27C77D67172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
-				272EE7F31732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
-				27A8488E1732FB1600115833 /* FLPanelManagerState.m in Sources */,
-				2743D3241739BE08003BC70A /* FLErrorWindowController.m in Sources */,
+				27821634175D449B007C5F26 /* FLCommandLineTool.m in Sources */,
+				2782163C175D449B007C5F26 /* FLShellCommand.m in Sources */,
+				27821644175D449B007C5F26 /* FLModelObjectDocument.m in Sources */,
+				27821650175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */,
+				27821658175D449B007C5F26 /* NSImage+FLAdditions.m in Sources */,
+				27821660175D449B007C5F26 /* FLGlobalMenuController.m in Sources */,
+				27821668175D449B007C5F26 /* FLActivityLogViewController.m in Sources */,
+				27821670175D449B007C5F26 /* FLErrorWindowController.m in Sources */,
+				27821678175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */,
+				27821680175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */,
+				27821688175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */,
+				27821690175D449B007C5F26 /* FLButtonCell.m in Sources */,
+				27821698175D449B007C5F26 /* FLCickableImageView.m in Sources */,
+				278216A0175D449B007C5F26 /* FLCustomButton.m in Sources */,
+				278216A8175D449B007C5F26 /* FLFramedView.m in Sources */,
+				278216B0175D449B007C5F26 /* FLImagePlaceholderView.m in Sources */,
+				278216B8175D449B007C5F26 /* FLLinkTextField.m in Sources */,
+				278216C0175D449B007C5F26 /* FLTextFieldCell.m in Sources */,
+				278216C8175D449B007C5F26 /* NSView+FLAdditions.m in Sources */,
+				278216D0175D449B007C5F26 /* FLPanelWizard.m in Sources */,
+				278216D8175D449B007C5F26 /* FLPanelManager.m in Sources */,
+				278216E0175D449B007C5F26 /* FLPanelManagerState.m in Sources */,
+				278216E8175D449B007C5F26 /* FLPanelViewController.m in Sources */,
+				278216F0175D449B007C5F26 /* FLPanelHostView.m in Sources */,
+				278216F8175D449B007C5F26 /* FLSmallPanelView.m in Sources */,
+				27821700175D449B007C5F26 /* FLLoginPanel.m in Sources */,
+				27821708175D449B007C5F26 /* FLProgressPanel.m in Sources */,
+				27821710175D449B007C5F26 /* FLWizardButtonViewController.m in Sources */,
+				27821718175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */,
+				27821720175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */,
+				27821728175D449B007C5F26 /* FLWizardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,37 +1086,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC381E1699F5E1001F4228 /* FLGlobalMenuController.m in Sources */,
-				27FC38261699F5E1001F4228 /* NSView+FLAdditions.m in Sources */,
-				2779DBDD16A7223200EAB16A /* FLTextFieldCell.m in Sources */,
-				277AF47716E3B54400C284BF /* FLButtonCell.m in Sources */,
-				278DB4A316EE887A0087374D /* FLCickableImageView.m in Sources */,
-				278DB4B216EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
-				27E8032D170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
-				27E80335170346AC0012BFDD /* FLShellCommand.m in Sources */,
-				27BC8A5517171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
-				2744B3F5171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
-				2744B46A172042930090B70D /* FLPanelWizard.m in Sources */,
-				2744B472172042930090B70D /* FLPanelManager.m in Sources */,
-				2744B47A172042930090B70D /* FLPanelViewController.m in Sources */,
-				2744B48A172042930090B70D /* FLPanelHostView.m in Sources */,
-				2744B492172042930090B70D /* FLSmallPanelView.m in Sources */,
-				2744B49A172042930090B70D /* FLLoginPanel.m in Sources */,
-				2744B4A2172042930090B70D /* FLWizardButtonViewController.m in Sources */,
-				2744B4AA172042930090B70D /* FLWizardHeaderViewController.m in Sources */,
-				2744B4B2172042930090B70D /* FLWizardNavigationViewController.m in Sources */,
-				2744B4BA172042930090B70D /* FLWizardViewController.m in Sources */,
-				2744B4C4172042F80090B70D /* FLFramedView.m in Sources */,
-				2744B4CE172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */,
-				2744B50417204EE10090B70D /* NSImage+FLAdditions.m in Sources */,
-				2702EF68172B02230084066F /* FLFileDropTableViewController.m in Sources */,
-				272D0386172DC73900302B2E /* FLCustomButton.m in Sources */,
-				272D039F172DD76000302B2E /* FLLinkTextField.m in Sources */,
-				272D03EF172DF98700302B2E /* FLProgressPanel.m in Sources */,
-				27C77D66172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
-				272EE7F21732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
-				27A8488D1732FB1600115833 /* FLPanelManagerState.m in Sources */,
-				2743D3231739BE08003BC70A /* FLErrorWindowController.m in Sources */,
+				27821633175D449B007C5F26 /* FLCommandLineTool.m in Sources */,
+				2782163B175D449B007C5F26 /* FLShellCommand.m in Sources */,
+				27821643175D449B007C5F26 /* FLModelObjectDocument.m in Sources */,
+				2782164F175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */,
+				27821657175D449B007C5F26 /* NSImage+FLAdditions.m in Sources */,
+				2782165F175D449B007C5F26 /* FLGlobalMenuController.m in Sources */,
+				27821667175D449B007C5F26 /* FLActivityLogViewController.m in Sources */,
+				2782166F175D449B007C5F26 /* FLErrorWindowController.m in Sources */,
+				27821677175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */,
+				2782167F175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */,
+				27821687175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */,
+				2782168F175D449B007C5F26 /* FLButtonCell.m in Sources */,
+				27821697175D449B007C5F26 /* FLCickableImageView.m in Sources */,
+				2782169F175D449B007C5F26 /* FLCustomButton.m in Sources */,
+				278216A7175D449B007C5F26 /* FLFramedView.m in Sources */,
+				278216AF175D449B007C5F26 /* FLImagePlaceholderView.m in Sources */,
+				278216B7175D449B007C5F26 /* FLLinkTextField.m in Sources */,
+				278216BF175D449B007C5F26 /* FLTextFieldCell.m in Sources */,
+				278216C7175D449B007C5F26 /* NSView+FLAdditions.m in Sources */,
+				278216CF175D449B007C5F26 /* FLPanelWizard.m in Sources */,
+				278216D7175D449B007C5F26 /* FLPanelManager.m in Sources */,
+				278216DF175D449B007C5F26 /* FLPanelManagerState.m in Sources */,
+				278216E7175D449B007C5F26 /* FLPanelViewController.m in Sources */,
+				278216EF175D449B007C5F26 /* FLPanelHostView.m in Sources */,
+				278216F7175D449B007C5F26 /* FLSmallPanelView.m in Sources */,
+				278216FF175D449B007C5F26 /* FLLoginPanel.m in Sources */,
+				27821707175D449B007C5F26 /* FLProgressPanel.m in Sources */,
+				2782170F175D449B007C5F26 /* FLWizardButtonViewController.m in Sources */,
+				27821717175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */,
+				2782171F175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */,
+				27821727175D449B007C5F26 /* FLWizardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1124,63 +1124,63 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC38201699F5E1001F4228 /* FLGlobalMenuController.m in Sources */,
-				27FC38281699F5E1001F4228 /* NSView+FLAdditions.m in Sources */,
-				2779DBDF16A7223200EAB16A /* FLTextFieldCell.m in Sources */,
-				277AF47916E3B54400C284BF /* FLButtonCell.m in Sources */,
-				278DB4A516EE887A0087374D /* FLCickableImageView.m in Sources */,
-				278DB4B416EE93EB0087374D /* FLImagePlaceholderView.m in Sources */,
-				27E8032F170346AC0012BFDD /* FLCommandLineTool.m in Sources */,
-				27E80337170346AC0012BFDD /* FLShellCommand.m in Sources */,
-				27BC8A5717171CDE00ECCEA4 /* FLActivityLogViewController.m in Sources */,
-				2744B3F7171F94C20090B70D /* NSWindowController+FLModalAdditions.m in Sources */,
-				2744B46C172042930090B70D /* FLPanelWizard.m in Sources */,
-				2744B474172042930090B70D /* FLPanelManager.m in Sources */,
-				2744B47C172042930090B70D /* FLPanelViewController.m in Sources */,
-				2744B48C172042930090B70D /* FLPanelHostView.m in Sources */,
-				2744B494172042930090B70D /* FLSmallPanelView.m in Sources */,
-				2744B49C172042930090B70D /* FLLoginPanel.m in Sources */,
-				2744B4A4172042930090B70D /* FLWizardButtonViewController.m in Sources */,
-				2744B4AC172042930090B70D /* FLWizardHeaderViewController.m in Sources */,
-				2744B4B4172042930090B70D /* FLWizardNavigationViewController.m in Sources */,
-				2744B4BC172042930090B70D /* FLWizardViewController.m in Sources */,
-				2744B4C6172042F80090B70D /* FLFramedView.m in Sources */,
-				2744B4D0172046090090B70D /* NSViewController+FLErrorSheet.m in Sources */,
-				2744B50617204EE10090B70D /* NSImage+FLAdditions.m in Sources */,
-				2702EF6A172B02230084066F /* FLFileDropTableViewController.m in Sources */,
-				272D0388172DC73900302B2E /* FLCustomButton.m in Sources */,
-				272D03A1172DD76000302B2E /* FLLinkTextField.m in Sources */,
-				272D03F1172DF98700302B2E /* FLProgressPanel.m in Sources */,
-				27C77D68172E07490027AE3E /* FLHttpController+UserLogin.m in Sources */,
-				272EE7F41732F8020025CFD6 /* FLModelObjectDocument.m in Sources */,
-				27A8488F1732FB1600115833 /* FLPanelManagerState.m in Sources */,
-				2743D3251739BE08003BC70A /* FLErrorWindowController.m in Sources */,
+				27821635175D449B007C5F26 /* FLCommandLineTool.m in Sources */,
+				2782163D175D449B007C5F26 /* FLShellCommand.m in Sources */,
+				27821645175D449B007C5F26 /* FLModelObjectDocument.m in Sources */,
+				27821651175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */,
+				27821659175D449B007C5F26 /* NSImage+FLAdditions.m in Sources */,
+				27821661175D449B007C5F26 /* FLGlobalMenuController.m in Sources */,
+				27821669175D449B007C5F26 /* FLActivityLogViewController.m in Sources */,
+				27821671175D449B007C5F26 /* FLErrorWindowController.m in Sources */,
+				27821679175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */,
+				27821681175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */,
+				27821689175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */,
+				27821691175D449B007C5F26 /* FLButtonCell.m in Sources */,
+				27821699175D449B007C5F26 /* FLCickableImageView.m in Sources */,
+				278216A1175D449B007C5F26 /* FLCustomButton.m in Sources */,
+				278216A9175D449B007C5F26 /* FLFramedView.m in Sources */,
+				278216B1175D449B007C5F26 /* FLImagePlaceholderView.m in Sources */,
+				278216B9175D449B007C5F26 /* FLLinkTextField.m in Sources */,
+				278216C1175D449B007C5F26 /* FLTextFieldCell.m in Sources */,
+				278216C9175D449B007C5F26 /* NSView+FLAdditions.m in Sources */,
+				278216D1175D449B007C5F26 /* FLPanelWizard.m in Sources */,
+				278216D9175D449B007C5F26 /* FLPanelManager.m in Sources */,
+				278216E1175D449B007C5F26 /* FLPanelManagerState.m in Sources */,
+				278216E9175D449B007C5F26 /* FLPanelViewController.m in Sources */,
+				278216F1175D449B007C5F26 /* FLPanelHostView.m in Sources */,
+				278216F9175D449B007C5F26 /* FLSmallPanelView.m in Sources */,
+				27821701175D449B007C5F26 /* FLLoginPanel.m in Sources */,
+				27821709175D449B007C5F26 /* FLProgressPanel.m in Sources */,
+				27821711175D449B007C5F26 /* FLWizardButtonViewController.m in Sources */,
+				27821719175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */,
+				27821721175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */,
+				27821729175D449B007C5F26 /* FLWizardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		272D03F5172DFA3600302B2E /* FLProgressPanel.xib */ = {
+		27821613175D449B007C5F26 /* FLLoginPanel.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				272D03F4172DFA3600302B2E /* en */,
-			);
-			name = FLProgressPanel.xib;
-			sourceTree = "<group>";
-		};
-		2744B456172042930090B70D /* FLLoginPanel.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2744B457172042930090B70D /* en */,
+				27821614175D449B007C5F26 /* en */,
 			);
 			name = FLLoginPanel.xib;
 			sourceTree = "<group>";
 		};
-		2744B45B172042930090B70D /* FLWizardViewController.xib */ = {
+		27821615175D449B007C5F26 /* FLProgressPanel.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2744B45C172042930090B70D /* en */,
+				27821616175D449B007C5F26 /* en */,
+			);
+			name = FLProgressPanel.xib;
+			sourceTree = "<group>";
+		};
+		2782161C175D449B007C5F26 /* FLWizardViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2782161D175D449B007C5F26 /* en */,
 			);
 			name = FLWizardViewController.xib;
 			sourceTree = "<group>";
@@ -1206,7 +1206,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27E95869170BB86300587A8F /* TargetSettings-OSX-64-ARC.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Debug;
 		};
@@ -1214,7 +1213,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27E95869170BB86300587A8F /* TargetSettings-OSX-64-ARC.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Release;
 		};
@@ -1238,7 +1236,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27E9586A170BB86300587A8F /* TargetSettings-OSX-64-MRC.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Debug;
 		};
@@ -1246,7 +1243,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27E9586A170BB86300587A8F /* TargetSettings-OSX-64-MRC.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Release;
 		};
@@ -1254,7 +1250,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27E95868170BB86300587A8F /* TargetSettings-OSX-3264-MRC.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Debug;
 		};
@@ -1262,7 +1257,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27E95868170BB86300587A8F /* TargetSettings-OSX-3264-MRC.xcconfig */;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 			};
 			name = Release;
 		};
@@ -1305,7 +1299,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampOSX-3264-MRC" */ = {
+		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampOSX-32-64-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27CBC1F216768BA600753D0A /* Debug */,

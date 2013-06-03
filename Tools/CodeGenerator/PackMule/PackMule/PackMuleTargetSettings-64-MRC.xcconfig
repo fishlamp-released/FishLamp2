@@ -11,5 +11,5 @@
 //  Copyright (c) 2012 GreenTongue Software. All rights reserved.
 //
 
-#include "FishLampBuildSupport/FishLampTargetSettings-OSX-64-MRC.xcconfig"
+#include "FishLampXcodeConfigs/FishLampTargetSettings-OSX-64-MRC.xcconfig"
 #include "PackMule/SharedTargetSettings.xcconfig"

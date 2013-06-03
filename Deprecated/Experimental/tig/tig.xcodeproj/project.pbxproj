@@ -167,7 +167,7 @@
 				2744B534172058820090B70D /* FishLampProjectSettingsRelease.xcconfig */,
 			);
 			name = FishLampProjectSettings;
-			path = FishLampBuildSupport/FishLampProjectSettings;
+			path = FishLampXcodeConfigs/FishLampProjectSettings;
 			sourceTree = SOURCE_ROOT;
 		};
 		2744B536172059020090B70D /* Tool */ = {

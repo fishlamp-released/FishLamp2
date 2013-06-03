@@ -7,49 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2702EEDD172A257E0084066F /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEDB172A257E0084066F /* HelloWorldLayer.h */; };
-		2702EEDE172A257E0084066F /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEDB172A257E0084066F /* HelloWorldLayer.h */; };
-		2702EEDF172A257E0084066F /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEDB172A257E0084066F /* HelloWorldLayer.h */; };
-		2702EEE0172A257E0084066F /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEDB172A257E0084066F /* HelloWorldLayer.h */; };
-		2702EEE1172A257E0084066F /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEDB172A257E0084066F /* HelloWorldLayer.h */; };
-		2702EEE2172A257E0084066F /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEDC172A257E0084066F /* HelloWorldLayer.m */; };
-		2702EEE3172A257E0084066F /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEDC172A257E0084066F /* HelloWorldLayer.m */; };
-		2702EEE4172A257E0084066F /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEDC172A257E0084066F /* HelloWorldLayer.m */; };
-		2702EEE5172A257E0084066F /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEDC172A257E0084066F /* HelloWorldLayer.m */; };
-		2702EEE6172A257E0084066F /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEDC172A257E0084066F /* HelloWorldLayer.m */; };
-		2702EEFB172AE97A0084066F /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEF9172AE9790084066F /* FLCocos2dView.h */; };
-		2702EEFC172AE97A0084066F /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEF9172AE9790084066F /* FLCocos2dView.h */; };
-		2702EEFD172AE97A0084066F /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEF9172AE9790084066F /* FLCocos2dView.h */; };
-		2702EEFE172AE97A0084066F /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEF9172AE9790084066F /* FLCocos2dView.h */; };
-		2702EEFF172AE97A0084066F /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2702EEF9172AE9790084066F /* FLCocos2dView.h */; };
-		2702EF00172AE97A0084066F /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEFA172AE97A0084066F /* FLCocos2dView.m */; };
-		2702EF01172AE97A0084066F /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEFA172AE97A0084066F /* FLCocos2dView.m */; };
-		2702EF02172AE97A0084066F /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEFA172AE97A0084066F /* FLCocos2dView.m */; };
-		2702EF03172AE97A0084066F /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEFA172AE97A0084066F /* FLCocos2dView.m */; };
-		2702EF04172AE97A0084066F /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702EEFA172AE97A0084066F /* FLCocos2dView.m */; };
+		27821734175D44C5007C5F26 /* FLCocos2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782172C175D44C5007C5F26 /* FLCocos2d.h */; };
+		27821735175D44C5007C5F26 /* FLCocos2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782172C175D44C5007C5F26 /* FLCocos2d.h */; };
+		27821736175D44C5007C5F26 /* FLCocos2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782172C175D44C5007C5F26 /* FLCocos2d.h */; };
+		27821737175D44C5007C5F26 /* FLCocos2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782172C175D44C5007C5F26 /* FLCocos2d.h */; };
+		27821738175D44C5007C5F26 /* FLCocos2d.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782172D175D44C5007C5F26 /* FLCocos2d.m */; };
+		27821739175D44C5007C5F26 /* FLCocos2d.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782172D175D44C5007C5F26 /* FLCocos2d.m */; };
+		2782173A175D44C5007C5F26 /* FLCocos2d.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782172D175D44C5007C5F26 /* FLCocos2d.m */; };
+		2782173B175D44C5007C5F26 /* FLCocos2d.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782172D175D44C5007C5F26 /* FLCocos2d.m */; };
+		2782173C175D44C5007C5F26 /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782172E175D44C5007C5F26 /* FLCocos2dView.h */; };
+		2782173D175D44C5007C5F26 /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782172E175D44C5007C5F26 /* FLCocos2dView.h */; };
+		2782173E175D44C5007C5F26 /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782172E175D44C5007C5F26 /* FLCocos2dView.h */; };
+		2782173F175D44C5007C5F26 /* FLCocos2dView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782172E175D44C5007C5F26 /* FLCocos2dView.h */; };
+		27821740175D44C5007C5F26 /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782172F175D44C5007C5F26 /* FLCocos2dView.m */; };
+		27821741175D44C5007C5F26 /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782172F175D44C5007C5F26 /* FLCocos2dView.m */; };
+		27821742175D44C5007C5F26 /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782172F175D44C5007C5F26 /* FLCocos2dView.m */; };
+		27821743175D44C5007C5F26 /* FLCocos2dView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2782172F175D44C5007C5F26 /* FLCocos2dView.m */; };
+		27821744175D44C5007C5F26 /* FLCocos2dViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821730175D44C5007C5F26 /* FLCocos2dViewController.h */; };
+		27821745175D44C5007C5F26 /* FLCocos2dViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821730175D44C5007C5F26 /* FLCocos2dViewController.h */; };
+		27821746175D44C5007C5F26 /* FLCocos2dViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821730175D44C5007C5F26 /* FLCocos2dViewController.h */; };
+		27821747175D44C5007C5F26 /* FLCocos2dViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821730175D44C5007C5F26 /* FLCocos2dViewController.h */; };
+		27821748175D44C5007C5F26 /* FLCocos2dViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821731175D44C5007C5F26 /* FLCocos2dViewController.m */; };
+		27821749175D44C5007C5F26 /* FLCocos2dViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821731175D44C5007C5F26 /* FLCocos2dViewController.m */; };
+		2782174A175D44C5007C5F26 /* FLCocos2dViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821731175D44C5007C5F26 /* FLCocos2dViewController.m */; };
+		2782174B175D44C5007C5F26 /* FLCocos2dViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821731175D44C5007C5F26 /* FLCocos2dViewController.m */; };
+		2782174C175D44C5007C5F26 /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821732175D44C5007C5F26 /* HelloWorldLayer.h */; };
+		2782174D175D44C5007C5F26 /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821732175D44C5007C5F26 /* HelloWorldLayer.h */; };
+		2782174E175D44C5007C5F26 /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821732175D44C5007C5F26 /* HelloWorldLayer.h */; };
+		2782174F175D44C5007C5F26 /* HelloWorldLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821732175D44C5007C5F26 /* HelloWorldLayer.h */; };
+		27821750175D44C5007C5F26 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821733175D44C5007C5F26 /* HelloWorldLayer.m */; };
+		27821751175D44C5007C5F26 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821733175D44C5007C5F26 /* HelloWorldLayer.m */; };
+		27821752175D44C5007C5F26 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821733175D44C5007C5F26 /* HelloWorldLayer.m */; };
+		27821753175D44C5007C5F26 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821733175D44C5007C5F26 /* HelloWorldLayer.m */; };
 		27D84A9E17219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D84A9D17219AF000A83517 /* FishLampAnimation-Prefix.pch */; };
 		27D84A9F17219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D84A9D17219AF000A83517 /* FishLampAnimation-Prefix.pch */; };
 		27D84AA017219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D84A9D17219AF000A83517 /* FishLampAnimation-Prefix.pch */; };
 		27D84AA117219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D84A9D17219AF000A83517 /* FishLampAnimation-Prefix.pch */; };
 		27D84AA217219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D84A9D17219AF000A83517 /* FishLampAnimation-Prefix.pch */; };
-		27D852511721C4C600A83517 /* FLCocos2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D8524F1721C4C500A83517 /* FLCocos2d.h */; };
-		27D852521721C4C600A83517 /* FLCocos2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D8524F1721C4C500A83517 /* FLCocos2d.h */; };
-		27D852531721C4C600A83517 /* FLCocos2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D8524F1721C4C500A83517 /* FLCocos2d.h */; };
-		27D852541721C4C600A83517 /* FLCocos2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D8524F1721C4C500A83517 /* FLCocos2d.h */; };
-		27D852551721C4C600A83517 /* FLCocos2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D8524F1721C4C500A83517 /* FLCocos2d.h */; };
-		27D852561721C4C600A83517 /* FLCocos2d.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D852501721C4C500A83517 /* FLCocos2d.m */; };
-		27D852571721C4C600A83517 /* FLCocos2d.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D852501721C4C500A83517 /* FLCocos2d.m */; };
-		27D852581721C4C600A83517 /* FLCocos2d.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D852501721C4C500A83517 /* FLCocos2d.m */; };
-		27D852591721C4C600A83517 /* FLCocos2d.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D852501721C4C500A83517 /* FLCocos2d.m */; };
-		27D8525A1721C4C600A83517 /* FLCocos2d.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D852501721C4C500A83517 /* FLCocos2d.m */; };
-		27D8525D1721C65000A83517 /* FLCocos2dViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D8525B1721C65000A83517 /* FLCocos2dViewController.h */; };
-		27D8525E1721C65000A83517 /* FLCocos2dViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D8525B1721C65000A83517 /* FLCocos2dViewController.h */; };
-		27D8525F1721C65000A83517 /* FLCocos2dViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D8525B1721C65000A83517 /* FLCocos2dViewController.h */; };
-		27D852601721C65000A83517 /* FLCocos2dViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D8525B1721C65000A83517 /* FLCocos2dViewController.h */; };
-		27D852611721C65000A83517 /* FLCocos2dViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D8525C1721C65000A83517 /* FLCocos2dViewController.m */; };
-		27D852621721C65000A83517 /* FLCocos2dViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D8525C1721C65000A83517 /* FLCocos2dViewController.m */; };
-		27D852631721C65000A83517 /* FLCocos2dViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D8525C1721C65000A83517 /* FLCocos2dViewController.m */; };
-		27D852641721C65000A83517 /* FLCocos2dViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27D8525C1721C65000A83517 /* FLCocos2dViewController.m */; };
 		27D85AB51721CE3300A83517 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D85AB41721CE3300A83517 /* Cocoa.framework */; };
 		27D85B0E1721CE7C00A83517 /* aabb.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D85AC61721CE7C00A83517 /* aabb.h */; };
 		27D85B0F1721CE7C00A83517 /* mat4stack.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D85AC81721CE7C00A83517 /* mat4stack.h */; };
@@ -1188,7 +1182,7 @@
 		27D860A41721CF9400A83517 /* utlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D85BFE1721CE9200A83517 /* utlist.h */; };
 		27D860A51721CF9400A83517 /* ZipUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D85BFF1721CE9200A83517 /* ZipUtils.h */; };
 		27D861321721DBCA00A83517 /* libFLCocoas2d-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D85EBB1721CF9200A83517 /* libFLCocoas2d-64-MRC.a */; };
-		27D861351721DBD600A83517 /* libFLCocoas2d-3264-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D85AB31721CE3300A83517 /* libFLCocoas2d-3264-MRC.a */; };
+		27D861351721DBD600A83517 /* libFLCocoas2d-32-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D85AB31721CE3300A83517 /* libFLCocoas2d-32-64-MRC.a */; };
 		27D861381721DBF600A83517 /* libFLCocoas2d-64-ARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D85FB21721CF9300A83517 /* libFLCocoas2d-64-ARC.a */; };
 		27D8613B1721DC0600A83517 /* libFLCocoas2d-iOS-ARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D860A91721CF9400A83517 /* libFLCocoas2d-iOS-ARC.a */; };
 /* End PBXBuildFile section */
@@ -1302,13 +1296,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2702EEDB172A257E0084066F /* HelloWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		2702EEDC172A257E0084066F /* HelloWorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
-		2702EEF9172AE9790084066F /* FLCocos2dView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocos2dView.h; sourceTree = "<group>"; };
-		2702EEFA172AE97A0084066F /* FLCocos2dView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCocos2dView.m; sourceTree = "<group>"; };
 		27048EF0161CB58600C38ADA /* libFishLampAnimation-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampAnimation-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampAnimation-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampAnimation-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2782172C175D44C5007C5F26 /* FLCocos2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocos2d.h; sourceTree = "<group>"; };
+		2782172D175D44C5007C5F26 /* FLCocos2d.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCocos2d.m; sourceTree = "<group>"; };
+		2782172E175D44C5007C5F26 /* FLCocos2dView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocos2dView.h; sourceTree = "<group>"; };
+		2782172F175D44C5007C5F26 /* FLCocos2dView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCocos2dView.m; sourceTree = "<group>"; };
+		27821730175D44C5007C5F26 /* FLCocos2dViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocos2dViewController.h; sourceTree = "<group>"; };
+		27821731175D44C5007C5F26 /* FLCocos2dViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCocos2dViewController.m; sourceTree = "<group>"; };
+		27821732175D44C5007C5F26 /* HelloWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
+		27821733175D44C5007C5F26 /* HelloWorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		27A43AC415CDCCCB001CB13E /* libFishLampAnimation-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampAnimation-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampAnimation-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampAnimation-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D84A9517219A2800A83517 /* libFishLampAnimation-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampAnimation-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1320,11 +1318,7 @@
 		27D84A9C17219ACE00A83517 /* TargetSettings-OSX-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
 		27D84A9D17219AF000A83517 /* FishLampAnimation-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampAnimation-Prefix.pch"; sourceTree = "<group>"; };
 		27D84ABE1721BD4700A83517 /* FishLampCocoaUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoaUI.xcodeproj; path = ../FishLampCocoaUILib/FishLampCocoaUI.xcodeproj; sourceTree = "<group>"; };
-		27D8524F1721C4C500A83517 /* FLCocos2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocos2d.h; sourceTree = "<group>"; };
-		27D852501721C4C500A83517 /* FLCocos2d.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCocos2d.m; sourceTree = "<group>"; };
-		27D8525B1721C65000A83517 /* FLCocos2dViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCocos2dViewController.h; sourceTree = "<group>"; };
-		27D8525C1721C65000A83517 /* FLCocos2dViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCocos2dViewController.m; sourceTree = "<group>"; };
-		27D85AB31721CE3300A83517 /* libFLCocoas2d-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFLCocoas2d-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27D85AB31721CE3300A83517 /* libFLCocoas2d-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFLCocoas2d-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D85AB41721CE3300A83517 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		27D85AB71721CE3300A83517 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		27D85AB81721CE3300A83517 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1578,7 +1572,7 @@
 		27D860D81721D43C00A83517 /* Cocos2dTargetSettings-OSX-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Cocos2dTargetSettings-OSX-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
 		27D860D91721D43C00A83517 /* Cocos2d-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cocos2d-Prefix.pch"; sourceTree = "<group>"; };
 		27D860DA1721D43C00A83517 /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
-		27D861701721DFCF00A83517 /* FishLampPaths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = FishLampPaths.xcconfig; path = FishLampBuildSupport/FishLampPaths.xcconfig; sourceTree = SOURCE_ROOT; };
+		27D861701721DFCF00A83517 /* FishLampPaths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = FishLampPaths.xcconfig; path = FishLampXcodeConfigs/FishLampPaths.xcconfig; sourceTree = SOURCE_ROOT; };
 		27E9586D170BB86E00587A8F /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		27E9586E170BB86E00587A8F /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1611,7 +1605,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27D861351721DBD600A83517 /* libFLCocoas2d-3264-MRC.a in Frameworks */,
+				27D861351721DBD600A83517 /* libFLCocoas2d-32-64-MRC.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1689,9 +1683,34 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2782172A175D44C5007C5F26 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2782172B175D44C5007C5F26 /* OSX */,
+			);
+			name = Classes;
+			path = ../Classes;
+			sourceTree = "<group>";
+		};
+		2782172B175D44C5007C5F26 /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				2782172C175D44C5007C5F26 /* FLCocos2d.h */,
+				2782172D175D44C5007C5F26 /* FLCocos2d.m */,
+				2782172E175D44C5007C5F26 /* FLCocos2dView.h */,
+				2782172F175D44C5007C5F26 /* FLCocos2dView.m */,
+				27821730175D44C5007C5F26 /* FLCocos2dViewController.h */,
+				27821731175D44C5007C5F26 /* FLCocos2dViewController.m */,
+				27821732175D44C5007C5F26 /* HelloWorldLayer.h */,
+				27821733175D44C5007C5F26 /* HelloWorldLayer.m */,
+			);
+			path = OSX;
+			sourceTree = "<group>";
+		};
 		27A43A7115CDCC1B001CB13E = {
 			isa = PBXGroup;
 			children = (
+				2782172A175D44C5007C5F26 /* Classes */,
 				27D84CBD1721C1A200A83517 /* Classes */,
 				27A43A7E15CDCC1B001CB13E /* Frameworks */,
 				27A43A7D15CDCC1B001CB13E /* Products */,
@@ -1707,7 +1726,7 @@
 				27314C79165328400027850D /* libFishLampAnimation-64-ARC.a */,
 				27CBC1F416768BA600753D0A /* libFishLampAnimation-3264-MRC.a */,
 				27D84A9517219A2800A83517 /* libFishLampAnimation-iOS-ARC.a */,
-				27D85AB31721CE3300A83517 /* libFLCocoas2d-3264-MRC.a */,
+				27D85AB31721CE3300A83517 /* libFLCocoas2d-32-64-MRC.a */,
 				27D85DC41721CF9100A83517 /* libFLCocoas2d-32-MRC.a */,
 				27D85EBB1721CF9200A83517 /* libFLCocoas2d-64-MRC.a */,
 				27D85FB21721CF9300A83517 /* libFLCocoas2d-64-ARC.a */,
@@ -1758,25 +1777,9 @@
 			isa = PBXGroup;
 			children = (
 				27D858721721CA7300A83517 /* Libs */,
-				27D84CBE1721C1A200A83517 /* OSX */,
 			);
 			name = Classes;
 			path = ../../../../Classes/Animation/Classes;
-			sourceTree = "<group>";
-		};
-		27D84CBE1721C1A200A83517 /* OSX */ = {
-			isa = PBXGroup;
-			children = (
-				2702EEDB172A257E0084066F /* HelloWorldLayer.h */,
-				2702EEDC172A257E0084066F /* HelloWorldLayer.m */,
-				27D8524F1721C4C500A83517 /* FLCocos2d.h */,
-				27D852501721C4C500A83517 /* FLCocos2d.m */,
-				27D8525B1721C65000A83517 /* FLCocos2dViewController.h */,
-				27D8525C1721C65000A83517 /* FLCocos2dViewController.m */,
-				2702EEF9172AE9790084066F /* FLCocos2dView.h */,
-				2702EEFA172AE97A0084066F /* FLCocos2dView.m */,
-			);
-			path = OSX;
 			sourceTree = "<group>";
 		};
 		27D858721721CA7300A83517 /* Libs */ = {
@@ -2154,7 +2157,7 @@
 				27E9586E170BB86E00587A8F /* FishLampProjectSettingsRelease.xcconfig */,
 			);
 			name = FishLampProjectSettings;
-			path = FishLampBuildSupport/FishLampProjectSettings;
+			path = FishLampXcodeConfigs/FishLampProjectSettings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2165,10 +2168,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D84A9E17219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */,
-				27D852511721C4C600A83517 /* FLCocos2d.h in Headers */,
-				27D8525D1721C65000A83517 /* FLCocos2dViewController.h in Headers */,
-				2702EEDD172A257E0084066F /* HelloWorldLayer.h in Headers */,
-				2702EEFB172AE97A0084066F /* FLCocos2dView.h in Headers */,
+				27821734175D44C5007C5F26 /* FLCocos2d.h in Headers */,
+				2782173C175D44C5007C5F26 /* FLCocos2dView.h in Headers */,
+				27821744175D44C5007C5F26 /* FLCocos2dViewController.h in Headers */,
+				2782174C175D44C5007C5F26 /* HelloWorldLayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2177,10 +2180,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D84AA017219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */,
-				27D852531721C4C600A83517 /* FLCocos2d.h in Headers */,
-				27D8525F1721C65000A83517 /* FLCocos2dViewController.h in Headers */,
-				2702EEDF172A257E0084066F /* HelloWorldLayer.h in Headers */,
-				2702EEFD172AE97A0084066F /* FLCocos2dView.h in Headers */,
+				27821736175D44C5007C5F26 /* FLCocos2d.h in Headers */,
+				2782173E175D44C5007C5F26 /* FLCocos2dView.h in Headers */,
+				27821746175D44C5007C5F26 /* FLCocos2dViewController.h in Headers */,
+				2782174E175D44C5007C5F26 /* HelloWorldLayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2189,10 +2192,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D84A9F17219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */,
-				27D852521721C4C600A83517 /* FLCocos2d.h in Headers */,
-				27D8525E1721C65000A83517 /* FLCocos2dViewController.h in Headers */,
-				2702EEDE172A257E0084066F /* HelloWorldLayer.h in Headers */,
-				2702EEFC172AE97A0084066F /* FLCocos2dView.h in Headers */,
+				27821735175D44C5007C5F26 /* FLCocos2d.h in Headers */,
+				2782173D175D44C5007C5F26 /* FLCocos2dView.h in Headers */,
+				27821745175D44C5007C5F26 /* FLCocos2dViewController.h in Headers */,
+				2782174D175D44C5007C5F26 /* HelloWorldLayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2201,10 +2204,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D84AA117219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */,
-				27D852541721C4C600A83517 /* FLCocos2d.h in Headers */,
-				27D852601721C65000A83517 /* FLCocos2dViewController.h in Headers */,
-				2702EEE0172A257E0084066F /* HelloWorldLayer.h in Headers */,
-				2702EEFE172AE97A0084066F /* FLCocos2dView.h in Headers */,
+				27821737175D44C5007C5F26 /* FLCocos2d.h in Headers */,
+				2782173F175D44C5007C5F26 /* FLCocos2dView.h in Headers */,
+				27821747175D44C5007C5F26 /* FLCocos2dViewController.h in Headers */,
+				2782174F175D44C5007C5F26 /* HelloWorldLayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2213,9 +2216,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D84AA217219AF000A83517 /* FishLampAnimation-Prefix.pch in Headers */,
-				27D852551721C4C600A83517 /* FLCocos2d.h in Headers */,
-				2702EEE1172A257E0084066F /* HelloWorldLayer.h in Headers */,
-				2702EEFF172AE97A0084066F /* FLCocos2dView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2897,9 +2897,9 @@
 			productReference = 27A43AC415CDCCCB001CB13E /* libFishLampAnimation-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		27CBBE2916768BA600753D0A /* FishLampAnimation-3264-MRC */ = {
+		27CBBE2916768BA600753D0A /* FishLampAnimation-32-64-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampAnimation-3264-MRC" */;
+			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampAnimation-32-64-MRC" */;
 			buildPhases = (
 				27CBBE2A16768BA600753D0A /* Sources */,
 				27CBBFEC16768BA600753D0A /* Frameworks */,
@@ -2910,7 +2910,7 @@
 			dependencies = (
 				27D861341721DBD100A83517 /* PBXTargetDependency */,
 			);
-			name = "FishLampAnimation-3264-MRC";
+			name = "FishLampAnimation-32-64-MRC";
 			productName = FishLampCommandLine;
 			productReference = 27CBC1F416768BA600753D0A /* libFishLampAnimation-3264-MRC.a */;
 			productType = "com.apple.product-type.library.static";
@@ -2933,9 +2933,9 @@
 			productReference = 27D84A9517219A2800A83517 /* libFishLampAnimation-iOS-ARC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		27D85AB21721CE3300A83517 /* FLCocoas2d-3264-MRC */ = {
+		27D85AB21721CE3300A83517 /* FLCocoas2d-32-64-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27D85AC01721CE3400A83517 /* Build configuration list for PBXNativeTarget "FLCocoas2d-3264-MRC" */;
+			buildConfigurationList = 27D85AC01721CE3400A83517 /* Build configuration list for PBXNativeTarget "FLCocoas2d-32-64-MRC" */;
 			buildPhases = (
 				27D85AAF1721CE3300A83517 /* Sources */,
 				27D85AB01721CE3300A83517 /* Frameworks */,
@@ -2945,9 +2945,9 @@
 			);
 			dependencies = (
 			);
-			name = "FLCocoas2d-3264-MRC";
+			name = "FLCocoas2d-32-64-MRC";
 			productName = FLCocoas2d;
-			productReference = 27D85AB31721CE3300A83517 /* libFLCocoas2d-3264-MRC.a */;
+			productReference = 27D85AB31721CE3300A83517 /* libFLCocoas2d-32-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		27D85CCE1721CF9100A83517 /* FLCocoas2d-32-MRC */ = {
@@ -3053,9 +3053,9 @@
 				27048B70161CB58600C38ADA /* FishLampAnimation-32-MRC */,
 				27A43AC315CDCCCB001CB13E /* FishLampAnimation-64-MRC */,
 				273148B9165328400027850D /* FishLampAnimation-64-ARC */,
-				27CBBE2916768BA600753D0A /* FishLampAnimation-3264-MRC */,
+				27CBBE2916768BA600753D0A /* FishLampAnimation-32-64-MRC */,
 				27D84A8D17219A2800A83517 /* FishLampAnimation-iOS-ARC */,
-				27D85AB21721CE3300A83517 /* FLCocoas2d-3264-MRC */,
+				27D85AB21721CE3300A83517 /* FLCocoas2d-32-64-MRC */,
 				27D85CCE1721CF9100A83517 /* FLCocoas2d-32-MRC */,
 				27D85DC51721CF9200A83517 /* FLCocoas2d-64-MRC */,
 				27D85EBC1721CF9300A83517 /* FLCocoas2d-64-ARC */,
@@ -3149,10 +3149,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27D852561721C4C600A83517 /* FLCocos2d.m in Sources */,
-				27D852611721C65000A83517 /* FLCocos2dViewController.m in Sources */,
-				2702EEE2172A257E0084066F /* HelloWorldLayer.m in Sources */,
-				2702EF00172AE97A0084066F /* FLCocos2dView.m in Sources */,
+				27821738175D44C5007C5F26 /* FLCocos2d.m in Sources */,
+				27821740175D44C5007C5F26 /* FLCocos2dView.m in Sources */,
+				27821748175D44C5007C5F26 /* FLCocos2dViewController.m in Sources */,
+				27821750175D44C5007C5F26 /* HelloWorldLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3160,10 +3160,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27D852581721C4C600A83517 /* FLCocos2d.m in Sources */,
-				27D852631721C65000A83517 /* FLCocos2dViewController.m in Sources */,
-				2702EEE4172A257E0084066F /* HelloWorldLayer.m in Sources */,
-				2702EF02172AE97A0084066F /* FLCocos2dView.m in Sources */,
+				2782173A175D44C5007C5F26 /* FLCocos2d.m in Sources */,
+				27821742175D44C5007C5F26 /* FLCocos2dView.m in Sources */,
+				2782174A175D44C5007C5F26 /* FLCocos2dViewController.m in Sources */,
+				27821752175D44C5007C5F26 /* HelloWorldLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3171,10 +3171,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27D852571721C4C600A83517 /* FLCocos2d.m in Sources */,
-				27D852621721C65000A83517 /* FLCocos2dViewController.m in Sources */,
-				2702EEE3172A257E0084066F /* HelloWorldLayer.m in Sources */,
-				2702EF01172AE97A0084066F /* FLCocos2dView.m in Sources */,
+				27821739175D44C5007C5F26 /* FLCocos2d.m in Sources */,
+				27821741175D44C5007C5F26 /* FLCocos2dView.m in Sources */,
+				27821749175D44C5007C5F26 /* FLCocos2dViewController.m in Sources */,
+				27821751175D44C5007C5F26 /* HelloWorldLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3182,10 +3182,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27D852591721C4C600A83517 /* FLCocos2d.m in Sources */,
-				27D852641721C65000A83517 /* FLCocos2dViewController.m in Sources */,
-				2702EEE5172A257E0084066F /* HelloWorldLayer.m in Sources */,
-				2702EF03172AE97A0084066F /* FLCocos2dView.m in Sources */,
+				2782173B175D44C5007C5F26 /* FLCocos2d.m in Sources */,
+				27821743175D44C5007C5F26 /* FLCocos2dView.m in Sources */,
+				2782174B175D44C5007C5F26 /* FLCocos2dViewController.m in Sources */,
+				27821753175D44C5007C5F26 /* HelloWorldLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3193,9 +3193,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27D8525A1721C4C600A83517 /* FLCocos2d.m in Sources */,
-				2702EEE6172A257E0084066F /* HelloWorldLayer.m in Sources */,
-				2702EF04172AE97A0084066F /* FLCocos2dView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3789,7 +3786,7 @@
 		};
 		27D861341721DBD100A83517 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 27D85AB21721CE3300A83517 /* FLCocoas2d-3264-MRC */;
+			target = 27D85AB21721CE3300A83517 /* FLCocoas2d-32-64-MRC */;
 			targetProxy = 27D861331721DBD100A83517 /* PBXContainerItemProxy */;
 		};
 		27D861371721DBE700A83517 /* PBXTargetDependency */ = {
@@ -4014,7 +4011,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampAnimation-3264-MRC" */ = {
+		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampAnimation-32-64-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27CBC1F216768BA600753D0A /* Debug */,
@@ -4032,7 +4029,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27D85AC01721CE3400A83517 /* Build configuration list for PBXNativeTarget "FLCocoas2d-3264-MRC" */ = {
+		27D85AC01721CE3400A83517 /* Build configuration list for PBXNativeTarget "FLCocoas2d-32-64-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27D85AC11721CE3400A83517 /* Debug */,

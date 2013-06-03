@@ -1,1 +1,0 @@
-FISHLAMP="../FishLamp"

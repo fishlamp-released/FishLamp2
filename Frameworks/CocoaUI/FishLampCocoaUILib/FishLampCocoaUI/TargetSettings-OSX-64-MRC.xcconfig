@@ -4,5 +4,5 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#include "FishLampBuildSupport/FishLampTargetSettings-OSX-64-MRC.xcconfig"
+#include "FishLampXcodeConfigs/FishLampTargetSettings-OSX-64-MRC.xcconfig"
 #include "FishLampCocoaUI/SharedTargetSettings.xcconfig"
