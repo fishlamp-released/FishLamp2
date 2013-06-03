@@ -206,7 +206,7 @@
         
             [codeBuilder appendLineWithFormat:@"FLSynthesizeLazyGetter(%@, %@, %@);", 
                 self.propertyName.generatedName, 
-                self.propertyType.generatedReference, 
+                self.propertyType.generatedName, 
                 self.ivar.variableName.generatedName];
         }
         
