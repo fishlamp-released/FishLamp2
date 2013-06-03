@@ -257,7 +257,7 @@
                 <property name="type" type="string"/>
                 <property name="storageOptions" type="FLCodeStorageOptions" comment=""/>
                 <property name="memberName" type="string" comment="set member name. this is the same as the property name by default, but can be anything"/>
-                <property name="defaultValue" type="string"/>
+                <property name="defaultValue" type="FLCodeLine"/>
                 <property name="comment" type="string" comment="comment about this property"/>
                 <property name="getter" type="FLCodeMethod" comment=""/>
                 <property name="setter" type="FLCodeMethod" comment=""/>
@@ -275,11 +275,13 @@
                 <property name="useForEquality" type="bool"/>
                 <property name="isWildcardArray" type="bool" comment=""/>
                 <property name="isWeak" type="bool" comment="NO by default"/>
-                <!-- internal use only -->
+
+<!-- internal use only 
                 <property name="typeUnmodified" type="string" comment="internal use only"/>
                 <property name="nameUnmodified" type="string" comment="internal use only"/>
                 <property name="enumType" type="FLCodeEnumType" comment="if this property is an enum, the type of the enum"/>
                 <property name="hasCustomCode" type="bool" comment="Properties by default have member data associated with them, set this to YES to disable this."/>
+-->
             </properties>
         </object>
         <object className="FLCodeMethod" protocols="NSCopying">

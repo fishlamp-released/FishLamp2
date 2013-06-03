@@ -246,15 +246,13 @@
 - (void) addEnumSetPropertyToObject:(FLObjcObject*) object withProperty:(FLObjcProperty*) property {
     FLObjcCustomProperty* newProperty = [FLObjcCustomProperty objcCustomProperty:object.project];
     
-    NSString* newName2 = [NSString stringWithFormat:@"%@EnumSet", property.propertyName.generatedName];
-    
-    newProperty.propertyName = [[property propertyName] copyWithNewName:newName2];
-    newProperty.propertyType = [FLObjcImmutableObjectType objcImmutableObjectType:[FLObjcImportedName objcImportedName:[NSString stringWithFormat:@"%@EnumSet", self.generatedName]] importFileName:nil];
+    newProperty.propertyName = [[property propertyName] copyWithNewName:[NSString stringWithFormat:@"%@EnumSet", property.propertyName.generatedName]];
+    newProperty.propertyType = [FLObjcImmutableObjectType objcImmutableObjectType:[FLObjcImportedName objcImportedName:self.enumSetClassName] importFileName:nil];
     
     [object addProperty:newProperty];
 
-    [newProperty.getter.code appendReturnValue:[NSString stringWithFormat:@"%@(self.%@)", 
-        [self enumFromStringFunctionName], 
+    [newProperty.getter.code appendReturnValue:[NSString stringWithFormat:@"[%@ enumSet:self.%@];", 
+        self.enumSetClassName, 
         property.propertyName.generatedName]];
 
 
