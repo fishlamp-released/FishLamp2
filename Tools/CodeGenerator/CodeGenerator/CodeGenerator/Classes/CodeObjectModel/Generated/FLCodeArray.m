@@ -33,7 +33,7 @@
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"arrayType" propertyClass:[FLCodeArrayType class]] forContainerProperty:@"types"];
 }
 @synthesize name = _name;
-FLSynthesizeLazyGetter(types, NSMutableArray*, _types);
+FLSynthesizeLazyGetter(types, NSMutableArray, _types);
 @synthesize types = _types;
 
 @end

@@ -27,7 +27,7 @@
 
 @implementation FLCodeProject
 
-FLSynthesizeLazyGetter(arrays, NSMutableArray*, _arrays);
+FLSynthesizeLazyGetter(arrays, NSMutableArray, _arrays);
 @synthesize arrays = _arrays;
 @synthesize canLazyCreate = _canLazyCreate;
 + (FLCodeProject*) codeProject {
@@ -54,9 +54,9 @@ FLSynthesizeLazyGetter(arrays, NSMutableArray*, _arrays);
     [super dealloc];
 }
 #endif
-FLSynthesizeLazyGetter(defines, NSMutableArray*, _defines);
+FLSynthesizeLazyGetter(defines, NSMutableArray, _defines);
 @synthesize defines = _defines;
-FLSynthesizeLazyGetter(dependencies, NSMutableArray*, _dependencies);
+FLSynthesizeLazyGetter(dependencies, NSMutableArray, _dependencies);
 @synthesize dependencies = _dependencies;
 + (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"define" propertyClass:[FLCodeDefine class]] forContainerProperty:@"defines"];
@@ -68,24 +68,24 @@ FLSynthesizeLazyGetter(dependencies, NSMutableArray*, _dependencies);
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"dependency" propertyClass:[FLCodeTypeDefinition class]] forContainerProperty:@"dependencies"];
 }
 @synthesize disabled = _disabled;
-FLSynthesizeLazyGetter(enumTypes, NSMutableArray*, _enumTypes);
+FLSynthesizeLazyGetter(enumTypes, NSMutableArray, _enumTypes);
 @synthesize enumTypes = _enumTypes;
-FLSynthesizeLazyGetter(generatorOptions, FLCodeGeneratorOptions*, _generatorOptions);
+FLSynthesizeLazyGetter(generatorOptions, FLCodeGeneratorOptions, _generatorOptions);
 @synthesize generatorOptions = _generatorOptions;
 @synthesize ifDef = _ifDef;
-FLSynthesizeLazyGetter(imports, NSMutableArray*, _imports);
+FLSynthesizeLazyGetter(imports, NSMutableArray, _imports);
 @synthesize imports = _imports;
 @synthesize isWildcardArray = _isWildcardArray;
-FLSynthesizeLazyGetter(license, FLCodeCodeLicense*, _license);
+FLSynthesizeLazyGetter(license, FLCodeCodeLicense, _license);
 @synthesize license = _license;
-FLSynthesizeLazyGetter(objects, NSMutableArray*, _objects);
+FLSynthesizeLazyGetter(objects, NSMutableArray, _objects);
 @synthesize objects = _objects;
-FLSynthesizeLazyGetter(organization, FLCodeCompany*, _organization);
+FLSynthesizeLazyGetter(organization, FLCodeCompany, _organization);
 @synthesize organization = _organization;
 @synthesize projectName = _projectName;
 @synthesize projectPath = _projectPath;
 @synthesize schemaName = _schemaName;
-FLSynthesizeLazyGetter(typeDefinitions, NSMutableArray*, _typeDefinitions);
+FLSynthesizeLazyGetter(typeDefinitions, NSMutableArray, _typeDefinitions);
 @synthesize typeDefinitions = _typeDefinitions;
 
 @end

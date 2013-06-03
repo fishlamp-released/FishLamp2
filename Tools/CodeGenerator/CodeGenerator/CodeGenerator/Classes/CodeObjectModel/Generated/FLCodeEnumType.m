@@ -31,7 +31,7 @@
 + (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"enum" propertyClass:[FLCodeEnum class]] forContainerProperty:@"enums"];
 }
-FLSynthesizeLazyGetter(enums, NSMutableArray*, _enums);
+FLSynthesizeLazyGetter(enums, NSMutableArray, _enums);
 @synthesize enums = _enums;
 
 @end

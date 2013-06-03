@@ -27,7 +27,7 @@
     }
 
 #define FLSynthesizeLazyGetter(__NAME__, __TYPE__, __IVAR__) \
-            FLSynthesizeLazyCreateGetterWithInit(__NAME__, __TYPE__, __IVAR__, [[__TYPE alloc] init])
+            FLSynthesizeLazyCreateGetterWithInit(__NAME__, __TYPE__, __IVAR__, [[__TYPE__ alloc] init])
 
 #define FLSynthesizeDictionaryGetterProperty(__GETTER__, __TYPE__, __KEY__, __DICTIONARY__) \
     - (__TYPE__) __GETTER__ { \

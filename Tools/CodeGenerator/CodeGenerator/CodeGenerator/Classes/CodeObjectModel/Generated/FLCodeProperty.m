@@ -22,7 +22,7 @@
 
 @implementation FLCodeProperty
 
-FLSynthesizeLazyGetter(arrayTypes, NSMutableArray*, _arrayTypes);
+FLSynthesizeLazyGetter(arrayTypes, NSMutableArray, _arrayTypes);
 @synthesize arrayTypes = _arrayTypes;
 @synthesize canLazyCreate = _canLazyCreate;
 + (FLCodeProperty*) codeProperty {
@@ -50,9 +50,9 @@ FLSynthesizeLazyGetter(arrayTypes, NSMutableArray*, _arrayTypes);
 + (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"arrayType" propertyClass:[FLCodeArrayType class]] forContainerProperty:@"arrayTypes"];
 }
-FLSynthesizeLazyGetter(enumType, FLCodeEnumType*, _enumType);
+FLSynthesizeLazyGetter(enumType, FLCodeEnumType, _enumType);
 @synthesize enumType = _enumType;
-FLSynthesizeLazyGetter(getter, FLCodeMethod*, _getter);
+FLSynthesizeLazyGetter(getter, FLCodeMethod, _getter);
 @synthesize getter = _getter;
 @synthesize hasCustomCode = _hasCustomCode;
 @synthesize isImmutable = _isImmutable;
@@ -64,9 +64,9 @@ FLSynthesizeLazyGetter(getter, FLCodeMethod*, _getter);
 @synthesize memberName = _memberName;
 @synthesize name = _name;
 @synthesize nameUnmodified = _nameUnmodified;
-FLSynthesizeLazyGetter(setter, FLCodeMethod*, _setter);
+FLSynthesizeLazyGetter(setter, FLCodeMethod, _setter);
 @synthesize setter = _setter;
-FLSynthesizeLazyGetter(storageOptions, FLCodeStorageOptions*, _storageOptions);
+FLSynthesizeLazyGetter(storageOptions, FLCodeStorageOptions, _storageOptions);
 @synthesize storageOptions = _storageOptions;
 @synthesize type = _type;
 @synthesize typeUnmodified = _typeUnmodified;

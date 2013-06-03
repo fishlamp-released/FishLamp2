@@ -33,7 +33,7 @@
 #endif
 @synthesize disabled = _disabled;
 @synthesize generateAllIncludesFile = _generateAllIncludesFile;
-FLSynthesizeLazyGetter(globalDefine, FLCodeDefine*, _globalDefine);
+FLSynthesizeLazyGetter(globalDefine, FLCodeDefine, _globalDefine);
 @synthesize globalDefine = _globalDefine;
 @synthesize objectsFolderName = _objectsFolderName;
 @synthesize typePrefix = _typePrefix;

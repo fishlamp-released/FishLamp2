@@ -37,10 +37,10 @@
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"property" propertyClass:[FLCodeProperty class]] forContainerProperty:@"properties"];
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"method" propertyClass:[FLCodeMethod class]] forContainerProperty:@"methods"];
 }
-FLSynthesizeLazyGetter(methods, NSMutableArray*, _methods);
+FLSynthesizeLazyGetter(methods, NSMutableArray, _methods);
 @synthesize methods = _methods;
 @synthesize objectName = _objectName;
-FLSynthesizeLazyGetter(properties, NSMutableArray*, _properties);
+FLSynthesizeLazyGetter(properties, NSMutableArray, _properties);
 @synthesize properties = _properties;
 
 @end
