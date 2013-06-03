@@ -162,7 +162,7 @@
     self.objectName = 
         [FLObjcClassName objcClassName:codeObject.className prefix:self.project.classPrefix];
     
-    self.objectType = [FLObjcObjectType objcObjectType:self.objectName importFileName:[NSString stringWithFormat:@"%@.h", self.objectName.generatedName]];
+    self.objectType = [FLObjcMutableObjectType objcMutableObjectType:self.objectName importFileName:[NSString stringWithFormat:@"%@.h", self.objectName.generatedName]];
     
     self.superclassType = superclass;
     self.codeObject = codeObject;

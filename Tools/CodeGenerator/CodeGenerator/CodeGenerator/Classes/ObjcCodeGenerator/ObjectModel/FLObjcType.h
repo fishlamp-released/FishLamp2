@@ -26,6 +26,7 @@
 @property (readonly, assign, nonatomic) BOOL isObject;
 @property (readonly, strong, nonatomic) NSString* generatedObjectClassName;
 @property (readonly, assign, nonatomic) BOOL canForwardReference;
+@property (readonly, assign, nonatomic) BOOL isMutableObject;
 
 - (void) objcObject:(FLObjcObject*) object 
 didConfigureProperty:(FLObjcProperty*) property;

@@ -88,21 +88,21 @@
     
         FLObjcImportedName* name = [FLObjcImportedName objcImportedName:def.typeName];
     
-        switch(def.dataTypeEnum) {
-            case FLDataTypeObject:
-                [self.typeRegistry addType:[FLObjcObjectType objcObjectType:name importFileName:def.import]];
+        switch(def.dataTypeAsEnum) {
+            case FLCodeDataTypeObject:
+                [self.typeRegistry addType:[FLObjcMutableObjectType objcMutableObjectType:name importFileName:def.import]];
             break;
             
-            case FLDataTypeValue:
+            case FLCodeDataTypeValue:
                 [self.typeRegistry addType:[FLObjcValueType objcValueType:name importFileName:def.import]];
             break;
             
-            case FLDataTypeEnum:
+            case FLCodeTypeEnum:
                 [self.typeRegistry addType:[FLObjcEnumType objcEnumType:name importFileName:def.import]];
             break;
             
-            case FLDataTypeImmuteable:
-                // not sure what this is
+            case FLCodeDataTypeImmuteable:
+                [self.typeRegistry addType:[FLObjcImmutableObjectType objcImmutableObjectType:name importFileName:def.import]];
             break;
         }
     }
@@ -125,7 +125,7 @@
         }
     
         FLObjcClassName* name = [FLObjcClassName objcClassName:object.className prefix:prefix];
-        [self.typeRegistry addType:[FLObjcObjectType objcObjectType:name importFileName:nil]];
+        [self.typeRegistry addType:[FLObjcMutableObjectType objcMutableObjectType:name importFileName:nil]];
     } 
 }
 
@@ -153,7 +153,7 @@
 
         NSString* className = [NSString stringWithFormat:@"%@EnumSet", anEnum.enumType.generatedName];
         
-        [self.typeRegistry addType:[FLObjcObjectType objcObjectType:[FLObjcImportedName objcImportedName:className] 
+        [self.typeRegistry addType:[FLObjcImmutableObjectType objcImmutableObjectType:[FLObjcImportedName objcImportedName:className] 
                                                  importFileName:[NSString stringWithFormat:@"%@.h", anEnum.enumType.generatedName]]];
     }
 
@@ -163,7 +163,7 @@
 // update the objects with a input file name
     for(FLCodeObject* object in inputProject.objects) {
         FLObjcClassName* className = [FLObjcClassName objcClassName:object.className prefix:self.classPrefix];
-        FLObjcType* forwardDecl = [FLObjcObjectType objcObjectType:className importFileName:[NSString stringWithFormat:@"%@.h", className.generatedName]];
+        FLObjcType* forwardDecl = [FLObjcMutableObjectType objcMutableObjectType:className importFileName:[NSString stringWithFormat:@"%@.h", className.generatedName]];
         [self.typeRegistry replaceType:forwardDecl];
     }
 

@@ -52,11 +52,11 @@
 
 	static FLTypeHeader s_knownTypes[] = {
 // objects
-		{ @"FLObjcObjectType", @"NSObject", nil },
-		{ @"FLObjcObjectType", @"NSValue", nil },
-		{ @"FLObjcObjectType", @"NSDate", nil },
-		{ @"FLObjcObjectType", @"NSData", nil },
-		{ @"FLObjcObjectType", @"NSString", nil },
+		{ @"FLObjcImmutableObjectType", @"NSObject", nil },
+		{ @"FLObjcImmutableObjectType", @"NSValue", nil },
+		{ @"FLObjcImmutableObjectType", @"NSDate", nil },
+		{ @"FLObjcImmutableObjectType", @"NSData", nil },
+		{ @"FLObjcImmutableObjectType", @"NSString", nil },
 
 		{ @"FLObjcProtocolType", @"NSCoder", nil },
 
@@ -70,12 +70,12 @@
 		{ @"FLObjcContainerType", @"NSMutableSet", nil },
 		{ @"FLObjcContainerType", @"NSCountedSet", nil },
 
-        { @"FLObjcObjectType", @"UIColor", nil },
-        { @"FLObjcObjectType", @"NSColor", nil },
-        { @"FLObjcObjectType", @"SDKColor", nil },
-        { @"FLObjcObjectType", @"NSURL", nil },
+        { @"FLObjcImmutableObjectType", @"UIColor", nil },
+        { @"FLObjcImmutableObjectType", @"NSColor", nil },
+        { @"FLObjcImmutableObjectType", @"SDKColor", nil },
+        { @"FLObjcImmutableObjectType", @"NSURL", nil },
 
-		{ @"FLObjcObjectType", @"NSZone", nil },
+		{ @"FLObjcImmutableObjectType", @"NSZone", nil },
 
 // values
 		{ @"FLObjcNumberValueType", @"char", nil },
@@ -114,10 +114,10 @@
 		{ @"FLObjcAbstractObjectType", @"id", nil },
         
 // fishlamp
-        { @"FLObjcObjectType", @"FLDatabaseTable", @"FLDatabaseTable.h" },
-		{ @"FLObjcObjectType", @"FLObjectDescriber", @"FLObjectDescriber.h" },
-		{ @"FLObjcObjectType", @"FLModelObject", @"FLModelObject.h" },
-		{ @"FLObjcObjectType", @"FLGuid", @"FLGuid.h" },
+        { @"FLObjcMutableObjectType", @"FLDatabaseTable", @"FLDatabaseTable.h" },
+		{ @"FLObjcMutableObjectType", @"FLObjectDescriber", @"FLObjectDescriber.h" },
+		{ @"FLObjcMutableObjectType", @"FLModelObject", @"FLModelObject.h" },
+		{ @"FLObjcImmutableObjectType", @"FLGuid", @"FLGuid.h" },
         
         { @"FLObjcProtocolType", @"FLHttpRequestDescriptor", @"FLHttpRequestDescriptor.h" },
         

@@ -59,3 +59,5 @@
 #import "FLObjcTypeRegistry.h"
 #import "FLObjcEnumRegistry.h"
 #import "FLObjcCustomProperty.h"
+#import "FLObjcMutableObjectType.h"
+#import "FLObjcImmutableObjectType.h"

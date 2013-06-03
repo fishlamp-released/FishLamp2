@@ -10,12 +10,6 @@
 
 @implementation FLObjcObjectType
 
-+ (id) objcObjectType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName {
-
-    return FLAutorelease([[[self class] alloc] initWithTypeName:typeName importFileName:importFileName]);
-}
-
 - (NSString*) generatedReference {
     return [NSString stringWithFormat:@"%@*", [super generatedReference]];
 }

@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcObjectType.h"
+#import "FLObjcMutableObjectType.h"
 
 @class FLObjcContainerSubType;
-@interface FLObjcContainerType : FLObjcObjectType {
+@interface FLObjcContainerType : FLObjcMutableObjectType {
 @private
     NSMutableArray* _containerSubTypes;
 }

@@ -21,7 +21,7 @@
 
 + (id) objcArrayType:(FLObjcName*) typeName 
        importFileName:(NSString*) importFileName {
-       return [super objcObjectType:typeName importFileName:importFileName];
+       return [super objcMutableObjectType:typeName importFileName:importFileName];
 }
 
 
