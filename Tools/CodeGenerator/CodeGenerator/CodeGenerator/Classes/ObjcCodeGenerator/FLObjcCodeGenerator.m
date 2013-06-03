@@ -7,23 +7,7 @@
 //
 
 #import "FLObjcCodeGenerator.h"
-#import "FLCodeProject.h"
-#import "FLObjcTypeIndex.h"
-
-#import "FLObjcType.h"
-#import "FLObjcNamedObjectCollection.h"
-#import "FLObjcObject.h"
-#import "FLObjcFileHeader.h"
-#import "FLObjcName.h"
-#import "FLCodeMethod.h"
-#import "FLObjcEnum.h"
-#import "FLObjcFile.h"
-#import "FLObjcCodeBuilder.h"
-#import "FLCodeObject.h"
-#import "FLCodeEnum.h"
-#import "FLObjcFileManager.h"
-#import "FLObjcAllIncludesHeaderFile.h"
-#import "FLCodeProjectLocation.h"
+#import "FLObjcCodeGeneratorHeaders.h"
 
 @interface FLObjcCodeGenerator ()
 @end
@@ -34,58 +18,12 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (FLCodeGeneratorResult*) generateCodeWithCodeProject:(FLCodeProject*) project 
+- (FLCodeGeneratorResult*) generateCodeWithCodeProject:(FLCodeProject*) inputProject 
                                           fromLocation:(FLCodeProjectLocation*) location {
 
-
-    @try {
-        FLObjcFileManager* fileManager = [FLObjcFileManager objcFileManager:project];
-        FLObjcTypeIndex* typeIndex = [FLObjcTypeIndex objcTypeIndex:project];
-
-
-        NSMutableArray* enums = [NSMutableArray array];
-        for(FLCodeEnumType* codeEnum in project.enumTypes) {
-            FLAssert(codeEnum.enums.count > 0);
-            
-            FLObjcEnum* anEnum = [FLObjcEnum objcEnum:typeIndex];
-            [anEnum configureWithCodeEnumType:codeEnum];
-            [enums addObject:anEnum];
-            
-            [typeIndex setObjcType:anEnum.enumType];
-        }
-        [fileManager addFilesWithArrayOfCodeElements:enums typeIndex:typeIndex];
-
-        for(FLCodeObject* object in project.objects) {
-            FLObjcClassName* className = [FLObjcClassName objcClassName:object.className prefix:typeIndex.classPrefix];
-            FLObjcType* forwardDecl = [FLObjcObjectType objcObjectType:className importFileName:[NSString stringWithFormat:@"%@.h", className.generatedName]];
-            [typeIndex setObjcType:forwardDecl];
-        }
-
-        for(FLCodeArray* codeArray in project.arrays) {
-            FLObjcClassName* className = [FLObjcClassName objcClassName:codeArray.name prefix:typeIndex.classPrefix];
-            FLObjcType* forwardDecl = [FLObjcArrayType objcArrayType:className importFileName:[NSString stringWithFormat:@"%@.h", className.generatedName]];
-            [typeIndex setObjcType:forwardDecl];
-        }
-
-
-        NSMutableArray* objects = [NSMutableArray array];
-        for(FLCodeObject* object in project.objects) {
-            FLObjcObject* objcObject = [FLObjcObject objcObject:typeIndex];
-            [objcObject configureWithCodeObject:object];
-            [objects addObject:objcObject];
-        }
-
-        [fileManager addFilesWithArrayOfCodeElements:objects typeIndex:typeIndex];
-
-        if(project.generatorOptions.generateAllIncludesFile) {
-        
-            [fileManager addFile:[FLObjcAllIncludesHeaderFile allIncludesHeaderFile:typeIndex fileName:project.schemaName]];
-        }
-
-        return [fileManager writeFilesToDisk];
-    }
-    @finally {
-    }
+    FLObjcProject* project = [FLObjcProject objcProject];
+    [project configureWithProjectInput:inputProject];
+    return [project generateFiles];
 }
 
 

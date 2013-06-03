@@ -7,7 +7,7 @@
 //
 
 #import "FLObjcType.h"
-#import "FLObjcName.h"
+#import "FLObjcCodeGeneratorHeaders.h"
 
 @interface FLObjcType ()
 @property (readwrite, strong, nonatomic) FLObjcName* typeName;
@@ -59,8 +59,14 @@
     return FLStringsAreEqual([object generatedName], [self generatedName]);
 }
 
+- (void) describeSelf:(FLPrettyString *)string {
+    [string appendLineWithFormat:@"typeName=%@", self.typeName];
+    [string appendLineWithFormat:@"generatedName=%@", self.generatedName];
+    [string appendLineWithFormat:@"import=\"%@\"", _importFileName ? _importFileName : @""];
+}
+
 - (NSString*) description {
-    return [NSString stringWithFormat:@"%@: %@", [super description], self.generatedName];
+    return [self prettyDescription];
 }
 
 - (NSString*) generatedReference {
@@ -79,201 +85,24 @@
     return [[[self class] alloc] initWithTypeName:self.typeName importFileName:self.importFileName];
 }
 
-@end
+- (void) objcObject:(FLObjcObject*) object 
+didConfigureProperty:(FLObjcProperty*) property {
 
-@implementation FLObjcObjectType
-
-+ (id) objcObjectType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName {
-
-    return FLAutorelease([[[self class] alloc] initWithTypeName:typeName importFileName:importFileName]);
 }
 
-- (NSString*) generatedReference {
-    return [NSString stringWithFormat:@"%@*", [super generatedReference]];
+- (BOOL) canForwardReference {
+    return self.isObject;
 }
 
-- (BOOL) isObject {
-    return YES;
-}
-
-@end
-
-@implementation FLObjcValueType
-
-+ (id) objcValueType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName {
-
-    return FLAutorelease([[[self class] alloc] initWithTypeName:typeName importFileName:importFileName]);
-}
-
-- (BOOL) isObject {
+- (BOOL) isMutableObject {
     return NO;
 }
 
 @end
 
-@implementation FLObjcEnumType
-+ (id) objcEnumType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName {
-    return FLAutorelease([[[self class] alloc] initWithTypeName:typeName importFileName:importFileName]);
-}
-
-@end
-
-@implementation FLObjcProtocolType
-+ (id) objcProtocolType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName {
-    return FLAutorelease([[[self class] alloc] initWithTypeName:typeName importFileName:importFileName]);
-}
-
-- (NSString*) generatedReference {
-    return [NSString stringWithFormat:@"id<%@>", [super generatedReference]];
-}
-
-@end
-
-@implementation FLObjcAbstractObjectType 
-- (id) init {	
-	return [self initWithTypeName:[FLObjcImportedName objcImportedName:@"id"] importFileName:nil];
-}
-+ (id) objcAbstractObjectType {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-- (BOOL) isObject {
-    return YES;
-}
-@end
 
 
-@implementation FLObjcVoidType 
-- (id) init {	
-	return [self initWithTypeName:[FLObjcImportedName objcImportedName:@"void"] importFileName:nil];
-}
-+ (id) objcVoidType {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-- (BOOL) isObject {
-    return NO;
-}
-@end
 
 
-@implementation FLObjcContainerType
-@synthesize containerSubTypes = _containerSubTypes;
-
-- (id) init {	
-	self = [super init];
-	if(self) {
-		_containerSubTypes = [[NSMutableArray alloc] init];
-	}
-	return self;
-}
-
-+ (id) objcContainerType {
-    return FLAutorelease([[[self class] alloc] init]);
-}
 
 
-#if FL_MRC
-- (void) dealloc {
-	[_containerSubTypes release];
-	[super dealloc];
-}
-#endif
-
-- (void) addContainerSubType:(FLObjcContainerSubType*) subType {
-    [_containerSubTypes addObject:subType];
-}
-
-@end
-
-
-@implementation FLObjcContainerSubType
-@synthesize subTypeName = _subTypeName;
-@synthesize objcType = _objcType;
-
-#if FL_MRC
-- (void) dealloc {
-	[_subTypeName release];
-    [_objcType release];
-    [super dealloc];
-}
-#endif
-
-- (id) initWithName:(NSString*) name objcType:(FLObjcType*) objcType {	
-	self = [super init];
-	if(self) {
-		self.subTypeName = name;
-        self.objcType = objcType;
-	}
-	return self;
-}
-
-+ (id) objcContainerSubType:(NSString*) name objcType:(FLObjcType*) objcType {
-    return FLAutorelease([[[self class] alloc] initWithName:name objcType:objcType]);
-}
-
-@end
-
-@implementation FLObjcNumberObjectType 
-
-- (id) init {	
-	return [super initWithTypeName:[FLObjcImportedName objcImportedName:@"NSNumber"] importFileName:nil];
-}
-
-+ (id) objcNumberObjectType {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-@end
-
-@implementation FLObjcNumberValueType 
-
-- (NSString*) generatedObjectClassName {
-    return @"NSNumber";
-}
-
-@end
-
-@implementation FLObjcBoolType 
-
-- (id) init {	
-	return [super initWithTypeName:[FLObjcImportedName objcImportedName:@"BOOL"]  importFileName:nil];
-}
-
-+ (id) objcBoolType {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-- (BOOL) isObject {
-    return NO;
-}
-
-//+ (id) objcNumberValueType:(NSString*) numberType {
-//    return FLAutorelease([[[self class] alloc] init]);
-//}
-@end
-
-
-@implementation FLObjcGeometryType 
-@end
-
-@implementation FLObjcArrayType
-
-//- (id) init {	
-//	return [super initWithTypeName:[FLObjcImportedName objcImportedName:@"NSMutableArray"] importedFileName:nil];
-//}
-
-- (NSString*) generatedName {
-    return @"NSMutableArray";
-}
-
-
-+ (id) objcArrayType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName {
-       return [super objcObjectType:typeName importFileName:importFileName];
-}
-
-
-@end

@@ -13,22 +13,70 @@
 /*
 /// concrete base class.
 */
+@interface FLStringFormatter ()
+- (void) openLine;
+@end
 
 
 @implementation FLStringFormatter
 
 @synthesize stringFormatterOutput = _output;
+@synthesize parent = _parent;
+@synthesize lineIsOpen = _editingLine;
+
+- (void) processAndAppendAttributedString:(NSAttributedString*) string {
+
+    // TODO
+
+    [_output stringFormatter:self appendAttributedString:string];
+
+}
+
+
+
+- (void) processAndAppendString:(NSString*) string {
+
+    NSRange range = { 0, 0 };
+    
+    NSCharacterSet* white = [NSCharacterSet whitespaceCharacterSet];
+    
+    for(NSUInteger i = 0; i < string.length; i++) {
+        unichar c = [string characterAtIndex:i];
+        
+        if(c == '\n') {
+            if(range.length > 0) {
+                [self openLine];
+                [_output stringFormatter:self appendString:[string substringWithRange:range]];
+                [self closeLine];
+            }
+            
+            range.location = i+1;
+            range.length = 0;
+            
+            continue;
+        }
+
+        ++range.length;
+    }
+    
+    if(range.length) {
+        [self openLine];
+            
+        if(range.location > 0) {
+            [_output stringFormatter:self appendString:[string substringWithRange:range]];
+        }
+        else {
+            [_output stringFormatter:self appendString:string];
+        }
+    }
+}
 
 - (void) appendString:(NSString*) string {
     FLAssertNotNil(string);
     FLAssertNotNil(_output);
     
-    if(!_editingLine) {
-        _editingLine = YES;
-        [_output stringFormatterOpenLine:self];
-    }
-    [_output stringFormatter:self appendString:string];
-    
+    [self openLine];
+    [self processAndAppendString:string];
 }
 
 
@@ -36,14 +84,19 @@
     FLAssertNotNil(string);
     FLAssertNotNil(_output);
 
+    [self openLine];
+    [self processAndAppendAttributedString:string];
+}
+
+
+- (void) openLine {
+    FLAssertNotNil(_output);
+
     if(!_editingLine) {
         _editingLine = YES;
         [_output stringFormatterOpenLine:self];
     }
-    
-    [_output stringFormatter:self appendAttributedString:string];
 }
-
 
 - (void) closeLine {
 
@@ -51,40 +104,30 @@
 
     if(_editingLine) {
         [_output stringFormatterCloseLine:self];
+        _editingLine = NO;
     }
-    _editingLine = NO;
 }
 
 - (void) closeLineWithString:(NSString*) string {
     FLAssertNotNil(_output);
 
-    if(_editingLine) {
-    
-        if(string) {
-            [_output stringFormatter:self appendString:string];
-        }
-
-        if(_editingLine) {
-            [_output stringFormatterCloseLine:self];
-        }
+    if(string) {
+        [self openLine];
+        [self processAndAppendString:string];
     }
-    _editingLine = NO;
+
+    [self closeLine];
 }
 
 - (void) closeLineWithAttributedString:(NSAttributedString*) string {
     FLAssertNotNil(_output);
 
-    if(_editingLine) {
-
-        if(string) {
-            [_output stringFormatter:self appendAttributedString:string];
-        }
-
-        if(_editingLine) {
-            [_output  stringFormatterCloseLine:self];
-        }
+    if(string) {
+        [self openLine];
+        [self processAndAppendAttributedString:string];
     }
-    _editingLine = NO;
+
+    [self closeLine];
 }
 
 #define openLineInfo() MakeInfo(_editingLine, NO, YES, NO)
@@ -93,13 +136,9 @@
     FLAssertNotNil(string);
     FLAssertNotNil(_output);
     
-    if(_editingLine) {
-        [_output  stringFormatterCloseLine:self];
-    }
-    
-    _editingLine = YES;
-    [_output stringFormatterOpenLine:self];
-    [_output stringFormatter:self appendString:string];
+    [self closeLine];
+    [self openLine];
+    [self processAndAppendString:string];
 }
 
 
@@ -107,13 +146,9 @@
     FLAssertNotNil(string);
     FLAssertNotNil(_output);
     
-    if(_editingLine) {
-        [_output  stringFormatterCloseLine:self];
-    }
-    
-    _editingLine = YES;
-    [_output stringFormatterOpenLine:self];
-    [_output stringFormatter:self appendAttributedString:string];
+    [self closeLine];
+    [self openLine];
+    [self processAndAppendAttributedString:string];
 }
 
 #define appendLineInfo() MakeInfo(NO, NO, !_editingLine, YES)
@@ -122,13 +157,9 @@
     FLAssertNotNil(string);
     FLAssertNotNil(_output);
 
-    if(!_editingLine) {
-        _editingLine = YES;
-        [_output stringFormatterOpenLine:self];
-    }
-    [_output stringFormatter:self appendAttributedString:FLRetainWithAutorelease(string)];
-    [_output  stringFormatterCloseLine:self];
-    _editingLine = NO;
+    [self openLine];
+    [self processAndAppendAttributedString:string];
+    [self closeLine];
 }
 
 
@@ -136,28 +167,22 @@
     FLAssertNotNil(string);
     FLAssertNotNil(_output);
 
-    if(!_editingLine) {
-        _editingLine = YES;
-        [_output stringFormatterOpenLine:self];
-    }
-    [_output stringFormatter:self appendString:string];
-    [_output  stringFormatterCloseLine:self];
-    _editingLine = NO;
+    [self openLine];
+    [self processAndAppendString:string];
+    [self closeLine];
+    
 }
 
 - (void) appendBlankLine {
     FLAssertNotNil(_output);
-                        
-    if(_editingLine) {
-        [_output  stringFormatterCloseLine:self];
-        _editingLine = NO;
-    }
-    
+     
+    [self closeLine];                                       
+    // intentionally not opening line
     [_output stringFormatterAppendBlankLine:self];
-                        
 }
 
-- (void) appendLines:(NSString**) lines count:(NSInteger) count{
+- (void) appendLines:(NSString**) lines 
+               count:(NSInteger) count{
     FLAssertNotNil(lines);
         if(lines) {for(int i = 0; i < count; i++) {
             [self appendLine:lines[i]];
@@ -186,7 +211,8 @@
     [self appendString:string];
 }
 
-- (void) appendFormat:(NSString*) format arguments:(va_list)argList {
+- (void) appendFormat:(NSString*) format 
+            arguments:(va_list)argList {
 	[self appendString:FLAutorelease([[NSString alloc] initWithFormat:format arguments:argList])];
 }
 
@@ -228,7 +254,8 @@
 	return string;
 }
 
-- (void) appendStringContainingMultipleLines:(NSString*) inLines trimWhitespace:(BOOL) trimWhitespace {
+- (void) appendStringContainingMultipleLines:(NSString*) inLines 
+                              trimWhitespace:(BOOL) trimWhitespace {
     FLAssertNotNil(inLines);
 
 	NSString* string = trimWhitespace ? [self _preprocessLines:inLines] : inLines;
@@ -256,15 +283,32 @@
     [_output stringFormatterOutdent:self];
 }
 
-- (void) indent:(void (^)()) block {
-    if(_editingLine) {
-        [_output  stringFormatterCloseLine:self];
-    }
+- (void) indent:(FLStringFormatterBlock) block {
+    [self closeLine];
     [_output stringFormatterIndent:self];
+    // subsequent calls to us will open a line, etc..
     block();
-    if(_editingLine) {
-        [_output  stringFormatterCloseLine:self];
-    }
+    [self closeLine]; // just in case.
     [_output stringFormatterOutdent:self];
+}
+
+- (void) appendInScope:(NSString*) openScope closeScope:(NSString*) closeScope withBlock:(FLStringFormatterBlock) block {
+    [self appendLine:openScope];
+    [self indent:block];
+    [self appendLine:closeScope];
+}
+
+- (void) setParent:(id) parent {
+    _parent = parent;
+    [self didMoveToParent:_parent];
+}
+
+- (void) didMoveToParent:(id) parent {
+}
+
+- (void) appendStringFormatter:(id<FLStringFormatter>) stringBuilder {
+
+    FLAssertFailedWithComment(@"not implemented");
+    
 }
 @end

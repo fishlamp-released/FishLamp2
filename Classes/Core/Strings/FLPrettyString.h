@@ -59,7 +59,12 @@
 @end
 
 @interface NSObject (FLStringFormatter)
-- (void) describe:(FLPrettyString*) formatter;
+// override this one
+- (void) describeSelf:(FLPrettyString*) string;
+
+// call this one
+- (void) prettyDescription:(FLPrettyString*) string;
+
 - (NSString*) prettyDescription;
 @end
 
@@ -76,3 +81,5 @@
 - (NSAttributedString*) prettyString:(FLPrettyString*) prettyString willAppendAttributedString:(NSAttributedString*) string;
 - (void) prettyString:(FLPrettyString*) prettyString didAppendAttributedString:(NSAttributedString*) string;
 @end
+
+

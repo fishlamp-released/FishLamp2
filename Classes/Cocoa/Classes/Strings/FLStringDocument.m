@@ -33,24 +33,24 @@
 }
 #endif
 
-- (FLDocumentSection*) rootStringBuilder {
+- (id<FLStringFormatter, FLBuildableString>) rootStringBuilder {
     FLAssertNotNil([_stack firstObject]);
     return [_stack firstObject];
 }
 
-- (FLDocumentSection*) openedStringBuilder {
+- (id<FLStringFormatter, FLBuildableString>) openedStringBuilder {
     FLAssertNotNil([_stack lastObject]);
     return [_stack lastObject];
 }
 
-- (void) addStringBuilder:(FLDocumentSection*) stringBuilder {
+- (void) appendStringFormatter:(id<FLStringFormatter, FLBuildableString>) stringBuilder {
     FLAssert(_stack.count > 0);
     
-    [self.openedStringBuilder addStringBuilder:stringBuilder];
+    [self.openedStringBuilder appendStringFormatter:stringBuilder];
 }
 
-- (void) openStringBuilder:(FLDocumentSection*) stringBuilder {
-    [self addStringBuilder:stringBuilder];
+- (void) openStringBuilder:(id<FLStringFormatter, FLBuildableString>) stringBuilder {
+    [self appendStringFormatter:stringBuilder];
     
     FLAssert(_stack.count > 0);
     

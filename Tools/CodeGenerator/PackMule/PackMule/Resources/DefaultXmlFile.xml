@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<code projectName="MY PROJECT NAME">
-    <generatorOptions typePrefix="MP"/>
-    <organization name="MY ORG"/>
+<code projectName="FishLamp">
+
+    <organization name="GreenTongue Software LLC, Mike Fullerton"/>
+    
+	<license>
+        <licenseName>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</licenseName>
+    </license>
+
+    <generatorOptions typePrefix="FL"/>
+
+    <!-- Example enums -->
+    
     <enumTypes>
         <enumType typeName="ExampleEnum">
             <enums>
@@ -11,17 +20,25 @@
             </enums>
         </enumType>
     </enumTypes>
+    
+    <!-- example imported types --> 
+    
     <typeDefinitions>
         <typeDefinition typeName="FLGuid" import="FLGuid.h" dataType="Object"/>
     </typeDefinitions>
+    
+    
     <imports>
         <!-- import another file. The values defined in the parent file override the values in the child -->
         <!--
           <import path="AnotherCodeFile.flproj" type="File"/>
           -->
     </imports>
+    
+    <!-- example object defininition -->
+    
     <objects>
-        <object typeName="FLTestObject" protocols="NSCopying, NSCoding">
+        <object className="FLTestObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property name="name" type="string"/>
                 <property name="number" type="float"/>

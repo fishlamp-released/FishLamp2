@@ -108,6 +108,23 @@
 	}
 }
 
+- (void) finalizeLoadedProject:(FLCodeProject*) project {
+    
+    if(project.canLazyCreate) {
+        for(FLCodeObject* object in project.objects) {
+            object.canLazyCreate = YES;
+        }
+    }
+
+    for(FLCodeObject* object in project.objects) {
+        if(object.canLazyCreate) {
+            for(FLCodeProperty* prop in object.properties) {
+                prop.canLazyCreate = YES;
+            }
+        }
+    }
+}
+
 - (FLCodeProject *) readProjectFromLocation:(FLCodeProjectLocation*) location {
     FLAssertNotNil(_fileReaders);
     FLAssert(_fileReaders.count > 0);
@@ -118,6 +135,7 @@
             FLCodeProject* project = [reader readProjectFromLocation:location];
             [self didLoadProject:project fromLocation:location];
             [self loadSubProjectsRecursively:project];
+            [self finalizeLoadedProject:project];
             return project;
         }
     }

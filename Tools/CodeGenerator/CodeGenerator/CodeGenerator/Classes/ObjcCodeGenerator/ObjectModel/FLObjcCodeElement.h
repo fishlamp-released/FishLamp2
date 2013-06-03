@@ -9,19 +9,22 @@
 
 @class FLObjcCodeBuilder;
 @class FLObjcFile;
-@class FLObjcTypeIndex;
+@class FLObjcProject;
 
 @protocol FLObjcCodeElement <NSObject>
-- (void) writeCodeToHeaderFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder;
-- (void) writeCodeToSourceFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder;
+- (void) writeCodeToHeaderFile:(FLObjcFile*) file 
+               withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder;
+
+- (void) writeCodeToSourceFile:(FLObjcFile*) file 
+               withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder;
 @end
 
 @interface FLObjcCodeElement : NSObject<FLObjcCodeElement, FLGenerated> {
 @private
-    __unsafe_unretained FLObjcTypeIndex* _typeIndex;
+    __unsafe_unretained FLObjcProject* _project;
 }
-@property (readwrite, assign, nonatomic) FLObjcTypeIndex* typeIndex;
+@property (readwrite, assign, nonatomic) FLObjcProject* project;
 
-- (id) initWithTypeIndex:(FLObjcTypeIndex*) index;
+- (id) initWithProject:(FLObjcProject*) project;
 
 @end

@@ -21,6 +21,8 @@
 @property (readonly, strong, nonatomic) NSString* suffix;
 
 - (id) initWithIdentifierName:(NSString*) name prefix:(NSString*) prefix suffix:(NSString*) suffix;
-//+ (id) codeIdentifier:(NSString*) name prefix:(NSString*) prefix suffix:(NSString*) suffix;
+
+
+- (id) copyWithNewName:(NSString*) newName;
 
 @end

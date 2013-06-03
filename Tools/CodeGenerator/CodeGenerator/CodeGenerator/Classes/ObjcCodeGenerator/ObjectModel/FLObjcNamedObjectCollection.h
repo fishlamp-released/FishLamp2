@@ -7,19 +7,32 @@
 //
 
 #import "FishLamp.h"
+#import "FLCarefulDictionary.h"
 
 @class FLObjcName;
 
-@interface FLObjcNamedObjectCollection : NSObject<NSFastEnumeration> {
+@interface FLObjcNamedObjectCollection : NSObject {
 @private
-    NSMutableDictionary* _names;
-    NSMutableDictionary* _generatedStrings;
+    FLCarefulDictionary* _objects;
 }
+
 + (id) objcNamedObjectCollection;
 
-- (id) objectForKey:(NSString*) name;
-- (void) setObject:(id) object forKey:(FLObjcName*) key;
+- (NSString*) keyFromObjcName:(FLObjcName*) name;
 
+- (void) addObject:(id) object forObjcName:(FLObjcName*) key;
+- (void) addAlias:(NSString*) alias forObjcName:(FLObjcName*) key;
+- (void) replaceObject:(id) object forObjcName:(FLObjcName*) key;
+- (void) removeObjectForObjcName:(FLObjcName*) key;
+
+- (BOOL) hasObjcName:(FLObjcName*) name;
+- (BOOL) hasKey:(NSString*) key;
+
+- (id) objectForClass:(Class) aClass;
+- (id) objectForObjcName:(FLObjcName*) name;
+- (id) objectForKey:(NSString*) key;
+
+- (NSEnumerator *)keyEnumerator;
 - (NSEnumerator *)objectEnumerator;
 - (NSArray *)allKeys;
 - (NSArray *)allValues;

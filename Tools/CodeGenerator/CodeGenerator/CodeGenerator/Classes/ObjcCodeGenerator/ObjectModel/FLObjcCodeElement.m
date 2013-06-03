@@ -7,12 +7,12 @@
 //
 
 #import "FLObjcCodeElement.h"
-#import "FLObjcTypeIndex.h"
+#import "FLObjcProject.h"
 #import "FLObjcCodeBuilder.h"
 #import "FLObjcFile.h"
 
 @implementation FLObjcCodeElement
-@synthesize typeIndex = _typeIndex;
+@synthesize project = _project;
 
 - (NSString*) generatedReference {
     return nil;
@@ -23,21 +23,24 @@
 }
 
 - (id) init {	
-	return [self initWithTypeIndex:nil];
+	return [self initWithProject:nil];
 }
 
-- (id) initWithTypeIndex:(FLObjcTypeIndex*) index {	
-    FLAssertNotNil(index);
+- (id) initWithProject:(FLObjcProject*) project {	
+    FLAssertNotNil(project);
 	self = [super init];
 	if(self) {
-		_typeIndex = index;
+		_project = project;
 	}
 	return self;
 }
 
-- (void) writeCodeToHeaderFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
+- (void) writeCodeToHeaderFile:(FLObjcFile*) file 
+               withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
 }
-- (void) writeCodeToSourceFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
+
+- (void) writeCodeToSourceFile:(FLObjcFile*) file 
+               withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
 }
 
 @end

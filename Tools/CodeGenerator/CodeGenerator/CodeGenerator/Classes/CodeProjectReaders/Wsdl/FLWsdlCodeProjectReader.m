@@ -365,26 +365,7 @@
     FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:xml];
 
     self.wsdlDefinitions = [FLWsdlDefinitions objectWithXmlElement:parsedSoap withObjectBuilder:[FLSoapObjectBuilder instance]];
-	
-
-// TODO: abstract away objc
-
-//	FLCodeTypeDefinition* define1 = [FLCodeTypeDefinition typeDefinition];
-//	define1.typeName = @"FLNetworkServerContext";
-//	define1.import = @"FLNetworkServerContext.h";
-//	[self.project.typeDefinitions addObject:define1];
-//
-//	FLCodeTypeDefinition* define2 = [FLCodeTypeDefinition typeDefinition];
-//	define2.typeName = @"FLHttpOperation";
-//	define2.import = @"FLHttpOperation.h";
-//	[self.project.typeDefinitions addObject:define2];
-
-//	FLTypeDefinition* define3 = [FLTypeDefinition TypeDefinition];
-//	define3.typeName = @"FLNetworkEndpointHelper";
-//	define3.import @"FLNetworkEndpointHelper.h";
-//	[project.typeDefinitions addObject:define3];
-
-	
+		
 	for(FLWsdlSchema* schema in self.wsdlDefinitions.types) {
         [self addEnumerationsInSimpleTypes:schema.simpleTypes];
         [self addObjectsInComplexTypes:schema.complexTypes];

@@ -19,25 +19,27 @@
     return [[self class] isModelObject];
 }
 
-//+ (void) registerObjectDescriber {
-//    [FLLegacyObjectDescriber registerClass:[self class]];
-//}
-
-
-
 @end
 
 @implementation FLModelObject 
 FLSynthesizeModelObjectMethods();
 
-//@synthesize identifier = _identifier;
-//
-//#if FL_MRC
-//- (void) dealloc {
-//	[_identifier release];
-//	[super dealloc];
-//}
-//#endif
+- (void) describeSelf:(FLPrettyString*) string {
+    FLObjectDescriber* typeDesc = [self objectDescriber];
+    FLAssertNotNil(typeDesc);
+    
+    for(NSString* propertyName in typeDesc.properties) {
+        id value = [self valueForKey:propertyName];
+        
+        if(value) {
+            [string appendLineWithFormat:@"%@ = %@", propertyName, [value description]];
+        }
+    }
+}
+
+- (NSString*) description {
+    return [self prettyDescription];
+}
 
 @end
 

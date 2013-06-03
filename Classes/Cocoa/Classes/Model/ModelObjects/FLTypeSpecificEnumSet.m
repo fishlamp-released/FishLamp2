@@ -24,12 +24,14 @@
     return FLAutorelease([[[self class] alloc] initWithValueLookup:valueLookup stringLookup:stringLookup]);
 }
 
-- (void) setWithConcatenatedString:(NSString*) jumboString {
 
+- (void) setConcatenatedString:(NSString*) concatenatedString 
+            withParseDelimiter:(NSString*) delimeter {
     FLAssertNotNil(_valueLookup);
     FLAssertNotNil(_stringLookup);
     
-    NSArray* strings = [jumboString componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ,"] allowEmptyStrings:NO];
+    NSArray* strings = [concatenatedString componentsSeparatedByCharactersInSet:
+                        [NSCharacterSet characterSetWithCharactersInString:delimeter] allowEmptyStrings:NO];
     
     for(NSString* string in strings) {
         NSInteger value = _valueLookup(string);
@@ -42,10 +44,6 @@
             [self addEnum:value withName:prettyString];
         }
     }
-}
-
-- (NSString*) concatenatedString {
-    return [self concatenatedStringWithDelimiter:@", "];
 }
 
 - (NSString*) concatenatedStringWithDelimiter:(NSString*) delimeter {
@@ -64,6 +62,13 @@
     return str;
 }
 
+- (NSString*) concatenatedString {
+    return [self concatenatedStringWithDelimiter:FLTypeSpecificEnumSetDefaultDelimeter];
+}
+
+- (void) setConcatenatedString:(NSString*) string {
+    [self setConcatenatedString:string withParseDelimiter:FLTypeSpecificEnumSetDefaultParseDelimeters];
+}
 
 
 @end

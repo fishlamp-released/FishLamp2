@@ -24,8 +24,9 @@
 @property (readonly, strong, nonatomic) FLStringDocument* document;
 @property (readonly, strong, nonatomic) FLDocumentSection* openedSection;
 
-- (void) openSection:(FLDocumentSection*) element;
-- (void) addSection:(FLDocumentSection*) element;
+- (void) appendStringFormatter:(id<FLStringFormatter, FLBuildableString>) document;
+
+- (void) openSection:(id<FLStringFormatter, FLBuildableString>) element;
 - (void) closeSection;
 
 - (void) closeAllSections;

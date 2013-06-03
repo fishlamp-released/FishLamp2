@@ -8,6 +8,9 @@
 
 #import "FLGenerated.h"
 @class FLObjcName;
+@class FLObjcObject;
+@class FLObjcProperty;
+@class FLObjcProject;
 
 @interface FLObjcType : NSObject<FLGenerated, NSCopying> {
 @private
@@ -22,89 +25,23 @@
 @property (readonly, strong, nonatomic) NSString* importFileName;
 @property (readonly, assign, nonatomic) BOOL isObject;
 @property (readonly, strong, nonatomic) NSString* generatedObjectClassName;
-@end
+@property (readonly, assign, nonatomic) BOOL canForwardReference;
+@property (readonly, assign, nonatomic) BOOL isMutableObject;
 
-@interface FLObjcObjectType : FLObjcType
-         
-+ (id) objcObjectType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName;
-
-@end
-
-// value types
-
-@interface FLObjcValueType : FLObjcType
-+ (id) objcValueType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName;
-@end
-
-@interface FLObjcEnumType : FLObjcType 
-+ (id) objcEnumType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName;
-@end
-
-// other types
-
-@interface FLObjcProtocolType : FLObjcType 
-+ (id) objcProtocolType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName;
+- (void) objcObject:(FLObjcObject*) object 
+didConfigureProperty:(FLObjcProperty*) property;
 
 @end
 
-@interface FLObjcAbstractObjectType : FLObjcType
-+ (id) objcAbstractObjectType;
-@end
-
-@interface FLObjcVoidType : FLObjcType
-+ (id) objcVoidType;
-@end
-
-@class FLObjcContainerSubType;
-@interface FLObjcContainerType : FLObjcObjectType {
-@private
-    NSMutableArray* _containerSubTypes;
-}
-+ (id) objcContainerType;
-
-@property (readonly, strong, nonatomic) NSArray* containerSubTypes;
-
-- (void) addContainerSubType:(FLObjcContainerSubType*) subType;
-
-@end
-
-@interface FLObjcContainerSubType : NSObject {
-@private
-    NSString* _subTypeName;
-    FLObjcType* _arrayElementType;
-}
-
-@property (readwrite, strong, nonatomic) NSString* subTypeName;
-@property (readwrite, strong, nonatomic) FLObjcType* objcType;
-
-+ (id) objcContainerSubType:(NSString*) name 
-                   objcType:(FLObjcType*) objcType;
-
-@end
-
-@interface FLObjcNumberObjectType : FLObjcObjectType
-+ (id) objcNumberObjectType;
-@end
-
-@interface FLObjcNumberValueType : FLObjcValueType
-//+ (id) objcNumberValueType:(NSString*) numberType;
-@end
-
-@interface FLObjcBoolType : FLObjcType
-+ (id) objcBoolType;
-@end
 
 
-@interface FLObjcGeometryType : FLObjcValueType
-@end
 
-@interface FLObjcArrayType : FLObjcContainerType 
-+ (id) objcArrayType:(FLObjcName*) typeName 
-       importFileName:(NSString*) importFileName;
-@end
+
+
+
+
+
+
+
 
 

@@ -189,7 +189,7 @@ static NSMutableDictionary* s_registry = nil;
     }
 }
 
-- (void) describeSelf {
+- (void) describeSelfForObjectDescriber {
     Class aClass = [self objectClass];
     BOOL isModelObject = [aClass isModelObject];
     if(isModelObject) {
@@ -216,7 +216,7 @@ static NSMutableDictionary* s_registry = nil;
     @synchronized(self) {
         [s_registry setObject:describer forKey:NSStringFromClass(aClass)];
     }
-    [describer describeSelf];
+    [describer describeSelfForObjectDescriber];
 
     if([aClass isModelObject]) {    
         [aClass didRegisterObjectDescriber:describer];

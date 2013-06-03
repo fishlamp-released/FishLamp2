@@ -7,7 +7,10 @@
 //
 
 #import "FLObjcCodeBuilder.h"
+#import "FLObjcCodeGeneratorHeaders.h"
+
 #import "NSString+Lists.h"
+#import "FLCodeLine.h"
 
 @implementation FLObjcCodeBuilder
 
@@ -18,7 +21,7 @@
 - (void) appendComment:(NSString*) aComment {
     FLObjcComment* comment = [FLObjcComment objcComment];
     [comment appendStringContainingMultipleLines:aComment];
-    [self addSection:comment];
+    [self appendStringFormatter:comment];
 }
 
 - (void) appendPreprocessorIf:(NSString*) condition {
@@ -172,11 +175,7 @@
     [self appendLine:@"[super dealloc];"];
 }
 
-- (void) scope:(dispatch_block_t) block {
-    [self appendLine:@"{"];
-    [self indent:block];
-    [self appendLine:@"}"];
-}
+
 
 - (void) appendDefine:(NSString*) name value:(NSString*) value {
     [self appendLineWithFormat:@"#define %@ %@", name, value];
@@ -213,6 +212,48 @@
 - (void) appendStaticVariable:(NSString*) type name:(NSString*) name initialValue:(NSString*) initialValue {
     [self appendLineWithFormat:@"static %@ %@ = %@;", type, name, initialValue];
 }
+
+- (void) scope:(dispatch_block_t) block {
+    [self appendLine:@"{"];
+    [self indent:block];
+    [self appendLine:@"}"];
+}
+
+- (void) appendScopedCode:(NSString*) leaderOrNil block:(dispatch_block_t) block {
+    if(FLStringIsNotEmpty(leaderOrNil)) {
+        [self appendLineWithFormat:@"%@ {", leaderOrNil];
+    }
+    else {
+        [self appendLine:@"{"];
+    }
+    [self indent:block];
+    [self appendLine:@"}"];
+}
+
+- (void) appendCodeLine:(FLCodeLine*) codeLine 
+            withProject:(FLObjcProject*) project {
+
+    switch(codeLine.codeLineType) {
+        case FLCodeLineTypeReturnNewObject:{
+            FLObjcType* theType = [project.typeRegistry typeForKey:[codeLine parameterForKey:FLCodeLineClassName]];
+            [self appendReturnValue:[NSString stringWithFormat:@"FLAutorelease([[%@ alloc] init])", theType.generatedName]];
+        }
+        break;
+        
+        case FLCodeLineTypeReturnString:
+            [self appendReturnValue:[NSString stringWithFormat:@"@\"%@\";", [codeLine parameterForKey:FLCodeLineString]]];
+        break;
+        
+        default:
+        break;
+    
+    }
+}
+
+- (void) appendAssignment:(NSString*) from to:(NSString*) to {
+    [self appendLineWithFormat:@"%@ = %@;", to, from];
+}
+
 
 @end
 

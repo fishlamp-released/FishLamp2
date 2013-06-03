@@ -3,6 +3,13 @@
    version = "1.0">
    <Group
       location = "container:"
+      name = "Tools">
+      <FileRef
+         location = "group:../Tools/CodeGenerator/PackMule/PackMule.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
       name = "Lib Projects">
       <FileRef
          location = "group:Projects/Libs/FishLampOSXLib/FishLampOSX.xcodeproj">

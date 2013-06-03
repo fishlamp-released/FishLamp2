@@ -7,20 +7,14 @@
 //
 
 #import "FLObjcDidRegisterObjectDescriberMethod.h"
-#import "FLObjcProperty.h"
-#import "FLObjcType.h"
-#import "FLObjcName.h"
+#import "FLObjcCodeGeneratorHeaders.h"
+
 #import "FLObjectDescriber.h"
-#import "FLObjcTypeIndex.h"
-#import "FLObjcVariable.h"
-#import "FLObjcObject.h"
-#import "FLObjcCodeBuilder.h"
-#import "FLObjcStatement.h"
 
 @implementation FLObjcDidRegisterObjectDescriberMethod
 
-- (id) initWithTypeIndex:(FLObjcTypeIndex *)index {	
-	self = [super initWithTypeIndex:index ];
+- (id) initWithProject:(FLObjcProject *)project {	
+	self = [super initWithProject:project ];
 	if(self) {
         self.returnType = [FLObjcVoidType objcVoidType];
         self.methodName = [FLObjcMethodName objcMethodName:@"didRegisterObjectDescriber"];
@@ -28,7 +22,7 @@
         self.isPrivate = YES;
                 
         FLObjcParameterName* parameterName = [FLObjcParameterName objcParameterName:@"describer"];
-        FLObjcType* type = [index objcTypeForClass:[FLObjectDescriber class]];
+        FLObjcType* type = [project.typeRegistry typeForClass:[FLObjectDescriber class]];
         
         FLObjcParameter* parameter = [FLObjcParameter objcParameter:parameterName parameterType:type key:@"describer"];
         [self addParameter:parameter];
@@ -36,8 +30,8 @@
     return self;
 }
 
-+ (id) objcDidRegisterObjectDescriberMethod:(FLObjcTypeIndex*) typeIndex {
-    return FLAutorelease([[[self class] alloc] initWithTypeIndex:typeIndex]);
++ (id) objcDidRegisterObjectDescriberMethod:(FLObjcProject*) project {
+    return FLAutorelease([[[self class] alloc] initWithProject:project]);
 }
 
 - (void) writeCodeToSourceFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
@@ -54,28 +48,22 @@
     }
     
     if(foundContainerTypes) {
-        FLObjcStringStatement* statement = nil;
+        BOOL hasContent = NO;
         for(FLObjcProperty* property in [self.parentObject.properties objectEnumerator]) {
             NSArray* containerTypes = property.containerTypes;
             if(containerTypes && containerTypes.count) {
-                
-                if(!statement) {
-                    statement = [FLObjcStringStatement objcStringStatement]; 
-                }
-                
+                hasContent = YES;
+               
                 for(FLObjcContainerSubType* subType in containerTypes) {
                     NSString* propertyDescriber = [NSString stringWithFormat:@"[FLPropertyDescriber propertyDescriber:@\"%@\" propertyClass:[%@ class]]", subType.subTypeName, subType.objcType.generatedObjectClassName];
                 
-                    
-                
-                    [statement.string appendLineWithFormat:@"[describer addContainerType:%@ forContainerProperty:@\"%@\"];", propertyDescriber, property.propertyName.generatedName];
+                    [self.code appendLineWithFormat:@"[describer addContainerType:%@ forContainerProperty:@\"%@\"];", propertyDescriber, property.propertyName.generatedName];
                 }
             }
         }
 
         // only write the method if we have content
-        if(statement) {
-            [self addStatement:statement];
+        if(hasContent) {
             [super writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
         }
     }

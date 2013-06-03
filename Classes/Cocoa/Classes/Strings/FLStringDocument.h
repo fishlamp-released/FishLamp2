@@ -20,15 +20,15 @@
 
 @property (readonly, strong, nonatomic) NSArray* openedStringBuilders;
 
-@property (readonly, strong, nonatomic) FLDocumentSection* rootStringBuilder;
+@property (readonly, strong, nonatomic) id<FLStringFormatter, FLBuildableString> rootStringBuilder;
 
-@property (readonly, strong, nonatomic) FLDocumentSection* openedStringBuilder;
+@property (readonly, strong, nonatomic) id<FLStringFormatter, FLBuildableString> openedStringBuilder;
 
-- (void) addStringBuilder:(FLDocumentSection*) stringBuilder;
+- (void) appendStringFormatter:(id<FLStringFormatter, FLBuildableString>) stringBuilder;
 
-- (void) openStringBuilder:(FLDocumentSection*) stringBuilder;
+- (void) openStringBuilder:(id<FLStringFormatter, FLBuildableString>) stringBuilder;
 
-- (FLDocumentSection*) closeStringBuilder;
+- (id<FLStringFormatter, FLBuildableString>) closeStringBuilder;
 
 - (void) closeAllStringBuilders;
 

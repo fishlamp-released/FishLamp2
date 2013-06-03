@@ -1,0 +1,30 @@
+//
+//  FLObjcFileManager.h
+//  CodeGenerator
+//
+//  Created by Mike Fullerton on 5/13/13.
+//  Copyright (c) 2013 Mike Fullerton. All rights reserved.
+//
+
+#import "FLObjcFile.h"
+@class FLObjcTypeRegistry;
+@class FLObjcProject;
+@class FLCodeGeneratorResult;
+
+@interface FLObjcFileManager : NSObject {
+@private
+    NSMutableArray* _files;
+    __unsafe_unretained FLObjcProject* _project;
+}
+@property (readonly, strong, nonatomic) NSArray* files;
+@property (readonly, assign, nonatomic) FLObjcProject* project;
+
++ (id) objcFileManager:(FLObjcProject*) codeProject;
+
+- (void) addFilesWithArrayOfCodeElements:(NSArray*) elementList;
+
+- (void) addFile:(FLObjcFile*) file;
+
+- (FLCodeGeneratorResult*) writeFilesToDisk;
+
+@end

@@ -8,8 +8,8 @@
 
 #import "FLCodeBuilder.h"
 
-//#define kMemberDataPrefix @"_"
-//#define kAllIncludesFileName @"%@"
+@class FLObjcProject;
+@class FLCodeLine;
 
 typedef enum {
   FLObjcPropertyTypeAssign,
@@ -76,7 +76,16 @@ typedef enum {
 
 - (void) appendRunOnceBlock:(NSString*) predicateName block:(dispatch_block_t) block;
 - (void) appendStaticVariable:(NSString*) type name:(NSString*) name initialValue:(NSString*) initialValue;
+
+- (void) appendCodeLine:(FLCodeLine*) codeLine 
+            withProject:(FLObjcProject*) project;
+
+- (void) appendAssignment:(NSString*) from to:(NSString*) to;
+
 @end
+
+
+#import "FLCodeChunk.h"
 
 @interface FLObjcComment : FLCodeChunk
 + (id) objcComment;

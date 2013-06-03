@@ -54,7 +54,7 @@
             
             if(object) {
                 if([outObject valueForKey:element.elementName]) {
-                    FLLog(@"replacing non-nil value for [%@ %@]", NSStringFromClass([object class]),  element.elementName);
+                    FLTrace(@"replacing non-nil value for [%@ %@]", NSStringFromClass([object class]),  element.elementName);
                 } 
             
 //                FLAssertNil([outObject valueForKey:element.elementName]);
@@ -62,7 +62,7 @@
                 [outObject setValue:object forKey:element.elementName];
             }
             else {
-                FLLog(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.elementName);
+                FLTrace(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.elementName);
             }
         }
         else {
