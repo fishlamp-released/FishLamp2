@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCodeAll.h"
+#import "ObjectModel.h"
 #import "FLCodeObject+Additions.h"
 #import "FLCodeProject+Additions.h"
 #import "FLCodeTypeDefinition+Additions.h"

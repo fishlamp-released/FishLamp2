@@ -19,6 +19,7 @@
 #import "FLWsdlCodeMethod.h"
 
 #import "FLHttpRequestDescriptor.h"
+#import "FLCodeLine.h"
 
 @implementation FLWsdlBindingCodeObject
 

@@ -13,6 +13,7 @@
 #import "FLWsdlCodeProjectReader.h"
 #import "FLWsdlServiceAddress.h"
 #import "FLWsdlCodeMethod.h"
+#import "FLCodeLine.h"
 
 @implementation FLWsdlServiceCodeObject
 

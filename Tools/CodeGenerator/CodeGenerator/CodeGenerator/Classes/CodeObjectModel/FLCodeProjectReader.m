@@ -46,13 +46,14 @@
 
 - (FLCodeProjectLocation*) projectLocationFromImport:(FLCodeImport*) import 
                                    projectFolderPath:(NSString*) projectFolderPath {
-    NSSet* enums = import.typeValues;
+    
+    FLCodeInputTypeEnumSet* enums = import.typeEnumSet;
 
     FLCodeProjectLocationType type = FLCodeProjectLocationTypeNone;
     NSURL* url = nil;
 
-    for(NSNumber* number in enums) {
-        switch(number.intValue) {
+    for(FLEnumPair* number in enums) {
+        switch(number.enumValue) {
             case FLCodeInputTypeFile:
                 type |= FLCodeProjectLocationTypeFile;
                 url = [NSURL fileURLWithPath:[projectFolderPath stringByAppendingPathComponent:import.path]];
@@ -81,7 +82,8 @@
 - (void) didLoadProject:(FLCodeProject*) project fromLocation:(FLCodeProjectLocation*) location {
     FLConfirmNotNilWithComment(project, @"project was not created");
     
-    project.projectPath = location.URL;
+    project.projectPath = location.URL.path;
+    
 	if(FLStringIsEmpty(project.projectName)){
 		project.projectName = [[project.projectPath lastPathComponent] stringByDeletingPathExtension];
 	}
