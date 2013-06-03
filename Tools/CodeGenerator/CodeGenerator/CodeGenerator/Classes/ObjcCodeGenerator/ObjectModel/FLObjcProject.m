@@ -88,20 +88,20 @@
     
         FLObjcImportedName* name = [FLObjcImportedName objcImportedName:def.typeName];
     
-        switch(def.dataTypeAsEnum) {
-            case FLCodeDataTypeObject:
+        switch(def.dataTypeEnum) {
+            case FLDataTypeObject:
                 [self.typeRegistry addType:[FLObjcObjectType objcObjectType:name importFileName:def.import]];
             break;
             
-            case FLCodeDataTypeValue:
+            case FLDataTypeValue:
                 [self.typeRegistry addType:[FLObjcValueType objcValueType:name importFileName:def.import]];
             break;
             
-            case FLCodeTypeEnum:
+            case FLDataTypeEnum:
                 [self.typeRegistry addType:[FLObjcEnumType objcEnumType:name importFileName:def.import]];
             break;
             
-            case FLCodeDataTypeImmuteable:
+            case FLDataTypeImmuteable:
                 // not sure what this is
             break;
         }

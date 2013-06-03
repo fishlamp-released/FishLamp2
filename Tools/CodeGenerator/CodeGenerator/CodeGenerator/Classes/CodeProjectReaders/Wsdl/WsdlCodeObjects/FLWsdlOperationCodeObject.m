@@ -18,6 +18,7 @@
 #import "FLWsdlBinding.h"
 #import "FLWsdlDefinitions.h"
 #import "FLHttpRequestDescriptor.h"
+#import "FLCodeLine.h"
 
 @implementation FLWsdlOperationCodeObject
 

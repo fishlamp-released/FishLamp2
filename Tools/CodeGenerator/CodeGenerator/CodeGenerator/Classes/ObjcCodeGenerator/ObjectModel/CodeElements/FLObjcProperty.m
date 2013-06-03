@@ -12,7 +12,7 @@
 #import "FLCodeProperty.h"
 #import "FLCodeArray.h"
 #import "FLCodeArrayType.h"
-
+#import "FLCodeLine.h"
 
 @interface FLObjcProperty ()
 @property (readwrite, strong, nonatomic) NSArray* containerTypes;
@@ -136,7 +136,8 @@
     }
         
     if(codeProperty.defaultValue) {
-        [self.getter.code appendCodeLine:codeProperty.defaultValue withProject:self.project];
+         [self.getter.code appendCodeLine:[FLCodeLine codeLineReturnString:codeProperty.defaultValue] withProject:self.project];
+//        [self.getter.code appendCodeLine:codeProperty.defaultValue withProject:self.project];
     }
 }
 
