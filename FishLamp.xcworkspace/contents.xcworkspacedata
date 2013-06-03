@@ -37,7 +37,7 @@
          location = "group:Scripts/FishLampScripts.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tools/CodeGenerator/PackMule/PackMule.xcodeproj">
+         location = "group:Tools/PackMule/PackMule.xcodeproj">
       </FileRef>
    </Group>
 </Workspace>
