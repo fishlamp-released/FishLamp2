@@ -6,6 +6,19 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		27367B8D175E4CD00018996B /* FishLampiOS */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 27367B90175E4CD00018996B /* Build configuration list for PBXAggregateTarget "FishLampiOS" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = FishLampiOS;
+			productName = FishLampiOS;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		2731CCA21695FD1D00465E6C /* FLWidget+FLiOSWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA11695FD1D00465E6C /* FLWidget+FLiOSWidget.m */; };
 		2731CCA31695FD1D00465E6C /* FLWidget+FLiOSWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 2731CCA11695FD1D00465E6C /* FLWidget+FLiOSWidget.m */; };
@@ -2944,6 +2957,7 @@
 			targets = (
 				27A43AB315CDCC89001CB13E /* FishLampiOS-iOS */,
 				270B0641167156E100F59249 /* FishLampiOS-iOS-ARC */,
+				27367B8D175E4CD00018996B /* FishLampiOS */,
 			);
 		};
 /* End PBXProject section */
@@ -3664,6 +3678,20 @@
 			};
 			name = Release;
 		};
+		27367B8E175E4CD00018996B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		27367B8F175E4CD00018996B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		27A43A8B15CDCC1B001CB13E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27D1E5BB166D34DE00DB680E /* FishLampProjectSettingsDebug.xcconfig */;
@@ -3712,6 +3740,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		27367B90175E4CD00018996B /* Build configuration list for PBXAggregateTarget "FishLampiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27367B8E175E4CD00018996B /* Debug */,
+				27367B8F175E4CD00018996B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "FishLampiOS" */ = {
 			isa = XCConfigurationList;

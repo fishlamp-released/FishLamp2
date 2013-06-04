@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Update Submodules.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>50</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>276806C1175D2EDB00B1D643</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27AC5C92175E54EF002629F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -6,6 +6,29 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		27367B75175E4CA20018996B /* FishLampAnimation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 27367B78175E4CA20018996B /* Build configuration list for PBXAggregateTarget "FishLampAnimation" */;
+			buildPhases = (
+			);
+			dependencies = (
+				27367B7A175E4CB20018996B /* PBXTargetDependency */,
+				27367B7C175E4CB20018996B /* PBXTargetDependency */,
+				27367B7E175E4CB20018996B /* PBXTargetDependency */,
+				27367B80175E4CB20018996B /* PBXTargetDependency */,
+				27367B82175E4CB20018996B /* PBXTargetDependency */,
+				27367B84175E4CB20018996B /* PBXTargetDependency */,
+				27367B86175E4CB20018996B /* PBXTargetDependency */,
+				27367B88175E4CB20018996B /* PBXTargetDependency */,
+				27367B8A175E4CB20018996B /* PBXTargetDependency */,
+				27367B8C175E4CB20018996B /* PBXTargetDependency */,
+			);
+			name = FishLampAnimation;
+			productName = FishLampAnimation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		27821734175D44C5007C5F26 /* FLCocos2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782172C175D44C5007C5F26 /* FLCocos2d.h */; };
 		27821735175D44C5007C5F26 /* FLCocos2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 2782172C175D44C5007C5F26 /* FLCocos2d.h */; };
@@ -1182,7 +1205,7 @@
 		27D860A41721CF9400A83517 /* utlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D85BFE1721CE9200A83517 /* utlist.h */; };
 		27D860A51721CF9400A83517 /* ZipUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27D85BFF1721CE9200A83517 /* ZipUtils.h */; };
 		27D861321721DBCA00A83517 /* libFLCocoas2d-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D85EBB1721CF9200A83517 /* libFLCocoas2d-64-MRC.a */; };
-		27D861351721DBD600A83517 /* libFLCocoas2d-32-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D85AB31721CE3300A83517 /* libFLCocoas2d-32-64-MRC.a */; };
+		27D861351721DBD600A83517 /* libFLCocoas2d-Universal-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D85AB31721CE3300A83517 /* libFLCocoas2d-Universal-MRC.a */; };
 		27D861381721DBF600A83517 /* libFLCocoas2d-64-ARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D85FB21721CF9300A83517 /* libFLCocoas2d-64-ARC.a */; };
 		27D8613B1721DC0600A83517 /* libFLCocoas2d-iOS-ARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D860A91721CF9400A83517 /* libFLCocoas2d-iOS-ARC.a */; };
 /* End PBXBuildFile section */
@@ -1221,7 +1244,77 @@
 			containerPortal = 270BC95616EBAB4300416D62 /* FishLampCocoa.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 27CBC1F416768BA600753D0A;
-			remoteInfo = "FishLampCocoa-OSX-3264-MRC";
+			remoteInfo = "FishLampCocoa-OSX-Universal-MRC";
+		};
+		27367B79175E4CB20018996B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27048B70161CB58600C38ADA;
+			remoteInfo = "FishLampAnimation-32-MRC";
+		};
+		27367B7B175E4CB20018996B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27A43AC315CDCCCB001CB13E;
+			remoteInfo = "FishLampAnimation-64-MRC";
+		};
+		27367B7D175E4CB20018996B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 273148B9165328400027850D;
+			remoteInfo = "FishLampAnimation-64-ARC";
+		};
+		27367B7F175E4CB20018996B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27CBBE2916768BA600753D0A;
+			remoteInfo = "FishLampAnimation-Universal-MRC";
+		};
+		27367B81175E4CB20018996B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27D84A8D17219A2800A83517;
+			remoteInfo = "FishLampAnimation-iOS-ARC";
+		};
+		27367B83175E4CB20018996B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27D85AB21721CE3300A83517;
+			remoteInfo = "FLCocoas2d-Universal-MRC";
+		};
+		27367B85175E4CB20018996B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27D85CCE1721CF9100A83517;
+			remoteInfo = "FLCocoas2d-32-MRC";
+		};
+		27367B87175E4CB20018996B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27D85DC51721CF9200A83517;
+			remoteInfo = "FLCocoas2d-64-MRC";
+		};
+		27367B89175E4CB20018996B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27D85EBC1721CF9300A83517;
+			remoteInfo = "FLCocoas2d-64-ARC";
+		};
+		27367B8B175E4CB20018996B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27D85FB31721CF9400A83517;
+			remoteInfo = "FLCocoas2d-iOS-ARC";
 		};
 		27C62D85170B4A3C0093F260 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1263,7 +1356,7 @@
 			containerPortal = 27D84ABE1721BD4700A83517 /* FishLampCocoaUI.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 27CBC1F416768BA600753D0A;
-			remoteInfo = "FishLampCocoaUI-OSX-3264-MRC";
+			remoteInfo = "FishLampCocoaUI-OSX-Universal-MRC";
 		};
 		27D861201721DBBD00A83517 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1277,7 +1370,7 @@
 			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 27D85AB21721CE3300A83517;
-			remoteInfo = "FLCocoas2d-3264-MRC";
+			remoteInfo = "FLCocoas2d-Universal-MRC";
 		};
 		27D861361721DBE700A83517 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1308,17 +1401,17 @@
 		27821732175D44C5007C5F26 /* HelloWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		27821733175D44C5007C5F26 /* HelloWorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		27A43AC415CDCCCB001CB13E /* libFishLampAnimation-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampAnimation-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		27CBC1F416768BA600753D0A /* libFishLampAnimation-3264-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampAnimation-3264-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27CBC1F416768BA600753D0A /* libFishLampAnimation-Universal-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampAnimation-Universal-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D84A9517219A2800A83517 /* libFishLampAnimation-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampAnimation-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D84A9717219ACE00A83517 /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27D84A9817219ACE00A83517 /* TargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-32-MRC.xcconfig"; sourceTree = "<group>"; };
-		27D84A9917219ACE00A83517 /* TargetSettings-OSX-3264-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-3264-MRC.xcconfig"; sourceTree = "<group>"; };
+		27D84A9917219ACE00A83517 /* TargetSettings-OSX-Universal-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-Universal-MRC.xcconfig"; sourceTree = "<group>"; };
 		27D84A9A17219ACE00A83517 /* TargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
 		27D84A9B17219ACE00A83517 /* TargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
 		27D84A9C17219ACE00A83517 /* TargetSettings-OSX-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
 		27D84A9D17219AF000A83517 /* FishLampAnimation-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampAnimation-Prefix.pch"; sourceTree = "<group>"; };
 		27D84ABE1721BD4700A83517 /* FishLampCocoaUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoaUI.xcodeproj; path = ../FishLampCocoaUILib/FishLampCocoaUI.xcodeproj; sourceTree = "<group>"; };
-		27D85AB31721CE3300A83517 /* libFLCocoas2d-32-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFLCocoas2d-32-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27D85AB31721CE3300A83517 /* libFLCocoas2d-Universal-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFLCocoas2d-Universal-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D85AB41721CE3300A83517 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		27D85AB71721CE3300A83517 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		27D85AB81721CE3300A83517 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1566,7 +1659,7 @@
 		27D85FB21721CF9300A83517 /* libFLCocoas2d-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFLCocoas2d-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D860A91721CF9400A83517 /* libFLCocoas2d-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFLCocoas2d-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D860D41721D43C00A83517 /* Cocos2dTargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Cocos2dTargetSettings-OSX-32-MRC.xcconfig"; sourceTree = "<group>"; };
-		27D860D51721D43C00A83517 /* Cocos2dTargetSettings-OSX-3264-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Cocos2dTargetSettings-OSX-3264-MRC.xcconfig"; sourceTree = "<group>"; };
+		27D860D51721D43C00A83517 /* Cocos2dTargetSettings-OSX-Universal-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Cocos2dTargetSettings-OSX-Universal-MRC.xcconfig"; sourceTree = "<group>"; };
 		27D860D61721D43C00A83517 /* Cocos2dTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Cocos2dTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
 		27D860D71721D43C00A83517 /* Cocos2dTargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Cocos2dTargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
 		27D860D81721D43C00A83517 /* Cocos2dTargetSettings-OSX-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Cocos2dTargetSettings-OSX-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
@@ -1605,7 +1698,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27D861351721DBD600A83517 /* libFLCocoas2d-32-64-MRC.a in Frameworks */,
+				27D861351721DBD600A83517 /* libFLCocoas2d-Universal-MRC.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1667,7 +1760,7 @@
 				2709A0C716EBAC8700C59905 /* libFishLampCocoa-OSX-32-MRC.a */,
 				2709A0C916EBAC8700C59905 /* libFishLampCocoa-OSX-64-MRC.a */,
 				2709A0CB16EBAC8700C59905 /* libFishLampCocoa-OSX-64-ARC.a */,
-				2709A0CD16EBAC8700C59905 /* libFishLampCocoa-OSX-3264-MRC.a */,
+				2709A0CD16EBAC8700C59905 /* libFishLampCocoa-OSX-Universal-MRC.a */,
 				27C62D86170B4A3C0093F260 /* FishLampCocoaTestTool-64-MRC */,
 			);
 			name = Products;
@@ -1724,9 +1817,9 @@
 				27A43AC415CDCCCB001CB13E /* libFishLampAnimation-64-MRC.a */,
 				27048EF0161CB58600C38ADA /* libFishLampAnimation-32-MRC.a */,
 				27314C79165328400027850D /* libFishLampAnimation-64-ARC.a */,
-				27CBC1F416768BA600753D0A /* libFishLampAnimation-3264-MRC.a */,
+				27CBC1F416768BA600753D0A /* libFishLampAnimation-Universal-MRC.a */,
 				27D84A9517219A2800A83517 /* libFishLampAnimation-iOS-ARC.a */,
-				27D85AB31721CE3300A83517 /* libFLCocoas2d-32-64-MRC.a */,
+				27D85AB31721CE3300A83517 /* libFLCocoas2d-Universal-MRC.a */,
 				27D85DC41721CF9100A83517 /* libFLCocoas2d-32-MRC.a */,
 				27D85EBB1721CF9200A83517 /* libFLCocoas2d-64-MRC.a */,
 				27D85FB21721CF9300A83517 /* libFLCocoas2d-64-ARC.a */,
@@ -1752,7 +1845,7 @@
 				27D84A9D17219AF000A83517 /* FishLampAnimation-Prefix.pch */,
 				27D84A9717219ACE00A83517 /* SharedTargetSettings.xcconfig */,
 				27D84A9817219ACE00A83517 /* TargetSettings-OSX-32-MRC.xcconfig */,
-				27D84A9917219ACE00A83517 /* TargetSettings-OSX-3264-MRC.xcconfig */,
+				27D84A9917219ACE00A83517 /* TargetSettings-OSX-Universal-MRC.xcconfig */,
 				27D84A9A17219ACE00A83517 /* TargetSettings-OSX-64-ARC.xcconfig */,
 				27D84A9B17219ACE00A83517 /* TargetSettings-OSX-64-MRC.xcconfig */,
 				27D84A9C17219ACE00A83517 /* TargetSettings-OSX-iOS-ARC.xcconfig */,
@@ -1768,7 +1861,7 @@
 				27D84ACA1721BD4700A83517 /* libFishLampCocoaUI-OSX-32-MRC.a */,
 				27D84ACC1721BD4700A83517 /* libFishLampCocoaUI-OSX-64-MRC.a */,
 				27D84ACE1721BD4700A83517 /* libFishLampCocoaUI-OSX-64-ARC.a */,
-				27D84AD01721BD4700A83517 /* libFishLampCocoaUI-OSX-3264-MRC.a */,
+				27D84AD01721BD4700A83517 /* libFishLampCocoaUI-OSX-Universal-MRC.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2140,7 +2233,7 @@
 			isa = PBXGroup;
 			children = (
 				27D860D41721D43C00A83517 /* Cocos2dTargetSettings-OSX-32-MRC.xcconfig */,
-				27D860D51721D43C00A83517 /* Cocos2dTargetSettings-OSX-3264-MRC.xcconfig */,
+				27D860D51721D43C00A83517 /* Cocos2dTargetSettings-OSX-Universal-MRC.xcconfig */,
 				27D860D61721D43C00A83517 /* Cocos2dTargetSettings-OSX-64-ARC.xcconfig */,
 				27D860D71721D43C00A83517 /* Cocos2dTargetSettings-OSX-64-MRC.xcconfig */,
 				27D860D81721D43C00A83517 /* Cocos2dTargetSettings-OSX-iOS-ARC.xcconfig */,
@@ -2897,9 +2990,9 @@
 			productReference = 27A43AC415CDCCCB001CB13E /* libFishLampAnimation-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		27CBBE2916768BA600753D0A /* FishLampAnimation-32-64-MRC */ = {
+		27CBBE2916768BA600753D0A /* FishLampAnimation-Universal-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampAnimation-32-64-MRC" */;
+			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampAnimation-Universal-MRC" */;
 			buildPhases = (
 				27CBBE2A16768BA600753D0A /* Sources */,
 				27CBBFEC16768BA600753D0A /* Frameworks */,
@@ -2910,9 +3003,9 @@
 			dependencies = (
 				27D861341721DBD100A83517 /* PBXTargetDependency */,
 			);
-			name = "FishLampAnimation-32-64-MRC";
+			name = "FishLampAnimation-Universal-MRC";
 			productName = FishLampCommandLine;
-			productReference = 27CBC1F416768BA600753D0A /* libFishLampAnimation-3264-MRC.a */;
+			productReference = 27CBC1F416768BA600753D0A /* libFishLampAnimation-Universal-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		27D84A8D17219A2800A83517 /* FishLampAnimation-iOS-ARC */ = {
@@ -2933,9 +3026,9 @@
 			productReference = 27D84A9517219A2800A83517 /* libFishLampAnimation-iOS-ARC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		27D85AB21721CE3300A83517 /* FLCocoas2d-32-64-MRC */ = {
+		27D85AB21721CE3300A83517 /* FLCocoas2d-Universal-MRC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27D85AC01721CE3400A83517 /* Build configuration list for PBXNativeTarget "FLCocoas2d-32-64-MRC" */;
+			buildConfigurationList = 27D85AC01721CE3400A83517 /* Build configuration list for PBXNativeTarget "FLCocoas2d-Universal-MRC" */;
 			buildPhases = (
 				27D85AAF1721CE3300A83517 /* Sources */,
 				27D85AB01721CE3300A83517 /* Frameworks */,
@@ -2945,9 +3038,9 @@
 			);
 			dependencies = (
 			);
-			name = "FLCocoas2d-32-64-MRC";
+			name = "FLCocoas2d-Universal-MRC";
 			productName = FLCocoas2d;
-			productReference = 27D85AB31721CE3300A83517 /* libFLCocoas2d-32-64-MRC.a */;
+			productReference = 27D85AB31721CE3300A83517 /* libFLCocoas2d-Universal-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		27D85CCE1721CF9100A83517 /* FLCocoas2d-32-MRC */ = {
@@ -3053,13 +3146,14 @@
 				27048B70161CB58600C38ADA /* FishLampAnimation-32-MRC */,
 				27A43AC315CDCCCB001CB13E /* FishLampAnimation-64-MRC */,
 				273148B9165328400027850D /* FishLampAnimation-64-ARC */,
-				27CBBE2916768BA600753D0A /* FishLampAnimation-32-64-MRC */,
+				27CBBE2916768BA600753D0A /* FishLampAnimation-Universal-MRC */,
 				27D84A8D17219A2800A83517 /* FishLampAnimation-iOS-ARC */,
-				27D85AB21721CE3300A83517 /* FLCocoas2d-32-64-MRC */,
+				27D85AB21721CE3300A83517 /* FLCocoas2d-Universal-MRC */,
 				27D85CCE1721CF9100A83517 /* FLCocoas2d-32-MRC */,
 				27D85DC51721CF9200A83517 /* FLCocoas2d-64-MRC */,
 				27D85EBC1721CF9300A83517 /* FLCocoas2d-64-ARC */,
 				27D85FB31721CF9400A83517 /* FLCocoas2d-iOS-ARC */,
+				27367B75175E4CA20018996B /* FishLampAnimation */,
 			);
 		};
 /* End PBXProject section */
@@ -3093,10 +3187,10 @@
 			remoteRef = 2709A0CA16EBAC8700C59905 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2709A0CD16EBAC8700C59905 /* libFishLampCocoa-OSX-3264-MRC.a */ = {
+		2709A0CD16EBAC8700C59905 /* libFishLampCocoa-OSX-Universal-MRC.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libFishLampCocoa-OSX-3264-MRC.a";
+			path = "libFishLampCocoa-OSX-Universal-MRC.a";
 			remoteRef = 2709A0CC16EBAC8700C59905 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -3135,10 +3229,10 @@
 			remoteRef = 27D84ACD1721BD4700A83517 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27D84AD01721BD4700A83517 /* libFishLampCocoaUI-OSX-3264-MRC.a */ = {
+		27D84AD01721BD4700A83517 /* libFishLampCocoaUI-OSX-Universal-MRC.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libFishLampCocoaUI-OSX-3264-MRC.a";
+			path = "libFishLampCocoaUI-OSX-Universal-MRC.a";
 			remoteRef = 27D84ACF1721BD4700A83517 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -3779,6 +3873,56 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		27367B7A175E4CB20018996B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27048B70161CB58600C38ADA /* FishLampAnimation-32-MRC */;
+			targetProxy = 27367B79175E4CB20018996B /* PBXContainerItemProxy */;
+		};
+		27367B7C175E4CB20018996B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27A43AC315CDCCCB001CB13E /* FishLampAnimation-64-MRC */;
+			targetProxy = 27367B7B175E4CB20018996B /* PBXContainerItemProxy */;
+		};
+		27367B7E175E4CB20018996B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 273148B9165328400027850D /* FishLampAnimation-64-ARC */;
+			targetProxy = 27367B7D175E4CB20018996B /* PBXContainerItemProxy */;
+		};
+		27367B80175E4CB20018996B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27CBBE2916768BA600753D0A /* FishLampAnimation-Universal-MRC */;
+			targetProxy = 27367B7F175E4CB20018996B /* PBXContainerItemProxy */;
+		};
+		27367B82175E4CB20018996B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27D84A8D17219A2800A83517 /* FishLampAnimation-iOS-ARC */;
+			targetProxy = 27367B81175E4CB20018996B /* PBXContainerItemProxy */;
+		};
+		27367B84175E4CB20018996B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27D85AB21721CE3300A83517 /* FLCocoas2d-Universal-MRC */;
+			targetProxy = 27367B83175E4CB20018996B /* PBXContainerItemProxy */;
+		};
+		27367B86175E4CB20018996B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27D85CCE1721CF9100A83517 /* FLCocoas2d-32-MRC */;
+			targetProxy = 27367B85175E4CB20018996B /* PBXContainerItemProxy */;
+		};
+		27367B88175E4CB20018996B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27D85DC51721CF9200A83517 /* FLCocoas2d-64-MRC */;
+			targetProxy = 27367B87175E4CB20018996B /* PBXContainerItemProxy */;
+		};
+		27367B8A175E4CB20018996B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27D85EBC1721CF9300A83517 /* FLCocoas2d-64-ARC */;
+			targetProxy = 27367B89175E4CB20018996B /* PBXContainerItemProxy */;
+		};
+		27367B8C175E4CB20018996B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27D85FB31721CF9400A83517 /* FLCocoas2d-iOS-ARC */;
+			targetProxy = 27367B8B175E4CB20018996B /* PBXContainerItemProxy */;
+		};
 		27D861211721DBBD00A83517 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 27D85DC51721CF9200A83517 /* FLCocoas2d-64-MRC */;
@@ -3786,7 +3930,7 @@
 		};
 		27D861341721DBD100A83517 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 27D85AB21721CE3300A83517 /* FLCocoas2d-32-64-MRC */;
+			target = 27D85AB21721CE3300A83517 /* FLCocoas2d-Universal-MRC */;
 			targetProxy = 27D861331721DBD100A83517 /* PBXContainerItemProxy */;
 		};
 		27D861371721DBE700A83517 /* PBXTargetDependency */ = {
@@ -3836,6 +3980,20 @@
 			};
 			name = Release;
 		};
+		27367B76175E4CA20018996B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		27367B77175E4CA20018996B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		27A43A8B15CDCC1B001CB13E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27E9586D170BB86E00587A8F /* FishLampProjectSettingsDebug.xcconfig */;
@@ -3872,19 +4030,19 @@
 		};
 		27CBC1F216768BA600753D0A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27D84A9917219ACE00A83517 /* TargetSettings-OSX-3264-MRC.xcconfig */;
+			baseConfigurationReference = 27D84A9917219ACE00A83517 /* TargetSettings-OSX-Universal-MRC.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = "FishLampAnimation-3264-MRC";
+				PRODUCT_NAME = "FishLampAnimation-Universal-MRC";
 			};
 			name = Debug;
 		};
 		27CBC1F316768BA600753D0A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27D84A9917219ACE00A83517 /* TargetSettings-OSX-3264-MRC.xcconfig */;
+			baseConfigurationReference = 27D84A9917219ACE00A83517 /* TargetSettings-OSX-Universal-MRC.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = "FishLampAnimation-3264-MRC";
+				PRODUCT_NAME = "FishLampAnimation-Universal-MRC";
 			};
 			name = Release;
 		};
@@ -3904,14 +4062,14 @@
 		};
 		27D85AC11721CE3400A83517 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27D860D51721D43C00A83517 /* Cocos2dTargetSettings-OSX-3264-MRC.xcconfig */;
+			baseConfigurationReference = 27D860D51721D43C00A83517 /* Cocos2dTargetSettings-OSX-Universal-MRC.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
 		27D85AC21721CE3400A83517 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27D860D51721D43C00A83517 /* Cocos2dTargetSettings-OSX-3264-MRC.xcconfig */;
+			baseConfigurationReference = 27D860D51721D43C00A83517 /* Cocos2dTargetSettings-OSX-Universal-MRC.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
@@ -3993,6 +4151,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		27367B78175E4CA20018996B /* Build configuration list for PBXAggregateTarget "FishLampAnimation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27367B76175E4CA20018996B /* Debug */,
+				27367B77175E4CA20018996B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "FishLampAnimation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -4011,7 +4177,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampAnimation-32-64-MRC" */ = {
+		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampAnimation-Universal-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27CBC1F216768BA600753D0A /* Debug */,
@@ -4029,7 +4195,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27D85AC01721CE3400A83517 /* Build configuration list for PBXNativeTarget "FLCocoas2d-32-64-MRC" */ = {
+		27D85AC01721CE3400A83517 /* Build configuration list for PBXNativeTarget "FLCocoas2d-Universal-MRC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27D85AC11721CE3400A83517 /* Debug */,

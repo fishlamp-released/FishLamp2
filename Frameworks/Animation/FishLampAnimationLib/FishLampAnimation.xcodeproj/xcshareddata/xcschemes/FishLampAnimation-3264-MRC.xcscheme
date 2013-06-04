@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27CBBE2916768BA600753D0A"
-               BuildableName = "libFishLampAnimation-3264-MRC.a"
-               BlueprintName = "FishLampAnimation-32-64-MRC"
+               BuildableName = "libFishLampAnimation-Universal-MRC.a"
+               BlueprintName = "FishLampAnimation-Universal-MRC"
                ReferencedContainer = "container:FishLampAnimation.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

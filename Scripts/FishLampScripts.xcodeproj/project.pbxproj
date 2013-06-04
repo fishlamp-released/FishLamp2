@@ -18,12 +18,23 @@
 			name = "Install Scripts";
 			productName = "Install Scripts";
 		};
+		27AC5C92175E54EF002629F5 /* Update Submodules */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 27AC5C93175E54EF002629F5 /* Build configuration list for PBXAggregateTarget "Update Submodules" */;
+			buildPhases = (
+				27AC5C96175E54F7002629F5 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Update Submodules";
+			productName = "Update Submodules";
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXFileReference section */
 		270E0539175D3C4E00802761 /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		270E053A175D3C4E00802761 /* TargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-32-MRC.xcconfig"; sourceTree = "<group>"; };
-		270E053B175D3C4E00802761 /* TargetSettings-OSX-3264-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-3264-MRC.xcconfig"; sourceTree = "<group>"; };
+		270E053B175D3C4E00802761 /* TargetSettings-OSX-Universal-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-Universal-MRC.xcconfig"; sourceTree = "<group>"; };
 		270E053C175D3C4E00802761 /* TargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
 		270E053D175D3C4E00802761 /* TargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
 		270E053E175D3C4E00802761 /* TargetSettings-OSX-iOS-ARC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
@@ -31,7 +42,7 @@
 		270E0540175D3C4E00802761 /* FishLampIncludedConfig-iOS.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampIncludedConfig-iOS.xcconfig"; sourceTree = "<group>"; };
 		270E0541175D3C4E00802761 /* FishLampIncludedConfig-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampIncludedConfig-MRC.xcconfig"; sourceTree = "<group>"; };
 		270E0542175D3C4E00802761 /* FishLampIncludedConfig-OSX-32.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampIncludedConfig-OSX-32.xcconfig"; sourceTree = "<group>"; };
-		270E0543175D3C4E00802761 /* FishLampIncludedConfig-OSX-3264.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampIncludedConfig-OSX-3264.xcconfig"; sourceTree = "<group>"; };
+		270E0543175D3C4E00802761 /* FishLampIncludedConfig-OSX-Universal.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampIncludedConfig-OSX-Universal.xcconfig"; sourceTree = "<group>"; };
 		270E0544175D3C4E00802761 /* FishLampIncludedConfig-OSX-64.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampIncludedConfig-OSX-64.xcconfig"; sourceTree = "<group>"; };
 		270E0545175D3C4E00802761 /* FishLampIncludedConfig-Preprocessor.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampIncludedConfig-Preprocessor.xcconfig"; sourceTree = "<group>"; };
 		270E0546175D3C4E00802761 /* FishLampIncludedConfig-Settings-Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampIncludedConfig-Settings-Debug.xcconfig"; sourceTree = "<group>"; };
@@ -43,7 +54,7 @@
 		270E054D175D3C4E00802761 /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 		270E054E175D3C4E00802761 /* FishLampTargetSettings-iOS-ARC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
 		270E054F175D3C4E00802761 /* FishLampTargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-32-MRC.xcconfig"; sourceTree = "<group>"; };
-		270E0550175D3C4E00802761 /* FishLampTargetSettings-OSX-3264-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-3264-MRC.xcconfig"; sourceTree = "<group>"; };
+		270E0550175D3C4E00802761 /* FishLampTargetSettings-OSX-Universal-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-Universal-MRC.xcconfig"; sourceTree = "<group>"; };
 		270E0551175D3C4E00802761 /* FishLampTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
 		270E0552175D3C4E00802761 /* FishLampTargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
 		276806C5175D2F1C00B1D643 /* install.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
@@ -56,6 +67,8 @@
 		276806CD175D2F1C00B1D643 /* version-get.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "version-get.sh"; sourceTree = "<group>"; };
 		276806CE175D2F1C00B1D643 /* version-tag.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "version-tag.sh"; sourceTree = "<group>"; };
 		276806D0175D311000B1D643 /* fishlamp-install-scripts.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "fishlamp-install-scripts.sh"; sourceTree = "<group>"; };
+		27AC5C91175E50AB002629F5 /* fishlamp-update-submodules.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "fishlamp-update-submodules.sh"; sourceTree = "<group>"; };
+		27AC5C9D175E5880002629F5 /* fishlamp-create-connect-lib.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "fishlamp-create-connect-lib.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -67,7 +80,7 @@
 				270E0540175D3C4E00802761 /* FishLampIncludedConfig-iOS.xcconfig */,
 				270E0541175D3C4E00802761 /* FishLampIncludedConfig-MRC.xcconfig */,
 				270E0542175D3C4E00802761 /* FishLampIncludedConfig-OSX-32.xcconfig */,
-				270E0543175D3C4E00802761 /* FishLampIncludedConfig-OSX-3264.xcconfig */,
+				270E0543175D3C4E00802761 /* FishLampIncludedConfig-OSX-Universal.xcconfig */,
 				270E0544175D3C4E00802761 /* FishLampIncludedConfig-OSX-64.xcconfig */,
 				270E0545175D3C4E00802761 /* FishLampIncludedConfig-Preprocessor.xcconfig */,
 				270E0546175D3C4E00802761 /* FishLampIncludedConfig-Settings-Debug.xcconfig */,
@@ -78,7 +91,7 @@
 				270E054B175D3C4E00802761 /* FishLampProjectSettings */,
 				270E054E175D3C4E00802761 /* FishLampTargetSettings-iOS-ARC.xcconfig */,
 				270E054F175D3C4E00802761 /* FishLampTargetSettings-OSX-32-MRC.xcconfig */,
-				270E0550175D3C4E00802761 /* FishLampTargetSettings-OSX-3264-MRC.xcconfig */,
+				270E0550175D3C4E00802761 /* FishLampTargetSettings-OSX-Universal-MRC.xcconfig */,
 				270E0551175D3C4E00802761 /* FishLampTargetSettings-OSX-64-ARC.xcconfig */,
 				270E0552175D3C4E00802761 /* FishLampTargetSettings-OSX-64-MRC.xcconfig */,
 			);
@@ -90,7 +103,7 @@
 			children = (
 				270E0539175D3C4E00802761 /* SharedTargetSettings.xcconfig */,
 				270E053A175D3C4E00802761 /* TargetSettings-OSX-32-MRC.xcconfig */,
-				270E053B175D3C4E00802761 /* TargetSettings-OSX-3264-MRC.xcconfig */,
+				270E053B175D3C4E00802761 /* TargetSettings-OSX-Universal-MRC.xcconfig */,
 				270E053C175D3C4E00802761 /* TargetSettings-OSX-64-ARC.xcconfig */,
 				270E053D175D3C4E00802761 /* TargetSettings-OSX-64-MRC.xcconfig */,
 				270E053E175D3C4E00802761 /* TargetSettings-OSX-iOS-ARC.xcconfig */,
@@ -119,6 +132,7 @@
 		276806C6175D2F1C00B1D643 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				27AC5C91175E50AB002629F5 /* fishlamp-update-submodules.sh */,
 				276806D0175D311000B1D643 /* fishlamp-install-scripts.sh */,
 				276806C7175D2F1C00B1D643 /* fishlamp-find.sh */,
 				276806C8175D2F1C00B1D643 /* fishlamp-install-xcode-build-support.sh */,
@@ -128,6 +142,7 @@
 				276806CC175D2F1C00B1D643 /* version-bump.sh */,
 				276806CD175D2F1C00B1D643 /* version-get.sh */,
 				276806CE175D2F1C00B1D643 /* version-tag.sh */,
+				27AC5C9D175E5880002629F5 /* fishlamp-create-connect-lib.sh */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -152,6 +167,7 @@
 			projectRoot = "";
 			targets = (
 				276806C1175D2EDB00B1D643 /* Install Scripts */,
+				27AC5C92175E54EF002629F5 /* Update Submodules */,
 			);
 		};
 /* End PBXProject section */
@@ -169,6 +185,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$PROJECT_DIR/scripts/fishlamp-install-scripts.sh";
+		};
+		27AC5C96175E54F7002629F5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$PROJECT_DIR/scripts/fishlamp-update-submodules.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -201,6 +230,20 @@
 			};
 			name = Release;
 		};
+		27AC5C94175E54EF002629F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		27AC5C95175E54EF002629F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -221,6 +264,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		27AC5C93175E54EF002629F5 /* Build configuration list for PBXAggregateTarget "Update Submodules" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27AC5C94175E54EF002629F5 /* Debug */,
+				27AC5C95175E54EF002629F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

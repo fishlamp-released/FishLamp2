@@ -9,7 +9,7 @@ cd "$MY_PATH"
 
 # reset install folder
 if [ -d "$INSTALL_PATH" ]; then
-	rm -r "$INSTALL_PATH"
+	rm -rd "$INSTALL_PATH"
 fi
 
 mkdir "$INSTALL_PATH" || { echo "unable to create folder: $INSTALL_PATH"; exit 1; }
@@ -17,22 +17,24 @@ chmod u+rwx "$INSTALL_PATH" || { echo "unable to change permissions on: $INSTALL
 
 # install scripts
 
+SOURCE_PATH=`pwd`
+
 FILES=`ls`
 for file in $FILES; 
 	do
-		extension=${file##*.}
-		if [[ "$extension" == "sh" ]]
-		then
-			filename_no_extension=`basename "$file" .sh`
+        src="$SOURCE_PATH/$file"
+        dest="$INSTALL_PATH/$file"
+        
+        extension=${file##*.}
+        if [[ "$extension" == "sh" ]]; then
+            filename_no_extension=`basename "$file" .sh`
+            dest="$INSTALL_PATH/$filename_no_extension"
+        fi
 
-			src="`pwd`/$file"
-			dest="$INSTALL_PATH/$filename_no_extension"
-			
-			cp "$src" "$dest" || { echo "unable to copy script to: $dest"; exit 1; }
-			chmod u+rx "$dest" || { echo "unable to change permissions on: $dest"; exit 1; }
-			
-			echo "# installed: \"$dest\""
-		fi
+       	cp -R "$src" "$dest" || { echo "unable to copy script to: $dest"; exit 1; }
+        chmod u+rx "$dest" || { echo "unable to change permissions on: $dest"; exit 1; }
+        echo "# installed: \"$dest\""
+
 done
 
 # update bash profile

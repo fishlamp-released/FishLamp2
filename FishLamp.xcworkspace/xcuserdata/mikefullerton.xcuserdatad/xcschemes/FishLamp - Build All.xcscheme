@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27CBBE2916768BA600753D0A"
-               BuildableName = "libFishLampCocoa-OSX-32-64-MRC.a"
-               BlueprintName = "FishLampCocoa-OSX-32-64-MRC"
+               BuildableName = "libFishLampCocoa-OSX-Universal-MRC.a"
+               BlueprintName = "FishLampCocoa-OSX-Universal-MRC"
                ReferencedContainer = "container:Libs/FishLampCocoaLib/FishLampCocoa.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -85,8 +85,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27CBBE2916768BA600753D0A"
-               BuildableName = "libFishLampCocoaUI-OSX-32-64-MRC.a"
-               BlueprintName = "FishLampCocoaUI-OSX-32-64-MRC"
+               BuildableName = "libFishLampCocoaUI-OSX-Universal-MRC.a"
+               BlueprintName = "FishLampCocoaUI-OSX-Universal-MRC"
                ReferencedContainer = "container:Libs/FishLampCocoaUILib/FishLampCocoaUI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -155,8 +155,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27CBBE2916768BA600753D0A"
-               BuildableName = "libFishLampCompatibility-OSX-32-64-MRC.a"
-               BlueprintName = "FishLampCompatibility-OSX-32-64-MRC"
+               BuildableName = "libFishLampCompatibility-OSX-Universal-MRC.a"
+               BlueprintName = "FishLampCompatibility-OSX-Universal-MRC"
                ReferencedContainer = "container:Libs/FishLampCompatibilityLib/FishLampCompatibility.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -225,8 +225,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27CBBE2916768BA600753D0A"
-               BuildableName = "libFishLampCore-OSX-32-64-MRC.a"
-               BlueprintName = "FishLampCore-OSX-32-64-MRC"
+               BuildableName = "libFishLampCore-OSX-Universal-MRC.a"
+               BlueprintName = "FishLampCore-OSX-Universal-MRC"
                ReferencedContainer = "container:Libs/FishLampCoreLib/FishLampCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

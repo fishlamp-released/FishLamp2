@@ -1,43 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <Group
-      location = "container:"
-      name = "Lib Projects">
-      <FileRef
-         location = "group:Frameworks/Core/FishLampCoreLib/FishLampCore.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Frameworks/Cocoa/FishLampCocoaLib/FishLampCocoa.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Frameworks/CocoaUI/FishLampCocoaUILib/FishLampCocoaUI.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Frameworks/OSX/FishLampOSXLib/FishLampOSX.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Frameworks/Animation/FishLampAnimationLib/FishLampAnimation.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Frameworks/CodeGenerator/FishLampCodeGeneratorLib/FishLampCodeGenerator.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Frameworks/iOS/FishLampiOSLib/FishLampiOS.xcodeproj">
-      </FileRef>
-   </Group>
-   <Group
-      location = "container:"
-      name = "App Projects">
-   </Group>
-   <Group
-      location = "container:"
-      name = "Tools">
-      <FileRef
-         location = "group:Scripts/FishLampScripts.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Tools/PackMule/PackMule.xcodeproj">
-      </FileRef>
-   </Group>
+   <FileRef
+      location = "group:FishLamp.xcodeproj">
+   </FileRef>
 </Workspace>
