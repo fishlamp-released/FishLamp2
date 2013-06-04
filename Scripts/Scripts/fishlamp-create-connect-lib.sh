@@ -19,21 +19,58 @@ fi
 PROJECT_NAME="$1"
 CONNECT_DIR="$FISHLAMP_ROOT/Frameworks/Connect"
 
+NEW_DIR="$CONNECT_DIR/$PROJECT_NAME"
 
-cp -R "$FISHLAMP_ROOT/Frameworks/templates/CONNECT_TEMPLATE" "$CONNECT_DIR/$PROJECT_NAME" || { echo "unable to copy template"; exit 1; }
+cp -R "$FISHLAMP_ROOT/Frameworks/XcodeTemplates/CONNECT_TEMPLATE" "$NEW_DIR" || { echo "unable to copy template"; exit 1; }
 
-REPLACE_ME="CONNECT_TEMPLATE"
 
-FILES=`grep -r -l "$REPLACE_ME" *`
+cd "$NEW_DIR"
 
-for file in $FILES; do
+for file in `find . -d -type d -name "*xcuserdata*"`; do
+    rm -rd "$file" || { echo "removing user data failed"; exit 1; }
+    echo "deleted $file"
+done
+
+echo "rename dirs"
+
+function rename_dirs() {
+
+    pushd "$1"
+
+    for dir in `find . -type d -d 1 -name "*CONNECT_TEMPLATE*"`; do
+        mv "$dir" "${dir//CONNECT_TEMPLATE/$PROJECT_NAME}" || { echo "dir rename failed"; exit 1; }
+    done
+    
+    for dir in `find . -type d -d 1`; do
+        rename_dirs "$dir"
+    done
+    
+    popd
+
+}
+
+rename_dirs "$NEW_DIR"
+
+echo "rename files"
+
+
+
+
+#rename files
+for file in `find . -name "*CONNECT_TEMPLATE*"`; do
+    mv "$file" "${file//CONNECT_TEMPLATE/$PROJECT_NAME}" || { echo "File rename failed"; exit 1; }
+done
+
+echo "perform text replace"
+
+for file in `grep -r -l "CONNECT_TEMPLATE" *`; do
     
     echo "peforming replace in $file"
        
     tempFile="$file-temp"
 
     # update paths in file into temp file
-    sed "s#REPLACE_ME#$PROJECT_NAME#g" "$file" > "$tempFile" || { echo "##! updating project name in $file file failed"; exit 1; }
+    sed "s#CONNECT_TEMPLATE#$PROJECT_NAME#g" "$file" > "$tempFile" || { echo "##! updating project name in $file file failed"; exit 1; }
 
     echo "updating tempfile to $file"
 
@@ -44,3 +81,13 @@ done
 
 
 echo "# Created new connect library for $PROJECT_NAME"
+
+exit 0
+
+
+#rename dirs
+for dir in `find "$NEW_DIR" -type d -name "*CONNECT_TEMPLATE*"`; do
+    echo "$dir"
+
+    mv "$dir" "${dir//CONNECT_TEMPLATE/$PROJECT_NAME}" || { echo "dir rename failed"; exit 1; }
+done
