@@ -53,9 +53,6 @@ rename_dirs "$NEW_DIR"
 
 echo "rename files"
 
-
-
-
 #rename files
 for file in `find . -name "*CONNECT_TEMPLATE*"`; do
     mv "$file" "${file//CONNECT_TEMPLATE/$PROJECT_NAME}" || { echo "File rename failed"; exit 1; }
