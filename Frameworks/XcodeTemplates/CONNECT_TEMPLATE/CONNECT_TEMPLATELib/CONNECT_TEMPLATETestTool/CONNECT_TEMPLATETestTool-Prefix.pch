@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'CONNECT_TEMPLATETestTool-64-MRC' target in the 'CONNECT_TEMPLATETestTool-64-MRC' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

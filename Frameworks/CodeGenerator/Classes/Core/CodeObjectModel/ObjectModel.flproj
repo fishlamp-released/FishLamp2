@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project projectName="FishLamp Code Generator" canLazyCreate="YES">
+    
+<organization name="GreenTongue Software LLC, Mike Fullerton" />
+    <license>
+        <licenseName>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</licenseName>
+    </license>
+    <generatorOptions>
+        <generateAllIncludesFile>YES</generateAllIncludesFile>
+        <objectsFolderName>Generated</objectsFolderName>
+        <typePrefix>FL</typePrefix>
+    </generatorOptions>
+    <typeDefinition import="FLCodeLine.h" typeName="FLCodeLine" dataType="object"/>
+    <!--    
+    <defines>
+        <define define="FLDataTypeObject" value="object" isString="YES" comment="used for dataType in dataTypeDefinition"/>
+        <define define="FLDataTypeValue" value="value" isString="YES" comment="used for dataType in dataTypeDefinition"/>
+        <define define="FLDataTypeEnum" value="enum" isString="YES" comment="used for dataType in dataTypeDefinition"/>
+        <define define="FLDataTypeImmutableObject" value="immutuble" isString="YES" comment="used for dataType in dataTypeDefinition"/>
+    </defines>
+-->
+    <enumTypes>
+        <enumType typeName="FLDataType">
+            <enums>
+                <enum name="Object"/>
+                <enum name="Value"/>
+                <enum name="Enum"/>
+                <enum name="Immuteable"/>
+            </enums>
+        </enumType>
+        <enumType typeName="FLCodeInputType">
+            <enums>
+                <enum name="Http"/>
+                <enum name="File"/>
+                <enum name="Wsdl"/>
+            </enums>
+        </enumType>
+    </enumTypes>
+    <objects>
+        <object className="FLCodeImport" protocols="NSCopying">
+            <properties>
+                <property name="path" type="string" comment="import a whittle file"/>
+                <property name="type" type="FLCodeInputType" comment="import wsdl url (file or HTTP)"/>
+            </properties>
+        </object>
+        <object className="FLCodeStorageOptions" protocols="NSCopying">
+            <properties>
+                <!-- defaults to NO -->
+                <!-- defaultValue="YES" -->
+                <property name="isStorable" type="bool" comment="this defaults to NO. Note that storage options are ignored if the superclass object is not storable."/>
+                <property name="isPrimaryKey" type="bool" comment="set this property to be a primary key in the data store"/>
+                <property name="isIndexed" type="bool" comment="set this property to be indexed for fast searches on it"/>
+                <property name="isUnique" type="bool" comment="make sure this value is unique is the data store for this type"/>
+                <property name="isRequired" type="bool" comment="make sure this value isn't empty in the data store"/>
+            </properties>
+        </object>
+        <object className="FLCodeGeneratorOptions" protocols="NSCopying">
+            <properties>
+                <property name="disabled" type="bool" comment="don't compile this object is set to YES"/>
+                <property name="typePrefix" type="string"/>
+                <property name="comment" type="string"/>
+                <property name="globalDefine" type="FLCodeDefine"/>
+                <property name="generateAllIncludesFile" type="bool" comment="set this to YES to create an includes file that includes all the generated headers"/>
+                <property name="objectsFolderName" type="string" comment="folder to generated the files to. By default this is the same as the xml schema file"/>
+                <property name="useGeneratedFolder" type="bool" comment="if this is YES then generated files (prefixed with __) will be written into their own subfolder nameed __schemaName."/>
+            </properties>
+        </object>
+        <object className="FLCodeTypeDefinition" protocols="NSCopying">
+            <properties>
+                <property name="dataType" type="FLDataType" comment="the dataType of the type, e.g. object, struct, int, array" useForEquality="YES"/>
+                <property name="typeName" type="string" comment="name of the type, e.g. MyObject" useForEquality="YES"/>
+                <property name="import" type="string"/>
+                <property name="importIsPrivate" type="BOOL"/>
+                <property name="typeNameUnmodified" type="string"/>
+            </properties>
+        </object>
+        <object className="FLCodeCodeLicense" protocols="NSCopying">
+            <properties>
+                <property name="licenseName" type="string" useForEquality="YES"/>
+                <property name="licenseShortDescription" type="string" comment="license short description" useForEquality="NO"/>
+                <property name="licenseTextFilePath" type="string"/>
+            </properties>
+        </object>
+        <object className="FLCodeCompany" protocols="NSCopying">
+            <properties>
+                <property name="name" type="string" comment="name of the company for the file headers"/>
+                <property name="website" type="string" comment="name of the company for the file headers"/>
+                <property name="address1" type="string" comment="company address1"/>
+                <property name="address2" type="string" comment="company address1"/>
+                <property name="address3" type="string" comment="company address1"/>
+                <property name="phone" type="string" comment="company phone"/>
+            </properties>
+        </object>
+        <object className="FLCodeProject" protocols="NSCopying">
+            <properties>
+                <property name="organization" type="FLCodeCompany"/>
+                <property name="license" type="FLCodeCodeLicense"/>
+                <property name="projectName" type="string" useForEquality="YES"/>
+                <property name="schemaName" type="string" comment="name of the project for the file headers"/>
+                <property name="isWildcardArray" type="bool" comment=""/>
+                <property name="disabled" type="bool" comment="don't compile this object is set to YES"/>
+                <property name="canLazyCreate" type="bool"/>
+                <property name="ifDef" type="string"/>
+                <property name="comment" type="string"/>
+                <property name="generatorOptions" type="FLCodeGeneratorOptions" comment="set properties of this object to control code generation"/>
+                <property name="enumTypes" type="array" comment="list of enum types, these are generated into a single file with handy lookup methods">
+                    <arrayTypes>
+                        <arrayType name="enumType" typeName="FLCodeEnumType"/>
+                    </arrayTypes>
+                </property>
+                <property name="objects" type="array" comment="list of objects, these are generated into their own files">
+                    <arrayTypes>
+                        <arrayType name="object" typeName="FLCodeObject"/>
+                    </arrayTypes>
+                </property>
+                <property name="dependencies" type="array" comment="list of includes for all the files">
+                    <arrayTypes>
+                        <arrayType name="dependency" typeName="FLCodeTypeDefinition"/>
+                    </arrayTypes>
+                </property>
+                <property name="defines" type="array" comment="defines for all the files">
+                    <arrayTypes>
+                        <arrayType name="define" typeName="FLCodeDefine"/>
+                    </arrayTypes>
+                </property>
+                <property name="arrays" type="array" comment="list of methods (FLCodeMethod) for this object">
+                    <arrayTypes>
+                        <arrayType name="array" typeName="FLCodeArray"/>
+                    </arrayTypes>
+                </property>
+                <property name="imports" type="array">
+                    <arrayTypes>
+                        <arrayType name="import" typeName="FLCodeImport"/>
+                    </arrayTypes>
+                </property>
+                <property name="typeDefinitions" type="array">
+                    <arrayTypes>
+                        <arrayType name="typeDefinition" typeName="FLCodeTypeDefinition"/>
+                    </arrayTypes>
+                </property>
+                <!-- internal -->
+                <property name="projectPath" type="string"/>
+            </properties>
+        </object>
+        <object className="FLCodeComment" protocols="NSCopying" comment="don't use this object directly, used internally">
+            <properties>
+                <property name="object" type="string"/>
+                <property name="commentID" type="string"/>
+                <property name="comment" type="string" useForEquality="YES"/>
+            </properties>
+        </object>
+        <object className="FLCodeArrayType" superclass="FLCodeVariable" protocols="NSCopying">
+            <properties>
+                <property name="wildcardProperty" type="FLCodeProperty"/>
+            </properties>
+        </object>
+        <object className="FLCodeArray" protocols="NSCopying">
+            <properties>
+                <property name="name" type="string" useForEquality="YES"/>
+                <property name="types" type="array">
+                    <arrayTypes>
+                        <arrayType name="arrayType" typeName="FLCodeArrayType"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLCodeObjectCategory" protocols="NSCopying">
+            <properties>
+                <property name="objectName" type="string" comment="name of the type, e.g. bagelCount"/>
+                <property name="categoryName" type="string" comment="name of the type, e.g. bagelCount"/>
+                <property name="properties" type="array" comment="list of properties (FLCodeProperty or FLCodeObjectArray) for this object">
+                    <arrayTypes>
+                        <arrayType name="property" typeName="FLCodeProperty"/>
+                    </arrayTypes>
+                </property>
+                <property name="methods" type="array" comment="list of methods (FLCodeMethod) for this object">
+                    <arrayTypes>
+                        <arrayType name="method" typeName="FLCodeMethod"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLCodeObject" protocols="NSCopying" superclass="FLCodeType">
+            <properties>
+                <property name="protocols" type="string" comment="comma delimeted string"/>
+                <property name="className" type="string" comment="name of the type, e.g. bagelCount"/>
+                <property name="storageOptions" type="FLCodeStorageOptions"/>
+                <property name="comment" type="string" comment="comment for this object"/>
+                <property name="superclass" type="string" comment="superclass for the object. by default this is set to NSObject"/>
+                <property name="disabled" type="bool" comment="don't compile this object is set to YES"/>
+                <property name="canLazyCreate" type="bool"/>
+                <property name="isWildcardArray" type="bool" comment=""/>
+                <property name="ifDef" type="string"/>
+                <property name="isSingleton" type="bool" comment="if set to YES the standard FishLamp singleton objects will be generated for this object"/>
+                <property name="properties" type="array" comment="list of properties (FLCodeProperty or FLCodeObjectArray) for this object">
+                    <arrayTypes>
+                        <arrayType name="property" typeName="FLCodeProperty"/>
+                    </arrayTypes>
+                </property>
+                <property name="dependencies" type="array" comment="list of includes (string) only for this object">
+                    <arrayTypes>
+                        <arrayType name="dependency" typeName="FLCodeTypeDefinition"/>
+                    </arrayTypes>
+                </property>
+                <property name="members" type="array" comment="list of member data (FLCodeVariable) for this object">
+                    <arrayTypes>
+                        <arrayType name="member" typeName="FLCodeVariable"/>
+                    </arrayTypes>
+                </property>
+                <property name="methods" type="array" comment="list of methods (FLCodeMethod) for this object">
+                    <arrayTypes>
+                        <arrayType name="method" typeName="FLCodeMethod"/>
+                    </arrayTypes>
+                </property>
+                <property name="sourceSnippets" type="array" comment="list of methods (FLCodeMethod) for this object">
+                    <arrayTypes>
+                        <arrayType name="code" typeName="FLCodeCodeSnippet"/>
+                    </arrayTypes>
+                </property>
+                <property name="linesForInitMethod" type="array" comment="list of methods (FLCodeMethod) for this object">
+                    <arrayTypes>
+                        <arrayType name="line" typeName="string"/>
+                    </arrayTypes>
+                </property>
+                <property name="deallocLines" type="array" comment="list of methods (FLCodeMethod) for this object">
+                    <arrayTypes>
+                        <arrayType name="deallocLine" typeName="string"/>
+                    </arrayTypes>
+                </property>
+                <property name="categories" type="array">
+                    <arrayTypes>
+                        <arrayType name="category" typeName="FLCodeObjectCategory"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLCodeEnum" protocols="NSCopying">
+            <properties>
+                <property name="name" type="string" comment="This is the name of the enum, e.g. kFoo" useForEquality="YES"/>
+                <property name="value" type="int" comment="This is the optional value of the enum, e.g. 5"/>
+                <property name="stringValue" type="string" comment="This is the string optional value of the define"/>
+            </properties>
+        </object>
+        <object className="FLCodeEnumType" superclass="FLCodeType" protocols="NSCopying">
+            <properties>
+                <property name="enums" type="array" comment="this is the list of enums">
+                    <arrayTypes>
+                        <arrayType name="enum" typeName="FLCodeEnum"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLCodeProperty" protocols="NSCopying">
+            <properties>
+                <!-- required -->
+                <property name="name" type="string" useForEquality="YES"/>
+                <property name="type" type="string"/>
+                <property name="storageOptions" type="FLCodeStorageOptions" comment=""/>
+                <property name="memberName" type="string" comment="set member name. this is the same as the property name by default, but can be anything"/>
+                <property name="defaultValue" type="FLCodeLine"/>
+                <property name="comment" type="string" comment="comment about this property"/>
+                <property name="getter" type="FLCodeMethod" comment=""/>
+                <property name="setter" type="FLCodeMethod" comment=""/>
+                <!-- Arrays have one of more of these types set, otherwise it's a normal property -->
+                <property name="arrayTypes" type="array" comment="list of types and keys this array accepts. This list is igored for types other than array.">
+                    <arrayTypes>
+                        <arrayType name="arrayType" typeName="FLCodeArrayType"/>
+                    </arrayTypes>
+                </property>
+                <property name="canLazyCreate" type="bool" comment="automatically create the data (if it's an object) when the property getter is called and the value is nil"/>
+                <property name="isPrivate" type="bool" comment="don't declare the property in the file header (good for overriding superclass methods)"/>
+                <property name="isReadOnly" type="bool" comment="make this property readonly"/>
+                <property name="isImmutable" type="bool" comment="immutable means readonly, and directly return the default value without storing it in a member variable"/>
+                <property name="isStatic" type="bool" comment="is this property a class method e.g. + (void) foo"/>
+                <property name="useForEquality" type="bool"/>
+                <property name="isWildcardArray" type="bool" comment=""/>
+                <property name="isWeak" type="bool" comment="NO by default"/>
+
+<!-- internal use only 
+                <property name="typeUnmodified" type="string" comment="internal use only"/>
+                <property name="nameUnmodified" type="string" comment="internal use only"/>
+                <property name="enumType" type="FLCodeEnumType" comment="if this property is an enum, the type of the enum"/>
+                <property name="hasCustomCode" type="bool" comment="Properties by default have member data associated with them, set this to YES to disable this."/>
+-->
+            </properties>
+        </object>
+        <object className="FLCodeMethod" protocols="NSCopying">
+            <properties>
+                <property name="isStatic" type="bool" comment="is this a class method, e.g. + (void) foo"/>
+                <property name="isPrivate" type="bool" comment="don't show the header in the header for this method"/>
+                <property name="returnType" type="string" comment="return type of the method, by default this is void"/>
+                <property name="name" type="string" comment="name of the method" useForEquality="YES"/>
+                <property name="comment" type="string" comment="comment about this method"/>
+                <property name="code" type="FLCodeCodeSnippet" comment=""/>
+                <property name="codeLines" type="array">
+				<arrayType name="codeLine" typeName="string"/>
+			  </property>
+
+                <property name="parameters" type="array" comment="list of parameters (FLCodeVariable) for this method">
+                    <arrayTypes>
+                        <arrayType name="parameter" typeName="FLCodeVariable"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLCodeObjectMemberType" superclass="FLCodeVariable" protocols="NSCopying">
+            <properties>
+                <property name="isStatic" type="bool"/>
+                <property name="isWeak" type="bool" comment="NO by default"/>
+            </properties>
+        </object>
+        <object className="FLCodeType" protocols="NSCopying" comment="represents a type an name">
+            <properties>
+                <property name="typeName" type="string" comment="name of the type, e.g. MyObject" useForEquality="YES"/>
+                <property name="defaultValue" type="string"/>
+                <!-- internal -->
+                <property name="typeNameUnmodified" type="string"/>
+            </properties>
+        </object>
+        <object className="FLCodeVariable" superclass="FLCodeType" protocols="NSCopying">
+            <properties>
+                <property name="name" type="string" comment="name of the type, e.g. bagelCount" useForEquality="YES"/>
+            </properties>
+        </object>
+        <object className="FLCodeDefine" protocols="NSCopying">
+            <properties>
+                <property name="define" type="string" comment=""/>
+                <property name="value" type="string" comment=""/>
+                <property name="isString" type="BOOL" comment=""/>
+                <property name="comment" type="string" comment="" useForEquality="YES"/>
+            </properties>
+        </object>
+        <object className="FLCodeCodeSnippet" protocols="NSCopying" comment="represents a block of code">
+            <properties>
+                <property name="scopedBy" type="string"/>
+                <property name="name" type="string" comment="name of snippet (used for file)"/>
+                <property name="comment" type="string" comment="a comment about this snippet"/>
+                <property name="lines" type="string"/>
+            </properties>
+        </object>
+        <object className="FLCodeKeyValuePair" protocols="NSCopying">
+            <properties>
+                <property name="key" type="string" comment="" useForEquality="YES"/>
+                <property name="value" type="string" comment=""/>
+            </properties>
+        </object>
+    </objects>
+</project>
