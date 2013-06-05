@@ -6,13 +6,11 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#import "FLCocoaRequired.h"
+#import "FishLamp.h"
 
 @protocol FLAsyncResult <NSObject>
 @property (readonly, strong, nonatomic) NSError* error;
 @end
-
-#define FLPromisedResult id 
 
 @interface NSError (FLAsyncResult)
 + (id) failedResultError;

@@ -8,3 +8,5 @@
 //
 
 #import "FishLampCore.h"
+
+#define FLPromisedResult id 

@@ -33,6 +33,7 @@
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
 @property (readwrite, strong) FLHttpRequestByteCount* byteCount;
 @property (readwrite, assign) NSUInteger retryCount;
+@property (readwrite, strong, nonatomic) id<FLHttpRequestDescriptor> requestDescriptor;
 
 - (void) finishRequestWithResult:(id) result;
 @end
@@ -56,6 +57,7 @@
 @synthesize maxRetryCount = _maxRetryCount;
 @synthesize canRetry = _canRetry;
 @synthesize retryDelay = _retryDelay;
+@synthesize requestDescriptor = _requestDescriptor;
 
 static NSUInteger s_defaultRetryCount = 3;
 
@@ -93,6 +95,18 @@ static int s_counter = 0;
     return self;
 }
 
+- (id) initWithRequestDescriptor:(id<FLHttpRequestDescriptor>) descriptor {	
+	self = [super initWithRequestURL:descriptor.location httpMethod:descriptor.method];
+	if(self) {
+		self.requestDescriptor = descriptor;
+	}
+	return self;
+}
+
++ (id) httpRequestWithRequestDescriptor:(id<FLHttpRequestDescriptor>) requestDescriptor {
+    return FLAutorelease([[[self class] alloc] initWithRequestDescriptor:requestDescriptor]);
+}
+
 - (id) initWithRequestURL:(NSURL*) url  {
     return [self initWithRequestURL:url httpMethod:nil];
 }
@@ -108,6 +122,7 @@ static int s_counter = 0;
 
     [_asyncQueueForStream releaseToPool];
 #if FL_MRC
+    [_requestDescriptor release];
     [_byteCount release];
     [_asyncQueueForStream release];
     [_previousResponse release];
@@ -124,11 +139,11 @@ static int s_counter = 0;
     return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"GET"]);
 }
 
-+ (id) httpRequest:(NSURL*) url {
++ (id) httpRequestWithURL:(NSURL*) url {
     return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"GET"]);
 }
 
-+ (id) httpRequest:(NSURL*) url httpMethod:(NSString*) httpMethod {
++ (id) httpRequestWithURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
     return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:httpMethod]);
 }
 

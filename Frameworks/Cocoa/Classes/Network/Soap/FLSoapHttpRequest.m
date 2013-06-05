@@ -15,6 +15,10 @@
 #import "FLSoapDataEncoder.h"
 #import "FLSoapParser.h"
 #import "FLObjectDescriber.h"
+#import "FLSoapFault11.h"
+#import "FLStringEncoder.h"
+#import "FLParsedXmlElement.h"
+#import "FLHttpRequestDescriptor.h"
 
 #define TRACE 0
 
@@ -36,6 +40,22 @@
     [super dealloc];
 }
 #endif
+
+- (id) soapInput {
+    return _soapInput != nil ? _soapInput : self.requestDescriptor.input;
+}
+
+- (NSString*) soapActionHeader {
+    return FLStringIsNotEmpty(_soapActionHeader) ? _soapActionHeader : self.requestDescriptor.soapAction;
+}
+
+- (NSString*) soapNamespace {
+    return FLStringIsNotEmpty(_soapNamespace) ? _soapNamespace : self.requestDescriptor.targetNamespace;
+}
+
+- (NSString*) operationName {
+    return FLStringIsNotEmpty(_operationName) ? _operationName : self.requestDescriptor.operationName;
+}
 
 #define MAX_ERR_LEN 500
 
