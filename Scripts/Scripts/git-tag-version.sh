@@ -44,8 +44,8 @@ if [ "$status" != "" ]; then
 fi
 
 if [[ "$bump" == "true" ]]; then
-	version-bump "$plist_file" || { exit 1; }
-	build_version=`version-get "$plist_file"` || { exit 1; }
+	build_version=`version-bump-build "$build_version"` || { exit 1; }
+    version-set "$plist_file" "$build_version" || { exit 1; } 
 	git add "$plist_file" || { exit 1; }
 	git commit -a -m "new version: $build_version" || { exit 1; }
 fi

@@ -37,7 +37,6 @@ if [ ${#DOTS} != 3 ]; then
     exit 1;
 fi
 
-
 `/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $version" $plist_file` || { echo "Setting CFBundleVersion failed"; exit 1; }
 `/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $version" $plist_file` || { echo "Setting CFBundleShortVersionString failed"; exit 1; }
 
