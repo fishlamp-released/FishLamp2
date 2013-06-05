@@ -11,6 +11,9 @@
 #import "FLHttpRequest.h"
 #import "FLDispatchQueue.h"
 
+#import "FLHttpResponse.h"
+#import "FLHttpRequestBody.h"
+
 @implementation FLHttpTests
 
 + (FLUnitTestGroup*) unitTestGroup {
@@ -18,7 +21,7 @@
 }
 
 - (void) testConnectionToGoogle {
-    FLHttpRequest *request = [FLHttpRequest httpRequest:[NSURL URLWithString:@"http://www.google.com"]];
+    FLHttpRequest *request = [FLHttpRequest httpRequestWithURL:[NSURL URLWithString:@"http://www.google.com"]];
 
     
     FLHttpResponse* response = [request runSynchronously];

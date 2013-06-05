@@ -18,7 +18,7 @@
 @interface FLObjcProperty : FLObjcCodeElement {
 @private
     FLObjcIvar* _ivar;
-    BOOL _isReadonly;
+    BOOL _isReadOnly;
     BOOL _isAtomic;
     BOOL _isImmutable;
     BOOL _useForEquality;

@@ -132,7 +132,7 @@
     for(FLWsdlCodeProperty* property in self.properties) {
         FLWsdlCodeArray* array = [codeReader arrayForName:property.type];
         if(array) {
-            FLWsdlCodeObject* codeObject = [codeReader codeObjectForClassName:property.type];
+//            FLWsdlCodeObject* codeObject = [codeReader codeObjectForClassName:property.type];
 
             property.type = @"array";
             FLTrace(@"found array: %@", property.name);

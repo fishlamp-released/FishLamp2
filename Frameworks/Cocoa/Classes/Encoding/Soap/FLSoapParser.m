@@ -17,7 +17,7 @@
 
 - (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser {
 	[parser setShouldProcessNamespaces:YES];
-	[parser setShouldReportNamespacePrefixes:NO];
+	[parser setShouldReportNamespacePrefixes:YES];
 	[parser setShouldResolveExternalEntities:NO];
 }
 
@@ -27,5 +27,7 @@
     outDict = [[outDict allValues] firstObject];
     return outDict;
 }
+
+
 
 @end

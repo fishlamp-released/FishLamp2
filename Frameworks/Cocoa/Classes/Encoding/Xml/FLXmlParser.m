@@ -42,7 +42,7 @@
 }
 
 - (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser {
-	[parser setShouldProcessNamespaces:NO];
+	[parser setShouldProcessNamespaces:YES];
 	[parser setShouldReportNamespacePrefixes:NO];
 	[parser setShouldResolveExternalEntities:NO];
 }
@@ -80,6 +80,11 @@ didStartElement:(NSString *)elementName
             [newElement addChildElement:[FLParsedXmlElement parsedXmlElement:attributeName elementValue:[attributes objectForKey:attributeName]]];
         }
     }
+    
+//    if(_prefixStack && _prefixStack.count) {
+//        newElement.prefix = [_prefixStack lastObject];
+//        newElement.mappedToNamespace = [_prefixDictionary objectForKey:newElement.prefix];
+//    }
 
     [self pushElement:newElement];
 }
@@ -87,6 +92,27 @@ didStartElement:(NSString *)elementName
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
     [[self.stack lastObject] appendStringToValue:string];
 }
+
+    // sent when the parser first sees a namespace attribute.
+    // In the case of the cvslog tag, before the didStartElement:, you'd get one of these with prefix == @"" and namespaceURI == @"http://xml.apple.com/cvslog" (i.e. the default namespace)
+    // In the case of the radar:radar tag, before the didStartElement: you'd get one of these with prefix == @"radar" and namespaceURI == @"http://xml.apple.com/radar"
+
+- (void)parser:(NSXMLParser *)parser didStartMappingPrefix:(NSString *)prefix toURI:(NSString *)namespaceURI {
+
+    if(!_prefixStack) {
+        _prefixStack = [[NSMutableArray alloc] init];
+        _prefixDictionary = [[NSMutableDictionary alloc] init];
+    }
+
+    [_prefixStack addObject:prefix];
+    [_prefixDictionary setObject:namespaceURI forKey:prefix];
+}
+
+- (void)parser:(NSXMLParser *)parser didEndMappingPrefix:(NSString *)prefix {
+//    FLAssert(FLStringsAreEqual(prefix, [_prefixStack lastObject]));
+//    [_prefixStack removeLastObject];
+}
+
 
 - (void)parser:(NSXMLParser *)parser 
 	didEndElement:(NSString *)elementName 

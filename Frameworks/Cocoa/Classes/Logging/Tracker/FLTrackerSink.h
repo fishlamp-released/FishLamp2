@@ -8,7 +8,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FishLampCore.h"
+#import "FishLamp.h"
 
 typedef enum {
     FLTrackerSinkEventMessages          = (1 << 1),

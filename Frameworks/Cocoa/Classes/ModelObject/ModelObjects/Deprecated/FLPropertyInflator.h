@@ -9,7 +9,7 @@
 #if REFACTOR
 
 #import "FLCocoaRequired.h"
-#import "FishLampCore.h"
+#import "FishLamp.h"
 
 #import "FLObjectDescriber.h"
 #import "FLDataDecoding.h"

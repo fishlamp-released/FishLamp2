@@ -59,9 +59,9 @@
     
         [self updateTitle:title withState:state];
         
-        if(state.selected) {
-            selected = YES;
-        }
+//        if(state.selected) {
+//            selected = YES;
+//        }
     }
     
     [self.breadcrumbView updateLayout:animated];

@@ -11,7 +11,7 @@
 
 
 @implementation FLObjcDeallocStatement  
-@synthesize object = object;
+@synthesize object = _object;
 
 - (void) writeCodeToSourceFile:(FLObjcFile*) file 
                withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder  {

@@ -13,6 +13,9 @@
 #import "FLOAuthSession.h"
 #import "FLUrlParameterParser.h"
 
+#import "FLHttpResponse.h"
+
+
 @implementation FLOAuthRequestAccessTokenHttpRequest
 
 #if DEBUG

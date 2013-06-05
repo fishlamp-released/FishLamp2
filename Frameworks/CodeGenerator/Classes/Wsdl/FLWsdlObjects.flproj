@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema  projectName="FishLamp CodeWriter WSDL Interpreter" canLazyCreate="YES">
+<schema  projectName="FishLamp CodeWriter WSDL Interpreter">
     <generatorOptions>
         <disabled>NO</disabled>
         <generateAllIncludesFile>YES</generateAllIncludesFile>
@@ -15,17 +15,17 @@
                         <arrayType name="schema" typeName="FLWsdlSchema"/>
                     </arrayTypes>
                 </property>
-                <property name="messages" type="array" isWildcardArray="YES">
+                <property name="messages" type="array">
                     <arrayTypes>
                         <arrayType name="message" typeName="FLWsdlMessage"/>
                     </arrayTypes>
                 </property>
-                <property name="portTypes" type="array" isWildcardArray="YES">
+                <property name="portTypes" type="array">
                     <arrayTypes>
                         <arrayType name="portType" typeName="FLWsdlPortType"/>
                     </arrayTypes>
                 </property>
-                <property name="bindings" type="array" isWildcardArray="YES">
+                <property name="bindings" type="array">
                     <arrayTypes>
                         <arrayType name="binding" typeName="FLWsdlBinding"/>
                     </arrayTypes>
@@ -37,17 +37,17 @@
         </object>
         <object className="FLWsdlElementBaseType">
             <properties>
-                <property name="elements" type="array" isWildcardArray="YES">
+                <property name="elements" type="array">
                     <arrayTypes>
                         <arrayType name="element" typeName="FLWsdlElement"/>
                     </arrayTypes>
                 </property>
-                <property name="simpleTypes" type="array" isWildcardArray="YES">
+                <property name="simpleTypes" type="array">
                     <arrayTypes>
                         <arrayType name="simpleType" typeName="FLWsdlSimpleType"/>
                     </arrayTypes>
                 </property>
-                <property name="complexTypes" type="array" isWildcardArray="YES">
+                <property name="complexTypes" type="array">
                     <arrayTypes>
                         <arrayType name="complexType" typeName="FLWsdlComplexType"/>
                     </arrayTypes>
@@ -58,7 +58,7 @@
             <properties>
                 <property name="elementFormDefault" type="NSString"/>
                 <property name="targetNamespace" type="NSString"/>
-                <property name="imports" type="array" isWildcardArray="YES">
+                <property name="imports" type="array">
                     <arrayTypes>
                         <arrayType name="import" typeName="FLWsdlImport"/>
                     </arrayTypes>
@@ -96,7 +96,7 @@
         <object className="FLWsdlRestrictionArray">
             <properties>
                 <property name="base" type="NSString"/>
-                <property name="enumerations" type="array" isWildcardArray="YES">
+                <property name="enumerations" type="array">
                     <arrayTypes>
                         <arrayType name="enumeration" typeName="FLWsdlEnumeration"/>
                     </arrayTypes>
@@ -146,7 +146,7 @@
         <object className="FLWsdlMessage">
             <properties>
                 <property name="name" type="NSString"/>
-                <property name="parts" type="array" isWildcardArray="YES">
+                <property name="parts" type="array">
                     <arrayTypes>
                         <arrayType typeName="FLWsdlPart" name="part"/>
                     </arrayTypes>
@@ -170,7 +170,7 @@
                 <property name="name" type="NSString"/>
                 <property name="binding" type="NSString"/>
                 <property name="address" type="FLWsdlServiceAddress"/>
-                <property name="operations" type="array" isWildcardArray="YES">
+                <property name="operations" type="array">
                     <arrayTypes>
                         <arrayType name="operation" typeName="FLWsdlOperation"/>
                     </arrayTypes>
@@ -206,12 +206,13 @@
                 <property name="transport" type="NSString"/>
                 <property name="verb" type="NSString"/>
                 <property name="type" type="NSString"/>
-                <property name="bindings" type="array" isWildcardArray="YES">
+                <property name="binding" type="FLWsdlBinding"/>
+                <!--property name="bindings" type="array">
                     <arrayTypes>
                         <arrayType typeName="FLWsdlBinding" name="binding"/>
                     </arrayTypes>
-                </property>
-                <property name="operations" type="array" isWildcardArray="YES">
+                </property-->
+                <property name="operations" type="array">
                     <arrayTypes>
                         <arrayType typeName="FLWsdlOperation" name="operation"/>
                     </arrayTypes>
@@ -222,7 +223,7 @@
             <properties>
                 <property name="name" type="NSString"/>
                 <property name="documentation" type="NSString"/>
-                <property name="ports" type="array"  isWildcardArray="YES">
+                <property name="ports" type="array" >
                     <arrayTypes>
                         <arrayType name="port" typeName="FLWsdlPortType"/>
                     </arrayTypes>
@@ -233,7 +234,7 @@
             <properties>
                 <property name="minOccurs" type="NSString"/>
                 <property name="maxOccurs" type="NSString"/>
-                <property name="elements" type="array"  isWildcardArray="YES">
+                <property name="elements" type="array" >
                     <arrayTypes>
                         <arrayType name="element" typeName="FLWsdlElement"/>
                     </arrayTypes>

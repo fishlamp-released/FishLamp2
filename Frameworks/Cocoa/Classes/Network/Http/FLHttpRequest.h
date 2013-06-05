@@ -11,14 +11,6 @@
 #import "FLAsyncOperation.h"
 #import "FLHttpStream.h"
 
-//#import "FLHttpResponse.h"
-//#import "FLInputSink.h"
-//#import "FLHttpRequestBody.h"
-//#import "FLHttpRequestHeaders.h"
-//#import "FLHttpErrors.h"
-//#import "FLNetworkErrors.h"
-//#import "FLHttpRequestByteCount.h"
-
 #define FLHttpRequestDefaultTimeoutInterval 120.0f
 
 @class FLHttpRequest;
@@ -32,7 +24,6 @@
 @class FLHttpStream;
 @class FLInputSink;
 @class FLHttpResponse;
-@protocol FLHttpRequestDescriptor;
 
 @protocol FLHttpRequestAuthenticator <NSObject>
 //// this needs to be synchronous for scheduling reasons amoung concurrent requests.
@@ -51,7 +42,6 @@
     FLHttpResponse* _previousResponse; // if redirected
     FLHttpStream* _httpStream;
     NSTimeInterval _timeoutInterval;
-    id<FLHttpRequestDescriptor> _requestDescriptor;
     
     // helpers
     id<FLInputSink> _inputSink;
@@ -85,11 +75,7 @@
 @property (readonly, strong, nonatomic) FLHttpRequestHeaders* requestHeaders;
 @property (readonly, strong, nonatomic) FLHttpRequestBody* requestBody;
 
-@property (readonly, strong, nonatomic) id<FLHttpRequestDescriptor> requestDescriptor;
-
 - (id) initWithRequestURL:(NSURL*) requestURL;
-
-- (id) initWithRequestDescriptor:(id<FLHttpRequestDescriptor>) descriptor;
 
 - (id) initWithRequestURL:(NSURL*) requestURL
                httpMethod:(NSString*) httpMethod; // designated
@@ -98,8 +84,6 @@
                httpMethod:(NSString*) httpMethod;
 
 + (id) httpRequestWithURL:(NSURL*) url;
-
-+ (id) httpRequestWithRequestDescriptor:(id<FLHttpRequestDescriptor>) requestDescriptor;
 
 //
 // optional overrides

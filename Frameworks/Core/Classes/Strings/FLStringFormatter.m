@@ -38,8 +38,6 @@
 
     NSRange range = { 0, 0 };
     
-    NSCharacterSet* white = [NSCharacterSet whitespaceCharacterSet];
-    
     for(NSUInteger i = 0; i < string.length; i++) {
         unichar c = [string characterAtIndex:i];
         

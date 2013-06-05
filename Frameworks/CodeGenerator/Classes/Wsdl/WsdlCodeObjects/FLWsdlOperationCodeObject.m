@@ -147,11 +147,18 @@
     
     [self addPropertiesWithOperation:operation codeReader:reader];
     
-    if(FLStringIsNotEmpty(binding.verb) && [self propertyForName:@"verb"] == nil) {
+    if(FLStringIsNotEmpty(binding.binding.verb) && [self propertyForName:@"transport"] == nil) {
         FLWsdlCodeProperty* prop = [self addProperty:@"verb" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
-        prop.defaultValue = [FLCodeLine codeLineReturnString:binding.verb];
+        prop.defaultValue = [FLCodeLine codeLineReturnString:binding.binding.verb];
+    }
+    
+    if(FLStringIsNotEmpty(binding.binding.transport) && [self propertyForName:@"transport"] == nil) {
+        FLWsdlCodeProperty* prop = [self addProperty:@"transport" propertyType:@"string"];
+        prop.isImmutable = YES;
+        prop.isReadOnly = YES;
+        prop.defaultValue = [FLCodeLine codeLineReturnString:binding.binding.transport];
     }
 
     NSString* url = [reader servicePortLocationFromBinding:binding];		   

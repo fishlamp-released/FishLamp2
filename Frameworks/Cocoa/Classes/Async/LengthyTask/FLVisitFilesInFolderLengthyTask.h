@@ -8,7 +8,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FishLampCore.h"
+#import "FishLamp.h"
 
 #import "FLLengthyTask.h"
 #import "NSFileManager+FLExtras.h"

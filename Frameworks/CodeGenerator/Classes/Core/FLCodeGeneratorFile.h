@@ -17,7 +17,6 @@ typedef enum {
 @interface FLCodeGeneratorFile : NSObject {
 @private
     NSString* _fileName;
-    NSString* _fileContents;
 }
 
 @property (readwrite, strong, nonatomic) NSString* fileName;

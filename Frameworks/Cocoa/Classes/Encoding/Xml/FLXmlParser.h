@@ -31,6 +31,9 @@ typedef enum {
     NSError* _error;
     
     FLParsedXmlElement* _rootElement;
+    
+    NSMutableDictionary* _prefixDictionary;
+    NSMutableArray* _prefixStack;
 }
 
 + (id) xmlParser;

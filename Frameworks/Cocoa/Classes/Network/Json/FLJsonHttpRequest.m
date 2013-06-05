@@ -10,6 +10,9 @@
 #import "FLJsonHttpRequest.h"
 #import "FLJsonParser.h"
 
+#import "FLHttpRequestBody.h"
+#import "FLHttpResponse.h"
+
 @implementation FLJsonHttpRequest
 
 @synthesize outputObject = _outputObject;

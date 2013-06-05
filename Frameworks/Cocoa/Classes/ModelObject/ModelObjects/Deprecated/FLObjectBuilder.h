@@ -8,7 +8,7 @@
 //
 #if REFACTOR
 #import "FLCocoaRequired.h"
-#import "FishLampCore.h"
+#import "FishLamp.h"
 #import "FLDataDecoding.h"
 #import "FLAsyncResult.h"
 #import "FLPropertyInflator.h"

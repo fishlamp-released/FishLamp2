@@ -8,7 +8,7 @@
 //
 #if REFACTOR
 
-#import "FishLampCore.h"
+#import "FishLamp.h"
 #import "FLSynchronousOperation.h"
 #import "FLDatabase.h"
 #import "FLUserLogin.h"

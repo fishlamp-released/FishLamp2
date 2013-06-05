@@ -13,5 +13,4 @@
 
 + (id) soapParser;
 
-//- (NSDictionary*) bodyContentsForDictionary:(NSDictionary*) soap;
 @end

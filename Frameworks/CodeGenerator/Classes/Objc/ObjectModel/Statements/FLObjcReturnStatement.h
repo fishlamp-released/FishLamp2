@@ -10,7 +10,7 @@
 
 @interface FLObjcReturnStatement : FLObjcStatement {
 @private
-    FLObjcRuntimeValue* _value;
+    FLObjcRuntimeValue* _returnValue;
 }
 
 @property (readwrite, strong, nonatomic) FLObjcRuntimeValue* returnValue;

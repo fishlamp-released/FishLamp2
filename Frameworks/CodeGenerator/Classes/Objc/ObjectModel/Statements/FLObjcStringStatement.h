@@ -15,7 +15,7 @@
 
 @interface FLObjcStringStatement : FLObjcStatement {
 @private
-    FLObjcCodeBuilder* _string;
+    FLObjcCodeBuilder* _codeBuilder;
 }
 + (id) objcStringStatement;
 

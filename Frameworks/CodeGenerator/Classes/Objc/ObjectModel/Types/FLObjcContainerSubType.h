@@ -12,7 +12,7 @@
 @interface FLObjcContainerSubType : NSObject {
 @private
     NSString* _subTypeName;
-    FLObjcType* _arrayElementType;
+    FLObjcType* _objcType;
 }
 
 @property (readwrite, strong, nonatomic) NSString* subTypeName;

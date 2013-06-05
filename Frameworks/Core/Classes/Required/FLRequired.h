@@ -18,6 +18,7 @@
     #define FL_SHIP_ONLY_INLINE NS_INLINE
 #endif
 
+#import "FishLampVersion.h"
 #import "FLCoreFlags.h"
 #import "FLCompilerWarnings.h"
 

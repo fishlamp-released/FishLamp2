@@ -13,7 +13,7 @@
 #import "FLWsdlRestrictionArray.h"
 #import "FLWsdlList.h"
 #import "FLWsdlCodeEnum.h"
-
+#import "FLWsdlSequenceArray.h"
 
 @implementation FLWsdlSimpleTypeEnumCodeType
 
@@ -22,20 +22,21 @@
         [self addEnum:wsdlEnum.value enumValue:nil];
     }
     
-    FLAssertNil(list.sequence);
+    FLAssert(list.sequence.elements.count == 0);
     
 }
 
 - (void) addEnumerationsFromSimpleType:(FLWsdlSimpleType*) simpleType {
-    if([simpleType restriction]) {
+    if(simpleType.restriction) {
         [self addEnumTypesFromList:simpleType.restriction];
+        FLAssert(self.enums.count > 0);
         FLAssert(self.enums.count == simpleType.restriction.enumerations.count);
+    
     }
-    if([simpleType list]) {
+    
+    if(simpleType.list) {
         [self addEnumerationsFromSimpleType:simpleType.list.simpleType];
     }
-
-    FLAssert(self.enums.count > 0);
 }
 
 + (id) wsdlSimpleTypeEnumCodeType:(FLWsdlSimpleType*) simpleType {

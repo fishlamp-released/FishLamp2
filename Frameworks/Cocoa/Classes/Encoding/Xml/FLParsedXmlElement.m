@@ -11,6 +11,7 @@
 
 @interface FLParsedXmlElement ()
 @property (readwrite, assign, nonatomic) FLParsedXmlElement* parent;
+@property (readwrite, strong, nonatomic) NSString* prefix;
 
 @end
 
@@ -24,6 +25,7 @@
 @synthesize childElements = _elements;
 @synthesize parent = _parent;
 @synthesize sibling = _sibling;
+@synthesize prefix = _prefix;
 
 - (id) initWithName:(NSString*) name elementValue:(NSString*) elementValue {	
 	self = [super init];
@@ -88,6 +90,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_prefix release];
     [_sibling release];
     [_attributes release];
     [_namespace release];
@@ -158,6 +161,28 @@
     [stringFormatter appendLineWithFormat:@"<!-- %d siblings -->", self.siblingCount];
 }
 
+- (BOOL) isQualified {
+    return FLStringsAreEqual(@"qualified", [_attributes objectForKey:@"elementFormDefault"]);
+}
+
+- (NSString*) targetNamespace {
+    return [_attributes objectForKey:@"targetNamespace"];
+}
+
+- (NSString*) prefix {
+    if(!_prefix) {
+        _prefix = @"";
+        for(NSInteger i = 0; i < _qualifiedName.length; i++) {
+            if([_qualifiedName characterAtIndex:i] == ':') {
+                self.prefix = [_qualifiedName substringToIndex:i];
+                break;
+            }
+        }
+        
+    }
+    
+    return _prefix;
+}
 - (NSString*) description {
 
     FLPrettyString* prettyString = [FLPrettyString prettyString];

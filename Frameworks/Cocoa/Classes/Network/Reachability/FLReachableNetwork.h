@@ -9,7 +9,7 @@
 
 #import "FLCocoaRequired.h"
 #import <SystemConfiguration/SystemConfiguration.h>
-#import "FishLampCore.h"
+#import "FishLamp.h"
 
 
 // monitored reachability objects send this notification and themselves as the object when

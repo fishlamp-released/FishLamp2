@@ -8,7 +8,7 @@
 //
 
 //#import "FLCocoaRequired.h"
-//#import "FishLampCore.h"
+//#import "FishLamp.h"
 //#import "FLCallback_t.h"
 //#import "FLWeakReference.h" 
 //#import "FLCallback_t.h"

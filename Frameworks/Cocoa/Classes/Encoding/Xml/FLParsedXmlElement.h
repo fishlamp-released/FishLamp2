@@ -18,6 +18,8 @@
     NSMutableString* _elementValue;
     NSMutableDictionary* _elements;
     FLParsedXmlElement* _sibling;
+    NSString* _prefix;
+    NSString* _mappedToNamespace;
 
     __unsafe_unretained FLParsedXmlElement* _parent;
 }
@@ -31,6 +33,10 @@
 @property (readwrite, strong, nonatomic) NSString* qualifiedName;
 @property (readwrite, strong, nonatomic) NSString* elementName;
 @property (readwrite, strong, nonatomic) NSString* elementValue;
+@property (readonly, strong, nonatomic) NSString* prefix;
+@property (readonly, assign, nonatomic) BOOL isQualified;
+@property (readonly, strong, nonatomic) NSString* targetNamespace;
+
 
 - (void) appendStringToValue:(NSString*) string;
 

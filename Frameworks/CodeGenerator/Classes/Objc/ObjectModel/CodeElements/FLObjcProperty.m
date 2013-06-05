@@ -123,7 +123,7 @@
     self.propertyName = [FLObjcPropertyName objcPropertyName:[codeProperty name]];
 
     if(codeProperty.arrayTypes && codeProperty.arrayTypes.count) {
-        NSMutableArray* containerTypes = [[NSMutableArray alloc] init];
+        NSMutableArray* containerTypes = [NSMutableArray array];
     
         FLAssert([self.propertyType isKindOfClass:[FLObjcContainerType class]]);
         

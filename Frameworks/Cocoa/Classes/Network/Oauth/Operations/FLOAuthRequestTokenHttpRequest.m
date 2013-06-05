@@ -12,6 +12,7 @@
 #import "FLOAuthAuthencationData.h"
 #import "FLUrlParameterParser.h"
 #import "FLOAuthAuthorizationHeader.h"
+#import "FLHttpResponse.h"
 
 @implementation FLOAuthRequestTokenHttpRequest
 

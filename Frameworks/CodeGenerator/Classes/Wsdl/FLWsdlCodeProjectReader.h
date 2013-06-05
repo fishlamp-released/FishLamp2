@@ -20,7 +20,6 @@
 
 @interface FLWsdlCodeProjectReader : NSObject<FLCodeProjectReader> {
 @private
-    FLCodeProject* _project;
     FLWsdlDefinitions* _wsdlDefinitions;
 	NSMutableDictionary* _objects;
     NSMutableDictionary* _enums;

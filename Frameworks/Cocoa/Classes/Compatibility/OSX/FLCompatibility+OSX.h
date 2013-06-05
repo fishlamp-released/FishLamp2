@@ -19,7 +19,7 @@
 
 #import <AppKit/AppKit.h>
 
-#import "FishLampCore.h"
+#import "FishLamp.h"
 #import "FLCompatibleGeometry+OSX.h"
 
 #import "NSValue+FLCompatibility.h"

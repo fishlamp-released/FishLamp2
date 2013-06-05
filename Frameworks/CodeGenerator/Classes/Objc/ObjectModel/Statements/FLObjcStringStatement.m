@@ -13,19 +13,19 @@
 
 @implementation FLObjcStringStatement
 
-@synthesize codeBuilder = _codeBulder;
+@synthesize codeBuilder = _codeBuilder;
 
 - (id) init {	
 	self = [super init];
 	if(self) {
-		_codeBulder = [[FLObjcCodeBuilder alloc] init];
+		_codeBuilder = [[FLObjcCodeBuilder alloc] init];
 	}
 	return self;
 }
 
 #if FL_MRC
 - (void) dealloc {
-	[_codeBulder release];
+	[_codeBuilder release];
 	[super dealloc];
 }
 #endif
@@ -33,7 +33,7 @@
 - (void) writeCodeToSourceFile:(FLObjcFile*) file 
                withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
                
-    [codeBuilder appendStringFormatter:_codeBulder];
+    [codeBuilder appendStringFormatter:_codeBuilder];
 }
 
 + (id) objcStringStatement {

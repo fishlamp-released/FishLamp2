@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <dispatch/dispatch.h>
 
-#import "FishLampCore.h"
+#import "FishLamp.h"
 #import "FLCompatibility.h"
 #import "NSObject+Copying.h"
 #import "FLSelectorPerforming.h"
