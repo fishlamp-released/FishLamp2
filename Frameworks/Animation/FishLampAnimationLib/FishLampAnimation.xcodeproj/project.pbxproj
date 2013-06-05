@@ -4158,6 +4158,7 @@
 				27367B77175E4CA20018996B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "FishLampAnimation" */ = {
 			isa = XCConfigurationList;

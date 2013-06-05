@@ -545,7 +545,7 @@
 		2797C8C7175D474A00FBD667 /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../../Core/FishLampCoreLib/FishLampCore.xcodeproj; sourceTree = "<group>"; };
 		2797C8C8175D474A00FBD667 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../../Cocoa/FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
 		2797C8C9175D475600FBD667 /* FishLampOSX.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampOSX.xcodeproj; path = ../../OSX/FishLampOSXLib/FishLampOSX.xcodeproj; sourceTree = "<group>"; };
-		279FFBEC175D4CCB003F06C4 /* libFishLampCodeGenerator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFishLampCodeGenerator.a; path = "libFishLampCodeGenerator-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		279FFBEC175D4CCB003F06C4 /* libFishLampCodeGenerator-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCodeGenerator-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B35F2D175D4FC3002A4A3E /* FLCodeDataTypeCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeDataTypeCollection.h; sourceTree = "<group>"; };
 		27B35F2E175D4FC3002A4A3E /* FLCodeDataTypeCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeDataTypeCollection.m; sourceTree = "<group>"; };
 		27B35F2F175D4FC3002A4A3E /* FLCodeIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeIdentifier.h; sourceTree = "<group>"; };
@@ -1030,7 +1030,7 @@
 			isa = PBXGroup;
 			children = (
 				2787B46117415B720010C2C6 /* FishLampCodeGeneratorTester */,
-				279FFBEC175D4CCB003F06C4 /* libFishLampCodeGenerator.a */,
+				279FFBEC175D4CCB003F06C4 /* libFishLampCodeGenerator-64-MRC.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1772,7 +1772,7 @@
 			);
 			name = "FishLampCodeGenerator-64-MRC";
 			productName = FishLampCodeGenerator;
-			productReference = 279FFBEC175D4CCB003F06C4 /* libFishLampCodeGenerator.a */;
+			productReference = 279FFBEC175D4CCB003F06C4 /* libFishLampCodeGenerator-64-MRC.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -2226,6 +2226,7 @@
 				27E9CFDE175E4AC300BD6205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1398,6 +1398,7 @@
 				27E9CFD2175E4A9F00BD6205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

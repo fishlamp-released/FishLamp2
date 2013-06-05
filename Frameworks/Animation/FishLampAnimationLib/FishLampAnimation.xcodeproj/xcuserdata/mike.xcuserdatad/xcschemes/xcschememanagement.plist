@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FLCocoas2d-32-MRC.xcscheme</key>
+		<key>FLCocoas2d-32-MRC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>32</integer>
@@ -14,17 +14,17 @@
 			<key>orderHint</key>
 			<integer>31</integer>
 		</dict>
-		<key>FLCocoas2d-64-ARC.xcscheme</key>
+		<key>FLCocoas2d-64-ARC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>34</integer>
 		</dict>
-		<key>FLCocoas2d-64-MRC.xcscheme</key>
+		<key>FLCocoas2d-64-MRC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>33</integer>
 		</dict>
-		<key>FLCocoas2d-iOS-ARC.xcscheme</key>
+		<key>FLCocoas2d-iOS-ARC.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>35</integer>
@@ -54,7 +54,7 @@
 			<key>orderHint</key>
 			<integer>30</integer>
 		</dict>
-		<key>FishLampAnimation.xcscheme</key>
+		<key>FishLampAnimation.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>46</integer>

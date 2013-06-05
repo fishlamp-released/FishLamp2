@@ -2,9 +2,10 @@
 
 function usage() {
 	echo "usage:"
-	echo " version-tag [-p -b] <plistfile> "
+	echo " version-tag <plistfile> -[p][b]"
 	echo " -p = push"
 	echo " -b = bump"
+	echo " -bp = bump and push"
 	exit 1
 }
 
