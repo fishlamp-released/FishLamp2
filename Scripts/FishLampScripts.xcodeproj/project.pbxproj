@@ -57,6 +57,7 @@
 		270E0550175D3C4E00802761 /* FishLampTargetSettings-OSX-Universal-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-Universal-MRC.xcconfig"; sourceTree = "<group>"; };
 		270E0551175D3C4E00802761 /* FishLampTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
 		270E0552175D3C4E00802761 /* FishLampTargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
+		2710472D175F9A910024B1D3 /* fishlamp-tag-version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "fishlamp-tag-version.sh"; sourceTree = "<group>"; };
 		276806C5175D2F1C00B1D643 /* install.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
 		276806C7175D2F1C00B1D643 /* fishlamp-find.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "fishlamp-find.sh"; sourceTree = "<group>"; };
 		276806C8175D2F1C00B1D643 /* fishlamp-install-xcode-build-support.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "fishlamp-install-xcode-build-support.sh"; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 				276806CD175D2F1C00B1D643 /* version-get.sh */,
 				276806CE175D2F1C00B1D643 /* version-tag.sh */,
 				27AC5C9D175E5880002629F5 /* fishlamp-create-connect-lib.sh */,
+				2710472D175F9A910024B1D3 /* fishlamp-tag-version.sh */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -272,6 +274,7 @@
 				27AC5C95175E54EF002629F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
