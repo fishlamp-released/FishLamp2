@@ -32,6 +32,10 @@ build_num=`echo $build_num + 1 | bc`
 # rebuild full version number
 build_version="$vers_base.$build_num"
 
+version-set "$plist_file" "$build_version"
+
+exit 0
+
 `/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $build_version" $plist_file` || { echo "Setting CFBundleVersion failed"; exit 1; }
 `/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $build_version" $plist_file` || { echo "Setting CFBundleShortVersionString failed"; exit 1; }
 
