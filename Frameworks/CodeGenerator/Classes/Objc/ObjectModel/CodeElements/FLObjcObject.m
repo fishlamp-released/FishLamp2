@@ -96,7 +96,7 @@
 - (void) dealloc {
     [_protocols release];
     [_codeObject release];
-	[_superclass release];
+	[_superclassType release];
     [_objectName release];
     [_ivars release];
     [_properties release];
@@ -136,7 +136,8 @@
 }
 
 
-- (void) configureWithCodeObject:(FLCodeObject*) codeObject {
+- (void) configureWithCodeObject:(FLCodeObject*) codeObject 
+                      objectName:(FLObjcClassName*) objectName {
     
     if(FLStringIsNotEmpty(codeObject.protocols)) {
         NSArray* protocols = [[codeObject protocols] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ,"] allowEmptyStrings:NO];
@@ -157,13 +158,11 @@
         superclass = [self.project.typeRegistry typeForKey:NSStringFromClass([FLModelObject class])];
     }
    
-    [self addDependency:superclass];
-   
-    self.objectName = 
-        [FLObjcClassName objcClassName:codeObject.className prefix:self.project.classPrefix];
+    self.objectName = objectName;
     
     self.objectType = [FLObjcMutableObjectType objcMutableObjectType:self.objectName importFileName:[NSString stringWithFormat:@"%@.h", self.objectName.generatedName]];
     
+    [self addDependency:superclass];
     self.superclassType = superclass;
     self.codeObject = codeObject;
     
@@ -352,6 +351,33 @@
     [codeBuilder appendEnd];
 }
 
+@end
 
+#import "FLObjcGeneratedHeaderFile.h"
+#import "FLObjcGeneratedSourceFile.h"
+#import "FLObjcUserHeaderFile.h"
+#import "FLObjcUserSourceFile.h"
+
+@implementation FLObjcGeneratedObject : FLObjcObject
+
+- (FLObjcFile*) headerFile {
+    return [FLObjcGeneratedHeaderFile headerFile:self.generatedName];
+}
+
+- (FLObjcFile*) sourceFile {
+    return [FLObjcGeneratedSourceFile sourceFile:self.generatedName];
+}
+
+@end
+
+@implementation FLObjcUserObject : FLObjcObject
+
+- (FLObjcFile*) headerFile {
+    return [FLObjcUserHeaderFile headerFile:self.generatedName];
+}
+
+- (FLObjcFile*) sourceFile {
+    return [FLObjcUserSourceFile sourceFile:self.generatedName];
+}
 
 @end

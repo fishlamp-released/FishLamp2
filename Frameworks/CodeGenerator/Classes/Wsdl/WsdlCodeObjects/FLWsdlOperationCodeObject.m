@@ -17,15 +17,15 @@
 #import "FLWsdlCodeProjectReader.h"
 #import "FLWsdlBinding.h"
 #import "FLWsdlDefinitions.h"
-#import "FLHttpRequestDescriptor.h"
 #import "FLCodeLine.h"
+
+#import "FLHttpRequest.h"
 
 @implementation FLWsdlOperationCodeObject
 
 - (id) init {	
 	self = [super init];
 	if(self) {
-        self.protocols = NSStringFromProtocol(@protocol(FLHttpRequestDescriptor));
     }
 	return self;
 }
@@ -93,25 +93,22 @@
 ////    [initMethod addLines:[builder string]];
 //}
 
-+ (NSString*) operationClassName:(NSString*) binding operationName:(NSString*) operationName {
-    return [NSString stringWithFormat:@"%@%@", binding, operationName];
+//+ (NSString*) operationClassName:(NSString*) binding operationName:(NSString*) operationName {
+//    return [NSString stringWithFormat:@"%@%@", binding, operationName];
+//}
+
+
+- (id) initWithClassName:(NSString*) className {	
+	self = [super init];
+	if(self) {
+		self.className = className;
+	}
+	return self;
 }
 
-+ (id) wsdlOperationCodeObject:(FLWsdlOperation*) operation 
-                   bindingName:(NSString*) bindingName 
-                    codeReader:(FLWsdlCodeProjectReader*) codeReader {
++ (id) wsdlOperationCodeObject:(NSString*) className {
 
-    NSString* className = [[self class] operationClassName:bindingName operationName:operation.name];
-
-    FLWsdlOperationCodeObject* object = [codeReader codeObjectForClassName:className];
-    if(!object) {
-        object = [FLWsdlOperationCodeObject wsdlCodeObject:className superclassName:nil];  
-    }
-    
-    [object addPropertiesWithOperation:operation codeReader:codeReader];
-
-
-    return object;
+    return FLAutorelease([[[self class] alloc] initWithClassName:className]);
 }     
 
 - (void) addPropertiesWithOperation:(FLWsdlOperation*) operation codeReader:(FLWsdlCodeProjectReader*) codeReader  {
@@ -143,11 +140,25 @@
 
 }
 
+
 - (void) addPropertiesWithBinding:(FLWsdlBinding*) binding withOperation:(FLWsdlOperation*) operation codeReader:(FLWsdlCodeProjectReader*) reader {
     
     [self addPropertiesWithOperation:operation codeReader:reader];
+
+    NSString* url = [reader servicePortLocationFromBinding:binding];		   
+    FLConfirmStringIsNotEmpty(url);
     
-    if(FLStringIsNotEmpty(binding.binding.verb) && [self propertyForName:@"transport"] == nil) {
+    NSString* targetNamespace = reader.wsdlDefinitions.targetNamespace;
+    FLConfirmStringIsNotEmpty(targetNamespace);
+
+    if(FLStringIsNotEmpty(targetNamespace) && [self propertyForName:@"targetNamespace"] == nil) {
+        FLWsdlCodeProperty* prop = [self addProperty:@"targetNamespace" propertyType:@"string"];
+        prop.isImmutable = YES;
+        prop.isReadOnly = YES;
+        prop.defaultValue = [FLCodeLine codeLineReturnString:targetNamespace];
+    }
+
+    if(FLStringIsNotEmpty(binding.binding.verb) && [self propertyForName:@"verb"] == nil) {
         FLWsdlCodeProperty* prop = [self addProperty:@"verb" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
@@ -161,19 +172,6 @@
         prop.defaultValue = [FLCodeLine codeLineReturnString:binding.binding.transport];
     }
 
-    NSString* url = [reader servicePortLocationFromBinding:binding];		   
-    FLConfirmStringIsNotEmpty(url);
-    
-    NSString* targetNamespace = reader.wsdlDefinitions.targetNamespace;
-    FLConfirmStringIsNotEmpty(targetNamespace);
-
-    if(FLStringIsNotEmpty(targetNamespace)) {
-        FLWsdlCodeProperty* prop = [self addProperty:@"targetNamespace" propertyType:@"string"];
-        prop.isImmutable = YES;
-        prop.isReadOnly = YES;
-        prop.defaultValue = [FLCodeLine codeLineReturnString:targetNamespace];
-    }
-    
     NSString* location = url;
     
     FLWsdlOperation* subOperation = operation.operation;
@@ -194,6 +192,9 @@
     prop.isImmutable = YES;
     prop.isReadOnly = YES;
     prop.defaultValue = [FLCodeLine codeLineReturnString:location];
+    
+    FLWsdlCodeMethod* method = [FLWsdlCodeMethod wsdlCodeMethod:@"init" methodReturnType:@"id"];
+    
 }
 
 

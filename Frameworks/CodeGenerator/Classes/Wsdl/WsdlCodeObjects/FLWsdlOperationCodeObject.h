@@ -16,11 +16,7 @@
 
 }
 
-+ (NSString*) operationClassName:(NSString*) binding operationName:(NSString*) operationName;
-
-+ (id) wsdlOperationCodeObject:(FLWsdlOperation*) operation 
-                   bindingName:(NSString*) bindingName 
-                    codeReader:(FLWsdlCodeProjectReader*) codeReader;
++ (id) wsdlOperationCodeObject:(NSString*) className;
 
 - (void) addPropertiesWithOperation:(FLWsdlOperation*) operation codeReader:(FLWsdlCodeProjectReader*) reader ;
 - (void) addPropertiesWithPortType:(FLWsdlPortType*) portType  codeReader:(FLWsdlCodeProjectReader*) reader;

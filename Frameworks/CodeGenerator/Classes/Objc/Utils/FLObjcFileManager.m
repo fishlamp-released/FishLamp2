@@ -137,6 +137,7 @@
 }
 
 - (void) addFile:(FLObjcFile*) file {
+    FLAssertNotNil(file);
     FLAssertStringIsNotEmptyWithComment(file.fileName, @"file has no name");
 
     [_files addObject:file];
@@ -149,19 +150,20 @@
     [fileHeader configureWithInputProject:self.project.inputProject];
 
     for(FLObjcCodeElement* element in elementList) {
+            
+        FLObjcFile* headerFile = [element headerFile];
+        if(headerFile) {
+            [headerFile addFileElement:fileHeader];
+            [headerFile addFileElement:element];
+            [self addFile:headerFile];
+        }
         
-        NSString* identifier = [element generatedName];
-        FLAssertStringIsNotEmptyWithComment(identifier, @"element has no generated name");
-    
-        FLObjcHeaderFile* headerFile = [FLObjcGeneratedHeaderFile headerFile:identifier];
-        [headerFile addFileElement:fileHeader];
-        [headerFile addFileElement:element];
-        [self addFile:headerFile];
-        
-        FLObjcSourceFile* sourceFile = [FLObjcGeneratedSourceFile sourceFile:identifier];
-        [sourceFile addFileElement:fileHeader];
-        [sourceFile addFileElement:element];
-        [self addFile:sourceFile];
+        FLObjcFile* sourceFile = [element sourceFile];
+        if(sourceFile) {
+            [sourceFile addFileElement:fileHeader];
+            [sourceFile addFileElement:element];
+            [self addFile:sourceFile];
+        }
     }
 }
 

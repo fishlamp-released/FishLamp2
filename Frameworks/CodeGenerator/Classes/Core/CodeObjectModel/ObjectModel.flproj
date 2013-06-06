@@ -93,6 +93,7 @@
         </object>
         <object className="FLCodeProject" protocols="NSCopying">
             <properties>
+                <property name="generateUserClasses" type="bool"/>
                 <property name="organization" type="FLCodeCompany"/>
                 <property name="license" type="FLCodeCodeLicense"/>
                 <property name="projectName" type="string" useForEquality="YES"/>
@@ -293,8 +294,8 @@
                 <property name="comment" type="string" comment="comment about this method"/>
                 <property name="code" type="FLCodeCodeSnippet" comment=""/>
                 <property name="codeLines" type="array">
-				<arrayType name="codeLine" typeName="string"/>
-			  </property>
+					<arrayType name="codeLine" typeName="FLCodeLine"/>
+				  </property>
 
                 <property name="parameters" type="array" comment="list of parameters (FLCodeVariable) for this method">
                     <arrayTypes>

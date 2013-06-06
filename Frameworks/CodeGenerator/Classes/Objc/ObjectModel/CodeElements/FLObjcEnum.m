@@ -273,5 +273,13 @@
 
 }
 
+- (FLObjcFile*) headerFile {
+    return [FLObjcGeneratedHeaderFile headerFile:self.generatedName];
+}
+
+- (FLObjcFile*) sourceFile {
+    return [FLObjcGeneratedSourceFile sourceFile:self.generatedName];
+}
+
 @end
 

@@ -27,6 +27,15 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		275D60A1175FF8CA00F3AB82 /* FLXmlHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 275D609F175FF8C900F3AB82 /* FLXmlHttpRequest.h */; };
+		275D60A2175FF8CA00F3AB82 /* FLXmlHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 275D609F175FF8C900F3AB82 /* FLXmlHttpRequest.h */; };
+		275D60A3175FF8CA00F3AB82 /* FLXmlHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 275D609F175FF8C900F3AB82 /* FLXmlHttpRequest.h */; };
+		275D60A4175FF8CA00F3AB82 /* FLXmlHttpRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 275D609F175FF8C900F3AB82 /* FLXmlHttpRequest.h */; };
+		275D60A5175FF8CA00F3AB82 /* FLXmlHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275D60A0175FF8C900F3AB82 /* FLXmlHttpRequest.m */; };
+		275D60A6175FF8CA00F3AB82 /* FLXmlHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275D60A0175FF8C900F3AB82 /* FLXmlHttpRequest.m */; };
+		275D60A7175FF8CA00F3AB82 /* FLXmlHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275D60A0175FF8C900F3AB82 /* FLXmlHttpRequest.m */; };
+		275D60A8175FF8CA00F3AB82 /* FLXmlHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275D60A0175FF8C900F3AB82 /* FLXmlHttpRequest.m */; };
+		275D60A9175FF8CA00F3AB82 /* FLXmlHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 275D60A0175FF8C900F3AB82 /* FLXmlHttpRequest.m */; };
 		27680C89175D391300B1D643 /* SDKApplication+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2768090C175D391200B1D643 /* SDKApplication+FLAdditions.h */; };
 		27680C8A175D391300B1D643 /* SDKApplication+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2768090C175D391200B1D643 /* SDKApplication+FLAdditions.h */; };
 		27680C8B175D391300B1D643 /* SDKApplication+FLAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2768090C175D391200B1D643 /* SDKApplication+FLAdditions.h */; };
@@ -3458,6 +3467,8 @@
 		27048EF0161CB58600C38ADA /* libFishLampCocoa-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270E056F175D436D00802761 /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../../Core/FishLampCoreLib/FishLampCore.xcodeproj; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoa-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		275D609F175FF8C900F3AB82 /* FLXmlHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXmlHttpRequest.h; sourceTree = "<group>"; };
+		275D60A0175FF8C900F3AB82 /* FLXmlHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLXmlHttpRequest.m; sourceTree = "<group>"; };
 		2768090C175D391200B1D643 /* SDKApplication+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDKApplication+FLAdditions.h"; sourceTree = "<group>"; };
 		2768090D175D391200B1D643 /* SDKApplication+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKApplication+FLAdditions.m"; sourceTree = "<group>"; };
 		27680910175D391200B1D643 /* FLAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAction.h; sourceTree = "<group>"; };
@@ -5028,6 +5039,8 @@
 				27680AC8175D391300B1D643 /* Utils */,
 				279DECEE175FD4C400CDE628 /* FLHttpRequestSender.h */,
 				279DECEF175FD4C400CDE628 /* FLHttpRequestSender.m */,
+				275D609F175FF8C900F3AB82 /* FLXmlHttpRequest.h */,
+				275D60A0175FF8C900F3AB82 /* FLXmlHttpRequest.m */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -6259,6 +6272,7 @@
 				27681A31175D391500B1D643 /* FLTimeUtilities.h in Headers */,
 				27681A3A175D391500B1D643 /* NSError+FLTimeout.h in Headers */,
 				279DECF0175FD4C400CDE628 /* FLHttpRequestSender.h in Headers */,
+				275D60A1175FF8CA00F3AB82 /* FLXmlHttpRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6650,6 +6664,7 @@
 				27681A33175D391500B1D643 /* FLTimeUtilities.h in Headers */,
 				27681A3C175D391500B1D643 /* NSError+FLTimeout.h in Headers */,
 				279DECF2175FD4C400CDE628 /* FLHttpRequestSender.h in Headers */,
+				275D60A3175FF8CA00F3AB82 /* FLXmlHttpRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7041,6 +7056,7 @@
 				27681A32175D391500B1D643 /* FLTimeUtilities.h in Headers */,
 				27681A3B175D391500B1D643 /* NSError+FLTimeout.h in Headers */,
 				279DECF1175FD4C400CDE628 /* FLHttpRequestSender.h in Headers */,
+				275D60A2175FF8CA00F3AB82 /* FLXmlHttpRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7432,6 +7448,7 @@
 				27681A34175D391500B1D643 /* FLTimeUtilities.h in Headers */,
 				27681A3D175D391500B1D643 /* NSError+FLTimeout.h in Headers */,
 				279DECF3175FD4C400CDE628 /* FLHttpRequestSender.h in Headers */,
+				275D60A4175FF8CA00F3AB82 /* FLXmlHttpRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7975,6 +7992,7 @@
 				27681A36175D391500B1D643 /* FLTimeUtilities.m in Sources */,
 				27681A3F175D391500B1D643 /* NSError+FLTimeout.m in Sources */,
 				279DECF5175FD4C400CDE628 /* FLHttpRequestSender.m in Sources */,
+				275D60A6175FF8CA00F3AB82 /* FLXmlHttpRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8333,6 +8351,7 @@
 				27681A38175D391500B1D643 /* FLTimeUtilities.m in Sources */,
 				27681A41175D391500B1D643 /* NSError+FLTimeout.m in Sources */,
 				279DECF7175FD4C400CDE628 /* FLHttpRequestSender.m in Sources */,
+				275D60A8175FF8CA00F3AB82 /* FLXmlHttpRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8691,6 +8710,7 @@
 				27681A35175D391500B1D643 /* FLTimeUtilities.m in Sources */,
 				27681A3E175D391500B1D643 /* NSError+FLTimeout.m in Sources */,
 				279DECF4175FD4C400CDE628 /* FLHttpRequestSender.m in Sources */,
+				275D60A5175FF8CA00F3AB82 /* FLXmlHttpRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9049,6 +9069,7 @@
 				27681A37175D391500B1D643 /* FLTimeUtilities.m in Sources */,
 				27681A40175D391500B1D643 /* NSError+FLTimeout.m in Sources */,
 				279DECF6175FD4C400CDE628 /* FLHttpRequestSender.m in Sources */,
+				275D60A7175FF8CA00F3AB82 /* FLXmlHttpRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9415,6 +9436,7 @@
 				27681A39175D391500B1D643 /* FLTimeUtilities.m in Sources */,
 				27681A42175D391500B1D643 /* NSError+FLTimeout.m in Sources */,
 				279DECF8175FD4C400CDE628 /* FLHttpRequestSender.m in Sources */,
+				275D60A9175FF8CA00F3AB82 /* FLXmlHttpRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

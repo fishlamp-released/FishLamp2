@@ -11,7 +11,7 @@
 
 
 @implementation FLObjcGeneratedSourceFile
-@synthesize userSourceFile = _userSourceFile;
+
 - (BOOL) canUpdateExistingFile {
     return YES;
 }

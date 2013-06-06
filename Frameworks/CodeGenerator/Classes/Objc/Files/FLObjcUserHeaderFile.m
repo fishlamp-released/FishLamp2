@@ -10,8 +10,9 @@
 #import "FLObjcCodeGeneratorHeaders.h"
 
 @implementation FLObjcUserHeaderFile
-- (void) setFileName:(NSString*) fileName {
-    [super setFileName:[NSString stringWithFormat:@"%@+User.h", fileName]];
+
+- (BOOL) canUpdateExistingFile {
+    return YES;
 }
 
 @end

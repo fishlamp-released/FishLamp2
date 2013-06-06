@@ -17,11 +17,12 @@
 @class FLObjcNamedObjectCollection;
 @class FLObjcMethod;
 @class FLObjcProject;
+@class FLObjcClassName;
 
 @interface FLObjcObject : FLObjcCodeElement {
 @private
     FLObjcType* _objectType;
-    FLObjcType* _superclass;
+    FLObjcType* _superclassType;
     FLObjcName* _objectName;
     FLObjcNamedObjectCollection* _ivars;
     FLObjcNamedObjectCollection* _properties;
@@ -40,7 +41,7 @@
 
 + (id) objcObject:(FLObjcProject*) project;
 
-- (void) configureWithCodeObject:(FLCodeObject*) codeObject;
+- (void) configureWithCodeObject:(FLCodeObject*) codeObject objectName:(FLObjcClassName*) className;
 
 - (void) addIvar:(FLObjcIvar*) ivar;
 - (void) addProperty:(FLObjcProperty*) property;
@@ -48,4 +49,11 @@
 
 - (void) addDependency:(FLObjcType*) type;
 
+@end
+
+
+@interface FLObjcGeneratedObject : FLObjcObject
+@end
+
+@interface FLObjcUserObject : FLObjcObject
 @end

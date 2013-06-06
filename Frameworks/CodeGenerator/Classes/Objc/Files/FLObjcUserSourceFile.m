@@ -11,8 +11,8 @@
 
 @implementation FLObjcUserSourceFile
 
-- (void) setFileName:(NSString*) fileName {
-    [super setFileName:[NSString stringWithFormat:@"%@+User.m", fileName]];
+- (BOOL) canUpdateExistingFile {
+    return YES;
 }
 
 @end

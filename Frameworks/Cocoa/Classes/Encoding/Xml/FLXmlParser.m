@@ -42,7 +42,7 @@
 }
 
 - (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser {
-	[parser setShouldProcessNamespaces:YES];
+	[parser setShouldProcessNamespaces:NO];
 	[parser setShouldReportNamespacePrefixes:NO];
 	[parser setShouldResolveExternalEntities:NO];
 }

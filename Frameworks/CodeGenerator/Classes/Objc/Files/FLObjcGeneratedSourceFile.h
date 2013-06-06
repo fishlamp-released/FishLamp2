@@ -10,9 +10,6 @@
 @class FLObjcUserSourceFile;
 
 @interface FLObjcGeneratedSourceFile : FLObjcSourceFile {
-@private
-    FLObjcUserSourceFile* _userSourceFile;
 }
 
-@property (readwrite, strong, nonatomic) FLObjcUserSourceFile* userSourceFile;
 @end

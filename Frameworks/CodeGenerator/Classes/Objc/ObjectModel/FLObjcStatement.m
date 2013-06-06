@@ -10,6 +10,7 @@
 #import "FLObjcType.h"
 
 @implementation FLObjcStatement
+
 //+ (id) objcStatement:(FLObjcProject*) project {
 //    return FLAutorelease([[[self class] alloc] initWithProject:project]);
 //}
@@ -19,5 +20,12 @@
 - (void) writeCodeToSourceFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
 }
 
+- (FLObjcFile*) headerFile {
+    return nil;
+}
+
+- (FLObjcFile*) sourceFile {
+    return nil;
+}
 @end
 

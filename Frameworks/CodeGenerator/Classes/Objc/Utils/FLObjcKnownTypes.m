@@ -119,7 +119,10 @@
 		{ @"FLObjcMutableObjectType", @"FLModelObject", @"FLModelObject.h" },
 		{ @"FLObjcImmutableObjectType", @"FLGuid", @"FLGuid.h" },
         
-        { @"FLObjcProtocolType", @"FLHttpRequestDescriptor", @"FLHttpRequestDescriptor.h" },
+        { @"FLObjcObjectType", @"FLHttpRequest", @"FLHttpRequest.h" },
+        { @"FLObjcObjectType", @"FLSoapHttpRequest", @"FLSoapHttpRequest.h" },
+        { @"FLObjcObjectType", @"FLJsonHttpRequest", @"FLJsonHttpRequest.h" },
+        { @"FLObjcObjectType", @"FLXmlHttpRequest", @"FLXmlHttpRequest.h" },
         
         { @"FLObjcProtocolType", @"NSCopying", nil },
         { @"FLObjcProtocolType", @"NSCoding", nil },

@@ -9,7 +9,6 @@
 #import "FLObjcGeneratedHeaderFile.h"
 
 @implementation FLObjcGeneratedHeaderFile
-@synthesize userHeaderFile = _userHeaderFile;
 
 - (BOOL) canUpdateExistingFile {
     return YES;

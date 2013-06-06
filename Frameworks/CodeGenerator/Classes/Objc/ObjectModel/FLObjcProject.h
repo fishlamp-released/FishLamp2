@@ -23,6 +23,7 @@
     FLObjcNamedObjectCollection* _generatedObjects;
     
     FLCodeProject* _inputProject;
+    
 }
 @property (readonly, strong, nonatomic) FLCodeProject* inputProject;
 

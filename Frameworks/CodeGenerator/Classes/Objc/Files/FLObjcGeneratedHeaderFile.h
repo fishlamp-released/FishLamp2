@@ -10,8 +10,5 @@
 @class FLObjcUserHeaderFile;
 
 @interface FLObjcGeneratedHeaderFile : FLObjcHeaderFile {
-@private
-    FLObjcUserHeaderFile* _userHeaderFile;
 }
-@property (readwrite, strong, nonatomic) FLObjcUserHeaderFile* userHeaderFile;
 @end

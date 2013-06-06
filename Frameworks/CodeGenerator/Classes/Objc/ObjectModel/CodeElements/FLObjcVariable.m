@@ -45,5 +45,13 @@
 }
 - (void) writeCodeToSourceFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
 }
+
+- (FLObjcFile*) headerFile {
+    return nil;
+}
+
+- (FLObjcFile*) sourceFile {
+    return nil;
+}
 @end
 

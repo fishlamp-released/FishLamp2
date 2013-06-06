@@ -12,7 +12,8 @@ typedef enum {
   FLCodeLineTypeReturnSelf,
   FLCodeLineTypeReturnIvar,
   FLCodeLineTypeReturnNewObject,
-  FLCodeLineTypeReturnString
+  FLCodeLineTypeReturnString,
+  FLCodeLineTypeDefaultCtor,
 } FLCodeLineType;
 
 #define FLCodeLineClassName @"ClassName"

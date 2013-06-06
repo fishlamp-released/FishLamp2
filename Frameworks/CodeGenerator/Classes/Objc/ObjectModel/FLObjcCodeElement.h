@@ -17,6 +17,11 @@
 
 - (void) writeCodeToSourceFile:(FLObjcFile*) file 
                withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder;
+
+- (FLObjcFile*) headerFile;
+
+- (FLObjcFile*) sourceFile;
+
 @end
 
 @interface FLObjcCodeElement : NSObject<FLObjcCodeElement, FLGenerated> {

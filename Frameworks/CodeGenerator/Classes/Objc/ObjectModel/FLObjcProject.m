@@ -123,9 +123,17 @@
         if(FLStringIsEmpty(object.className)) {
             FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeMissingName, @"Object does not have 'className'");
         }
-    
+        
+        {
         FLObjcClassName* name = [FLObjcClassName objcClassName:object.className prefix:prefix];
         [self.typeRegistry addType:[FLObjcMutableObjectType objcMutableObjectType:name importFileName:nil]];
+        }
+        
+        if(project.generateUserClasses) {
+            FLObjcClassName* generatedName = [FLObjcClassName objcClassName:[NSString stringWithFormat:@"%@Generated", object.className] prefix:prefix];
+
+            [self.typeRegistry addType:[FLObjcMutableObjectType objcMutableObjectType:generatedName importFileName:nil]];
+        }
     } 
 }
 
@@ -162,9 +170,19 @@
 - (void) updateTypeReferences:(FLCodeProject*) inputProject {
 // update the objects with a input file name
     for(FLCodeObject* object in inputProject.objects) {
+        
+        {
         FLObjcClassName* className = [FLObjcClassName objcClassName:object.className prefix:self.classPrefix];
         FLObjcType* forwardDecl = [FLObjcMutableObjectType objcMutableObjectType:className importFileName:[NSString stringWithFormat:@"%@.h", className.generatedName]];
         [self.typeRegistry replaceType:forwardDecl];
+        }
+        
+        if(inputProject.generateUserClasses) {
+            FLObjcClassName* generatedClassName = [FLObjcClassName objcClassName:[NSString stringWithFormat:@"%@Generated", object.className] prefix:self.classPrefix];
+            
+            FLObjcType* generatedForwardDecl = [FLObjcMutableObjectType objcMutableObjectType:generatedClassName importFileName:[NSString stringWithFormat:@"%@.h", generatedClassName.generatedName]];
+            [self.typeRegistry replaceType:generatedForwardDecl];
+        }
     }
 
 // add arrays to type registry - these are placeholders - object will replace these with objc arrays
@@ -180,10 +198,38 @@
 // and arrays and enums are ready to go.
 
     for(FLCodeObject* object in inputProject.objects) {
-        FLObjcObject* objcObject = [FLObjcObject objcObject:self];
-        [objcObject configureWithCodeObject:object];
 
-        [self.generatedObjects addObject:objcObject forObjcName:objcObject.objectName];
+
+        if(inputProject.generateUserClasses) {
+            FLObjcGeneratedObject* baseClassObject = [FLObjcGeneratedObject objcObject:self];
+            
+            {
+            FLObjcClassName* baseClassName = [FLObjcClassName objcClassName:[NSString stringWithFormat:@"%@Generated", object.className] prefix:self.classPrefix];
+        
+            [baseClassObject configureWithCodeObject:object objectName:baseClassName];
+            [self.generatedObjects addObject:baseClassObject forObjcName:baseClassObject.objectName];
+            }
+            
+            {
+            FLObjcObject* objcObject = [FLObjcUserObject objcObject:self];
+            objcObject.objectName = [FLObjcClassName objcClassName:object.className prefix:self.classPrefix];
+
+            objcObject.superclassType = baseClassObject.objectType;
+            [objcObject addDependency:objcObject.superclassType];
+
+            [self.generatedObjects addObject:objcObject forObjcName:objcObject.objectName];
+            }
+            
+        }
+        else {
+            FLObjcObject* objcObject = [FLObjcGeneratedObject objcObject:self];
+            FLObjcClassName* objectName = [FLObjcClassName objcClassName:object.className prefix:self.classPrefix];
+            [objcObject configureWithCodeObject:object objectName:objectName];
+            [self.generatedObjects addObject:objcObject forObjcName:objcObject.objectName];
+        }
+
+
+
     }
 
 }
@@ -213,8 +259,8 @@
     [self generateObjects:inputProject];
 
 // add the objects and enums to the file manager, who writes the files.
-    [self.fileManager addFilesWithArrayOfCodeElements:self.generatedObjects.allValues];
     [self.fileManager addFilesWithArrayOfCodeElements:self.generatedEnums.allValues];
+    [self.fileManager addFilesWithArrayOfCodeElements:self.generatedObjects.allValues];
 
 // add a all includes file if needed
     if(inputProject.generatorOptions.generateAllIncludesFile) {

@@ -29,7 +29,7 @@
 }
 
 - (BOOL) canUpdateExistingFile {
-    return YES;
+    return NO;
 }
 
 - (NSString*) counterPartFileName {

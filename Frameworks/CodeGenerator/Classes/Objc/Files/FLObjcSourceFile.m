@@ -24,8 +24,9 @@
 - (void) setFileName:(NSString*) fileName {
     [super setFileName:[NSString stringWithFormat:@"%@.m", fileName]];
 }
+
 - (BOOL) canUpdateExistingFile {
-    return YES;
+    return NO;
 }
 
 - (NSString*) counterPartFileName {
