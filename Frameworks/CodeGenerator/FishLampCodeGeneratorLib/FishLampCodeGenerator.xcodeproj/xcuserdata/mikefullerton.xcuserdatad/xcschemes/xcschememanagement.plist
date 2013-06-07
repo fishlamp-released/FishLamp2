@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CodeGenerator.xcscheme</key>
+		<key>CodeGenerator 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>36</integer>
@@ -28,6 +28,16 @@
 			<true/>
 		</dict>
 		<key>2788768B1603E98600C8B7B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>279FFBEB175D4CCB003F06C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27E9CFDC175E4AC300BD6205</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FLCocoas2d-32-MRC.xcscheme</key>
+		<key>FLCocoas2d-32-MRC 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>54</integer>
@@ -14,17 +14,17 @@
 			<key>orderHint</key>
 			<integer>53</integer>
 		</dict>
-		<key>FLCocoas2d-64-ARC.xcscheme</key>
+		<key>FLCocoas2d-64-ARC 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>56</integer>
 		</dict>
-		<key>FLCocoas2d-64-MRC.xcscheme</key>
+		<key>FLCocoas2d-64-MRC 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>55</integer>
 		</dict>
-		<key>FLCocoas2d-iOS-ARC.xcscheme</key>
+		<key>FLCocoas2d-iOS-ARC 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>57</integer>
@@ -79,26 +79,6 @@
 			<key>orderHint</key>
 			<integer>21</integer>
 		</dict>
-		<key>FishLampOSX-32-MRC.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>44</integer>
-		</dict>
-		<key>FishLampOSX-3264-MRC.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>47</integer>
-		</dict>
-		<key>FishLampOSX-64-ARC.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>46</integer>
-		</dict>
-		<key>FishLampOSX-64-MRC.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>45</integer>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -108,6 +88,11 @@
 			<true/>
 		</dict>
 		<key>273148B9165328400027850D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>27367B75175E4CA20018996B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -128,6 +128,10 @@
         FLAssert([self.propertyType isKindOfClass:[FLObjcContainerType class]]);
         
         for(FLCodeArrayType* codeArrayType in codeProperty.arrayTypes) {
+        
+            FLConfirmStringIsNotEmptyWithComment(codeArrayType.typeName, @"expecting typeName for arrayType");
+            FLConfirmStringIsNotEmptyWithComment(codeArrayType.name, @"expecting name for arrayType");
+        
             FLObjcType* typeForSubType = [self.project.typeRegistry typeForKey:[codeArrayType typeName]];
             [containerTypes addObject:[FLObjcContainerSubType objcContainerSubType:codeArrayType.name objcType:typeForSubType]];
         }
