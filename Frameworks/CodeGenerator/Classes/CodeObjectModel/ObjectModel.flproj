@@ -180,7 +180,7 @@
                 </property>
             </properties>
         </object>
-        <object className="FLCodeObjectConstructor">
+        <object className="FLCodeConstructor">
             <property name="parameters" type="array">
                 <arrayType name="name" typeName="string"/>
             </property>
@@ -241,7 +241,7 @@
                     </arrayTypes>
                 </property>
                 <property name="constructors" type="array">
-                    <arrayType name="constructor" typeName="FLCodeObjectConstructor"/>
+                    <arrayType name="constructor" typeName="FLCodeConstructor"/>
                 </property>
             </properties>
         </object>

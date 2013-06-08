@@ -21,7 +21,7 @@
 #import "FLCodeCodeSnippet.h"
 #import "FLCodeVariable.h"
 #import "FLCodeObject.h"
-#import "FLCodeObjectConstructor.h"
+#import "FLCodeConstructor.h"
 #import "FLCodeType.h"
 
 @implementation FLCodeObject
@@ -69,7 +69,7 @@ FLSynthesizeLazyGetter(dependencies, NSMutableArray, _dependencies);
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"property" propertyClass:[FLCodeProperty class]] forContainerProperty:@"properties"];
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"dependency" propertyClass:[FLCodeTypeDefinition class]] forContainerProperty:@"dependencies"];
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"deallocLine" propertyClass:[NSString class]] forContainerProperty:@"deallocLines"];
-    [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"constructor" propertyClass:[FLCodeObjectConstructor class]] forContainerProperty:@"constructors"];
+    [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"constructor" propertyClass:[FLCodeConstructor class]] forContainerProperty:@"constructors"];
 }
 @synthesize disabled = _disabled;
 @synthesize ifDef = _ifDef;

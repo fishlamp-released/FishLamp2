@@ -15,7 +15,7 @@
 
 @class FLCodeStorageOptions;
 @class FLCodeTypeDefinition;
-@class FLCodeObjectConstructor;
+@class FLCodeConstructor;
 @class FLCodeMethod;
 @class FLCodeVariable;
 @class FLObjectDescriber;

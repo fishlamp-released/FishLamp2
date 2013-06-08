@@ -122,7 +122,7 @@
     }
 }
 
-- (void) configureWithCodeMethod:(FLCodeMethod*) codeMethod   {
+- (void) configureWithCodeMethod:(FLCodeMethod*) codeMethod {
 
     self.isPrivate = codeMethod.isPrivate;
     self.isStatic = codeMethod.isStatic;

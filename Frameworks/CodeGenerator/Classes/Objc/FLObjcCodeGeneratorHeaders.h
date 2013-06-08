@@ -61,3 +61,4 @@
 #import "FLObjcCustomProperty.h"
 #import "FLObjcMutableObjectType.h"
 #import "FLObjcImmutableObjectType.h"
+#import "FLObjcConstructor.h"
