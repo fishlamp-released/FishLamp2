@@ -186,13 +186,11 @@
     }
 
 
-    for(FLCodeConstructor* inputCtors in codeObject.constructors) {
-        FLObjcConstructor* ctor = [FLCodeConstructor objc:self.project];
-        [objcMethod configureWithCodeMethod:method];
-        [self addMethod:objcMethod];
-
-        [self addDependency:objcMethod.returnType];
-    }
+    for(FLCodeConstructor* inputCtor in codeObject.constructors) {
+        FLObjcConstructor* ctor = [FLObjcConstructor objcConstructor:self.project];
+        [ctor configureWithInputConstructor:inputCtor withObject:self];
+        [self addMethod:ctor];
+}
 
     
     [self addMethod:[FLObjcDidRegisterObjectDescriberMethod objcDidRegisterObjectDescriberMethod:self.project]];

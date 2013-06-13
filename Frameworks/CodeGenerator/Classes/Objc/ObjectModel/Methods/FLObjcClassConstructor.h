@@ -8,8 +8,10 @@
 
 #import "FLObjcConstructor.h"
 
+@class FLObjcProject;
+
 @interface FLObjcClassConstructor : FLObjcConstructor
 
-+ (id) objcClassConstructor:(FLObjcProject*);
++ (id) objcClassConstructor:(FLObjcProject*) project;
 
 @end
