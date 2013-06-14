@@ -190,7 +190,7 @@
         FLObjcConstructor* ctor = [FLObjcConstructor objcConstructor:self.project];
         [ctor configureWithInputConstructor:inputCtor withObject:self];
         [self addMethod:ctor];
-}
+    }
 
     
     [self addMethod:[FLObjcDidRegisterObjectDescriberMethod objcDidRegisterObjectDescriberMethod:self.project]];
