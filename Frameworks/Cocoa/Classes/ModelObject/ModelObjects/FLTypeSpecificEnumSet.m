@@ -70,5 +70,17 @@
     [self setConcatenatedString:string withParseDelimiter:FLTypeSpecificEnumSetDefaultParseDelimeters];
 }
 
+- (NSString*) stringForEnum:(NSInteger) theEnum {
+    return _stringLookup(theEnum);
+}
+
+- (NSInteger) enumForString:(NSString*) theString {
+    return _valueLookup(theString);
+}
+
+- (void) addEnum:(NSInteger) theEnum {
+    [self addEnum:theEnum withName:[self stringForEnum:theEnum]];
+}
+
 
 @end

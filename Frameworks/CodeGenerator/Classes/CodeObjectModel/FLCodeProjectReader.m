@@ -48,8 +48,12 @@
                                    projectFolderPath:(NSString*) projectFolderPath {
     
     FLCodeInputTypeEnumSet* enums = import.typeEnumSet;
-
     FLCodeProjectLocationType type = FLCodeProjectLocationTypeNone;
+
+    if(!enums.count) {
+        [enums addEnum:FLCodeInputTypeFile];
+    }
+
     NSURL* url = nil;
 
     for(FLEnumPair* number in enums) {

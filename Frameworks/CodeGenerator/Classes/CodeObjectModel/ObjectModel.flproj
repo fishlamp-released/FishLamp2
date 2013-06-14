@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project projectName="FishLamp Code Generator" canLazyCreate="YES">
-    <organization name="GreenTongue Software LLC, Mike Fullerton"/>
-    <license>
-        <licenseName>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</licenseName>
-    </license>
-    <generatorOptions>
-        <generateAllIncludesFile>YES</generateAllIncludesFile>
-        <objectsFolderName>Generated</objectsFolderName>
-        <typePrefix>FL</typePrefix>
-    </generatorOptions>
-    <typeDefinition import="FLCodeLine.h" typeName="FLCodeLine" dataType="object"/>
+<project>
+    <import path="Defaults.flproj"/>
     <!--    
     <defines>
         <define define="FLDataTypeObject" value="object" isString="YES" comment="used for dataType in dataTypeDefinition"/>
@@ -90,57 +81,41 @@
                 <property name="phone" type="string" comment="company phone"/>
             </properties>
         </object>
-        <object className="FLCodeProject" protocols="NSCopying">
-            <properties>
-                <property name="generateUserClasses" type="bool"/>
-                <property name="organization" type="FLCodeCompany"/>
-                <property name="license" type="FLCodeCodeLicense"/>
-                <property name="projectName" type="string" useForEquality="YES"/>
-                <property name="schemaName" type="string" comment="name of the project for the file headers"/>
-                <property name="isWildcardArray" type="bool" comment=""/>
-                <property name="disabled" type="bool" comment="don't compile this object is set to YES"/>
-                <property name="canLazyCreate" type="bool"/>
-                <property name="ifDef" type="string"/>
-                <property name="comment" type="string"/>
-                <property name="generatorOptions" type="FLCodeGeneratorOptions" comment="set properties of this object to control code generation"/>
-                <property name="enumTypes" type="array" comment="list of enum types, these are generated into a single file with handy lookup methods">
-                    <arrayTypes>
-                        <arrayType name="enumType" typeName="FLCodeEnumType"/>
-                    </arrayTypes>
-                </property>
-                <property name="objects" type="array" comment="list of objects, these are generated into their own files">
-                    <arrayTypes>
-                        <arrayType name="object" typeName="FLCodeObject"/>
-                    </arrayTypes>
-                </property>
-                <property name="dependencies" type="array" comment="list of includes for all the files">
-                    <arrayTypes>
-                        <arrayType name="dependency" typeName="FLCodeTypeDefinition"/>
-                    </arrayTypes>
-                </property>
-                <property name="defines" type="array" comment="defines for all the files">
-                    <arrayTypes>
-                        <arrayType name="define" typeName="FLCodeDefine"/>
-                    </arrayTypes>
-                </property>
-                <property name="arrays" type="array" comment="list of methods (FLCodeMethod) for this object">
-                    <arrayTypes>
-                        <arrayType name="array" typeName="FLCodeArray"/>
-                    </arrayTypes>
-                </property>
-                <property name="imports" type="array">
-                    <arrayTypes>
-                        <arrayType name="import" typeName="FLCodeImport"/>
-                    </arrayTypes>
-                </property>
-                <property name="typeDefinitions" type="array">
-                    <arrayTypes>
-                        <arrayType name="typeDefinition" typeName="FLCodeTypeDefinition"/>
-                    </arrayTypes>
-                </property>
-                <!-- internal -->
-                <property name="projectPath" type="string"/>
-            </properties>
+        <object className="FLCodeProject">
+            <property name="generateUserClasses" type="bool"/>
+            <property name="organization" type="FLCodeCompany"/>
+            <property name="license" type="FLCodeCodeLicense"/>
+            <property name="projectName" type="string" useForEquality="YES"/>
+            <property name="schemaName" type="string" comment="name of the project for the file headers"/>
+            <property name="isWildcardArray" type="bool" comment=""/>
+            <property name="disabled" type="bool" comment="don't compile this object is set to YES"/>
+            <property name="canLazyCreate" type="bool"/>
+            <property name="ifDef" type="string"/>
+            <property name="comment" type="string"/>
+            <property name="generatorOptions" type="FLCodeGeneratorOptions" comment="set properties of this object to control code generation"/>
+            <property name="enumTypes" type="array" comment="list of enum types, these are generated into a single file with handy lookup methods">
+                <arrayType name="enumType" typeName="FLCodeEnumType"/>
+            </property>
+            <property name="objects" type="array" comment="list of objects, these are generated into their own files">
+                <arrayType name="object" typeName="FLCodeObject"/>
+            </property>
+            <property name="dependencies" type="array" comment="list of includes for all the files">
+                <arrayType name="dependency" typeName="FLCodeTypeDefinition"/>
+            </property>
+            <property name="defines" type="array" comment="defines for all the files">
+                <arrayType name="define" typeName="FLCodeDefine"/>
+            </property>
+            <property name="arrays" type="array" comment="list of methods (FLCodeMethod) for this object">
+                <arrayType name="array" typeName="FLCodeArray"/>
+            </property>
+            <property name="imports" type="array">
+                <arrayType name="import" typeName="FLCodeImport"/>
+            </property>
+            <property name="typeDefinitions" type="array">
+                <arrayType name="typeDefinition" typeName="FLCodeTypeDefinition"/>
+            </property>
+            <!-- internal -->
+            <property name="projectPath" type="string"/>
         </object>
         <object className="FLCodeComment" protocols="NSCopying" comment="don't use this object directly, used internally">
             <properties>
@@ -182,7 +157,7 @@
         </object>
         <object className="FLCodeConstructor">
             <property name="parameters" type="array">
-                <arrayType name="name" typeName="string"/>
+                <arrayType name="parameter" typeName="FLCodeVariable"/>
             </property>
             <property name="lines" type="array">
                 <arrayType name="line" typeName="FLCodeLine"/>
@@ -286,7 +261,7 @@
                 <property name="useForEquality" type="bool"/>
                 <property name="isWildcardArray" type="bool" comment=""/>
                 <property name="isWeak" type="bool" comment="NO by default"/>
- <!-- internal use only 
+                <!-- internal use only 
                 <property name="typeUnmodified" type="string" comment="internal use only"/>
                 <property name="nameUnmodified" type="string" comment="internal use only"/>
                 <property name="enumType" type="FLCodeEnumType" comment="if this property is an enum, the type of the enum"/>

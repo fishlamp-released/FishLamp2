@@ -32,4 +32,9 @@ typedef NSString* FLEnumSetEnumStringLookup(NSInteger theEnum);
 //- (NSString*) concatenatedStringWithDelimiter:(NSString*) delimeter;
 //- (void) setConcatenatedString:(NSString*) string withParseDelimiter:(NSString*) delimeter;
 
+- (void) addEnum:(NSInteger) theEnum;
+
+- (NSString*) stringForEnum:(NSInteger) theEnum;
+- (NSInteger) enumForString:(NSString*) theString;
+
 @end
