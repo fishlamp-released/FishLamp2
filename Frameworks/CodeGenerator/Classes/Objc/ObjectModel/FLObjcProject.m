@@ -75,7 +75,7 @@
 }
 
 - (FLObjcClassName*) generatedObjectName:(NSString*) className {
-    return [FLObjcClassName objcClassName:[NSString stringWithFormat:@"%@Generated", className] prefix:self.classPrefix];
+    return [FLObjcClassName objcClassName:[NSString stringWithFormat:@"%@BaseClass", className] prefix:self.classPrefix];
 }
 
 - (void) addForwardDeclarationsForTypesFromInputProject:(FLCodeProject*) project {

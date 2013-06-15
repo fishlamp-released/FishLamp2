@@ -10,7 +10,7 @@
         <generateAllIncludesFile>YES</generateAllIncludesFile>
         <objectsFolderName>Generated</objectsFolderName>
         <typePrefix>FL</typePrefix>
-        <generateUserObjects>NO</generateUserObjects>
+        <generateUserObjects>YES</generateUserObjects>
         <userObjectsFolderName>Objects</userObjectsFolderName>
     </options>
     <typeDefinition import="FLCodeLine.h" typeName="FLCodeLine" dataType="object"/>
@@ -41,13 +41,13 @@
         </enumType>
     </enumTypes>
     <objects>
-        <object className="FLCodeImport" protocols="NSCopying">
+        <object className="FLCodeImport">
             <properties>
                 <property name="path" type="string" comment="import a whittle file"/>
                 <property name="type" type="FLCodeInputType" comment="import wsdl url (file or HTTP)"/>
             </properties>
         </object>
-        <object className="FLCodeStorageOptions" protocols="NSCopying">
+        <object className="FLCodeStorageOptions">
             <properties>
                 <!-- defaults to NO -->
                 <!-- defaultValue="YES" -->
@@ -58,7 +58,7 @@
                 <property name="isRequired" type="bool" comment="make sure this value isn't empty in the data store"/>
             </properties>
         </object>
-        <object className="FLCodeGeneratorOptions" protocols="NSCopying">
+        <object className="FLCodeGeneratorOptions">
             <properties>
                 <property name="disabled" type="bool" comment="don't compile this object is set to YES"/>
                 <property name="typePrefix" type="string"/>
@@ -72,7 +72,7 @@
                 <property name="useGeneratedFolder" type="bool" comment="if this is YES then generated files (prefixed with __) will be written into their own subfolder nameed __schemaName."/>
             </properties>
         </object>
-        <object className="FLCodeTypeDefinition" protocols="NSCopying">
+        <object className="FLCodeTypeDefinition">
             <properties>
                 <property name="dataType" type="FLDataType" comment="the dataType of the type, e.g. object, struct, int, array" useForEquality="YES"/>
                 <property name="typeName" type="string" comment="name of the type, e.g. MyObject" useForEquality="YES"/>
@@ -81,7 +81,7 @@
                 <property name="typeNameUnmodified" type="string"/>
             </properties>
         </object>
-        <object className="FLCodeCompany" protocols="NSCopying">
+        <object className="FLCodeCompany">
             <properties>
                 <property name="name" type="string" comment="name of the company for the file headers"/>
                 <property name="website" type="string" comment="name of the company for the file headers"/>
@@ -125,19 +125,19 @@
             <!-- internal -->
             <property name="projectPath" type="string"/>
         </object>
-        <object className="FLCodeComment" protocols="NSCopying" comment="don't use this object directly, used internally">
+        <object className="FLCodeComment" comment="don't use this object directly, used internally">
             <properties>
                 <property name="object" type="string"/>
                 <property name="commentID" type="string"/>
                 <property name="comment" type="string" useForEquality="YES"/>
             </properties>
         </object>
-        <object className="FLCodeArrayType" superclass="FLCodeVariable" protocols="NSCopying">
+        <object className="FLCodeArrayType" superclass="FLCodeVariable">
             <properties>
                 <property name="wildcardProperty" type="FLCodeProperty"/>
             </properties>
         </object>
-        <object className="FLCodeArray" protocols="NSCopying">
+        <object className="FLCodeArray">
             <properties>
                 <property name="name" type="string" useForEquality="YES"/>
                 <property name="types" type="array">
@@ -147,7 +147,7 @@
                 </property>
             </properties>
         </object>
-        <object className="FLCodeObjectCategory" protocols="NSCopying">
+        <object className="FLCodeObjectCategory">
             <properties>
                 <property name="objectName" type="string" comment="name of the type, e.g. bagelCount"/>
                 <property name="categoryName" type="string" comment="name of the type, e.g. bagelCount"/>
@@ -171,7 +171,7 @@
                 <arrayType name="line" typeName="FLCodeLine"/>
             </property>
         </object>
-        <object className="FLCodeObject" protocols="NSCopying" superclass="FLCodeType">
+        <object className="FLCodeObject" superclass="FLModelObject">
             <properties>
                 <property name="protocols" type="string" comment="comma delimeted string"/>
                 <property name="className" type="string" comment="name of the type, e.g. bagelCount"/>
@@ -228,14 +228,14 @@
                 </property>
             </properties>
         </object>
-        <object className="FLCodeEnum" protocols="NSCopying">
+        <object className="FLCodeEnum">
             <properties>
                 <property name="name" type="string" comment="This is the name of the enum, e.g. kFoo" useForEquality="YES"/>
                 <property name="value" type="int" comment="This is the optional value of the enum, e.g. 5"/>
                 <property name="stringValue" type="string" comment="This is the string optional value of the define"/>
             </properties>
         </object>
-        <object className="FLCodeEnumType" superclass="FLCodeType" protocols="NSCopying">
+        <object className="FLCodeEnumType" superclass="FLCodeType">
             <properties>
                 <property name="enums" type="array" comment="this is the list of enums">
                     <arrayTypes>
@@ -244,7 +244,7 @@
                 </property>
             </properties>
         </object>
-        <object className="FLCodeProperty" protocols="NSCopying">
+        <object className="FLCodeProperty">
             <properties>
                 <!-- required -->
                 <property name="name" type="string" useForEquality="YES"/>
@@ -277,7 +277,7 @@
 -->
             </properties>
         </object>
-        <object className="FLCodeMethod" protocols="NSCopying">
+        <object className="FLCodeMethod">
             <properties>
                 <property name="isStatic" type="bool" comment="is this a class method, e.g. + (void) foo"/>
                 <property name="isPrivate" type="bool" comment="don't show the header in the header for this method"/>
@@ -295,13 +295,13 @@
                 </property>
             </properties>
         </object>
-        <object className="FLCodeObjectMemberType" superclass="FLCodeVariable" protocols="NSCopying">
+        <object className="FLCodeObjectMemberType" superclass="FLCodeVariable">
             <properties>
                 <property name="isStatic" type="bool"/>
                 <property name="isWeak" type="bool" comment="NO by default"/>
             </properties>
         </object>
-        <object className="FLCodeType" protocols="NSCopying" comment="represents a type an name">
+        <object className="FLCodeType" comment="represents a type an name">
             <properties>
                 <property name="typeName" type="string" comment="name of the type, e.g. MyObject" useForEquality="YES"/>
                 <property name="defaultValue" type="string"/>
@@ -309,12 +309,12 @@
                 <property name="typeNameUnmodified" type="string"/>
             </properties>
         </object>
-        <object className="FLCodeVariable" superclass="FLCodeType" protocols="NSCopying">
+        <object className="FLCodeVariable" superclass="FLCodeType">
             <properties>
                 <property name="name" type="string" comment="name of the type, e.g. bagelCount" useForEquality="YES"/>
             </properties>
         </object>
-        <object className="FLCodeDefine" protocols="NSCopying">
+        <object className="FLCodeDefine">
             <properties>
                 <property name="define" type="string" comment=""/>
                 <property name="value" type="string" comment=""/>
@@ -322,7 +322,7 @@
                 <property name="comment" type="string" comment="" useForEquality="YES"/>
             </properties>
         </object>
-        <object className="FLCodeCodeSnippet" protocols="NSCopying" comment="represents a block of code">
+        <object className="FLCodeCodeSnippet" comment="represents a block of code">
             <properties>
                 <property name="scopedBy" type="string"/>
                 <property name="name" type="string" comment="name of snippet (used for file)"/>
@@ -330,7 +330,7 @@
                 <property name="lines" type="string"/>
             </properties>
         </object>
-        <object className="FLCodeKeyValuePair" protocols="NSCopying">
+        <object className="FLCodeKeyValuePair">
             <properties>
                 <property name="key" type="string" comment="" useForEquality="YES"/>
                 <property name="value" type="string" comment=""/>
