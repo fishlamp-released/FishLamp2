@@ -266,19 +266,27 @@
 
 }
 
-
 - (void) objcObject:(FLObjcObject*) object didConfigureProperty:(FLObjcProperty *)property  {
     [self addEnumPropertyToObject:object withProperty:property];
     [self addEnumSetPropertyToObject:object withProperty:property];
-
 }
 
 - (FLObjcFile*) headerFile {
-    return [FLObjcGeneratedHeaderFile headerFile:self.generatedName];
+    FLObjcFile* file = [FLObjcGeneratedHeaderFile headerFile:self.generatedName];
+    file.folder = self.project.inputProject.options.userObjectsFolderName;
+    
+    [file addFileElement:[self generatedFileHeader]];
+    [file addFileElement:self];
+    return file;
 }
 
 - (FLObjcFile*) sourceFile {
-    return [FLObjcGeneratedSourceFile sourceFile:self.generatedName];
+    FLObjcFile* file = [FLObjcGeneratedSourceFile sourceFile:self.generatedName];;
+    file.folder = self.project.inputProject.options.userObjectsFolderName;
+
+    [file addFileElement:[self generatedFileHeader]];
+    [file addFileElement:self];
+    return file;
 }
 
 @end

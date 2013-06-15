@@ -10,6 +10,7 @@
 #import "FLObjcProject.h"
 #import "FLObjcCodeBuilder.h"
 #import "FLObjcFile.h"
+#import "FLObjcFileHeader.h"
 
 @implementation FLObjcCodeElement
 @synthesize project = _project;
@@ -51,6 +52,19 @@
 - (FLObjcFile*) sourceFile {
     return nil;
 }
+
+- (FLObjcFileHeader*) generatedFileHeader {
+    FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:self.project];
+    [fileHeader configureWithInputProject:self.project.inputProject];
+    return fileHeader;
+}
+
+- (FLObjcFileHeader*) userFileHeader {
+    FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:self.project];
+    [fileHeader configureWithInputProject:self.project.inputProject];
+    return fileHeader;
+}
+
 
 
 @end

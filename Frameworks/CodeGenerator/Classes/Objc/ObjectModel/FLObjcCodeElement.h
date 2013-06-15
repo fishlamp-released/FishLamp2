@@ -10,6 +10,7 @@
 @class FLObjcCodeBuilder;
 @class FLObjcFile;
 @class FLObjcProject;
+@class FLObjcFileHeader;
 
 @protocol FLObjcCodeElement <NSObject>
 - (void) writeCodeToHeaderFile:(FLObjcFile*) file 
@@ -31,5 +32,8 @@
 @property (readwrite, assign, nonatomic) FLObjcProject* project;
 
 - (id) initWithProject:(FLObjcProject*) project;
+
+- (FLObjcFileHeader*) generatedFileHeader;
+- (FLObjcFileHeader*) userFileHeader;
 
 @end
