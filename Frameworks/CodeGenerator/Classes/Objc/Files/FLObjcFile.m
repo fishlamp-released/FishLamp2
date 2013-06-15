@@ -10,6 +10,7 @@
 #import "FLObjcProject.h"
 #import "FLObjcCodeElement.h"
 
+
 @interface FLObjcFile ()
 @property (readwrite, strong, nonatomic) NSArray* fileElements;
 @end
@@ -62,6 +63,11 @@
 - (BOOL) isHeaderFile {
     return NO;
 }
+
+
+
+
+
 @end
 
 

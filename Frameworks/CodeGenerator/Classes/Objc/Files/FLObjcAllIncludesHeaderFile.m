@@ -13,6 +13,8 @@
 #import "FLObjcFileManager.h"
 #import "FLObjcProject.h"
 #import "FLCodeProjectLocation.h"
+#import "FLCodeProject.h"
+#import "FLCodeGeneratorOptions.h"
 
 @interface FLObjcAllIncludesHeaderFile ()
 @property (readwrite, assign, nonatomic) FLObjcProject* project;
@@ -26,7 +28,8 @@
 	if(self) {  
         self.project = project;
 		_files = [[NSMutableArray alloc] init];
-	}
+        self.folder = self.project.inputProject.options.objectsFolderName;
+    }
 	return self;
 }
 

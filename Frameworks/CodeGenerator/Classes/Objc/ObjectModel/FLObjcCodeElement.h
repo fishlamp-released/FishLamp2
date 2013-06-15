@@ -33,7 +33,11 @@
 
 - (id) initWithProject:(FLObjcProject*) project;
 
+// factory methods
 - (FLObjcFileHeader*) generatedFileHeader;
 - (FLObjcFileHeader*) userFileHeader;
-
+- (FLObjcFile*) generatedHeaderFile;
+- (FLObjcFile*) generatedSourceFile;
+- (FLObjcFile*) userHeaderFile;
+- (FLObjcFile*) userSourceFile;
 @end

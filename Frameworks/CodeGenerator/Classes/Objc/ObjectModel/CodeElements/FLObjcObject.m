@@ -361,52 +361,27 @@
 
 @end
 
-#import "FLObjcGeneratedHeaderFile.h"
-#import "FLObjcGeneratedSourceFile.h"
-#import "FLObjcUserHeaderFile.h"
-#import "FLObjcUserSourceFile.h"
 
 @implementation FLObjcGeneratedObject : FLObjcObject
 
 - (FLObjcFile*) headerFile {
-    FLObjcFile* file = [FLObjcGeneratedHeaderFile headerFile:self.generatedName];
-    file.folder = self.project.inputProject.options.userObjectsFolderName;
-    
-    [file addFileElement:[self generatedFileHeader]];
-    [file addFileElement:self];
-    return file;
+    return [self generatedHeaderFile];
 }
 
 - (FLObjcFile*) sourceFile {
-    FLObjcFile* file = [FLObjcGeneratedSourceFile sourceFile:self.generatedName];;
-    file.folder = self.project.inputProject.options.userObjectsFolderName;
-
-    [file addFileElement:[self generatedFileHeader]];
-    [file addFileElement:self];
-    return file;
+    return [self generatedSourceFile];
 }
+
 
 @end
 
 @implementation FLObjcUserObject : FLObjcObject
 
 - (FLObjcFile*) headerFile {
-    FLObjcFile* file = [FLObjcUserHeaderFile headerFile:self.generatedName];
-
-    file.folder = self.project.inputProject.options.objectsFolderName;
-
-    [file addFileElement:[self userFileHeader]];
-    [file addFileElement:self];
-    return file;
+    return [self userHeaderFile];
 }
 
 - (FLObjcFile*) sourceFile {
-    FLObjcFile* file = [FLObjcUserSourceFile sourceFile:self.generatedName];;
-    file.folder = self.project.inputProject.options.objectsFolderName;
-
-    [file addFileElement:[self userFileHeader]];
-    [file addFileElement:self];
-    return file;
+    return [self userSourceFile];
 }
-
 @end
