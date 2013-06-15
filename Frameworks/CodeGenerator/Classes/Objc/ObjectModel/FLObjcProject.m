@@ -74,6 +74,10 @@
 
 }
 
+- (FLObjcClassName*) generatedObjectName:(NSString*) className {
+    return [FLObjcClassName objcClassName:[NSString stringWithFormat:@"%@Generated", className] prefix:self.classPrefix];
+}
+
 - (void) addForwardDeclarationsForTypesFromInputProject:(FLCodeProject*) project {
 
 // we're adding REFERENCES to the enums and objects only right now    
@@ -107,7 +111,7 @@
         }
     }
     
-    NSString* prefix = [project.generatorOptions typePrefix];
+    NSString* prefix = [project.options typePrefix];
     
 	for(FLCodeEnumType* aEnum in project.enumTypes) {
         if(FLStringIsEmpty(aEnum.typeName)) {
@@ -129,8 +133,8 @@
         [self.typeRegistry addType:[FLObjcMutableObjectType objcMutableObjectType:name importFileName:nil]];
         }
         
-        if(project.generateUserClasses) {
-            FLObjcClassName* generatedName = [FLObjcClassName objcClassName:[NSString stringWithFormat:@"%@Generated", object.className] prefix:prefix];
+        if(project.options.generateUserObjects) {
+            FLObjcClassName* generatedName = [self generatedObjectName:object.className];
 
             [self.typeRegistry addType:[FLObjcMutableObjectType objcMutableObjectType:generatedName importFileName:nil]];
         }
@@ -177,8 +181,8 @@
         [self.typeRegistry replaceType:forwardDecl];
         }
         
-        if(inputProject.generateUserClasses) {
-            FLObjcClassName* generatedClassName = [FLObjcClassName objcClassName:[NSString stringWithFormat:@"%@Generated", object.className] prefix:self.classPrefix];
+        if(inputProject.options.generateUserObjects) {
+            FLObjcClassName* generatedClassName = [self generatedObjectName:object.className];
             
             FLObjcType* generatedForwardDecl = [FLObjcMutableObjectType objcMutableObjectType:generatedClassName importFileName:[NSString stringWithFormat:@"%@.h", generatedClassName.generatedName]];
             [self.typeRegistry replaceType:generatedForwardDecl];
@@ -200,11 +204,11 @@
     for(FLCodeObject* object in inputProject.objects) {
 
 
-        if(inputProject.generateUserClasses) {
+        if(inputProject.options.generateUserObjects) {
             FLObjcGeneratedObject* baseClassObject = [FLObjcGeneratedObject objcObject:self];
             
             {
-            FLObjcClassName* baseClassName = [FLObjcClassName objcClassName:[NSString stringWithFormat:@"%@Generated", object.className] prefix:self.classPrefix];
+            FLObjcClassName* baseClassName = [self generatedObjectName:object.className];
         
             [baseClassObject configureWithCodeObject:object objectName:baseClassName];
             [self.generatedObjects addObject:baseClassObject forObjcName:baseClassObject.objectName];
@@ -213,8 +217,11 @@
             {
             FLObjcObject* objcObject = [FLObjcUserObject objcObject:self];
             objcObject.objectName = [FLObjcClassName objcClassName:object.className prefix:self.classPrefix];
-
             objcObject.superclassType = baseClassObject.objectType;
+            
+            [objcObject addMethod:[FLObjcDeallocMethod objcMethod:self]];
+            [objcObject addMethod:[FLObjcClassInitializerMethod objcMethod:self]];
+
             [objcObject addDependency:objcObject.superclassType];
 
             [self.generatedObjects addObject:objcObject forObjcName:objcObject.objectName];
@@ -225,15 +232,11 @@
             FLObjcObject* objcObject = [FLObjcGeneratedObject objcObject:self];
             FLObjcClassName* objectName = [FLObjcClassName objcClassName:object.className prefix:self.classPrefix];
             [objcObject configureWithCodeObject:object objectName:objectName];
+            [objcObject addMethod:[FLObjcClassInitializerMethod objcMethod:self]];
             [self.generatedObjects addObject:objcObject forObjcName:objcObject.objectName];
         }
-
-
-
     }
-
 }
-
 
 - (void) configureWithProjectInput:(FLCodeProject*) inputProject {
 
@@ -263,8 +266,15 @@
     [self.fileManager addFilesWithArrayOfCodeElements:self.generatedObjects.allValues];
 
 // add a all includes file if needed
-    if(inputProject.generatorOptions.generateAllIncludesFile) {
-        [self.fileManager addFile:[FLObjcAllIncludesHeaderFile allIncludesHeaderFile:self fileName:inputProject.schemaName]];
+    if(inputProject.options.generateAllIncludesFile) {
+        
+        NSString* fileName = [NSString stringWithFormat:@"%@%@All", 
+                              FLEmptyStringOrString(self.classPrefix), 
+                              FLStringIsNotEmpty(inputProject.info.schemaName) ? 
+                                inputProject.info.schemaName : 
+                                [[inputProject.projectPath lastPathComponent] stringByDeletingPathExtension]];
+    
+        [self.fileManager addFile:[FLObjcAllIncludesHeaderFile allIncludesHeaderFile:self fileName:fileName]];
     }
 }
 
@@ -273,7 +283,7 @@
 }
 
 - (NSString*) classPrefix {
-    return FLEmptyStringOrString(self.inputProject.generatorOptions.typePrefix);
+    return FLEmptyStringOrString(self.inputProject.options.typePrefix);
 }
 
 

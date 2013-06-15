@@ -42,17 +42,17 @@
     return FLAutorelease([[[self class] alloc] initWithProject:codeProject]);
 }
 
-- (NSString*) outputFolderPath  {
-
-// TODO: abstract away dependency on inputProject
-    NSString* outPath = self.project.inputProject.projectFolderPath;
-
-	if(FLStringIsNotEmpty(self.project.inputProject.generatorOptions.objectsFolderName)) { 
-        outPath = [outPath stringByAppendingPathComponent:self.project.inputProject.generatorOptions.objectsFolderName];
-    }
-
-    return outPath;
-}
+//- (NSString*) outputFolderPath  {
+//
+//// TODO: abstract away dependency on inputProject
+//    NSString* outPath = self.project.inputProject.projectFolderPath;
+//
+//	if(FLStringIsNotEmpty(self.project.inputProject.options.objectsFolderName)) { 
+//        outPath = [outPath stringByAppendingPathComponent:self.project.inputProject.options.objectsFolderName];
+//    }
+//
+//    return outPath;
+//}
 
 - (void) createGeneratedDirectoryIfNeeded:(NSString*) path {
     BOOL isDirectory = NO;
@@ -86,11 +86,6 @@
 //		[_generatedFiles addObject:commentsFile];
 //	}
 
-    //FSPathMoveObjectToTrashSync
-
-//    [self generateFilesInArray:_userFiles folderPath:[objectsFolderPath stringByAppendingPathComponent:@"Generated+User"] result:result];
-//    [self generateFilesInArray:_generatedFiles folderPath:[objectsFolderPath stringByAppendingPathComponent:@"Generated"] result:result];
-
 
     FLCodeGeneratorResult* result = [FLCodeGeneratorResult codeGeneratorResult];
 
@@ -98,9 +93,7 @@
         return result;
     }
 
-    NSString* folderPath = [self outputFolderPath];
-
-    [self createGeneratedDirectoryIfNeeded:folderPath];
+    NSString* folderPath = self.project.inputProject.projectFolderPath;
 
 // TODO: 
 // Make this an atomic operation.
@@ -109,7 +102,15 @@
 
 	for(FLObjcFile* file in _files) {
 
-        NSString* srcPath = [folderPath stringByAppendingPathComponent:file.fileName];
+        NSString* srcPath = folderPath;
+        
+        if(FLStringIsNotEmpty(file.folder)) {
+            srcPath = [srcPath stringByAppendingPathComponent:file.folder];
+        }
+        
+        [self createGeneratedDirectoryIfNeeded:srcPath];
+
+        srcPath = [srcPath stringByAppendingPathComponent:file.fileName];
 
         FLObjcCodeBuilder* codeBuilder = [FLObjcCodeBuilder objcCodeBuilder];
 
@@ -146,22 +147,15 @@
 
 - (void) addFilesWithArrayOfCodeElements:(NSArray*) elementList {
 
-    FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:self.project];
-    [fileHeader configureWithInputProject:self.project.inputProject];
-
     for(FLObjcCodeElement* element in elementList) {
             
         FLObjcFile* headerFile = [element headerFile];
         if(headerFile) {
-            [headerFile addFileElement:fileHeader];
-            [headerFile addFileElement:element];
             [self addFile:headerFile];
         }
         
         FLObjcFile* sourceFile = [element sourceFile];
         if(sourceFile) {
-            [sourceFile addFileElement:fileHeader];
-            [sourceFile addFileElement:element];
             [self addFile:sourceFile];
         }
     }

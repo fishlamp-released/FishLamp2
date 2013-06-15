@@ -12,6 +12,7 @@
 
 @implementation FLCodeGeneratorFile
 @synthesize fileName = _fileName;
+@synthesize folder = _folder;
 
 - (id) initWithFileName:(NSString*) name  {
     self = [super init];
@@ -28,6 +29,15 @@
 + (id) codeGeneratorFile:(NSString*) name {
     return FLAutorelease([[[self class] alloc] initWithFileName:name]);
 }
+
+#if FL_MRC
+- (void) dealloc {
+	[_folder release];
+    [_fileName release];
+	[super dealloc];
+}
+#endif
+
 
 - (BOOL) canUpdateExistingFile {
     return NO;

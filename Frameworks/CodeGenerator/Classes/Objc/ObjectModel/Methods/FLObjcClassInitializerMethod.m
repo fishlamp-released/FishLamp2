@@ -23,7 +23,10 @@
     [super didMoveToObject:object];
 
     self.methodName = [FLObjcMethodName objcMethodName:self.parentObject.objectName.identifierName];
-    self.returnType = self.parentObject.objectType;
+    self.returnType = [self.project.typeRegistry typeForKey:@"id"];
+    
+    
+    //self.parentObject.objectType;
     self.isStatic = YES;
     
     [self.code appendReturnValue:@"FLAutorelease([[[self class] alloc] init])"];

@@ -8,7 +8,7 @@
 
 #import "FishLampCocoa.h"
 
-#import "ObjectModel.h"
+#import "FLObjectModelAll.h"
 @class FLCodeGeneratorResult;
 @class FLCodeProjectLocation;
 

@@ -88,17 +88,16 @@
     
     project.projectPath = location.URL.path;
     
-	if(FLStringIsEmpty(project.projectName)){
-		project.projectName = [[project.projectPath lastPathComponent] stringByDeletingPathExtension];
+	if(FLStringIsEmpty(project.info.projectName)){
+		project.info.projectName = [[project.projectPath lastPathComponent] stringByDeletingPathExtension];
 	}
 
-    // TODO: why?
-	project.projectName = [project.projectName stringByReplacingOccurrencesOfString:@"." withString:@"_"];
-	FLConfirmStringIsNotEmptyWithComment(project.projectName, @"project needs to be named - <description name='foo'/>");
+    project.info.projectName = [project.info.projectName stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+	FLConfirmStringIsNotEmptyWithComment(project.info.projectName, @"project needs to be named - <description name='foo'/>");
 
-    if(FLStringIsEmpty(project.schemaName)) {
-        project.schemaName = [[project.projectPath lastPathComponent] stringByDeletingPathExtension];
-    }
+//    if(FLStringIsEmpty(project.schemaName)) {
+//        project.schemaName = [[project.projectPath lastPathComponent] stringByDeletingPathExtension];
+//    }
 }
 
 - (void) loadSubProjectsRecursively:(FLCodeProject*) project {
@@ -116,7 +115,7 @@
 
 - (void) finalizeLoadedProject:(FLCodeProject*) project {
     
-    if(project.canLazyCreate) {
+    if(project.options.canLazyCreate) {
         for(FLCodeObject* object in project.objects) {
             object.canLazyCreate = YES;
         }

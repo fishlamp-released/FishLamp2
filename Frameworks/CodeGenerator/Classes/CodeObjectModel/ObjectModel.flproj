@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project>
+    <info>
+        <projectName>FishLamp Code Generator</projectName>
+        <organization name="GreenTongue Software LLC, Mike Fullerton"/>
+        <license>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</license>
+    </info>
+    <options>
+        <canLazyCreate>YES</canLazyCreate>
+        <generateAllIncludesFile>YES</generateAllIncludesFile>
+        <objectsFolderName>Generated</objectsFolderName>
+        <typePrefix>FL</typePrefix>
+        <generateUserObjects>NO</generateUserObjects>
+        <userObjectsFolderName>Objects</userObjectsFolderName>
+    </options>
+    <typeDefinition import="FLCodeLine.h" typeName="FLCodeLine" dataType="object"/>
+<!--    
     <import path="Defaults.flproj"/>
-    <!--    
     <defines>
         <define define="FLDataTypeObject" value="object" isString="YES" comment="used for dataType in dataTypeDefinition"/>
         <define define="FLDataTypeValue" value="value" isString="YES" comment="used for dataType in dataTypeDefinition"/>
@@ -50,7 +64,10 @@
                 <property name="typePrefix" type="string"/>
                 <property name="comment" type="string"/>
                 <property name="globalDefine" type="FLCodeDefine"/>
+                <property name="canLazyCreate" type="bool"/>
+                <property name="generateUserObjects" type="bool"/>
                 <property name="generateAllIncludesFile" type="bool" comment="set this to YES to create an includes file that includes all the generated headers"/>
+                <property name="userObjectsFolderName" type="string"/>
                 <property name="objectsFolderName" type="string" comment="folder to generated the files to. By default this is the same as the xml schema file"/>
                 <property name="useGeneratedFolder" type="bool" comment="if this is YES then generated files (prefixed with __) will be written into their own subfolder nameed __schemaName."/>
             </properties>
@@ -64,13 +81,6 @@
                 <property name="typeNameUnmodified" type="string"/>
             </properties>
         </object>
-        <object className="FLCodeCodeLicense" protocols="NSCopying">
-            <properties>
-                <property name="licenseName" type="string" useForEquality="YES"/>
-                <property name="licenseShortDescription" type="string" comment="license short description" useForEquality="NO"/>
-                <property name="licenseTextFilePath" type="string"/>
-            </properties>
-        </object>
         <object className="FLCodeCompany" protocols="NSCopying">
             <properties>
                 <property name="name" type="string" comment="name of the company for the file headers"/>
@@ -81,18 +91,16 @@
                 <property name="phone" type="string" comment="company phone"/>
             </properties>
         </object>
-        <object className="FLCodeProject">
-            <property name="generateUserClasses" type="bool"/>
+        <object className="FLCodeProjectInfo">
             <property name="organization" type="FLCodeCompany"/>
-            <property name="license" type="FLCodeCodeLicense"/>
+            <property name="license" type="string"/>
             <property name="projectName" type="string" useForEquality="YES"/>
             <property name="schemaName" type="string" comment="name of the project for the file headers"/>
-            <property name="isWildcardArray" type="bool" comment=""/>
-            <property name="disabled" type="bool" comment="don't compile this object is set to YES"/>
-            <property name="canLazyCreate" type="bool"/>
-            <property name="ifDef" type="string"/>
+        </object>
+        <object className="FLCodeProject">
+            <property name="info" type="FLCodeProjectInfo"/>
             <property name="comment" type="string"/>
-            <property name="generatorOptions" type="FLCodeGeneratorOptions" comment="set properties of this object to control code generation"/>
+            <property name="options" type="FLCodeGeneratorOptions" comment="set properties of this object to control code generation"/>
             <property name="enumTypes" type="array" comment="list of enum types, these are generated into a single file with handy lookup methods">
                 <arrayType name="enumType" typeName="FLCodeEnumType"/>
             </property>
