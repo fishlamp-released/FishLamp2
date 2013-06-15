@@ -7,7 +7,6 @@
 //
 
 #import "FLWsdlCodeMethod.h"
-#import "FLCodeMethod+Additions.h"
 #import "FLCodeCodeSnippet.h"
 #import "FLWsdlCodeProjectReader.h"
 

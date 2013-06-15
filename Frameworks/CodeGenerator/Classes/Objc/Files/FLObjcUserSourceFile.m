@@ -12,7 +12,7 @@
 @implementation FLObjcUserSourceFile
 
 - (BOOL) canUpdateExistingFile {
-    return YES;
+    return NO;
 }
 
 @end

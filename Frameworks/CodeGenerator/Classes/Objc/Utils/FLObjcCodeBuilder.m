@@ -95,6 +95,20 @@
     [self appendLineWithFormat:@"%@ %@;", variableType, variableName];
 }
 
+- (void) appendBlankLine {
+    [self closeLine];
+    _appendBlankLine = YES;
+}
+
+- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
+    if(_appendBlankLine) {
+        [super appendBlankLine];
+        _appendBlankLine = NO;
+    }
+    
+    [super stringFormatterOpenLine:stringFormatter];
+}
+
 - (void) appendPropertyDeclaration:(NSString*) name 
                               type:(NSString*) type 
                             atomic:(BOOL) atomic 

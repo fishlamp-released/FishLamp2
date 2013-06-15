@@ -18,3 +18,11 @@
 + (id) objcFileHeader:(FLObjcProject*) project; 
 
 @end
+
+@interface FLObjcGeneratedFileHeader : FLObjcFileHeader
++ (id) objcGeneratedFileHeader;
+@end
+
+@interface FLObjcUserFileHeader : FLObjcFileHeader
++ (id) objcUserFileHeader;
+@end

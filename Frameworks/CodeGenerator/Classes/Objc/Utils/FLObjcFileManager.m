@@ -8,7 +8,6 @@
 
 #import "FLObjcFileManager.h"
 #import "FLCodeProject.h"
-#import "FLCodeProject+Additions.h"
 #import "FLCodeGeneratorOptions.h"
 #import "FLCodeGeneratorResult.h"
 

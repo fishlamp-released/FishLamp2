@@ -8,9 +8,8 @@
 
 #import "FishLamp.h"
 
-#import "FLCodeObjectModel.h"
-#import "FLCodeProjectLocation.h"
-#import "FLCodeProject.h"
+@class FLCodeProject;
+@class FLCodeProjectLocation;
 
 @protocol FLCodeProjectReader <NSObject>
 - (BOOL) canReadProjectFromLocation:(FLCodeProjectLocation*) location;

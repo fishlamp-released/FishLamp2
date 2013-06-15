@@ -7,7 +7,6 @@
 //
 
 #import "FLCodeMethod.h"
-#import "FLCodeMethod+Additions.h"
 
 @interface FLWsdlCodeMethod : FLCodeMethod
 

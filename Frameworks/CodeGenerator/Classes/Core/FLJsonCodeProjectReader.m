@@ -9,6 +9,7 @@
 #import "FLJsonCodeProjectReader.h"
 #import "FLJsonParser.h"
 #import "FLCodeProject.h"
+#import "FLCodeProjectLocation.h"
 
 @implementation FLJsonCodeProjectReader
 

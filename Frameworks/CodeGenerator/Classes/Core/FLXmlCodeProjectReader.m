@@ -11,6 +11,7 @@
 #import "FLXmlObjectBuilder.h"
 
 #import "FLCodeProject.h"
+#import "FLCodeProjectLocation.h"
 
 @implementation FLXmlCodeProjectReader
 

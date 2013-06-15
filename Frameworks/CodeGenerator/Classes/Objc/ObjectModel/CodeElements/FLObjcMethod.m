@@ -11,7 +11,6 @@
 #import "FLObjcCodeGeneratorHeaders.h"
 
 #import "FLCodeMethod.h"
-#import "FLCodeMethod+Additions.h"
 #import "FLCodeCodeSnippet.h"
 #import "FLObjcBlockStatement.h"
 

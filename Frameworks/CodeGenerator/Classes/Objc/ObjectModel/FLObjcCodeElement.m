@@ -62,13 +62,13 @@
 }
 
 - (FLObjcFileHeader*) generatedFileHeader {
-    FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:self.project];
+    FLObjcFileHeader* fileHeader = [FLObjcGeneratedFileHeader objcFileHeader:self.project];
     [fileHeader configureWithInputProject:self.project.inputProject];
     return fileHeader;
 }
 
 - (FLObjcFileHeader*) userFileHeader {
-    FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:self.project];
+    FLObjcFileHeader* fileHeader = [FLObjcUserFileHeader objcFileHeader:self.project];
     [fileHeader configureWithInputProject:self.project.inputProject];
     return fileHeader;
 }

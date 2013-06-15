@@ -259,7 +259,7 @@
     for(FLObjcType* fwdRef in fwdRefs) {
         [codeBuilder appendClassDeclaration:fwdRef.generatedName];
     }
-    
+
     NSMutableArray* protocols = nil;
     if(_protocols) {
         protocols = [NSMutableArray array];

@@ -7,8 +7,6 @@
 //
 
 #import "FishLamp.h"
-#import "FishLampCocoa.h"
-
 #import "FLCodeProjectReader.h"
 
 @interface FLJsonCodeProjectReader : NSObject<FLCodeProjectReader>

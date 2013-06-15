@@ -17,6 +17,7 @@
 @class FLWsdlCodeEnumType;
 @class FLWsdlCodeObject;
 @class FLWsdlBinding;
+@class FLCodeEnumType;
 
 @interface FLWsdlCodeProjectReader : NSObject<FLCodeProjectReader> {
 @private

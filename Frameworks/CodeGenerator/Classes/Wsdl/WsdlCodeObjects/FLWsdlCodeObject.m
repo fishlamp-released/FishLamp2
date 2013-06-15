@@ -12,6 +12,7 @@
 #import "FLWsdlElement.h"
 #import "FLWsdlCodeMethod.h"
 #import "FLWsdlCodeArray.h"
+#import "FLCodeArrayType.h"
 
 @implementation FLWsdlCodeObject
 

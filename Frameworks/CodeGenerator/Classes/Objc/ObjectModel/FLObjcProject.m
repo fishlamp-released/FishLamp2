@@ -14,7 +14,7 @@
 #import "FLCodeObject.h"
 #import "FLCodeEnum.h"
 #import "FLCodeProjectLocation.h"
-
+#import "FLCodeProject.h"
 
 @interface FLObjcProject ()
 @property (readwrite, strong, nonatomic) FLObjcFileManager* fileManager;

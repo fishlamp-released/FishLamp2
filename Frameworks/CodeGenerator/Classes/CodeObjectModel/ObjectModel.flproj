@@ -122,8 +122,6 @@
             <property name="typeDefinitions" type="array">
                 <arrayType name="typeDefinition" typeName="FLCodeTypeDefinition"/>
             </property>
-            <!-- internal -->
-            <property name="projectPath" type="string"/>
         </object>
         <object className="FLCodeComment" comment="don't use this object directly, used internally">
             <properties>

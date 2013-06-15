@@ -18,7 +18,10 @@ typedef enum {
   FLObjcPropertyTypeCopy  
 } FLObjcPropertyTypeEnum;
 
-@interface FLObjcCodeBuilder : FLCodeBuilder
+@interface FLObjcCodeBuilder : FLCodeBuilder {
+@private
+    BOOL _appendBlankLine;
+}
 
 + (id) objcCodeBuilder;
 

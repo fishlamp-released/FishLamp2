@@ -7,9 +7,15 @@
 //
 
 #import "FLCodeProjectReader.h"
-#import "FLCodeProject+Additions.h"
 #import "FLObjectDescriber.h"
-
+#import "FLCodeProjectLocation.h"
+#import "FLCodeProject.h"
+#import "FLCodeInputType.h"
+#import "FLCodeImport.h"
+#import "FLCodeProjectInfo.h"
+#import "FLCodeGeneratorOptions.h"
+#import "FLCodeObject.h"
+#import "FLCodeProperty.h"
 
 @interface FLCodeProjectReader ()
 @property (readwrite, strong) NSArray* fileReaders;

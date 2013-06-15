@@ -127,21 +127,10 @@
 		27795D951763A5E800B314EA /* FLCodeIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D4A1763A5E800B314EA /* FLCodeIdentifier.m */; };
 		27795D961763A5E800B314EA /* FLCodeLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795D4B1763A5E800B314EA /* FLCodeLine.h */; };
 		27795D971763A5E800B314EA /* FLCodeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D4C1763A5E800B314EA /* FLCodeLine.m */; };
-		27795D981763A5E800B314EA /* FLCodeObjectModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795D4D1763A5E800B314EA /* FLCodeObjectModel.h */; };
 		27795D991763A5E800B314EA /* FLCodeProjectLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795D4E1763A5E800B314EA /* FLCodeProjectLocation.h */; };
 		27795D9A1763A5E800B314EA /* FLCodeProjectLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D4F1763A5E800B314EA /* FLCodeProjectLocation.m */; };
 		27795D9B1763A5E800B314EA /* FLCodeProjectReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795D501763A5E800B314EA /* FLCodeProjectReader.h */; };
 		27795D9C1763A5E800B314EA /* FLCodeProjectReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D511763A5E800B314EA /* FLCodeProjectReader.m */; };
-		27795DD01763A5E800B314EA /* FLCodeMethod+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795D871763A5E800B314EA /* FLCodeMethod+Additions.h */; };
-		27795DD11763A5E800B314EA /* FLCodeMethod+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D881763A5E800B314EA /* FLCodeMethod+Additions.m */; };
-		27795DD21763A5E800B314EA /* FLCodeObject+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795D891763A5E800B314EA /* FLCodeObject+Additions.h */; };
-		27795DD31763A5E800B314EA /* FLCodeObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D8A1763A5E800B314EA /* FLCodeObject+Additions.m */; };
-		27795DD41763A5E800B314EA /* FLCodeProject+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795D8B1763A5E800B314EA /* FLCodeProject+Additions.h */; };
-		27795DD51763A5E800B314EA /* FLCodeProject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D8C1763A5E800B314EA /* FLCodeProject+Additions.m */; };
-		27795DD61763A5E800B314EA /* FLCodeType+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795D8D1763A5E800B314EA /* FLCodeType+Additions.h */; };
-		27795DD71763A5E800B314EA /* FLCodeType+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D8E1763A5E800B314EA /* FLCodeType+Additions.m */; };
-		27795DD81763A5E800B314EA /* FLCodeTypeDefinition+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795D8F1763A5E800B314EA /* FLCodeTypeDefinition+Additions.h */; };
-		27795DD91763A5E800B314EA /* FLCodeTypeDefinition+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D901763A5E800B314EA /* FLCodeTypeDefinition+Additions.m */; };
 		27795DDC1763A96100B314EA /* FLObjcClassConstructor.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795DDA1763A96100B314EA /* FLObjcClassConstructor.h */; };
 		27795DDD1763A96100B314EA /* FLObjcClassConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795DDB1763A96100B314EA /* FLObjcClassConstructor.m */; };
 		279045B017603BC30036714E /* FLImportedTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 279045A717603BC30036714E /* FLImportedTestObject.m */; };
@@ -583,21 +572,10 @@
 		27795D4A1763A5E800B314EA /* FLCodeIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeIdentifier.m; sourceTree = "<group>"; };
 		27795D4B1763A5E800B314EA /* FLCodeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeLine.h; sourceTree = "<group>"; };
 		27795D4C1763A5E800B314EA /* FLCodeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeLine.m; sourceTree = "<group>"; };
-		27795D4D1763A5E800B314EA /* FLCodeObjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeObjectModel.h; sourceTree = "<group>"; };
 		27795D4E1763A5E800B314EA /* FLCodeProjectLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeProjectLocation.h; sourceTree = "<group>"; };
 		27795D4F1763A5E800B314EA /* FLCodeProjectLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeProjectLocation.m; sourceTree = "<group>"; };
 		27795D501763A5E800B314EA /* FLCodeProjectReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeProjectReader.h; sourceTree = "<group>"; };
 		27795D511763A5E800B314EA /* FLCodeProjectReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeProjectReader.m; sourceTree = "<group>"; };
-		27795D871763A5E800B314EA /* FLCodeMethod+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCodeMethod+Additions.h"; sourceTree = "<group>"; };
-		27795D881763A5E800B314EA /* FLCodeMethod+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLCodeMethod+Additions.m"; sourceTree = "<group>"; };
-		27795D891763A5E800B314EA /* FLCodeObject+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCodeObject+Additions.h"; sourceTree = "<group>"; };
-		27795D8A1763A5E800B314EA /* FLCodeObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLCodeObject+Additions.m"; sourceTree = "<group>"; };
-		27795D8B1763A5E800B314EA /* FLCodeProject+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCodeProject+Additions.h"; sourceTree = "<group>"; };
-		27795D8C1763A5E800B314EA /* FLCodeProject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLCodeProject+Additions.m"; sourceTree = "<group>"; };
-		27795D8D1763A5E800B314EA /* FLCodeType+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCodeType+Additions.h"; sourceTree = "<group>"; };
-		27795D8E1763A5E800B314EA /* FLCodeType+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLCodeType+Additions.m"; sourceTree = "<group>"; };
-		27795D8F1763A5E800B314EA /* FLCodeTypeDefinition+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCodeTypeDefinition+Additions.h"; sourceTree = "<group>"; };
-		27795D901763A5E800B314EA /* FLCodeTypeDefinition+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLCodeTypeDefinition+Additions.m"; sourceTree = "<group>"; };
 		27795D911763A5E800B314EA /* ObjectModel.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ObjectModel.flproj; sourceTree = "<group>"; };
 		27795DDA1763A96100B314EA /* FLObjcClassConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcClassConstructor.h; sourceTree = "<group>"; };
 		27795DDB1763A96100B314EA /* FLObjcClassConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcClassConstructor.m; sourceTree = "<group>"; };
@@ -1055,32 +1033,13 @@
 				27795D4A1763A5E800B314EA /* FLCodeIdentifier.m */,
 				27795D4B1763A5E800B314EA /* FLCodeLine.h */,
 				27795D4C1763A5E800B314EA /* FLCodeLine.m */,
-				27795D4D1763A5E800B314EA /* FLCodeObjectModel.h */,
 				27795D4E1763A5E800B314EA /* FLCodeProjectLocation.h */,
 				27795D4F1763A5E800B314EA /* FLCodeProjectLocation.m */,
 				27795D501763A5E800B314EA /* FLCodeProjectReader.h */,
 				27795D511763A5E800B314EA /* FLCodeProjectReader.m */,
-				27795D861763A5E800B314EA /* GeneratedAdditions */,
 				27795D911763A5E800B314EA /* ObjectModel.flproj */,
 			);
 			path = CodeObjectModel;
-			sourceTree = "<group>";
-		};
-		27795D861763A5E800B314EA /* GeneratedAdditions */ = {
-			isa = PBXGroup;
-			children = (
-				27795D871763A5E800B314EA /* FLCodeMethod+Additions.h */,
-				27795D881763A5E800B314EA /* FLCodeMethod+Additions.m */,
-				27795D891763A5E800B314EA /* FLCodeObject+Additions.h */,
-				27795D8A1763A5E800B314EA /* FLCodeObject+Additions.m */,
-				27795D8B1763A5E800B314EA /* FLCodeProject+Additions.h */,
-				27795D8C1763A5E800B314EA /* FLCodeProject+Additions.m */,
-				27795D8D1763A5E800B314EA /* FLCodeType+Additions.h */,
-				27795D8E1763A5E800B314EA /* FLCodeType+Additions.m */,
-				27795D8F1763A5E800B314EA /* FLCodeTypeDefinition+Additions.h */,
-				27795D901763A5E800B314EA /* FLCodeTypeDefinition+Additions.m */,
-			);
-			path = GeneratedAdditions;
 			sourceTree = "<group>";
 		};
 		2787B43D17415ACF0010C2C6 /* Other Frameworks */ = {
@@ -1721,14 +1680,8 @@
 				27795D921763A5E800B314EA /* FLCodeDataTypeCollection.h in Headers */,
 				27795D941763A5E800B314EA /* FLCodeIdentifier.h in Headers */,
 				27795D961763A5E800B314EA /* FLCodeLine.h in Headers */,
-				27795D981763A5E800B314EA /* FLCodeObjectModel.h in Headers */,
 				27795D991763A5E800B314EA /* FLCodeProjectLocation.h in Headers */,
 				27795D9B1763A5E800B314EA /* FLCodeProjectReader.h in Headers */,
-				27795DD01763A5E800B314EA /* FLCodeMethod+Additions.h in Headers */,
-				27795DD21763A5E800B314EA /* FLCodeObject+Additions.h in Headers */,
-				27795DD41763A5E800B314EA /* FLCodeProject+Additions.h in Headers */,
-				27795DD61763A5E800B314EA /* FLCodeType+Additions.h in Headers */,
-				27795DD81763A5E800B314EA /* FLCodeTypeDefinition+Additions.h in Headers */,
 				27795DDC1763A96100B314EA /* FLObjcClassConstructor.h in Headers */,
 				2708605E176D1CD900802FDE /* FLCodeArray.h in Headers */,
 				27086060176D1CD900802FDE /* FLCodeArrayType.h in Headers */,
@@ -2022,11 +1975,6 @@
 				27795D971763A5E800B314EA /* FLCodeLine.m in Sources */,
 				27795D9A1763A5E800B314EA /* FLCodeProjectLocation.m in Sources */,
 				27795D9C1763A5E800B314EA /* FLCodeProjectReader.m in Sources */,
-				27795DD11763A5E800B314EA /* FLCodeMethod+Additions.m in Sources */,
-				27795DD31763A5E800B314EA /* FLCodeObject+Additions.m in Sources */,
-				27795DD51763A5E800B314EA /* FLCodeProject+Additions.m in Sources */,
-				27795DD71763A5E800B314EA /* FLCodeType+Additions.m in Sources */,
-				27795DD91763A5E800B314EA /* FLCodeTypeDefinition+Additions.m in Sources */,
 				27795DDD1763A96100B314EA /* FLObjcClassConstructor.m in Sources */,
 				2708605F176D1CD900802FDE /* FLCodeArray.m in Sources */,
 				27086061176D1CD900802FDE /* FLCodeArrayType.m in Sources */,
