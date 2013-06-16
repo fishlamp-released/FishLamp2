@@ -13,7 +13,7 @@
 #import "FLWsdlCodeProjectReader.h"
 #import "FLWsdlServiceAddress.h"
 #import "FLWsdlCodeMethod.h"
-#import "FLCodeLines.h"
+#import "FLCodeElementsAll.h"
 
 @implementation FLWsdlServiceCodeObject
 
@@ -29,13 +29,18 @@
             location.isImmutable = YES;
             location.isPrivate = YES;
             location.isReadOnly = YES;
-            location.defaultValue = [FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLStringCodeLine stringCodeLine:portType.address.location]]];
+            location.defaultValue = [FLCodeStatement codeStatement:
+                                        [FLCodeReturn codeReturn:
+                                            [FLCodeString codeString:portType.address.location]]];
         }
         
         FLWsdlCodeMethod* method =
             [object addMethod:[portType.name stringWithDeletedSubstring:service.name] methodReturnType:portCodeObject.className];
 
-        [method.codeLines addObject:[FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLCreateObjectCodeLine createObjectCodeLine:[FLClassNameCodeLine classNameCodeLine:portType.name]]]]];
+        [method.codeLines addObject:[FLCodeStatement codeStatement:
+                                        [FLCodeReturn codeReturn:
+                                            [FLCodeCreateObject codeCreateObject:
+                                                [FLCodeClassName codeClassName:portType.name]]]]];
     }
     
     return object;

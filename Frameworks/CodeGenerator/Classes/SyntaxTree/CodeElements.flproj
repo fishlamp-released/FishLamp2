@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<code projectName="FishLamp">
+    <info>
+        <projectName>FishLamp</projectName>
+        <organization name="GreenTongue Software LLC, Mike Fullerton"/>
+        <license>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</license>
+    </info>
+    <options typePrefix="FL" generateAllIncludesFile="YES" userObjectsFolderName="Objects" objectsFolderName="Generated" generateUserObjects="YES"/>
+    <object className="FLCodeElement" superclass="FLModelObject">
+        <property name="code" type="FLCodeElement"/>
+    </object>
+    <object className="FLCodeReturn" superclass="FLCodeElement"/>
+    <object className="FLCodeString" superclass="FLCodeElement"/>
+    <object className="FLCodeCreateObject" superclass="FLCodeElement"/>
+    <object className="FLCodeClassName" superclass="FLCodeElement"/>
+    <object className="FLCodeStatement" superclass="FLCodeElement"/>
+    <object className="FLCodeVariable" superclass="FLModelObject">
+        <property name="name" type="FLCodeElement"/>
+        <property name="type" type="FLCodeElement"/>
+    </object>
+    <object className="FLCodeCallMethod" superclass="FLModelObject">
+        <property name="name" type="FLCodeElement"/>
+        <property name="parameters" type="array">
+            <arrayType name="parameter" typeName="FLCodeVariable"/>
+        </property>
+    </object>
+    <object className="FLCodeSequence" superclass="FLModelObject">
+        <property name="statements" type="array">
+            <arrayType name="statement" typeName="FLCodeElement"/>
+        </property>
+    </object>
+</code>

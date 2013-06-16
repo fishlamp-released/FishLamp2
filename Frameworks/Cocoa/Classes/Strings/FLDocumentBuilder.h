@@ -31,5 +31,9 @@
 
 - (void) closeAllSections;
 
+- (NSString*) buildString;
+- (NSString*) buildStringWithWhitespace:(FLWhitespace*) whitespace;
+- (NSString*) buildStringWithNoWhitespace;
+
 @end
 

@@ -11,6 +11,8 @@
 #import "FLObjcName.h"
 #import "FLObjcCodeGeneratorHeaders.h"
 
+#import "FLObjcRuntime.h"
+
 // TODO: load these in from a file or something more configable than a .m file
 
 @implementation FLObjcKnownTypes
@@ -126,7 +128,9 @@
         
         { @"FLObjcProtocolType", @"NSCopying", nil },
         { @"FLObjcProtocolType", @"NSCoding", nil },
-        
+
+//		{ @"FLObjcImmutableObjectType", @"FLCodeElement", @"FLCodeElementsAll.h" },
+
         { nil, nil, nil }
 	};
     
@@ -151,7 +155,17 @@
         
         [array addObject:type];
     }
-    
+
+//    NSArray* syntaxClasses = [NSObject subclassesForClass:[FLCodeElement class]];
+//    for(Class class in syntaxClasses) {
+//
+//        FLObjcName* name = [FLObjcImportedName objcImportedName:NSStringFromClass(class)];
+//
+//        FLObjcType* type = FLAutorelease([[FLObjcImmutableObjectType alloc] initWithTypeName:name
+//                                                                              importFileName:@"FLCodeElementsAll.h"]);
+//        [array addObject:type];
+//    }
+
     return array;
 }
 

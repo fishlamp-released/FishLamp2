@@ -152,7 +152,7 @@
 */
 
 #define FLSynthesizeObservable() \
-    FLSynthesizeLazyCreateGetterWithInit(observable, FLObservable, [[FLObservable alloc] initWithObservedObject:self]) \
+    FLSynthesizeLazyGetterWithInit(observable, FLObservable, [[FLObservable alloc] initWithObservedObject:self]) \
     - (id)forwardingTargetForSelector:(SEL)aSelector { \
         if([self.observable respondsToSelector:aSelector]) { \
             return self.observable; \

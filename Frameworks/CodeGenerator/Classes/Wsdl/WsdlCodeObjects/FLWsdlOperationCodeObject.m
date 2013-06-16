@@ -17,9 +17,8 @@
 #import "FLWsdlCodeProjectReader.h"
 #import "FLWsdlBinding.h"
 #import "FLWsdlDefinitions.h"
-#import "FLCodeLine.h"
+#import "FLCodeElementsAll.h"
 #import "FLHttpRequest.h"
-#import "FLCodeLines.h"
 
 @implementation FLWsdlOperationCodeObject
 
@@ -68,7 +67,9 @@
         FLWsdlCodeProperty* property = [self addProperty:@"operationName" propertyType:@"string"];
         property.isReadOnly = YES;
         property.isImmutable = YES;
-        property.defaultValue = [FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLStringCodeLine stringCodeLine:operation.name]]];
+        property.defaultValue = [FLCodeStatement codeStatement:
+                                    [FLCodeReturn codeReturn:
+                                        [FLCodeString codeString:operation.name]]];
     }
 }
 
@@ -155,21 +156,27 @@
         FLWsdlCodeProperty* prop = [self addProperty:@"targetNamespace" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
-        prop.defaultValue = [FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLStringCodeLine stringCodeLine:targetNamespace]]];
+        prop.defaultValue = [FLCodeStatement codeStatement:
+                                [FLCodeReturn codeReturn:
+                                    [FLCodeString codeString:targetNamespace]]];
     }
 
     if(FLStringIsNotEmpty(binding.binding.verb) && [self propertyForName:@"verb"] == nil) {
         FLWsdlCodeProperty* prop = [self addProperty:@"verb" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
-        prop.defaultValue = [FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLStringCodeLine stringCodeLine:binding.binding.verb]]];
+        prop.defaultValue = [FLCodeStatement codeStatement:
+                                [FLCodeReturn codeReturn:
+                                    [FLCodeString codeString:binding.binding.verb]]];
     }
     
     if(FLStringIsNotEmpty(binding.binding.transport) && [self propertyForName:@"transport"] == nil) {
         FLWsdlCodeProperty* prop = [self addProperty:@"transport" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
-        prop.defaultValue = [FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLStringCodeLine stringCodeLine:binding.binding.transport]]];
+        prop.defaultValue = [FLCodeStatement codeStatement:
+                                [FLCodeReturn codeReturn:
+                                    [FLCodeString codeString:binding.binding.transport]]];
     }
 
     NSString* location = url;
@@ -180,7 +187,9 @@
             FLWsdlCodeProperty* prop = [self addProperty:@"soapAction" propertyType:@"string"];
             prop.isImmutable = YES;
             prop.isReadOnly = YES;
-            prop.defaultValue = [FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLStringCodeLine stringCodeLine:subOperation.soapAction]]];
+            prop.defaultValue = [FLCodeStatement codeStatement:
+                                    [FLCodeReturn codeReturn:
+                                        [FLCodeString codeString:subOperation.soapAction]]];
         }
         
         if(FLStringIsNotEmpty(subOperation.location)) {
@@ -191,7 +200,9 @@
     FLWsdlCodeProperty* prop = [self addProperty:@"location" propertyType:@"string"];
     prop.isImmutable = YES;
     prop.isReadOnly = YES;
-    prop.defaultValue = [FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLStringCodeLine stringCodeLine:location]]];
+    prop.defaultValue = [FLCodeStatement codeStatement:
+                            [FLCodeReturn codeReturn:
+                                [FLCodeString codeString:location]]];
     
 //    FLWsdlCodeMethod* method = [FLWsdlCodeMethod wsdlCodeMethod:@"init" methodReturnType:@"id"];
     

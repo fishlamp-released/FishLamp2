@@ -10,7 +10,6 @@
 #import "FLObjcCodeGeneratorHeaders.h"
 
 #import "NSString+Lists.h"
-#import "FLCodeLine.h"
 
 @implementation FLObjcCodeBuilder
 

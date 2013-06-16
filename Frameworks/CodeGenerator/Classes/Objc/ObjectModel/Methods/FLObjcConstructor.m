@@ -37,7 +37,7 @@
 //    }
 //
 //    for(FLCodeLine* codeLine in codeMethod.codeLines) {
-//        [self.code appendCodeLine:codeLine withProject:self.project];
+//        [self.code appendCodeElement:codeLine withProject:self.project];
 //    }
 
 }

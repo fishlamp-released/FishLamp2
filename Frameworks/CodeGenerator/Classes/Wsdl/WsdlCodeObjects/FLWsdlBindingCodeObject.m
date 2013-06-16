@@ -18,9 +18,7 @@
 #import "FLWsdlCodeMethod.h"
 
 #import "FLHttpRequestDescriptor.h"
-#import "FLCodeLine.h"
-
-#import "FLCodeLines.h"
+#import "FLCodeElementsAll.h"
 
 @implementation FLWsdlBindingCodeObject
 
@@ -32,7 +30,11 @@
     
     if([self methodForName:factoryName] == nil) {
         FLWsdlCodeMethod* method = [self addMethod:factoryName methodReturnType:operationCodeObject.className];
-        [method.codeLines addObject:[FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLCreateObjectCodeLine createObjectCodeLine:[FLClassNameCodeLine classNameCodeLine:operationCodeObject.className]]]]];
+        [method.codeLines addObject:
+            [FLCodeStatement codeStatement:
+                [FLCodeReturn codeReturn:
+                    [FLCodeCreateObject codeCreateObject:
+                        [FLCodeClassName codeClassName:operationCodeObject.className]]]]];
         
 //        [FLReturnNewObjectCodeLine returnNewObjectCodeLine:operationCodeObject.className]];
     }
@@ -65,10 +67,16 @@
     
 	FLCodeProperty* urlProp = [self addProperty:@"url" propertyType:@"string"];
 	urlProp.isImmutable = YES;
-	urlProp.defaultValue = [FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLStringCodeLine stringCodeLine:url]]];
+	urlProp.defaultValue = [FLCodeStatement codeStatement:
+                                [FLCodeReturn codeReturn:
+                                    [FLCodeString codeString:url]]];
 
 	FLCodeProperty* targetNamespaceProp = [self addProperty:@"targetNamespace" propertyType:@"string"];
-	targetNamespaceProp.defaultValue = [FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLStringCodeLine stringCodeLine:targetNamespace]]];
+
+	targetNamespaceProp.defaultValue = [FLCodeStatement codeStatement:
+                                            [FLCodeReturn codeReturn:
+                                                [FLCodeString codeString:targetNamespace]]];
+
 	targetNamespaceProp.isImmutable = YES;
 		
     BOOL isSoap =   FLStringIsNotEmpty(binding.binding.transport) && 

@@ -15,8 +15,11 @@
 #import "FLDefaultProperty.h"
 #import "FLBitFlagsProperty.h"
 
-#define FLSynthesizeLazyCreateGetterWithInit(__NAME__, __TYPE__, __IVAR__, /*[[type alloc] init]*/ ...) \
-    - (__TYPE__*) __NAME__ { \
+// last parameter (...) is init like this
+//      FLSynthesizeLazyGetterWithInit(foo, FOO*, _foo, [[FOO alloc] init])
+
+#define FLSynthesizeLazyGetterWithInit(__NAME__, __TYPE__, __IVAR__, ... ) \
+    - (__TYPE__) __NAME__ { \
             if ( __IVAR__ == nil ) { \
                 id var = __VA_ARGS__; \
                 if ( OSAtomicCompareAndSwapPtrBarrier(nil, var, bridge_(void*, &__IVAR__)) == false ) { \
@@ -27,7 +30,7 @@
     }
 
 #define FLSynthesizeLazyGetter(__NAME__, __TYPE__, __IVAR__) \
-            FLSynthesizeLazyCreateGetterWithInit(__NAME__, __TYPE__, __IVAR__, [[__TYPE__ alloc] init])
+            FLSynthesizeLazyGetterWithInit(__NAME__, __TYPE__*, __IVAR__, [[__TYPE__ alloc] init])
 
 #define FLSynthesizeDictionaryGetterProperty(__GETTER__, __TYPE__, __KEY__, __DICTIONARY__) \
     - (__TYPE__) __GETTER__ { \

@@ -96,13 +96,10 @@
                                                                   xmlNamespace:self.soapNamespace];
             
 	[soapStringBuilder addElement:element];
+    NSString* soap = [soapStringBuilder buildStringWithNoWhitespace];
 
     [self.requestHeaders setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
-    
-    FLPrettyString* soapString = [FLPrettyString prettyString:nil];
-    [soapString appendBuildableString:soapStringBuilder];
-
-    [self.requestBody setUtf8Content:soapString.string];
+    [self.requestBody setUtf8Content:soap];
     
 #if DEBUG
     FLPrettyString* debugString = [FLPrettyString prettyString];

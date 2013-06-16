@@ -46,5 +46,6 @@
 - (void) appendDefaultXmlHeader; 
 
 - (void) openDocument;
+
 @end
 

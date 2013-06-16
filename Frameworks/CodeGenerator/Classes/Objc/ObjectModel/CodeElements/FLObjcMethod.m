@@ -132,8 +132,8 @@
         self.returnType = [self.project.typeRegistry typeForKey:codeMethod.returnType];
     }
 
-    for(FLCodeLine* codeLine in codeMethod.codeLines) {
-        [self.code appendCodeLine:codeLine withProject:self.project];
+    for(FLCodeElement* codeLine in codeMethod.codeLines) {
+        [self.code appendCodeElement:codeLine withProject:self.project];
     }
 }
 

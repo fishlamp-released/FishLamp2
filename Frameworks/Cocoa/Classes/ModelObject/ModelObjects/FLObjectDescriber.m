@@ -88,6 +88,14 @@ static NSMutableDictionary* s_registry = nil;
 }
 #endif
 
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained [])buffer count:(NSUInteger)len {
+    return [_properties countByEnumeratingWithState:state objects:buffer count:len];
+}
+
+- (NSEnumerator*) propertyEnumerator {
+    return [_properties objectEnumerator];
+}
+
 - (FLObjectDescriber*) propertyForName:(NSString*) propertyName {
     @synchronized(self) {
         return [_properties objectForKey:[propertyName lowercaseString]];

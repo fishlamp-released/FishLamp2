@@ -32,8 +32,5 @@
 
 - (void) addMember:(FLCodeVariable*) var ;
 
-- (void) addSourceSnippet:(FLCodeCodeSnippet*) code;
-
-- (void) addInitLine:(NSString*) line;
 
 @end

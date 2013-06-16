@@ -22,6 +22,8 @@
 
 @synthesize dataEncoder = _dataEncoder;
 
+FLSynthesizeLazyGetterWithInit(dateEncoder, id<FLDataEncoding>, _dataEncoder, [[FLDataEncoder alloc] init]);
+
 - (id) init {
     self = [super init];
     if(self) {
@@ -35,8 +37,6 @@
 }
 
 - (void) openDocument {
-    _dataEncoder = [[FLDataEncoder alloc] init];
-    [self appendDefaultXmlHeader];
 }
 
 #if FL_MRC

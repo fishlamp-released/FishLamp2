@@ -33,7 +33,7 @@ typedef void (^FLPropertyDescriberVisitorRecursive)(FLObjectDescriber* object, F
 
 @end
 
-@interface FLObjectDescriber : NSObject<NSCopying> {
+@interface FLObjectDescriber : NSObject<NSCopying, NSFastEnumeration> {
 @private
     Class _objectClass;
     NSMutableDictionary* _properties;
@@ -64,6 +64,9 @@ typedef void (^FLPropertyDescriberVisitorRecursive)(FLObjectDescriber* object, F
 // deprected
 - (void) addPropertyWithName:(NSString*) name withArrayTypes:(NSArray*) types;
 - (void) addArrayProperty:(NSString*) name withArrayTypes:(NSArray*) types;
+
+- (NSEnumerator*) propertyEnumerator;
+
 @end            
 
 @interface FLModelObjectDescriber : FLObjectDescriber

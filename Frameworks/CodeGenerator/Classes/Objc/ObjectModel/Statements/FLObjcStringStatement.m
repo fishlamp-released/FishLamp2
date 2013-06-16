@@ -9,7 +9,7 @@
 #import "FLObjcStringStatement.h"
 #import "FLCodeChunk.h"
 #import "FLObjcCodeGeneratorHeaders.h"
-#import "FLCodeLine.h"
+#import "FLCodeElementsAll.h"
 
 @implementation FLObjcStringStatement
 

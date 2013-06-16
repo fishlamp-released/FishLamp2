@@ -79,13 +79,4 @@
     [self.members addObject:var];
 }
 
-- (void) addSourceSnippet:(FLCodeCodeSnippet*) code {
-    [self.sourceSnippets addObject:code];
-}
-
-- (void) addInitLine:(NSString*) line {
-    [self.linesForInitMethod addObject:line];
-}
-
-
 @end

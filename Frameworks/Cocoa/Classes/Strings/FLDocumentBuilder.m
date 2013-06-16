@@ -109,5 +109,20 @@
 
 }
 
+- (NSString*) buildString {
+    return [self buildStringWithWhitespace:[FLPrettyString defaultWhitespace]];
+}
+
+- (NSString*) buildStringWithWhitespace:(FLWhitespace*) whitespace {
+    FLPrettyString* prettyString = [FLPrettyString prettyString:whitespace];
+    [prettyString appendBuildableString:self];
+    return prettyString.string;
+}
+
+- (NSString*) buildStringWithNoWhitespace {
+    return [self buildStringWithWhitespace:nil];
+}
+
+
 
 @end

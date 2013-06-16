@@ -161,8 +161,8 @@
         
     if(codeProperty.defaultValue) {
     
-        [self.getter.code appendCodeLine:codeProperty.defaultValue 
-                              withProject:self.project];
+        [self.getter.code appendCodeElement:codeProperty.defaultValue
+                                withProject:self.project];
     }
     
     [self.parentObject addProperty:self];

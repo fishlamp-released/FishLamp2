@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLCodeLines.h"
-
 #import "FLObjcCodeBuilder.h"
+
 @class FLObjcProject;
+@class FLCodeElement;
 
 @protocol FLObjcCodeLine <NSObject>
 - (void) appendToObjcCodeBuilder:(FLObjcCodeBuilder*) builder 
@@ -19,13 +19,10 @@
 
 @interface FLObjcCodeBuilder (FLObjcCodeLine)
 
-- (void) appendCodeLine:(FLCodeLine*) codeLine 
-            withProject:(FLObjcProject*) project;
+- (void) appendCodeElement:(FLCodeElement*) codeLine
+               withProject:(FLObjcProject*) project;
 
 
 @end
 
-@interface FLObjcCodeLines : FLCodeLine
-
-@end
 

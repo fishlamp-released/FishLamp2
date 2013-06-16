@@ -7,6 +7,7 @@
 //
 
 #import "FLObjcCodeLines.h"
+#import "FLCodeElementsAll.h"
 
 #import "FLObjcType.h"
 #import "FLObjcCodeBuilder.h"
@@ -14,49 +15,59 @@
 #import "FLObjcTypeRegistry.h"
 #import "FLObjcCodeGeneratorHeaders.h"
 
+@implementation NSObject (FLObjcCodeLine)
+- (NSString*) stringForObjcProject:(FLObjcProject*) project {
+    return nil;
+}
+@end
+
+@implementation FLObjcCodeBuilder (FLObjcCodeLine)
+
+- (void) appendCodeElement:(FLCodeElement*) codeElement
+               withProject:(FLObjcProject*) project {
+
+    [self appendLine:[codeElement stringForObjcProject:project]];
+}
+@end
+
+
 @implementation NSString (FLObjcCodeLine)
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
     return self;
 }
 @end
 
-@implementation FLCodeLine (FLObjcCodeLine)
+@implementation FLCodeElement (FLObjcCodeLine)
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-    return [NSString stringWithFormat:@"%@;", [self.codeLine stringForObjcProject:project]];
+    return nil;
 }
 @end
 
-@implementation FLObjcCodeBuilder (FLObjcCodeLine)
-- (void) appendCodeLine:(FLCodeLine*) codeLine 
-            withProject:(FLObjcProject*) project {
-    [self appendLine:[codeLine stringForObjcProject:project]];
-}
-@end
 
-@implementation FLStringCodeLine (FLObjcCodeLine)
+@implementation FLCodeString (FLObjcCodeLine)
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-    return [NSString stringWithFormat:@"@\"%@\"", [self.codeLine stringForObjcProject:project]];
+    return [NSString stringWithFormat:@"@\"%@\"", [self.code stringForObjcProject:project]];
 
 }
 @end
 
-@implementation FLCreateObjectCodeLine (FLObjcCodeLine)
+@implementation FLCodeCreateObject (FLObjcCodeLine)
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-    FLObjcType* theType = [project.typeRegistry typeForKey:[self.codeLine stringForObjcProject:project]];
+    FLObjcType* theType = [project.typeRegistry typeForKey:[self.code stringForObjcProject:project]];
     return [NSString stringWithFormat:@"FLAutorelease([[%@ alloc] init])", theType.generatedName];
 }
 @end
 
-@implementation FLReturnCodeLine (FLObjcCodeLine)
+@implementation FLCodeReturn (FLObjcCodeLine)
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-    return [NSString stringWithFormat:@"return %@", [self.codeLine stringForObjcProject:project]];
+    return [NSString stringWithFormat:@"return %@", [self.code stringForObjcProject:project]];
 }
 @end
 
-@implementation FLClassNameCodeLine (FLObjcCodeLine)
+@implementation FLCodeClassName (FLObjcCodeLine)
 
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-    FLObjcClassName* className = [FLObjcClassName objcClassName:[self.codeLine stringForObjcProject:project] prefix:project.classPrefix];
+    FLObjcClassName* className = [FLObjcClassName objcClassName:[self.code stringForObjcProject:project] prefix:project.classPrefix];
     return [className generatedName];
 }
 
