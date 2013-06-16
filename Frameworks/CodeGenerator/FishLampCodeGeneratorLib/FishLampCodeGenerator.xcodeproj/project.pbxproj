@@ -142,6 +142,8 @@
 		279045B417603BC30036714E /* FLTestObjectGenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 279045AF17603BC30036714E /* FLTestObjectGenerated.m */; };
 		279DECEC175FCB6800CDE628 /* libFishLampCodeGenerator-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 279FFBEC175D4CCB003F06C4 /* libFishLampCodeGenerator-64-MRC.a */; };
 		279DECED175FCB6800CDE628 /* FishLampOSXAppLib-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 279DECE5175FCB4C00CDE628 /* FishLampOSXAppLib-64-MRC.a */; };
+		279FE776176E25050047B077 /* FLCodeStorageMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 279FE774176E25050047B077 /* FLCodeStorageMask.h */; };
+		279FE777176E25050047B077 /* FLCodeStorageMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 279FE775176E25050047B077 /* FLCodeStorageMask.m */; };
 		279FFBED175D4CCB003F06C4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783D3321175C239D0072A61C /* Cocoa.framework */; };
 		27A62BF6176D38E300BA0B8C /* FLMethodCallCodeLine.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A62BF4176D38E300BA0B8C /* FLMethodCallCodeLine.h */; };
 		27A62BF7176D38E300BA0B8C /* FLMethodCallCodeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A62BF5176D38E300BA0B8C /* FLMethodCallCodeLine.m */; };
@@ -628,6 +630,8 @@
 		2797C8B9175D472300FBD667 /* FLTestObjects.cgjson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLTestObjects.cgjson; sourceTree = "<group>"; };
 		2797C8BC175D472300FBD667 /* FLImportedTestObject.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLImportedTestObject.flproj; sourceTree = "<group>"; };
 		2797C8C3175D472300FBD667 /* FLTestObjects.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLTestObjects.flproj; sourceTree = "<group>"; };
+		279FE774176E25050047B077 /* FLCodeStorageMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeStorageMask.h; sourceTree = "<group>"; };
+		279FE775176E25050047B077 /* FLCodeStorageMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeStorageMask.m; sourceTree = "<group>"; };
 		279FFBEC175D4CCB003F06C4 /* libFishLampCodeGenerator-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCodeGenerator-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A62BF4176D38E300BA0B8C /* FLMethodCallCodeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMethodCallCodeLine.h; sourceTree = "<group>"; };
 		27A62BF5176D38E300BA0B8C /* FLMethodCallCodeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMethodCallCodeLine.m; sourceTree = "<group>"; };
@@ -988,6 +992,8 @@
 		270860A2176D1EDC00802FDE /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				279FE774176E25050047B077 /* FLCodeStorageMask.h */,
+				279FE775176E25050047B077 /* FLCodeStorageMask.m */,
 				270860A3176D1EDC00802FDE /* FLCodeArrayBaseClass.h */,
 				270860A4176D1EDC00802FDE /* FLCodeArrayBaseClass.m */,
 				270860A5176D1EDC00802FDE /* FLCodeArrayTypeBaseClass.h */,
@@ -1682,6 +1688,7 @@
 				27B3611A175D4FC3002A4A3E /* FLObjcReturnStatement.h in Headers */,
 				27B3611C175D4FC3002A4A3E /* FLObjcStringStatement.h in Headers */,
 				27B3611E175D4FC3002A4A3E /* FLObjcAbstractObjectType.h in Headers */,
+				279FE776176E25050047B077 /* FLCodeStorageMask.h in Headers */,
 				27B36120175D4FC3002A4A3E /* FLObjcArrayType.h in Headers */,
 				27B36122175D4FC3002A4A3E /* FLObjcBoolType.h in Headers */,
 				27B36124175D4FC3002A4A3E /* FLObjcContainerSubType.h in Headers */,
@@ -2020,6 +2027,7 @@
 				27B36165175D4FC3002A4A3E /* FLWsdlCodeProperty.m in Sources */,
 				27B36167175D4FC3002A4A3E /* FLWsdlComplexTypeCodeObject.m in Sources */,
 				27B36169175D4FC3002A4A3E /* FLWsdlMessageCodeObject.m in Sources */,
+				279FE777176E25050047B077 /* FLCodeStorageMask.m in Sources */,
 				27B3616B175D4FC3002A4A3E /* FLWsdlOperationCodeObject.m in Sources */,
 				27B3616D175D4FC3002A4A3E /* FLWsdlPortTypeCodeObject.m in Sources */,
 				27B3616F175D4FC3002A4A3E /* FLWsdlServiceCodeObject.m in Sources */,

@@ -11,21 +11,21 @@
 #import "FLAsyncResult.h"
 
 @protocol FLTestResult <NSObject>
-@property (readonly, assign) BOOL passed;
-@property (readonly, strong) NSError* error;
-@property (readonly, strong) NSString* testName;
-@optional
+- (BOOL) passed;
+- (NSError*) error;
+- (NSString*) testName;
 
+@optional
 - (NSString*) runSummary;
 - (NSString*) failureDescription;
 @end
 
-@protocol FLMutableTestResult <NSObject>
-@property (readwrite, strong) NSError* error;
+@protocol FLMutableTestResult <FLTestResult>
+- (void) setError:(NSError*) error;
 - (void) setPassed; // only passes if error is nil
 @end
 
-@interface FLTestResult : NSObject<FLTestResult, FLMutableTestResult> {
+@interface FLTestResult : NSObject<FLMutableTestResult> {
 @private 
     NSUInteger _expectedCount;
     NSUInteger _count;
@@ -42,6 +42,6 @@
 @property (readonly, assign) NSUInteger expectedCount;
 @property (readonly, assign) NSUInteger count;
 
-+ (FLCountedTestResult*) countedTestResult:(NSUInteger) expectedCount;
++ (id) countedTestResult:(NSUInteger) expectedCount;
 
 @end

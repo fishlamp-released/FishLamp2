@@ -32,7 +32,7 @@
 - (NSDictionary*) detailsForTableNamed:(NSString*) tableName {
 
 	NSMutableDictionary* info = [NSMutableDictionary dictionary];
-	[self executeSql:[NSString stringWithFormat:@"PRAGMA table_info(%@)", tableName] 
+	[self executeSql:[FLSqlBuilder sqlBuilderWithString:[NSString stringWithFormat:@"PRAGMA table_info(%@)", tableName]]
       rowResultBlock:^(NSDictionary *row, BOOL *stop) {
           [info setObject:row forKey:[row objectForKey:@"name"]];
       }];

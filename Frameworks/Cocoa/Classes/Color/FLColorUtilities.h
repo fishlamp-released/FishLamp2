@@ -38,17 +38,33 @@ BOOL FLColorValueIsRGB(CGFloat value) {
 #define FLRgbColorToDecimalColor(__RGB__)       (__RGB__ / 255.0f)
 
 
+#if IOS
 #define FLColorCreateWithRGBColorValues(__RED__,__GREEN__,__BLUE__,__ALPHA__) \
-            [SDKColor colorWithRed:FLRgbColorToDecimalColor(__RED__) \
+            [UIColor colorWithRed:FLRgbColorToDecimalColor(__RED__) \
                             green:FLRgbColorToDecimalColor(__GREEN__) \
                              blue:FLRgbColorToDecimalColor(__BLUE__) \
                             alpha:__ALPHA__]
 
 #define FLColorCreateWithDecimalColorValues(__RED__,__GREEN__,__BLUE__,__ALPHA__) \
-            [SDKColor colorWithRed:__RED__ \
+            [UIColor colorWithRed:__RED__ \
                             green:__GREEN__ \
                              blue:__BLUE__ \
                             alpha:__ALPHA__]
+#else
+#define FLColorCreateWithRGBColorValues(__RED__,__GREEN__,__BLUE__,__ALPHA__) \
+            [NSColor colorWithCalibratedRed:FLRgbColorToDecimalColor(__RED__) \
+                            green:FLRgbColorToDecimalColor(__GREEN__) \
+                             blue:FLRgbColorToDecimalColor(__BLUE__) \
+                            alpha:__ALPHA__]
+
+#define FLColorCreateWithDecimalColorValues(__RED__,__GREEN__,__BLUE__,__ALPHA__) \
+            [NSColor colorWithCalibratedRed:__RED__ \
+                            green:__GREEN__ \
+                             blue:__BLUE__ \
+                            alpha:__ALPHA__]
+
+
+#endif
 
 
 #define FLReturnColorWithRGBRed(__RED__,__GREEN__,__BLUE__,__ALPHA__) \

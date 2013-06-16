@@ -528,7 +528,7 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
     
     time -= timeZoneOffset;
 	
-    FLLog([NSDate dateWithTimeIntervalSinceReferenceDate:time]);
+    FLTrace(@"%@", [NSDate dateWithTimeIntervalSinceReferenceDate:time]);
     
     [statement bindDouble:parameterIndex doubleValue:time];
 }

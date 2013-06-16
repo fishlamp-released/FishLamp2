@@ -10,10 +10,10 @@
 #import "FLTestResult.h"
 
 @interface FLTestResult ()
-@property (readwrite, strong) NSError* error;
-@property (readwrite, assign) NSUInteger expectedCount;
-@property (readwrite, assign) NSUInteger count;
-@property (readwrite, strong) NSString* testName;
+@property (readwrite, strong, nonatomic) NSError* error;
+@property (readwrite, assign, nonatomic) NSUInteger expectedCount;
+@property (readwrite, assign, nonatomic) NSUInteger count;
+@property (readwrite, strong, nonatomic) NSString* testName;
 @end
 
 @implementation FLTestResult 
@@ -68,7 +68,7 @@
 @dynamic count;
 @dynamic expectedCount;
 
-+ (FLCountedTestResult*) countedTestResult:(NSUInteger) expectedCount {
++ (id) countedTestResult:(NSUInteger) expectedCount {
     return FLAutorelease([[[self class] alloc] initWithExpectedCount:expectedCount]);
 }
 

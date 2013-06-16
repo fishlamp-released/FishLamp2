@@ -11,9 +11,10 @@
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
 
-
+#ifndef __MAC_10_9
 @interface NSColor (FLCompatibility)
 + (NSColor*) colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 @end
+#endif
 
 #endif

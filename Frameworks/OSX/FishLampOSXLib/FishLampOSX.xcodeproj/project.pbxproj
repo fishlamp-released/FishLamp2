@@ -288,6 +288,14 @@
 		27821727175D449B007C5F26 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821625175D449B007C5F26 /* FLWizardViewController.m */; };
 		27821728175D449B007C5F26 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821625175D449B007C5F26 /* FLWizardViewController.m */; };
 		27821729175D449B007C5F26 /* FLWizardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821625175D449B007C5F26 /* FLWizardViewController.m */; };
+		279FE7C5176E2EB20047B077 /* NSTextView+FLTextWrapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 279FE7C3176E2EB20047B077 /* NSTextView+FLTextWrapping.h */; };
+		279FE7C6176E2EB20047B077 /* NSTextView+FLTextWrapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 279FE7C3176E2EB20047B077 /* NSTextView+FLTextWrapping.h */; };
+		279FE7C7176E2EB20047B077 /* NSTextView+FLTextWrapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 279FE7C3176E2EB20047B077 /* NSTextView+FLTextWrapping.h */; };
+		279FE7C8176E2EB20047B077 /* NSTextView+FLTextWrapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 279FE7C3176E2EB20047B077 /* NSTextView+FLTextWrapping.h */; };
+		279FE7C9176E2EB20047B077 /* NSTextView+FLTextWrapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 279FE7C4176E2EB20047B077 /* NSTextView+FLTextWrapping.m */; };
+		279FE7CA176E2EB20047B077 /* NSTextView+FLTextWrapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 279FE7C4176E2EB20047B077 /* NSTextView+FLTextWrapping.m */; };
+		279FE7CB176E2EB20047B077 /* NSTextView+FLTextWrapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 279FE7C4176E2EB20047B077 /* NSTextView+FLTextWrapping.m */; };
+		279FE7CC176E2EB20047B077 /* NSTextView+FLTextWrapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 279FE7C4176E2EB20047B077 /* NSTextView+FLTextWrapping.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -439,6 +447,8 @@
 		27821623175D449B007C5F26 /* FLWizardNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardNavigationViewController.m; sourceTree = "<group>"; };
 		27821624175D449B007C5F26 /* FLWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardViewController.h; sourceTree = "<group>"; };
 		27821625175D449B007C5F26 /* FLWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardViewController.m; sourceTree = "<group>"; };
+		279FE7C3176E2EB20047B077 /* NSTextView+FLTextWrapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+FLTextWrapping.h"; sourceTree = "<group>"; };
+		279FE7C4176E2EB20047B077 /* NSTextView+FLTextWrapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+FLTextWrapping.m"; sourceTree = "<group>"; };
 		27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CBC1F416768BA600753D0A /* libFishLampOSX-Universal-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-Universal-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E95866170BB86300587A8F /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
@@ -605,6 +615,8 @@
 				27821600175D449B007C5F26 /* FLTextFieldCell.m */,
 				27821601175D449B007C5F26 /* NSView+FLAdditions.h */,
 				27821602175D449B007C5F26 /* NSView+FLAdditions.m */,
+				279FE7C3176E2EB20047B077 /* NSTextView+FLTextWrapping.h */,
+				279FE7C4176E2EB20047B077 /* NSTextView+FLTextWrapping.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -758,6 +770,7 @@
 				278216BA175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
 				278216C2175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
 				278216CA175D449B007C5F26 /* FLPanelWizard.h in Headers */,
+				279FE7C5176E2EB20047B077 /* NSTextView+FLTextWrapping.h in Headers */,
 				278216D2175D449B007C5F26 /* FLPanelManager.h in Headers */,
 				278216DA175D449B007C5F26 /* FLPanelManagerState.h in Headers */,
 				278216E2175D449B007C5F26 /* FLPanelViewController.h in Headers */,
@@ -800,6 +813,7 @@
 				278216BC175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
 				278216C4175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
 				278216CC175D449B007C5F26 /* FLPanelWizard.h in Headers */,
+				279FE7C7176E2EB20047B077 /* NSTextView+FLTextWrapping.h in Headers */,
 				278216D4175D449B007C5F26 /* FLPanelManager.h in Headers */,
 				278216DC175D449B007C5F26 /* FLPanelManagerState.h in Headers */,
 				278216E4175D449B007C5F26 /* FLPanelViewController.h in Headers */,
@@ -842,6 +856,7 @@
 				278216BB175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
 				278216C3175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
 				278216CB175D449B007C5F26 /* FLPanelWizard.h in Headers */,
+				279FE7C6176E2EB20047B077 /* NSTextView+FLTextWrapping.h in Headers */,
 				278216D3175D449B007C5F26 /* FLPanelManager.h in Headers */,
 				278216DB175D449B007C5F26 /* FLPanelManagerState.h in Headers */,
 				278216E3175D449B007C5F26 /* FLPanelViewController.h in Headers */,
@@ -884,6 +899,7 @@
 				278216BD175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
 				278216C5175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
 				278216CD175D449B007C5F26 /* FLPanelWizard.h in Headers */,
+				279FE7C8176E2EB20047B077 /* NSTextView+FLTextWrapping.h in Headers */,
 				278216D5175D449B007C5F26 /* FLPanelManager.h in Headers */,
 				278216DD175D449B007C5F26 /* FLPanelManagerState.h in Headers */,
 				278216E5175D449B007C5F26 /* FLPanelViewController.h in Headers */,
@@ -1057,6 +1073,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27821632175D449B007C5F26 /* FLCommandLineTool.m in Sources */,
+				279FE7C9176E2EB20047B077 /* NSTextView+FLTextWrapping.m in Sources */,
 				2782163A175D449B007C5F26 /* FLShellCommand.m in Sources */,
 				27821642175D449B007C5F26 /* FLModelObjectDocument.m in Sources */,
 				2782164E175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */,
@@ -1095,6 +1112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27821634175D449B007C5F26 /* FLCommandLineTool.m in Sources */,
+				279FE7CB176E2EB20047B077 /* NSTextView+FLTextWrapping.m in Sources */,
 				2782163C175D449B007C5F26 /* FLShellCommand.m in Sources */,
 				27821644175D449B007C5F26 /* FLModelObjectDocument.m in Sources */,
 				27821650175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */,
@@ -1133,6 +1151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27821633175D449B007C5F26 /* FLCommandLineTool.m in Sources */,
+				279FE7CA176E2EB20047B077 /* NSTextView+FLTextWrapping.m in Sources */,
 				2782163B175D449B007C5F26 /* FLShellCommand.m in Sources */,
 				27821643175D449B007C5F26 /* FLModelObjectDocument.m in Sources */,
 				2782164F175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */,
@@ -1171,6 +1190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27821635175D449B007C5F26 /* FLCommandLineTool.m in Sources */,
+				279FE7CC176E2EB20047B077 /* NSTextView+FLTextWrapping.m in Sources */,
 				2782163D175D449B007C5F26 /* FLShellCommand.m in Sources */,
 				27821645175D449B007C5F26 /* FLModelObjectDocument.m in Sources */,
 				27821651175D449B007C5F26 /* FLHttpController+UserLogin.m in Sources */,

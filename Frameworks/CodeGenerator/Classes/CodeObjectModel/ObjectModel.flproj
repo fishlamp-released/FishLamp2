@@ -39,6 +39,13 @@
                 <enum name="Wsdl"/>
             </enums>
         </enumType>
+	   <enumType typeName="FLCodeStorageMask">
+			<enum name="None"/>
+			<enum name="Stored"/>
+			<enum name="Required"/>
+			<enum name="PrimaryKey"/>
+			<enum name="Indexed"/>
+		</enumType>
     </enumTypes>
     <objects>
         <object className="FLCodeImport">
@@ -267,12 +274,7 @@
                 <property name="useForEquality" type="bool"/>
                 <property name="isWildcardArray" type="bool" comment=""/>
                 <property name="isWeak" type="bool" comment="NO by default"/>
-                <!-- internal use only 
-                <property name="typeUnmodified" type="string" comment="internal use only"/>
-                <property name="nameUnmodified" type="string" comment="internal use only"/>
-                <property name="enumType" type="FLCodeEnumType" comment="if this property is an enum, the type of the enum"/>
-                <property name="hasCustomCode" type="bool" comment="Properties by default have member data associated with them, set this to YES to disable this."/>
--->
+			  <property name="storage" type="FLCodeStorageMask"/>
             </properties>
         </object>
         <object className="FLCodeMethod">

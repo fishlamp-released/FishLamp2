@@ -209,7 +209,7 @@
 			[sqlList appendFormat:@"%@%@ %@", prefix, delimiter, [list objectAtIndex:i]];
 		}
         if(withinParens) {
-            sqlList = [NSString stringWithFormat:@"(%@)", sqlList];
+            sqlList = [NSMutableString stringWithFormat:@"(%@)", sqlList];
         }
         return sqlList;
     }
