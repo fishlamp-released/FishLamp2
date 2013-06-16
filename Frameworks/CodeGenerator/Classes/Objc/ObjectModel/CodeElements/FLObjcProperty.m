@@ -12,7 +12,7 @@
 #import "FLCodeProperty.h"
 #import "FLCodeArray.h"
 #import "FLCodeArrayType.h"
-#import "FLCodeLine.h"
+#import "FLObjcCodeLines.h"
 
 @interface FLObjcProperty ()
 @property (readwrite, strong, nonatomic) NSArray* containerTypes;
@@ -105,7 +105,12 @@
     return _getter.isPrivate;
 }
 
-- (void) configureWithCodeProperty:(FLCodeProperty*) codeProperty {
+- (void) configureWithCodeProperty:(FLCodeProperty*) codeProperty forObject:(FLObjcObject*) object {
+    
+    FLAssertNotNil(codeProperty);
+    FLAssertNotNil(object);
+    
+    self.parentObject = object;
     
     FLConfirmStringIsNotEmptyWithComment(codeProperty.type, @"code property '%@' type is nil", codeProperty.name);
 
@@ -115,12 +120,19 @@
     self.isImmutable = codeProperty.isImmutable;
     self.isPrivate = codeProperty.isPrivate;
     self.isStatic = codeProperty.isStatic;
+
+    self.propertyName = [FLObjcPropertyName objcPropertyName:[codeProperty name]];
+
     self.propertyType = [self.project.typeRegistry typeForKey:[codeProperty type]];
+    [self.parentObject addDependency:self.propertyType];
+    
     if(!self.isImmutable) {
         FLObjcIvarName* name = [FLObjcIvarName objcIvarName:[codeProperty name]];
         self.ivar = [FLObjcIvar objcIvar:name ivarType:self.propertyType];
+
+        [self.parentObject addDependency:self.ivar.variableType];
+        [self.parentObject addIvar:self.ivar];
     }
-    self.propertyName = [FLObjcPropertyName objcPropertyName:[codeProperty name]];
 
     if(codeProperty.arrayTypes && codeProperty.arrayTypes.count) {
         NSMutableArray* containerTypes = [NSMutableArray array];
@@ -137,36 +149,28 @@
         }
         
         self.containerTypes = containerTypes;
+        
+        if(self.containerTypes && self.containerTypes.count) {
+            [self.parentObject addDependency:[self.project.typeRegistry typeForClass:[FLObjectDescriber class]]];
+         
+            for(FLObjcContainerSubType* subType in self.containerTypes) {
+                [self.parentObject addDependency:subType.objcType];
+            }
+        }
     }
         
     if(codeProperty.defaultValue) {
-         [self.getter.code appendCodeLine:codeProperty.defaultValue 
+    
+        [self.getter.code appendCodeLine:codeProperty.defaultValue 
                               withProject:self.project];
     }
+    
+    [self.parentObject addProperty:self];
 }
 
 
 - (NSString*) description {
     return [NSString stringWithFormat:@"%@ -> ivar %@", self.propertyName, [self.ivar description]];
-}
-
-- (void) didMoveToObject:(FLObjcObject*) object {
-    self.parentObject = object;
-    
-    if(self.ivar) {
-        [self.parentObject addDependency:self.ivar.variableType];
-        [self.parentObject addIvar:self.ivar];
-    }
-    
-    [self.parentObject addDependency:self.propertyType];
-    
-    if(self.containerTypes && self.containerTypes.count) {
-        [self.parentObject addDependency:[self.project.typeRegistry typeForClass:[FLObjectDescriber class]]];
-     
-        for(FLObjcContainerSubType* subType in self.containerTypes) {
-            [self.parentObject addDependency:subType.objcType];
-        }
-    }
 }
 
 - (void) writeCodeToHeaderFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {

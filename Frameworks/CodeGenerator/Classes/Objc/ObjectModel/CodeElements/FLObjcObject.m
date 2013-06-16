@@ -69,7 +69,6 @@
 
 - (void) addProperty:(FLObjcProperty*) property {
     [_properties addObject:property forObjcName:property.propertyName];
-    [property didMoveToObject:self];
 }
 
 - (void) addDependency:(FLObjcType*) type {
@@ -170,10 +169,7 @@
     for(FLCodeProperty* codeProp in codeObject.properties) {
     
         FLObjcProperty* prop = [FLObjcProperty objcProperty:self.project];
-        [prop configureWithCodeProperty:codeProp];
-        [self addProperty:prop];
-        
-        [self addDependency:prop.propertyType];
+        [prop configureWithCodeProperty:codeProp forObject:self];
 
         [[prop propertyType] objcObject:self didConfigureProperty:prop];
     }

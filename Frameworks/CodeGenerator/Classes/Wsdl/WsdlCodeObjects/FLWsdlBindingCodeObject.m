@@ -20,6 +20,8 @@
 #import "FLHttpRequestDescriptor.h"
 #import "FLCodeLine.h"
 
+#import "FLCodeLines.h"
+
 @implementation FLWsdlBindingCodeObject
 
 - (void) addOperationProperty:(FLWsdlOperationCodeObject*) operationCodeObject {
@@ -30,7 +32,9 @@
     
     if([self methodForName:factoryName] == nil) {
         FLWsdlCodeMethod* method = [self addMethod:factoryName methodReturnType:operationCodeObject.className];
-        [method.codeLines addObject:[FLCodeLine codeLineReturnNewObject:operationCodeObject.className]];
+        [method.codeLines addObject:[FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLCreateObjectCodeLine createObjectCodeLine:[FLClassNameCodeLine classNameCodeLine:operationCodeObject.className]]]]];
+        
+//        [FLReturnNewObjectCodeLine returnNewObjectCodeLine:operationCodeObject.className]];
     }
 }
 
@@ -61,10 +65,10 @@
     
 	FLCodeProperty* urlProp = [self addProperty:@"url" propertyType:@"string"];
 	urlProp.isImmutable = YES;
-	urlProp.defaultValue = [FLCodeLine codeLineReturnString:targetNamespace];
+	urlProp.defaultValue = [FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLStringCodeLine stringCodeLine:url]]];
 
 	FLCodeProperty* targetNamespaceProp = [self addProperty:@"targetNamespace" propertyType:@"string"];
-	targetNamespaceProp.defaultValue = [FLCodeLine codeLineReturnString:targetNamespace];
+	targetNamespaceProp.defaultValue = [FLCodeLineStatement codeLineStatement:[FLReturnCodeLine returnCodeLine:[FLStringCodeLine stringCodeLine:targetNamespace]]];
 	targetNamespaceProp.isImmutable = YES;
 		
     BOOL isSoap =   FLStringIsNotEmpty(binding.binding.transport) && 

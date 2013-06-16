@@ -8,9 +8,6 @@
 
 #import "FLCodeBuilder.h"
 
-@class FLObjcProject;
-@class FLCodeLine;
-
 typedef enum {
   FLObjcPropertyTypeAssign,
   FLObjcPropertyTypeWeak,
@@ -79,9 +76,6 @@ typedef enum {
 
 - (void) appendRunOnceBlock:(NSString*) predicateName block:(dispatch_block_t) block;
 - (void) appendStaticVariable:(NSString*) type name:(NSString*) name initialValue:(NSString*) initialValue;
-
-- (void) appendCodeLine:(FLCodeLine*) codeLine 
-            withProject:(FLObjcProject*) project;
 
 - (void) appendAssignment:(NSString*) from to:(NSString*) to;
 

@@ -50,11 +50,7 @@
 @property (readonly, strong, nonatomic) FLObjcMethod* setter;
 @property (readonly, strong, nonatomic) FLObjcMethod* getter;
 
-    
-
 // misc
-- (void) configureWithCodeProperty:(FLCodeProperty*) codeProperty;
-            
-- (void) didMoveToObject:(FLObjcObject*) object;                                    
+- (void) configureWithCodeProperty:(FLCodeProperty*) codeProperty forObject:(FLObjcObject*) object;
 
 @end

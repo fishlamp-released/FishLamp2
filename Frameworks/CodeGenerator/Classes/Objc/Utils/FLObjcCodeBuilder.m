@@ -244,26 +244,6 @@
     [self appendLine:@"}"];
 }
 
-- (void) appendCodeLine:(FLCodeLine*) codeLine 
-            withProject:(FLObjcProject*) project {
-
-    switch(codeLine.codeLineType) {
-        case FLCodeLineTypeReturnNewObject:{
-            FLObjcType* theType = [project.typeRegistry typeForKey:[codeLine parameterForKey:FLCodeLineClassName]];
-            [self appendReturnValue:[NSString stringWithFormat:@"FLAutorelease([[%@ alloc] init])", theType.generatedName]];
-        }
-        break;
-        
-        case FLCodeLineTypeReturnString:
-            [self appendReturnValue:[NSString stringWithFormat:@"@\"%@\";", [codeLine parameterForKey:FLCodeLineString]]];
-        break;
-        
-        default:
-        break;
-    
-    }
-}
-
 - (void) appendAssignment:(NSString*) from to:(NSString*) to {
     [self appendLineWithFormat:@"%@ = %@;", to, from];
 }
