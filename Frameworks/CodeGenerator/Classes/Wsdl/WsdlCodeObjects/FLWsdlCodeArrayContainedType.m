@@ -16,7 +16,7 @@
 	self = [super init];
 	if(self) {
         self.name = identifier;
-        self.typeName = typeName;
+        self.type = typeName;
 	}
 	return self;
 }
@@ -26,9 +26,9 @@
     FLConfirmStringIsNotEmptyWithComment(self.name, @"array type needs a identifier");
 }
 
-- (void) setTypeName:(NSString*) typeName {
-    [super setTypeName:FLDeleteNamespacePrefix(typeName)];
-    FLConfirmStringIsNotEmptyWithComment(self.typeName, @"array type needs a typeName");
+- (void) setType:(NSString*) typeName {
+    [super setType:FLDeleteNamespacePrefix(typeName)];
+    FLConfirmStringIsNotEmptyWithComment(self.type, @"array type needs a typeName");
 }
 
 + (id) wsdlCodeArrayContainedType:(NSString*) typeName identifier:(NSString*) identifier {

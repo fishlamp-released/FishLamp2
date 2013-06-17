@@ -140,7 +140,7 @@
             
             [property.arrayTypes removeAllObjects];
             for(FLCodeArrayType* subtype in array.types) {
-                [property addContainedType:subtype.typeName  identifier:subtype.name];
+                [property addContainedType:subtype.type  identifier:subtype.name];
             }
             
             FLConfirm(property.arrayTypes.count > 0);

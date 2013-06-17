@@ -83,7 +83,6 @@
                 <property name="typeName" type="string" comment="name of the type, e.g. MyObject" useForEquality="YES"/>
                 <property name="import" type="string"/>
                 <property name="importIsPrivate" type="BOOL"/>
-                <property name="typeNameUnmodified" type="string"/>
             </properties>
         </object>
         <object className="FLCodeCompany">
@@ -107,25 +106,25 @@
             <property name="comment" type="string"/>
             <property name="options" type="FLCodeGeneratorOptions" comment="set properties of this object to control code generation"/>
             <property name="enumTypes" type="array" comment="list of enum types, these are generated into a single file with handy lookup methods">
-                <arrayType name="enumType" typeName="FLCodeEnumType"/>
+                <arrayType name="enumType" type="FLCodeEnumType"/>
             </property>
             <property name="objects" type="array" comment="list of objects, these are generated into their own files">
-                <arrayType name="object" typeName="FLCodeObject"/>
+                <arrayType name="object" type="FLCodeObject"/>
             </property>
             <property name="dependencies" type="array" comment="list of includes for all the files">
-                <arrayType name="dependency" typeName="FLCodeTypeDefinition"/>
+                <arrayType name="dependency" type="FLCodeTypeDefinition"/>
             </property>
             <property name="defines" type="array" comment="defines for all the files">
-                <arrayType name="define" typeName="FLCodeDefine"/>
+                <arrayType name="define" type="FLCodeDefine"/>
             </property>
             <property name="arrays" type="array" comment="list of methods (FLCodeMethod) for this object">
-                <arrayType name="array" typeName="FLCodeArray"/>
+                <arrayType name="array" type="FLCodeArray"/>
             </property>
             <property name="imports" type="array">
-                <arrayType name="import" typeName="FLCodeImport"/>
+                <arrayType name="import" type="FLCodeImport"/>
             </property>
             <property name="typeDefinitions" type="array">
-                <arrayType name="typeDefinition" typeName="FLCodeTypeDefinition"/>
+                <arrayType name="typeDefinition" type="FLCodeTypeDefinition"/>
             </property>
         </object>
         <object className="FLCodeComment" comment="don't use this object directly, used internally">
@@ -144,9 +143,7 @@
             <properties>
                 <property name="name" type="string" useForEquality="YES"/>
                 <property name="types" type="array">
-                    <arrayTypes>
-                        <arrayType name="arrayType" typeName="FLCodeArrayType"/>
-                    </arrayTypes>
+                    <arrayType name="arrayType" type="FLCodeArrayType"/>
                 </property>
             </properties>
         </object>
@@ -155,23 +152,19 @@
                 <property name="objectName" type="string" comment="name of the type, e.g. bagelCount"/>
                 <property name="categoryName" type="string" comment="name of the type, e.g. bagelCount"/>
                 <property name="properties" type="array" comment="list of properties (FLCodeProperty or FLCodeObjectArray) for this object">
-                    <arrayTypes>
-                        <arrayType name="property" typeName="FLCodeProperty"/>
-                    </arrayTypes>
+                    <arrayType name="property" type="FLCodeProperty"/>
                 </property>
                 <property name="methods" type="array" comment="list of methods (FLCodeMethod) for this object">
-                    <arrayTypes>
-                        <arrayType name="method" typeName="FLCodeMethod"/>
-                    </arrayTypes>
+                    <arrayType name="method" type="FLCodeMethod"/>
                 </property>
             </properties>
         </object>
         <object className="FLCodeConstructor">
             <property name="parameters" type="array">
-                <arrayType name="parameter" typeName="FLCodeVariable"/>
+                <arrayType name="parameter" type="FLCodeVariable"/>
             </property>
             <property name="lines" type="array">
-                <arrayType name="line" typeName="FLCodeElement"/>
+                <arrayType name="line" type="FLCodeElement"/>
             </property>
         </object>
         <object className="FLCodeObject" superclass="FLModelObject">
@@ -184,32 +177,22 @@
                 <property name="canLazyCreate" type="bool"/>
                 <property name="isSingleton" type="bool" comment="if set to YES the standard FishLamp singleton objects will be generated for this object"/>
                 <property name="properties" type="array" comment="list of properties (FLCodeProperty or FLCodeObjectArray) for this object">
-                    <arrayTypes>
-                        <arrayType name="property" typeName="FLCodeProperty"/>
-                    </arrayTypes>
+                    <arrayType name="property" type="FLCodeProperty"/>
                 </property>
                 <property name="dependencies" type="array" comment="list of includes (string) only for this object">
-                    <arrayTypes>
-                        <arrayType name="dependency" typeName="FLCodeTypeDefinition"/>
-                    </arrayTypes>
+                    <arrayType name="dependency" type="FLCodeTypeDefinition"/>
                 </property>
                 <property name="members" type="array" comment="list of member data (FLCodeVariable) for this object">
-                    <arrayTypes>
-                        <arrayType name="member" typeName="FLCodeVariable"/>
-                    </arrayTypes>
+                    <arrayType name="member" type="FLCodeVariable"/>
                 </property>
                 <property name="methods" type="array" comment="list of methods (FLCodeMethod) for this object">
-                    <arrayTypes>
-                        <arrayType name="method" typeName="FLCodeMethod"/>
-                    </arrayTypes>
+                    <arrayType name="method" type="FLCodeMethod"/>
                 </property>
                 <property name="categories" type="array">
-                    <arrayTypes>
-                        <arrayType name="category" typeName="FLCodeObjectCategory"/>
-                    </arrayTypes>
+                    <arrayType name="category" type="FLCodeObjectCategory"/>
                 </property>
                 <property name="constructors" type="array">
-                    <arrayType name="constructor" typeName="FLCodeConstructor"/>
+                    <arrayType name="constructor" type="FLCodeConstructor"/>
                 </property>
             </properties>
         </object>
@@ -223,9 +206,7 @@
         <object className="FLCodeEnumType" superclass="FLCodeType">
             <properties>
                 <property name="enums" type="array" comment="this is the list of enums">
-                    <arrayTypes>
-                        <arrayType name="enum" typeName="FLCodeEnum"/>
-                    </arrayTypes>
+                    <arrayType name="enum" type="FLCodeEnum"/>
                 </property>
             </properties>
         </object>
@@ -242,9 +223,7 @@
                 <property name="setter" type="FLCodeMethod" comment=""/>
                 <!-- Arrays have one of more of these types set, otherwise it's a normal property -->
                 <property name="arrayTypes" type="array" comment="list of types and keys this array accepts. This list is igored for types other than array.">
-                    <arrayTypes>
-                        <arrayType name="arrayType" typeName="FLCodeArrayType"/>
-                    </arrayTypes>
+                    <arrayType name="arrayType" type="FLCodeArrayType"/>
                 </property>
                 <property name="canLazyCreate" type="bool" comment="automatically create the data (if it's an object) when the property getter is called and the value is nil"/>
                 <property name="isPrivate" type="bool" comment="don't declare the property in the file header (good for overriding superclass methods)"/>
@@ -266,12 +245,10 @@
                 <property name="comment" type="string" comment="comment about this method"/>
                 <property name="code" type="FLCodeCodeSnippet" comment=""/>
                 <property name="codeLines" type="array">
-                    <arrayType name="codeLine" typeName="FLCodeElement"/>
+                    <arrayType name="codeLine" type="FLCodeElement"/>
                 </property>
                 <property name="parameters" type="array" comment="list of parameters (FLCodeVariable) for this method">
-                    <arrayTypes>
-                        <arrayType name="parameter" typeName="FLCodeVariable"/>
-                    </arrayTypes>
+                    <arrayType name="parameter" type="FLCodeVariable"/>
                 </property>
             </properties>
         </object>
@@ -330,7 +307,7 @@
 
         <object className="FLCodeSequence" superclass="FLModelObject">
             <property name="statements" type="array">
-                <arrayType name="statement" typeName="FLCodeElement"/>
+                <arrayType name="statement" type="FLCodeElement"/>
             </property>
         </object>
 

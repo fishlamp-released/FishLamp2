@@ -141,10 +141,10 @@
         
         for(FLCodeArrayType* codeArrayType in codeProperty.arrayTypes) {
         
-            FLConfirmStringIsNotEmptyWithComment(codeArrayType.typeName, @"expecting typeName for arrayType");
+            FLConfirmStringIsNotEmptyWithComment(codeArrayType.type, @"expecting type for arrayType");
             FLConfirmStringIsNotEmptyWithComment(codeArrayType.name, @"expecting name for arrayType");
         
-            FLObjcType* typeForSubType = [self.project.typeRegistry typeForKey:[codeArrayType typeName]];
+            FLObjcType* typeForSubType = [self.project.typeRegistry typeForKey:[codeArrayType type]];
             [containerTypes addObject:[FLObjcContainerSubType objcContainerSubType:codeArrayType.name objcType:typeForSubType]];
         }
         
