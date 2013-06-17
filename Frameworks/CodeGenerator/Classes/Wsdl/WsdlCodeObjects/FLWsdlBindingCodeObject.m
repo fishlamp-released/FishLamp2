@@ -18,7 +18,9 @@
 #import "FLWsdlCodeMethod.h"
 
 #import "FLHttpRequestDescriptor.h"
+#if CODEGEN
 #import "FLCodeElementsAll.h"
+#endif
 
 @implementation FLWsdlBindingCodeObject
 
@@ -29,13 +31,14 @@
     factoryName = [NSString stringWithFormat:@"create%@", [factoryName stringWithUpperCaseFirstLetter]];
     
     if([self methodForName:factoryName] == nil) {
+#if CODEGEN
         FLWsdlCodeMethod* method = [self addMethod:factoryName methodReturnType:operationCodeObject.className];
         [method.codeLines addObject:
             [FLCodeStatement codeStatement:
                 [FLCodeReturn codeReturn:
                     [FLCodeCreateObject codeCreateObject:
                         [FLCodeClassName codeClassName:operationCodeObject.className]]]]];
-        
+#endif
 //        [FLReturnNewObjectCodeLine returnNewObjectCodeLine:operationCodeObject.className]];
     }
 }
@@ -67,6 +70,7 @@
     
 	FLCodeProperty* urlProp = [self addProperty:@"url" propertyType:@"string"];
 	urlProp.isImmutable = YES;
+#if CODEGEN
 	urlProp.defaultValue = [FLCodeStatement codeStatement:
                                 [FLCodeReturn codeReturn:
                                     [FLCodeString codeString:url]]];
@@ -78,6 +82,7 @@
                                                 [FLCodeString codeString:targetNamespace]]];
 
 	targetNamespaceProp.isImmutable = YES;
+#endif
 		
     BOOL isSoap =   FLStringIsNotEmpty(binding.binding.transport) && 
                     [binding.binding.transport rangeOfString:@"soap"].length > 0;

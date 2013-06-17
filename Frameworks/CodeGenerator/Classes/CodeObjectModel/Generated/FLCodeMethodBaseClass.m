@@ -13,7 +13,7 @@
 #import "FLCodeVariable.h"
 #import "FLObjectDescriber.h"
 #import "FLModelObject.h"
-#import "FLCodeElement.h"
+//#import "FLCodeElement.h"
 #import "FLCodeCodeSnippet.h"
 #import "FLCodeMethodBaseClass.h"
 
@@ -37,7 +37,7 @@ FLSynthesizeLazyGetter(codeLines, NSMutableArray, _codeLines);
 #endif
 + (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"parameter" propertyClass:[FLCodeVariable class]] forContainerProperty:@"parameters"];
-    [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"codeLine" propertyClass:[FLCodeElement class]] forContainerProperty:@"codeLines"];
+//    [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"codeLine" propertyClass:[FLCodeElement class]] forContainerProperty:@"codeLines"];
 }
 @synthesize isPrivate = _isPrivate;
 @synthesize isStatic = _isStatic;

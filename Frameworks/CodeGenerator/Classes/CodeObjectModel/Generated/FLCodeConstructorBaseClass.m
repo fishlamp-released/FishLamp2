@@ -13,7 +13,7 @@
 #import "FLCodeConstructorBaseClass.h"
 #import "FLCodeVariable.h"
 #import "FLModelObject.h"
-#import "FLCodeElement.h"
+//#import "FLCodeElement.h"
 #import "FLObjectDescriber.h"
 
 @implementation FLCodeConstructorBaseClass
@@ -26,7 +26,7 @@
 }
 #endif
 + (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
-    [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"line" propertyClass:[FLCodeElement class]] forContainerProperty:@"lines"];
+//    [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"line" propertyClass:[FLCodeElement class]] forContainerProperty:@"lines"];
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"parameter" propertyClass:[FLCodeVariable class]] forContainerProperty:@"parameters"];
 }
 FLSynthesizeLazyGetter(lines, NSMutableArray, _lines);

@@ -13,8 +13,7 @@
         <generateUserObjects>YES</generateUserObjects>
         <userObjectsFolderName>Objects</userObjectsFolderName>
     </options>
-    <typeDefinition import="FLCodeElement.h" typeName="FLCodeElement" dataType="object"/>
-<!--    
+<!--
     <import path="Defaults.flproj"/>
     <defines>
         <define define="FLDataTypeObject" value="object" isString="YES" comment="used for dataType in dataTypeDefinition"/>
@@ -276,24 +275,21 @@
                 </property>
             </properties>
         </object>
-        <object className="FLCodeObjectMemberType" superclass="FLCodeVariable">
-            <properties>
+        <object className="FLCodeObjectMemberType">
+            <property name="name" type="string" comment="name of the variabl, e.g. bagelCount" useForEquality="YES"/>
+            <property name="type" type="string" comment="name of the type, e.g. bagelCount" useForEquality="YES"/>
                 <property name="isStatic" type="bool"/>
                 <property name="isWeak" type="bool" comment="NO by default"/>
-            </properties>
         </object>
         <object className="FLCodeType" comment="represents a type an name">
             <properties>
                 <property name="typeName" type="string" comment="name of the type, e.g. MyObject" useForEquality="YES"/>
                 <property name="defaultValue" type="string"/>
-                <!-- internal -->
-                <property name="typeNameUnmodified" type="string"/>
             </properties>
         </object>
-        <object className="FLCodeVariable" superclass="FLCodeType">
-            <properties>
-                <property name="name" type="string" comment="name of the type, e.g. bagelCount" useForEquality="YES"/>
-            </properties>
+        <object className="FLCodeVariable">
+            <property name="name" type="string" comment="name of the variabl, e.g. bagelCount" useForEquality="YES"/>
+            <property name="type" type="string" comment="name of the type, e.g. bagelCount" useForEquality="YES"/>
         </object>
         <object className="FLCodeDefine">
             <properties>
@@ -317,5 +313,26 @@
                 <property name="value" type="string" comment=""/>
             </properties>
         </object>
+
+        <object className="FLCodeElement" superclass="FLModelObject">
+                <property name="rep" type="object"/>
+        </object>
+        
+        <object className="FLCodeReturn" superclass="FLCodeElement"/>
+        
+        <object className="FLCodeString" superclass="FLCodeElement"/>
+            
+        <object className="FLCodeCreateObject" superclass="FLCodeElement"/>
+        
+        <object className="FLCodeClassName" superclass="FLCodeElement"/>
+        
+        <object className="FLCodeStatement" superclass="FLCodeElement"/>
+
+        <object className="FLCodeSequence" superclass="FLModelObject">
+            <property name="statements" type="array">
+                <arrayType name="statement" typeName="FLCodeElement"/>
+            </property>
+        </object>
+
     </objects>
 </project>

@@ -7,6 +7,7 @@
 //
 
 #import "FLObjcCodeLines.h"
+#if CODEGEN
 #import "FLCodeElementsAll.h"
 
 #import "FLObjcType.h"
@@ -14,6 +15,7 @@
 #import "FLObjcProject.h"
 #import "FLObjcTypeRegistry.h"
 #import "FLObjcCodeGeneratorHeaders.h"
+
 
 @implementation NSObject (FLObjcCodeLine)
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
@@ -72,3 +74,5 @@
 }
 
 @end
+
+#endif

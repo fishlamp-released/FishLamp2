@@ -76,10 +76,10 @@
 - (id) confirmedKey:(id) key {
     FLAssertNotNil(key);
 
-    key = [self resolveKey:key];
-    FLConfirmWithComment(key != nil, @"object %@ does not exist", key);
+    id outKey = [self resolveKey:key];
+    FLConfirmWithComment(outKey != nil, @"object %@ does not exist", key);
 
-    return key;
+    return outKey;
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state 
@@ -119,11 +119,11 @@
     FLAssertNotNil(object);
     FLAssertNotNil(key);
 
-    key = [self mutateKey:key];
+    id newkey = [self mutateKey:key];
 
-    FLConfirmWithComment([self resolveKey:key] == nil, @"key already exists (or is alias) %@", key);
+    FLConfirmWithComment([self resolveKey:newkey] == nil, @"key already exists (or is alias): \"%@\"", newkey);
 
-    [_objects setObject:object forKey:key];
+    [_objects setObject:object forKey:newkey];
 }
 
 - (void) replaceObject:(id) object forKey:(id) key {
