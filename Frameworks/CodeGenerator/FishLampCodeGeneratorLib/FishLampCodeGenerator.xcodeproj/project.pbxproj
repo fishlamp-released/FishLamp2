@@ -22,6 +22,13 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		274CBDF1176FCCAB00519400 /* FLImportedTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 274CBDE8176FCCAB00519400 /* FLImportedTestObject.m */; };
+		274CBDF3176FCCAB00519400 /* FLMyEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = 274CBDEC176FCCAB00519400 /* FLMyEnum.m */; };
+		274CBDF4176FCCAB00519400 /* FLTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 274CBDEE176FCCAB00519400 /* FLTestObject.m */; };
+		274CBDFA176FCFF100519400 /* FLImportedTestObjectBaseClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 274CBDF6176FCFF000519400 /* FLImportedTestObjectBaseClass.h */; };
+		274CBDFC176FCFF100519400 /* FLTestObjectBaseClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 274CBDF8176FCFF100519400 /* FLTestObjectBaseClass.h */; };
+		274CBDFE176FCFFC00519400 /* FLImportedTestObjectBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 274CBDF7176FCFF100519400 /* FLImportedTestObjectBaseClass.m */; };
+		274CBDFF176FCFFC00519400 /* FLTestObjectBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 274CBDF9176FCFF100519400 /* FLTestObjectBaseClass.m */; };
 		27795D4017639A8900B314EA /* FLObjcConstructor.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795D3E17639A8900B314EA /* FLObjcConstructor.h */; };
 		27795D4117639A8900B314EA /* FLObjcConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D3F17639A8900B314EA /* FLObjcConstructor.m */; };
 		27795D921763A5E800B314EA /* FLCodeDataTypeCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795D471763A5E800B314EA /* FLCodeDataTypeCollection.h */; };
@@ -34,11 +41,6 @@
 		27795D9C1763A5E800B314EA /* FLCodeProjectReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D511763A5E800B314EA /* FLCodeProjectReader.m */; };
 		27795DDC1763A96100B314EA /* FLObjcClassConstructor.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795DDA1763A96100B314EA /* FLObjcClassConstructor.h */; };
 		27795DDD1763A96100B314EA /* FLObjcClassConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795DDB1763A96100B314EA /* FLObjcClassConstructor.m */; };
-		279045B017603BC30036714E /* FLImportedTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 279045A717603BC30036714E /* FLImportedTestObject.m */; };
-		279045B117603BC30036714E /* FLImportedTestObjectGenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 279045A917603BC30036714E /* FLImportedTestObjectGenerated.m */; };
-		279045B217603BC30036714E /* FLMyEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = 279045AB17603BC30036714E /* FLMyEnum.m */; };
-		279045B317603BC30036714E /* FLTestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 279045AD17603BC30036714E /* FLTestObject.m */; };
-		279045B417603BC30036714E /* FLTestObjectGenerated.m in Sources */ = {isa = PBXBuildFile; fileRef = 279045AF17603BC30036714E /* FLTestObjectGenerated.m */; };
 		279DECEC175FCB6800CDE628 /* libFishLampCodeGenerator-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 279FFBEC175D4CCB003F06C4 /* libFishLampCodeGenerator-64-MRC.a */; };
 		279DECED175FCB6800CDE628 /* FishLampOSXAppLib-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 279DECE5175FCB4C00CDE628 /* FishLampOSXAppLib-64-MRC.a */; };
 		279FFBED175D4CCB003F06C4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783D3321175C239D0072A61C /* Cocoa.framework */; };
@@ -500,6 +502,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		274CBDE7176FCCAB00519400 /* FLImportedTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImportedTestObject.h; sourceTree = "<group>"; };
+		274CBDE8176FCCAB00519400 /* FLImportedTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImportedTestObject.m; sourceTree = "<group>"; };
+		274CBDEB176FCCAB00519400 /* FLMyEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMyEnum.h; sourceTree = "<group>"; };
+		274CBDEC176FCCAB00519400 /* FLMyEnum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMyEnum.m; sourceTree = "<group>"; };
+		274CBDED176FCCAB00519400 /* FLTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTestObject.h; sourceTree = "<group>"; };
+		274CBDEE176FCCAB00519400 /* FLTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTestObject.m; sourceTree = "<group>"; };
+		274CBDF6176FCFF000519400 /* FLImportedTestObjectBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImportedTestObjectBaseClass.h; sourceTree = "<group>"; };
+		274CBDF7176FCFF100519400 /* FLImportedTestObjectBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImportedTestObjectBaseClass.m; sourceTree = "<group>"; };
+		274CBDF8176FCFF100519400 /* FLTestObjectBaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTestObjectBaseClass.h; sourceTree = "<group>"; };
+		274CBDF9176FCFF100519400 /* FLTestObjectBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTestObjectBaseClass.m; sourceTree = "<group>"; };
 		27681C8B175D48BC00AC25CA /* CodeGeneratorSharedConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = CodeGeneratorSharedConfig.xcconfig; path = CodeGenerator/CodeGeneratorSharedConfig.xcconfig; sourceTree = SOURCE_ROOT; };
 		27681C8C175D48BC00AC25CA /* CodeGeneratorTargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "CodeGeneratorTargetSettings-OSX-32-MRC.xcconfig"; path = "CodeGenerator/CodeGeneratorTargetSettings-OSX-32-MRC.xcconfig"; sourceTree = SOURCE_ROOT; };
 		27681C8D175D48BC00AC25CA /* CodeGeneratorTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "CodeGeneratorTargetSettings-OSX-64-ARC.xcconfig"; path = "CodeGenerator/CodeGeneratorTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -535,16 +547,6 @@
 		2787B64617415E620010C2C6 /* CodeGeneratorTestTargetSettings-OSX-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "CodeGeneratorTestTargetSettings-OSX-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
 		2787B65F17415F060010C2C6 /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		2787B66017415F060010C2C6 /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
-		279045A617603BC30036714E /* FLImportedTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLImportedTestObject.h; path = ../../../../../../../Zen/zenfolio/FishLamp/Frameworks/CodeGenerator/Test/Classes/XMLTestObject/FLImportedTestObject.h; sourceTree = "<group>"; };
-		279045A717603BC30036714E /* FLImportedTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLImportedTestObject.m; path = ../../../../../../../Zen/zenfolio/FishLamp/Frameworks/CodeGenerator/Test/Classes/XMLTestObject/FLImportedTestObject.m; sourceTree = "<group>"; };
-		279045A817603BC30036714E /* FLImportedTestObjectGenerated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLImportedTestObjectGenerated.h; path = ../../../../../../../Zen/zenfolio/FishLamp/Frameworks/CodeGenerator/Test/Classes/XMLTestObject/FLImportedTestObjectGenerated.h; sourceTree = "<group>"; };
-		279045A917603BC30036714E /* FLImportedTestObjectGenerated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLImportedTestObjectGenerated.m; path = ../../../../../../../Zen/zenfolio/FishLamp/Frameworks/CodeGenerator/Test/Classes/XMLTestObject/FLImportedTestObjectGenerated.m; sourceTree = "<group>"; };
-		279045AA17603BC30036714E /* FLMyEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLMyEnum.h; path = ../../../../../../../Zen/zenfolio/FishLamp/Frameworks/CodeGenerator/Test/Classes/XMLTestObject/FLMyEnum.h; sourceTree = "<group>"; };
-		279045AB17603BC30036714E /* FLMyEnum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLMyEnum.m; path = ../../../../../../../Zen/zenfolio/FishLamp/Frameworks/CodeGenerator/Test/Classes/XMLTestObject/FLMyEnum.m; sourceTree = "<group>"; };
-		279045AC17603BC30036714E /* FLTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLTestObject.h; path = ../../../../../../../Zen/zenfolio/FishLamp/Frameworks/CodeGenerator/Test/Classes/XMLTestObject/FLTestObject.h; sourceTree = "<group>"; };
-		279045AD17603BC30036714E /* FLTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLTestObject.m; path = ../../../../../../../Zen/zenfolio/FishLamp/Frameworks/CodeGenerator/Test/Classes/XMLTestObject/FLTestObject.m; sourceTree = "<group>"; };
-		279045AE17603BC30036714E /* FLTestObjectGenerated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLTestObjectGenerated.h; path = ../../../../../../../Zen/zenfolio/FishLamp/Frameworks/CodeGenerator/Test/Classes/XMLTestObject/FLTestObjectGenerated.h; sourceTree = "<group>"; };
-		279045AF17603BC30036714E /* FLTestObjectGenerated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLTestObjectGenerated.m; path = ../../../../../../../Zen/zenfolio/FishLamp/Frameworks/CodeGenerator/Test/Classes/XMLTestObject/FLTestObjectGenerated.m; sourceTree = "<group>"; };
 		2797C8B9175D472300FBD667 /* FLTestObjects.cgjson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLTestObjects.cgjson; sourceTree = "<group>"; };
 		2797C8BC175D472300FBD667 /* FLImportedTestObject.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLImportedTestObject.flproj; sourceTree = "<group>"; };
 		2797C8C3175D472300FBD667 /* FLTestObjects.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLTestObjects.flproj; sourceTree = "<group>"; };
@@ -984,6 +986,15 @@
 			path = ../CodeLines;
 			sourceTree = "<group>";
 		};
+		274CBDE2176FBBA400519400 /* Targets */ = {
+			isa = PBXGroup;
+			children = (
+				2787B49217415C320010C2C6 /* CodeGenerator */,
+				2787B46E17415BBE0010C2C6 /* CodeGeneratorTest */,
+			);
+			name = Targets;
+			sourceTree = "<group>";
+		};
 		275435F9161A1EE900D93D85 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1075,8 +1086,7 @@
 			children = (
 				2797C8B8175D472300FBD667 /* Test */,
 				27B35F2A175D4FC3002A4A3E /* Classes */,
-				2787B49217415C320010C2C6 /* CodeGenerator */,
-				2787B46E17415BBE0010C2C6 /* CodeGeneratorTest */,
+				274CBDE2176FBBA400519400 /* Targets */,
 				2788768E1603E98600C8B7B6 /* Frameworks */,
 				2787B65E17415F060010C2C6 /* FishLampProjectSettings */,
 				2788768D1603E98600C8B7B6 /* Products */,
@@ -1139,16 +1149,16 @@
 		2797C8BB175D472300FBD667 /* XMLTestObject */ = {
 			isa = PBXGroup;
 			children = (
-				279045A617603BC30036714E /* FLImportedTestObject.h */,
-				279045A717603BC30036714E /* FLImportedTestObject.m */,
-				279045A817603BC30036714E /* FLImportedTestObjectGenerated.h */,
-				279045A917603BC30036714E /* FLImportedTestObjectGenerated.m */,
-				279045AA17603BC30036714E /* FLMyEnum.h */,
-				279045AB17603BC30036714E /* FLMyEnum.m */,
-				279045AC17603BC30036714E /* FLTestObject.h */,
-				279045AD17603BC30036714E /* FLTestObject.m */,
-				279045AE17603BC30036714E /* FLTestObjectGenerated.h */,
-				279045AF17603BC30036714E /* FLTestObjectGenerated.m */,
+				274CBDF6176FCFF000519400 /* FLImportedTestObjectBaseClass.h */,
+				274CBDF7176FCFF100519400 /* FLImportedTestObjectBaseClass.m */,
+				274CBDF8176FCFF100519400 /* FLTestObjectBaseClass.h */,
+				274CBDF9176FCFF100519400 /* FLTestObjectBaseClass.m */,
+				274CBDE7176FCCAB00519400 /* FLImportedTestObject.h */,
+				274CBDE8176FCCAB00519400 /* FLImportedTestObject.m */,
+				274CBDEB176FCCAB00519400 /* FLMyEnum.h */,
+				274CBDEC176FCCAB00519400 /* FLMyEnum.m */,
+				274CBDED176FCCAB00519400 /* FLTestObject.h */,
+				274CBDEE176FCCAB00519400 /* FLTestObject.m */,
 				2797C8BC175D472300FBD667 /* FLImportedTestObject.flproj */,
 				2797C8C3175D472300FBD667 /* FLTestObjects.flproj */,
 			);
@@ -1877,6 +1887,8 @@
 				27F01EF7176F776900DEE29A /* FLCodeGeneratorError.h in Headers */,
 				27F01F03176F938900DEE29A /* FLCodeGeneratorOperation.h in Headers */,
 				27F01F0B176F984000DEE29A /* FLCodeGeneratorProjectProvider.h in Headers */,
+				274CBDFA176FCFF100519400 /* FLImportedTestObjectBaseClass.h in Headers */,
+				274CBDFC176FCFF100519400 /* FLTestObjectBaseClass.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1990,11 +2002,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E0E1F01741D322005CB744 /* main.m in Sources */,
-				279045B017603BC30036714E /* FLImportedTestObject.m in Sources */,
-				279045B117603BC30036714E /* FLImportedTestObjectGenerated.m in Sources */,
-				279045B217603BC30036714E /* FLMyEnum.m in Sources */,
-				279045B317603BC30036714E /* FLTestObject.m in Sources */,
-				279045B417603BC30036714E /* FLTestObjectGenerated.m in Sources */,
+				274CBDF1176FCCAB00519400 /* FLImportedTestObject.m in Sources */,
+				274CBDF3176FCCAB00519400 /* FLMyEnum.m in Sources */,
+				274CBDF4176FCCAB00519400 /* FLTestObject.m in Sources */,
+				274CBDFE176FCFFC00519400 /* FLImportedTestObjectBaseClass.m in Sources */,
+				274CBDFF176FCFFC00519400 /* FLTestObjectBaseClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

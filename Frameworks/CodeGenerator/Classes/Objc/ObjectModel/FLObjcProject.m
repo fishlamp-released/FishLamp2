@@ -108,7 +108,7 @@
     
 	for(FLCodeEnumType* aEnum in project.enumTypes) {
         if(FLStringIsEmpty(aEnum.name)) {
-            FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeMissingName, @"Enum does not have 'typeName'");
+            FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeMissingName, @"Enum does not have 'name'");
         }
 
         FLObjcEnumName* name = [FLObjcEnumName objcEnumName:aEnum.name prefix:prefix];
@@ -118,7 +118,7 @@
     for(FLCodeObject* object in project.classes) {
         
         if(FLStringIsEmpty(object.name)) {
-            FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeMissingName, @"Object does not have 'className'");
+            FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeMissingName, @"Object does not have 'name'");
         }
         
         {

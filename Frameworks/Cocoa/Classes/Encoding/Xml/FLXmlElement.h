@@ -32,6 +32,8 @@
 @property (readonly, strong, nonatomic) NSString* xmlElementTag;
 @property (readonly, strong, nonatomic) NSString* xmlElementCloseTag;
 
+@property (readonly, strong, nonatomic) NSString* fullPath;
+
 - (id) initWithXmlElementTag:(NSString*) tag 
           xmlElementCloseTag:(NSString*) xmlElementCloseTag;
           
@@ -46,7 +48,7 @@ xmlElementCloseTag:(NSString*) xmlElementCloseTag;
 - (void) appendAttribute:(NSString*) attributeValue forKey:(NSString*) key;
 
 - (void) addElement:(FLXmlElement*) element;
-  
+
 @end
 
 

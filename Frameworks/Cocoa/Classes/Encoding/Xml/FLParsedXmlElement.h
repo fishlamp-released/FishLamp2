@@ -36,7 +36,7 @@
 @property (readonly, strong, nonatomic) NSString* prefix;
 @property (readonly, assign, nonatomic) BOOL isQualified;
 @property (readonly, strong, nonatomic) NSString* targetNamespace;
-
+@property (readonly, strong, nonatomic) NSString* fullPath;
 
 - (void) appendStringToValue:(NSString*) string;
 

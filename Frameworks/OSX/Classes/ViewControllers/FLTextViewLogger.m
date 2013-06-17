@@ -73,7 +73,7 @@
         self.buffer = nil;
         _lastUpdate = [NSDate timeIntervalSinceReferenceDate];
     
-        if(scroll) {
+        if(scroll && contentHeight > scrollBottom) {
             [_textView scrollRangeToVisible:NSMakeRange(textStorage.length, 0)];
         }
     }

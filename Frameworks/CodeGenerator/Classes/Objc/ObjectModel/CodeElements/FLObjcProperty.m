@@ -158,13 +158,18 @@
             }
         }
     }
-        
+
     if(codeProperty.defaultValue) {
-    
-        [self.getter.code appendCodeElement:codeProperty.defaultValue
+#if CODEGEN
+        FLCodeElement* element = [FLCodeStatement codeStatement:
+                                        [FLCodeReturn codeReturn:
+                                            [FLCodeString codeString:codeProperty.defaultValue]]]
+
+        [self.getter.code appendCodeElement:element
                                 withProject:self.project];
+#endif
     }
-    
+
     [self.parentObject addProperty:self];
 }
 

@@ -22,6 +22,7 @@
 
 @implementation FLXmlObjectBuilder
 @synthesize decoder = _decoder;
+@synthesize strict = _strict;
 
 - (id) init {
     return [self initWithDataDecoder:[FLDataEncoder dataEncoder]];

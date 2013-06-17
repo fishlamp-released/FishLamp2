@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<code projectName="FishLamp" canLazyCreate="YES" isWildcardArray="YES">
-    <generatorOptions typePrefix="FL"/>
-    <organization name="GreenTongue Software, LLC"/>
-    <objects>
+<code >
         <class name="FLImportedTestObject" protocols="NSCopying, NSCoding">
-            <properties>
                 <property name="teddy" type="string"/>
                 <property name="chloe" type="string"/>
                 <property name="sanjo" type="string"/>
-            </properties>
         </class>
-    </objects>
 </code>

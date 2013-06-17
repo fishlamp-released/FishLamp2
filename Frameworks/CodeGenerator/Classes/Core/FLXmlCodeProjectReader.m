@@ -30,6 +30,7 @@
     FLParsedXmlElement* parsedXml = [[FLXmlParser xmlParser] parseData:data];
     
     FLXmlObjectBuilder* builder = [FLXmlObjectBuilder xmlObjectBuilder:[FLDataEncoder dataEncoder]];
+    builder.strict = YES;
     
     FLCodeProject* project = [FLCodeProject objectWithXmlElement:parsedXml withObjectBuilder:builder];
     FLAssertNotNil(project);

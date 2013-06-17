@@ -65,12 +65,7 @@
 
 @end
 
-
-@interface FLObservable : NSObject {
-@private
-    __unsafe_unretained id _observer;
-}
-
+@protocol FLObservable <NSObject>
 @property (readwrite, assign, nonatomic) id observer;
 
 - (BOOL) sendObservation:(SEL) messageSelector;
@@ -80,6 +75,13 @@
 - (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
 
 - (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
+@end
+
+@interface FLObservable : NSObject<FLObservable> {
+@private
+    __unsafe_unretained id _observer;
+}
+
 
 @end
 

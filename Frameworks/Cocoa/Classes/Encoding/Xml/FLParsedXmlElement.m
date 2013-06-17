@@ -211,6 +211,20 @@
     return count;
 }
 
+- (void) appendFullPath:(NSMutableString*) path {
+    if(self.parent) {
+        [self.parent appendFullPath:path];
+    }
+
+    [path appendFormat:@"<%@>", self.elementName];
+}
+
+- (NSString*) fullPath {
+    NSMutableString* fullPath = [NSMutableString string];
+    [self appendFullPath:fullPath];
+    return fullPath;
+}
+
 @end
 
 ////

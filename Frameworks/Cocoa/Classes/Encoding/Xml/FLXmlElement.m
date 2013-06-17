@@ -55,6 +55,25 @@
 }
 #endif
 
+- (void) appendFullPath:(NSMutableString*) path {
+    if(self.parent) {
+        [self.parent appendFullPath:path];
+    }
+
+    if(path.length) {
+        [path appendFormat:@"/%@", self.xmlElementTag];
+    }
+    else {
+        [path appendString:self.xmlElementTag];
+    }
+}
+
+- (NSString*) fullPath {
+    NSMutableString* fullPath = [NSMutableString string];
+    [self appendFullPath:fullPath];
+    return fullPath;
+}
+
 - (void) setAttribute:(NSString*) attributeValue forKey:(NSString*) key {
     if(!_attributes) {
         _attributes = [[NSMutableDictionary alloc] init];

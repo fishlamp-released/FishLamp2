@@ -54,7 +54,7 @@
             
             if(object) {
                 if([outObject valueForKey:element.elementName]) {
-                    FLTrace(@"replacing non-nil value for [%@ %@]", NSStringFromClass([object class]),  element.elementName);
+                    FLTrace(@"replacing non-nil value for [%@ %@]", NSStringFromClass([object class]),  element.fullPath);
                 } 
             
 //                FLAssertNil([outObject valueForKey:element.elementName]);
@@ -62,7 +62,11 @@
                 [outObject setValue:object forKey:element.elementName];
             }
             else {
-                FLTrace(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.elementName);
+                FLTrace(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.fullPath);
+
+                if(builder.strict) {
+                    FLConfirmationFailureWithComment(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.fullPath);
+                }
             }
         }
         else {
@@ -84,13 +88,25 @@
                         [array addObject:objectForArray];
                     }
                     else {
-                        FLLog(@"array object not inflated for %@.%@", NSStringFromClass([outObject class]), walker.elementName);
+                        FLTrace(@"array object not inflated for %@.%@",
+                            NSStringFromClass([outObject class]),
+                            walker.fullPath);
+
+                        if(builder.strict) {
+                            FLConfirmationFailureWithComment(@"Array object not inflated: %@:%@", NSStringFromClass([outObject class]), walker.fullPath);
+                        }
+
                     }
                     walker = walker.sibling;
                 }
             }
             else {
-                FLLog(@"object builder skipped missing propertyDescriber named: %@:%@", NSStringFromClass(self.objectClass),element.elementName);
+                FLTrace(@"object builder skipped missing propertyDescriber named: %@:%@", NSStringFromClass(self.objectClass),element.fullPath);
+
+                if(builder.strict) {
+                    FLConfirmationFailureWithComment(@"Unknown property: %@", element.fullPath);
+                }
+
             }
         }
         

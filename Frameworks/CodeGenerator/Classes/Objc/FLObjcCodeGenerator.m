@@ -16,15 +16,9 @@
 }
 
 - (void) generateCodeForProject:(FLCodeProject*) inputProject {
-
-    @try {
-        FLObjcProject* project = [FLObjcProject objcProject];
-        [project configureWithProjectInput:inputProject];
-        [project.fileManager writeFilesToDisk:self];
-    }
-    @catch(NSException* ex) {
-
-    }
+    FLObjcProject* project = [FLObjcProject objcProject];
+    [project configureWithProjectInput:inputProject];
+    [project.fileManager writeFilesToDisk:self];
 }
 
 @end

@@ -17,7 +17,10 @@
 @interface FLXmlObjectBuilder : NSObject {
 @private
     id<FLDataDecoding> _decoder;
+
+    BOOL _strict;
 }
+@property (readwrite, assign, nonatomic) BOOL strict;
 @property (readonly, strong,nonatomic) id<FLDataDecoding> decoder;
 
 - (id) initWithDataDecoder:(id<FLDataDecoding>) decoder;

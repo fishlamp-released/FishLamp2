@@ -36,9 +36,25 @@
 }
 
 - (id) performSynchronously {
-    FLCodeProject* project = [self.projectProvider readProjectForCodeGenerator:self.codeGenerator];
-    [self.codeGenerator generateCodeForProject:project];
-    return project;
+
+    FLCodeProject* project = nil;
+    @try {
+        project = [self.projectProvider readProjectForCodeGenerator:self.codeGenerator];
+
+        [self.codeGenerator sendObservation:@selector(codeGenerator:generationWillBeginForProject:) withObject:self.codeGenerator withObject:project];
+
+        [self.codeGenerator generateCodeForProject:project];
+
+        [self.codeGenerator sendObservation:@selector(codeGenerator:generationDidFinishForProject:) withObject:self.codeGenerator withObject:project];
+
+        return project;
+    }
+    @catch(NSException* ex) {
+        [self.codeGenerator sendObservation:@selector(codeGenerator:generationDidFailForProject:withError:) withObject:self.codeGenerator withObject:project withObject:ex.error];
+        @throw;
+    }
+
+    return nil;
 }
 
 #if FL_MRC
