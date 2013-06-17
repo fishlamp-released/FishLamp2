@@ -7,43 +7,80 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import <Foundation/Foundation.h>
-#import <dispatch/dispatch.h>
 #import "FishLamp.h"
-
-@interface NSObject (FLObservationReceiving)
-
-@end
 
 @interface NSObject (FLObservationSending)
 
-//- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver;
-//
-//- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object;
-//
-//- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object1 withObject:(id) object2;
-//
-//- (BOOL) sendObservation:(SEL) messageSelector toObserver:(id) asyncObserver withObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
+// observations are queued on the main thread,
+// these are used for notifying UI code from async threads.
+// if the target doesn't respond to the selector, NO is returned
+// and the message is ignored
 
-//- (id) asyncObserver;
+- (BOOL) receiveObservation:(SEL) messageSelector;
 
-//// these use [self asyncObserver] as toObserver parameter
-//
-//- (BOOL) sendObservation:(SEL) messageSelector;
-//
-//- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object;
-//
-//- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
-//
-//- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
+- (BOOL) receiveObservation:(SEL) messageSelector 
+                 withObject:(id) object;
+
+- (BOOL) receiveObservation:(SEL) messageSelector 
+                 withObject:(id) object1 
+                 withObject:(id) object2;
+
+- (BOOL) receiveObservation:(SEL) messageSelector 
+                 withObject:(id) object1 
+                 withObject:(id) object2 
+                 withObject:(id) object3;
+
+- (BOOL) receiveObservation:(SEL) messageSelector 
+                 withObject:(id) object1 
+                 withObject:(id) object2 
+                 withObject:(id) object3
+                 withObject:(id) object4;
+
+// sending
+
+- (BOOL) sendObservation:(SEL) selector
+              toObserver:(id) observer;
+
+- (BOOL) sendObservation:(SEL) selector 
+              toObserver:(id) observer 
+              withObject:(id) object;
+
+- (BOOL) sendObservation:(SEL) selector 
+              toObserver:(id) observer 
+              withObject:(id) object1 
+              withObject:(id) object2;
+
+- (BOOL) sendObservation:(SEL) selector 
+              toObserver:(id) observer 
+              withObject:(id) object1 
+              withObject:(id) object2  
+              withObject:(id) object3;
+
+- (BOOL) sendObservation:(SEL) selector 
+              toObserver:(id) observer 
+              withObject:(id) object1 
+              withObject:(id) object2  
+              withObject:(id) object3
+              withObject:(id) object4;
 
 @end
+
 
 @interface FLObservable : NSObject {
 @private
     __unsafe_unretained id _observer;
 }
-@property (readwrite, assign) id observer;
+
+@property (readwrite, assign, nonatomic) id observer;
+
+- (BOOL) sendObservation:(SEL) messageSelector;
+
+- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object;
+
+- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2;
+
+- (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
+
 @end
 
 

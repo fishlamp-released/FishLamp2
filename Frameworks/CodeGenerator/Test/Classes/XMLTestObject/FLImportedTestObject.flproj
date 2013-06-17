@@ -3,12 +3,12 @@
     <generatorOptions typePrefix="FL"/>
     <organization name="GreenTongue Software, LLC"/>
     <objects>
-        <object className="FLImportedTestObject" protocols="NSCopying, NSCoding">
+        <class name="FLImportedTestObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property name="teddy" type="string"/>
                 <property name="chloe" type="string"/>
                 <property name="sanjo" type="string"/>
             </properties>
-        </object>
+        </class>
     </objects>
 </code>

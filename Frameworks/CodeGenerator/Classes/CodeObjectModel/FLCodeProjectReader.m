@@ -86,12 +86,13 @@
 
     FLAssertIsNotNil(url);
 
-    return [FLCodeProjectLocation resourceDescriptor:url resourceType:type];
+    return [FLCodeProjectLocation codeProjectLocation:url resourceType:type];
 }
 
 - (void) didLoadProject:(FLCodeProject*) project fromLocation:(FLCodeProjectLocation*) location {
     FLConfirmNotNilWithComment(project, @"project was not created");
-    
+
+    project.projectLocation = location;
     project.projectPath = location.URL.path;
     
 	if(FLStringIsEmpty(project.info.projectName)){
@@ -122,12 +123,12 @@
 - (void) finalizeLoadedProject:(FLCodeProject*) project {
     
     if(project.options.canLazyCreate) {
-        for(FLCodeObject* object in project.objects) {
+        for(FLCodeObject* object in project.classes) {
             object.canLazyCreate = YES;
         }
     }
 
-    for(FLCodeObject* object in project.objects) {
+    for(FLCodeObject* object in project.classes) {
         if(object.canLazyCreate) {
             for(FLCodeProperty* prop in object.properties) {
                 prop.canLazyCreate = YES;
@@ -135,6 +136,14 @@
         }
     }
 }
+
+- (FLCodeProject *) readProjectFromFileURL:(NSURL*) fileURL {
+    FLCodeProjectLocation* projectLocation = [FLCodeProjectLocation codeProjectLocation:fileURL
+                                                                           resourceType:FLCodeProjectLocationTypeFile];
+
+    return [self readProjectFromLocation:projectLocation];
+}
+
 
 - (FLCodeProject *) readProjectFromLocation:(FLCodeProjectLocation*) location {
     FLAssertNotNil(_fileReaders);

@@ -107,7 +107,7 @@
 - (id) initWithClassName:(NSString*) className {	
 	self = [super init];
 	if(self) {
-		self.className = className;
+		self.name = className;
 	}
 	return self;
 }

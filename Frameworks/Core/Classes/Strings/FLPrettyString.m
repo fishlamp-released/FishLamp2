@@ -69,7 +69,7 @@
     return [_storage length];
 }
 
-#if FL_DEALLOC
+#if FL_MRC
 - (void) dealloc {
     [_eolString release];
     [_whitespace release];
@@ -87,11 +87,12 @@
     [self appendStringToStorage:[string string]];
 }
 
+- (void) appendPrettyString:(FLPrettyString*) string {
+    [self appendStringContainingMultipleLines:string.string];
+}
 
-- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
-    if(_whitespace) { 
-        [self appendStringToStorage:[_whitespace tabStringForScope:self.indentLevel]];
-    } 
+- (void) deleteAllCharacters {
+    [_storage deleteCharactersInRange:NSMakeRange(0, [_storage length])];
 }
 
 - (void) appendEOL {
@@ -100,6 +101,21 @@
     } 
 }
 
+- (void) appendBuildableString:(id<FLBuildableString>) buildableString {
+    [buildableString buildStringIntoStringFormatter:self];
+}
+
+- (NSString*) description {
+    return [self string];
+}
+
+
+
+- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
+    if(_whitespace) { 
+        [self appendStringToStorage:[_whitespace tabStringForScope:self.indentLevel]];
+    } 
+}
 - (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
     [self appendEOL];
 }
@@ -124,21 +140,9 @@
     --_indentLevel;
 }
 
-- (void) appendPrettyString:(FLPrettyString*) string {
-    [self appendStringContainingMultipleLines:string.string];
-}
 
-- (void) deleteAllCharacters {
-    [_storage deleteCharactersInRange:NSMakeRange(0, [_storage length])];
-}
 
-- (void) appendBuildableString:(id<FLBuildableString>) buildableString {
-    [buildableString buildStringIntoStringFormatter:self];
-}
 
-- (NSString*) description {
-    return [self string];
-}
 
 @end
 

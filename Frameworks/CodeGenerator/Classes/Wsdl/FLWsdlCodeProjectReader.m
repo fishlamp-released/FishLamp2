@@ -58,10 +58,10 @@
 	return self;
 }
 
-#if FL_DEALLOC
+#if FL_MRC
 - (void) dealloc {	
     [_declaredTypes release];
-	[_array release];
+	[_arrays release];
     [_enums release];
     [_objects release];
 	[_wsdlDefinitions release];
@@ -79,9 +79,9 @@
 }
 
 - (void) addCodeObject:(FLWsdlCodeObject*) object {
-    FLConfirmStringIsNotEmptyWithComment(object.className, @"object has no className");
+    FLConfirmStringIsNotEmptyWithComment(object.name, @"object has no className");
 
-    [self setCodeObject:object forKey:FLStringToKey(object.className)];
+    [self setCodeObject:object forKey:FLStringToKey(object.name)];
 }
 
 - (FLCodeEnumType*) enumForKey:(NSString*) key {
@@ -95,7 +95,7 @@
 
 
 - (void) addCodeEnum:(FLWsdlCodeEnumType*) enumType {
-    [self setEnum:enumType forKey:enumType.typeName];
+    [self setEnum:enumType forKey:enumType.name];
 }
 
 - (void) addArray:(FLWsdlCodeArray*) array {
@@ -307,7 +307,7 @@
 }
 
 - (void) addMessageObject:(FLWsdlMessageCodeObject*) object {
-    [_objects setObject:object forKey:FLStringToKey(object.className)];
+    [_objects setObject:object forKey:FLStringToKey(object.name)];
 }
 
 - (void) addMessageObjects:(NSArray*) messages {
@@ -337,7 +337,7 @@
 }
 
 - (void) addBindingObject:(FLWsdlBindingCodeObject*) bindingObject {
-    [_objects setObject:bindingObject forKey:FLStringToKey(bindingObject.className)];
+    [_objects setObject:bindingObject forKey:FLStringToKey(bindingObject.name)];
 }
 
 - (void) addBindingObjects:(NSArray*) bindings {
@@ -386,7 +386,7 @@
 	if(FLStringIsNotEmpty(self.wsdlDefinitions.documentation)) {
 		project.comment = self.wsdlDefinitions.documentation;
 	}
-    [project.objects addObjectsFromArray:[_objects allValues]];
+    [project.classes addObjectsFromArray:[_objects allValues]];
     [project.arrays addObjectsFromArray:[_arrays allValues]];
     [project.enumTypes addObjectsFromArray:[_enums allValues]];
 

@@ -11,10 +11,18 @@
 typedef enum {
     FLCodeGeneratorFileWriteResultUnchanged,
     FLCodeGeneratorFileWriteResultUpdated,
-    FLCodeGeneratorFileWriteResultNew
+    FLCodeGeneratorFileWriteResultNew,
+    FLCodeGeneratorFileWriteResultRemoved
 } FLCodeGeneratorFileWriteResult;
 
-@interface FLCodeGeneratorFile : NSObject {
+@protocol FLCodeGeneratorFile <NSObject>
+- (NSString*) folder;
+- (NSString*) fileName;
+
+- (NSString*) relativePathToProject;
+@end
+
+@interface FLCodeGeneratorFile : NSObject<FLCodeGeneratorFile> {
 @private
     NSString* _fileName;
     NSString* _folder;
@@ -29,7 +37,7 @@ typedef enum {
 + (id) codeGeneratorFile;
 
 - (FLCodeGeneratorFileWriteResult) writeFileToPath:(NSString*) path 
-                                  withCodeBuilder:(FLCodeBuilder*) codeBuilder;
+                                   withCodeBuilder:(FLCodeBuilder*) codeBuilder;
 
 - (void) writeCodeToCodeBuilder:(FLCodeBuilder*) codeBuilder;
 

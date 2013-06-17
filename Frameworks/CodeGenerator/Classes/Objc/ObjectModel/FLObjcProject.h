@@ -18,13 +18,11 @@
 @private 
     FLObjcFileManager* _fileManager;
     FLObjcTypeRegistry* _typeRegistry;
-
     FLObjcNamedObjectCollection* _generatedEnums;
     FLObjcNamedObjectCollection* _generatedObjects;
-    
     FLCodeProject* _inputProject;
-    
 }
+
 @property (readonly, strong, nonatomic) FLCodeProject* inputProject;
 
 @property (readonly, strong, nonatomic) FLObjcFileManager* fileManager;
@@ -35,9 +33,8 @@
 
 @property (readonly, strong, nonatomic) NSString* classPrefix;
 
-
 + (id) objcProject;
+
 - (void) configureWithProjectInput:(FLCodeProject*) project;
-- (FLCodeGeneratorResult*) generateFiles;
 
 @end

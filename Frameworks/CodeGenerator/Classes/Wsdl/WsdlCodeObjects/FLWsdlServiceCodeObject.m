@@ -39,7 +39,7 @@
         }
         
         FLWsdlCodeMethod* method =
-            [object addMethod:[portType.name stringWithDeletedSubstring:service.name] methodReturnType:portCodeObject.className];
+            [object addMethod:[portType.name stringWithDeletedSubstring:service.name] methodReturnType:portCodeObject.name];
 
 #if CODEGEN
         [method.codeLines addObject:[FLCodeStatement codeStatement:

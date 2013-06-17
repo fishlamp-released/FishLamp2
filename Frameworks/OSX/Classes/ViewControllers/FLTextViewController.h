@@ -8,13 +8,20 @@
 
 #import "FishLamp.h"
 
-#define FLDefaultFontDidChangeNotificationName @"FLDefaultFontDidChangeNotificationName"
+@class FLTextViewLogger;
 
 @interface FLTextViewController : NSViewController<NSTextViewDelegate> {
 @private
     IBOutlet NSTextView* _textView;
+
+    FLTextViewLogger* _logger;
 }
 
 @property (readonly, strong, nonatomic) NSTextView* textView;
+
+@property (readwrite, strong, nonatomic) FLTextViewLogger* logger;
+
+// optional overrides
+- (void) setLinkAttributes;
 
 @end

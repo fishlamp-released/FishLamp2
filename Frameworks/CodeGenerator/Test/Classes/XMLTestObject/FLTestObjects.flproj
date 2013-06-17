@@ -23,7 +23,7 @@
 		<import path="FLImportedTestObject.flproj" type="File"/>
 	</imports>
     <objects>
-        <object className="FLTestObject" protocols="NSCopying, NSCoding">
+        <class name="FLTestObject" protocols="NSCopying, NSCoding">
             <properties>
                 <property name="bob" type="string"/>
                 <property name="teddy" type="string"/>
@@ -61,7 +61,7 @@
                     </arrayTypes>
                 </property>
             </properties>
-        </object>
+        </class>
     </objects>
 </code>
 

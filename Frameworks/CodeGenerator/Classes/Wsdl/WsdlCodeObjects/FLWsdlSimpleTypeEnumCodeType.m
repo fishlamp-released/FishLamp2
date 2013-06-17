@@ -42,8 +42,8 @@
 + (id) wsdlSimpleTypeEnumCodeType:(FLWsdlSimpleType*) simpleType {
 	
     FLWsdlSimpleTypeEnumCodeType* enumType = FLAutorelease([[[self class] alloc] init]);
-    enumType.typeName = simpleType.name;
-    FLConfirmStringIsNotEmptyWithComment(enumType.typeName, @"expecting a name for the simple type here");
+    enumType.name = simpleType.name;
+    FLConfirmStringIsNotEmptyWithComment(enumType.name, @"expecting a name for the simple type here");
     
     [enumType addEnumerationsFromSimpleType:simpleType];
 	return enumType;

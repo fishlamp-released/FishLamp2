@@ -19,6 +19,6 @@
                 <property type="NSString" name="imageVersion"/>
                 <property type="BOOL" name="canCacheInMemory"/>
             </properties>
-        </object>
+        </class>
     </objects>
 </project>

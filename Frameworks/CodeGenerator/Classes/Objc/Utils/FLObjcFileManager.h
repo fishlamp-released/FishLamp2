@@ -7,9 +7,12 @@
 //
 
 #import "FLObjcFile.h"
+
 @class FLObjcTypeRegistry;
 @class FLObjcProject;
 @class FLCodeGeneratorResult;
+@class FLObjcFile;
+@class FLObjcCodeGenerator;
 
 @interface FLObjcFileManager : NSObject {
 @private
@@ -25,6 +28,6 @@
 
 - (void) addFile:(FLObjcFile*) file;
 
-- (FLCodeGeneratorResult*) writeFilesToDisk;
+- (void) writeFilesToDisk:(FLObjcCodeGenerator*) codeGenerator;
 
 @end

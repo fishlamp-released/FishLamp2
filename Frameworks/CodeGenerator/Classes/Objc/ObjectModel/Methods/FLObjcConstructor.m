@@ -28,14 +28,10 @@
 - (void) configureWithInputConstructor:(FLCodeConstructor*) constructor 
                             withObject:(FLObjcObject*) object {
 
-//    self.isPrivate = codeMethod.isPrivate;
-//    self.isStatic = codeMethod.isStatic;
-//    self.methodName = [FLObjcMethodName objcMethodName:codeMethod.name];
-//    
-//    if(FLStringIsNotEmpty(codeMethod.returnType)) {
-//        self.returnType = [self.project.typeRegistry typeForKey:codeMethod.returnType];
-//    }
-//
+    self.isStatic = YES;
+    self.methodName = [FLObjcMethodName objcMethodName:object.objectName.generatedName];
+    self.returnType = [self.project.typeRegistry typeForKey:@"id"];
+
 //    for(FLCodeLine* codeLine in codeMethod.codeLines) {
 //        [self.code appendCodeElement:codeLine withProject:self.project];
 //    }

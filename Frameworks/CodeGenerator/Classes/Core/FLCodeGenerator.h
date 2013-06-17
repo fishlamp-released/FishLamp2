@@ -6,16 +6,24 @@
 //	Copyright 2009 Greentongue Software. All rights reserved.
 //
 
-#import "FishLampCocoa.h"
+#import "FishLamp.h"
 
-#import "FLObjectModelAll.h"
-@class FLCodeGeneratorResult;
-@class FLCodeProjectLocation;
-
-#import "FLCodeGeneratorResult.h"
-#import "FLCodeGeneratorErrors.h"
+@class FLCodeProject;
+@protocol FLCodeGeneratorFile;
 
 @protocol FLCodeGenerator <NSObject>
-- (FLCodeGeneratorResult*) generateCodeWithCodeProject:(FLCodeProject*) project fromLocation:(FLCodeProjectLocation*) location;
+- (void) generateCodeForProject:(FLCodeProject*) project;
+@end
+
+@protocol FLCodeGeneratorObserver <NSObject>
+@optional
+- (void) codeGenerator:(id) codeGenerator willBeginGeneratingWithProject:(FLCodeProject*) project;
+- (void) codeGenerator:(id) codeGenerator didFinishGeneratingWithProject:(FLCodeProject*) project;
+- (void) codeGenerator:(id) codeGenerator didFail:(FLCodeProject*) project;
+
+- (void) codeGenerator:(id) codeGenerator didWriteNewFile:(id<FLCodeGeneratorFile>) file;
+- (void) codeGenerator:(id) codeGenerator didUpdateFile:(id<FLCodeGeneratorFile>) file;
+- (void) codeGenerator:(id) codeGenerator didSkipFile:(id<FLCodeGeneratorFile>) file;
+- (void) codeGenerator:(id) codeGenerator didRemoveFile:(id<FLCodeGeneratorFile>) file;
 @end
 

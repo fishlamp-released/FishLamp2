@@ -6,23 +6,23 @@
         <licenseName>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</licenseName>
     </license>
     <objects>
-        <object className="FLApplicationSession">
+        <class name="FLApplicationSession">
             <properties>
                 <property type="int" name="sessionId">
                     <storageOptions isPrimaryKey="YES"/>
                 </property>
                 <property type="NSString" name="userGuid"/>
             </properties>
-        </object>
-        <object className="FLLastUpdateTime">
+        </class>
+        <class name="FLLastUpdateTime">
             <properties>
                 <property type="string" name="lastUpdateId">
                     <storageOptions isPrimaryKey="YES"/>
                 </property>
                 <property type="date" name="lastUpdate"/>
             </properties>
-        </object>
-        <object className="FLUserLogin">
+        </class>
+        <class name="FLUserLogin">
             <properties>
                 <property type="NSString" name="userGuid">
                     <storageOptions isPrimaryKey="YES"/>
@@ -41,14 +41,14 @@
                 <property type="double" name="authTokenLastUpdateTime"/>
                 <property type="dictionary" name="userInfo"/>
             </properties>
-        </object>
-        <object className="FLApplicationDataVersion">
+        </class>
+        <class name="FLApplicationDataVersion">
             <properties>
                 <property type="string" name="userGuid">
                     <storageOptions isPrimaryKey="YES"/>
                 </property>
                 <property type="string" name="versionString"/>
             </properties>
-        </object>
+        </class>
     </objects>
 </project>

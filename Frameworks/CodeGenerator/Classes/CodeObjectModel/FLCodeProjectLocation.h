@@ -28,8 +28,8 @@ typedef enum {
 - (id) initWithURL:(NSURL*) url 
       resourceType:(FLCodeProjectLocationType) resourceType;
 
-+ (FLCodeProjectLocation*) resourceDescriptor:(NSURL*) url  
-                                resourceType:(FLCodeProjectLocationType) inputType;
++ (FLCodeProjectLocation*) codeProjectLocation:(NSURL*) url
+                                  resourceType:(FLCodeProjectLocationType) inputType;
 
 - (BOOL) isLocationType:(FLCodeProjectLocationType) type;
 

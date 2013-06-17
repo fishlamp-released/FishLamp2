@@ -26,20 +26,20 @@
 
 - (void) addOperationProperty:(FLWsdlOperationCodeObject*) operationCodeObject {
 
-    NSString* factoryName = [operationCodeObject.className stringWithDeletedSubstring:self.className];
+    NSString* factoryName = [operationCodeObject.name stringWithDeletedSubstring:self.name];
     
     factoryName = [NSString stringWithFormat:@"create%@", [factoryName stringWithUpperCaseFirstLetter]];
     
     if([self methodForName:factoryName] == nil) {
 #if CODEGEN
-        FLWsdlCodeMethod* method = [self addMethod:factoryName methodReturnType:operationCodeObject.className];
+        FLWsdlCodeMethod* method = [self addMethod:factoryName methodReturnType:operationCodeObject.name];
         [method.codeLines addObject:
             [FLCodeStatement codeStatement:
                 [FLCodeReturn codeReturn:
                     [FLCodeCreateObject codeCreateObject:
-                        [FLCodeClassName codeClassName:operationCodeObject.className]]]]];
+                        [FLCodeClassName codeClassName:operationCodeObject.name]]]]];
 #endif
-//        [FLReturnNewObjectCodeLine returnNewObjectCodeLine:operationCodeObject.className]];
+//        [FLReturnNewObjectCodeLine returnNewObjectCodeLine:operationCodeObject.name]];
     }
 }
 

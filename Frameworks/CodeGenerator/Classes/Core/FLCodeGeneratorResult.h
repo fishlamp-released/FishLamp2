@@ -8,25 +8,32 @@
 
 #import "FishLamp.h"
 
+@protocol FLCodeGeneratorFile;
+@class FLCodeProject;
+
 @interface FLCodeGeneratorResult : NSObject {
 @private
 	NSMutableArray* _addedFiles;
 	NSMutableArray* _changedFiles;
 	NSMutableArray* _unchangedFiles;
 	NSMutableArray* _removedFiles;
+
+    FLCodeProject* _project;
 }
 
-+ (FLCodeGeneratorResult*) codeGeneratorResult;
+@property (readwrite, strong, nonatomic) FLCodeProject* project;
 
 @property (readonly, strong, nonatomic) NSArray* addedFiles;
 @property (readonly, strong, nonatomic) NSArray* changedFiles;
 @property (readonly, strong, nonatomic) NSArray* unchangedFiles;
 @property (readonly, strong, nonatomic) NSArray* removedFiles;
 
-- (void) addNewFile:(NSString*) newFile;
-- (void) addChangedFile:(NSString*) changedFile;
-- (void) addUnchangedFile:(NSString*) unchangedFile;
-- (void) addRemovedFile:(NSString*) removedFile;
++ (FLCodeGeneratorResult*) codeGeneratorResult:(FLCodeProject*) project;
+
+- (void) addNewFile:(id<FLCodeGeneratorFile>) newFile;
+- (void) addChangedFile:(id<FLCodeGeneratorFile>) changedFile;
+- (void) addUnchangedFile:(id<FLCodeGeneratorFile>) unchangedFile;
+- (void) addRemovedFile:(id<FLCodeGeneratorFile>) removedFile;
 
 @end
 

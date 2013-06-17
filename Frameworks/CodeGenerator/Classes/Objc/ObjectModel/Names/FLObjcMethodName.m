@@ -11,7 +11,9 @@
 
 @implementation FLObjcMethodName : FLObjcName
 + (id) objcMethodName:(NSString*) methodName {
-    return FLAutorelease([[[self class] alloc] initWithIdentifierName:methodName prefix:nil suffix:nil]);
+    return FLAutorelease([[[self class] alloc] initWithIdentifierName:methodName
+                                                               prefix:nil
+                                                               suffix:nil]);
 }
 
 - (NSString*) generatedName {

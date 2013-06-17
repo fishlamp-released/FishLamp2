@@ -12,12 +12,17 @@
 
 #import "FLCodeProjectBaseClass.h"
 
+@class FLCodeProjectLocation;
+
 @interface FLCodeProject : FLCodeProjectBaseClass {
 @private
     NSString* _projectPath;
+    FLCodeProjectLocation* _projectLocation;
 }
 
 @property (readwrite, strong, nonatomic) NSString* projectPath;
+@property (readwrite, strong, nonatomic) FLCodeProjectLocation* projectLocation;
+
 @property (readonly, strong, nonatomic) NSString* projectFolderPath;
 
 + (id) codeProject;

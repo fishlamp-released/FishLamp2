@@ -296,6 +296,22 @@
 		279FE7CA176E2EB20047B077 /* NSTextView+FLTextWrapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 279FE7C4176E2EB20047B077 /* NSTextView+FLTextWrapping.m */; };
 		279FE7CB176E2EB20047B077 /* NSTextView+FLTextWrapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 279FE7C4176E2EB20047B077 /* NSTextView+FLTextWrapping.m */; };
 		279FE7CC176E2EB20047B077 /* NSTextView+FLTextWrapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 279FE7C4176E2EB20047B077 /* NSTextView+FLTextWrapping.m */; };
+		27F01F15176FA0C600DEE29A /* FLTextViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01F13176FA0C600DEE29A /* FLTextViewController.h */; };
+		27F01F16176FA0C600DEE29A /* FLTextViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01F13176FA0C600DEE29A /* FLTextViewController.h */; };
+		27F01F17176FA0C600DEE29A /* FLTextViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01F13176FA0C600DEE29A /* FLTextViewController.h */; };
+		27F01F18176FA0C600DEE29A /* FLTextViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01F13176FA0C600DEE29A /* FLTextViewController.h */; };
+		27F01F19176FA0C600DEE29A /* FLTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01F14176FA0C600DEE29A /* FLTextViewController.m */; };
+		27F01F1A176FA0C600DEE29A /* FLTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01F14176FA0C600DEE29A /* FLTextViewController.m */; };
+		27F01F1B176FA0C600DEE29A /* FLTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01F14176FA0C600DEE29A /* FLTextViewController.m */; };
+		27F01F1C176FA0C600DEE29A /* FLTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01F14176FA0C600DEE29A /* FLTextViewController.m */; };
+		27F01F22176FA49500DEE29A /* FLTextViewLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01F20176FA49500DEE29A /* FLTextViewLogger.h */; };
+		27F01F23176FA49500DEE29A /* FLTextViewLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01F20176FA49500DEE29A /* FLTextViewLogger.h */; };
+		27F01F24176FA49500DEE29A /* FLTextViewLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01F20176FA49500DEE29A /* FLTextViewLogger.h */; };
+		27F01F25176FA49500DEE29A /* FLTextViewLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01F20176FA49500DEE29A /* FLTextViewLogger.h */; };
+		27F01F26176FA49500DEE29A /* FLTextViewLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01F21176FA49500DEE29A /* FLTextViewLogger.m */; };
+		27F01F27176FA49500DEE29A /* FLTextViewLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01F21176FA49500DEE29A /* FLTextViewLogger.m */; };
+		27F01F28176FA49500DEE29A /* FLTextViewLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01F21176FA49500DEE29A /* FLTextViewLogger.m */; };
+		27F01F29176FA49500DEE29A /* FLTextViewLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01F21176FA49500DEE29A /* FLTextViewLogger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -459,6 +475,10 @@
 		27E9586B170BB86300587A8F /* TargetSettings-OSX-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TargetSettings-OSX-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
 		27E9586D170BB86E00587A8F /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		27E9586E170BB86E00587A8F /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
+		27F01F13176FA0C600DEE29A /* FLTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTextViewController.h; sourceTree = "<group>"; };
+		27F01F14176FA0C600DEE29A /* FLTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTextViewController.m; sourceTree = "<group>"; };
+		27F01F20176FA49500DEE29A /* FLTextViewLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTextViewLogger.h; sourceTree = "<group>"; };
+		27F01F21176FA49500DEE29A /* FLTextViewLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTextViewLogger.m; sourceTree = "<group>"; };
 		78329B68167E426A0024E8DC /* FishLampPaths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = FishLampPaths.xcconfig; path = FishLampXcodeConfigs/FishLampPaths.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -592,6 +612,10 @@
 				278215EF175D449B007C5F26 /* NSViewController+FLErrorSheet.m */,
 				278215F0175D449B007C5F26 /* NSWindowController+FLModalAdditions.h */,
 				278215F1175D449B007C5F26 /* NSWindowController+FLModalAdditions.m */,
+				27F01F13176FA0C600DEE29A /* FLTextViewController.h */,
+				27F01F14176FA0C600DEE29A /* FLTextViewController.m */,
+				27F01F20176FA49500DEE29A /* FLTextViewLogger.h */,
+				27F01F21176FA49500DEE29A /* FLTextViewLogger.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -782,6 +806,8 @@
 				27821712175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */,
 				2782171A175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */,
 				27821722175D449B007C5F26 /* FLWizardViewController.h in Headers */,
+				27F01F15176FA0C600DEE29A /* FLTextViewController.h in Headers */,
+				27F01F22176FA49500DEE29A /* FLTextViewLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,6 +851,8 @@
 				27821714175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */,
 				2782171C175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */,
 				27821724175D449B007C5F26 /* FLWizardViewController.h in Headers */,
+				27F01F17176FA0C600DEE29A /* FLTextViewController.h in Headers */,
+				27F01F24176FA49500DEE29A /* FLTextViewLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,6 +896,8 @@
 				27821713175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */,
 				2782171B175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */,
 				27821723175D449B007C5F26 /* FLWizardViewController.h in Headers */,
+				27F01F16176FA0C600DEE29A /* FLTextViewController.h in Headers */,
+				27F01F23176FA49500DEE29A /* FLTextViewLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,6 +941,8 @@
 				27821715175D449B007C5F26 /* FLWizardHeaderViewController.h in Headers */,
 				2782171D175D449B007C5F26 /* FLWizardNavigationViewController.h in Headers */,
 				27821725175D449B007C5F26 /* FLWizardViewController.h in Headers */,
+				27F01F18176FA0C600DEE29A /* FLTextViewController.h in Headers */,
+				27F01F25176FA49500DEE29A /* FLTextViewLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,6 +1136,8 @@
 				27821716175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */,
 				2782171E175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */,
 				27821726175D449B007C5F26 /* FLWizardViewController.m in Sources */,
+				27F01F19176FA0C600DEE29A /* FLTextViewController.m in Sources */,
+				27F01F26176FA49500DEE29A /* FLTextViewLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,6 +1177,8 @@
 				27821718175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */,
 				27821720175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */,
 				27821728175D449B007C5F26 /* FLWizardViewController.m in Sources */,
+				27F01F1B176FA0C600DEE29A /* FLTextViewController.m in Sources */,
+				27F01F28176FA49500DEE29A /* FLTextViewLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1182,6 +1218,8 @@
 				27821717175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */,
 				2782171F175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */,
 				27821727175D449B007C5F26 /* FLWizardViewController.m in Sources */,
+				27F01F1A176FA0C600DEE29A /* FLTextViewController.m in Sources */,
+				27F01F27176FA49500DEE29A /* FLTextViewLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1221,6 +1259,8 @@
 				27821719175D449B007C5F26 /* FLWizardHeaderViewController.m in Sources */,
 				27821721175D449B007C5F26 /* FLWizardNavigationViewController.m in Sources */,
 				27821729175D449B007C5F26 /* FLWizardViewController.m in Sources */,
+				27F01F1C176FA0C600DEE29A /* FLTextViewController.m in Sources */,
+				27F01F29176FA49500DEE29A /* FLTextViewLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

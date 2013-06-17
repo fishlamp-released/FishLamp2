@@ -69,7 +69,7 @@
     }
 }
 
-- (FLCodeGeneratorResult*) writeFilesToDisk {
+- (void) writeFilesToDisk:(FLObjcCodeGenerator*) codeGenerator {
 
 // TODO: refactor this.
 	
@@ -84,13 +84,6 @@
 //		commentsFile.contents = [builder buildString];
 //		[_generatedFiles addObject:commentsFile];
 //	}
-
-
-    FLCodeGeneratorResult* result = [FLCodeGeneratorResult codeGeneratorResult];
-
-    if(!_files || _files.count == 0) {
-        return result;
-    }
 
     NSString* folderPath = self.project.inputProject.projectFolderPath;
 
@@ -119,21 +112,31 @@
 
         switch(writeResult) {
             case FLCodeGeneratorFileWriteResultUnchanged:
-                [result addUnchangedFile:srcPath];
+                [codeGenerator sendObservation:@selector(codeGenerator:didSkipFile:) withObject:codeGenerator withObject:file];
+
+//                [result addUnchangedFile:file];
             break;
 
             case FLCodeGeneratorFileWriteResultUpdated:
-                [result addChangedFile:srcPath];
+                [codeGenerator sendObservation:@selector(codeGenerator:didUpdateFile:) withObject:codeGenerator withObject:file];
+
+//                [result addChangedFile:file];
             break;
 
             case FLCodeGeneratorFileWriteResultNew:
-                [result addNewFile:srcPath];
+                [codeGenerator sendObservation:@selector(codeGenerator:didWriteNewFile:) withObject:codeGenerator withObject:file];
+
+//                [result addNewFile:file];
+            break;
+
+            case FLCodeGeneratorFileWriteResultRemoved:
+                [codeGenerator sendObservation:@selector(codeGenerator:didRemoveFile:) withObject:codeGenerator withObject:file];
+
+//                [result addRemovedFile:file];
             break;
 
         }
     }
-
-    return result;
 }
 
 - (void) addFile:(FLObjcFile*) file {

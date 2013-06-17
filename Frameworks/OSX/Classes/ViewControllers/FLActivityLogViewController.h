@@ -10,21 +10,13 @@
 #import <Cocoa/Cocoa.h>
 
 #import "FLActivityLog.h"
+#import "FLTextViewController.h"
 
-@interface FLActivityLogViewController : NSViewController {
+@interface FLActivityLogViewController : FLTextViewController {
 @private
     id<FLActivityLog> _activityLog;
-    IBOutlet NSTextView* _textView;
-    IBOutlet NSScrollView* _scrollView;
-    
-    NSMutableAttributedString* _buffer;
-    NSTimeInterval _lastUpdate;
 }
 
 @property (readwrite, strong, nonatomic) id<FLActivityLog> activityLog;
-
-- (void) clearContents;
-
-- (void) appendAttributedString:(NSAttributedString*) string;
 
 @end

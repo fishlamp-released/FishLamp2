@@ -16,11 +16,11 @@
 
 @implementation FLWsdlCodeObject
 
-- (id) initWithClassName:(NSString*) className superclassName:(NSString*) superclassName {	
+- (id) initWithClassName:(NSString*) name superclassName:(NSString*) superclassName {
 	self = [self init];
 	if(self) {
 //		self.protocols = @"NSCoding, NSCopying";
-        self.className = className;
+        self.name = name;
 		self.superclass = superclassName;
     }
 	return self;
@@ -30,9 +30,9 @@
     return FLAutorelease([[[self class] alloc] initWithClassName:className superclassName:superclassName]);
 }
 
-- (void) setClassName:(NSString*) className {
-    [super setClassName:FLDeleteNamespacePrefix(className)];
-    FLConfirmStringIsNotEmptyWithComment(self.className, @"object needs a className");
+- (void) setName:(NSString*) className {
+    [super setName:FLDeleteNamespacePrefix(className)];
+    FLConfirmStringIsNotEmptyWithComment(self.name, @"object needs a className");
 }
 
 - (void) setSuperclass:(NSString*) className {

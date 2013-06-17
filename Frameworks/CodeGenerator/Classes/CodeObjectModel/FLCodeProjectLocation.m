@@ -30,12 +30,12 @@
     return self;
 }
 
-+ (FLCodeProjectLocation*) resourceDescriptor:(NSURL*) url  
-                                resourceType:(FLCodeProjectLocationType) resourceType {
++ (FLCodeProjectLocation*) codeProjectLocation:(NSURL*) url
+                                  resourceType:(FLCodeProjectLocationType) resourceType {
     return FLAutorelease([[FLCodeProjectLocation alloc] initWithURL:url resourceType:resourceType]);
 }
                              
-#if FL_DEALLOC 
+#if FL_MRC 
 - (void) dealloc {
     [_url release];
     [super dealloc];

@@ -53,6 +53,6 @@
                     </arrayTypes>
                 </property>
             </properties>
-        </object>
+        </class>
     </objects>
 </code>

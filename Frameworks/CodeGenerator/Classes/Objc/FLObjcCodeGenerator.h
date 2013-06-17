@@ -7,14 +7,14 @@
 //
 
 #import "FLCodeGenerator.h"
+#import "FLObservable.h"
 
-
-@interface FLObjcCodeGenerator : NSObject<FLCodeGenerator> {
+@interface FLObjcCodeGenerator : FLObservable<FLCodeGenerator> {
 @private
 }
 
 + (id) objcCodeGenerator;
-
 @end
+
 
 

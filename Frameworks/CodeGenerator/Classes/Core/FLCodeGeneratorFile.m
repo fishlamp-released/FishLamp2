@@ -17,6 +17,7 @@
 - (id) initWithFileName:(NSString*) name  {
     self = [super init];
     if(self) {
+        FLAssertStringIsNotEmpty(name);
         self.fileName = name;
     }
     return self;
@@ -38,6 +39,9 @@
 }
 #endif
 
+- (NSString*) relativePathToProject {
+    return [FLEmptyStringOrString(self.folder) stringByAppendingPathComponent:self.fileName];
+}
 
 - (BOOL) canUpdateExistingFile {
     return NO;
@@ -73,7 +77,8 @@
 	return YES;
 }
 
-- (BOOL) isTheSameAsFileOnDisk:(NSString*) pathToOldFile generatedFileContents:(NSString*) newFileContents {
+- (BOOL) isTheSameAsFileOnDisk:(NSString*) pathToOldFile
+         generatedFileContents:(NSString*) newFileContents {
 	
     NSError* err = nil;
 	NSString* existingFileContents = [NSString stringWithContentsOfFile:pathToOldFile 
@@ -87,7 +92,7 @@
 }
 
 - (FLCodeGeneratorFileWriteResult) writeFileToPath:(NSString*) path 
-                                  withCodeBuilder:(FLCodeBuilder*) codeBuilder {
+                                   withCodeBuilder:(FLCodeBuilder*) codeBuilder {
 
     [self writeCodeToCodeBuilder:codeBuilder];
     

@@ -15,12 +15,15 @@
 
 @implementation FLCodeProject
 @synthesize projectPath = _projectPath;
+@synthesize projectLocation = _projectLocation;
+
 
 + (id) codeProject {
     return FLAutorelease([[[self class] alloc] init]);
 }
 #if FL_MRC
 - (void) dealloc {
+    [_projectLocation release];
     [_projectPath release];
     [super dealloc];
 }

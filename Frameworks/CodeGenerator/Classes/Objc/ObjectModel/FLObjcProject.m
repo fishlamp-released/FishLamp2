@@ -9,13 +9,6 @@
 #import "FLObjcProject.h"
 #import "FLObjcCodeGeneratorHeaders.h"
 
-#import "FLCodeProject.h"
-#import "FLCodeMethod.h"
-#import "FLCodeObject.h"
-#import "FLCodeEnum.h"
-#import "FLCodeProjectLocation.h"
-#import "FLCodeProject.h"
-
 @interface FLObjcProject ()
 @property (readwrite, strong, nonatomic) FLObjcFileManager* fileManager;
 @property (readwrite, strong, nonatomic) FLObjcTypeRegistry* typeRegistry;
@@ -28,17 +21,17 @@
 @end
 
 @implementation FLObjcProject
+
 @synthesize fileManager = _fileManager;
 @synthesize typeRegistry = _typeRegistry;
 @synthesize inputProject = _inputProject;
 @synthesize generatedObjects = _generatedObjects;
 @synthesize generatedEnums = _generatedEnums;
 
-
-- (id) init {	
+- (id) initWithObserver {
 	self = [super init];
 	if(self) {
-	}
+    }
 	return self;
 }
 
@@ -114,27 +107,27 @@
     NSString* prefix = [project.options typePrefix];
     
 	for(FLCodeEnumType* aEnum in project.enumTypes) {
-        if(FLStringIsEmpty(aEnum.typeName)) {
+        if(FLStringIsEmpty(aEnum.name)) {
             FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeMissingName, @"Enum does not have 'typeName'");
         }
 
-        FLObjcEnumName* name = [FLObjcEnumName objcEnumName:aEnum.typeName prefix:prefix];
+        FLObjcEnumName* name = [FLObjcEnumName objcEnumName:aEnum.name prefix:prefix];
         [self.typeRegistry addType:[FLObjcEnumType objcEnumType:name importFileName:nil]];
 	}   
     
-    for(FLCodeObject* object in project.objects) {
+    for(FLCodeObject* object in project.classes) {
         
-        if(FLStringIsEmpty(object.className)) {
+        if(FLStringIsEmpty(object.name)) {
             FLThrowCodeGeneratorError(FLCodeGeneratorErrorCodeMissingName, @"Object does not have 'className'");
         }
         
         {
-        FLObjcClassName* name = [FLObjcClassName objcClassName:object.className prefix:prefix];
+        FLObjcClassName* name = [FLObjcClassName objcClassName:object.name prefix:prefix];
         [self.typeRegistry addType:[FLObjcMutableObjectType objcMutableObjectType:name importFileName:nil]];
         }
         
         if(project.options.generateUserObjects) {
-            FLObjcClassName* generatedName = [self generatedObjectName:object.className];
+            FLObjcClassName* generatedName = [self generatedObjectName:object.name];
 
             [self.typeRegistry addType:[FLObjcMutableObjectType objcMutableObjectType:generatedName importFileName:nil]];
         }
@@ -173,16 +166,16 @@
 
 - (void) updateTypeReferences:(FLCodeProject*) inputProject {
 // update the objects with a input file name
-    for(FLCodeObject* object in inputProject.objects) {
+    for(FLCodeObject* object in inputProject.classes) {
         
         {
-        FLObjcClassName* className = [FLObjcClassName objcClassName:object.className prefix:self.classPrefix];
+        FLObjcClassName* className = [FLObjcClassName objcClassName:object.name prefix:self.classPrefix];
         FLObjcType* forwardDecl = [FLObjcMutableObjectType objcMutableObjectType:className importFileName:[NSString stringWithFormat:@"%@.h", className.generatedName]];
         [self.typeRegistry replaceType:forwardDecl];
         }
         
         if(inputProject.options.generateUserObjects) {
-            FLObjcClassName* generatedClassName = [self generatedObjectName:object.className];
+            FLObjcClassName* generatedClassName = [self generatedObjectName:object.name];
             
             FLObjcType* generatedForwardDecl = [FLObjcMutableObjectType objcMutableObjectType:generatedClassName importFileName:[NSString stringWithFormat:@"%@.h", generatedClassName.generatedName]];
             [self.typeRegistry replaceType:generatedForwardDecl];
@@ -201,14 +194,14 @@
 // now actually generate the objects - now that all of the dependencies 
 // and arrays and enums are ready to go.
 
-    for(FLCodeObject* object in inputProject.objects) {
+    for(FLCodeObject* object in inputProject.classes) {
 
 
         if(inputProject.options.generateUserObjects) {
             FLObjcGeneratedObject* baseClassObject = [FLObjcGeneratedObject objcObject:self];
             
             {
-            FLObjcClassName* baseClassName = [self generatedObjectName:object.className];
+            FLObjcClassName* baseClassName = [self generatedObjectName:object.name];
         
             [baseClassObject configureWithCodeObject:object objectName:baseClassName];
             [self.generatedObjects addObject:baseClassObject forObjcName:baseClassObject.objectName];
@@ -216,7 +209,7 @@
             
             {
             FLObjcObject* objcObject = [FLObjcUserObject objcObject:self];
-            objcObject.objectName = [FLObjcClassName objcClassName:object.className prefix:self.classPrefix];
+            objcObject.objectName = [FLObjcClassName objcClassName:object.name prefix:self.classPrefix];
             objcObject.superclassType = baseClassObject.objectType;
             
             [objcObject addMethod:[FLObjcDeallocMethod objcMethod:self]];
@@ -230,7 +223,7 @@
         }
         else {
             FLObjcObject* objcObject = [FLObjcGeneratedObject objcObject:self];
-            FLObjcClassName* objectName = [FLObjcClassName objcClassName:object.className prefix:self.classPrefix];
+            FLObjcClassName* objectName = [FLObjcClassName objcClassName:object.name prefix:self.classPrefix];
             [objcObject configureWithCodeObject:object objectName:objectName];
             [objcObject addMethod:[FLObjcClassInitializerMethod objcMethod:self]];
             [self.generatedObjects addObject:objcObject forObjcName:objcObject.objectName];
@@ -276,10 +269,6 @@
     
         [self.fileManager addFile:[FLObjcAllIncludesHeaderFile allIncludesHeaderFile:self fileName:fileName]];
     }
-}
-
-- (FLCodeGeneratorResult*) generateFiles {
-    return [self.fileManager writeFilesToDisk];
 }
 
 - (NSString*) classPrefix {

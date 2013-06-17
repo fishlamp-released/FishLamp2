@@ -9,26 +9,23 @@
 #import "FLObjcCodeGenerator.h"
 #import "FLObjcCodeGeneratorHeaders.h"
 
-@interface FLObjcCodeGenerator ()
-@end
-
 @implementation FLObjcCodeGenerator
 
 + (id) objcCodeGenerator {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (FLCodeGeneratorResult*) generateCodeWithCodeProject:(FLCodeProject*) inputProject 
-                                          fromLocation:(FLCodeProjectLocation*) location {
+- (void) generateCodeForProject:(FLCodeProject*) inputProject {
 
-    FLObjcProject* project = [FLObjcProject objcProject];
-    [project configureWithProjectInput:inputProject];
-    return [project generateFiles];
+    @try {
+        FLObjcProject* project = [FLObjcProject objcProject];
+        [project configureWithProjectInput:inputProject];
+        [project.fileManager writeFilesToDisk:self];
+    }
+    @catch(NSException* ex) {
+
+    }
 }
-
-
-
-
 
 @end
 

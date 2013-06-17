@@ -12,6 +12,6 @@
                 <property type="NSString" name="faultactor"/>
                 <property type="NSString" name="detail"/>
             </properties>
-        </object>
+        </class>
     </objects>
 </project>

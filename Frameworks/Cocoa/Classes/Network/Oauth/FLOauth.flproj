@@ -54,7 +54,7 @@
 			  </property>
                 <property type="string" name="screen_name"/>
             </properties>
-        </object>
+        </class>
         <object typeName="FLOAuthAuthencationData">
             <properties>
                 <property type="string" name="oauth_token_secret"/>
@@ -62,7 +62,7 @@
                 <property type="string" name="oauth_token"/>
                 <property type="string" name="oauth_verifier"/>
             </properties>
-        </object>
+        </class>
         <object typeName="FLOAuthApp" superclass="FLNetworkServerContext">
             <properties>
                 <property type="string" name="appId">
@@ -76,6 +76,6 @@
                 <property type="string" name="authorizeUrl"/>
                 <property type="string" name="callback"/>
             </properties>
-        </object>
+        </class>
     </objects>
 </project>

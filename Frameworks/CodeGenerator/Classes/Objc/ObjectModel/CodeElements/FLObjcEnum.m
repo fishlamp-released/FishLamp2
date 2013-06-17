@@ -51,7 +51,7 @@
 
 - (void) configureWithCodeEnumType:(FLCodeEnumType*) codeEnumType  {
     
-    self.enumName = [FLObjcEnumName objcEnumName:codeEnumType.typeName prefix:self.project.classPrefix];
+    self.enumName = [FLObjcEnumName objcEnumName:codeEnumType.name prefix:self.project.classPrefix];
 
     self.enumType = [FLObjcEnumType objcEnumType:self.enumName importFileName:[NSString stringWithFormat:@"%@.h", self.enumName.generatedName]];
     

@@ -1,4 +1,3 @@
-// Generated at Fri May 31 14:36:23 PDT 2013
 #import "FLGenerated.h"
 #import "FLObjcCodeGenerator.h"
 #import "FLObjcFileManager.h"
@@ -62,3 +61,7 @@
 #import "FLObjcMutableObjectType.h"
 #import "FLObjcImmutableObjectType.h"
 #import "FLObjcConstructor.h"
+
+#import "FLCodeGeneratorErrors.h"
+#import "FLObjectModelAll.h"
+#import "FLCodeProjectLocation.h"

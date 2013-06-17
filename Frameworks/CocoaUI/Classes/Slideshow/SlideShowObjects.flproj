@@ -8,7 +8,7 @@
         <!-- <typeDefinition typeName="FLDatabaseObject" dataType="object" import="FLDatabaseObject.h"/> -->
     </typeDefinitions>
     <objects>
-        <object className="FLSlideshowOptions" superclass="FLModelObject">
+        <class name="FLSlideshowOptions" superclass="FLModelObject">
             <properties>
                 <property type="float" name="speed"/>
                 <property type="BOOL" name="repeat"/>
@@ -18,6 +18,6 @@
                 <property type="BOOL" name="playMusic"/>
                 <property type="NSArray" name="mediaItemList"/>
             </properties>
-        </object>
+        </class>
     </objects>
 </schema>

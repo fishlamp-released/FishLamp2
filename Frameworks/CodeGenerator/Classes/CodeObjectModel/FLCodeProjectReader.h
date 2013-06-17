@@ -22,6 +22,9 @@
 }
 + (id) codeProjectReader;
 
-@property (readonly, strong) NSArray* fileReaders;
+@property (readonly, strong, nonatomic) NSArray* fileReaders;
 - (void) addFileReader:(id<FLCodeProjectReader>) fileReader;
+
+- (FLCodeProject *) readProjectFromFileURL:(NSURL*) fileURL;
+
 @end

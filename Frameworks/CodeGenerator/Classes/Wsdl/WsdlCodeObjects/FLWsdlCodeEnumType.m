@@ -22,9 +22,9 @@
     return newEnum;
 }
 
-- (void) setTypeName:(NSString*) typeName {
-    [super setTypeName:FLDeleteNamespacePrefix(typeName)];
-    FLConfirmStringIsNotEmptyWithComment(self.typeName, @"enumType needs a typeName");
+- (void) setName:(NSString*) typeName {
+    [super setName:FLDeleteNamespacePrefix(typeName)];
+    FLConfirmStringIsNotEmptyWithComment(self.name, @"enumType needs a typeName");
 }
 
 @end

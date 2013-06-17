@@ -5,8 +5,8 @@
         <licenseName>The FishLamp Framework is released under the MIT License: http://fishlamp.com/license</licenseName>
     </license>
     <generatorOptions typePrefix="FL"/>
-    <object className="FLTwoObjects" superclass="NSObject">
+    <class name="FLTwoObjects" superclass="NSObject">
         <property name="object1" type="object"/>
         <property name="object2" type="object"/>
-    </object>
+    </class>
 </code>
