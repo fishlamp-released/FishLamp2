@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcCodeElement.h"
+#import "FLObjcCodeWriter.h"
 
-@interface FLObjcCodeBlock : FLObjcCodeElement
+@interface FLObjcCodeBlock : FLObjcCodeWriter
 
 @end
 

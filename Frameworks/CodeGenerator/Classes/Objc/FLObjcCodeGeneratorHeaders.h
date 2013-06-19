@@ -4,7 +4,7 @@
 #import "FLObjcKnownTypes.h"
 #import "FLObjcProject.h"
 #import "FLObjcCodeBlock.h"
-#import "FLObjcCodeElement.h"
+#import "FLObjcCodeWriter.h"
 #import "FLObjcEnum.h"
 #import "FLObjcFileHeader.h"
 #import "FLObjcMethod.h"
@@ -66,3 +66,4 @@
 #import "FLCodeGeneratorErrors.h"
 #import "FLObjectModelAll.h"
 #import "FLCodeProjectLocation.h"
+#import "FLObjcCodeBuilder+FLCodeElement.h"

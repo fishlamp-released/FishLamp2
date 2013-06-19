@@ -1,5 +1,5 @@
 //
-//  FLObjcCodeElement.h
+//  FLObjcCodeWriter.h
 //  CodeGenerator
 //
 //  Created by Mike Fullerton on 5/11/13.
@@ -12,7 +12,7 @@
 @class FLObjcProject;
 @class FLObjcFileHeader;
 
-@protocol FLObjcCodeElement <NSObject>
+@protocol FLObjcCodeWriter <NSObject>
 - (void) writeCodeToHeaderFile:(FLObjcFile*) file 
                withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder;
 
@@ -25,7 +25,7 @@
 
 @end
 
-@interface FLObjcCodeElement : NSObject<FLObjcCodeElement, FLGenerated> {
+@interface FLObjcCodeWriter : NSObject<FLObjcCodeWriter, FLGenerated> {
 @private
     __unsafe_unretained FLObjcProject* _project;
 }

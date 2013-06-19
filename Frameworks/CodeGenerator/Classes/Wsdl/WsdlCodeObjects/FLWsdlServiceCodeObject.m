@@ -14,9 +14,8 @@
 #import "FLWsdlServiceAddress.h"
 #import "FLWsdlCodeMethod.h"
 
-#if CODEGEN
-#import "FLCodeElementsAll.h"
-#endif
+#import "FLObjectModelAll.h"
+
 @implementation FLWsdlServiceCodeObject
 
 + (id) wsdlServiceCodeObject:(FLWsdlService*) service codeReader:(FLWsdlCodeProjectReader*) reader {
@@ -31,22 +30,18 @@
             location.isImmutable = YES;
             location.isPrivate = YES;
             location.isReadOnly = YES;
-#if CODEGEN
             location.defaultValue = [FLCodeStatement codeStatement:
                                         [FLCodeReturn codeReturn:
                                             [FLCodeString codeString:portType.address.location]]];
-#endif
         }
         
         FLWsdlCodeMethod* method =
             [object addMethod:[portType.name stringWithDeletedSubstring:service.name] methodReturnType:portCodeObject.name];
 
-#if CODEGEN
         [method.codeLines addObject:[FLCodeStatement codeStatement:
                                         [FLCodeReturn codeReturn:
                                             [FLCodeCreateObject codeCreateObject:
                                                 [FLCodeClassName codeClassName:portType.name]]]]];
-#endif
     }
     
     return object;

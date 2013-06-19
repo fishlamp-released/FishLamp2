@@ -8,7 +8,7 @@
 
 #import "FLObjcFile.h"
 #import "FLObjcProject.h"
-#import "FLObjcCodeElement.h"
+#import "FLObjcCodeWriter.h"
 
 
 @interface FLObjcFile ()
@@ -38,7 +38,7 @@
 }
 #endif
 
-- (void) addFileElement:(id<FLObjcCodeElement>) element {
+- (void) addCodeWriter:(id<FLObjcCodeWriter>) element {
     [_fileElements addObject:element];
 }
 

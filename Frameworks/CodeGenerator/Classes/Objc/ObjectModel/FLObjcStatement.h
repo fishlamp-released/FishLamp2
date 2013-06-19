@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcCodeElement.h"
+#import "FLObjcCodeWriter.h"
 
 @class FLObjcRuntimeValue;
 
-@interface FLObjcStatement : NSObject<FLObjcCodeElement> 
+@interface FLObjcStatement : NSObject<FLObjcCodeWriter> 
 @end
 

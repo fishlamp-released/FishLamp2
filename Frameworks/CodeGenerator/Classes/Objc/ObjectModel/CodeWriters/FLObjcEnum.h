@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcCodeElement.h"
+#import "FLObjcCodeWriter.h"
 #import "FLObjcType.h"
 
 @class FLObjcProject;
 @class FLCodeEnumType;
 @class FLObjcEnumValueType;
 
-@interface FLObjcEnum : FLObjcCodeElement {
+@interface FLObjcEnum : FLObjcCodeWriter {
 @private
     NSMutableArray* _enumValues;
     FLObjcType* _enumType;

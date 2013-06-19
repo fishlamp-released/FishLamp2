@@ -16,7 +16,7 @@
 }
 
 - (void) writeCodeToCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
-    for(id<FLObjcCodeElement> codeElement in self.fileElements) {
+    for(id<FLObjcCodeWriter> codeElement in self.fileElements) {
         [codeElement writeCodeToSourceFile:self withCodeBuilder:codeBuilder];
     }
 }

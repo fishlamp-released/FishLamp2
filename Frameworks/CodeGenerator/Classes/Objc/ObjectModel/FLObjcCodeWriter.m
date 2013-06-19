@@ -1,12 +1,12 @@
 //
-//  FLObjcCodeElement.m
+//  FLObjcCodeWriter.m
 //  CodeGenerator
 //
 //  Created by Mike Fullerton on 5/11/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcCodeElement.h"
+#import "FLObjcCodeWriter.h"
 #import "FLObjcProject.h"
 #import "FLObjcCodeBuilder.h"
 #import "FLObjcFile.h"
@@ -20,7 +20,7 @@
 #import "FLObjcUserHeaderFile.h"
 #import "FLObjcUserSourceFile.h"
 
-@implementation FLObjcCodeElement
+@implementation FLObjcCodeWriter
 @synthesize project = _project;
 
 - (NSString*) generatedReference {
@@ -77,8 +77,8 @@
 - (FLObjcFile*) generatedHeaderFile {
     FLObjcFile* file = [FLObjcGeneratedHeaderFile headerFile:self.generatedName];
     file.folder = self.project.inputProject.options.objectsFolderName;
-    [file addFileElement:[self generatedFileHeader]];
-    [file addFileElement:self];
+    [file addCodeWriter:[self generatedFileHeader]];
+    [file addCodeWriter:self];
     return file;
 }
 
@@ -86,8 +86,8 @@
     FLObjcFile* file = [FLObjcGeneratedSourceFile sourceFile:self.generatedName];
     file.folder = self.project.inputProject.options.objectsFolderName;
 
-    [file addFileElement:[self generatedFileHeader]];
-    [file addFileElement:self];
+    [file addCodeWriter:[self generatedFileHeader]];
+    [file addCodeWriter:self];
 
     return file;
 }
@@ -96,8 +96,8 @@
     FLObjcFile* file = [FLObjcUserHeaderFile headerFile:self.generatedName];
     file.folder = self.project.inputProject.options.userObjectsFolderName;
 
-    [file addFileElement:[self userFileHeader]];
-    [file addFileElement:self];
+    [file addCodeWriter:[self userFileHeader]];
+    [file addCodeWriter:self];
 
     return file;
 }
@@ -106,8 +106,8 @@
     FLObjcFile* file = [FLObjcUserSourceFile sourceFile:self.generatedName];
     file.folder = self.project.inputProject.options.userObjectsFolderName;
 
-    [file addFileElement:[self userFileHeader]];
-    [file addFileElement:self];
+    [file addCodeWriter:[self userFileHeader]];
+    [file addCodeWriter:self];
 
     return file;
 }

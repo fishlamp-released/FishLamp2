@@ -12,7 +12,7 @@
 #import "FLCodeProperty.h"
 #import "FLCodeArray.h"
 #import "FLCodeArrayType.h"
-#import "FLObjcCodeLines.h"
+#import "FLObjcCodeBuilder+FLCodeElement.h"
 
 @interface FLObjcProperty ()
 @property (readwrite, strong, nonatomic) NSArray* containerTypes;
@@ -160,14 +160,12 @@
     }
 
     if(codeProperty.defaultValue) {
-#if CODEGEN
         FLCodeElement* element = [FLCodeStatement codeStatement:
                                         [FLCodeReturn codeReturn:
-                                            [FLCodeString codeString:codeProperty.defaultValue]]]
+                                            [FLCodeString codeString:codeProperty.defaultValue]]];
 
         [self.getter.code appendCodeElement:element
                                 withProject:self.project];
-#endif
     }
 
     [self.parentObject addProperty:self];

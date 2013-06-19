@@ -8,7 +8,7 @@
 
 #import "FLCodeGeneratorFile.h"
 
-@protocol FLObjcCodeElement;
+@protocol FLObjcCodeWriter;
 @class FLCodeSession;
 @class FLObjcFileManager;
 @class FLCodeProject;
@@ -22,7 +22,7 @@
 @property (readonly, strong, nonatomic) NSArray* fileElements;
 
 
-- (void) addFileElement:(id<FLObjcCodeElement>) element;
+- (void) addCodeWriter:(id<FLObjcCodeWriter>) element;
 
 - (NSString*) counterPartFileName;
                            

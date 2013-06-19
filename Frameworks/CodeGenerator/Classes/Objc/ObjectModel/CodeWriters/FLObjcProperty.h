@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcCodeElement.h"
+#import "FLObjcCodeWriter.h"
 @class FLObjcIvar;
 @class FLObjcName;
 @class FLCodeProperty;
@@ -15,7 +15,7 @@
 @class FLObjcType;
 @class FLObjcMethod;
 
-@interface FLObjcProperty : FLObjcCodeElement {
+@interface FLObjcProperty : FLObjcCodeWriter {
 @private
     FLObjcIvar* _ivar;
     BOOL _isReadOnly;

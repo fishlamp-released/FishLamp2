@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcCodeElement.h"
+#import "FLObjcCodeWriter.h"
 @class FLCodeProject;
 
-@interface FLObjcFileHeader : FLObjcCodeElement {
+@interface FLObjcFileHeader : FLObjcCodeWriter {
 @private
     FLCodeProject* _codeProject;
 }

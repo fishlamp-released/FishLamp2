@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcCodeElement.h"
+#import "FLObjcCodeWriter.h"
 
 @class FLObjcType;
 @class FLObjcName;
 @class FLObjcRuntimeValue;
 @protocol FLObjcType;
 
-@interface FLObjcVariable : NSObject<FLObjcCodeElement> {
+@interface FLObjcVariable : NSObject<FLObjcCodeWriter> {
     FLObjcName* _variableName;
     FLObjcType* _variableType;
     FLObjcRuntimeValue* _runtimeValue;

@@ -49,7 +49,7 @@
     FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:self.project];
     [fileHeader configureWithInputProject:fileManager.project.inputProject];
     
-    [self addFileElement:fileHeader];
+    [self addCodeWriter:fileHeader];
 
     for(FLObjcFile* file in fileManager.files) {
         [_files addObject:file];

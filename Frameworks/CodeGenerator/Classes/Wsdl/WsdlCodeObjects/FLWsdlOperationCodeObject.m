@@ -19,9 +19,7 @@
 #import "FLWsdlDefinitions.h"
 #import "FLHttpRequest.h"
 
-#if CODEGEN
-#import "FLCgElementsAll.h"
-#endif
+#import "FLObjectModelAll.h"
 
 @implementation FLWsdlOperationCodeObject
 
@@ -70,11 +68,11 @@
         FLWsdlCodeProperty* property = [self addProperty:@"operationName" propertyType:@"string"];
         property.isReadOnly = YES;
         property.isImmutable = YES;
-#if CODEGEN
+
         property.defaultValue = [FLCodeStatement codeStatement:
                                     [FLCodeReturn codeReturn:
                                         [FLCodeString codeString:operation.name]]];
-#endif
+
     }
 }
 
@@ -161,33 +159,31 @@
         FLWsdlCodeProperty* prop = [self addProperty:@"targetNamespace" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
-#if CODEGEN
+
         prop.defaultValue = [FLCodeStatement codeStatement:
                                 [FLCodeReturn codeReturn:
                                     [FLCodeString codeString:targetNamespace]]];
-#endif
+
     }
 
     if(FLStringIsNotEmpty(binding.binding.verb) && [self propertyForName:@"verb"] == nil) {
         FLWsdlCodeProperty* prop = [self addProperty:@"verb" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
-#if CODEGEN
+
         prop.defaultValue = [FLCodeStatement codeStatement:
                                 [FLCodeReturn codeReturn:
                                     [FLCodeString codeString:binding.binding.verb]]];
-#endif
+
     }
     
     if(FLStringIsNotEmpty(binding.binding.transport) && [self propertyForName:@"transport"] == nil) {
         FLWsdlCodeProperty* prop = [self addProperty:@"transport" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
-#if CODEGEN
         prop.defaultValue = [FLCodeStatement codeStatement:
                                 [FLCodeReturn codeReturn:
                                     [FLCodeString codeString:binding.binding.transport]]];
-#endif
     }
 
     NSString* location = url;
@@ -199,11 +195,9 @@
             prop.isImmutable = YES;
             prop.isReadOnly = YES;
 
-#if CODEGEN
             prop.defaultValue = [FLCodeStatement codeStatement:
                                     [FLCodeReturn codeReturn:
                                         [FLCodeString codeString:subOperation.soapAction]]];
-#endif
         }
         
         if(FLStringIsNotEmpty(subOperation.location)) {
@@ -214,12 +208,13 @@
     FLWsdlCodeProperty* prop = [self addProperty:@"location" propertyType:@"string"];
     prop.isImmutable = YES;
     prop.isReadOnly = YES;
-#if CODEGEN
+
     prop.defaultValue = [FLCodeStatement codeStatement:
                             [FLCodeReturn codeReturn:
                                 [FLCodeString codeString:location]]];
-#endif
-//    FLWsdlCodeMethod* method = [FLWsdlCodeMethod wsdlCodeMethod:@"init" methodReturnType:@"id"];
+
+//    FLWsdlCodeMethod* method = [FLWsdlCodeMethod wsdlCodeMethod:@"init"
+//    methodReturnType:@"id"];
     
 }
 

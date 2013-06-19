@@ -13,7 +13,7 @@
 #import "FLCodeMethod.h"
 #import "FLCodeCodeSnippet.h"
 #import "FLObjcBlockStatement.h"
-#import "FLObjcCodeLines.h"
+#import "FLObjcCodeBuilder+FLCodeElement.h"
 
 @implementation FLObjcMethod
 

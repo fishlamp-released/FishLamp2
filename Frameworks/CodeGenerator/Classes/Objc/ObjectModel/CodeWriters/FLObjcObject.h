@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcCodeElement.h"
+#import "FLObjcCodeWriter.h"
 #import "FLObjcType.h"
 
 @class FLObjcProperty;
@@ -19,7 +19,7 @@
 @class FLObjcProject;
 @class FLObjcClassName;
 
-@interface FLObjcObject : FLObjcCodeElement {
+@interface FLObjcObject : FLObjcCodeWriter {
 @private
     FLObjcType* _objectType;
     FLObjcType* _superclassType;

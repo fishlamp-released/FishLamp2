@@ -85,11 +85,9 @@
             }
         }
 
-#if CODEGEN
-    for(FLCodeLine* codeLine in codeMethod.codeLines) {
-        [self.code appendCodeElement:codeLine withProject:self.project];
-    }
-#endif
+        for(FLCodeElement* element in constructor.lines) {
+            [self.code appendCodeElement:element withProject:self.project];
+        }
 
     }];
 

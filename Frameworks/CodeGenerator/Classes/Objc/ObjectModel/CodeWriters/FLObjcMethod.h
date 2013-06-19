@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcCodeElement.h"
+#import "FLObjcCodeWriter.h"
 
 @class FLObjcParameter;
 @class FLObjcType;
@@ -20,7 +20,7 @@
 @class FLObjcCodeBuilder;
 @class FLObjcStringStatement;
 
-@interface FLObjcMethod : FLObjcCodeElement {
+@interface FLObjcMethod : FLObjcCodeWriter {
 @private
     NSMutableArray* _parameters;
     FLObjcBlockStatement* _statement;

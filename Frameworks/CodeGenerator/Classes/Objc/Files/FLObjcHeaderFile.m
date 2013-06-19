@@ -19,7 +19,7 @@
 }
 
 - (void) writeCodeToCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
-    for(id<FLObjcCodeElement> codeElement in self.fileElements) {
+    for(id<FLObjcCodeWriter> codeElement in self.fileElements) {
         [codeElement writeCodeToHeaderFile:self withCodeBuilder:codeBuilder];
     }
 }

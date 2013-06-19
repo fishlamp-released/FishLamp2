@@ -149,7 +149,7 @@
 
 - (void) addFilesWithArrayOfCodeElements:(NSArray*) elementList {
 
-    for(FLObjcCodeElement* element in elementList) {
+    for(FLObjcCodeWriter* element in elementList) {
             
         FLObjcFile* headerFile = [element headerFile];
         if(headerFile) {
