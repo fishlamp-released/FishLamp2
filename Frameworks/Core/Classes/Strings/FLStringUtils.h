@@ -28,7 +28,7 @@
 
 - (NSString*) stringWithDeletedSubstring:(NSString*) substring;
 
-- (NSString*) stringWithUpperCaseFirstLetter;
+- (NSString*) stringWithUppercaseFirstLetter;
 
 - (NSString*) stringWithLowercaseFirstLetter;
 

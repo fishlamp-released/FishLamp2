@@ -80,7 +80,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 							[self caseInsensitiveCompare:aString] == NSOrderedSame; 
 }
 
-- (NSString*) stringWithUpperCaseFirstLetter
+- (NSString*) stringWithUppercaseFirstLetter
 {
 	return [NSString stringWithFormat:@"%c%@", 
 					toupper([self characterAtIndex:0]),
@@ -105,7 +105,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 	
 	for(NSUInteger i = 1; i < split.count; i++)
 	{
-		[outString appendString:[[split objectAtIndex:i] stringWithUpperCaseFirstLetter]];
+		[outString appendString:[[split objectAtIndex:i] stringWithUppercaseFirstLetter]];
 	}
 	
 	return outString;

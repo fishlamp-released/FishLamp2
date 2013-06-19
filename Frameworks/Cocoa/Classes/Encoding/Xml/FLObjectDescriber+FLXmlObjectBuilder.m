@@ -62,10 +62,14 @@
                 [outObject setValue:object forKey:element.elementName];
             }
             else {
-                FLTrace(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.fullPath);
 
-                if(builder.strict) {
-                    FLConfirmationFailureWithComment(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.fullPath);
+                if(FLStringIsNotEmpty(element.elementValue)) {
+
+                    FLTrace(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.fullPath);
+
+                    if(builder.strict) {
+                        FLConfirmationFailureWithComment(@"object not inflated for \"%@\" (%@)", element.fullPath, element.elementValue);
+                    }
                 }
             }
         }

@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjcMethod.h"
+#import "FLObjcConstructor.h"
 
-@interface FLObjcClassInitializerMethod : FLObjcMethod 
+@interface FLObjcClassInitializerMethod : FLObjcConstructor
+
 @end

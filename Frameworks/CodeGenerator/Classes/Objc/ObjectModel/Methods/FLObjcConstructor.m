@@ -10,6 +10,7 @@
 
 #import "FLCodeConstructor.h"
 #import "FLObjcCodeGeneratorHeaders.h"
+#import "FLStringUtils.h"
 
 @implementation FLObjcConstructor
 
@@ -25,16 +26,76 @@
     return FLAutorelease([[[self class] alloc] initWithProject:project]);
 }
 
++ (FLObjcMethodName*) methodNameForConstructor:(FLCodeConstructor*) constructor {
+    return [FLObjcMethodName objcMethodName:
+            [NSString stringWithFormat:@"initWith%@",
+         [[[constructor.parameters objectAtIndex:0] name] stringWithUppercaseFirstLetter]]];
+}
+
 - (void) configureWithInputConstructor:(FLCodeConstructor*) constructor 
                             withObject:(FLObjcObject*) object {
 
-    self.isStatic = YES;
-    self.methodName = [FLObjcMethodName objcMethodName:object.objectName.generatedName];
+    self.isStatic = NO;
+    self.isPrivate = YES;
     self.returnType = [self.project.typeRegistry typeForKey:@"id"];
+    if(constructor.parameters.count) {
+        self.isPrivate = NO;
+        self.methodName = [FLObjcConstructor methodNameForConstructor:constructor];
+    }
+    else {
+        self.methodName = [FLObjcMethodName objcMethodName:@"init"];
+    }
 
-//    for(FLCodeLine* codeLine in codeMethod.codeLines) {
-//        [self.code appendCodeElement:codeLine withProject:self.project];
-//    }
+    NSMutableString* superparms = [NSMutableString string];
+
+    for(FLCodeConstructorParameter* parameter in constructor.parameters) {
+
+        FLObjcName* name = [FLObjcParameterName objcParameterName:parameter.name];
+        FLObjcType* type = [self.project.typeRegistry typeForKey:parameter.type];
+
+        [object addDependency:type];
+
+        FLObjcParameter* objcParameter = [FLObjcParameter objcParameter:name parameterType:type key:parameter.name];
+        [self addParameter:objcParameter];
+
+        if(parameter.passToSuper) {
+            if(superparms.length) {
+                [superparms appendFormat:@" %@:%@", name.generatedName, name.generatedName];
+            }
+            else {
+                [superparms appendFormat:@"%@", name.generatedName];
+            }
+        }
+    }
+
+    if(superparms.length) {
+        [self.code appendLineWithFormat:@"self = [super %@:%@];", self.methodName.generatedName, superparms];
+    }
+    else {
+        [self.code appendLine:@"self = [super init];"];
+    }
+
+    [self.code appendInScope:@"if(self) {" closeScope:@"}" withBlock:^{
+        for(FLCodeConstructorParameter* parameter in constructor.parameters) {
+            if(FLStringIsNotEmpty(parameter.setProperty)) {
+                FLObjcName* parameterName = [FLObjcParameterName objcParameterName:parameter.name];
+                FLObjcName* propertyName = [FLObjcPropertyName objcPropertyName:parameter.setProperty];
+
+                [self.code appendLineWithFormat:@"self.%@ = %@;", propertyName.generatedName, parameterName.generatedName];
+            }
+        }
+
+#if CODEGEN
+    for(FLCodeLine* codeLine in codeMethod.codeLines) {
+        [self.code appendCodeElement:codeLine withProject:self.project];
+    }
+#endif
+
+    }];
+
+    [self.code appendReturnValue:@"self"];
+
+
 
 }
 

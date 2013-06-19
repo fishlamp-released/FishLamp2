@@ -61,6 +61,7 @@
 #import "FLObjcMutableObjectType.h"
 #import "FLObjcImmutableObjectType.h"
 #import "FLObjcConstructor.h"
+#import "FLObjcGeneratedBaseClassName.h"
 
 #import "FLCodeGeneratorErrors.h"
 #import "FLObjectModelAll.h"

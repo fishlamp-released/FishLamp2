@@ -8,6 +8,51 @@
 
 #import "FLCodeIdentifier.h"
 
+@implementation NSString (FLCodeIdentifier)
+
+- (NSString*) stringByDeletingPrefix:(NSString*) prefix {
+
+    if(FLStringIsNotEmpty(prefix)) {
+        NSRange range = [self rangeOfString:prefix options:NSCaseInsensitiveSearch];
+        if(range.location == 0 && range.length) {
+            return [self substringFromIndex:range.length];
+        }
+    }
+
+    return self;
+}
+
+
+- (NSString*) stringByDeletingSuffix:(NSString*) suffix {
+
+    if(FLStringIsNotEmpty(suffix)) {
+        NSRange range = [self rangeOfString:suffix
+                                    options:NSCaseInsensitiveSearch | NSBackwardsSearch];
+
+        if(range.location == self.length - range.length) {
+            return [self substringToIndex:range.location];
+        }
+    }
+
+    return self;
+}
+
+- (NSString*) stringByPrependingPrefix:(NSString*) prefix {
+    if(FLStringIsNotEmpty(prefix)) {
+        return [prefix stringByAppendingString:[self stringByDeletingPrefix:prefix]];
+    }
+    return self;
+}
+
+- (NSString*) stringByAppendingSuffix:(NSString*) suffix {
+    if(FLStringIsNotEmpty(suffix)) {
+        return [self stringByAppendingString:[self stringByDeletingSuffix:suffix]];
+    }
+    return self;
+}
+
+@end
+
 @interface FLCodeIdentifier ()
 @property (readwrite, strong, nonatomic) NSString* identifierName;
 @property (readwrite, strong, nonatomic) NSString* prefix;
@@ -39,21 +84,23 @@
             suffix = @"";
         }
         
-        
-        if(prefix.length) {
-            NSRange range = [name rangeOfString:prefix options:NSCaseInsensitiveSearch];
-            if(range.location == 0 && range.length) {
-                name = [name substringFromIndex:range.length];
-            }
-        }
+        name = [name stringByDeletingPrefix:prefix];
+        name = [name stringByDeletingSuffix:suffix];
 
-        if(suffix.length) { 
-            NSRange range = [name rangeOfString:prefix options:NSCaseInsensitiveSearch | NSBackwardsSearch];
-            if(range.location == name.length - range.length) {
-                name = [name substringToIndex:range.location];
-            }
-
-        }
+//        if(prefix.length) {
+//            NSRange range = [name rangeOfString:prefix options:NSCaseInsensitiveSearch];
+//            if(range.location == 0 && range.length) {
+//                name = [name substringFromIndex:range.length];
+//            }
+//        }
+//
+//        if(suffix.length) { 
+//            NSRange range = [name rangeOfString:prefix options:NSCaseInsensitiveSearch | NSBackwardsSearch];
+//            if(range.location == name.length - range.length) {
+//                name = [name substringToIndex:range.location];
+//            }
+//
+//        }
 
         self.prefix = prefix;
         self.suffix = suffix;

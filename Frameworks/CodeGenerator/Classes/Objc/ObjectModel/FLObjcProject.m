@@ -67,9 +67,7 @@
 
 }
 
-- (FLObjcClassName*) generatedObjectName:(NSString*) className {
-    return [FLObjcClassName objcClassName:[NSString stringWithFormat:@"%@BaseClass", className] prefix:self.classPrefix];
-}
+
 
 - (void) addForwardDeclarationsForTypesFromInputProject:(FLCodeProject*) project {
 
@@ -127,7 +125,7 @@
         }
         
         if(project.options.generateUserObjects) {
-            FLObjcClassName* generatedName = [self generatedObjectName:object.name];
+            FLObjcClassName* generatedName = [FLObjcGeneratedBaseClassName objcClassName:object.name prefix:prefix];
 
             [self.typeRegistry addType:[FLObjcMutableObjectType objcMutableObjectType:generatedName importFileName:nil]];
         }
@@ -175,8 +173,8 @@
         }
         
         if(inputProject.options.generateUserObjects) {
-            FLObjcClassName* generatedClassName = [self generatedObjectName:object.name];
-            
+            FLObjcClassName* generatedClassName = [FLObjcGeneratedBaseClassName objcClassName:object.name prefix:self.classPrefix];
+
             FLObjcType* generatedForwardDecl = [FLObjcMutableObjectType objcMutableObjectType:generatedClassName importFileName:[NSString stringWithFormat:@"%@.h", generatedClassName.generatedName]];
             [self.typeRegistry replaceType:generatedForwardDecl];
         }
@@ -195,37 +193,20 @@
 // and arrays and enums are ready to go.
 
     for(FLCodeObject* object in inputProject.classes) {
-
-
         if(inputProject.options.generateUserObjects) {
-            FLObjcGeneratedObject* baseClassObject = [FLObjcGeneratedObject objcObject:self];
-            
-            {
-            FLObjcClassName* baseClassName = [self generatedObjectName:object.name];
-        
-            [baseClassObject configureWithCodeObject:object objectName:baseClassName];
+            FLObjcGeneratedBaseClass* baseClassObject = [FLObjcGeneratedBaseClass objcObject:self];
+            [baseClassObject configureWithCodeObject:object];
+
+            FLObjcUserObject* objcObject = [FLObjcUserObject objcObject:self];
+            [objcObject configureWithCodeObject:object baseClass:baseClassObject];
+
             [self.generatedObjects addObject:baseClassObject forObjcName:baseClassObject.objectName];
-            }
-            
-            {
-            FLObjcObject* objcObject = [FLObjcUserObject objcObject:self];
-            objcObject.objectName = [FLObjcClassName objcClassName:object.name prefix:self.classPrefix];
-            objcObject.superclassType = baseClassObject.objectType;
-            
-            [objcObject addMethod:[FLObjcDeallocMethod objcMethod:self]];
-            [objcObject addMethod:[FLObjcClassInitializerMethod objcMethod:self]];
-
-            [objcObject addDependency:objcObject.superclassType];
-
             [self.generatedObjects addObject:objcObject forObjcName:objcObject.objectName];
-            }
-            
         }
         else {
-            FLObjcObject* objcObject = [FLObjcGeneratedObject objcObject:self];
-            FLObjcClassName* objectName = [FLObjcClassName objcClassName:object.name prefix:self.classPrefix];
-            [objcObject configureWithCodeObject:object objectName:objectName];
-            [objcObject addMethod:[FLObjcClassInitializerMethod objcMethod:self]];
+            FLObjcGeneratedObject* objcObject = [FLObjcGeneratedObject objcObject:self];
+            [objcObject configureWithCodeObject:object];
+
             [self.generatedObjects addObject:objcObject forObjcName:objcObject.objectName];
         }
     }

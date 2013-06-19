@@ -41,20 +41,22 @@
 
 + (id) objcObject:(FLObjcProject*) project;
 
-- (void) configureWithCodeObject:(FLCodeObject*) codeObject objectName:(FLObjcClassName*) className;
-
 - (void) addIvar:(FLObjcIvar*) ivar;
 - (void) addProperty:(FLObjcProperty*) property;
 - (void) addMethod:(FLObjcMethod*) method;
 
 - (void) addDependency:(FLObjcType*) type;
-
-
 @end
 
+@interface FLObjcGeneratedBaseClass : FLObjcObject
+- (void) configureWithCodeObject:(FLCodeObject*) codeObject;
+@end
 
 @interface FLObjcGeneratedObject : FLObjcObject
+- (void) configureWithCodeObject:(FLCodeObject*) codeObject;
 @end
 
 @interface FLObjcUserObject : FLObjcObject
+- (void) configureWithCodeObject:(FLCodeObject*) codeObject
+                       baseClass:(FLObjcGeneratedBaseClass*) baseClass;
 @end

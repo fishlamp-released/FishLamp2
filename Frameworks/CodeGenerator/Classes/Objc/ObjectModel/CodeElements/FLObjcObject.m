@@ -136,9 +136,7 @@
 }
 
 
-- (void) configureWithCodeObject:(FLCodeObject*) codeObject 
-                      objectName:(FLObjcClassName*) objectName {
-    
+- (void) addProtocols:(FLCodeObject*) codeObject {
     if(FLStringIsNotEmpty(codeObject.protocols)) {
         NSArray* protocols = [[codeObject protocols] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ,"] allowEmptyStrings:NO];
 
@@ -147,25 +145,31 @@
             [self addProtocol:type];
         }
     }
-    
-    self.codeObject = codeObject;
-    
+}
+
+- (void) addSuperclass:(FLCodeObject*) codeObject superclass:(NSString*) inSuperclass {
+
     FLObjcType* superclass = nil;
-    if(FLStringIsNotEmpty(codeObject.superclass)) {
+
+    if(FLStringIsNotEmpty(inSuperclass)) {
+        superclass = [self.project.typeRegistry typeForKey:inSuperclass];
+    }
+    else if(FLStringIsNotEmpty(codeObject.superclass)) {
         superclass = [self.project.typeRegistry typeForKey:codeObject.superclass];
     }
     else {
         superclass = [self.project.typeRegistry typeForKey:NSStringFromClass([FLModelObject class])];
     }
-   
-    self.objectName = objectName;
-    
-    self.objectType = [FLObjcMutableObjectType objcMutableObjectType:self.objectName importFileName:[NSString stringWithFormat:@"%@.h", self.objectName.generatedName]];
-    
+
     [self addDependency:superclass];
     self.superclassType = superclass;
-    self.codeObject = codeObject;
-    
+}
+
+- (void) setObjectTypeWithInputProject:(FLCodeObject*) codeObject {
+    self.objectType = [FLObjcMutableObjectType objcMutableObjectType:self.objectName importFileName:[NSString stringWithFormat:@"%@.h", self.objectName.generatedName]];
+}
+
+- (void) addPropertiesWithInputObject:(FLCodeObject*) codeObject {
     for(FLCodeProperty* codeProp in codeObject.properties) {
     
         FLObjcProperty* prop = [FLObjcProperty objcProperty:self.project];
@@ -173,27 +177,43 @@
 
         [[prop propertyType] objcObject:self didConfigureProperty:prop];
     }
-    
+}
+
+- (void) addMethodsWithInputObject:(FLCodeObject*) codeObject {
     for(FLCodeMethod* method in codeObject.methods) {
         FLObjcMethod* objcMethod = [FLObjcMethod objcMethod:self.project];
         [objcMethod configureWithCodeMethod:method];
         [self addMethod:objcMethod];
-
         [self addDependency:objcMethod.returnType];
     }
+}
 
-
+- (void) addConstructorsWithInputObject:(FLCodeObject*) codeObject {
     for(FLCodeConstructor* inputCtor in codeObject.constructors) {
         FLObjcConstructor* ctor = [FLObjcConstructor objcConstructor:self.project];
         [ctor configureWithInputConstructor:inputCtor withObject:self];
         [self addMethod:ctor];
     }
+}
 
+- (void) addStandardBaseClassMethodsWithInputObject:(FLCodeObject*) codeObject {
     [self addMethod:[FLObjcDidRegisterObjectDescriberMethod objcDidRegisterObjectDescriberMethod:self.project]];
     [self addMethod:[FLObjcDeallocMethod objcMethod:self.project]];
 }
 
+- (void) addClassConstructorsWithInputObject:(FLCodeObject*) codeObject
+                                    toObject:(FLObjcObject*) object {
 
+    FLObjcClassInitializerMethod* defaultInit = [FLObjcClassInitializerMethod objcMethod:self.project];
+    [defaultInit configureWithInputConstructor:nil withObject:self];
+    [object addMethod:defaultInit];
+
+    for(FLCodeConstructor* inputCtor in codeObject.constructors) {
+        FLObjcClassInitializerMethod* method = [FLObjcClassInitializerMethod objcMethod:self.project];
+        [method configureWithInputConstructor:inputCtor withObject:self];
+        [object addMethod:method];
+    }
+}
 
 - (NSString*) description {
     FLPrettyString* string = [FLPrettyString prettyString];
@@ -355,10 +375,46 @@
     [codeBuilder appendEnd];
 }
 
+- (void) configureWithCodeObject:(FLCodeObject*) codeObject 
+                      objectName:(FLObjcClassName*) objectName {
+
+    self.objectName = objectName;
+    self.codeObject = codeObject;
+
+    [self addProtocols:codeObject];
+    [self addSuperclass:codeObject superclass:nil];
+    [self setObjectTypeWithInputProject:codeObject];
+    [self addPropertiesWithInputObject:codeObject];
+    [self addMethodsWithInputObject:codeObject];
+    [self addConstructorsWithInputObject:codeObject];
+    [self addStandardBaseClassMethodsWithInputObject:codeObject];
+}
+
 @end
 
+@implementation FLObjcGeneratedBaseClass
+- (FLObjcFile*) headerFile {
+    return [self generatedHeaderFile];
+}
 
-@implementation FLObjcGeneratedObject : FLObjcObject
+- (FLObjcFile*) sourceFile {
+    return [self generatedSourceFile];
+}
+
+
+- (void) configureWithCodeObject:(FLCodeObject*) codeObject {
+
+    FLObjcGeneratedBaseClassName* baseClassName =
+        [FLObjcGeneratedBaseClassName objcGeneratedClassName:codeObject.name
+                                                  prefix:self.project.classPrefix];
+    
+    [super configureWithCodeObject:codeObject objectName:baseClassName];
+}
+
+
+@end
+
+@implementation FLObjcGeneratedObject
 
 - (FLObjcFile*) headerFile {
     return [self generatedHeaderFile];
@@ -368,6 +424,11 @@
     return [self generatedSourceFile];
 }
 
+- (void) configureWithCodeObject:(FLCodeObject*) codeObject {
+    FLObjcClassName* objectName = [FLObjcClassName objcClassName:codeObject.name prefix:self.project.classPrefix];
+    [self configureWithCodeObject:codeObject objectName:objectName];
+    [self addClassConstructorsWithInputObject:codeObject toObject:self];
+}
 
 @end
 
@@ -380,4 +441,15 @@
 - (FLObjcFile*) sourceFile {
     return [self userSourceFile];
 }
+
+- (void) configureWithCodeObject:(FLCodeObject*) codeObject
+                       baseClass:(FLObjcGeneratedBaseClass*) baseClass {
+
+    self.objectName = [FLObjcClassName objcClassName:codeObject.name
+                                                         prefix:self.project.classPrefix];
+    self.superclassType = baseClass.objectType;
+    [self addDependency:baseClass.superclassType];
+    [self addClassConstructorsWithInputObject:codeObject toObject:baseClass];
+}
+
 @end

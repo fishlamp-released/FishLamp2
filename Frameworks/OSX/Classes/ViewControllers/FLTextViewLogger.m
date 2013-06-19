@@ -48,6 +48,10 @@
 #define kDelay 0.5
 
 - (void) queueBlock:(dispatch_block_t) block {
+
+    if(block) block();
+    return;
+
     double delayInSeconds = kDelay;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), block);
@@ -58,7 +62,7 @@
         return;
     }
 
-    if([NSDate timeIntervalSinceReferenceDate] - _lastUpdate > kDelay) {
+//    if([NSDate timeIntervalSinceReferenceDate] - _lastUpdate > kDelay) {
         NSTextStorage* textStorage = [_textView textStorage];
         NSRange range = NSMakeRange(textStorage.length, 0);
         
@@ -74,14 +78,14 @@
         _lastUpdate = [NSDate timeIntervalSinceReferenceDate];
     
         if(scroll && contentHeight > scrollBottom) {
-            [_textView scrollRangeToVisible:NSMakeRange(textStorage.length, 0)];
+//            [_textView scrollRangeToVisible:NSMakeRange(textStorage.length, 0)];
         }
-    }
-    else {
-        [self queueBlock:^{
-            [self appendBufferToTextStorage];
-        }];
-    }
+//    }
+//    else {
+//        [self queueBlock:^{
+//            [self appendBufferToTextStorage];
+//        }];
+//    }
 }
 
 - (void) appendAttributedStringToStorage:(NSAttributedString*) string {

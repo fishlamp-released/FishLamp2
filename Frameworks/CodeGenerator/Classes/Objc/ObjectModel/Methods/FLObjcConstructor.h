@@ -20,5 +20,7 @@
 - (void) configureWithInputConstructor:(FLCodeConstructor*) constructor 
                             withObject:(FLObjcObject*) object;
 
++ (FLObjcMethodName*) methodNameForConstructor:(FLCodeConstructor*) constructor;
+
 @end
 

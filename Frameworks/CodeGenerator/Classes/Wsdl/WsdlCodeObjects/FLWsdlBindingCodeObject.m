@@ -28,7 +28,7 @@
 
     NSString* factoryName = [operationCodeObject.name stringWithDeletedSubstring:self.name];
     
-    factoryName = [NSString stringWithFormat:@"create%@", [factoryName stringWithUpperCaseFirstLetter]];
+    factoryName = [NSString stringWithFormat:@"create%@", [factoryName stringWithUppercaseFirstLetter]];
     
     if([self methodForName:factoryName] == nil) {
 #if CODEGEN

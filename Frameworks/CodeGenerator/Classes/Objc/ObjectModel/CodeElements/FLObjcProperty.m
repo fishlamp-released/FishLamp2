@@ -65,7 +65,7 @@
 
 - (void) setPropertyName:(FLObjcName*) name {
     _getter.methodName = name;
-    _setter.methodName = [FLObjcMethodName objcMethodName:[NSString stringWithFormat:@"set%@", [name.generatedName stringWithUpperCaseFirstLetter]]];
+    _setter.methodName = [FLObjcMethodName objcMethodName:[NSString stringWithFormat:@"set%@", [name.generatedName stringWithUppercaseFirstLetter]]];
 }
 
 + (id) objcProperty:(FLObjcProject*) project {

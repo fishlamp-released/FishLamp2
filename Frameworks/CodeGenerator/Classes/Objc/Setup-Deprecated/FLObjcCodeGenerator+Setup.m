@@ -866,7 +866,7 @@
 			[builder appendLine:@"}"];
 
 			FLCodeMethod* method = [FLCodeMethod method];
-			method.name = [NSString stringWithFormat:@"create%@IfNil", [[self getterNameForProperty:prop] stringWithUpperCaseFirstLetter]];
+			method.name = [NSString stringWithFormat:@"create%@IfNil", [[self getterNameForProperty:prop] stringWithUppercaseFirstLetter]];
 			method.isStatic = NO;
 			method.isPrivate = NO;
 			method.code.lines = [builder string];			
