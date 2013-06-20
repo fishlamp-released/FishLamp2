@@ -20,11 +20,14 @@
 @implementation FLObjcFileManager
 @synthesize files = _files;
 @synthesize project = _project;
+@synthesize publicHeaders = _publicHeaders;
 
 - (id) initWithProject:(FLObjcProject*) project {	
 	self = [super init];
 	if(self) {
 		_files = [[NSMutableArray alloc] init];
+        _publicHeaders = [[NSMutableArray alloc] init];
+
         self.project = project;
 	}
 	return self;
@@ -32,6 +35,7 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_publicHeaders release];
 	[_files release];
 	[super dealloc];
 }
@@ -154,6 +158,11 @@
         FLObjcFile* headerFile = [element headerFile];
         if(headerFile) {
             [self addFile:headerFile];
+
+            if(element.includeInAllFiles) {
+                [_publicHeaders addObject:headerFile];
+            }
+
         }
         
         FLObjcFile* sourceFile = [element sourceFile];

@@ -41,9 +41,12 @@
 }
 
 
-- (void) writeCodeToHeaderFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
+- (void) writeCodeToHeaderFile:(FLObjcFile*) file
+               withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
 }
-- (void) writeCodeToSourceFile:(FLObjcFile*) file withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
+
+- (void) writeCodeToSourceFile:(FLObjcFile*) file
+               withCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
 }
 
 - (FLObjcFile*) headerFile {
@@ -53,5 +56,10 @@
 - (FLObjcFile*) sourceFile {
     return nil;
 }
+
+- (BOOL) includeInAllFiles {
+    return NO;
+}
+
 @end
 

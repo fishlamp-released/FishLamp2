@@ -7,34 +7,53 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLHttpRequest.h"
+#import "FLHttpRequestBehavior.h"
 @class FLSoapFault11;
 @class FLParsedXmlElement;
 
 typedef FLPromisedResult (^FLHandleSoapResponseBlock)(FLParsedXmlElement* parsedSoap);
 
-@interface FLSoapHttpRequest : FLHttpRequest {
+@interface FLSoapHttpRequest : NSObject<FLHttpRequestBehavior> {
 @private
-// for sending request
-    NSString* _soapNamespace;
-    NSString* _soapActionHeader;
-    NSString* _operationName;
-    id _soapInput;
-    FLHandleSoapResponseBlock _handleSoapResponseBlock;
+    NSURL* _url;
+    NSString* _httpMethod;
 }
 
-@property (readwrite, strong, nonatomic) id soapInput;
+- (id) initWithRequestURL:(NSURL*) requestURL
+               httpMethod:(NSString*) httpMethod; // designated
 
-@property (readwrite, strong, nonatomic) NSString* soapActionHeader;
-@property (readwrite, strong, nonatomic) NSString* soapNamespace;
-@property (readwrite, strong, nonatomic) NSString* operationName;
++ (id) soapRequestWithURL:(NSURL*) url
+               httpMethod:(NSString*) httpMethod;
 
-@property (readwrite, copy, nonatomic) FLHandleSoapResponseBlock handleSoapResponseBlock;
++ (id) soapRequest;
+
+- (NSString*) location;
+- (NSString*) soapAction;
+- (NSString*) targetNamespace;
+- (NSString*) operationName;
+- (id) input;
+- (id) output;
 
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
 
 // optionally override
 - (NSError*) createErrorForSoapFault:(FLSoapFault11*) fault;
+@end
 
+@interface FLMutableSoapHttpRequest : FLSoapHttpRequest {
+@private
+// for sending request
+    NSString* _targetNamespace;
+    NSString* _soapAction;
+    NSString* _operationName;
+    id _input;
+    id _ouput;
+    FLHandleSoapResponseBlock _handleSoapResponseBlock;
+}
+@property (readwrite, strong, nonatomic) NSString* soapAction;
+@property (readwrite, strong, nonatomic) NSString* targetNamespace;
+@property (readwrite, strong, nonatomic) NSString* operationName;
+@property (readwrite, strong, nonatomic) id input;
+@property (readwrite, strong, nonatomic) id output;
 
 @end

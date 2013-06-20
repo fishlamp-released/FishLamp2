@@ -17,9 +17,12 @@
 @interface FLObjcFileManager : NSObject {
 @private
     NSMutableArray* _files;
+    NSMutableArray* _publicHeaders;
+
     __unsafe_unretained FLObjcProject* _project;
 }
 @property (readonly, strong, nonatomic) NSArray* files;
+@property (readonly, strong, nonatomic) NSArray* publicHeaders;
 @property (readonly, assign, nonatomic) FLObjcProject* project;
 
 + (id) objcFileManager:(FLObjcProject*) codeProject;

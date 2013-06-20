@@ -64,6 +64,6 @@
 #import "FLObjcGeneratedBaseClassName.h"
 
 #import "FLCodeGeneratorErrors.h"
-#import "FLObjectModelAll.h"
+#import "FishLampCodeGeneratorObjects.h"
 #import "FLCodeProjectLocation.h"
 #import "FLObjcCodeBuilder+FLCodeElement.h"

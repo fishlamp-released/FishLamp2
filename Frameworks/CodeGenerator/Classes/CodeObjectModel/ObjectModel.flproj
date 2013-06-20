@@ -7,7 +7,7 @@
     </info>
     <options>
         <canLazyCreate>YES</canLazyCreate>
-        <generateAllIncludesFile>YES</generateAllIncludesFile>
+        <allIncludesFileName>FishLampCodeGeneratorObjects</allIncludesFileName>
         <objectsFolderName>Generated</objectsFolderName>
         <typePrefix>FL</typePrefix>
         <generateUserObjects>YES</generateUserObjects>
@@ -60,7 +60,7 @@
         <property name="globalDefine" type="FLCodeDefine"/>
         <property name="canLazyCreate" type="bool"/>
         <property name="generateUserObjects" type="bool"/>
-        <property name="generateAllIncludesFile" type="bool" comment="set this to YES to create an includes file that includes all the generated headers"/>
+        <property name="allIncludesFileName" type="string" comment="set this to YES to create an includes file that includes all the generated headers"/>
         <property name="userObjectsFolderName" type="string"/>
         <property name="objectsFolderName" type="string" comment="folder to generated the files to. By default this is the same as the xml schema file"/>
     </class>

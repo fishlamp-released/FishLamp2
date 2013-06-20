@@ -14,6 +14,9 @@
 #import "FLOAuthAuthorizationHeader.h"
 #import "FLHttpResponse.h"
 
+#import "FLOAuth.h"
+#import "FLOAuthApp.h"
+
 @implementation FLOAuthRequestTokenHttpRequest
 
 - (id) initWithOAuthApp:(FLOAuthApp*) app {
@@ -26,7 +29,7 @@
 	return self;
 }
 
-+ (FLOAuthRequestTokenHttpRequest*) OAuthRequestTokenNetworkOperation:(FLOAuthApp*) app {
++ (id) OAuthRequestTokenNetworkOperation:(FLOAuthApp*) app {
 	return FLAutorelease([[FLOAuthRequestTokenHttpRequest alloc] initWithOAuthApp:app]);
 }
 
@@ -38,20 +41,31 @@
 }
 #endif
 
-- (BOOL) shouldRedirectToURL:(NSURL*) url {
-    return NO;
+- (NSURL*) httpRequestURL {
+    return _url;
 }
 
-- (void) willSendHttpRequest {
-    [super willSendHttpRequest];
+- (NSString*) httpRequestHttpMethod {
+    return @"POST"; // is this always POST??
+}
+
+- (void) httpRequest:(FLHttpRequest*) request
+      shouldRedirect:(BOOL*) shouldRedirect
+               toURL:(NSURL*) url {
+    *shouldRedirect = NO;
+}
+
+- (void) httpRequestWillOpen:(FLHttpRequest*) httpRequest {
     FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
-    [self setOAuthAuthorizationHeader:oauthHeader
-                          consumerKey:_app.consumerKey
-                               secret:[_app.consumerSecret stringByAppendingString:@"&"]];
+    [httpRequest setOAuthAuthorizationHeader:oauthHeader
+                                 consumerKey:_app.consumerKey
+                                      secret:[_app.consumerSecret stringByAppendingString:@"&"]];
 
 }
 
-- (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+- (void) httpRequest:(FLHttpRequest*) httpRequest
+     convertResponse:(FLHttpResponse*) httpResponse
+            toResult:(FLPromisedResult*) result {
 
     NSData* data = [[httpResponse responseData] data];
     
@@ -65,8 +79,7 @@
     [FLUrlParameterParser parseData:data intoObject:response strict:YES 
         requiredKeys:[NSArray arrayWithObjects:@"oauth_token_secret", @"oauth_token", @"oauth_callback_confirmed", nil]];
         
-    return response;
-
+    *result = FLRetain(response);
 }
 
 //- (id) performSynchronously {

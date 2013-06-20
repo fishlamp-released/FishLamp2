@@ -17,24 +17,12 @@
 #import "FLCodeGeneratorOptions.h"
 
 @interface FLObjcAllIncludesHeaderFile ()
-@property (readwrite, assign, nonatomic) FLObjcProject* project;
 @end
 
 @implementation FLObjcAllIncludesHeaderFile
-@synthesize project = _project;
 
-- (id) initWithProject:(FLObjcProject*) project fileName:(NSString*) fileName {	
-	self = [super initWithFileName:fileName];
-	if(self) {  
-        self.project = project;
-		_files = [[NSMutableArray alloc] init];
-        self.folder = self.project.inputProject.options.objectsFolderName;
-    }
-	return self;
-}
-
-+ (id) allIncludesHeaderFile:(FLObjcProject*) project  fileName:(NSString*) fileName {
-    return FLAutorelease([[[self class] alloc] initWithProject:project fileName:fileName]);
++ (id) allIncludesHeaderFile:(NSString*) fileName {
+    return FLAutorelease([[[self class] alloc] initWithFileName:fileName]);
 }
 
 #if FL_MRC
@@ -46,24 +34,26 @@
 
 - (void) willGenerateFileWithFileManager:(FLObjcFileManager*) fileManager  {
 
-    FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:self.project];
+    FLObjcFileHeader* fileHeader = [FLObjcFileHeader objcFileHeader:fileManager.project];
     [fileHeader configureWithInputProject:fileManager.project.inputProject];
-    
     [self addCodeWriter:fileHeader];
 
-    for(FLObjcFile* file in fileManager.files) {
-        [_files addObject:file];
-    }
-}                          
+    _files = FLRetain(fileManager.publicHeaders);
+}
 
 - (void) writeCodeToCodeBuilder:(FLObjcCodeBuilder*) codeBuilder {
     [super writeCodeToCodeBuilder:codeBuilder];
-    
-    for(FLObjcFile* file in _files) {
-        if([file.fileName hasSuffix:@".h"]) {
-            [codeBuilder appendImport:file.fileName];
-        }
-    
+
+    NSMutableArray* copy = FLMutableCopyWithAutorelease(_files);
+
+    [copy sortUsingComparator:^NSComparisonResult(FLObjcFile* obj1, FLObjcFile* obj2) {
+        return [[obj1 fileName] compare:[obj2 fileName]];
+    }];
+
+    [codeBuilder appendComment:[NSString stringWithFormat:@"Imported Count: %ld", copy.count]];
+
+    for(FLObjcFile* file in copy) {
+        [codeBuilder appendImport:file.fileName];
     }
 }
 

@@ -21,45 +21,63 @@
 #import "FLHttpRequestDescriptor.h"
 #import "FLHttpResponse.h"
 #import "FLHttpRequestBody.h"
+#import "FLHttpRequest.h"
 
 #define TRACE 0
 
 @implementation FLSoapHttpRequest 
 
-@synthesize soapInput = _soapInput;
-@synthesize soapActionHeader = _soapActionHeader;
-@synthesize soapNamespace = _soapNamespace;
-@synthesize operationName = _operationName;
-@synthesize handleSoapResponseBlock = _handleSoapResponseBlock;
-
-#if FL_MRC
-- (void) dealloc {
-    [_handleSoapResponseBlock release];
-    [_soapInput release];
-    [_soapActionHeader release];
-    [_operationName release];
-    [_soapNamespace release];
-    [super dealloc];
-}
-#endif
-
-//- (id) soapInput {
-//    return _soapInput != nil ? _soapInput : self.requestDescriptor.input;
-//}
-//
-//- (NSString*) soapActionHeader {
-//    return FLStringIsNotEmpty(_soapActionHeader) ? _soapActionHeader : self.requestDescriptor.soapAction;
-//}
-//
-//- (NSString*) soapNamespace {
-//    return FLStringIsNotEmpty(_soapNamespace) ? _soapNamespace : self.requestDescriptor.targetNamespace;
-//}
-//
-//- (NSString*) operationName {
-//    return FLStringIsNotEmpty(_operationName) ? _operationName : self.requestDescriptor.operationName;
-//}
-
 #define MAX_ERR_LEN 500
+
+- (id) init {	
+    return [self initWithRequestURL:[NSURL URLWithString:self.location] httpMethod:@"POST"];
+}
+
++ (id) soapRequest {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+- (NSString*) location {
+    return nil;
+}
+
+- (NSString*) soapAction {
+    return nil;
+}
+- (NSString*) targetNamespace {
+    return nil;
+}
+- (NSString*) operationName {
+    return nil;
+}
+- (id) input {
+    return nil;
+}
+- (id) output {
+    return nil;
+}
+
+- (id) initWithRequestURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
+    self = [super init];
+    if(self) {
+        _url = FLRetain(url);
+        _httpMethod = FLRetain(httpMethod);
+    }
+
+    return self;
+}
+
++ (id) soapRequestWithURL:(NSURL*) url
+               httpMethod:(NSString*) httpMethod {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (NSURL*) httpRequestURL {
+    return _url;
+}
+
+- (NSString*) httpRequestHttpMethod {
+    return _httpMethod;
+}
 
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data {
 	if(data && data.length >0 ) {
@@ -84,48 +102,50 @@
     return nil;
 }
 
-- (void) willSendHttpRequest {
-    FLAssertStringIsNotEmpty(self.requestHeaders.requestURL.absoluteString);
-    FLAssertStringIsNotEmpty(self.soapNamespace);
+- (void) httpRequestWillOpen:(FLHttpRequest*) httpRequest {
+    FLAssertStringIsNotEmpty(httpRequest.requestHeaders.requestURL.absoluteString);
+    FLAssertStringIsNotEmpty(self.targetNamespace);
     FLAssertStringIsNotEmpty(self.operationName);
 
     FLSoapStringBuilder* soapStringBuilder = [FLSoapStringBuilder soapStringBuilder];
     
-    FLObjectXmlElement* element = [FLObjectXmlElement soapXmlElementWithObject:self.soapInput 
+    FLObjectXmlElement* element = [FLObjectXmlElement soapXmlElementWithObject:self.input
                                                                  xmlElementTag:self.operationName
-                                                                  xmlNamespace:self.soapNamespace];
+                                                                  xmlNamespace:self.targetNamespace];
             
 	[soapStringBuilder addElement:element];
     NSString* soap = [soapStringBuilder buildStringWithNoWhitespace];
 
-    [self.requestHeaders setValue:self.soapActionHeader forHTTPHeaderField:@"SOAPAction"]; 
-    [self.requestBody setUtf8Content:soap];
+    [httpRequest.requestHeaders setValue:self.soapAction forHTTPHeaderField:@"SOAPAction"];
+    [httpRequest.requestBody setUtf8Content:soap];
     
-#if DEBUG
-    FLPrettyString* debugString = [FLPrettyString prettyString];
-    [debugString appendBuildableString:soapStringBuilder];
-
-    self.requestBody.debugBody = debugString.string;
-    
-#if TRACE
-//    FLTrace(@"Soap Request:"); 
-    
-    FLLogIndent(^{
-        FLLog([self.requestHeaders description]);
-        FLLog([self.requestBody description]);
-    });
-    
-    
-//    , [self requestHeaders]);
-//    FLTrace(@"%@", debugString.string);
-#endif    
-    
-//    FLLog([self description]);
-#endif    
+//#if DEBUG
+//    FLPrettyString* debugString = [FLPrettyString prettyString];
+//    [debugString appendBuildableString:soapStringBuilder];
+//
+//    httpRequest.requestBody.debugBody = debugString.string;
+//    
+//#if TRACE
+////    FLTrace(@"Soap Request:"); 
+//    
+//    FLLogIndent(^{
+//        FLLog([self.requestHeaders description]);
+//        FLLog([self.requestBody description]);
+//    });
+//    
+//    
+////    , [self requestHeaders]);
+////    FLTrace(@"%@", debugString.string);
+//#endif    
+//    
+////    FLLog([self description]);
+//#endif    
 }
 
-- (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse {
+- (void) httpRequest:(FLHttpRequest*) httpRequest
+throwErrorIfResponseIsError:(FLHttpResponse*) httpResponse {
 
+// TODO: this is prone to breakage - why is this here?
     [httpResponse.responseData closeSinkWithCommit:YES];
     
     NSData* data = httpResponse.responseData.data;
@@ -140,15 +160,15 @@
 #if DEBUG
         FLLog(@"Soap Fault: %@", [fault description]);
 #endif
-        
-        return error;
+        FLThrowError(error);
     }
-    
-    return [super checkHttpResponseForError:httpResponse];
 }
 
 
-- (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+- (void) httpRequest:(FLHttpRequest*) httpRequest
+     convertResponse:(FLHttpResponse*) httpResponse
+            toResult:(FLPromisedResult*) result {
+    
     NSData* data = [httpResponse.responseData data];
     FLAssertNotNil(data);
 
@@ -160,12 +180,36 @@
 
     FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:data];
     
-    if(_handleSoapResponseBlock) {
-        return _handleSoapResponseBlock(parsedSoap);
-    }
-    
-    return parsedSoap;
+//    if(_handleSoapResponseBlock) {
+//        return _handleSoapResponseBlock(parsedSoap);
+//    }
+
+    *result = FLRetain(parsedSoap);
+
+//    return parsedSoap;
 }
+
+@end
+
+@implementation FLMutableSoapHttpRequest
+@synthesize input =_input;
+@synthesize output = _output;
+@synthesize soapAction = _soapAction;
+@synthesize targetNamespace = _soapNamespace;
+@synthesize operationName = _operationName;
+//@synthesize handleSoapResponseBlock = _handleSoapResponseBlock;
+
+#if FL_MRC
+- (void) dealloc {
+    [_handleSoapResponseBlock release];
+    [_input release];
+    [_output release];
+    [_soapAction release];
+    [_operationName release];
+    [_soapNamespace release];
+    [super dealloc];
+}
+#endif
 
 @end
 

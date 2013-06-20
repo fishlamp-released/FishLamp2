@@ -25,6 +25,9 @@
 @class FLInputSink;
 @class FLHttpResponse;
 
+@protocol FLHttpRequestBehavior;
+@protocol FLRetryHandler;
+
 @protocol FLHttpRequestAuthenticator <NSObject>
 //// this needs to be synchronous for scheduling reasons amoung concurrent requests.
 - (void) authenticateHttpRequest:(FLHttpRequest*) request;
@@ -51,22 +54,18 @@
     FLNetworkStreamSecurity _streamSecurity;
     
     FLHttpRequestByteCount* _byteCount;
-    NSUInteger _retryCount;
-    NSUInteger _maxRetryCount;
-    BOOL _canRetry;
-    NSTimeInterval _retryDelay;
+
+    id<FLHttpRequestBehavior> _behavior;
+    id<FLRetryHandler> _retryHandler;
 }
-// timeouts
-@property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
 
-// retries
-@property (readonly, assign) NSUInteger retryCount;
-@property (readwrite, nonatomic) NSUInteger maxRetryCount;
-@property (readwrite, nonatomic) BOOL canRetry;
-@property (readwrite, nonatomic) NSTimeInterval retryDelay;
-
+@property (readwrite, nonatomic, strong) id<FLHttpRequestBehavior> behavior;
+@property (readwrite, nonatomic, strong) id<FLRetryHandler> retryHandler;
 @property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
 @property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> authenticator;
+
+// timeouts
+@property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;
 
 @property (readwrite, assign, nonatomic) BOOL disableAuthenticator;
 @property (readwrite, assign, nonatomic) FLNetworkStreamSecurity streamSecurity;
@@ -75,7 +74,7 @@
 @property (readonly, strong, nonatomic) FLHttpRequestHeaders* requestHeaders;
 @property (readonly, strong, nonatomic) FLHttpRequestBody* requestBody;
 
-- (id) initWithRequestURL:(NSURL*) requestURL;
+@property (readonly, strong) FLHttpRequestByteCount* byteCount;
 
 - (id) initWithRequestURL:(NSURL*) requestURL
                httpMethod:(NSString*) httpMethod; // designated
@@ -83,32 +82,9 @@
 + (id) httpRequestWithURL:(NSURL*) url 
                httpMethod:(NSString*) httpMethod;
 
-+ (id) httpRequestWithURL:(NSURL*) url;
+- (id) initWithRequestBehavior:(id<FLHttpRequestBehavior>) behavior;
 
-//
-// optional overrides
-//
-
-/// called before the request is started. You may set ALL of the
-/// request info here, including the URL
-- (void) willSendHttpRequest;
-- (void) willAuthenticate;
-- (void) didAuthenticate;
-- (void) didReadBytes:(unsigned long long) amount;
-- (void) requestDidFinishWithResult:(FLPromisedResult) result;
-
-/// did receive the response. If there was an error, this will
-/// not be called.
-/// if you want to convert the httpRespose.responseData into something
-/// else do it here and return it from from your override
-- (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse;
-
-- (NSError*) checkHttpResponseForError:(FLHttpResponse*) httpResponse;
-
-/// this returns YES by default.
-- (BOOL) shouldRedirectToURL:(NSURL*) url;
-
-@property (readonly, strong) FLHttpRequestByteCount* byteCount;
++ (id) httpRequest:(id<FLHttpRequestBehavior>) behavior;
 
 @end
 

@@ -27,5 +27,10 @@
 - (FLObjcFile*) sourceFile {
     return nil;
 }
+
+- (BOOL) includeInAllFiles {
+    return NO;
+}
+
 @end
 

@@ -416,6 +416,10 @@
 
 @implementation FLObjcGeneratedObject
 
+- (BOOL) includeInAllFiles {
+    return YES;
+}
+
 - (FLObjcFile*) headerFile {
     return [self generatedHeaderFile];
 }
@@ -433,6 +437,10 @@
 @end
 
 @implementation FLObjcUserObject : FLObjcObject
+
+- (BOOL) includeInAllFiles {
+    return YES;
+}
 
 - (FLObjcFile*) headerFile {
     return [self userHeaderFile];

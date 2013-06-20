@@ -176,6 +176,49 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
     return components;
 }                                
 
+- (NSString*) stringByDeletingPrefix:(NSString*) prefix {
+
+    if(FLStringIsNotEmpty(prefix)) {
+        NSRange range = [self rangeOfString:prefix options:NSCaseInsensitiveSearch];
+        if( range.length > 0 &&
+            range.location == 0 && range.length) {
+            return [self substringFromIndex:range.length];
+        }
+    }
+
+    return self;
+}
+
+
+- (NSString*) stringByDeletingSuffix:(NSString*) suffix {
+
+    if(FLStringIsNotEmpty(suffix)) {
+        NSRange range = [self rangeOfString:suffix
+                                    options:NSCaseInsensitiveSearch | NSBackwardsSearch];
+
+        if( range.length > 0 &&
+            range.location == self.length - range.length) {
+            return [self substringToIndex:range.location];
+        }
+    }
+
+    return self;
+}
+
+- (NSString*) stringByPrependingPrefix:(NSString*) prefix {
+    if(FLStringIsNotEmpty(prefix)) {
+        return [prefix stringByAppendingString:[self stringByDeletingPrefix:prefix]];
+    }
+    return self;
+}
+
+- (NSString*) stringByAppendingSuffix:(NSString*) suffix {
+    if(FLStringIsNotEmpty(suffix)) {
+        return [[self stringByDeletingSuffix:suffix] stringByAppendingString:suffix];
+    }
+    return self;
+}
+
 
 @end
 

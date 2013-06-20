@@ -61,6 +61,10 @@
     return nil;
 }
 
+- (BOOL) includeInAllFiles {
+    return NO;
+}
+
 - (FLObjcFileHeader*) generatedFileHeader {
     FLObjcFileHeader* fileHeader = [FLObjcGeneratedFileHeader objcFileHeader:self.project];
     [fileHeader configureWithInputProject:self.project.inputProject];

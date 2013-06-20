@@ -22,7 +22,7 @@
 }
 
 - (void) setFileName:(NSString*) fileName {
-    [super setFileName:[NSString stringWithFormat:@"%@.m", fileName]];
+    [super setFileName:[fileName stringByAppendingSuffix:@".m"]];
 }
 
 - (BOOL) canUpdateExistingFile {

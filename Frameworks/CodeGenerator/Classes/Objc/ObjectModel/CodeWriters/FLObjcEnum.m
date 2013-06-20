@@ -279,5 +279,9 @@
     return [self generatedSourceFile];
 }
 
+- (BOOL) includeInAllFiles {
+    return YES;
+}
+
 @end
 

@@ -23,6 +23,8 @@
 
 - (FLObjcFile*) sourceFile;
 
+- (BOOL) includeInAllFiles;
+
 @end
 
 @interface FLObjcCodeWriter : NSObject<FLObjcCodeWriter, FLGenerated> {

@@ -14,7 +14,7 @@
 #import "FLWsdlServiceAddress.h"
 #import "FLWsdlCodeMethod.h"
 
-#import "FLObjectModelAll.h"
+#import "FishLampCodeGeneratorObjects.h"
 
 @implementation FLWsdlServiceCodeObject
 
@@ -30,9 +30,7 @@
             location.isImmutable = YES;
             location.isPrivate = YES;
             location.isReadOnly = YES;
-            location.defaultValue = [FLCodeStatement codeStatement:
-                                        [FLCodeReturn codeReturn:
-                                            [FLCodeString codeString:portType.address.location]]];
+            location.defaultValue = [FLCodeString codeString:portType.address.location];
         }
         
         FLWsdlCodeMethod* method =

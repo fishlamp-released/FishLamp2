@@ -8,6 +8,7 @@
 
 #import "FLObjcHeaderFile.h"
 #import "FLObjcCodeGeneratorHeaders.h"
+#import "FLStringUtils.h"
 
 @implementation FLObjcHeaderFile
 - (BOOL) isHeaderFile {
@@ -25,7 +26,7 @@
 }
 
 - (void) setFileName:(NSString*) fileName {
-    [super setFileName:[NSString stringWithFormat:@"%@.h", fileName]];
+    [super setFileName:[fileName stringByAppendingSuffix:@".h"]];
 }
 
 - (BOOL) canUpdateExistingFile {

@@ -18,7 +18,8 @@
 #import "FLWsdlCodeMethod.h"
 
 #import "FLHttpRequestDescriptor.h"
-#import "FLObjectModelAll.h"
+#import "FishLampCodeGeneratorObjects.h"
+#import "FLKeyValuePair.h"
 
 @implementation FLWsdlBindingCodeObject
 
@@ -46,6 +47,7 @@
        superclassName:(NSString*) superclassName 
            codeReader:(FLWsdlCodeProjectReader*) reader {
 
+
     FLWsdlOperationCodeObject* operationCodeObject = [FLWsdlOperationCodeObject wsdlOperationCodeObject:className];
     [operationCodeObject addPropertiesWithOperation:operation codeReader:reader];
     [operationCodeObject addPropertiesWithBinding:binding withOperation:operation codeReader:reader];
@@ -54,10 +56,17 @@
     // may have already have been created, but that's ok.
     [reader addCodeObject:operationCodeObject];
     [self addOperationProperty:operationCodeObject];
+
+    if(!_operations) {
+        _operations = [[NSMutableArray alloc] init];
+    }
+    [_operations addObject:[FLKeyValuePair keyValuePair:operation value:operationCodeObject]];
+
 }              
 
 - (void) addPropertiesWithBinding:(FLWsdlBinding*) binding 
                        codeReader:(FLWsdlCodeProjectReader*) reader {
+
 
     NSString* url = [reader servicePortLocationFromBinding:binding];		   
     FLConfirmStringIsNotEmpty(url);
@@ -67,16 +76,11 @@
     
 	FLCodeProperty* urlProp = [self addProperty:@"url" propertyType:@"string"];
 	urlProp.isImmutable = YES;
-
-	urlProp.defaultValue = [FLCodeStatement codeStatement:
-                                [FLCodeReturn codeReturn:
-                                    [FLCodeString codeString:url]]];
+	urlProp.defaultValue = [FLCodeString codeString:url];
 
 	FLCodeProperty* targetNamespaceProp = [self addProperty:@"targetNamespace" propertyType:@"string"];
 
-	targetNamespaceProp.defaultValue = [FLCodeStatement codeStatement:
-                                            [FLCodeReturn codeReturn:
-                                                [FLCodeString codeString:targetNamespace]]];
+	targetNamespaceProp.defaultValue = [FLCodeString codeString:targetNamespace];
 
 	targetNamespaceProp.isImmutable = YES;
 
@@ -91,6 +95,8 @@
             NSString* className = [NSString stringWithFormat:@"%@%@SoapRequest", binding.name, operation.name];
         
             [self addOperation:operation binding:binding className:className superclassName:@"FLSoapHttpRequest" codeReader:reader];
+
+        
         }
     }
     else {
@@ -113,8 +119,17 @@
 - (void) addPropertiesWithPortType:(FLWsdlPortType*) portType 
                         codeReader:(FLWsdlCodeProjectReader*) reader {
 
-//    for(FLWsdlOperation* operation in portType.operations) {
-//        FLWsdlOperationCodeObject* operationCodeObject = 
+    for(FLWsdlOperation* operation in portType.operations) {
+
+        for(FLKeyValuePair* pair in _operations) {
+            if(FLStringsAreEqual([pair.key name], [operation name])) {
+                [pair.value addPropertiesWithPortType:portType wsdlOperation:operation codeReader:reader];
+            }
+        }
+
+//        FLWsdlOperationCodeObject* operationCodeObject =
+//            [reader codeObjectForClassName:]
+//
 //            [FLWsdlOperationCodeObject wsdlOperationCodeObject:operation 
 //                                                   bindingName:portType.name 
 //                                                    codeReader:reader];
@@ -123,8 +138,8 @@
 //
 //        [operationCodeObject addPropertiesWithPortType:portType codeReader:reader];
 //        [self addOperationProperty:operationCodeObject];
-//    }
-}                              
+    }
+}
 
 + (id) wsdlBindingCodeObject:(NSString*) name codeReader:(FLWsdlCodeProjectReader*) reader {
 

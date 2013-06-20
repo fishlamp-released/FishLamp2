@@ -161,8 +161,7 @@
 
     if(codeProperty.defaultValue) {
         FLCodeElement* element = [FLCodeStatement codeStatement:
-                                        [FLCodeReturn codeReturn:
-                                            [FLCodeString codeString:codeProperty.defaultValue]]];
+                                        [FLCodeReturn codeReturn:codeProperty.defaultValue]];
 
         [self.getter.code appendCodeElement:element
                                 withProject:self.project];

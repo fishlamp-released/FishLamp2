@@ -8,19 +8,18 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLCocoaRequired.h"
+#import "FishLamp.h"
+#import "FLHttpRequestBehavior.h"
 
-#import "FLHttpRequest.h"
-#import "FLOAuth.h"
-#import "FLOAuthApp.h"
+@class FLOAuthApp;
 
-@interface FLOAuthRequestTokenHttpRequest : FLHttpRequest {
+@interface FLOAuthRequestTokenHttpRequest : NSObject<FLHttpRequestBehavior> {
 @private 
 	FLOAuthApp* _app;
     NSURL* _url;
 }
 
 - (id) initWithOAuthApp:(FLOAuthApp*) app;
-+ (FLOAuthRequestTokenHttpRequest*) OAuthRequestTokenNetworkOperation:(FLOAuthApp*) app;
++ (id) OAuthRequestTokenNetworkOperation:(FLOAuthApp*) app;
 
 @end

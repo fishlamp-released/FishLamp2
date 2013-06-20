@@ -11,7 +11,10 @@
 @class FLWsdlCodeProjectReader;
 @class FLWsdlPortType;
 
-@interface FLWsdlBindingCodeObject : FLWsdlCodeObject
+@interface FLWsdlBindingCodeObject : FLWsdlCodeObject {
+@private
+    NSMutableArray* _operations;
+}
 
 + (id) wsdlBindingCodeObject:(NSString*) name codeReader:(FLWsdlCodeProjectReader*) reader;
 

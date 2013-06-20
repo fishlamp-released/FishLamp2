@@ -12,11 +12,9 @@
 
 @interface FLObjcAllIncludesHeaderFile : FLObjcGeneratedHeaderFile {
 @private
-    NSMutableArray* _files;
-    __unsafe_unretained FLObjcProject* _project;
+    NSArray* _files;
 }
 
-+ (id) allIncludesHeaderFile:(FLObjcProject*) project  
-                    fileName:(NSString*) fileName;
++ (id) allIncludesHeaderFile:(NSString*) fileName;
 
 @end

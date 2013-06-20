@@ -21,7 +21,7 @@ typedef enum {
 
 @class FLAttributedStringController;
 
-@protocol FLAttributedStringControllerDelegate <NSObject, FLSelectorPerformer>
+@protocol FLAttributedStringControllerDelegate <NSObject, FLPerformer>
 @optional
 
 - (void) attributedStringController:(FLAttributedStringController*) controller 

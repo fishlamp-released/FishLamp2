@@ -79,7 +79,6 @@
 #endif
 
 - (void) willSendHttpRequest {
-    [super willSendHttpRequest];
     
 	FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
 	[oauthHeader setParameter:kFLOAuthHeaderToken value:_authData.oauth_token];

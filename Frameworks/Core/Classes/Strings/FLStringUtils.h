@@ -44,6 +44,15 @@
                                 allowEmptyStrings:(BOOL) allowEmptyStrings;
 
 
+// these are case insensitve
+- (NSString*) stringByDeletingPrefix:(NSString*) prefix;
+- (NSString*) stringByPrependingPrefix:(NSString*) prefix;
+
+- (NSString*) stringByDeletingSuffix:(NSString*) suffix;
+- (NSString*) stringByAppendingSuffix:(NSString*) suffix;
+
+
+
 
 @end
 

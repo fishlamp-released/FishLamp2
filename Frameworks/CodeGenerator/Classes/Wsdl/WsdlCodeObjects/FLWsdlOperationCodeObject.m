@@ -19,7 +19,7 @@
 #import "FLWsdlDefinitions.h"
 #import "FLHttpRequest.h"
 
-#import "FLObjectModelAll.h"
+#import "FishLampCodeGeneratorObjects.h"
 
 @implementation FLWsdlOperationCodeObject
 
@@ -69,9 +69,7 @@
         property.isReadOnly = YES;
         property.isImmutable = YES;
 
-        property.defaultValue = [FLCodeStatement codeStatement:
-                                    [FLCodeReturn codeReturn:
-                                        [FLCodeString codeString:operation.name]]];
+        property.defaultValue = [FLCodeString codeString:operation.name];
 
     }
 }
@@ -140,7 +138,11 @@
     }
 }               
 
-- (void) addPropertiesWithPortType:(FLWsdlPortType*) portType  codeReader:(FLWsdlCodeProjectReader*) reader {
+- (void) addPropertiesWithPortType:(FLWsdlPortType*) portType
+                     wsdlOperation:(FLWsdlOperation*) operation
+                        codeReader:(FLWsdlCodeProjectReader*) reader {
+
+    [self addPropertiesWithOperation:operation codeReader:reader];
 
 }
 
@@ -151,7 +153,14 @@
 
     NSString* url = [reader servicePortLocationFromBinding:binding];		   
     FLConfirmStringIsNotEmpty(url);
-    
+
+    if(FLStringIsNotEmpty(url) && [self propertyForName:@"url"] == nil) {
+        FLWsdlCodeProperty* prop = [self addProperty:@"url" propertyType:@"string"];
+        prop.isImmutable = YES;
+        prop.isReadOnly = YES;
+        prop.defaultValue = [FLCodeString codeString:url];
+    }
+
     NSString* targetNamespace = reader.wsdlDefinitions.targetNamespace;
     FLConfirmStringIsNotEmpty(targetNamespace);
 
@@ -159,11 +168,7 @@
         FLWsdlCodeProperty* prop = [self addProperty:@"targetNamespace" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
-
-        prop.defaultValue = [FLCodeStatement codeStatement:
-                                [FLCodeReturn codeReturn:
-                                    [FLCodeString codeString:targetNamespace]]];
-
+        prop.defaultValue = [FLCodeString codeString:targetNamespace];
     }
 
     if(FLStringIsNotEmpty(binding.binding.verb) && [self propertyForName:@"verb"] == nil) {
@@ -171,9 +176,7 @@
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
 
-        prop.defaultValue = [FLCodeStatement codeStatement:
-                                [FLCodeReturn codeReturn:
-                                    [FLCodeString codeString:binding.binding.verb]]];
+        prop.defaultValue = [FLCodeString codeString:binding.binding.verb];
 
     }
     
@@ -181,12 +184,8 @@
         FLWsdlCodeProperty* prop = [self addProperty:@"transport" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
-        prop.defaultValue = [FLCodeStatement codeStatement:
-                                [FLCodeReturn codeReturn:
-                                    [FLCodeString codeString:binding.binding.transport]]];
+        prop.defaultValue = [FLCodeString codeString:binding.binding.transport];
     }
-
-    NSString* location = url;
     
     FLWsdlOperation* subOperation = operation.operation;
     if(subOperation) {
@@ -195,23 +194,17 @@
             prop.isImmutable = YES;
             prop.isReadOnly = YES;
 
-            prop.defaultValue = [FLCodeStatement codeStatement:
-                                    [FLCodeReturn codeReturn:
-                                        [FLCodeString codeString:subOperation.soapAction]]];
+            prop.defaultValue = [FLCodeString codeString:subOperation.soapAction];
         }
         
         if(FLStringIsNotEmpty(subOperation.location)) {
-            location = [url stringByAppendingPathComponent:subOperation.location];
+            FLWsdlCodeProperty* prop = [self addProperty:@"location" propertyType:@"string"];
+            prop.isImmutable = YES;
+            prop.isReadOnly = YES;
+            prop.defaultValue = [FLCodeString codeString:subOperation.location];
         }
     }
 
-    FLWsdlCodeProperty* prop = [self addProperty:@"location" propertyType:@"string"];
-    prop.isImmutable = YES;
-    prop.isReadOnly = YES;
-
-    prop.defaultValue = [FLCodeStatement codeStatement:
-                            [FLCodeReturn codeReturn:
-                                [FLCodeString codeString:location]]];
 
 //    FLWsdlCodeMethod* method = [FLWsdlCodeMethod wsdlCodeMethod:@"init"
 //    methodReturnType:@"id"];

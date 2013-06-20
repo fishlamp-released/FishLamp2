@@ -8,6 +8,7 @@
 
 #import "FLObjcProject.h"
 #import "FLObjcCodeGeneratorHeaders.h"
+#import "FLStringUtils.h"
 
 @interface FLObjcProject ()
 @property (readwrite, strong, nonatomic) FLObjcFileManager* fileManager;
@@ -189,7 +190,7 @@
 }
 
 - (void) generateObjects:(FLCodeProject*) inputProject {
-// now actually generate the objects - now that all of the dependencies 
+// now actually generate the objects - now that all of the dependencies
 // and arrays and enums are ready to go.
 
     for(FLCodeObject* object in inputProject.classes) {
@@ -240,15 +241,17 @@
     [self.fileManager addFilesWithArrayOfCodeElements:self.generatedObjects.allValues];
 
 // add a all includes file if needed
-    if(inputProject.options.generateAllIncludesFile) {
-        
-        NSString* fileName = [NSString stringWithFormat:@"%@%@All", 
-                              FLEmptyStringOrString(self.classPrefix), 
-                              FLStringIsNotEmpty(inputProject.info.schemaName) ? 
-                                inputProject.info.schemaName : 
-                                [[inputProject.projectPath lastPathComponent] stringByDeletingPathExtension]];
-    
-        [self.fileManager addFile:[FLObjcAllIncludesHeaderFile allIncludesHeaderFile:self fileName:fileName]];
+    if(FLStringIsNotEmpty(inputProject.options.allIncludesFileName)) {
+
+        NSString* fileName = [inputProject.options.allIncludesFileName stringByAppendingSuffix:@".h"];
+
+//        NSString* fileName = [NSString stringWithFormat:@"%@%@All", 
+//                              FLEmptyStringOrString(self.classPrefix), 
+//                              FLStringIsNotEmpty(inputProject.info.schemaName) ? 
+//                                inputProject.info.schemaName : 
+//                                [[inputProject.projectPath lastPathComponent] stringByDeletingPathExtension]];
+
+        [self.fileManager addFile:[FLObjcAllIncludesHeaderFile allIncludesHeaderFile:fileName]];
     }
 }
 

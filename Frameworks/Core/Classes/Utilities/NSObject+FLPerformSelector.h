@@ -9,7 +9,7 @@
 
 #import "FLRequired.h"
 
-@protocol FLSelectorPerformer <NSObject>
+@protocol FLPerformer <NSObject>
 @optional
 
 // in addition to sdk versions

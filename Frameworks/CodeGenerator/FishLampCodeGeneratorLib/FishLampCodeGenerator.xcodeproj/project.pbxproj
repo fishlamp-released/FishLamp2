@@ -65,6 +65,7 @@
 		27795D9C1763A5E800B314EA /* FLCodeProjectReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795D511763A5E800B314EA /* FLCodeProjectReader.m */; };
 		27795DDC1763A96100B314EA /* FLObjcClassConstructor.h in Headers */ = {isa = PBXBuildFile; fileRef = 27795DDA1763A96100B314EA /* FLObjcClassConstructor.h */; };
 		27795DDD1763A96100B314EA /* FLObjcClassConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 27795DDB1763A96100B314EA /* FLObjcClassConstructor.m */; };
+		279297A81773975D000D8283 /* FishLampCodeGeneratorObjects.h in Headers */ = {isa = PBXBuildFile; fileRef = 279297A71773975D000D8283 /* FishLampCodeGeneratorObjects.h */; };
 		279DECEC175FCB6800CDE628 /* libFishLampCodeGenerator-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 279FFBEC175D4CCB003F06C4 /* libFishLampCodeGenerator-64-MRC.a */; };
 		279DECED175FCB6800CDE628 /* FishLampOSXAppLib-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 279DECE5175FCB4C00CDE628 /* FishLampOSXAppLib-64-MRC.a */; };
 		279FFBED175D4CCB003F06C4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783D3321175C239D0072A61C /* Cocoa.framework */; };
@@ -342,7 +343,6 @@
 		27F01EAD176E8EF700DEE29A /* FLCodeVariableBaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01E2D176E8EF700DEE29A /* FLCodeVariableBaseClass.m */; };
 		27F01EAE176E8EF700DEE29A /* FLDataType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01E2E176E8EF700DEE29A /* FLDataType.h */; };
 		27F01EAF176E8EF700DEE29A /* FLDataType.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01E2F176E8EF700DEE29A /* FLDataType.m */; };
-		27F01EB0176E8EF700DEE29A /* FLObjectModelAll.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01E30176E8EF700DEE29A /* FLObjectModelAll.h */; };
 		27F01EB1176E8EF700DEE29A /* FLCodeArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01E32176E8EF700DEE29A /* FLCodeArray.h */; };
 		27F01EB2176E8EF700DEE29A /* FLCodeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01E33176E8EF700DEE29A /* FLCodeArray.m */; };
 		27F01EB3176E8EF700DEE29A /* FLCodeArrayType.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01E34176E8EF700DEE29A /* FLCodeArrayType.h */; };
@@ -573,6 +573,7 @@
 		2787B64617415E620010C2C6 /* CodeGeneratorTestTargetSettings-OSX-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "CodeGeneratorTestTargetSettings-OSX-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
 		2787B65F17415F060010C2C6 /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		2787B66017415F060010C2C6 /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
+		279297A71773975D000D8283 /* FishLampCodeGeneratorObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCodeGeneratorObjects.h; sourceTree = "<group>"; };
 		2797C8B9175D472300FBD667 /* FLTestObjects.cgjson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLTestObjects.cgjson; sourceTree = "<group>"; };
 		2797C8BC175D472300FBD667 /* FLImportedTestObject.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLImportedTestObject.flproj; sourceTree = "<group>"; };
 		2797C8C3175D472300FBD667 /* FLTestObjects.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLTestObjects.flproj; sourceTree = "<group>"; };
@@ -852,7 +853,6 @@
 		27F01E2D176E8EF700DEE29A /* FLCodeVariableBaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeVariableBaseClass.m; sourceTree = "<group>"; };
 		27F01E2E176E8EF700DEE29A /* FLDataType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDataType.h; sourceTree = "<group>"; };
 		27F01E2F176E8EF700DEE29A /* FLDataType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDataType.m; sourceTree = "<group>"; };
-		27F01E30176E8EF700DEE29A /* FLObjectModelAll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjectModelAll.h; sourceTree = "<group>"; };
 		27F01E32176E8EF700DEE29A /* FLCodeArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeArray.h; sourceTree = "<group>"; };
 		27F01E33176E8EF700DEE29A /* FLCodeArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeArray.m; sourceTree = "<group>"; };
 		27F01E34176E8EF700DEE29A /* FLCodeArrayType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeArrayType.h; sourceTree = "<group>"; };
@@ -1034,6 +1034,7 @@
 		27795D461763A5E800B314EA /* CodeObjectModel */ = {
 			isa = PBXGroup;
 			children = (
+				279297A71773975D000D8283 /* FishLampCodeGeneratorObjects.h */,
 				27F01DED176E8EF600DEE29A /* Generated */,
 				27F01E31176E8EF700DEE29A /* Objects */,
 				27795D471763A5E800B314EA /* FLCodeDataTypeCollection.h */,
@@ -1612,7 +1613,6 @@
 				27F01E2D176E8EF700DEE29A /* FLCodeVariableBaseClass.m */,
 				27F01E2E176E8EF700DEE29A /* FLDataType.h */,
 				27F01E2F176E8EF700DEE29A /* FLDataType.m */,
-				27F01E30176E8EF700DEE29A /* FLObjectModelAll.h */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -1837,7 +1837,6 @@
 				27F01EAA176E8EF700DEE29A /* FLCodeTypeDefinitionBaseClass.h in Headers */,
 				27F01EAC176E8EF700DEE29A /* FLCodeVariableBaseClass.h in Headers */,
 				27F01EAE176E8EF700DEE29A /* FLDataType.h in Headers */,
-				27F01EB0176E8EF700DEE29A /* FLObjectModelAll.h in Headers */,
 				27F01EB1176E8EF700DEE29A /* FLCodeArray.h in Headers */,
 				27F01EB3176E8EF700DEE29A /* FLCodeArrayType.h in Headers */,
 				27F01EB5176E8EF700DEE29A /* FLCodeClassName.h in Headers */,
@@ -1887,6 +1886,7 @@
 				2712074717726F000014206E /* FLObjcProtocol.h in Headers */,
 				2712074917726F000014206E /* FLObjcRuntimeValue.h in Headers */,
 				2712074B17726F000014206E /* FLObjcVariable.h in Headers */,
+				279297A81773975D000D8283 /* FishLampCodeGeneratorObjects.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

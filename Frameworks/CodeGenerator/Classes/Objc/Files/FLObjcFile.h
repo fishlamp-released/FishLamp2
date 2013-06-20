@@ -29,7 +29,7 @@
 - (void) willGenerateFileWithFileManager:(FLObjcFileManager*) fileManager  ;
 
 - (BOOL) isHeaderFile; 
-                           
+
 @end
 
 
