@@ -25,7 +25,6 @@
 @class FLInputSink;
 @class FLHttpResponse;
 
-@protocol FLHttpRequestBehavior;
 @protocol FLRetryHandler;
 
 @protocol FLHttpRequestAuthenticator <NSObject>
@@ -44,22 +43,19 @@
     FLFifoAsyncQueue* _asyncQueueForStream;
     FLHttpResponse* _previousResponse; // if redirected
     FLHttpStream* _httpStream;
+
+    FLHttpRequestByteCount* _byteCount;
+    id<FLRetryHandler> _retryHandler;
+
     NSTimeInterval _timeoutInterval;
-    
+    FLNetworkStreamSecurity _streamSecurity;
+
     // helpers
     id<FLInputSink> _inputSink;
     id<FLHttpRequestAuthenticator> _authenticator;
     BOOL _disableAuthenticator;
-    
-    FLNetworkStreamSecurity _streamSecurity;
-    
-    FLHttpRequestByteCount* _byteCount;
-
-    id<FLHttpRequestBehavior> _behavior;
-    id<FLRetryHandler> _retryHandler;
 }
 
-@property (readwrite, nonatomic, strong) id<FLHttpRequestBehavior> behavior;
 @property (readwrite, nonatomic, strong) id<FLRetryHandler> retryHandler;
 @property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
 @property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> authenticator;
@@ -77,16 +73,33 @@
 @property (readonly, strong) FLHttpRequestByteCount* byteCount;
 
 - (id) initWithRequestURL:(NSURL*) requestURL
-               httpMethod:(NSString*) httpMethod; // designated
+               httpMethod:(NSString*) httpMethod; 
 
 + (id) httpRequestWithURL:(NSURL*) url 
                httpMethod:(NSString*) httpMethod;
 
-- (id) initWithRequestBehavior:(id<FLHttpRequestBehavior>) behavior;
+@end
 
-+ (id) httpRequest:(id<FLHttpRequestBehavior>) behavior;
+@interface FLHttpRequest (OptionalOverrides)
+
+- (void) willOpen;
+
+- (void) willAuthenticate;
+
+- (void) didAuthenticate;
+
+- (BOOL) shouldRedirectToURL:(NSURL*) url;
+
+- (void) didReadBytes:(NSNumber*) amount;
+
+- (FLPromisedResult) convertResponseToPromisedResult:(FLHttpResponse*) httpResponse;
+
+- (void) throwErrorIfResponseIsError:(FLHttpResponse*) httpResponse;
+
+- (void) didFinishWithResult:(FLPromisedResult) result;
 
 @end
+
 
 
 @protocol FLHttpRequestDelegate <NSObject>

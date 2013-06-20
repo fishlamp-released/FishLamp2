@@ -34,7 +34,7 @@
 }
 #endif
 
-- (void) willSendHttpRequest {
+- (void) willOpen {
 //    if(self.json && self.json.lines.count > 0) {
 
         FLPrettyString* jsonString = [FLPrettyString prettyString:nil];
@@ -45,7 +45,7 @@
 //    }
 }
 
-- (id) resultFromHttpResponse:(FLHttpResponse*) httpResponse {
+- (id) convertResponseToPromisedResult:(FLHttpResponse *)httpResponse {
 
     
     if(!_outputObject) {

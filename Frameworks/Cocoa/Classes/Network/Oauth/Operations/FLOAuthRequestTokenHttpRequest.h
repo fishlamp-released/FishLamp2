@@ -9,11 +9,11 @@
 //
 
 #import "FishLamp.h"
-#import "FLHttpRequestBehavior.h"
+#import "FLHttpRequest.h"
 
 @class FLOAuthApp;
 
-@interface FLOAuthRequestTokenHttpRequest : NSObject<FLHttpRequestBehavior> {
+@interface FLOAuthRequestTokenHttpRequest : FLHttpRequest {
 @private 
 	FLOAuthApp* _app;
     NSURL* _url;

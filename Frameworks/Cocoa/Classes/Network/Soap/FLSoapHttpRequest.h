@@ -7,23 +7,18 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLHttpRequestBehavior.h"
+#import "FLHttpRequest.h"
 @class FLSoapFault11;
 @class FLParsedXmlElement;
 
 typedef FLPromisedResult (^FLHandleSoapResponseBlock)(FLParsedXmlElement* parsedSoap);
 
-@interface FLSoapHttpRequest : NSObject<FLHttpRequestBehavior> {
-@private
-    NSURL* _url;
-    NSString* _httpMethod;
-}
+@interface FLSoapHttpRequest : FLHttpRequest
 
-- (id) initWithRequestURL:(NSURL*) requestURL
-               httpMethod:(NSString*) httpMethod; // designated
++ (id) soapRequestWithURL:(NSURL*) url;
 
 + (id) soapRequestWithURL:(NSURL*) url
-               httpMethod:(NSString*) httpMethod;
+               httpMethod:(NSString*) httpMethod; // is soap always POST??
 
 + (id) soapRequest;
 
@@ -31,18 +26,15 @@ typedef FLPromisedResult (^FLHandleSoapResponseBlock)(FLParsedXmlElement* parsed
 - (NSString*) soapAction;
 - (NSString*) targetNamespace;
 - (NSString*) operationName;
+- (NSString*) url;
 - (id) input;
 - (id) output;
 
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
-
-// optionally override
-- (NSError*) createErrorForSoapFault:(FLSoapFault11*) fault;
 @end
 
 @interface FLMutableSoapHttpRequest : FLSoapHttpRequest {
 @private
-// for sending request
     NSString* _targetNamespace;
     NSString* _soapAction;
     NSString* _operationName;

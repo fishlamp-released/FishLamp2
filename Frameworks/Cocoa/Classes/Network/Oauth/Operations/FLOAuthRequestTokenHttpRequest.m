@@ -49,23 +49,19 @@
     return @"POST"; // is this always POST??
 }
 
-- (void) httpRequest:(FLHttpRequest*) request
-      shouldRedirect:(BOOL*) shouldRedirect
-               toURL:(NSURL*) url {
-    *shouldRedirect = NO;
+- (BOOL) shouldRedirectToURL:(NSURL*) url {
+    return NO;
 }
 
-- (void) httpRequestWillOpen:(FLHttpRequest*) httpRequest {
+- (void) willOpen {
     FLOAuthAuthorizationHeader* oauthHeader = [FLOAuthAuthorizationHeader authorizationHeader];
-    [httpRequest setOAuthAuthorizationHeader:oauthHeader
+    [self setOAuthAuthorizationHeader:oauthHeader
                                  consumerKey:_app.consumerKey
                                       secret:[_app.consumerSecret stringByAppendingString:@"&"]];
 
 }
 
-- (void) httpRequest:(FLHttpRequest*) httpRequest
-     convertResponse:(FLHttpResponse*) httpResponse
-            toResult:(FLPromisedResult*) result {
+- (FLPromisedResult)convertResponseToPromisedResult:(FLHttpResponse*) httpResponse {
 
     NSData* data = [[httpResponse responseData] data];
     
@@ -79,7 +75,7 @@
     [FLUrlParameterParser parseData:data intoObject:response strict:YES 
         requiredKeys:[NSArray arrayWithObjects:@"oauth_token_secret", @"oauth_token", @"oauth_callback_confirmed", nil]];
         
-    *result = FLRetain(response);
+    return response;
 }
 
 //- (id) performSynchronously {

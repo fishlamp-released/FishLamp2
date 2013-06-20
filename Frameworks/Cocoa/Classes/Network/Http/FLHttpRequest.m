@@ -21,7 +21,6 @@
 #import "FLHttpRequestByteCount.h"
 #import "FLHttpResponse.h"
 #import "FLNetworkErrors.h"
-#import "FLHttpRequestBehavior.h"
 #import "FLRetryHandler.h"
 
 #define FORCE_NO_SSL DEBUG
@@ -54,7 +53,6 @@
 @synthesize timeoutInterval = _timeoutInterval;
 @synthesize streamSecurity = _streamSecurity;
 @synthesize byteCount = _byteCount;
-@synthesize behavior = _behavior;
 @synthesize retryHandler = _retryHandler;
 
 #if TRACE
@@ -104,7 +102,6 @@ static int s_counter = 0;
 
     [_asyncQueueForStream releaseToPool];
 #if FL_MRC
-    [_behavior release];
     [_byteCount release];
     [_asyncQueueForStream release];
     [_previousResponse release];
@@ -116,19 +113,6 @@ static int s_counter = 0;
     [_retryHandler release];
     [super dealloc];
 #endif
-}
-
-- (id) initWithRequestBehavior:(id<FLHttpRequestBehavior>) behavior {
-    self = [self initWithRequestURL:behavior.httpRequestURL httpMethod:behavior.httpRequestHttpMethod];
-    if(self) {
-        self.behavior = behavior;
-    }
-
-    return self;
-}
-
-+ (id) httpRequest:(id<FLHttpRequestBehavior>) behavior {
-    return FLAutorelease([[[self class] alloc] initWithRequestBehavior:behavior]);
 }
 
 //+ (id) httpGetRequest:(NSURL*) url {
@@ -160,8 +144,8 @@ static int s_counter = 0;
         [[NSNotificationCenter defaultCenter] postNotificationName:FLNetworkActivityStartedNotification object:nil userInfo:[NSDictionary dictionaryWithObject:self forKey:FLNetworkActivitySenderKey]];
     });
     
+    [self willOpen];
     [self.delegate performOptionalSelector:@selector(httpRequestWillOpen:) withObject:self];
-    [self.behavior performOptionalSelector:@selector(httpRequestWillOpen:) withObject:self];
 
     if(!self.inputSink) {
         self.inputSink = [FLDataSink dataSink];
@@ -219,12 +203,12 @@ static int s_counter = 0;
     }
 
     if(self.authenticator && !self.disableAuthenticator) {
-        [self.behavior performOptionalSelector:@selector(httpRequestWillAuthenticate:) withObject:self];
+        [self willAuthenticate];
         [self.delegate performOptionalSelector:@selector(httpRequestWillAuthenticate:) withObject:self];
 
         [self.authenticator authenticateHttpRequest:self];
-        
-        [self.behavior performOptionalSelector:@selector(httpRequestDidAuthenticate:) withObject:self];
+
+        [self didAuthenticate];
         [self.delegate performOptionalSelector:@selector(httpRequestDidAuthenticate:) withObject:self];
     }
 
@@ -243,12 +227,12 @@ static int s_counter = 0;
     [self.byteCount setStartTime];
 }
 
-
-- (void) networkStream:(FLHttpStream*) stream didReadBytes:(NSNumber*) amountRead {
+- (void) networkStream:(FLHttpStream*) stream
+          didReadBytes:(NSNumber*) amountRead {
 
     [self.byteCount incrementByteCount:amountRead];
+    [self didReadBytes:amountRead];
 
-    [self.behavior performOptionalSelector:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
     [self.delegate performOptionalSelector:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
 }
 
@@ -256,7 +240,7 @@ static int s_counter = 0;
     [self releaseResponseData];
                 
     [self.delegate performOptionalSelector:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
-    [self.behavior performOptionalSelector:@selector(httpRequest:didFinishWithResult:) withObject:self withObject:result];
+    [self didFinishWithResult:result];
     [self.finisher setFinishedWithResult:result];
     
     [self.retryHandler resetRetryCount];
@@ -276,12 +260,10 @@ static int s_counter = 0;
 
     [self.byteCount setFinishTime];    
 
-    id result = response;
+    id result = nil;
 
     @try {
-        if([self.behavior respondsToSelector:@selector(httpRequest:convertResponse:toResult:)]) {
-            [self.behavior httpRequest:self convertResponse:result toResult:&result];
-        }
+        result = [self convertResponseToPromisedResult:response];
     }
     @catch(NSException* ex) {
         result = ex.error;
@@ -337,13 +319,11 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
     response.byteCount = self.byteCount;
     
     NSError* responseError = nil;
-    if([self.behavior respondsToSelector:@selector(httpRequest:throwErrorIfResponseIsError:)]) {
-        @try {
-            [self.behavior httpRequest:self throwErrorIfResponseIsError:response];
-        }
-        @catch(NSException* ex) {
-            responseError = FLRetainWithAutorelease(ex.error);
-        }
+    @try {
+        [self throwErrorIfResponseIsError:response];
+    }
+    @catch(NSException* ex) {
+        responseError = FLRetainWithAutorelease(ex.error);
     }
     
     if(responseData.isOpen) {
@@ -361,9 +341,8 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
         BOOL redirect = response.wantsRedirect;
         if(redirect) {
             NSURL* redirectURL = response.redirectURL;
-            if([self.behavior respondsToSelector:@selector(httpRequest:shouldRedirect:toURL:)]) {
-                [self.behavior httpRequest:self shouldRedirect:&redirect toURL:redirectURL];
-            }
+            redirect = [self shouldRedirectToURL:redirectURL];
+
             if(redirect) {
                 self.previousResponse = response;
                 [self openAuthenticatedStreamWithURL:redirectURL];
@@ -377,6 +356,34 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
 }
 @end
 
+@implementation FLHttpRequest (OptionalOverrides)
+
+- (void) willOpen {
+}
+
+- (void) willAuthenticate {
+}
+
+- (void) didAuthenticate {
+}
+
+- (void) didReadBytes:(NSNumber*) amount {
+}
+
+- (void) throwErrorIfResponseIsError:(FLHttpResponse*) httpResponse {
+}
+
+- (FLPromisedResult) convertResponseToPromisedResult:(FLHttpResponse*) httpResponse {
+    return httpResponse;
+}
+
+- (void) didFinishWithResult:(FLPromisedResult) result {
+}
+
+- (BOOL) shouldRedirectToURL:(NSURL*) url {
+    return YES;
+}
+@end
 
 
 
