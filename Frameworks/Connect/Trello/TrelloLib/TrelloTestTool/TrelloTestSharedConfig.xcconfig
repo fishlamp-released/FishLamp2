@@ -1,0 +1,16 @@
+//
+//  TrelloTestSharedConfig.xcconfig
+//  FishLampCocoa
+//
+//  Created by Mike Fullerton on 4/2/13.
+//  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
+//  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
+//
+
+#include "FishLampXcodeConfigs/FishLampIncludedConfig-TestTool.xcconfig"
+
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREFIX_HEADER = TrelloTestTool/TrelloTestTool-Prefix.pch
+HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_COCOA) $(FISHLAMP_COCOA_CONNECT)
+
+

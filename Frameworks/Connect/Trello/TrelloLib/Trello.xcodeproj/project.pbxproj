@@ -1,0 +1,1277 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		27AC5D7E175E6405002629F5 /* Trello */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 27AC5D7F175E6405002629F5 /* Build configuration list for PBXAggregateTarget "Trello" */;
+			buildPhases = (
+			);
+			dependencies = (
+				27AC5D83175E6418002629F5 /* PBXTargetDependency */,
+				27AC5D85175E6418002629F5 /* PBXTargetDependency */,
+				27AC5D87175E6418002629F5 /* PBXTargetDependency */,
+				27AC5D89175E6418002629F5 /* PBXTargetDependency */,
+				27AC5D8B175E6418002629F5 /* PBXTargetDependency */,
+				27AC5DE3175E64A7002629F5 /* PBXTargetDependency */,
+				27AC5DE5175E64A7002629F5 /* PBXTargetDependency */,
+				27AC5DE7175E64A7002629F5 /* PBXTargetDependency */,
+				27AC5D8D175E6418002629F5 /* PBXTargetDependency */,
+			);
+			name = Trello;
+			productName = Trello;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		27733DF7173C30EC00B93AB1 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DED173C30DD00B93AB1 /* AppKit.framework */; };
+		27733DF8173C30EC00B93AB1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DEE173C30DD00B93AB1 /* CoreData.framework */; };
+		27733DF9173C30EC00B93AB1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DEF173C30DD00B93AB1 /* SystemConfiguration.framework */; };
+		27733DFA173C30EC00B93AB1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF0173C30DD00B93AB1 /* Security.framework */; };
+		27733DFB173C30EC00B93AB1 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF1173C30DD00B93AB1 /* CoreServices.framework */; };
+		27733DFC173C30EC00B93AB1 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF2173C30DD00B93AB1 /* libsqlite3.0.dylib */; };
+		27733DFD173C30EC00B93AB1 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF3173C30DD00B93AB1 /* Quartz.framework */; };
+		27733DFE173C30EC00B93AB1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF4173C30DD00B93AB1 /* QuartzCore.framework */; };
+		27733DFF173C30EC00B93AB1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF5173C30DD00B93AB1 /* Cocoa.framework */; };
+		27733E00173C310A00B93AB1 /* libTrello-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43AC415CDCCCB001CB13E /* libTrello-OSX-64-MRC.a */; };
+		27AC5D75175E6381002629F5 /* Trello.h in Headers */ = {isa = PBXBuildFile; fileRef = 27AC5D73175E6381002629F5 /* Trello.h */; };
+		27AC5D76175E6381002629F5 /* Trello.h in Headers */ = {isa = PBXBuildFile; fileRef = 27AC5D73175E6381002629F5 /* Trello.h */; };
+		27AC5D77175E6381002629F5 /* Trello.h in Headers */ = {isa = PBXBuildFile; fileRef = 27AC5D73175E6381002629F5 /* Trello.h */; };
+		27AC5D78175E6381002629F5 /* Trello.h in Headers */ = {isa = PBXBuildFile; fileRef = 27AC5D73175E6381002629F5 /* Trello.h */; };
+		27AC5D79175E6381002629F5 /* Trello.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC5D74175E6381002629F5 /* Trello.m */; };
+		27AC5D7A175E6381002629F5 /* Trello.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC5D74175E6381002629F5 /* Trello.m */; };
+		27AC5D7B175E6381002629F5 /* Trello.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC5D74175E6381002629F5 /* Trello.m */; };
+		27AC5D7C175E6381002629F5 /* Trello.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC5D74175E6381002629F5 /* Trello.m */; };
+		27AC5D7D175E6381002629F5 /* Trello.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC5D74175E6381002629F5 /* Trello.m */; };
+		27AC5D9B175E6420002629F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF350C173C2E61004F2404 /* Foundation.framework */; };
+		27AC5D9C175E6420002629F5 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DED173C30DD00B93AB1 /* AppKit.framework */; };
+		27AC5D9D175E6420002629F5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DEE173C30DD00B93AB1 /* CoreData.framework */; };
+		27AC5D9E175E6420002629F5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DEF173C30DD00B93AB1 /* SystemConfiguration.framework */; };
+		27AC5D9F175E6420002629F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF0173C30DD00B93AB1 /* Security.framework */; };
+		27AC5DA0175E6420002629F5 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF1173C30DD00B93AB1 /* CoreServices.framework */; };
+		27AC5DA1175E6420002629F5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF2173C30DD00B93AB1 /* libsqlite3.0.dylib */; };
+		27AC5DA2175E6420002629F5 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF3173C30DD00B93AB1 /* Quartz.framework */; };
+		27AC5DA3175E6420002629F5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF4173C30DD00B93AB1 /* QuartzCore.framework */; };
+		27AC5DA4175E6420002629F5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF5173C30DD00B93AB1 /* Cocoa.framework */; };
+		27AC5DB7175E642D002629F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF350C173C2E61004F2404 /* Foundation.framework */; };
+		27AC5DB8175E642D002629F5 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DED173C30DD00B93AB1 /* AppKit.framework */; };
+		27AC5DB9175E642D002629F5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DEE173C30DD00B93AB1 /* CoreData.framework */; };
+		27AC5DBA175E642D002629F5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DEF173C30DD00B93AB1 /* SystemConfiguration.framework */; };
+		27AC5DBB175E642D002629F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF0173C30DD00B93AB1 /* Security.framework */; };
+		27AC5DBC175E642D002629F5 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF1173C30DD00B93AB1 /* CoreServices.framework */; };
+		27AC5DBD175E642D002629F5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF2173C30DD00B93AB1 /* libsqlite3.0.dylib */; };
+		27AC5DBE175E642D002629F5 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF3173C30DD00B93AB1 /* Quartz.framework */; };
+		27AC5DBF175E642D002629F5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF4173C30DD00B93AB1 /* QuartzCore.framework */; };
+		27AC5DC0175E642D002629F5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF5173C30DD00B93AB1 /* Cocoa.framework */; };
+		27AC5DD3175E6439002629F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF350C173C2E61004F2404 /* Foundation.framework */; };
+		27AC5DD4175E6439002629F5 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DED173C30DD00B93AB1 /* AppKit.framework */; };
+		27AC5DD5175E6439002629F5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DEE173C30DD00B93AB1 /* CoreData.framework */; };
+		27AC5DD6175E6439002629F5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DEF173C30DD00B93AB1 /* SystemConfiguration.framework */; };
+		27AC5DD7175E6439002629F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF0173C30DD00B93AB1 /* Security.framework */; };
+		27AC5DD8175E6439002629F5 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF1173C30DD00B93AB1 /* CoreServices.framework */; };
+		27AC5DD9175E6439002629F5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF2173C30DD00B93AB1 /* libsqlite3.0.dylib */; };
+		27AC5DDA175E6439002629F5 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF3173C30DD00B93AB1 /* Quartz.framework */; };
+		27AC5DDB175E6439002629F5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF4173C30DD00B93AB1 /* QuartzCore.framework */; };
+		27AC5DDC175E6439002629F5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27733DF5173C30DD00B93AB1 /* Cocoa.framework */; };
+		27AC5DF5175E6651002629F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC5DF4175E6641002629F5 /* main.m */; };
+		27AC5DF6175E6652002629F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC5DF4175E6641002629F5 /* main.m */; };
+		27AC5DF7175E6653002629F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC5DF4175E6641002629F5 /* main.m */; };
+		27AC5DF8175E6653002629F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC5DF4175E6641002629F5 /* main.m */; };
+		27AC5E5B175E6EB3002629F5 /* FishLampCocoaApp-Universal-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AC5E50175E6E84002629F5 /* FishLampCocoaApp-Universal-MRC.a */; };
+		27AC5E5C175E6ED0002629F5 /* libTrello-OSX-32-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27048EF0161CB58600C38ADA /* libTrello-OSX-32-MRC.a */; };
+		27AC5E5D175E6ED0002629F5 /* FishLampCocoaApp-32-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AC5E52175E6E84002629F5 /* FishLampCocoaApp-32-MRC.a */; };
+		27AC5E5E175E6EDF002629F5 /* libTrello-OSX-Universal-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27CBC1F416768BA600753D0A /* libTrello-OSX-Universal-MRC.a */; };
+		27AC5E5F175E6EFD002629F5 /* libTrello-OSX-64-ARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27314C79165328400027850D /* libTrello-OSX-64-ARC.a */; };
+		27AC5E60175E6EFD002629F5 /* FishLampCocoaApp-ARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AC5E4C175E6E84002629F5 /* FishLampCocoaApp-ARC.a */; };
+		27AC5E61175E6F09002629F5 /* FishLampCocoaApp-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27AC5E4E175E6E84002629F5 /* FishLampCocoaApp-64-MRC.a */; };
+		27EF350D173C2E62004F2404 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF350C173C2E61004F2404 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		27AC5D82175E6418002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27A43AB315CDCC89001CB13E;
+			remoteInfo = "Trello-iOS-ARC";
+		};
+		27AC5D84175E6418002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27048B70161CB58600C38ADA;
+			remoteInfo = "Trello-OSX-32-MRC";
+		};
+		27AC5D86175E6418002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27A43AC315CDCCCB001CB13E;
+			remoteInfo = "Trello-OSX-64-MRC";
+		};
+		27AC5D88175E6418002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 273148B9165328400027850D;
+			remoteInfo = "Trello-OSX-64-ARC";
+		};
+		27AC5D8A175E6418002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27CBBE2916768BA600753D0A;
+			remoteInfo = "Trello-OSX-Universal-MRC";
+		};
+		27AC5D8C175E6418002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27EF350A173C2E61004F2404;
+			remoteInfo = "TrelloTestTool-64-MRC";
+		};
+		27AC5DCC175E6439002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27A43AC315CDCCCB001CB13E;
+			remoteInfo = "FishLampConnect-OSX-64-MRC";
+		};
+		27AC5DE2175E64A7002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27AC5D8E175E6420002629F5;
+			remoteInfo = "TrelloTestTool-64-ARC";
+		};
+		27AC5DE4175E64A7002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27AC5DAA175E642D002629F5;
+			remoteInfo = "TrelloTestTool-32-MRC";
+		};
+		27AC5DE6175E64A7002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27AC5DC6175E6439002629F5;
+			remoteInfo = "TrelloTestTool-Universal-MRC";
+		};
+		27AC5E36175E6D70002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27048B70161CB58600C38ADA;
+			remoteInfo = "Trello-OSX-32-MRC";
+		};
+		27AC5E3B175E6DB1002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 273148B9165328400027850D;
+			remoteInfo = "Trello-OSX-64-ARC";
+		};
+		27AC5E4B175E6E84002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27AC5E0F175E6CFD002629F5 /* FishLampOSXAppLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27B4F2E5169A3E4500D56DFA;
+			remoteInfo = "FishLampOSXAppLib-64-ARC";
+		};
+		27AC5E4D175E6E84002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27AC5E0F175E6CFD002629F5 /* FishLampOSXAppLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 279A1CA616A0886B004794BB;
+			remoteInfo = "FishLampOSXAppLib-64-MRC";
+		};
+		27AC5E4F175E6E84002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27AC5E0F175E6CFD002629F5 /* FishLampOSXAppLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 270E726617137E3C002E2FB1;
+			remoteInfo = "FishLampOSXAppLib-Universal-MRC";
+		};
+		27AC5E51175E6E84002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27AC5E0F175E6CFD002629F5 /* FishLampOSXAppLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27636547171B590F00F44096;
+			remoteInfo = "FishLampOSXAppLib-32-MRC";
+		};
+		27AC5E53175E6E96002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27AC5E0F175E6CFD002629F5 /* FishLampOSXAppLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 279A1C8E16A0886B004794BB;
+			remoteInfo = "FishLampOSXAppLib-64-MRC";
+		};
+		27AC5E55175E6E9E002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27AC5E0F175E6CFD002629F5 /* FishLampOSXAppLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27B4F2E4169A3E4500D56DFA;
+			remoteInfo = "FishLampOSXAppLib-64-ARC";
+		};
+		27AC5E57175E6EA5002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27AC5E0F175E6CFD002629F5 /* FishLampOSXAppLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27636531171B590F00F44096;
+			remoteInfo = "FishLampOSXAppLib-32-MRC";
+		};
+		27AC5E59175E6EAA002629F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27AC5E0F175E6CFD002629F5 /* FishLampOSXAppLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 270E725017137E3C002E2FB1;
+			remoteInfo = "FishLampOSXAppLib-Universal-MRC";
+		};
+		27EF3546173C3031004F2404 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27A43A7315CDCC1B001CB13E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 27A43AC315CDCCCB001CB13E;
+			remoteInfo = "FishLampConnect-OSX-64-MRC";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		27A43AB215CDCC89001CB13E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27AC5DA5175E6420002629F5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		27AC5DC1175E642D002629F5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		27AC5DDD175E6439002629F5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		27EF3509173C2E61004F2404 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		27048EF0161CB58600C38ADA /* libTrello-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTrello-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27314C79165328400027850D /* libTrello-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTrello-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27733DED173C30DD00B93AB1 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		27733DEE173C30DD00B93AB1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		27733DEF173C30DD00B93AB1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
+		27733DF0173C30DD00B93AB1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		27733DF1173C30DD00B93AB1 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
+		27733DF2173C30DD00B93AB1 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = /usr/lib/libsqlite3.0.dylib; sourceTree = "<absolute>"; };
+		27733DF3173C30DD00B93AB1 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
+		27733DF4173C30DD00B93AB1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
+		27733DF5173C30DD00B93AB1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		27733DF6173C30DD00B93AB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27A43AB415CDCC89001CB13E /* libTrello-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTrello-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27A43AC415CDCCCB001CB13E /* libTrello-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTrello-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27AC5D59175E614A002629F5 /* Trello-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Trello-Prefix.pch"; path = "Trello/Trello-Prefix.pch"; sourceTree = "<group>"; };
+		27AC5D5A175E614A002629F5 /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SharedTargetSettings.xcconfig; path = Trello/SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
+		27AC5D5B175E614A002629F5 /* TrelloTargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "TrelloTargetSettings-OSX-32-MRC.xcconfig"; path = "Trello/TrelloTargetSettings-OSX-32-MRC.xcconfig"; sourceTree = "<group>"; };
+		27AC5D5C175E614A002629F5 /* TrelloTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "TrelloTargetSettings-OSX-64-ARC.xcconfig"; path = "Trello/TrelloTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
+		27AC5D5D175E614A002629F5 /* TrelloTargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "TrelloTargetSettings-OSX-64-MRC.xcconfig"; path = "Trello/TrelloTargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
+		27AC5D5E175E614A002629F5 /* TrelloTargetSettings-OSX-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "TrelloTargetSettings-OSX-iOS-ARC.xcconfig"; path = "Trello/TrelloTargetSettings-OSX-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
+		27AC5D5F175E614A002629F5 /* TrelloTargetSettings-OSX-Universal-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "TrelloTargetSettings-OSX-Universal-MRC.xcconfig"; path = "Trello/TrelloTargetSettings-OSX-Universal-MRC.xcconfig"; sourceTree = "<group>"; };
+		27AC5D73175E6381002629F5 /* Trello.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trello.h; sourceTree = "<group>"; };
+		27AC5D74175E6381002629F5 /* Trello.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trello.m; sourceTree = "<group>"; };
+		27AC5DA9175E6420002629F5 /* TrelloTestTool-64-ARC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "TrelloTestTool-64-ARC"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27AC5DC5175E642D002629F5 /* TrelloTestTool-32-MRC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "TrelloTestTool-32-MRC"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27AC5DE1175E6439002629F5 /* TrelloTestTool-Universal-MRC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "TrelloTestTool-Universal-MRC"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27AC5DEC175E6641002629F5 /* TrelloTestSharedConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TrelloTestSharedConfig.xcconfig; sourceTree = "<group>"; };
+		27AC5DED175E6641002629F5 /* TrelloTestTargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TrelloTestTargetSettings-OSX-32-MRC.xcconfig"; sourceTree = "<group>"; };
+		27AC5DEE175E6641002629F5 /* TrelloTestTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TrelloTestTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
+		27AC5DEF175E6641002629F5 /* TrelloTestTargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TrelloTestTargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
+		27AC5DF0175E6641002629F5 /* TrelloTestTargetSettings-OSX-iOS-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TrelloTestTargetSettings-OSX-iOS-ARC.xcconfig"; sourceTree = "<group>"; };
+		27AC5DF1175E6641002629F5 /* TrelloTestTargetSettings-OSX-Universal-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "TrelloTestTargetSettings-OSX-Universal-MRC.xcconfig"; sourceTree = "<group>"; };
+		27AC5DF2175E6641002629F5 /* TrelloTestTool-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrelloTestTool-Prefix.pch"; sourceTree = "<group>"; };
+		27AC5DF3175E6641002629F5 /* TrelloTestTool.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TrelloTestTool.1; sourceTree = "<group>"; };
+		27AC5DF4175E6641002629F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		27AC5E0F175E6CFD002629F5 /* FishLampOSXAppLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampOSXAppLib.xcodeproj; path = ../../../OSX/FishLampOSXAppLib/FishLampOSXAppLib.xcodeproj; sourceTree = SOURCE_ROOT; };
+		27CBC1F416768BA600753D0A /* libTrello-OSX-Universal-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTrello-OSX-Universal-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E95858170BB77100587A8F /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
+		27E95859170BB77100587A8F /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
+		27EF350B173C2E61004F2404 /* TrelloTestTool-64-MRC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "TrelloTestTool-64-MRC"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27EF350C173C2E61004F2404 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		27048D0F161CB58600C38ADA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27314A76165328400027850D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AB115CDCC89001CB13E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC115CDCCCB001CB13E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27AC5D97175E6420002629F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5E5F175E6EFD002629F5 /* libTrello-OSX-64-ARC.a in Frameworks */,
+				27AC5E60175E6EFD002629F5 /* FishLampCocoaApp-ARC.a in Frameworks */,
+				27AC5D9B175E6420002629F5 /* Foundation.framework in Frameworks */,
+				27AC5D9C175E6420002629F5 /* AppKit.framework in Frameworks */,
+				27AC5D9D175E6420002629F5 /* CoreData.framework in Frameworks */,
+				27AC5D9E175E6420002629F5 /* SystemConfiguration.framework in Frameworks */,
+				27AC5D9F175E6420002629F5 /* Security.framework in Frameworks */,
+				27AC5DA0175E6420002629F5 /* CoreServices.framework in Frameworks */,
+				27AC5DA1175E6420002629F5 /* libsqlite3.0.dylib in Frameworks */,
+				27AC5DA2175E6420002629F5 /* Quartz.framework in Frameworks */,
+				27AC5DA3175E6420002629F5 /* QuartzCore.framework in Frameworks */,
+				27AC5DA4175E6420002629F5 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27AC5DB3175E642D002629F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5E5C175E6ED0002629F5 /* libTrello-OSX-32-MRC.a in Frameworks */,
+				27AC5E5D175E6ED0002629F5 /* FishLampCocoaApp-32-MRC.a in Frameworks */,
+				27AC5DB7175E642D002629F5 /* Foundation.framework in Frameworks */,
+				27AC5DB8175E642D002629F5 /* AppKit.framework in Frameworks */,
+				27AC5DB9175E642D002629F5 /* CoreData.framework in Frameworks */,
+				27AC5DBA175E642D002629F5 /* SystemConfiguration.framework in Frameworks */,
+				27AC5DBB175E642D002629F5 /* Security.framework in Frameworks */,
+				27AC5DBC175E642D002629F5 /* CoreServices.framework in Frameworks */,
+				27AC5DBD175E642D002629F5 /* libsqlite3.0.dylib in Frameworks */,
+				27AC5DBE175E642D002629F5 /* Quartz.framework in Frameworks */,
+				27AC5DBF175E642D002629F5 /* QuartzCore.framework in Frameworks */,
+				27AC5DC0175E642D002629F5 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27AC5DCF175E6439002629F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5E5E175E6EDF002629F5 /* libTrello-OSX-Universal-MRC.a in Frameworks */,
+				27AC5E5B175E6EB3002629F5 /* FishLampCocoaApp-Universal-MRC.a in Frameworks */,
+				27AC5DD3175E6439002629F5 /* Foundation.framework in Frameworks */,
+				27AC5DD4175E6439002629F5 /* AppKit.framework in Frameworks */,
+				27AC5DD5175E6439002629F5 /* CoreData.framework in Frameworks */,
+				27AC5DD6175E6439002629F5 /* SystemConfiguration.framework in Frameworks */,
+				27AC5DD7175E6439002629F5 /* Security.framework in Frameworks */,
+				27AC5DD8175E6439002629F5 /* CoreServices.framework in Frameworks */,
+				27AC5DD9175E6439002629F5 /* libsqlite3.0.dylib in Frameworks */,
+				27AC5DDA175E6439002629F5 /* Quartz.framework in Frameworks */,
+				27AC5DDB175E6439002629F5 /* QuartzCore.framework in Frameworks */,
+				27AC5DDC175E6439002629F5 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27CBBFEC16768BA600753D0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27EF3508173C2E61004F2404 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5E61175E6F09002629F5 /* FishLampCocoaApp-64-MRC.a in Frameworks */,
+				27733E00173C310A00B93AB1 /* libTrello-OSX-64-MRC.a in Frameworks */,
+				27EF350D173C2E62004F2404 /* Foundation.framework in Frameworks */,
+				27733DF7173C30EC00B93AB1 /* AppKit.framework in Frameworks */,
+				27733DF8173C30EC00B93AB1 /* CoreData.framework in Frameworks */,
+				27733DF9173C30EC00B93AB1 /* SystemConfiguration.framework in Frameworks */,
+				27733DFA173C30EC00B93AB1 /* Security.framework in Frameworks */,
+				27733DFB173C30EC00B93AB1 /* CoreServices.framework in Frameworks */,
+				27733DFC173C30EC00B93AB1 /* libsqlite3.0.dylib in Frameworks */,
+				27733DFD173C30EC00B93AB1 /* Quartz.framework in Frameworks */,
+				27733DFE173C30EC00B93AB1 /* QuartzCore.framework in Frameworks */,
+				27733DFF173C30EC00B93AB1 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2731477B1652D2D30027850D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				27E95857170BB77100587A8F /* FishLampProjectSettings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		27A43A7115CDCC1B001CB13E = {
+			isa = PBXGroup;
+			children = (
+				27AC5D72175E6361002629F5 /* Classes */,
+				27AC5D56175E6111002629F5 /* Trello */,
+				27AC5DEB175E6641002629F5 /* TrelloTestTool */,
+				2731477B1652D2D30027850D /* Supporting Files */,
+				27A43A7E15CDCC1B001CB13E /* Frameworks */,
+				27A43A7D15CDCC1B001CB13E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		27A43A7D15CDCC1B001CB13E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27A43AB415CDCC89001CB13E /* libTrello-iOS-ARC.a */,
+				27A43AC415CDCCCB001CB13E /* libTrello-OSX-64-MRC.a */,
+				27048EF0161CB58600C38ADA /* libTrello-OSX-32-MRC.a */,
+				27314C79165328400027850D /* libTrello-OSX-64-ARC.a */,
+				27CBC1F416768BA600753D0A /* libTrello-OSX-Universal-MRC.a */,
+				27EF350B173C2E61004F2404 /* TrelloTestTool-64-MRC */,
+				27AC5DA9175E6420002629F5 /* TrelloTestTool-64-ARC */,
+				27AC5DC5175E642D002629F5 /* TrelloTestTool-32-MRC */,
+				27AC5DE1175E6439002629F5 /* TrelloTestTool-Universal-MRC */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27A43A7E15CDCC1B001CB13E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27AC5E0F175E6CFD002629F5 /* FishLampOSXAppLib.xcodeproj */,
+				27733DED173C30DD00B93AB1 /* AppKit.framework */,
+				27733DEE173C30DD00B93AB1 /* CoreData.framework */,
+				27733DEF173C30DD00B93AB1 /* SystemConfiguration.framework */,
+				27733DF0173C30DD00B93AB1 /* Security.framework */,
+				27733DF1173C30DD00B93AB1 /* CoreServices.framework */,
+				27733DF2173C30DD00B93AB1 /* libsqlite3.0.dylib */,
+				27733DF3173C30DD00B93AB1 /* Quartz.framework */,
+				27733DF4173C30DD00B93AB1 /* QuartzCore.framework */,
+				27733DF5173C30DD00B93AB1 /* Cocoa.framework */,
+				27733DF6173C30DD00B93AB1 /* Foundation.framework */,
+				27EF350C173C2E61004F2404 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27AC5D56175E6111002629F5 /* Trello */ = {
+			isa = PBXGroup;
+			children = (
+				27AC5D58175E613A002629F5 /* Supporting Files */,
+			);
+			name = Trello;
+			sourceTree = "<group>";
+		};
+		27AC5D58175E613A002629F5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				27AC5D59175E614A002629F5 /* Trello-Prefix.pch */,
+				27AC5D5A175E614A002629F5 /* SharedTargetSettings.xcconfig */,
+				27AC5D5B175E614A002629F5 /* TrelloTargetSettings-OSX-32-MRC.xcconfig */,
+				27AC5D5C175E614A002629F5 /* TrelloTargetSettings-OSX-64-ARC.xcconfig */,
+				27AC5D5D175E614A002629F5 /* TrelloTargetSettings-OSX-64-MRC.xcconfig */,
+				27AC5D5E175E614A002629F5 /* TrelloTargetSettings-OSX-iOS-ARC.xcconfig */,
+				27AC5D5F175E614A002629F5 /* TrelloTargetSettings-OSX-Universal-MRC.xcconfig */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		27AC5D72175E6361002629F5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				27AC5D73175E6381002629F5 /* Trello.h */,
+				27AC5D74175E6381002629F5 /* Trello.m */,
+			);
+			name = Classes;
+			path = ../Classes;
+			sourceTree = "<group>";
+		};
+		27AC5DEB175E6641002629F5 /* TrelloTestTool */ = {
+			isa = PBXGroup;
+			children = (
+				27AC5DEC175E6641002629F5 /* TrelloTestSharedConfig.xcconfig */,
+				27AC5DED175E6641002629F5 /* TrelloTestTargetSettings-OSX-32-MRC.xcconfig */,
+				27AC5DEE175E6641002629F5 /* TrelloTestTargetSettings-OSX-64-ARC.xcconfig */,
+				27AC5DEF175E6641002629F5 /* TrelloTestTargetSettings-OSX-64-MRC.xcconfig */,
+				27AC5DF0175E6641002629F5 /* TrelloTestTargetSettings-OSX-iOS-ARC.xcconfig */,
+				27AC5DF1175E6641002629F5 /* TrelloTestTargetSettings-OSX-Universal-MRC.xcconfig */,
+				27AC5DF2175E6641002629F5 /* TrelloTestTool-Prefix.pch */,
+				27AC5DF3175E6641002629F5 /* TrelloTestTool.1 */,
+				27AC5DF4175E6641002629F5 /* main.m */,
+			);
+			path = TrelloTestTool;
+			sourceTree = "<group>";
+		};
+		27AC5E44175E6E84002629F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27AC5E4C175E6E84002629F5 /* FishLampCocoaApp-ARC.a */,
+				27AC5E4E175E6E84002629F5 /* FishLampCocoaApp-64-MRC.a */,
+				27AC5E50175E6E84002629F5 /* FishLampCocoaApp-Universal-MRC.a */,
+				27AC5E52175E6E84002629F5 /* FishLampCocoaApp-32-MRC.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27E95857170BB77100587A8F /* FishLampProjectSettings */ = {
+			isa = PBXGroup;
+			children = (
+				27E95858170BB77100587A8F /* FishLampProjectSettingsDebug.xcconfig */,
+				27E95859170BB77100587A8F /* FishLampProjectSettingsRelease.xcconfig */,
+			);
+			name = FishLampProjectSettings;
+			path = FishLampXcodeConfigs/FishLampProjectSettings;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		27048D11161CB58600C38ADA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5D75175E6381002629F5 /* Trello.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27314A78165328400027850D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5D77175E6381002629F5 /* Trello.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC215CDCCCB001CB13E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5D76175E6381002629F5 /* Trello.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27CBBFED16768BA600753D0A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5D78175E6381002629F5 /* Trello.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		27048B70161CB58600C38ADA /* Trello-OSX-32-MRC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27048EEB161CB58600C38ADA /* Build configuration list for PBXNativeTarget "Trello-OSX-32-MRC" */;
+			buildPhases = (
+				27048B71161CB58600C38ADA /* Sources */,
+				27048D0F161CB58600C38ADA /* Frameworks */,
+				27048D11161CB58600C38ADA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Trello-OSX-32-MRC";
+			productName = FishLampCocoaApp;
+			productReference = 27048EF0161CB58600C38ADA /* libTrello-OSX-32-MRC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		273148B9165328400027850D /* Trello-OSX-64-ARC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27314C75165328400027850D /* Build configuration list for PBXNativeTarget "Trello-OSX-64-ARC" */;
+			buildPhases = (
+				273148BA165328400027850D /* Sources */,
+				27314A76165328400027850D /* Frameworks */,
+				27314A78165328400027850D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Trello-OSX-64-ARC";
+			productName = FishLampCommandLine;
+			productReference = 27314C79165328400027850D /* libTrello-OSX-64-ARC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27A43AB315CDCC89001CB13E /* Trello-iOS-ARC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27A43ABD15CDCC89001CB13E /* Build configuration list for PBXNativeTarget "Trello-iOS-ARC" */;
+			buildPhases = (
+				27A43AB015CDCC89001CB13E /* Sources */,
+				27A43AB115CDCC89001CB13E /* Frameworks */,
+				27A43AB215CDCC89001CB13E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Trello-iOS-ARC";
+			productName = FishLampiOS;
+			productReference = 27A43AB415CDCC89001CB13E /* libTrello-iOS-ARC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27A43AC315CDCCCB001CB13E /* Trello-OSX-64-MRC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27A43ACC15CDCCCB001CB13E /* Build configuration list for PBXNativeTarget "Trello-OSX-64-MRC" */;
+			buildPhases = (
+				27A43AC015CDCCCB001CB13E /* Sources */,
+				27A43AC115CDCCCB001CB13E /* Frameworks */,
+				27A43AC215CDCCCB001CB13E /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Trello-OSX-64-MRC";
+			productName = FishLampCommandLine;
+			productReference = 27A43AC415CDCCCB001CB13E /* libTrello-OSX-64-MRC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27AC5D8E175E6420002629F5 /* TrelloTestTool-64-ARC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27AC5DA6175E6420002629F5 /* Build configuration list for PBXNativeTarget "TrelloTestTool-64-ARC" */;
+			buildPhases = (
+				27AC5D95175E6420002629F5 /* Sources */,
+				27AC5D97175E6420002629F5 /* Frameworks */,
+				27AC5DA5175E6420002629F5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27AC5E56175E6E9E002629F5 /* PBXTargetDependency */,
+				27AC5E3C175E6DB1002629F5 /* PBXTargetDependency */,
+			);
+			name = "TrelloTestTool-64-ARC";
+			productName = "FishLampConnectTestTool-64-MRC";
+			productReference = 27AC5DA9175E6420002629F5 /* TrelloTestTool-64-ARC */;
+			productType = "com.apple.product-type.tool";
+		};
+		27AC5DAA175E642D002629F5 /* TrelloTestTool-32-MRC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27AC5DC2175E642D002629F5 /* Build configuration list for PBXNativeTarget "TrelloTestTool-32-MRC" */;
+			buildPhases = (
+				27AC5DB1175E642D002629F5 /* Sources */,
+				27AC5DB3175E642D002629F5 /* Frameworks */,
+				27AC5DC1175E642D002629F5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27AC5E58175E6EA5002629F5 /* PBXTargetDependency */,
+				27AC5E37175E6D70002629F5 /* PBXTargetDependency */,
+			);
+			name = "TrelloTestTool-32-MRC";
+			productName = "FishLampConnectTestTool-64-MRC";
+			productReference = 27AC5DC5175E642D002629F5 /* TrelloTestTool-32-MRC */;
+			productType = "com.apple.product-type.tool";
+		};
+		27AC5DC6175E6439002629F5 /* TrelloTestTool-Universal-MRC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27AC5DDE175E6439002629F5 /* Build configuration list for PBXNativeTarget "TrelloTestTool-Universal-MRC" */;
+			buildPhases = (
+				27AC5DCD175E6439002629F5 /* Sources */,
+				27AC5DCF175E6439002629F5 /* Frameworks */,
+				27AC5DDD175E6439002629F5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27AC5E5A175E6EAA002629F5 /* PBXTargetDependency */,
+				27AC5DCB175E6439002629F5 /* PBXTargetDependency */,
+			);
+			name = "TrelloTestTool-Universal-MRC";
+			productName = "FishLampConnectTestTool-64-MRC";
+			productReference = 27AC5DE1175E6439002629F5 /* TrelloTestTool-Universal-MRC */;
+			productType = "com.apple.product-type.tool";
+		};
+		27CBBE2916768BA600753D0A /* Trello-OSX-Universal-MRC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "Trello-OSX-Universal-MRC" */;
+			buildPhases = (
+				27CBBE2A16768BA600753D0A /* Sources */,
+				27CBBFEC16768BA600753D0A /* Frameworks */,
+				27CBBFED16768BA600753D0A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Trello-OSX-Universal-MRC";
+			productName = FishLampCommandLine;
+			productReference = 27CBC1F416768BA600753D0A /* libTrello-OSX-Universal-MRC.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		27EF350A173C2E61004F2404 /* TrelloTestTool-64-MRC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27EF3517173C2E62004F2404 /* Build configuration list for PBXNativeTarget "TrelloTestTool-64-MRC" */;
+			buildPhases = (
+				27EF3507173C2E61004F2404 /* Sources */,
+				27EF3508173C2E61004F2404 /* Frameworks */,
+				27EF3509173C2E61004F2404 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				27AC5E54175E6E96002629F5 /* PBXTargetDependency */,
+				27EF3547173C3031004F2404 /* PBXTargetDependency */,
+			);
+			name = "TrelloTestTool-64-MRC";
+			productName = "FishLampConnectTestTool-64-MRC";
+			productReference = 27EF350B173C2E61004F2404 /* TrelloTestTool-64-MRC */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27A43A7315CDCC1B001CB13E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Mike Fullerton";
+			};
+			buildConfigurationList = 27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "Trello" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				English,
+			);
+			mainGroup = 27A43A7115CDCC1B001CB13E;
+			productRefGroup = 27A43A7D15CDCC1B001CB13E /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 27AC5E44175E6E84002629F5 /* Products */;
+					ProjectRef = 27AC5E0F175E6CFD002629F5 /* FishLampOSXAppLib.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				27A43AB315CDCC89001CB13E /* Trello-iOS-ARC */,
+				27048B70161CB58600C38ADA /* Trello-OSX-32-MRC */,
+				27A43AC315CDCCCB001CB13E /* Trello-OSX-64-MRC */,
+				273148B9165328400027850D /* Trello-OSX-64-ARC */,
+				27CBBE2916768BA600753D0A /* Trello-OSX-Universal-MRC */,
+				27EF350A173C2E61004F2404 /* TrelloTestTool-64-MRC */,
+				27AC5D8E175E6420002629F5 /* TrelloTestTool-64-ARC */,
+				27AC5DAA175E642D002629F5 /* TrelloTestTool-32-MRC */,
+				27AC5DC6175E6439002629F5 /* TrelloTestTool-Universal-MRC */,
+				27AC5D7E175E6405002629F5 /* Trello */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		27AC5E4C175E6E84002629F5 /* FishLampCocoaApp-ARC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			name = "FishLampCocoaApp-ARC.a";
+			path = "FishLampOSXAppLib-64-ARC.a";
+			remoteRef = 27AC5E4B175E6E84002629F5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27AC5E4E175E6E84002629F5 /* FishLampCocoaApp-64-MRC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			name = "FishLampCocoaApp-64-MRC.a";
+			path = "FishLampOSXAppLib-64-MRC.a";
+			remoteRef = 27AC5E4D175E6E84002629F5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27AC5E50175E6E84002629F5 /* FishLampCocoaApp-Universal-MRC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			name = "FishLampCocoaApp-Universal-MRC.a";
+			path = "FishLampOSXAppLib-Universal-MRC.a";
+			remoteRef = 27AC5E4F175E6E84002629F5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27AC5E52175E6E84002629F5 /* FishLampCocoaApp-32-MRC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			name = "FishLampCocoaApp-32-MRC.a";
+			path = "FishLampOSXAppLib-32-MRC.a";
+			remoteRef = 27AC5E51175E6E84002629F5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27048B71161CB58600C38ADA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5D7A175E6381002629F5 /* Trello.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		273148BA165328400027850D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5D7C175E6381002629F5 /* Trello.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AB015CDCC89001CB13E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5D79175E6381002629F5 /* Trello.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A43AC015CDCCCB001CB13E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5D7B175E6381002629F5 /* Trello.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27AC5D95175E6420002629F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5DF6175E6652002629F5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27AC5DB1175E642D002629F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5DF7175E6653002629F5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27AC5DCD175E6439002629F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5DF8175E6653002629F5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27CBBE2A16768BA600753D0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5D7D175E6381002629F5 /* Trello.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27EF3507173C2E61004F2404 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27AC5DF5175E6651002629F5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		27AC5D83175E6418002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27A43AB315CDCC89001CB13E /* Trello-iOS-ARC */;
+			targetProxy = 27AC5D82175E6418002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5D85175E6418002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27048B70161CB58600C38ADA /* Trello-OSX-32-MRC */;
+			targetProxy = 27AC5D84175E6418002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5D87175E6418002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27A43AC315CDCCCB001CB13E /* Trello-OSX-64-MRC */;
+			targetProxy = 27AC5D86175E6418002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5D89175E6418002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 273148B9165328400027850D /* Trello-OSX-64-ARC */;
+			targetProxy = 27AC5D88175E6418002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5D8B175E6418002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27CBBE2916768BA600753D0A /* Trello-OSX-Universal-MRC */;
+			targetProxy = 27AC5D8A175E6418002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5D8D175E6418002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27EF350A173C2E61004F2404 /* TrelloTestTool-64-MRC */;
+			targetProxy = 27AC5D8C175E6418002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5DCB175E6439002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27A43AC315CDCCCB001CB13E /* Trello-OSX-64-MRC */;
+			targetProxy = 27AC5DCC175E6439002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5DE3175E64A7002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27AC5D8E175E6420002629F5 /* TrelloTestTool-64-ARC */;
+			targetProxy = 27AC5DE2175E64A7002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5DE5175E64A7002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27AC5DAA175E642D002629F5 /* TrelloTestTool-32-MRC */;
+			targetProxy = 27AC5DE4175E64A7002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5DE7175E64A7002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27AC5DC6175E6439002629F5 /* TrelloTestTool-Universal-MRC */;
+			targetProxy = 27AC5DE6175E64A7002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5E37175E6D70002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27048B70161CB58600C38ADA /* Trello-OSX-32-MRC */;
+			targetProxy = 27AC5E36175E6D70002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5E3C175E6DB1002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 273148B9165328400027850D /* Trello-OSX-64-ARC */;
+			targetProxy = 27AC5E3B175E6DB1002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5E54175E6E96002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FishLampOSXAppLib-64-MRC";
+			targetProxy = 27AC5E53175E6E96002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5E56175E6E9E002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FishLampOSXAppLib-64-ARC";
+			targetProxy = 27AC5E55175E6E9E002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5E58175E6EA5002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FishLampOSXAppLib-32-MRC";
+			targetProxy = 27AC5E57175E6EA5002629F5 /* PBXContainerItemProxy */;
+		};
+		27AC5E5A175E6EAA002629F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "FishLampOSXAppLib-Universal-MRC";
+			targetProxy = 27AC5E59175E6EAA002629F5 /* PBXContainerItemProxy */;
+		};
+		27EF3547173C3031004F2404 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 27A43AC315CDCCCB001CB13E /* Trello-OSX-64-MRC */;
+			targetProxy = 27EF3546173C3031004F2404 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		27048EEC161CB58600C38ADA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5D5B175E614A002629F5 /* TrelloTargetSettings-OSX-32-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27048EEE161CB58600C38ADA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5D5B175E614A002629F5 /* TrelloTargetSettings-OSX-32-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27314C76165328400027850D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5D5C175E614A002629F5 /* TrelloTargetSettings-OSX-64-ARC.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27314C77165328400027850D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5D5C175E614A002629F5 /* TrelloTargetSettings-OSX-64-ARC.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27A43A8B15CDCC1B001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E95858170BB77100587A8F /* FishLampProjectSettingsDebug.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		27A43A8C15CDCC1B001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E95859170BB77100587A8F /* FishLampProjectSettingsRelease.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		27A43ABE15CDCC89001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5D5E175E614A002629F5 /* TrelloTargetSettings-OSX-iOS-ARC.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27A43ABF15CDCC89001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5D5E175E614A002629F5 /* TrelloTargetSettings-OSX-iOS-ARC.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27A43ACD15CDCCCB001CB13E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5D5D175E614A002629F5 /* TrelloTargetSettings-OSX-64-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27A43ACE15CDCCCB001CB13E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5D5D175E614A002629F5 /* TrelloTargetSettings-OSX-64-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27AC5D80175E6405002629F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		27AC5D81175E6405002629F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		27AC5DA7175E6420002629F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5DEE175E6641002629F5 /* TrelloTestTargetSettings-OSX-64-ARC.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27AC5DA8175E6420002629F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5DEE175E6641002629F5 /* TrelloTestTargetSettings-OSX-64-ARC.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27AC5DC3175E642D002629F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5DED175E6641002629F5 /* TrelloTestTargetSettings-OSX-32-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27AC5DC4175E642D002629F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5DED175E6641002629F5 /* TrelloTestTargetSettings-OSX-32-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27AC5DDF175E6439002629F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5DF1175E6641002629F5 /* TrelloTestTargetSettings-OSX-Universal-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27AC5DE0175E6439002629F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5DF1175E6641002629F5 /* TrelloTestTargetSettings-OSX-Universal-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27CBC1F216768BA600753D0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5D5F175E614A002629F5 /* TrelloTargetSettings-OSX-Universal-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27CBC1F316768BA600753D0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5D5F175E614A002629F5 /* TrelloTargetSettings-OSX-Universal-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		27EF3515173C2E62004F2404 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5DEF175E6641002629F5 /* TrelloTestTargetSettings-OSX-64-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		27EF3516173C2E62004F2404 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27AC5DEF175E6641002629F5 /* TrelloTestTargetSettings-OSX-64-MRC.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27048EEB161CB58600C38ADA /* Build configuration list for PBXNativeTarget "Trello-OSX-32-MRC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27048EEC161CB58600C38ADA /* Debug */,
+				27048EEE161CB58600C38ADA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27314C75165328400027850D /* Build configuration list for PBXNativeTarget "Trello-OSX-64-ARC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27314C76165328400027850D /* Debug */,
+				27314C77165328400027850D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "Trello" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43A8B15CDCC1B001CB13E /* Debug */,
+				27A43A8C15CDCC1B001CB13E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43ABD15CDCC89001CB13E /* Build configuration list for PBXNativeTarget "Trello-iOS-ARC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43ABE15CDCC89001CB13E /* Debug */,
+				27A43ABF15CDCC89001CB13E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A43ACC15CDCCCB001CB13E /* Build configuration list for PBXNativeTarget "Trello-OSX-64-MRC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A43ACD15CDCCCB001CB13E /* Debug */,
+				27A43ACE15CDCCCB001CB13E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27AC5D7F175E6405002629F5 /* Build configuration list for PBXAggregateTarget "Trello" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27AC5D80175E6405002629F5 /* Debug */,
+				27AC5D81175E6405002629F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27AC5DA6175E6420002629F5 /* Build configuration list for PBXNativeTarget "TrelloTestTool-64-ARC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27AC5DA7175E6420002629F5 /* Debug */,
+				27AC5DA8175E6420002629F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27AC5DC2175E642D002629F5 /* Build configuration list for PBXNativeTarget "TrelloTestTool-32-MRC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27AC5DC3175E642D002629F5 /* Debug */,
+				27AC5DC4175E642D002629F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27AC5DDE175E6439002629F5 /* Build configuration list for PBXNativeTarget "TrelloTestTool-Universal-MRC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27AC5DDF175E6439002629F5 /* Debug */,
+				27AC5DE0175E6439002629F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "Trello-OSX-Universal-MRC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27CBC1F216768BA600753D0A /* Debug */,
+				27CBC1F316768BA600753D0A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27EF3517173C2E62004F2404 /* Build configuration list for PBXNativeTarget "TrelloTestTool-64-MRC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27EF3515173C2E62004F2404 /* Debug */,
+				27EF3516173C2E62004F2404 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27A43A7315CDCC1B001CB13E /* Project object */;
+}
