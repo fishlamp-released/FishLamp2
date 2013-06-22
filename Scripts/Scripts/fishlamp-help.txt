@@ -44,14 +44,15 @@ version-set [plist file] [new version]
         plist file: path to plist file
         new version: new version. 
         Note: Build numbers are in format major.minor.revision.build (1.2.3.4).
+git-tag-version:
 
 ## Admin only commands (must have push access to repositories)
-fishlamp-tag-version <-p>
-    The bumps the FishLamp version up one and add a tag for the version to
-    git. This also bumps the version of the tools to match the FishLamp 
+fishlamp-tag-version
+    The bumps the FishLamp version up one and add a tag for the version in the git repository. 
+    It then pushes the remote origin to the repo.
+    This also bumps the version of the tools to match the FishLamp
     version.
-    Parameters:
-        -p: push committed change with tags to remote origin
+
 ## key
 [] = required parameter
 <> = optional parameter    
