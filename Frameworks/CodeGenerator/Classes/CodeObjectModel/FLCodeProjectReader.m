@@ -22,6 +22,7 @@
 @end
 
 @implementation FLCodeProjectReader
+
 @synthesize fileReaders = _fileReaders;
 
 - (id) init {
@@ -40,15 +41,15 @@
     [_fileReaders addObject:fileReader];
 }
 
-- (BOOL) canReadProjectFromLocation:(FLCodeProjectLocation*) location {
-    for(id<FLCodeProjectReader> reader in _fileReaders) {
-        if([reader canReadProjectFromLocation:location]) {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
+//- (BOOL) canReadProjectFromLocation:(FLCodeProjectLocation*) location {
+//    for(id<FLCodeProjectReader> reader in _fileReaders) {
+//        if([reader canReadProjectFromLocation:location]) {
+//            return YES;
+//        }
+//    }
+//    
+//    return NO;
+//}
 
 - (FLCodeProjectLocation*) projectLocationFromImport:(FLCodeImport*) import 
                                    projectFolderPath:(NSString*) projectFolderPath {
@@ -89,7 +90,9 @@
     return [FLCodeProjectLocation codeProjectLocation:url resourceType:type];
 }
 
-- (void) didLoadProject:(FLCodeProject*) project fromLocation:(FLCodeProjectLocation*) location {
+- (void) didLoadProject:(FLCodeProject*) project 
+           fromLocation:(FLCodeProjectLocation*) location {
+    
     FLConfirmNotNilWithComment(project, @"project was not created");
 
     project.projectLocation = location;
@@ -144,15 +147,19 @@
     return [self readProjectFromLocation:projectLocation];
 }
 
+- (FLCodeProject *) parseProjectFromData:(NSData*) data {
+    return nil;
+}
 
 - (FLCodeProject *) readProjectFromLocation:(FLCodeProjectLocation*) location {
     FLAssertNotNil(_fileReaders);
     FLAssert(_fileReaders.count > 0);
 
-    for(id<FLCodeProjectReader> reader in _fileReaders) {
+    NSData* data = [location loadDataInResource];
 
-        if([reader canReadProjectFromLocation:location]) {
-            FLCodeProject* project = [reader readProjectFromLocation:location];
+    for(id<FLCodeProjectReader> reader in _fileReaders) {
+        FLCodeProject* project = [reader parseProjectFromData:data];
+        if(project) {
             [self didLoadProject:project fromLocation:location];
             [self loadSubProjectsRecursively:project];
             [self finalizeLoadedProject:project];

@@ -17,7 +17,6 @@
 #import "FLWsdlPortType.h"
 #import "FLWsdlCodeMethod.h"
 
-#import "FLHttpRequestDescriptor.h"
 #import "FishLampCodeGeneratorObjects.h"
 #import "FLKeyValuePair.h"
 

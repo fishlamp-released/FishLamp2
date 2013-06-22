@@ -278,10 +278,6 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (BOOL) canReadProjectFromLocation:(FLCodeProjectLocation*) location {
-    return [location isLocationType:FLCodeProjectLocationTypeWsdl];
-}
-
 - (void) addEnumerationsInSimpleTypes:(NSArray*) simpleTypes {
     for(FLWsdlSimpleType* simpleType in simpleTypes) {
         [self addCodeEnum:[FLWsdlSimpleTypeEnumCodeType wsdlSimpleTypeEnumCodeType:simpleType]];
@@ -358,11 +354,19 @@
     [self addCodeObject:[FLWsdlServiceCodeObject wsdlServiceCodeObject:service codeReader:self]];
 }
 
-- (FLCodeProject *)readProjectFromLocation:(FLCodeProjectLocation *)descriptor {
-
-	NSData* xml = [descriptor loadDataInResource];
-
-    FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:xml];
+- (FLCodeProject *) parseProjectFromData:(NSData*) data {
+        
+    FLParsedXmlElement* parsedSoap = nil;
+    @try {
+        parsedSoap = [[FLSoapParser soapParser] parseData:data];
+            
+        if(!FLStringsAreEqual(@"definitions", parsedSoap.elementName)) {
+            return nil;
+        }    
+    }
+    @catch(NSException* ex) {
+        return nil;
+    }
 
     self.wsdlDefinitions = [FLWsdlDefinitions objectWithXmlElement:parsedSoap withObjectBuilder:[FLSoapObjectBuilder instance]];
 		

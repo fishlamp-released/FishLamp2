@@ -7,13 +7,11 @@
 //
 
 #import "FishLamp.h"
-
+#import "FLCodeProjectLocation.h"
 @class FLCodeProject;
-@class FLCodeProjectLocation;
 
 @protocol FLCodeProjectReader <NSObject>
-- (BOOL) canReadProjectFromLocation:(FLCodeProjectLocation*) location;
-- (FLCodeProject *) readProjectFromLocation:(FLCodeProjectLocation*) location;
+- (FLCodeProject *) parseProjectFromData:(NSData*) data;
 @end
 
 @interface FLCodeProjectReader : NSObject<FLCodeProjectReader> {
@@ -26,5 +24,6 @@
 - (void) addFileReader:(id<FLCodeProjectReader>) fileReader;
 
 - (FLCodeProject *) readProjectFromFileURL:(NSURL*) fileURL;
+- (FLCodeProject *) readProjectFromLocation:(FLCodeProjectLocation*) location;
 
 @end

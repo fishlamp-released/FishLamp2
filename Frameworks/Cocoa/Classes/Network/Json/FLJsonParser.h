@@ -18,4 +18,5 @@
 - (id) parseFileAtPath:(NSString*) path;
 - (id) parseFileAtURL:(NSURL*) url;
 
++ (BOOL) canParseData:(NSData*) data;
 @end

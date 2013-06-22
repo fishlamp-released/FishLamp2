@@ -181,4 +181,11 @@ didStartElement:(NSString *)elementName
         
     return [self parseData:data];
 }
+
++ (BOOL) canParseData:(NSData*) data {
+    NSXMLParser* parser = [[NSXMLParser alloc] initWithData:data]; 
+
+    return [parser parse];
+}
+
 @end

@@ -37,6 +37,13 @@
         
     return [self parseData:data];
 }
+
++ (BOOL) canParseData:(NSData*) data {
+    NSError* error = nil;
+    id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    return object != nil && error == nil;
+}
+
 //#if REFACTOR
 //#if FL_ARC
 //    SBJsonParser* parser = [[SBJsonParser alloc] init];

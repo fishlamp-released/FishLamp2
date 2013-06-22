@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema  projectName="FishLamp CodeWriter WSDL Interpreter">
+<flproj projectName="FishLamp CodeWriter WSDL Interpreter">
     <generatorOptions>
         <disabled>NO</disabled>
         <generateAllIncludesFile>YES</generateAllIncludesFile>
@@ -257,4 +257,4 @@
             </properties>
         </class>
     </objects>
-</schema>
+</flproj>

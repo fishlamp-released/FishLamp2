@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<code>
+<fishlamp>
     <info projectName="FishLamp">
         <organization name="GreenTongue Software, LLC">
             <website>http://www.greentongue.com</website>
@@ -51,4 +51,4 @@
             <arrayType name="parser" type="FLXmlParser"/>
         </property>
     </class>
-</code>
+</fishlamp>

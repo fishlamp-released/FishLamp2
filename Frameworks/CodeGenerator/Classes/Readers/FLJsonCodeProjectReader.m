@@ -17,11 +17,16 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (BOOL) canReadProjectFromLocation:(FLCodeProjectLocation*) resource  {
-    return  [resource hasFileExtension:@"whittlejson"] || [resource hasFileExtension:@"cgjson"];
-}
+- (FLCodeProject *) parseProjectFromData:(NSData*) data  {
 
-- (FLCodeProject *)readProjectFromLocation:(FLCodeProjectLocation *)descriptor {
+    id jsonObject = nil;
+    @try {
+        jsonObject = [[FLJsonParser jsonParser] parseData:data];
+    }
+    @catch(NSException* ex) {
+    
+    }
+    
 // The FLCodeProject is the "code model document". We're creating an empty one here as the root object.
 // The parser should fill in the suborinate data as it parses the Json.
     

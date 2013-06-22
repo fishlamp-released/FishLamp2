@@ -45,5 +45,8 @@ typedef enum {
 - (FLParsedXmlElement*) parseData:(NSData*) data;
 
 // optional override
-- (void) willParseXMLData:(NSData*) data withXMLParser:(NSXMLParser*) parser;
+- (void) willParseXMLData:(NSData*) data 
+            withXMLParser:(NSXMLParser*) parser;
+
++ (BOOL) canParseData:(NSData*) data;
 @end
