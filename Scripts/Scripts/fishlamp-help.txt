@@ -1,0 +1,57 @@
+fishlamp
+    Prints short list of commands available in fishlamp
+fishlamp-help
+    Prints this help document
+fishlamp-create-connect-lib [project-name]
+    Creates a new Xcode project in FishLamp/Frameworks/Connect.
+    Parameters:
+        project-name: name of the project, like "Foursquare"
+fishlamp-find [-a or -r]
+    Prints path to FishLamp. It searches current and parent folders until it finds fishlamp.
+    Parameters:
+        -a: print absolute path
+        -r: print relative path
+    Note: either -a or -r is required
+fishlamp-install-build-support <path>
+    Installs folder FishLampXcodeConfigs in the path parameter, or the current folder if no path is passed in.
+    Parameters
+        path: optional path to install into
+fishlamp-update-submodules
+    Pulls all the submodules that FishLamp uses and the pulls the origin for the current branch.
+fishlamp-update-build-support
+    This updates the contents of all the FishLampXcodeConfigs folders in the current folder and all of its subfolders to the latest version of the FishLampXcodeConfigs folder.
+fishlamp-version
+    Prints FishLamp version (FishLamp must be in current or parent
+    folder).
+fishlamp-ynq <prompt>
+    This is a utility script for prompting user for yes or no answer. 
+    Called by other scripts.
+    Parameters:
+        prompt: optional string question asked like -
+        "launch rocket probe into orbit?"
+version-bump-build [version]
+    Prints version number after incrementing build number of passed in version by one.
+    Build numbers are in format major.minor.revision.build (1.2.3.4).
+    Parameters:
+        Version number to be incremented.
+version-get [plist file]
+    Prints bundle version string from plist file.
+    Parameters:
+        Path to plist file.
+version-set [plist file] [new version]
+    Sets the BundleVersion and BundleShortVersionString in a plist file to version passed in.
+    Parameters:
+        plist file: path to plist file
+        new version: new version. 
+        Note: Build numbers are in format major.minor.revision.build (1.2.3.4).
+
+## Admin only commands (must have push access to repositories)
+fishlamp-tag-version <-p>
+    The bumps the FishLamp version up one and add a tag for the version to
+    git. This also bumps the version of the tools to match the FishLamp 
+    version.
+    Parameters:
+        -p: push committed change with tags to remote origin
+## key
+[] = required parameter
+<> = optional parameter    

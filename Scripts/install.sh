@@ -27,5 +27,5 @@ fi
 
 echo ""
 
-sudo bash "$MY_PATH/scripts/fishlamp-install-scripts.sh" || { echo "install failed"; exit 1; } 
+sudo bash "$MY_PATH/bin/fishlamp-install-scripts.sh" || { echo "install failed"; exit 1; } 
 

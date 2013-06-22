@@ -4,7 +4,6 @@ function usage() {
 	echo "usage:"
 	echo " version-tag [-p -b] <plistfile> "
 	echo " -p = push"
-	echo " -b = bump"
 	exit 1
 }
 
@@ -17,8 +16,6 @@ for var in "$@"
 do
     if [[ "$var" == "-p" ]]; then 
         push="true"
-    elif [[ "$var" == "-b" ]]; then 
-        bump="true"
     else
         plist_file="$var"
     fi
@@ -43,12 +40,10 @@ if [ "$status" != "" ]; then
 	exit 1;
 fi
 
-if [[ "$bump" == "true" ]]; then
-	build_version=`version-bump-build "$build_version"` || { exit 1; }
-    version-set "$plist_file" "$build_version" || { exit 1; } 
-	git add "$plist_file" || { exit 1; }
-	git commit -a -m "new version: $build_version" || { exit 1; }
-fi
+build_version=`version-bump-build "$build_version"` || { exit 1; }
+version-set "$plist_file" "$build_version" || { exit 1; } 
+git add "$plist_file" || { exit 1; }
+git commit -a -m "new version: $build_version" || { exit 1; }
 
 tag="v$build_version"
 git tag $tag || { echo "##! adding git tag failed"; exit 1; }

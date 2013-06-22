@@ -1,0 +1,17 @@
+fishlamp
+fishlamp-create-connect-lib [project name]
+fishlamp-find [-a or -r]
+fishlamp-help
+fishlamp-install-xcode-build-support  <folder>
+fishlamp-tag-version <-p>
+fishlamp-update-submodules
+fishlamp-update-xcode-build-support
+fishlamp-version
+fishlamp-ynq <prompt>
+git-tag-version
+version-bump-build
+version-get
+version-set
+
+# fishlamp-help prints detailed help
+
