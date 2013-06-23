@@ -183,7 +183,7 @@ didStartElement:(NSString *)elementName
 }
 
 + (BOOL) canParseData:(NSData*) data {
-    NSXMLParser* parser = [[NSXMLParser alloc] initWithData:data]; 
+    NSXMLParser* parser = FLAutorelease([[NSXMLParser alloc] initWithData:data]);
 
     return [parser parse];
 }

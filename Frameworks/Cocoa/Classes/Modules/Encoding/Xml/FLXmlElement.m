@@ -92,8 +92,9 @@
         if(value) {
             value = [NSString stringWithFormat:@"%@%@", value, attributeValue];
         }
-
-        [_attributes setObject:value forKey:key];
+        if(value) {
+            [_attributes setObject:value forKey:key];
+        }
     }
 }
 

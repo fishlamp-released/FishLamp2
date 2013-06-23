@@ -176,7 +176,7 @@
 @synthesize input =_input;
 @synthesize output = _output;
 @synthesize soapAction = _soapAction;
-@synthesize targetNamespace = _soapNamespace;
+@synthesize targetNamespace = _targetNamespace;
 @synthesize operationName = _operationName;
 
 #if FL_MRC
@@ -185,7 +185,7 @@
     [_output release];
     [_soapAction release];
     [_operationName release];
-    [_soapNamespace release];
+    [_targetNamespace release];
     [super dealloc];
 }
 #endif

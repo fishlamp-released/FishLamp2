@@ -37,7 +37,7 @@
     NSString* _soapAction;
     NSString* _operationName;
     id _input;
-    id _ouput;
+    id _output;
 }
 @property (readwrite, strong, nonatomic) NSString* soapAction;
 @property (readwrite, strong, nonatomic) NSString* targetNamespace;

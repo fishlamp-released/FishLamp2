@@ -19,7 +19,6 @@
     NSMutableDictionary* _elements;
     FLParsedXmlElement* _sibling;
     NSString* _prefix;
-    NSString* _mappedToNamespace;
 
     __unsafe_unretained FLParsedXmlElement* _parent;
 }
@@ -55,22 +54,7 @@
 - (FLParsedXmlElement*) findChildElementWithName:(NSString*) name 
                                       maxDepth:(NSInteger) maxDepth;
 
-//- (NSDictionary*) childrenAtPath:(NSString*) parentalPath;
-
 - (void) describeToStringFormatter:(id<FLStringFormatter>) stringFormatter;
 
 @end
 
-//@interface FLParsedItemIterator : NSObject {
-//@private
-//    FLParsedXmlElement* _item;
-//    FLParsedXmlElement* _top;
-//}
-//
-//@property (readonly, strong, nonatomic) FLParsedXmlElement* item;
-//
-//- (void) openItem:(NSString*) name;
-//- (void) closeItem;
-//
-//
-//@end
