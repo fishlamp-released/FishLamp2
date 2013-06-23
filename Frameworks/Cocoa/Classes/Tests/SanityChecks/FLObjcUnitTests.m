@@ -9,8 +9,6 @@
 
 #import "FLObjcUnitTests.h"
 
-#import "FLUnretained.h"
-
 @implementation FLObjcUnitTests
 
 + (FLUnitTestGroup*) unitTestGroup {

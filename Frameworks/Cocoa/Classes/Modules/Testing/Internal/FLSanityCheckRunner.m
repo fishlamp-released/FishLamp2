@@ -9,7 +9,6 @@
 
 #import "FLSanityCheckRunner.h"
 
-#import "FLWeakReference.h"
 #import "FLFinisher.h"
 #import "FLAsyncQueue.h"
 #import "FLTestCase.h"

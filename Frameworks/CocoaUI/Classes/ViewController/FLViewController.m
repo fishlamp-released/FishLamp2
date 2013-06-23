@@ -10,7 +10,6 @@
 #import "FLViewController.h"
 #import <objc/runtime.h>
 
-#import "FLToolbarView.h"
 #import "SDKViewController+FLPresentationBehavior.h"
 
 #if OSX 

@@ -26,10 +26,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		278212FE175D4455007C5F26 /* __CocoaUIHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821245175D4455007C5F26 /* __CocoaUIHeaders.h */; };
-		278212FF175D4455007C5F26 /* __CocoaUIHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821245175D4455007C5F26 /* __CocoaUIHeaders.h */; };
-		27821300175D4455007C5F26 /* __CocoaUIHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821245175D4455007C5F26 /* __CocoaUIHeaders.h */; };
-		27821301175D4455007C5F26 /* __CocoaUIHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821245175D4455007C5F26 /* __CocoaUIHeaders.h */; };
 		27821302175D4455007C5F26 /* FLDistanceAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821248175D4455007C5F26 /* FLDistanceAnimation.h */; };
 		27821303175D4455007C5F26 /* FLDistanceAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821248175D4455007C5F26 /* FLDistanceAnimation.h */; };
 		27821304175D4455007C5F26 /* FLDistanceAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27821248175D4455007C5F26 /* FLDistanceAnimation.h */; };
@@ -577,69 +573,6 @@
 		27821522175D4455007C5F26 /* FLTilingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D2175D4455007C5F26 /* FLTilingImageView.m */; };
 		27821523175D4455007C5F26 /* FLTilingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D2175D4455007C5F26 /* FLTilingImageView.m */; };
 		27821524175D4455007C5F26 /* FLTilingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D2175D4455007C5F26 /* FLTilingImageView.m */; };
-		27821525175D4455007C5F26 /* FLImageButtonToolbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D4175D4455007C5F26 /* FLImageButtonToolbarItem.h */; };
-		27821526175D4455007C5F26 /* FLImageButtonToolbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D4175D4455007C5F26 /* FLImageButtonToolbarItem.h */; };
-		27821527175D4455007C5F26 /* FLImageButtonToolbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D4175D4455007C5F26 /* FLImageButtonToolbarItem.h */; };
-		27821528175D4455007C5F26 /* FLImageButtonToolbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D4175D4455007C5F26 /* FLImageButtonToolbarItem.h */; };
-		27821529175D4455007C5F26 /* FLImageButtonToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D5175D4455007C5F26 /* FLImageButtonToolbarItem.m */; };
-		2782152A175D4455007C5F26 /* FLImageButtonToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D5175D4455007C5F26 /* FLImageButtonToolbarItem.m */; };
-		2782152B175D4455007C5F26 /* FLImageButtonToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D5175D4455007C5F26 /* FLImageButtonToolbarItem.m */; };
-		2782152C175D4455007C5F26 /* FLImageButtonToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D5175D4455007C5F26 /* FLImageButtonToolbarItem.m */; };
-		2782152D175D4455007C5F26 /* FLImageButtonToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D5175D4455007C5F26 /* FLImageButtonToolbarItem.m */; };
-		2782152E175D4455007C5F26 /* FLToolbarButtonBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D6175D4455007C5F26 /* FLToolbarButtonBarView.h */; };
-		2782152F175D4455007C5F26 /* FLToolbarButtonBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D6175D4455007C5F26 /* FLToolbarButtonBarView.h */; };
-		27821530175D4455007C5F26 /* FLToolbarButtonBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D6175D4455007C5F26 /* FLToolbarButtonBarView.h */; };
-		27821531175D4455007C5F26 /* FLToolbarButtonBarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D6175D4455007C5F26 /* FLToolbarButtonBarView.h */; };
-		27821532175D4455007C5F26 /* FLToolbarButtonBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D7175D4455007C5F26 /* FLToolbarButtonBarView.m */; };
-		27821533175D4455007C5F26 /* FLToolbarButtonBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D7175D4455007C5F26 /* FLToolbarButtonBarView.m */; };
-		27821534175D4455007C5F26 /* FLToolbarButtonBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D7175D4455007C5F26 /* FLToolbarButtonBarView.m */; };
-		27821535175D4455007C5F26 /* FLToolbarButtonBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D7175D4455007C5F26 /* FLToolbarButtonBarView.m */; };
-		27821536175D4455007C5F26 /* FLToolbarButtonBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D7175D4455007C5F26 /* FLToolbarButtonBarView.m */; };
-		27821537175D4455007C5F26 /* FLToolbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D8175D4455007C5F26 /* FLToolbarItem.h */; };
-		27821538175D4455007C5F26 /* FLToolbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D8175D4455007C5F26 /* FLToolbarItem.h */; };
-		27821539175D4455007C5F26 /* FLToolbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D8175D4455007C5F26 /* FLToolbarItem.h */; };
-		2782153A175D4455007C5F26 /* FLToolbarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212D8175D4455007C5F26 /* FLToolbarItem.h */; };
-		2782153B175D4455007C5F26 /* FLToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D9175D4455007C5F26 /* FLToolbarItem.m */; };
-		2782153C175D4455007C5F26 /* FLToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D9175D4455007C5F26 /* FLToolbarItem.m */; };
-		2782153D175D4455007C5F26 /* FLToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D9175D4455007C5F26 /* FLToolbarItem.m */; };
-		2782153E175D4455007C5F26 /* FLToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D9175D4455007C5F26 /* FLToolbarItem.m */; };
-		2782153F175D4455007C5F26 /* FLToolbarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212D9175D4455007C5F26 /* FLToolbarItem.m */; };
-		27821540175D4455007C5F26 /* FLToolbarItemGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DA175D4455007C5F26 /* FLToolbarItemGroup.h */; };
-		27821541175D4455007C5F26 /* FLToolbarItemGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DA175D4455007C5F26 /* FLToolbarItemGroup.h */; };
-		27821542175D4455007C5F26 /* FLToolbarItemGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DA175D4455007C5F26 /* FLToolbarItemGroup.h */; };
-		27821543175D4455007C5F26 /* FLToolbarItemGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DA175D4455007C5F26 /* FLToolbarItemGroup.h */; };
-		27821544175D4455007C5F26 /* FLToolbarItemGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DB175D4455007C5F26 /* FLToolbarItemGroup.m */; };
-		27821545175D4455007C5F26 /* FLToolbarItemGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DB175D4455007C5F26 /* FLToolbarItemGroup.m */; };
-		27821546175D4455007C5F26 /* FLToolbarItemGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DB175D4455007C5F26 /* FLToolbarItemGroup.m */; };
-		27821547175D4455007C5F26 /* FLToolbarItemGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DB175D4455007C5F26 /* FLToolbarItemGroup.m */; };
-		27821548175D4455007C5F26 /* FLToolbarItemGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DB175D4455007C5F26 /* FLToolbarItemGroup.m */; };
-		27821549175D4455007C5F26 /* FLToolbarItemView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DC175D4455007C5F26 /* FLToolbarItemView.h */; };
-		2782154A175D4455007C5F26 /* FLToolbarItemView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DC175D4455007C5F26 /* FLToolbarItemView.h */; };
-		2782154B175D4455007C5F26 /* FLToolbarItemView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DC175D4455007C5F26 /* FLToolbarItemView.h */; };
-		2782154C175D4455007C5F26 /* FLToolbarItemView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DC175D4455007C5F26 /* FLToolbarItemView.h */; };
-		2782154D175D4455007C5F26 /* FLToolbarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DD175D4455007C5F26 /* FLToolbarItemView.m */; };
-		2782154E175D4455007C5F26 /* FLToolbarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DD175D4455007C5F26 /* FLToolbarItemView.m */; };
-		2782154F175D4455007C5F26 /* FLToolbarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DD175D4455007C5F26 /* FLToolbarItemView.m */; };
-		27821550175D4455007C5F26 /* FLToolbarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DD175D4455007C5F26 /* FLToolbarItemView.m */; };
-		27821551175D4455007C5F26 /* FLToolbarItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DD175D4455007C5F26 /* FLToolbarItemView.m */; };
-		27821552175D4455007C5F26 /* FLToolbarTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DE175D4455007C5F26 /* FLToolbarTitleView.h */; };
-		27821553175D4455007C5F26 /* FLToolbarTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DE175D4455007C5F26 /* FLToolbarTitleView.h */; };
-		27821554175D4455007C5F26 /* FLToolbarTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DE175D4455007C5F26 /* FLToolbarTitleView.h */; };
-		27821555175D4455007C5F26 /* FLToolbarTitleView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212DE175D4455007C5F26 /* FLToolbarTitleView.h */; };
-		27821556175D4455007C5F26 /* FLToolbarTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DF175D4455007C5F26 /* FLToolbarTitleView.m */; };
-		27821557175D4455007C5F26 /* FLToolbarTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DF175D4455007C5F26 /* FLToolbarTitleView.m */; };
-		27821558175D4455007C5F26 /* FLToolbarTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DF175D4455007C5F26 /* FLToolbarTitleView.m */; };
-		27821559175D4455007C5F26 /* FLToolbarTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DF175D4455007C5F26 /* FLToolbarTitleView.m */; };
-		2782155A175D4455007C5F26 /* FLToolbarTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212DF175D4455007C5F26 /* FLToolbarTitleView.m */; };
-		2782155B175D4455007C5F26 /* FLToolbarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212E0175D4455007C5F26 /* FLToolbarView.h */; };
-		2782155C175D4455007C5F26 /* FLToolbarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212E0175D4455007C5F26 /* FLToolbarView.h */; };
-		2782155D175D4455007C5F26 /* FLToolbarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212E0175D4455007C5F26 /* FLToolbarView.h */; };
-		2782155E175D4455007C5F26 /* FLToolbarView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212E0175D4455007C5F26 /* FLToolbarView.h */; };
-		2782155F175D4455007C5F26 /* FLToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212E1175D4455007C5F26 /* FLToolbarView.m */; };
-		27821560175D4455007C5F26 /* FLToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212E1175D4455007C5F26 /* FLToolbarView.m */; };
-		27821561175D4455007C5F26 /* FLToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212E1175D4455007C5F26 /* FLToolbarView.m */; };
-		27821562175D4455007C5F26 /* FLToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212E1175D4455007C5F26 /* FLToolbarView.m */; };
-		27821563175D4455007C5F26 /* FLToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 278212E1175D4455007C5F26 /* FLToolbarView.m */; };
 		27821564175D4455007C5F26 /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212E3175D4455007C5F26 /* FLMouseTrackingView.h */; };
 		27821565175D4455007C5F26 /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212E3175D4455007C5F26 /* FLMouseTrackingView.h */; };
 		27821566175D4455007C5F26 /* FLMouseTrackingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 278212E3175D4455007C5F26 /* FLMouseTrackingView.h */; };
@@ -857,7 +790,6 @@
 		27048EF0161CB58600C38ADA /* libFishLampCocoaUI-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270BC95716EBAB5100416D62 /* FishLampCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCocoa.xcodeproj; path = ../../Cocoa/FishLampCocoaLib/FishLampCocoa.xcodeproj; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoaUI-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoaUI-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		27821245175D4455007C5F26 /* __CocoaUIHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __CocoaUIHeaders.h; sourceTree = "<group>"; };
 		27821248175D4455007C5F26 /* FLDistanceAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDistanceAnimation.h; sourceTree = "<group>"; };
 		27821249175D4455007C5F26 /* FLDistanceAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDistanceAnimation.m; sourceTree = "<group>"; };
 		2782124A175D4455007C5F26 /* FLFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFadeAnimation.h; sourceTree = "<group>"; };
@@ -981,20 +913,6 @@
 		278212CF175D4455007C5F26 /* SDKTextField+Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SDKTextField+Theme.m"; sourceTree = "<group>"; };
 		278212D1175D4455007C5F26 /* FLTilingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTilingImageView.h; sourceTree = "<group>"; };
 		278212D2175D4455007C5F26 /* FLTilingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTilingImageView.m; sourceTree = "<group>"; };
-		278212D4175D4455007C5F26 /* FLImageButtonToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImageButtonToolbarItem.h; sourceTree = "<group>"; };
-		278212D5175D4455007C5F26 /* FLImageButtonToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImageButtonToolbarItem.m; sourceTree = "<group>"; };
-		278212D6175D4455007C5F26 /* FLToolbarButtonBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolbarButtonBarView.h; sourceTree = "<group>"; };
-		278212D7175D4455007C5F26 /* FLToolbarButtonBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLToolbarButtonBarView.m; sourceTree = "<group>"; };
-		278212D8175D4455007C5F26 /* FLToolbarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolbarItem.h; sourceTree = "<group>"; };
-		278212D9175D4455007C5F26 /* FLToolbarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLToolbarItem.m; sourceTree = "<group>"; };
-		278212DA175D4455007C5F26 /* FLToolbarItemGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolbarItemGroup.h; sourceTree = "<group>"; };
-		278212DB175D4455007C5F26 /* FLToolbarItemGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLToolbarItemGroup.m; sourceTree = "<group>"; };
-		278212DC175D4455007C5F26 /* FLToolbarItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolbarItemView.h; sourceTree = "<group>"; };
-		278212DD175D4455007C5F26 /* FLToolbarItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLToolbarItemView.m; sourceTree = "<group>"; };
-		278212DE175D4455007C5F26 /* FLToolbarTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolbarTitleView.h; sourceTree = "<group>"; };
-		278212DF175D4455007C5F26 /* FLToolbarTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLToolbarTitleView.m; sourceTree = "<group>"; };
-		278212E0175D4455007C5F26 /* FLToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLToolbarView.h; sourceTree = "<group>"; };
-		278212E1175D4455007C5F26 /* FLToolbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLToolbarView.m; sourceTree = "<group>"; };
 		278212E3175D4455007C5F26 /* FLMouseTrackingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMouseTrackingView.h; sourceTree = "<group>"; };
 		278212E4175D4455007C5F26 /* FLMouseTrackingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMouseTrackingView.m; sourceTree = "<group>"; };
 		278212E5175D4455007C5F26 /* FLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLView.h; sourceTree = "<group>"; };
@@ -1100,7 +1018,6 @@
 		27821244175D4455007C5F26 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				27821245175D4455007C5F26 /* __CocoaUIHeaders.h */,
 				27821246175D4455007C5F26 /* Animate */,
 				27821266175D4455007C5F26 /* Arrange */,
 				2782128A175D4455007C5F26 /* BreadcrumbBarView */,
@@ -1114,7 +1031,6 @@
 				278212BD175D4455007C5F26 /* StatusBarView */,
 				278212C2175D4455007C5F26 /* Theme */,
 				278212D0175D4455007C5F26 /* TilingImageView */,
-				278212D3175D4455007C5F26 /* ToolbarView */,
 				278212E2175D4455007C5F26 /* View */,
 				278212EF175D4455007C5F26 /* ViewController */,
 				278212FB175D4455007C5F26 /* ViewControllerStack */,
@@ -1377,27 +1293,6 @@
 			path = TilingImageView;
 			sourceTree = "<group>";
 		};
-		278212D3175D4455007C5F26 /* ToolbarView */ = {
-			isa = PBXGroup;
-			children = (
-				278212D4175D4455007C5F26 /* FLImageButtonToolbarItem.h */,
-				278212D5175D4455007C5F26 /* FLImageButtonToolbarItem.m */,
-				278212D6175D4455007C5F26 /* FLToolbarButtonBarView.h */,
-				278212D7175D4455007C5F26 /* FLToolbarButtonBarView.m */,
-				278212D8175D4455007C5F26 /* FLToolbarItem.h */,
-				278212D9175D4455007C5F26 /* FLToolbarItem.m */,
-				278212DA175D4455007C5F26 /* FLToolbarItemGroup.h */,
-				278212DB175D4455007C5F26 /* FLToolbarItemGroup.m */,
-				278212DC175D4455007C5F26 /* FLToolbarItemView.h */,
-				278212DD175D4455007C5F26 /* FLToolbarItemView.m */,
-				278212DE175D4455007C5F26 /* FLToolbarTitleView.h */,
-				278212DF175D4455007C5F26 /* FLToolbarTitleView.m */,
-				278212E0175D4455007C5F26 /* FLToolbarView.h */,
-				278212E1175D4455007C5F26 /* FLToolbarView.m */,
-			);
-			path = ToolbarView;
-			sourceTree = "<group>";
-		};
 		278212E2175D4455007C5F26 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1512,7 +1407,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
-				278212FE175D4455007C5F26 /* __CocoaUIHeaders.h in Headers */,
 				27821302175D4455007C5F26 /* FLDistanceAnimation.h in Headers */,
 				2782130B175D4455007C5F26 /* FLFadeAnimation.h in Headers */,
 				27821314175D4455007C5F26 /* FLFlipAnimation.h in Headers */,
@@ -1576,13 +1470,6 @@
 				2782150A175D4455007C5F26 /* NSObject+FLTheme.h in Headers */,
 				27821513175D4455007C5F26 /* SDKTextField+Theme.h in Headers */,
 				2782151C175D4455007C5F26 /* FLTilingImageView.h in Headers */,
-				27821525175D4455007C5F26 /* FLImageButtonToolbarItem.h in Headers */,
-				2782152E175D4455007C5F26 /* FLToolbarButtonBarView.h in Headers */,
-				27821537175D4455007C5F26 /* FLToolbarItem.h in Headers */,
-				27821540175D4455007C5F26 /* FLToolbarItemGroup.h in Headers */,
-				27821549175D4455007C5F26 /* FLToolbarItemView.h in Headers */,
-				27821552175D4455007C5F26 /* FLToolbarTitleView.h in Headers */,
-				2782155B175D4455007C5F26 /* FLToolbarView.h in Headers */,
 				27821564175D4455007C5F26 /* FLMouseTrackingView.h in Headers */,
 				2782156D175D4455007C5F26 /* FLView.h in Headers */,
 				27821576175D4455007C5F26 /* SDKImageView+FLViewGeometry.h in Headers */,
@@ -1603,7 +1490,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
-				27821300175D4455007C5F26 /* __CocoaUIHeaders.h in Headers */,
 				27821304175D4455007C5F26 /* FLDistanceAnimation.h in Headers */,
 				2782130D175D4455007C5F26 /* FLFadeAnimation.h in Headers */,
 				27821316175D4455007C5F26 /* FLFlipAnimation.h in Headers */,
@@ -1667,13 +1553,6 @@
 				2782150C175D4455007C5F26 /* NSObject+FLTheme.h in Headers */,
 				27821515175D4455007C5F26 /* SDKTextField+Theme.h in Headers */,
 				2782151E175D4455007C5F26 /* FLTilingImageView.h in Headers */,
-				27821527175D4455007C5F26 /* FLImageButtonToolbarItem.h in Headers */,
-				27821530175D4455007C5F26 /* FLToolbarButtonBarView.h in Headers */,
-				27821539175D4455007C5F26 /* FLToolbarItem.h in Headers */,
-				27821542175D4455007C5F26 /* FLToolbarItemGroup.h in Headers */,
-				2782154B175D4455007C5F26 /* FLToolbarItemView.h in Headers */,
-				27821554175D4455007C5F26 /* FLToolbarTitleView.h in Headers */,
-				2782155D175D4455007C5F26 /* FLToolbarView.h in Headers */,
 				27821566175D4455007C5F26 /* FLMouseTrackingView.h in Headers */,
 				2782156F175D4455007C5F26 /* FLView.h in Headers */,
 				27821578175D4455007C5F26 /* SDKImageView+FLViewGeometry.h in Headers */,
@@ -1694,7 +1573,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
-				278212FF175D4455007C5F26 /* __CocoaUIHeaders.h in Headers */,
 				27821303175D4455007C5F26 /* FLDistanceAnimation.h in Headers */,
 				2782130C175D4455007C5F26 /* FLFadeAnimation.h in Headers */,
 				27821315175D4455007C5F26 /* FLFlipAnimation.h in Headers */,
@@ -1758,13 +1636,6 @@
 				2782150B175D4455007C5F26 /* NSObject+FLTheme.h in Headers */,
 				27821514175D4455007C5F26 /* SDKTextField+Theme.h in Headers */,
 				2782151D175D4455007C5F26 /* FLTilingImageView.h in Headers */,
-				27821526175D4455007C5F26 /* FLImageButtonToolbarItem.h in Headers */,
-				2782152F175D4455007C5F26 /* FLToolbarButtonBarView.h in Headers */,
-				27821538175D4455007C5F26 /* FLToolbarItem.h in Headers */,
-				27821541175D4455007C5F26 /* FLToolbarItemGroup.h in Headers */,
-				2782154A175D4455007C5F26 /* FLToolbarItemView.h in Headers */,
-				27821553175D4455007C5F26 /* FLToolbarTitleView.h in Headers */,
-				2782155C175D4455007C5F26 /* FLToolbarView.h in Headers */,
 				27821565175D4455007C5F26 /* FLMouseTrackingView.h in Headers */,
 				2782156E175D4455007C5F26 /* FLView.h in Headers */,
 				27821577175D4455007C5F26 /* SDKImageView+FLViewGeometry.h in Headers */,
@@ -1785,7 +1656,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27CBBFEE16768BA600753D0A /* FishLampCocoa-Prefix.pch in Headers */,
-				27821301175D4455007C5F26 /* __CocoaUIHeaders.h in Headers */,
 				27821305175D4455007C5F26 /* FLDistanceAnimation.h in Headers */,
 				2782130E175D4455007C5F26 /* FLFadeAnimation.h in Headers */,
 				27821317175D4455007C5F26 /* FLFlipAnimation.h in Headers */,
@@ -1849,13 +1719,6 @@
 				2782150D175D4455007C5F26 /* NSObject+FLTheme.h in Headers */,
 				27821516175D4455007C5F26 /* SDKTextField+Theme.h in Headers */,
 				2782151F175D4455007C5F26 /* FLTilingImageView.h in Headers */,
-				27821528175D4455007C5F26 /* FLImageButtonToolbarItem.h in Headers */,
-				27821531175D4455007C5F26 /* FLToolbarButtonBarView.h in Headers */,
-				2782153A175D4455007C5F26 /* FLToolbarItem.h in Headers */,
-				27821543175D4455007C5F26 /* FLToolbarItemGroup.h in Headers */,
-				2782154C175D4455007C5F26 /* FLToolbarItemView.h in Headers */,
-				27821555175D4455007C5F26 /* FLToolbarTitleView.h in Headers */,
-				2782155E175D4455007C5F26 /* FLToolbarView.h in Headers */,
 				27821567175D4455007C5F26 /* FLMouseTrackingView.h in Headers */,
 				27821570175D4455007C5F26 /* FLView.h in Headers */,
 				27821579175D4455007C5F26 /* SDKImageView+FLViewGeometry.h in Headers */,
@@ -2106,13 +1969,6 @@
 				2782150F175D4455007C5F26 /* NSObject+FLTheme.m in Sources */,
 				27821518175D4455007C5F26 /* SDKTextField+Theme.m in Sources */,
 				27821521175D4455007C5F26 /* FLTilingImageView.m in Sources */,
-				2782152A175D4455007C5F26 /* FLImageButtonToolbarItem.m in Sources */,
-				27821533175D4455007C5F26 /* FLToolbarButtonBarView.m in Sources */,
-				2782153C175D4455007C5F26 /* FLToolbarItem.m in Sources */,
-				27821545175D4455007C5F26 /* FLToolbarItemGroup.m in Sources */,
-				2782154E175D4455007C5F26 /* FLToolbarItemView.m in Sources */,
-				27821557175D4455007C5F26 /* FLToolbarTitleView.m in Sources */,
-				27821560175D4455007C5F26 /* FLToolbarView.m in Sources */,
 				27821569175D4455007C5F26 /* FLMouseTrackingView.m in Sources */,
 				27821572175D4455007C5F26 /* FLView.m in Sources */,
 				2782157B175D4455007C5F26 /* SDKImageView+FLViewGeometry.m in Sources */,
@@ -2191,13 +2047,6 @@
 				27821511175D4455007C5F26 /* NSObject+FLTheme.m in Sources */,
 				2782151A175D4455007C5F26 /* SDKTextField+Theme.m in Sources */,
 				27821523175D4455007C5F26 /* FLTilingImageView.m in Sources */,
-				2782152C175D4455007C5F26 /* FLImageButtonToolbarItem.m in Sources */,
-				27821535175D4455007C5F26 /* FLToolbarButtonBarView.m in Sources */,
-				2782153E175D4455007C5F26 /* FLToolbarItem.m in Sources */,
-				27821547175D4455007C5F26 /* FLToolbarItemGroup.m in Sources */,
-				27821550175D4455007C5F26 /* FLToolbarItemView.m in Sources */,
-				27821559175D4455007C5F26 /* FLToolbarTitleView.m in Sources */,
-				27821562175D4455007C5F26 /* FLToolbarView.m in Sources */,
 				2782156B175D4455007C5F26 /* FLMouseTrackingView.m in Sources */,
 				27821574175D4455007C5F26 /* FLView.m in Sources */,
 				2782157D175D4455007C5F26 /* SDKImageView+FLViewGeometry.m in Sources */,
@@ -2276,13 +2125,6 @@
 				2782150E175D4455007C5F26 /* NSObject+FLTheme.m in Sources */,
 				27821517175D4455007C5F26 /* SDKTextField+Theme.m in Sources */,
 				27821520175D4455007C5F26 /* FLTilingImageView.m in Sources */,
-				27821529175D4455007C5F26 /* FLImageButtonToolbarItem.m in Sources */,
-				27821532175D4455007C5F26 /* FLToolbarButtonBarView.m in Sources */,
-				2782153B175D4455007C5F26 /* FLToolbarItem.m in Sources */,
-				27821544175D4455007C5F26 /* FLToolbarItemGroup.m in Sources */,
-				2782154D175D4455007C5F26 /* FLToolbarItemView.m in Sources */,
-				27821556175D4455007C5F26 /* FLToolbarTitleView.m in Sources */,
-				2782155F175D4455007C5F26 /* FLToolbarView.m in Sources */,
 				27821568175D4455007C5F26 /* FLMouseTrackingView.m in Sources */,
 				27821571175D4455007C5F26 /* FLView.m in Sources */,
 				2782157A175D4455007C5F26 /* SDKImageView+FLViewGeometry.m in Sources */,
@@ -2361,13 +2203,6 @@
 				27821510175D4455007C5F26 /* NSObject+FLTheme.m in Sources */,
 				27821519175D4455007C5F26 /* SDKTextField+Theme.m in Sources */,
 				27821522175D4455007C5F26 /* FLTilingImageView.m in Sources */,
-				2782152B175D4455007C5F26 /* FLImageButtonToolbarItem.m in Sources */,
-				27821534175D4455007C5F26 /* FLToolbarButtonBarView.m in Sources */,
-				2782153D175D4455007C5F26 /* FLToolbarItem.m in Sources */,
-				27821546175D4455007C5F26 /* FLToolbarItemGroup.m in Sources */,
-				2782154F175D4455007C5F26 /* FLToolbarItemView.m in Sources */,
-				27821558175D4455007C5F26 /* FLToolbarTitleView.m in Sources */,
-				27821561175D4455007C5F26 /* FLToolbarView.m in Sources */,
 				2782156A175D4455007C5F26 /* FLMouseTrackingView.m in Sources */,
 				27821573175D4455007C5F26 /* FLView.m in Sources */,
 				2782157C175D4455007C5F26 /* SDKImageView+FLViewGeometry.m in Sources */,
@@ -2446,13 +2281,6 @@
 				27821512175D4455007C5F26 /* NSObject+FLTheme.m in Sources */,
 				2782151B175D4455007C5F26 /* SDKTextField+Theme.m in Sources */,
 				27821524175D4455007C5F26 /* FLTilingImageView.m in Sources */,
-				2782152D175D4455007C5F26 /* FLImageButtonToolbarItem.m in Sources */,
-				27821536175D4455007C5F26 /* FLToolbarButtonBarView.m in Sources */,
-				2782153F175D4455007C5F26 /* FLToolbarItem.m in Sources */,
-				27821548175D4455007C5F26 /* FLToolbarItemGroup.m in Sources */,
-				27821551175D4455007C5F26 /* FLToolbarItemView.m in Sources */,
-				2782155A175D4455007C5F26 /* FLToolbarTitleView.m in Sources */,
-				27821563175D4455007C5F26 /* FLToolbarView.m in Sources */,
 				2782156C175D4455007C5F26 /* FLMouseTrackingView.m in Sources */,
 				27821575175D4455007C5F26 /* FLView.m in Sources */,
 				2782157E175D4455007C5F26 /* SDKImageView+FLViewGeometry.m in Sources */,

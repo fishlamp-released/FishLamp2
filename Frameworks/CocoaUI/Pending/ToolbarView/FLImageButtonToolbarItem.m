@@ -8,10 +8,10 @@
 //
 
 #import "FLImageButtonToolbarItem.h"
-#import "SDKImage+FLColorize.h"
-#import "SDKImage+Resize.h"
 
 #if IOS
+#import "SDKImage+FLColorize.h"
+#import "SDKImage+Resize.h"
 #import "FLButton.h"
 #endif
 

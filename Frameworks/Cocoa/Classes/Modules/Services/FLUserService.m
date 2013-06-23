@@ -13,7 +13,7 @@
 #import "NSString+Guid.h"
 #import "FLService.h"
 #import "FLKeychain.h"
-#import "NSUserDefaults+FLAdditions.h"
+//#import "NSUserDefaults+FLAdditions.h"
 #import "FLUserDefaultsCredentialStorage.h"
 
 @interface FLUserService ()
