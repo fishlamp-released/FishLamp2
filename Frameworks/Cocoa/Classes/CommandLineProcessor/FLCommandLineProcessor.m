@@ -10,11 +10,9 @@
 #import "FLCommandLineProcessor.h"
 #import "FLStringUtils.h"
 #import "FLErrorDomainInfo.h"
-#import "FLAsyncResult.h"
 #import "NSString+Lists.h"
 #import "FLUsageToolTask.h"
 #import "FLHelpToolTask.h"
-#import "FLBlockQueue.h"
 
 @interface FLToolCommand ()
 - (void) setParent:(id) parent;

@@ -7,13 +7,12 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLCocoaRequired.h"
 #import "FLNetworkStream.h"
-#import "FLAsyncResult.h"
-#import "FLNetworkHost.h"
-#import "FLTimedObject.h"
-#import "FLTimer.h"
-#import "FLFinisher.h"
+#import "FishLampAsync.h"
+
+@class FLPromisedResult;
+@class FLNetworkHost;
+@class FLFinisher;
 
 @interface FLNetworkHostResolver : FLNetworkStream {
 @private
@@ -23,11 +22,11 @@
 
 + (id) networkHostResolver;
 
-- (FLPromisedResult) resolveHostSynchronously:(FLNetworkHost*) host;
+- (FLPromisedResult*) resolveHostSynchronously:(FLNetworkHost*) host;
 
 - (FLPromise*) startResolvingHost:(FLNetworkHost*) host completion:(fl_completion_block_t) completion;
 
-- (void) closeWithResult:(id) result;
+- (void) closeWithResult:(id) result error:(NSError*) error;
 
 
 @end

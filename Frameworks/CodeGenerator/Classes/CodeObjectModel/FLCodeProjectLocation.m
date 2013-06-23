@@ -7,6 +7,7 @@
 //
 
 #import "FLCodeProjectLocation.h"
+#import "FLCodeImport.h"
 
 @interface FLCodeProjectLocation ()
 @property (readwrite, strong, nonatomic) NSURL* URL;
@@ -66,6 +67,45 @@
     FLAssertNotNil(data);
     
     return data;
+}
+
++ (FLCodeProjectLocation*) codeProjectLocationWithImport:(FLCodeImport*) import
+                                       projectFolderPath:(NSString*) projectFolderPath {
+    
+    FLCodeInputTypeEnumSet* enums = import.typeEnumSet;
+    FLCodeProjectLocationType type = FLCodeProjectLocationTypeNone;
+
+    if(!enums.count) {
+        [enums addEnum:FLCodeInputTypeFile];
+    }
+
+    NSURL* url = nil;
+
+    for(FLEnumPair* number in enums) {
+        switch(number.enumValue) {
+            case FLCodeInputTypeFile:
+                type |= FLCodeProjectLocationTypeFile;
+                url = [NSURL fileURLWithPath:[projectFolderPath stringByAppendingPathComponent:import.path]];
+            break;
+
+            case FLCodeInputTypeHttp:
+                type |= FLCodeProjectLocationTypeHttp;
+                url = [NSURL URLWithString:import.path];
+            break;
+
+            case FLCodeInputTypeWsdl:
+                type |= FLCodeProjectLocationTypeWsdl;
+                url = [NSURL URLWithString:import.path];
+            break;
+
+            default:
+                break;
+        }
+    }
+
+    FLAssertIsNotNil(url);
+
+    return [FLCodeProjectLocation codeProjectLocation:url resourceType:type];
 }
 
 @end

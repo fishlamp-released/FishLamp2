@@ -9,7 +9,7 @@
 
 #import "FLTracker.h"
 #import "FLTrackerSink.h"
-#import "FLDispatch.h"
+#import "FishLampAsync.h"
 
 @implementation FLTracker
 

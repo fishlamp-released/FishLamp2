@@ -8,6 +8,7 @@
 //
 
 #import "FLCommandLineTask.h"
+#import "FishLampAsync.h"
 
 @implementation FLCommandLineTask
 
@@ -41,7 +42,7 @@
         [self runChildSynchronously:operation];
     }
     
-    return FLSuccessfullResult;
+    return [FLSuccessfulResult successfulResult];
 }
 
 

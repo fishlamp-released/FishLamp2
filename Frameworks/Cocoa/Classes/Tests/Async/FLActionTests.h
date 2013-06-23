@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-
+#if REFACTOR
 #import "FLUnitTest.h"
 
 @interface FLActionTests : FLUnitTest
 
 @end
+#endif

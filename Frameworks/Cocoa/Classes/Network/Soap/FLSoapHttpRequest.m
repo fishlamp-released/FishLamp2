@@ -150,7 +150,7 @@
     }
 }
 
-- (FLPromisedResult) convertResponseToPromisedResult:(FLHttpResponse *)httpResponse {
+- (id) convertResponseToPromisedResult:(FLHttpResponse *)httpResponse {
     
     NSData* data = [httpResponse.responseData data];
     FLAssertNotNil(data);
@@ -181,7 +181,6 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_handleSoapResponseBlock release];
     [_input release];
     [_output release];
     [_soapAction release];

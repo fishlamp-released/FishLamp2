@@ -13,18 +13,27 @@
 #import "FLCodeProjectBaseClass.h"
 
 @class FLCodeProjectLocation;
+@class FLCodeProjectReader;
 
 @interface FLCodeProject : FLCodeProjectBaseClass {
 @private
     NSString* _projectPath;
     FLCodeProjectLocation* _projectLocation;
+    NSMutableDictionary* _subProjects;
+    __unsafe_unretained FLCodeProject* _parent;
 }
 
 @property (readwrite, strong, nonatomic) NSString* projectPath;
 @property (readwrite, strong, nonatomic) FLCodeProjectLocation* projectLocation;
-
 @property (readonly, strong, nonatomic) NSString* projectFolderPath;
 
 + (id) codeProject;
+
+- (void) addSubProject:(FLCodeProject*) subproject;
+
+//- (void) loadSubProjectsWithProjectReader:(FLCodeProjectReader*) reader;
+//- (void) mergeWithSubprojects;
+- (void) didLoadFromLocation:(FLCodeProjectLocation*) location
+           withProjectReader:(FLCodeProjectReader*) reader ;
 
 @end

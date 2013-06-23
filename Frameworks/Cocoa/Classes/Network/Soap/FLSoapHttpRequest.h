@@ -11,8 +11,6 @@
 @class FLSoapFault11;
 @class FLParsedXmlElement;
 
-typedef FLPromisedResult (^FLHandleSoapResponseBlock)(FLParsedXmlElement* parsedSoap);
-
 @interface FLSoapHttpRequest : FLHttpRequest
 
 + (id) soapRequestWithURL:(NSURL*) url;
@@ -40,7 +38,6 @@ typedef FLPromisedResult (^FLHandleSoapResponseBlock)(FLParsedXmlElement* parsed
     NSString* _operationName;
     id _input;
     id _ouput;
-    FLHandleSoapResponseBlock _handleSoapResponseBlock;
 }
 @property (readwrite, strong, nonatomic) NSString* soapAction;
 @property (readwrite, strong, nonatomic) NSString* targetNamespace;

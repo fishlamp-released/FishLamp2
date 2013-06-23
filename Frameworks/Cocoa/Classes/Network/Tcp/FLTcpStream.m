@@ -117,7 +117,7 @@
 #endif
 }
 
-- (void) closeConnectionWithResult:(id) result {
+- (void) closeConnectionWithResult:(id) result error:(NSErro*) error {
     self.terminate = YES;
     
     [self.dispatchQueue queueBlock:^{
@@ -145,15 +145,16 @@
 }
 
 - (void) readStream:(FLReadStream*) networkStream 
-    didCloseWithResult:(FLPromisedResult) result {
+    didCloseWithResult:(id) result
+    error:(NSError*) error{
     
-    [self closeConnectionWithResult:result];
+    [self closeConnectionWithResult:result error:error];
 }
 
 - (void) readStream:(FLReadStream*) readStream
       encounteredError:(NSError*) error {
     
-    [self closeConnectionWithResult:error];
+    [self closeConnectionWithResult:nil error:error];
 }
 
 - (void) readStreamHasBytesAvailable:(FLReadStream*) networkStream {
@@ -176,15 +177,16 @@
 }
 
 - (void) writeStream:(FLWriteStream*) networkStream 
-  didCloseWithResult:(FLPromisedResult) result {
+  didCloseWithResult:(id) result
+  error:(NSError*) error{
     
-    [self closeConnectionWithResult:result];
+    [self closeConnectionWithResult:result error:error];
 }
 
 - (void) writeStream:(FLWriteStream*) writeStream
    encounteredError:(NSError*) error {
     
-    [self closeConnectionWithResult:error];
+    [self closeConnectionWithResult:nil error:error];
 }      
 
 - (void) writeStreamCanAcceptBytes:(FLWriteStream*) networkStream {
@@ -201,7 +203,7 @@
 }
 
 - (void) requestCancel {
-    [self closeConnectionWithResult:[NSError cancelError]];
+    [self closeConnectionWithResult:nil error:[NSError cancelError]];
 }
 
 #pragma mark -- request queue
@@ -259,7 +261,7 @@
 //            }
         }
         @catch(NSException* ex) {
-            [self closeConnectionWithResult:ex.error];
+            [self closeConnectionWithResult:nil error:ex.error];
         }
     }
 }

@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <dispatch/dispatch.h>
 
-#import "FishLamp.h"
+#import "FishLampCore.h"
 #import "FLCompatibility.h"
-#import "NSObject+Copying.h"
-#import "FLSelectorPerforming.h"
 

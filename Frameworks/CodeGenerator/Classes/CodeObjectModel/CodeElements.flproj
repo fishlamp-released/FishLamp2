@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fishlamp>
+    <import path="CodeOptions.flproj"/>
+
+    <class name="FLCodeVariable">
+        <property name="name" type="string" comment="name of the variabl, e.g. bagelCount" useForEquality="YES"/>
+        <property name="type" type="string" comment="name of the type, e.g. bagelCount" useForEquality="YES"/>
+    </class>
+
+    <class name="FLCodeElement" superclass="FLModelObject">
+        <property name="rep" type="object"/>
+        <constructor>
+            <parameter name="rep" type="object" setProperty="rep"/>
+        </constructor>
+    </class>
+    <class name="FLCodeComment" comment="don't use this class directly, used internally">
+        <property name="object" type="string"/>
+        <property name="commentID" type="string"/>
+        <property name="comment" type="string" useForEquality="YES"/>
+    </class>
+    <class name="FLCodeReturn" superclass="FLCodeElement">
+        <constructor>
+            <parameter name="rep" type="object" passToSuper="true"/>
+        </constructor>
+    </class>
+    <class name="FLCodeString" superclass="FLCodeElement">
+        <constructor>
+            <parameter name="rep" type="object" passToSuper="true"/>
+        </constructor>
+    </class>
+    <class name="FLCodeCreateObject" superclass="FLCodeElement">
+        <constructor>
+            <parameter name="rep" type="object" passToSuper="true"/>
+        </constructor>
+    </class>
+    <class name="FLCodeClassName" superclass="FLCodeElement">
+        <constructor>
+            <parameter name="rep" type="object" passToSuper="true"/>
+        </constructor>
+    </class>
+    <class name="FLCodeStatement" superclass="FLCodeElement">
+        <constructor>
+            <parameter name="rep" type="object" passToSuper="true"/>
+        </constructor>
+    </class>
+    <class name="FLCodeSequence" superclass="FLModelObject">
+        <property name="statements" type="array">
+            <arrayType name="statement" type="FLCodeElement"/>
+        </property>
+    </class>
+</fishlamp>

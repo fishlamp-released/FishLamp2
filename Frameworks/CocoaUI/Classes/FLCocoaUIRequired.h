@@ -8,8 +8,6 @@
 //
 
 #import "FishLamp.h"
-#import "FishLampCocoa.h"
-#import "FLCompatibility.h"
 
 #if OSX
 #import <Quartz/Quartz.h>

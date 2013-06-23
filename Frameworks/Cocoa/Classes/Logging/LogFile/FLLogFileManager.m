@@ -11,7 +11,7 @@
 #import "FLAsyncQueue.h"
 #import "NSFileManager+FLExtras.h"
 #import "FLAppInfo.h"
-#import "FLDispatch.h"
+#import "FishLampAsync.h"
 
 @interface FLLogFileManager ()
 @property (readwrite, strong, nonatomic) FLLogFile* logFile;

@@ -8,7 +8,7 @@
 //
 
 #import "FLBroadcaster.h"
-#import "FLDispatch.h"
+#import "FishLampAsync.h"
 #import "FLObjectMessage.h"
 
 @implementation FLBroadcaster 

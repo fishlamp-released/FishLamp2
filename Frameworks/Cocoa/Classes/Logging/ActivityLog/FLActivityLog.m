@@ -9,6 +9,7 @@
 
 #import "FLActivityLog.h"
 #import "FLAttributedString.H"
+#import "FLColorModule.h"
 
 NSString* const FLActivityLogUpdated = @"FLActivityLogUpdated";
 NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";

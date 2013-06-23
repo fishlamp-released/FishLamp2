@@ -74,7 +74,7 @@
     return nil;
 }
 
-- (FLPromisedResult) didFinishTask:(NSTask*) task {
+- (NSString*) didFinishTask:(NSTask*) task {
 
     NSString* outputStr = nil;
     NSFileHandle* file = nil;

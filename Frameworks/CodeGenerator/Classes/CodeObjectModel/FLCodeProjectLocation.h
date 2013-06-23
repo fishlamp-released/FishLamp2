@@ -7,7 +7,8 @@
 //
 
 #import "FishLamp.h"
-#import "FishLampCocoa.h"
+
+@class FLCodeImport;
 
 typedef enum {
     FLCodeProjectLocationTypeNone = 0,
@@ -30,6 +31,10 @@ typedef enum {
 
 + (FLCodeProjectLocation*) codeProjectLocation:(NSURL*) url
                                   resourceType:(FLCodeProjectLocationType) inputType;
+
++ (FLCodeProjectLocation*) codeProjectLocationWithImport:(FLCodeImport*) import
+                                       projectFolderPath:(NSString*) projectFolderPath;
+
 
 - (BOOL) isLocationType:(FLCodeProjectLocationType) type;
 

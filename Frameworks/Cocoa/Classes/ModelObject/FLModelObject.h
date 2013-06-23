@@ -7,29 +7,33 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLDatabaseTable.h"
-#import "FLObjectDescriber.h"
+#import "FishLampCore.h"
 
-@protocol FLModelObject <FLDatabaseStorable, NSCopying, NSCoding>
+@class FLObjectDescriber;
+@class FLObjectChangeTracker;
+
+@protocol FLModelObject <NSCopying, NSCoding>
+- (void) startTrackingChanges;
+@property (readwrite, strong, nonatomic) FLObjectChangeTracker* changeTracker;
 @end
 
 @interface FLModelObject : NSObject<FLModelObject> {
 @private
-//    id _identifier;
+    FLObjectChangeTracker* _changeTracker;
 }
-//@property (readwrite, strong) id identifier;
 @end
 
 @interface NSObject (FLModelObject)
 + (BOOL) isModelObject;
 - (BOOL) isModelObject;
+
+- (FLObjectChangeTracker*) changeTracker;
 @end
 
 typedef enum {
 	FLMergeModePreserveDestination,		//! always keep dest value, even if src has value.
 	FLMergeModeSourceWins,				//! if src has value, overwrite dest value.
 } FLMergeMode;
-
 
 // this only works for objects with valid describers.
 extern id FLModelObjectCopy(id object, Class classOrNil);
@@ -60,17 +64,15 @@ extern void FLMergeObjectArrays(NSMutableArray* dest, NSArray* src, FLMergeMode 
             - (id) copyWithZone:(NSZone*) zone { \
                 return FLModelObjectCopy(self, [self class]); \
             }        
-            
+
+#define FLSynthesizeChangeTracking() \
+            - (void) startTrackingChanges { \
+                self.changeTracker = [FLObjectChangeTracker objectChangeTracker:self]; \
+            }
+
 #define FLSynthesizeModelObjectMethods() \
             FLSynthesizeObjectDescriber() \
             FLSynthesizeCopying() \
-            FLSynthesizeCoding()
+            FLSynthesizeCoding() \
+            FLSynthesizeChangeTracking()
 
-
-//            + (FLObjectDescriber*) objectDescriber { \
-//                static dispatch_once_t pred = 0; \
-//                dispatch_once(&pred, ^{ \
-//                    [[self class] registerObjectDescriber]; \
-//                }); \
-//                return [FLObjectDescriber objectDescriber:[self class]]; \
-//            } 

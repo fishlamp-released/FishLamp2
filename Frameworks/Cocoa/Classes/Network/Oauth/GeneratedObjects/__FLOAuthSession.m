@@ -57,7 +57,7 @@
 
 - (void) copySelfTo:(id) object
 {
-    [super copySelfTo:object];
+//    [super copySelfTo:object];
     ((FLOAuthSession*)object).userGuid = FLCopyOrRetainObject(__userGuid);
     ((FLOAuthSession*)object).appName = FLCopyOrRetainObject(__appName);
     ((FLOAuthSession*)object).oauth_token_secret = FLCopyOrRetainObject(__oauth_token_secret);

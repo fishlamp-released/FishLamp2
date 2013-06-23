@@ -8,7 +8,6 @@
 //
 
 #import "FLUserService.h"
-#import "FLLowMemoryHandler.h"
 #import "FLApplicationDataVersion.h"
 #import "NSFileManager+FLExtras.h"
 #import "NSString+Guid.h"

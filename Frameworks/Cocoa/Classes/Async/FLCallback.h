@@ -93,18 +93,4 @@ BOOL FLCallbackPerform3(FLCallback_t callback, id withObject1, id withObject2, i
 
 @end
 
-//@interface FLStashedCallback : FLCallback<FLAsyncWorker> {
-//@private
-//    FLArgumentList* _arguments;
-//}
-//
-//@property (readonly, strong, nonatomic) FLArgumentList* arguments;
-//
-//- (id) initWithTarget:(id) target action:(SEL) action arguments:(FLArgumentList*) arguments;
-//- (id) initWithBlock:(FLCallbackBlock) block arguments:(FLArgumentList*) arguments;
-//
-//+ (id) callbackWithTarget:(id) target action:(SEL) action arguments:(FLArgumentList*) arguments;
-//+ (id) callbackWithBlock:(FLCallbackBlock) block arguments:(FLArgumentList*) arguments;
-//
-//@end
 

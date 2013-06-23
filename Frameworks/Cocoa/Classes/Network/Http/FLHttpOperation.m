@@ -41,12 +41,12 @@
 #endif
 }
 
-- (void) setFinishedWithResult:(FLPromisedResult) result {
-    [self.finisher setFinishedWithResult:result];
+- (void) setFinishedWithResult:(id) result error:(NSError*) error {
+    [self.finisher setFinishedWithResult:result error:error];
 }
 
 - (id) startAsyncOperation {
-    [self runChildAsynchronously:self.httpRequest completion:^(FLPromisedResult result) {
+    [self runChildAsynchronously:self.httpRequest completion:^(id result, NSError* error) {
         [self setFinishedWithResult:result];
     }];
     
@@ -70,9 +70,10 @@
 }
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
-  didCloseWithResult:(FLPromisedResult) result {
+  didCloseWithResult:(id) result
+               error:(NSError*) error {
 
-    FLPerformSelector2(self.delegate, @selector(httpRequest:didCloseWithResult:), httpRequest, result);
+    FLPerformSelector3(self.delegate, @selector(httpRequest:didCloseWithResult:error:), httpRequest, result, error);
 }    
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 

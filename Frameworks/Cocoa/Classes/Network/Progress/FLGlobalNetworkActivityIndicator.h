@@ -8,7 +8,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FishLamp.h"
+#import "FishLampCore.h"
 
 extern NSString* const FLGlobalNetworkActivityShow;
 extern NSString* const FLGlobalNetworkActivityHide;

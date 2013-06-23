@@ -25,6 +25,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2729CB05177777E700D59B4F /* FLObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 2729CB04177777E700D59B4F /* FLObjc.m */; };
+		2729CB06177777E700D59B4F /* FLObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 2729CB04177777E700D59B4F /* FLObjc.m */; };
+		2729CB07177777E700D59B4F /* FLObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 2729CB04177777E700D59B4F /* FLObjc.m */; };
+		2729CB08177777E700D59B4F /* FLObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 2729CB04177777E700D59B4F /* FLObjc.m */; };
+		2729CB09177777E700D59B4F /* FLObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 2729CB04177777E700D59B4F /* FLObjc.m */; };
 		2768074A175D370700B1D643 /* FLDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806D6175D370700B1D643 /* FLDebug.h */; };
 		2768074B175D370700B1D643 /* FLDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806D6175D370700B1D643 /* FLDebug.h */; };
 		2768074C175D370700B1D643 /* FLDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806D6175D370700B1D643 /* FLDebug.h */; };
@@ -155,10 +160,10 @@
 		276807C9175D370700B1D643 /* NSError+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 276806F3175D370700B1D643 /* NSError+FLExtras.m */; };
 		276807CA175D370700B1D643 /* NSError+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 276806F3175D370700B1D643 /* NSError+FLExtras.m */; };
 		276807CB175D370700B1D643 /* NSError+FLExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 276806F3175D370700B1D643 /* NSError+FLExtras.m */; };
-		276807CC175D370700B1D643 /* FishLamp.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F4175D370700B1D643 /* FishLamp.h */; };
-		276807CD175D370700B1D643 /* FishLamp.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F4175D370700B1D643 /* FishLamp.h */; };
-		276807CE175D370700B1D643 /* FishLamp.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F4175D370700B1D643 /* FishLamp.h */; };
-		276807CF175D370700B1D643 /* FishLamp.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F4175D370700B1D643 /* FishLamp.h */; };
+		276807CC175D370700B1D643 /* FishLampCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F4175D370700B1D643 /* FishLampCore.h */; };
+		276807CD175D370700B1D643 /* FishLampCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F4175D370700B1D643 /* FishLampCore.h */; };
+		276807CE175D370700B1D643 /* FishLampCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F4175D370700B1D643 /* FishLampCore.h */; };
+		276807CF175D370700B1D643 /* FishLampCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F4175D370700B1D643 /* FishLampCore.h */; };
 		276807D4175D370700B1D643 /* FLConsoleLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F7175D370700B1D643 /* FLConsoleLogSink.h */; };
 		276807D5175D370700B1D643 /* FLConsoleLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F7175D370700B1D643 /* FLConsoleLogSink.h */; };
 		276807D6175D370700B1D643 /* FLConsoleLogSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F7175D370700B1D643 /* FLConsoleLogSink.h */; };
@@ -524,6 +529,7 @@
 
 /* Begin PBXFileReference section */
 		27048EF0161CB58600C38ADA /* libFishLampCore-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2729CB04177777E700D59B4F /* FLObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjc.m; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCore-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		276806D6175D370700B1D643 /* FLDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLDebug.h; sourceTree = "<group>"; };
 		276806D7175D370700B1D643 /* FLDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLDebug.m; sourceTree = "<group>"; };
@@ -554,7 +560,7 @@
 		276806F1175D370700B1D643 /* FLStackTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStackTrace.m; sourceTree = "<group>"; };
 		276806F2175D370700B1D643 /* NSError+FLExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+FLExtras.h"; sourceTree = "<group>"; };
 		276806F3175D370700B1D643 /* NSError+FLExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+FLExtras.m"; sourceTree = "<group>"; };
-		276806F4175D370700B1D643 /* FishLamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLamp.h; sourceTree = "<group>"; };
+		276806F4175D370700B1D643 /* FishLampCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCore.h; sourceTree = "<group>"; };
 		276806F7175D370700B1D643 /* FLConsoleLogSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLConsoleLogSink.h; sourceTree = "<group>"; };
 		276806F8175D370700B1D643 /* FLConsoleLogSink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLConsoleLogSink.m; sourceTree = "<group>"; };
 		276806F9175D370700B1D643 /* FLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLLog.h; sourceTree = "<group>"; };
@@ -695,7 +701,7 @@
 				27F1AF06175FBEEB0086E14A /* FishLampVersion.h */,
 				276806D5175D370700B1D643 /* Debug */,
 				276806D8175D370700B1D643 /* Errors */,
-				276806F4175D370700B1D643 /* FishLamp.h */,
+				276806F4175D370700B1D643 /* FishLampCore.h */,
 				276806F6175D370700B1D643 /* Logger */,
 				27680705175D370700B1D643 /* Properties */,
 				27680710175D370700B1D643 /* Required */,
@@ -798,6 +804,7 @@
 				27680715175D370700B1D643 /* FLObjcARC.h */,
 				27680716175D370700B1D643 /* FLObjcMRC.h */,
 				27680717175D370700B1D643 /* FLRequired.h */,
+				2729CB04177777E700D59B4F /* FLObjc.m */,
 			);
 			path = Required;
 			sourceTree = "<group>";
@@ -936,7 +943,7 @@
 				276807B1175D370700B1D643 /* FLMutableError.h in Headers */,
 				276807BA175D370700B1D643 /* FLStackTrace.h in Headers */,
 				276807C3175D370700B1D643 /* NSError+FLExtras.h in Headers */,
-				276807CC175D370700B1D643 /* FishLamp.h in Headers */,
+				276807CC175D370700B1D643 /* FishLampCore.h in Headers */,
 				276807D4175D370700B1D643 /* FLConsoleLogSink.h in Headers */,
 				276807DD175D370700B1D643 /* FLLog.h in Headers */,
 				276807E6175D370700B1D643 /* FLLogEntry.h in Headers */,
@@ -1003,7 +1010,7 @@
 				276807B3175D370700B1D643 /* FLMutableError.h in Headers */,
 				276807BC175D370700B1D643 /* FLStackTrace.h in Headers */,
 				276807C5175D370700B1D643 /* NSError+FLExtras.h in Headers */,
-				276807CE175D370700B1D643 /* FishLamp.h in Headers */,
+				276807CE175D370700B1D643 /* FishLampCore.h in Headers */,
 				276807D6175D370700B1D643 /* FLConsoleLogSink.h in Headers */,
 				276807DF175D370700B1D643 /* FLLog.h in Headers */,
 				276807E8175D370700B1D643 /* FLLogEntry.h in Headers */,
@@ -1070,7 +1077,7 @@
 				276807B2175D370700B1D643 /* FLMutableError.h in Headers */,
 				276807BB175D370700B1D643 /* FLStackTrace.h in Headers */,
 				276807C4175D370700B1D643 /* NSError+FLExtras.h in Headers */,
-				276807CD175D370700B1D643 /* FishLamp.h in Headers */,
+				276807CD175D370700B1D643 /* FishLampCore.h in Headers */,
 				276807D5175D370700B1D643 /* FLConsoleLogSink.h in Headers */,
 				276807DE175D370700B1D643 /* FLLog.h in Headers */,
 				276807E7175D370700B1D643 /* FLLogEntry.h in Headers */,
@@ -1137,7 +1144,7 @@
 				276807B4175D370700B1D643 /* FLMutableError.h in Headers */,
 				276807BD175D370700B1D643 /* FLStackTrace.h in Headers */,
 				276807C6175D370700B1D643 /* NSError+FLExtras.h in Headers */,
-				276807CF175D370700B1D643 /* FishLamp.h in Headers */,
+				276807CF175D370700B1D643 /* FishLampCore.h in Headers */,
 				276807D7175D370700B1D643 /* FLConsoleLogSink.h in Headers */,
 				276807E0175D370700B1D643 /* FLLog.h in Headers */,
 				276807E9175D370700B1D643 /* FLLogEntry.h in Headers */,
@@ -1319,6 +1326,7 @@
 				27680785175D370700B1D643 /* FLErrorCodes.m in Sources */,
 				2768078E175D370700B1D643 /* FLErrorDomainInfo.m in Sources */,
 				27680797175D370700B1D643 /* FLErrorException.m in Sources */,
+				2729CB06177777E700D59B4F /* FLObjc.m in Sources */,
 				276807A0175D370700B1D643 /* FLErrors.m in Sources */,
 				276807A9175D370700B1D643 /* FLExceptions.m in Sources */,
 				276807B6175D370700B1D643 /* FLMutableError.m in Sources */,
@@ -1367,6 +1375,7 @@
 				27680787175D370700B1D643 /* FLErrorCodes.m in Sources */,
 				27680790175D370700B1D643 /* FLErrorDomainInfo.m in Sources */,
 				27680799175D370700B1D643 /* FLErrorException.m in Sources */,
+				2729CB08177777E700D59B4F /* FLObjc.m in Sources */,
 				276807A2175D370700B1D643 /* FLErrors.m in Sources */,
 				276807AB175D370700B1D643 /* FLExceptions.m in Sources */,
 				276807B8175D370700B1D643 /* FLMutableError.m in Sources */,
@@ -1415,6 +1424,7 @@
 				27680784175D370700B1D643 /* FLErrorCodes.m in Sources */,
 				2768078D175D370700B1D643 /* FLErrorDomainInfo.m in Sources */,
 				27680796175D370700B1D643 /* FLErrorException.m in Sources */,
+				2729CB05177777E700D59B4F /* FLObjc.m in Sources */,
 				2768079F175D370700B1D643 /* FLErrors.m in Sources */,
 				276807A8175D370700B1D643 /* FLExceptions.m in Sources */,
 				276807B5175D370700B1D643 /* FLMutableError.m in Sources */,
@@ -1463,6 +1473,7 @@
 				27680786175D370700B1D643 /* FLErrorCodes.m in Sources */,
 				2768078F175D370700B1D643 /* FLErrorDomainInfo.m in Sources */,
 				27680798175D370700B1D643 /* FLErrorException.m in Sources */,
+				2729CB07177777E700D59B4F /* FLObjc.m in Sources */,
 				276807A1175D370700B1D643 /* FLErrors.m in Sources */,
 				276807AA175D370700B1D643 /* FLExceptions.m in Sources */,
 				276807B7175D370700B1D643 /* FLMutableError.m in Sources */,
@@ -1511,6 +1522,7 @@
 				27680788175D370700B1D643 /* FLErrorCodes.m in Sources */,
 				27680791175D370700B1D643 /* FLErrorDomainInfo.m in Sources */,
 				2768079A175D370700B1D643 /* FLErrorException.m in Sources */,
+				2729CB09177777E700D59B4F /* FLObjc.m in Sources */,
 				276807A3175D370700B1D643 /* FLErrors.m in Sources */,
 				276807AC175D370700B1D643 /* FLExceptions.m in Sources */,
 				276807B9175D370700B1D643 /* FLMutableError.m in Sources */,

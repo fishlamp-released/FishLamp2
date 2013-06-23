@@ -8,7 +8,7 @@
 //
 
 #if 0
-#import "FishLamp.h"
+#import "FishLampCore.h"
 
 #import "FLUserLogin.h"
 

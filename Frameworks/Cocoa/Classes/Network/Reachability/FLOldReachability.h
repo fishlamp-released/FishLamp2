@@ -6,7 +6,7 @@
 */
 
 #if 0
-#import "FishLamp.h"
+#import "FishLampCore.h"
 
 #import "FLCocoaRequired.h"
 #import <SystemConfiguration/SystemConfiguration.h>

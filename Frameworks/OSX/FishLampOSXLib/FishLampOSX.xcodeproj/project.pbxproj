@@ -407,13 +407,10 @@
 		278215E0175D449B007C5F26 /* NSImage+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+FLAdditions.m"; sourceTree = "<group>"; };
 		278215E2175D449B007C5F26 /* FLGlobalMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGlobalMenuController.h; sourceTree = "<group>"; };
 		278215E3175D449B007C5F26 /* FLGlobalMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGlobalMenuController.m; sourceTree = "<group>"; };
-		278215E5175D449B007C5F26 /* attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attention.png; sourceTree = "<group>"; };
-		278215E6175D449B007C5F26 /* attention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attention@2x.png"; sourceTree = "<group>"; };
 		278215E7175D449B007C5F26 /* FLActivityLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLActivityLogViewController.h; sourceTree = "<group>"; };
 		278215E8175D449B007C5F26 /* FLActivityLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLActivityLogViewController.m; sourceTree = "<group>"; };
 		278215E9175D449B007C5F26 /* FLErrorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLErrorWindowController.h; sourceTree = "<group>"; };
 		278215EA175D449B007C5F26 /* FLErrorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLErrorWindowController.m; sourceTree = "<group>"; };
-		278215EB175D449B007C5F26 /* FLErrorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLErrorWindowController.xib; sourceTree = "<group>"; };
 		278215EC175D449B007C5F26 /* FLFileDropTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFileDropTableViewController.h; sourceTree = "<group>"; };
 		278215ED175D449B007C5F26 /* FLFileDropTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFileDropTableViewController.m; sourceTree = "<group>"; };
 		278215EE175D449B007C5F26 /* NSViewController+FLErrorSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSViewController+FLErrorSheet.h"; sourceTree = "<group>"; };
@@ -599,13 +596,10 @@
 		278215E4175D449B007C5F26 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				278215E5175D449B007C5F26 /* attention.png */,
-				278215E6175D449B007C5F26 /* attention@2x.png */,
 				278215E7175D449B007C5F26 /* FLActivityLogViewController.h */,
 				278215E8175D449B007C5F26 /* FLActivityLogViewController.m */,
 				278215E9175D449B007C5F26 /* FLErrorWindowController.h */,
 				278215EA175D449B007C5F26 /* FLErrorWindowController.m */,
-				278215EB175D449B007C5F26 /* FLErrorWindowController.xib */,
 				278215EC175D449B007C5F26 /* FLFileDropTableViewController.h */,
 				278215ED175D449B007C5F26 /* FLFileDropTableViewController.m */,
 				278215EE175D449B007C5F26 /* NSViewController+FLErrorSheet.h */,

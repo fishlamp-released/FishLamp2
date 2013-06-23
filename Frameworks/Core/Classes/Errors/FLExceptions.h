@@ -19,6 +19,8 @@
 
 - (NSException*) createExceptionWithStackTrace:(FLStackTrace_t) stackTrace 
                                       userInfo:(NSDictionary*) userInfo;
+
+- (NSError*) error; // returns itself for ThrowIfError below
 @end
 
 typedef NSException* FLWillThrowExceptionHandler(NSException *exception);

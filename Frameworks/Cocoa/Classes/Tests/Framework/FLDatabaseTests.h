@@ -8,7 +8,7 @@
 //
 
 #import "FLDatabase.h"
-#import "FishLamp.h"
+#import "FishLampCore.h"
 #import "FLUnitTest.h"
 
 @interface FLDatabaseTests : FLUnitTest {

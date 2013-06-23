@@ -528,6 +528,11 @@
 		2712073617726F000014206E /* FLObjcRuntimeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcRuntimeValue.m; sourceTree = "<group>"; };
 		2712073717726F000014206E /* FLObjcVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcVariable.h; sourceTree = "<group>"; };
 		2712073817726F000014206E /* FLObjcVariable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcVariable.m; sourceTree = "<group>"; };
+		2729CA621777507900D59B4F /* CodeElements.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CodeElements.flproj; sourceTree = "<group>"; };
+		2729CA671777515B00D59B4F /* CodeObject.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CodeObject.flproj; sourceTree = "<group>"; };
+		2729CA68177751C500D59B4F /* CodeOptions.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CodeOptions.flproj; sourceTree = "<group>"; };
+		2729CA691777522F00D59B4F /* CodeEnum.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CodeEnum.flproj; sourceTree = "<group>"; };
+		2729CA6A1777526400D59B4F /* CodeProject.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CodeProject.flproj; sourceTree = "<group>"; };
 		274CBDE7176FCCAB00519400 /* FLImportedTestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLImportedTestObject.h; sourceTree = "<group>"; };
 		274CBDE8176FCCAB00519400 /* FLImportedTestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLImportedTestObject.m; sourceTree = "<group>"; };
 		274CBDEB176FCCAB00519400 /* FLMyEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMyEnum.h; sourceTree = "<group>"; };
@@ -1046,6 +1051,11 @@
 				27795D501763A5E800B314EA /* FLCodeProjectReader.h */,
 				27795D511763A5E800B314EA /* FLCodeProjectReader.m */,
 				27795D911763A5E800B314EA /* ObjectModel.flproj */,
+				2729CA621777507900D59B4F /* CodeElements.flproj */,
+				2729CA671777515B00D59B4F /* CodeObject.flproj */,
+				2729CA68177751C500D59B4F /* CodeOptions.flproj */,
+				2729CA691777522F00D59B4F /* CodeEnum.flproj */,
+				2729CA6A1777526400D59B4F /* CodeProject.flproj */,
 			);
 			path = CodeObjectModel;
 			sourceTree = "<group>";

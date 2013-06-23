@@ -13,6 +13,7 @@
 #import "FLCodeArray.h"
 #import "FLCodeArrayType.h"
 #import "FLObjcCodeBuilder+FLCodeElement.h"
+#import "FLObjectDescriber.h"
 
 @interface FLObjcProperty ()
 @property (readwrite, strong, nonatomic) NSArray* containerTypes;

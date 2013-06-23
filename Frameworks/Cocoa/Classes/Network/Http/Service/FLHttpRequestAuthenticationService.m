@@ -10,7 +10,7 @@
 #import "FLHttpRequestAuthenticationService.h"
 #import "FLHttpRequest.h"
 #import "FLReachableNetwork.h"
-#import "FLDispatch.h"
+#import "FishLampAsync.h"
 
 @interface FLHttpRequestAuthenticationService ()
 @property (readwrite, strong, nonatomic) FLFifoAsyncQueue* asyncQueue; 

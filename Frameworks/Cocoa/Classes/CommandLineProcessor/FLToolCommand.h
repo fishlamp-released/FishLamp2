@@ -10,7 +10,6 @@
 #import "FLStringParser.h"
 #import "FLStringFormatter.h"
 #import "FLToolCommandOption.h"
-#import "FLBlockQueue.h"
 #import "FLCommandLineTask.h"
 
 @interface FLToolCommand : FLSynchronousOperation {

@@ -83,7 +83,7 @@
 }
 
 - (id) testResultForKey:(id) key {
-    FLPromisedResult result = [_results objectForKey:key];
+    id result = [_results objectForKey:key];
     FLConfirmIsNotNilWithComment(result, @"can't find result for %@", [key description]);
     return result;
 }

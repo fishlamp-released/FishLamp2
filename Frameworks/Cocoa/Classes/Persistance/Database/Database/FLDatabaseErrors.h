@@ -8,7 +8,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FishLamp.h"
+#import "FishLampCore.h"
 
 typedef enum {
 	FLDatabaseErrorDatabaseAlreadyOpen = 1,

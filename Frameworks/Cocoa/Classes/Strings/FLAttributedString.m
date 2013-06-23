@@ -8,6 +8,7 @@
 //
 
 #import "FLAttributedString.h"
+#import "FLObjectDescriber.h"
 
 @interface FLTextStyle ()
 @end

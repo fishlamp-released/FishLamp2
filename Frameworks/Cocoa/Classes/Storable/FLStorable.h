@@ -7,18 +7,17 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLCocoaRequired.h"
+#import "FishLampCore.h"
+#import "FLModelObject.h"
 
-#import "NSObject+Copying.h"
-
-@protocol FLStorable <NSObject, FLCopyable, NSCopying>
+@protocol FLStorable <NSObject, NSCopying>
 @property (readonly, strong, nonatomic) NSString* storableType; // UTI
 @property (readonly, strong, nonatomic) id storageKey;
 
 @property (readwrite, strong, nonatomic) NSString* storableSubType;
 @end
 
-@interface FLStorable : NSObject<FLStorable> {
+@interface FLStorable : FLModelObject<FLStorable> {
 @private
     id _storageKey;
     NSString* _storableType;

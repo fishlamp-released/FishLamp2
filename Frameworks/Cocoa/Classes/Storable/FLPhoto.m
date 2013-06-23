@@ -50,7 +50,7 @@ NSString* const FLPhotoType = @"com.fishlamp.photo";
 }
 
 - (void) copySelfTo:(FLPhoto*) photo {
-    [super copySelfTo:photo];
+//    [super copySelfTo:photo];
     photo.originalImage = FLAutorelease([self.originalImage copy]);
     photo.thumbnailImage = FLAutorelease([self.thumbnailImage copy]);
     photo.previewImage = FLAutorelease([self.previewImage copy]);

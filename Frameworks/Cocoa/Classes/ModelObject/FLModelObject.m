@@ -8,6 +8,8 @@
 //
 
 #import "FLModelObject.h"
+#import "FLObjectDescriber.h"
+#import "FLObjectChangeTracker.h"
 
 @implementation NSObject (FLModelObject) 
 
@@ -19,10 +21,24 @@
     return [[self class] isModelObject];
 }
 
+- (FLObjectChangeTracker*) changeTracker {
+    return nil;
+}
+
 @end
 
 @implementation FLModelObject 
 FLSynthesizeModelObjectMethods();
+@synthesize changeTracker = _changeTracker;
+
+- (void)dealloc {
+    _changeTracker.modelObject = nil;
+    
+#if FL_MRC
+	[_changeTracker release];
+	[super dealloc];
+#endif
+}
 
 - (void) describeSelf:(FLPrettyString*) string {
     FLObjectDescriber* typeDesc = [self objectDescriber];
@@ -42,8 +58,6 @@ FLSynthesizeModelObjectMethods();
 }
 
 @end
-
-
 
 id FLModelObjectCopy(id object, Class classOrNil) {
     Class theClass = classOrNil ? classOrNil : [object class];

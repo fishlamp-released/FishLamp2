@@ -18,7 +18,7 @@
 - (id) initWithHttpRequest:(FLHttpRequest*) request ;
 + (id) httpOperation:(FLHttpRequest*) request;
 
-- (void) setFinishedWithResult:(FLPromisedResult) result;
+- (void) setFinishedWithResult:(id) result error:(NSError*) error;
 
 - (void) httpRequestWillAuthenticate:(FLHttpRequest*) httpRequest;
 
@@ -29,7 +29,8 @@
 - (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
-    didCloseWithResult:(FLPromisedResult) result;
+  didCloseWithResult:(id) result
+               error:(NSError*) error;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(NSNumber*) amount;
 

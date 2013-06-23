@@ -182,7 +182,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
         }
     }
     
-    return FLSuccessfullResult;
+    return [FLSuccessfulResult successfulResult];
 }
 
 

@@ -9,7 +9,6 @@
 
 #import "FLOperationUnitTest.h"
 #import "FLOperation.h"
-#import "FLSynchronousOperationQueueOperation.h"
 
 @implementation FLOperation (Tests)
 

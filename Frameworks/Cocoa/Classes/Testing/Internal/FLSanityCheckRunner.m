@@ -13,6 +13,7 @@
 #import "FLFinisher.h"
 #import "FLAsyncQueue.h"
 #import "FLTestCase.h"
+#import "FishLampAsync.h"
 
 @implementation FLSanityCheckRunner
 
@@ -45,7 +46,7 @@
         FLThrowIfError([self runChildSynchronously:test]);
     }
     
-    return FLSuccessfullResult;
+    return [FLSuccessfulResult successfulResult];
 }
 
 - (void) addPossibleTestMethod:(FLRuntimeInfo) info {

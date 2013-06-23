@@ -15,7 +15,7 @@
 #import "FLGlobalNetworkActivityIndicator.h"
 #import "FLDataSink.h"
 #import "FLHttpRequestBody.h"
-#import "FLDispatch.h"
+#import "FishLampAsync.h"
 #import "FLTimer.h"
 #import "FLReachableNetwork.h"
 #import "FLHttpRequestByteCount.h"
@@ -236,11 +236,11 @@ static int s_counter = 0;
     [self.delegate performOptionalSelector:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
 }
 
-- (void) finalizeRequestWithResult:(id) result {
+- (void) finalizeRequestWithResult:(id) result error:(NSError*) error {
     [self releaseResponseData];
                 
-    [self.delegate performOptionalSelector:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
-    [self didFinishWithResult:result];
+    [self.delegate performOptionalSelector:@selector(httpRequest:didCloseWithResult:error:) withObject:self withObject:result withObject:error];
+    [self didFinishWithResult:result error:error];
     [self.finisher setFinishedWithResult:result];
     
     [self.retryHandler resetRetryCount];
@@ -253,7 +253,7 @@ static int s_counter = 0;
 
 - (void) finishRequestWithError:(NSError*) error {
     [self.byteCount setFinishTime];    
-    [self finalizeRequestWithResult:error];
+    [self finalizeRequestWithResult:nil error:error];
 }
 
 - (void) finishRequestWithHttpResponse:(FLHttpResponse*) response {
@@ -261,19 +261,20 @@ static int s_counter = 0;
     [self.byteCount setFinishTime];    
 
     id result = nil;
+    NSError* error = nil;
 
     @try {
         result = [self convertResponseToPromisedResult:response];
     }
     @catch(NSException* ex) {
-        result = ex.error;
+        error = ex.error;
     }
 
     if(!result) {
         result = response;
     }
 
-    [self finalizeRequestWithResult:result];
+    [self finalizeRequestWithResult:result error:error];
 }
 
 - (void) requestCancel {
@@ -373,11 +374,11 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
 - (void) throwErrorIfResponseIsError:(FLHttpResponse*) httpResponse {
 }
 
-- (FLPromisedResult) convertResponseToPromisedResult:(FLHttpResponse*) httpResponse {
+- (id) convertResponseToPromisedResult:(FLHttpResponse*) httpResponse {
     return httpResponse;
 }
 
-- (void) didFinishWithResult:(FLPromisedResult) result {
+- (void) didFinishWithResult:(id) result error:(NSError*) error {
 }
 
 - (BOOL) shouldRedirectToURL:(NSURL*) url {

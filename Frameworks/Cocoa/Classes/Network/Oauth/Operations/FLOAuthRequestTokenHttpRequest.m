@@ -61,7 +61,7 @@
 
 }
 
-- (FLPromisedResult)convertResponseToPromisedResult:(FLHttpResponse*) httpResponse {
+- (id)convertResponseToPromisedResult:(FLHttpResponse*) httpResponse {
 
     NSData* data = [[httpResponse responseData] data];
     

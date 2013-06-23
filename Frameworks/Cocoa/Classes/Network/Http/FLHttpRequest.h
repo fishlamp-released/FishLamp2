@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FishLamp.h"
+#import "FishLampCore.h"
 #import "FLAsyncOperation.h"
 #import "FLHttpStream.h"
 
@@ -92,11 +92,11 @@
 
 - (void) didReadBytes:(NSNumber*) amount;
 
-- (FLPromisedResult) convertResponseToPromisedResult:(FLHttpResponse*) httpResponse;
+- (id) convertResponseToPromisedResult:(FLHttpResponse*) httpResponse;
 
 - (void) throwErrorIfResponseIsError:(FLHttpResponse*) httpResponse;
 
-- (void) didFinishWithResult:(FLPromisedResult) result;
+- (void) didFinishWithResult:(id) result error:(NSError*) error;
 
 @end
 
@@ -114,7 +114,8 @@
 - (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
-    didCloseWithResult:(FLPromisedResult) result;
+  didCloseWithResult:(id) result
+               error:(NSError*) error;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(FLHttpRequestByteCount*) amount;
 

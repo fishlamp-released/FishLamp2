@@ -24,18 +24,6 @@
 }
 #endif
 
-- (void) copySelfTo:(FLStorable*) object {
-    object.storageKey = self.storageKey;
-    object.storableType = self.storableType;
-    object.storableSubType = self.storableSubType;
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-    id<FLCopyable> object = [[[self class] alloc] init];
-    [self copySelfTo:object];
-    return object;
-}
-
 
 @end
 

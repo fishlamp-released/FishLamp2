@@ -8,8 +8,12 @@
 //
 
 #import "FLInMemoryDataCache.h"
+#if REFACTOR
+#if IOS
 #import "FLLowMemoryHandler.h"
+#endif
 #import "FLCacheManager.h"
+#endif
 #import "FLLinkedListObjectContainer.h"
 
 //#define TRACE 0
@@ -51,12 +55,16 @@
 		_objects = [[NSMutableDictionary alloc] initWithCapacity:max];
 		_removeAllOnLowMemoryWarning = YES;
 		
+#if REFACTOR
+#if IOS
 		[[FLLowMemoryHandler defaultHandler] addObserver:self action:@selector(handleLowMemoryWarning:)];
 
 		[[NSNotificationCenter defaultCenter] addObserver:self 
 				selector:@selector(_doClearCache:) 
 				name:FLCacheManagerEmptyCacheNotification
 				object:[FLCacheManager instance]];
+#endif
+#endif
 
 	}
 	return self;
@@ -194,7 +202,11 @@
 - (void) dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+#if REFACTOR
+#if IOS
 	[[FLLowMemoryHandler defaultHandler] removeObserver:self];
+#endif
+#endif
 	FLRelease(_objects);
 	FLRelease(_list);
 	FLSuperDealloc();

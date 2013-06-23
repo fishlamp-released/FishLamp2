@@ -9,7 +9,7 @@
 #if REFACTOR
 
 #import "FLCocoaRequired.h"
-#import "FishLamp.h"
+#import "FishLampCore.h"
 
 @interface NSObject (FLJsonParser)
 

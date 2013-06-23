@@ -76,7 +76,7 @@
     // this avoids the block from retain self.
     FLObjectDatabase* database = _objectDatabase;
     
-    FLPromisedResult result = [_schedulingQueue finishSync:^(FLFinisher* finisher) {
+    FLPromisedResult* result = [_schedulingQueue finishSync:^(FLFinisher* finisher) {
         block(database);
         [finisher setFinished];
     }];

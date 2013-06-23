@@ -8,7 +8,7 @@
 //
 
 #import "FLNetworkStream_Internal.h"
-#import "FLDispatch.h"
+#import "FishLampAsync.h"
 #import "FLFifoQueueNetworkStreamEventHandler.h"
 
 @interface FLNetworkStream ()

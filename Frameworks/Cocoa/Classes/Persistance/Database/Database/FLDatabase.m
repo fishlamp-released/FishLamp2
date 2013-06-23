@@ -16,7 +16,7 @@
 #import "FLDatabase.h"
 #import "FLAppInfo.h"
 #import "FLSqlStatement.h"
-#import "FLDispatch.h"
+#import "FishLampAsync.h"
 #import "FLDatabase+Introspection.h"
 
 static NSString* s_version = nil;

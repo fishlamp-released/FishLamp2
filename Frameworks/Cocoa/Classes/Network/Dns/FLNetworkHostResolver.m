@@ -9,6 +9,8 @@
 
 #import "FLNetworkHostResolver.h"
 #import "FLNetworkHost.h"
+#import "FLFinisher.h"
+#import "FLNetworkHost.h"
 #import "NSError+FLNetworkStream.h"
 #import "FLNetworkStream_Internal.h"
 
@@ -57,14 +59,13 @@
     id result = nil;
     
     if(error && error->domain != 0 && error->error != 0) {
-        result = FLCreateErrorFromStreamError(error);
+        [self closeWithResult:nil error:FLCreateErrorFromStreamError(error)];
     }
     else {
         self.networkHost.resolved = YES;
-        result = self.networkHost;
+        [self closeWithResult:self.networkHost error:nil];
     }
     
-    [self closeWithResult:result];
 }
 
 static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, const CFStreamError *error, void *info) {
@@ -84,15 +85,15 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     }
 }
 
-- (void) closeWithResult:(id) result {
+- (void) closeWithResult:(id) result error:(NSError*) error{
     [self cancelRunLoop];
-    [self.finisher setFinishedWithResult:result];
+    [self.finisher setFinishedWithResult:result error:error];
     self.finisher = nil;
     self.networkHost = nil;
 }
 
-- (FLPromisedResult) resolveHostSynchronously:(FLNetworkHost*) host {
-    FLPromisedResult result = [[self startResolvingHost:host completion:nil] waitUntilFinished];
+- (FLPromisedResult*) resolveHostSynchronously:(FLNetworkHost*) host {
+    FLPromisedResult* result = [[self startResolvingHost:host completion:nil] waitUntilFinished];
     FLThrowIfError(result);
     return result;
 }
@@ -111,14 +112,14 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     FLAssertIsNotNilWithComment(cfhost, nil);
 
     if (!CFHostSetClient(cfhost, HostResolutionCallback, &context)) {
-        [self closeWithResult:[NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil]];
+        [self closeWithResult:nil error:[NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil]];
         
     }
     else {
         CFHostScheduleWithRunLoop(cfhost, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
         CFStreamError streamError = { 0, 0 };
         if (!CFHostStartInfoResolution(cfhost, self.networkHost.hostInfoType, &streamError) ) {
-            [self closeWithResult:FLCreateErrorFromStreamError(&streamError)];
+            [self closeWithResult:nil error:FLCreateErrorFromStreamError(&streamError)];
         }
     }
     return promise;

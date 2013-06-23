@@ -111,5 +111,4 @@ id _FLReleaseWithNil(id __strong * obj) {
             __VA_ARGS__ \
             FLAutoreleasePoolClose(pool)
 
-
-    
+extern id FLCopyOrRetainObject(id src);
