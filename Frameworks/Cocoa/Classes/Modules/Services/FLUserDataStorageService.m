@@ -329,9 +329,9 @@ FLAssertFailedWithComment(@"refactor this");
 //        [self.context addObject:_upgradeTaskList];
 
     
-        id result = [_upgradeTaskList runChildSynchronously:context];
+        FLPromisedResult* result = [_upgradeTaskList runChildSynchronously:context];
                 
-        if([result error] ) {
+        if(result.error) {
             // TODO: Ok, now what?
         }
         else {

@@ -67,7 +67,7 @@
 
 - (void) finisher:(FLFinisher*) finisher didFinishWithResult:(id) result error:(NSError*) error {
     self.context = nil;
-    [self sendFinishMessagesWithResult:result error:error];
+    [self didFinishWithResult:result error:error];
     self.cancelled = NO;
 }
 
@@ -222,7 +222,7 @@
 - (void) sendStartMessagesWithInitialData:(id) initialData {
 }
 
-- (void) sendFinishMessagesWithResult:(id) result
+- (void) didFinishWithResult:(id) result
                                 error:(NSError*) error {
 }
 

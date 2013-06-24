@@ -154,7 +154,7 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
                 self.error = error;
             }
             
-            FLTrace(@"finished operation: %@ withResult: %@", operation, [result error] ? result : @"OK");
+            FLTrace(@"finished operation: %@ withResult: %@", operation, error ? result : @"OK");
             [self didFinishOperation:operation withQueuedObject:object withResult:result error:error];
         }
 

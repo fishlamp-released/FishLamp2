@@ -45,7 +45,7 @@
         [database openDatabase];
     }
     completion:^(id result, NSError* error) {
-        if([result error]) {
+        if(error) {
             FLLog(@"database error: %@", result)
         }
     }];
@@ -56,7 +56,7 @@
         [database openDatabase];
     }
     completion:^(id result, NSError* error) {
-        if([result error]) {
+        if(error) {
             FLLog(@"database error: %@", result)
         }
     }];

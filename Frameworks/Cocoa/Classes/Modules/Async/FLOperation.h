@@ -107,7 +107,7 @@
 
 
 - (void) sendStartMessagesWithInitialData:(id) initialData;
-- (void) sendFinishMessagesWithResult:(id) result error:(NSError*) error;
+- (void) didFinishWithResult:(id) result error:(NSError*) error;
 
 @end
 
