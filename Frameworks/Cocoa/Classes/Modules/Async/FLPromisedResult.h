@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FLPromisedResult : NSObject {
+@protocol FLPromisedResult <NSObject>
+- (NSError*) error;
+- (id) value;
+@end
+
+@interface FLPromisedResult : NSObject<FLPromisedResult> {
 @private
     id _value;
     NSError* _error;

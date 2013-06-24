@@ -8,6 +8,7 @@
 //
 
 #import "FLAsyncOperationQueue.h"
+#import "FLAsyncOperationQueueElement.h"
 #import "FishLampAsync.h"
 
 @interface FLAsyncOperationQueue ()
@@ -34,10 +35,8 @@
 @synthesize totalObjectCount = _totalObjectCount;
 @synthesize processing = _processing;
 @synthesize error = _error;
-#if REFACTOR
 @synthesize startedOperationSelector = _startedOperationSelector;
 @synthesize finishedOperationSelector = _finishedOperationSelector;
-#endif
 
 static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurrentOperations;
 
@@ -65,14 +64,8 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
         _totalObjectCount = _objectQueue.count;
         _fifoQueue = [[FLFifoAsyncQueue alloc] init];
         _activeQueue = [[NSMutableArray alloc] init];
-
-#if REFACTOR
-        _startedOperationSelector = @selector(asyncOperationQueue:willStartOperation:withQueuedObject:);
-        _finishedOperationSelector = @selector(asyncOperationQueue:didFinishOperation:withQueuedObject:withResult:error:);
-#endif
-
-//        self.willStartOperationSelectorForDelegate = @selector(asyncOperationQueueOperation:willStartOperation:);
-//        self.didFinishOperationSelectorForDelegate = @selector(asyncOperationQueueOperation:didFinishOperation:withResult:); 
+        _startedOperationSelector = @selector(asyncOperationQueue:willStartOperation:);
+        _finishedOperationSelector = @selector(asyncOperationQueue:didFinishOperation:);
 	}
 	return self;
 }
@@ -85,25 +78,12 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
     return _operationFactory ? _operationFactory(object) : (FLOperation*) object;
 }
 
-- (void) willStartOperation:(id) operation withQueuedObject:(id) object {
-#if REFACTOR
-    [self.delegate performOptionalSelector:_startedOperationSelector withObject:self withObject:operation withObject:object];
-#endif
+- (void) willStartOperation:(FLAsyncOperationQueueElement*) operation {
+    [self.delegate performOptionalSelector:_startedOperationSelector withObject:self withObject:operation];
 }
 
-- (void) didFinishOperation:(id) operation
-           withQueuedObject:(id) object
-                 withResult:(id) result
-                      error:(NSError*) error {
-#if REFACTOR
-
-   [self.delegate performOptionalSelector:_finishedOperationSelector
-                               withObject:self
-                               withObject:operation
-                               withObject:object
-                               withObject:result
-                               withObject:error];
-#endif
+- (void) didFinishOperation:(FLAsyncOperationQueueElement*) operation {
+    [self.delegate performOptionalSelector:_finishedOperationSelector withObject:self withObject:operation];
 }
 
 - (void) didFinish {
@@ -139,28 +119,32 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
     return @"";
 }
 
-- (void) anOperationDidFinish:(id) operation
-                       object:(id) object
-                   withResult:(id) result
-                        error:(NSError*) error {
+- (void) didFinishProcessingQueueElement:(FLAsyncOperationQueueElement*) element {
 
-    FLDispatchAsync(self.fifoQueue, ^{
-        [_activeQueue removeObject:operation];
+    [self.fifoQueue queueBlock: ^{
+        [_activeQueue removeObject:element];
         self.processedObjectCount++;
     
         if(!self.error) {
             
-            if(error) {
-                self.error = error;
+            if(element.result.error) {
+                self.error = element.result.error;
             }
             
-            FLTrace(@"finished operation: %@ withResult: %@", operation, error ? result : @"OK");
-            [self didFinishOperation:operation withQueuedObject:object withResult:result error:error];
+            FLTrace(@"finished operation: %@ withResult: %@", element.operation, element.error ? element.result : @"OK");
+            [self didFinishOperation:element];
         }
 
         [self processQueue];
-    },
-    nil);
+    }
+    
+    completion:nil];
+}
+
+- (FLAsyncOperationQueueElement*) queueElement:(id) input operation:(id) operation {
+
+// TODO: cache/reuse these?
+    return [FLAsyncOperationQueueElement asyncOperationQueueElement:input operation:operation];
 }
 
 - (void) processQueue {
@@ -174,16 +158,15 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
         
         while(!self.error && _activeQueue.count < max && _objectQueue.count) {
             id object = [_objectQueue removeFirstObject];
+            FLAsyncOperationQueueElement* element = [self queueElement:object operation:[self createOperationForObject:object]];
+            [_activeQueue addObject:element];
 
-            FLOperation* operation = [self createOperationForObject:object];
-            operation.delegate = self;
-            [_activeQueue addObject:operation];
-            
-            [self willStartOperation:operation withQueuedObject:object];
+            [self willStartOperation:element];
             
             FLTrace(@"starting operation: %@", operation);
-            [self runChildAsynchronously:operation completion:^(id result, NSError* error) {
-                [self anOperationDidFinish:operation object:object withResult:result error:error];
+
+            [element beginOperationInQueue:self completion:^{
+                [self didFinishProcessingQueueElement:element];
             }];
         }
         

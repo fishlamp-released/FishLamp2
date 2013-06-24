@@ -13,6 +13,8 @@ typedef FLOperation* (^FLOperationFactory)(id object);
 
 #define FLAsyncOperationQueueOperationDefaultMaxConcurrentOperations 3
 
+@class FLAsyncOperationQueueElement;
+
 @interface FLAsyncOperationQueue : FLAsyncOperation {
 @private
     NSMutableArray* _objectQueue;
@@ -25,10 +27,8 @@ typedef FLOperation* (^FLOperationFactory)(id object);
     BOOL _processing;
     NSError* _error;
 
-#if REFACTOR
     SEL _startedOperationSelector;
     SEL _finishedOperationSelector;
-#endif
 }
 
 @property (readonly, strong) NSString* queueName;
@@ -50,20 +50,14 @@ typedef FLOperation* (^FLOperationFactory)(id object);
 
 // optional overrides
 - (FLOperation*) createOperationForObject:(id) object;
-- (void) willStartOperation:(id) operation
-           withQueuedObject:(id) object;
 
-- (void) didFinishOperation:(id) operation
-           withQueuedObject:(id) object
-                 withResult:(id) result
-                      error:(NSError*) error;
+- (void) willStartOperation:(FLAsyncOperationQueueElement*) operation;
+- (void) didFinishOperation:(FLAsyncOperationQueueElement*) operation;
 
-
-#if REFACTOR
 // use these to change the delegate selectors
+
 @property (readwrite, assign, nonatomic) SEL startedOperationSelector;
 @property (readwrite, assign, nonatomic) SEL finishedOperationSelector;
-#endif
 
 + (void) setDefaultConnectionLimit:(NSInteger) threadCount;
 
@@ -71,19 +65,13 @@ typedef FLOperation* (^FLOperationFactory)(id object);
 
 @end
 
-#if REFACTOR
 @protocol FLAsyncOperationQueueDelegate <NSObject>
 @optional
 
 - (void) asyncOperationQueue:(FLAsyncOperationQueue*) queue 
-          willStartOperation:(id) operation 
-            withQueuedObject:(id) object;
+          willStartOperation:(FLAsyncOperationQueueElement*) operation;
 
 - (void) asyncOperationQueue:(FLAsyncOperationQueue*) queue 
-          didFinishOperation:(id) operation 
-            withQueuedObject:(id) object 
-                  withResult:(id) result
-                       error:(NSError*) error;
+          didFinishOperation:(FLAsyncOperationQueueElement*) operation;
 
 @end
-#endif

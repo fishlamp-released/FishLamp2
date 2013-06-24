@@ -2653,6 +2653,15 @@
 		27DF7C681777A355004A954C /* NSString+GUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71E31777A354004A954C /* NSString+GUID.m */; };
 		27DF7C691777A355004A954C /* NSString+GUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71E31777A354004A954C /* NSString+GUID.m */; };
 		27DF7C6A1777A355004A954C /* NSString+GUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71E31777A354004A954C /* NSString+GUID.m */; };
+		27DF7CD91777D340004A954C /* FLAsyncOperationQueueElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF7CD71777D340004A954C /* FLAsyncOperationQueueElement.h */; };
+		27DF7CDA1777D340004A954C /* FLAsyncOperationQueueElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF7CD71777D340004A954C /* FLAsyncOperationQueueElement.h */; };
+		27DF7CDB1777D340004A954C /* FLAsyncOperationQueueElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF7CD71777D340004A954C /* FLAsyncOperationQueueElement.h */; };
+		27DF7CDC1777D340004A954C /* FLAsyncOperationQueueElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF7CD71777D340004A954C /* FLAsyncOperationQueueElement.h */; };
+		27DF7CDD1777D340004A954C /* FLAsyncOperationQueueElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF7CD81777D340004A954C /* FLAsyncOperationQueueElement.m */; };
+		27DF7CDE1777D340004A954C /* FLAsyncOperationQueueElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF7CD81777D340004A954C /* FLAsyncOperationQueueElement.m */; };
+		27DF7CDF1777D340004A954C /* FLAsyncOperationQueueElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF7CD81777D340004A954C /* FLAsyncOperationQueueElement.m */; };
+		27DF7CE01777D340004A954C /* FLAsyncOperationQueueElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF7CD81777D340004A954C /* FLAsyncOperationQueueElement.m */; };
+		27DF7CE11777D340004A954C /* FLAsyncOperationQueueElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF7CD81777D340004A954C /* FLAsyncOperationQueueElement.m */; };
 		27E957EF170B59E900587A8F /* libFishLampCocoa-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */; };
 		27E957F3170B5A1B00587A8F /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E957F1170B5A1A00587A8F /* Quartz.framework */; };
 		27E957F4170B5A1B00587A8F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E957F2170B5A1B00587A8F /* QuartzCore.framework */; };
@@ -3407,6 +3416,8 @@
 		27DF71E11777A354004A954C /* NSFileManager+FLExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+FLExtras.m"; sourceTree = "<group>"; };
 		27DF71E21777A354004A954C /* NSString+GUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+GUID.h"; sourceTree = "<group>"; };
 		27DF71E31777A354004A954C /* NSString+GUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+GUID.m"; sourceTree = "<group>"; };
+		27DF7CD71777D340004A954C /* FLAsyncOperationQueueElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAsyncOperationQueueElement.h; sourceTree = "<group>"; };
+		27DF7CD81777D340004A954C /* FLAsyncOperationQueueElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAsyncOperationQueueElement.m; sourceTree = "<group>"; };
 		27E957E9170B575D00587A8F /* FishLampProjectSettingsDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsDebug.xcconfig; sourceTree = "<group>"; };
 		27E957EA170B575D00587A8F /* FishLampProjectSettingsRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = FishLampProjectSettingsRelease.xcconfig; sourceTree = "<group>"; };
 		27E957F1170B5A1A00587A8F /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
@@ -3725,6 +3736,8 @@
 				27DF6F801777A353004A954C /* FLAsyncOperation.m */,
 				27DF6F811777A353004A954C /* FLAsyncOperationQueue.h */,
 				27DF6F821777A353004A954C /* FLAsyncOperationQueue.m */,
+				27DF7CD71777D340004A954C /* FLAsyncOperationQueueElement.h */,
+				27DF7CD81777D340004A954C /* FLAsyncOperationQueueElement.m */,
 				27DF6F831777A353004A954C /* FLAsyncQueue.h */,
 				27DF6F841777A353004A954C /* FLAsyncQueue.m */,
 				27DF6F851777A353004A954C /* FLCallback.h */,
@@ -4847,6 +4860,7 @@
 				27DF7BD81777A355004A954C /* FLUnitTestSelfTests.h in Headers */,
 				27DF7ADC1777A355004A954C /* NSError+FLTimeout.h in Headers */,
 				27DF787E1777A354004A954C /* NSError+FLNetworkStream.h in Headers */,
+				27DF7CD91777D340004A954C /* FLAsyncOperationQueueElement.h in Headers */,
 				27DF73EE1777A354004A954C /* FLMutableColorRange.h in Headers */,
 				27DF74E91777A354004A954C /* FLHtmlStringBuilder.h in Headers */,
 				27DF7A871777A355004A954C /* FLTestFinder.h in Headers */,
@@ -5161,6 +5175,7 @@
 				27DF7BDA1777A355004A954C /* FLUnitTestSelfTests.h in Headers */,
 				27DF7ADE1777A355004A954C /* NSError+FLTimeout.h in Headers */,
 				27DF78801777A354004A954C /* NSError+FLNetworkStream.h in Headers */,
+				27DF7CDB1777D340004A954C /* FLAsyncOperationQueueElement.h in Headers */,
 				27DF73F01777A354004A954C /* FLMutableColorRange.h in Headers */,
 				27DF74EB1777A354004A954C /* FLHtmlStringBuilder.h in Headers */,
 				27DF7A891777A355004A954C /* FLTestFinder.h in Headers */,
@@ -5475,6 +5490,7 @@
 				27DF7BD91777A355004A954C /* FLUnitTestSelfTests.h in Headers */,
 				27DF7ADD1777A355004A954C /* NSError+FLTimeout.h in Headers */,
 				27DF787F1777A354004A954C /* NSError+FLNetworkStream.h in Headers */,
+				27DF7CDA1777D340004A954C /* FLAsyncOperationQueueElement.h in Headers */,
 				27DF73EF1777A354004A954C /* FLMutableColorRange.h in Headers */,
 				27DF74EA1777A354004A954C /* FLHtmlStringBuilder.h in Headers */,
 				27DF7A881777A355004A954C /* FLTestFinder.h in Headers */,
@@ -5789,6 +5805,7 @@
 				27DF7BDB1777A355004A954C /* FLUnitTestSelfTests.h in Headers */,
 				27DF7ADF1777A355004A954C /* NSError+FLTimeout.h in Headers */,
 				27DF78811777A354004A954C /* NSError+FLNetworkStream.h in Headers */,
+				27DF7CDC1777D340004A954C /* FLAsyncOperationQueueElement.h in Headers */,
 				27DF73F11777A354004A954C /* FLMutableColorRange.h in Headers */,
 				27DF74EC1777A354004A954C /* FLHtmlStringBuilder.h in Headers */,
 				27DF7A8A1777A355004A954C /* FLTestFinder.h in Headers */,
@@ -6389,6 +6406,7 @@
 				27DF7C241777A355004A954C /* FLTwoObjects.m in Sources */,
 				27DF79EA1777A354004A954C /* FLUserLogin.m in Sources */,
 				27DF762F1777A354004A954C /* FLEnumSet.m in Sources */,
+				27DF7CDE1777D340004A954C /* FLAsyncOperationQueueElement.m in Sources */,
 				27DF77531777A354004A954C /* FLJsonStringBuilder.m in Sources */,
 				27DF7B0E1777A355004A954C /* FLObjectMessage.m in Sources */,
 				27DF73681777A354004A954C /* FLCredentials.m in Sources */,
@@ -6675,6 +6693,7 @@
 				27DF7C261777A355004A954C /* FLTwoObjects.m in Sources */,
 				27DF79EC1777A354004A954C /* FLUserLogin.m in Sources */,
 				27DF76311777A354004A954C /* FLEnumSet.m in Sources */,
+				27DF7CE01777D340004A954C /* FLAsyncOperationQueueElement.m in Sources */,
 				27DF77551777A354004A954C /* FLJsonStringBuilder.m in Sources */,
 				27DF7B101777A355004A954C /* FLObjectMessage.m in Sources */,
 				27DF736A1777A354004A954C /* FLCredentials.m in Sources */,
@@ -6961,6 +6980,7 @@
 				27DF7C231777A355004A954C /* FLTwoObjects.m in Sources */,
 				27DF79E91777A354004A954C /* FLUserLogin.m in Sources */,
 				27DF762E1777A354004A954C /* FLEnumSet.m in Sources */,
+				27DF7CDD1777D340004A954C /* FLAsyncOperationQueueElement.m in Sources */,
 				27DF77521777A354004A954C /* FLJsonStringBuilder.m in Sources */,
 				27DF7B0D1777A355004A954C /* FLObjectMessage.m in Sources */,
 				27DF73671777A354004A954C /* FLCredentials.m in Sources */,
@@ -7247,6 +7267,7 @@
 				27DF7C251777A355004A954C /* FLTwoObjects.m in Sources */,
 				27DF79EB1777A354004A954C /* FLUserLogin.m in Sources */,
 				27DF76301777A354004A954C /* FLEnumSet.m in Sources */,
+				27DF7CDF1777D340004A954C /* FLAsyncOperationQueueElement.m in Sources */,
 				27DF77541777A354004A954C /* FLJsonStringBuilder.m in Sources */,
 				27DF7B0F1777A355004A954C /* FLObjectMessage.m in Sources */,
 				27DF73691777A354004A954C /* FLCredentials.m in Sources */,
@@ -7541,6 +7562,7 @@
 				27DF7C271777A355004A954C /* FLTwoObjects.m in Sources */,
 				27DF79ED1777A354004A954C /* FLUserLogin.m in Sources */,
 				27DF76321777A354004A954C /* FLEnumSet.m in Sources */,
+				27DF7CE11777D340004A954C /* FLAsyncOperationQueueElement.m in Sources */,
 				27DF77561777A354004A954C /* FLJsonStringBuilder.m in Sources */,
 				27DF7B111777A355004A954C /* FLObjectMessage.m in Sources */,
 				27DF736B1777A354004A954C /* FLCredentials.m in Sources */,
