@@ -53,7 +53,7 @@
 
 - (FLFinisher*) openConnection {
 
-//    return [self.dispatchQueue queueBlock:^{
+//    return [self.dispatchQueue addBlock:^{
 //        
 //        FLAssertIsNil(self.readStream);
 //        FLAssertIsNil(self.writeStream);
@@ -120,7 +120,7 @@
 - (void) closeConnectionWithResult:(id) result error:(NSErro*) error {
     self.terminate = YES;
     
-    [self.dispatchQueue queueBlock:^{
+    [self.dispatchQueue addBlock:^{
 //        if(_readStream) {
 //            [_readStream setDelegate:nil];
 //            [_readStream closeStreamWithResult:result];
@@ -267,7 +267,7 @@
 }
 
 - (void) updateRequestQueue {
-    [self.dispatchQueue queueBlock:^{
+    [self.dispatchQueue addBlock:^{
         [self updateQueue];
     }];
 }

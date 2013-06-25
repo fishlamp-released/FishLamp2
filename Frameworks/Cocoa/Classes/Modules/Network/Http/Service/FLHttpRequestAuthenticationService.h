@@ -21,9 +21,11 @@
     FLFifoAsyncQueue* _asyncQueue;
     
     __unsafe_unretained FLOperationContext* _operationContext;
+    __unsafe_unretained id _delegate;
 }
 + (id) httpRequestAuthenticationService;
 
+@property (readwrite, assign, nonatomic) id<FLHttpRequestAuthenticationServiceDelegate> delegate;
 @property (readonly, assign) FLOperationContext* operationContext;
 
 // required overrides

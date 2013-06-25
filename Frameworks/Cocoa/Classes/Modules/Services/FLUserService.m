@@ -15,6 +15,7 @@
 #import "FLKeychain.h"
 //#import "NSUserDefaults+FLAdditions.h"
 #import "FLUserDefaultsCredentialStorage.h"
+#import "FLBroadcaster.h"
 
 @interface FLUserService ()
 @property (readwrite, strong, nonatomic) id<FLCredentials> credentials;
@@ -25,7 +26,7 @@
 @synthesize credentialStorage = _credentialStorage;
 
 - (id) init {
-    self = [super initWithRootNameForDelegateMethods:@"userService"];
+    self = [super init];
     if(self) {
         self.credentialStorage = [FLUserDefaultsCredentialStorage instance];
         self.credentials = [self.credentialStorage readCredentialsForLastUser];
@@ -70,6 +71,14 @@
 
 - (NSString*) userName {
     return [self.credentials userName];
+}
+
+- (void) didOpenService {
+    [self.observers notify:@selector(userServiceDidOpen:) withObject:self];
+}
+
+- (void) didCloseService {
+    [self.observers notify:@selector(userServiceDidClose:) withObject:self];
 }
 
 @end

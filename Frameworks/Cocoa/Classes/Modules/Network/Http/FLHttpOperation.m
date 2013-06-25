@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
+#if REFACTOR
 
 #import "FLHttpOperation.h"
 
@@ -45,12 +46,10 @@
     [self.finisher setFinishedWithResult:result error:error];
 }
 
-- (id) startAsyncOperation {
+- (void) startOperation {
     [self runChildAsynchronously:self.httpRequest completion:^(id result, NSError* error) {
-        [self setFinishedWithResult:result];
+        [self setFinishedWithResult:result error:error];
     }];
-    
-    return nil;
 }
 
 - (void) httpRequestWillAuthenticate:(FLHttpRequest*) httpRequest {
@@ -90,3 +89,4 @@
 
 
 @end
+#endif

@@ -61,22 +61,21 @@
     // this avoids the block from retain self.
     FLObjectDatabase* database = _objectDatabase;
     
-    return [_schedulingQueue queueFinishableBlock:^(FLFinisher *finisher) {
-        
-        block(database);
-        [finisher setFinished];
-        
-    } completion:completion];
+    return [_schedulingQueue addFinishableBlock:^(FLFinisher *finisher) {
+                block(database);
+                [finisher setFinished];
+            }
+            withCompletion:completion];
 }             
 
-- (void) dispatchSync:(FLObjectDatabaseBlock) block {
+- (void) runBlockSynchronously:(FLObjectDatabaseBlock) block {
     
     block = FLCopyWithAutorelease(block);
     
     // this avoids the block from retain self.
     FLObjectDatabase* database = _objectDatabase;
     
-    FLPromisedResult* result = [_schedulingQueue finishSync:^(FLFinisher* finisher) {
+    FLPromisedResult* result = [_schedulingQueue runFinisherBlockSynchronously:^(FLFinisher* finisher) {
         block(database);
         [finisher setFinished];
     }];
@@ -85,25 +84,25 @@
 }
 
 - (void) openDatabase {
-    [self dispatchSync:^(FLObjectDatabase* database){
+    [self runBlockSynchronously:^(FLObjectDatabase* database){
         [database openDatabase];
     }];
 }
 
 - (void) closeDatabase {
-    [self dispatchSync:^(FLObjectDatabase* database){
+    [self runBlockSynchronously:^(FLObjectDatabase* database){
         [database closeDatabase];
     }];
 }
 
 - (void) writeObject:(id) object {
-    [self dispatchSync:^(FLObjectDatabase* database){
+    [self runBlockSynchronously:^(FLObjectDatabase* database){
         [database writeObject:object];
     }];
 }
 
 - (void) writeObjectsInArray:(NSArray*) array {
-    [self dispatchSync:^(FLObjectDatabase* database){
+    [self runBlockSynchronously:^(FLObjectDatabase* database){
         [database writeObjectsInArray:array];
     }];
 }
@@ -111,7 +110,7 @@
 - (id) readObject:(id) inputObject {
     
     __block id outObject = nil;
-    [self dispatchSync:^(FLObjectDatabase* database){
+    [self runBlockSynchronously:^(FLObjectDatabase* database){
         outObject = [database readObject:inputObject];
     }];
     
@@ -119,14 +118,14 @@
 }
 
 - (void) deleteObject:(id) object {
-    [self dispatchSync:^(FLObjectDatabase* database){
+    [self runBlockSynchronously:^(FLObjectDatabase* database){
         [database deleteObject:object];
     }];
 }
 
 - (BOOL) containsObject:(id) object {
     __block BOOL outResult = NO;
-    [self dispatchSync:^(FLObjectDatabase* database){
+    [self runBlockSynchronously:^(FLObjectDatabase* database){
         outResult = [database containsObject:object];
     }];
     return outResult;
@@ -134,7 +133,7 @@
 
 - (NSUInteger) objectCountForClass:(Class) aClass {
     __block NSUInteger outCount = 0;
-    [self dispatchSync:^(FLObjectDatabase* database){
+    [self runBlockSynchronously:^(FLObjectDatabase* database){
         outCount = [database objectCountForClass:aClass];
     }];
     
@@ -142,14 +141,14 @@
 }
 
 - (void) deleteAllObjectsForClass:(Class) aClass {
-    [self dispatchSync:^(FLObjectDatabase* database){
+    [self runBlockSynchronously:^(FLObjectDatabase* database){
         [database deleteAllObjectsForClass:aClass];
     }];
 }
 
 - (NSArray*) readAllObjectsForClass:(Class) aClass {
     __block NSArray* results = nil;
-    [self dispatchSync:^(FLObjectDatabase* database){
+    [self runBlockSynchronously:^(FLObjectDatabase* database){
         results = [database readAllObjectsForClass:aClass];
     }];
     

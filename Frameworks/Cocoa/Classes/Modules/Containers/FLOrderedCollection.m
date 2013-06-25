@@ -85,7 +85,7 @@
     FLAssertNotNil(object);
     FLAssertNotNil(key);
 	FLAssertIsNilWithComment([_objectDictionary objectForKey:key], nil);
-    ++_mutatationCount;
+    ++_mutationCount;
     [_objectDictionary setObject:object forKey:key];
     [_objectArray addObject:object];
     [_keys addObject:key];
@@ -97,7 +97,7 @@
     FLAssertNotNil(key);
     id existingObject = [_objectDictionary objectForKey:key];
     if(existingObject) {
-        ++_mutatationCount;
+        ++_mutationCount;
         [_objectDictionary setObject:object forKey:key];
         [_objectArray replaceObjectAtIndex:[[_indexes objectForKey:key] intValue] withObject:object];
     }
@@ -125,7 +125,7 @@
 
 - (void) removeObjectForKey:(id) key {
     if(key) {
-        ++_mutatationCount;
+        ++_mutationCount;
 
         NSNumber* idx = [_indexes objectForKey:key];
         if(idx) {
@@ -156,7 +156,7 @@
 }
 
 - (id) replaceObjectAtIndex:(NSUInteger) atIndex withObject:(id) object forKey:(id) key  {
-    ++_mutatationCount;
+    ++_mutationCount;
     id previousKey = [_keys objectAtIndex:atIndex];
     [_objectDictionary removeObjectForKey:previousKey];
     [_indexes removeObjectForKey:previousKey];
@@ -222,7 +222,7 @@
 //}
 
 - (void) removeAllObjects {
-    ++_mutatationCount;
+    ++_mutationCount;
 	[_objectArray removeAllObjects];
 	[_objectDictionary removeAllObjects];
     [_keys removeAllObjects];
@@ -262,7 +262,7 @@
 	[_keys getObjects:buffer range:range];
 	state->state = state->state + range.length;
 	state->itemsPtr = buffer;
-	state->mutationsPtr = &_mutatationCount;
+	state->mutationsPtr = &_mutationCount;
 	return range.length;
 }
 

@@ -115,7 +115,7 @@
 
 }
 
-- (id) startAsyncOperation {
+- (void) startOperation {
 
 #if __MAC_10_8
     NSTask* task = FLAutorelease([[NSTask alloc] init]);
@@ -147,7 +147,6 @@
 
     [task launch];
 #endif    
-    return nil;
 }
 @end
 

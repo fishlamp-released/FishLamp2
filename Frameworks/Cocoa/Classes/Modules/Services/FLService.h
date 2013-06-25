@@ -15,14 +15,13 @@
     NSMutableArray* _subServices;
     BOOL _serviceOpen;
     __unsafe_unretained id _superService;
-    __unsafe_unretained id _delegate;
-    
-    SEL _didOpenDelegateMethod;
-    SEL _didCloseDelegateMethod;
+
+//    SEL _didOpenDelegateMethod;
+//    SEL _didCloseDelegateMethod;
 }
 
-- (id) initWithDelegate:(id) delegate;
-- (id) initWithRootNameForDelegateMethods:(NSString*) rootName;
+//- (id) initWithDelegate:(id) delegate;
+//- (id) initWithRootNameForDelegateMethods:(NSString*) rootName;
 + (id) service;
 
 @property (readonly, assign) id superService;
@@ -37,9 +36,6 @@
 - (void) openService:(id) opener;
 - (void) closeService:(id) opener;
 
-
-// for delegates
-@property (readwrite, assign, nonatomic) id delegate;
 
 // optional overrides
 - (void) didMoveToSuperService:(id) superService;

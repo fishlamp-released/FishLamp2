@@ -137,7 +137,7 @@
 	FLAssertWithComment([object nextObjectInLinkedList] == nil, @"already in a list");
 	FLAssertWithComment([object previousObjectInLinkedList] == nil, @"already in a list");
 	
-	++_mutatationCount;
+	++_mutationCount;
     
 	if(!beforeObject || beforeObject == self.firstObject) {
 		if(!self.lastObject)  {
@@ -173,7 +173,7 @@
 	FLAssertWithComment([object nextObjectInLinkedList] == nil, @"already in a list");
 	FLAssertWithComment([object previousObjectInLinkedList] == nil, @"already in a list");
 	
-    ++_mutatationCount;
+    ++_mutationCount;
 
 	if(!afterObject || afterObject == self.lastObject) {
 		if(!self.firstObject) {
@@ -206,7 +206,7 @@
 
 	FLAssertIsNotNilWithComment(object, nil);
     
-	++_mutatationCount;
+	++_mutationCount;
 
     if(_mutableEnumerator) {
         [_mutableEnumerator objectWillBeRemoved:object];
@@ -371,7 +371,7 @@
     FLAssertWithComment([secondObject linkedList] == self, @"second object is not in linked list");
     FLAssertWithComment(firstObject != secondObject, @"first and second object are the same");
 
-    ++_mutatationCount;
+    ++_mutationCount;
     
     FLAutoreleaseObject(FLRetain(firstObject));
     FLAutoreleaseObject(FLRetain(secondObject));
@@ -407,7 +407,7 @@
 
 - (void) removeAllObjects {
 
-	++_mutatationCount;
+	++_mutationCount;
     
     id walker = self.firstObject;
 	while(walker) {
@@ -491,7 +491,7 @@
 
 	state->state = currentObject == nil ? NSIntegerMax : (unsigned long) bridge_(void*, currentObject);
 	state->itemsPtr = buffer;
-	state->mutationsPtr = (unsigned long*) &_mutatationCount;
+	state->mutationsPtr = (unsigned long*) &_mutationCount;
 
 	return batchCount;
 }
@@ -606,7 +606,7 @@ void FLMergeSort(
 
 - (void)sortUsingComparator:(NSComparator) comparator {
     
-    ++_mutatationCount;
+    ++_mutationCount;
     
     if(self.count <= 1) {
         return;

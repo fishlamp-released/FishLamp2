@@ -45,13 +45,13 @@
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
 - (void) queueSelector:(SEL) selector withObject:(id) object {
-    [self queueBlock:^{ 
+    [self addBlock:^{ 
         [self.stream performSelector:selector withObject:object];
     }];
 }
 
 - (void) queueSelector:(SEL) selector {
-    [self queueBlock:^{ 
+    [self addBlock:^{ 
     
         @try { 
             [self.stream performSelector:selector];
@@ -69,8 +69,8 @@
 
 }
 
-- (void) queueBlock:(dispatch_block_t) block {
-    [self.asyncQueue queueBlock:block completion:^(id result, NSError* error) {
+- (void) addBlock:(dispatch_block_t) block {
+    [self.asyncQueue addBlock:block withCompletion:^(id result, NSError* error) {
         [self didDispatchBlockInStream:_stream];
     }];
 }

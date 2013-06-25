@@ -16,7 +16,7 @@
 	NSMutableDictionary* _indexes;
 	NSMutableArray* _keys;
 	NSMutableArray* _objectArray;
-    unsigned long _mutatationCount;
+    unsigned long _mutationCount;
 }
 
 @property (readonly, strong, nonatomic) NSArray* objectArray;

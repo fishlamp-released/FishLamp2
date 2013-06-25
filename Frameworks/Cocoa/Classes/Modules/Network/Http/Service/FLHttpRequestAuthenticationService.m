@@ -21,13 +21,14 @@
 
 @synthesize asyncQueue = _asyncQueue;
 @synthesize operationContext = _operationContext;
+@synthesize delegate = _delegate;
 
 + (id) httpRequestAuthenticationService {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (id) init {
-    self = [super initWithRootNameForDelegateMethods:@"httpRequestAuthenticationService"];
+    self = [super init];
     if(self) {
     }
     return self;
@@ -100,7 +101,7 @@
     FLHttpUser* user = self.user;
     FLAssertNotNil(user); 
         
-    FLDispatchSync(_asyncQueue, ^{
+    [_asyncQueue runBlockSynchronously:^{
         
         if([self credentialsNeedAuthentication:user]) {
             
@@ -115,11 +116,11 @@
         else {
             [self authenticateHttpRequest:request withAuthenticatedUser:user];
         }
-    });
+    }];
     
     
 
-//    return [[_asyncQueue queueBlock:^{
+//    return [[_asyncQueue addBlock:^{
 //        FLHttpUser* user = self.user;
 //        FLAssertNotNil(user); 
 //        
@@ -142,13 +143,13 @@
     FLHttpUser* user = self.user;
     FLAssertNotNil(user); 
 
-    [_asyncQueue queueBlock:^{
+    [_asyncQueue addBlock:^{
         [user resetAuthenticationTimestamp];
         [self authenticateUser:user];
         [user touchAuthenticationTimestamp];
         [self.delegate httpRequestAuthenticationService:self didAuthenticateUser:user];
     } 
-    completion:completion];
+    withCompletion:completion];
 
 }
 

@@ -25,7 +25,7 @@ typedef void (^FLObjectDatabaseBlock)(FLObjectDatabase* database);
 - (FLPromise*) dispatchAsync:(FLObjectDatabaseBlock) block
                   completion:(fl_completion_block_t) block;
 
-- (void) dispatchSync:(FLObjectDatabaseBlock) block;
+- (void) runBlockSynchronously:(FLObjectDatabaseBlock) block;
 
 - (void) openDatabase;
              

@@ -8,7 +8,7 @@
 //
 
 #import "FishLampCore.h"
-#import "FLDispatchTypes.h"
+#import "FLAsyncBlockTypes.h"
 
 @protocol FLFinisherDelegate;
 @class FLPromise;
@@ -47,7 +47,7 @@
 @end
 
 @protocol FLFinisherDelegate <NSObject>
-- (void) finisher:(FLFinisher*) finisher
-didFinishWithResult:(id) result
-            error:(NSError*) error;
+- (void) finisherDidFinish:(FLFinisher*) finisher
+                withResult:(id) resultOrNil
+                 withError:(NSError*) errorOrNil;
 @end

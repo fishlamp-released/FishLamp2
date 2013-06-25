@@ -16,7 +16,9 @@
 @interface FLDatabaseObjectStorageService : FLStorageService {
 @private
     FLObjectDatabaseController* _databaseController;
+    id<FLDatabaseObjectStorageServiceDelegate> _delegate;
 }
+@property (readwrite, assign, nonatomic) id<FLDatabaseObjectStorageServiceDelegate> delegate;
 @property (readonly, strong, nonatomic) FLObjectDatabaseController* databaseController;
 
 + (id) databaseObjectStorageService:(id<FLDatabaseObjectStorageServiceDelegate>) delegate;

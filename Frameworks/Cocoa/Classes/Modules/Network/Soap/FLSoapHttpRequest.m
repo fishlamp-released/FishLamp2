@@ -173,7 +173,7 @@
 @end
 
 @implementation FLMutableSoapHttpRequest
-@synthesize input =_input;
+//@synthesize input =_input;
 @synthesize output = _output;
 @synthesize soapAction = _soapAction;
 @synthesize targetNamespace = _targetNamespace;
@@ -181,7 +181,7 @@
 
 #if FL_MRC
 - (void) dealloc {
-    [_input release];
+//    [_input release];
     [_output release];
     [_soapAction release];
     [_operationName release];

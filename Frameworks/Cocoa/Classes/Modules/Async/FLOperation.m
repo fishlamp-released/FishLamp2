@@ -9,6 +9,7 @@
 
 #import "FLOperation.h"
 #import "FishLampAsync.h"
+#import "FLBroadcaster.h"
 
 @interface FLOperation ()
 @property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
@@ -23,17 +24,7 @@
 @synthesize identifier = _identifier;
 @synthesize storageService = _storageService;
 @synthesize cancelled = _cancelled;
-@synthesize delegate = _delegate;
 @synthesize finisher = _finisher;
-
-//#if DEBUG
-//- (void) setDelegate:(id) delegate {
-//    if(delegate != _delegate) {
-//        FLAssertIsNil(_delegate);
-//        _delegate = delegate;
-//    }
-//}
-//#endif
 
 - (id) init {
     self = [super init];
@@ -58,30 +49,30 @@
     _finisher.delegate = nil;
     
 #if FL_MRC
-	[_finisher release];
-    [_storageService release];
     [_identifier release];
+    [_asyncQueue release];
+    [_storageService release];
+	[_finisher release];
 	[super dealloc];
 #endif
 }
 
-- (void) finisher:(FLFinisher*) finisher didFinishWithResult:(id) result error:(NSError*) error {
-    self.context = nil;
-    [self didFinishWithResult:result error:error];
-    self.cancelled = NO;
+- (FLFinisher*) asyncQueueWillBeginAsync:(id<FLAsyncQueue>) asyncQueue {
+    return self.finisher;
+}
+
+- (void) asyncQueue:(id<FLAsyncQueue>) asyncQueue beginAsyncWithFinisher:(FLFinisher*) finisher {
+    [self startOperation];
+    [self.observers notify:@selector(operationWillBegin:) withObject:self];
+}
+
+- (id<FLPromisedResult>) asyncQueueRunSynchronously:(id<FLAsyncQueue>) asyncQueue {
+    return [self runSynchronously];
 }
 
 - (void) startOperation {
-    
-    id initialData = [self startAsyncOperation];
-    [self sendStartMessagesWithInitialData:initialData];
-}
-
-- (id) startAsyncOperation {
     FLLog(@"operation did nothing.");
     [self.finisher setFinished];
-
-    return nil;
 }
 
 - (void) requestCancel {
@@ -126,9 +117,7 @@
 }
 
 - (FLPromisedResult*) runSynchronously {
-    FLPromisedResult* result = [FLStartOperation(self.asyncQueue, self, nil) waitUntilFinished];
-//    [self operationDidFinishWithResult:result];
-    return result;
+    return [[self.asyncQueue addOperation:self] waitUntilFinished];
 }
 
 - (FLPromisedResult*) runSynchronouslyInContext:(FLOperationContext*) context {
@@ -137,8 +126,7 @@
 }
 
 - (FLPromise*) runAsynchronously:(fl_completion_block_t) completion {
-    
-    return FLStartOperation(self.asyncQueue, self, completion);
+    return [self.asyncQueue addOperation:self withCompletion:completion];
 }
 
 - (FLPromise*) runAsynchronously {
@@ -152,24 +140,23 @@
 }
 
 - (void) willRunChildOperation:(FLOperation*) operation {
-    if([operation delegate] == nil) {
-        [operation setDelegate:self];
-    }
+
+    [operation.observers addObserverRetained:self.observers];
+
     if([operation context] == nil) {
         [operation setContext:self.context];
     }
     if([operation asyncQueue] == nil) {
         [operation setAsyncQueue:self.asyncQueue];
     }
-    if([operation observer] == nil) {
-        [operation setObserver:self.observer];
-    }
+
+//    if([operation observer] == nil) {
+//        [operation setObserver:self.observer];
+//    }
 }
 
 - (void) didRunChildOperation:(FLOperation*) operation {
-    if([operation delegate] == self) {
-        [operation setDelegate:nil];
-    }
+    [operation.observers removeObserver:self.observers];
 }
 
 - (FLPromisedResult*) runChildSynchronously:(FLOperation*) operation {
@@ -219,11 +206,19 @@
     }
 }
 
-- (void) sendStartMessagesWithInitialData:(id) initialData {
+- (void) finisherDidFinish:(FLFinisher*) finisher
+                withResult:(id) result
+                 withError:(NSError*) error {
+            
+    [self didFinishWithResult:result error:error];
 }
 
 - (void) didFinishWithResult:(id) result
-                                error:(NSError*) error {
+                       error:(NSError*) error {
+
+    [self.observers notify:@selector(operationDidFinish:withResult:error:) withObject:self withObject:result withObject:error];
+    self.context = nil;
+    self.cancelled = NO;
 }
 
 - (void) setFinished {
@@ -241,7 +236,5 @@
 - (void) setFinishedWithError:(NSError*) error{
     [self.finisher setFinishedWithResult:nil error:error];
 }
-
-
 
 @end

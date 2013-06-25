@@ -6,46 +6,29 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#import "FLDispatchTypes.h"
+#import "FishLamp.h"
+#import "FLAsyncBlockTypes.h"
 #import "FLFinisher.h"
-#import "FLOperationContext.h"
-#import "FLAsyncQueue.h"
-#import "FLCallback.h"
+#import "FLDispatchable.h"
 #import "FLObservable.h"
 
-@protocol FLOperation <NSObject>
-@property (readonly, strong) id identifier;
+@class FLOperationContext;
+@class FLPromisedResult;
+@class FLFinisher;
+@class FLPromise;
+@protocol FLAsyncQueue;
+@protocol FLOperationDelegate;
 
-- (void) startOperation;
-- (FLPromisedResult*) runSynchronously;
-
-- (void) requestCancel;
-
-@property (readonly, strong) FLFinisher* finisher; 
-
-@end
-
-@protocol FLOperationDelegate <NSObject>
-@optional
-- (void) operationDidFinish:(id) operation withResult:(id) result error:(NSError*) error;
-@end
-
-@interface FLOperation : FLObservable<FLOperation, FLFinisherDelegate> {
+@interface FLOperation : FLObservable<FLFinisherDelegate, FLDispatchable> {
 @private
-    __unsafe_unretained FLOperationContext* _context;
 	id _identifier;
-    NSUInteger _contextID;
     id<FLAsyncQueue> _asyncQueue;
     id _storageService;
-    BOOL _cancelled;
     FLFinisher* _finisher;
-    __unsafe_unretained id _delegate;
+    NSUInteger _contextID;
+    BOOL _cancelled;
+    __unsafe_unretained FLOperationContext* _context;
 }
-
-
-// finished delegate
-@property (readwrite, nonatomic, assign) id delegate;
-//@property (readwrite, nonatomic, assign) SEL finishedSelector; // default = FLOperationDefaultFinishedSelector
 
 // object storage - this can be anything as appropriate for subclass
 @property (readwrite, strong, nonatomic) id storageService;
@@ -66,24 +49,45 @@
 @property (readonly, assign, getter=wasCancelled) BOOL cancelled;
 - (void) requestCancel;
 
+// overide point
+- (void) startOperation;
+
+// optional override
+- (void) didFinishWithResult:(id) result error:(NSError*) error;
+
+@end
+
+@interface FLOperation (Finishing)
+
+- (FLFinisher*) finisher;
+
 - (void) setFinished;
 - (void) setFinishedWithResult:(id) result;
 - (void) setFinishedWithError:(NSError*) error;
 - (void) setFinishedWithResult:(id) result error:(NSError*) error;
 
+- (void) abortIfCancelled; // throws cancelError
+@end
+
+@interface FLOperation (Synchronous)
 // run synchronously
 - (FLPromisedResult*) runSynchronously;
 
 - (FLPromisedResult*) runSynchronouslyInContext:(FLOperationContext*) context;
+@end
 
+@interface FLOperation (Async)
 // start async. will run in asyncQueue. 
 - (FLPromise*) runAsynchronously;
 
 - (FLPromise*) runAsynchronously:(fl_completion_block_t) completionOrNil;
 
-- (FLPromise*) runAsynchronouslyInContext:(FLOperationContext*) context 
-                                completion:(fl_completion_block_t) completionOrNil;
+- (FLPromise*) runAsynchronouslyInContext:(FLOperationContext*) context
+                               completion:(fl_completion_block_t) completionOrNil;
 
+@end
+
+@interface FLOperation (ChildOperations)
 // these call willRunInParent on the child before operation
 // is run or started.
 - (FLPromisedResult*) runChildSynchronously:(FLOperation*) operation;
@@ -92,23 +96,20 @@
 
 - (FLPromise*) runChildAsynchronously:(FLOperation*) operation 
                             completion:(fl_completion_block_t) completionOrNil;
+@end
 
-
-// optional overides
-- (id) startAsyncOperation;
-
+@interface FLOperation (OperationContext)
 - (void) wasAddedToContext:(FLOperationContext*) context;
 - (void) wasRemovedFromContext:(FLOperationContext*) context;
 - (void) contextDidClose;
 - (void) contextDidOpen;
 - (void) contextDidCancel;
+@end
 
-- (void) abortIfCancelled; // throws cancelError
-
-
-- (void) sendStartMessagesWithInitialData:(id) initialData;
-- (void) didFinishWithResult:(id) result error:(NSError*) error;
-
+@protocol FLOperationDelegate <NSObject>
+@optional
+- (void) operationWillBegin:(id) operation;
+- (void) operationDidFinish:(id) operation withResult:(id) result error:(NSError*) error;
 @end
 
 

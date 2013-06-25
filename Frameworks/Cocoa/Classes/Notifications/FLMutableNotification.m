@@ -13,4 +13,13 @@
 @synthesize name = _name;
 @synthesize object = _object;
 @synthesize userInfo = _userInfo;
+
+#if FL_MRC
+- (void)dealloc {
+    [_object release];
+    [_userInfo release];
+    [_name release];
+	[super dealloc];
+}
+#endif
 @end

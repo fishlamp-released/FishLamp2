@@ -46,7 +46,7 @@
 @private
 	id _firstObject;
 	id _lastObject;
-    unsigned long _mutatationCount;
+    unsigned long _mutationCount;
 	NSUInteger _count;
     __unsafe_unretained FLLinkedListMutableEnumerator* _mutableEnumerator;
 }

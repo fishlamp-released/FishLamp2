@@ -145,7 +145,7 @@ static int s_counter = 0;
     });
     
     [self willOpen];
-    [self.delegate performOptionalSelector:@selector(httpRequestWillOpen:) withObject:self];
+    [self.observers notify:@selector(httpRequestWillOpen:) withObject:self];
 
     if(!self.inputSink) {
         self.inputSink = [FLDataSink dataSink];
@@ -204,26 +204,25 @@ static int s_counter = 0;
 
     if(self.authenticator && !self.disableAuthenticator) {
         [self willAuthenticate];
-        [self.delegate performOptionalSelector:@selector(httpRequestWillAuthenticate:) withObject:self];
+        [self.observers notify:@selector(httpRequestWillAuthenticate:) withObject:self];
 
         [self.authenticator authenticateHttpRequest:self];
 
         [self didAuthenticate];
-        [self.delegate performOptionalSelector:@selector(httpRequestDidAuthenticate:) withObject:self];
+        [self.observers notify:@selector(httpRequestDidAuthenticate:) withObject:self];
     }
 
     [self openStreamWithURL:url];
 }
 
 
-- (id) startAsyncOperation {
+- (void) startOperation {
     self.byteCount = [FLHttpRequestByteCount httpRequestByteCount];
     [self openAuthenticatedStreamWithURL:self.requestHeaders.requestURL];
-    return nil;
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
-    [self.delegate performOptionalSelector:@selector(httpRequestDidOpen:) withObject:self];
+    [self.observers notify:@selector(httpRequestDidOpen:) withObject:self];
     [self.byteCount setStartTime];
 }
 
@@ -233,13 +232,13 @@ static int s_counter = 0;
     [self.byteCount incrementByteCount:amountRead];
     [self didReadBytes:amountRead];
 
-    [self.delegate performOptionalSelector:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
+    [self.observers notify:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
 }
 
 - (void) finalizeRequestWithResult:(id) result error:(NSError*) error {
     [self releaseResponseData];
                 
-    [self.delegate performOptionalSelector:@selector(httpRequest:didCloseWithResult:error:) withObject:self withObject:result withObject:error];
+    [self.observers notify:@selector(httpRequest:didCloseWithResult:error:) withObject:self withObject:result withObject:error];
     [self didFinishWithResult:result error:error];
     [self.finisher setFinishedWithResult:result];
     
@@ -286,7 +285,7 @@ static int s_counter = 0;
 - (BOOL) tryRetry {
     return [self.retryHandler retryWithBlock:^{
         [self releaseResponseData];
-        [self startAsyncOperation];
+        [self startOperation];
     }];
 }
 

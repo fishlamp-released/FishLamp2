@@ -15,9 +15,12 @@
 
 @implementation FLDatabaseObjectStorageService
 @synthesize databaseController = _databaseController;
+@synthesize delegate = _delegate;
 
 + (id) databaseObjectStorageService:(id<FLDatabaseObjectStorageServiceDelegate>) delegate {
-    return FLAutorelease([[[self class] alloc] initWithDelegate:delegate]);
+    FLDatabaseObjectStorageService* service = FLAutorelease([[[self class] alloc] init]);
+    service.delegate = delegate;
+    return service;
 }
 
 - (id<FLObjectStorage>) objectStorage {

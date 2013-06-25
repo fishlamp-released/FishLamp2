@@ -47,7 +47,7 @@
 
 #define kDelay 0.5
 
-- (void) queueBlock:(dispatch_block_t) block {
+- (void) addBlock:(dispatch_block_t) block {
 
     if(block) block();
     return;
@@ -82,7 +82,7 @@
         }
 //    }
 //    else {
-//        [self queueBlock:^{
+//        [self addBlock:^{
 //            [self appendBufferToTextStorage];
 //        }];
 //    }
@@ -114,7 +114,7 @@
 }
 
 - (void) clearContents {
-    [self queueBlock:^{
+    [self addBlock:^{
         [[_textView textStorage] deleteCharactersInRange:NSMakeRange(0, [_textView textStorage].length) ];
         self.buffer = nil;
     }];

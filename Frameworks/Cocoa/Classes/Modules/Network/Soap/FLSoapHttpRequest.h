@@ -25,7 +25,6 @@
 - (NSString*) targetNamespace;
 - (NSString*) operationName;
 - (NSString*) url;
-- (id) input;
 - (id) output;
 
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
@@ -36,13 +35,11 @@
     NSString* _targetNamespace;
     NSString* _soapAction;
     NSString* _operationName;
-    id _input;
     id _output;
 }
 @property (readwrite, strong, nonatomic) NSString* soapAction;
 @property (readwrite, strong, nonatomic) NSString* targetNamespace;
 @property (readwrite, strong, nonatomic) NSString* operationName;
-@property (readwrite, strong, nonatomic) id input;
 @property (readwrite, strong, nonatomic) id output;
 
 @end

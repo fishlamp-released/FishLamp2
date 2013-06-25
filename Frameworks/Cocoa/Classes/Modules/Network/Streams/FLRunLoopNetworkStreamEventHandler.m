@@ -55,7 +55,7 @@
 }
 
 - (void) queueSelector:(SEL) selector {
-//    [self queueBlock:^{ 
+//    [self addBlock:^{ 
 //    
 //        @try { 
 //            [self performSelector:selector];
@@ -78,8 +78,8 @@
 
 #pragma GCC diagnostic pop
 
-//- (void) queueBlock:(dispatch_block_t) block {
-//    [self.asyncQueue queueBlock:block completion:nil];
+//- (void) addBlock:(dispatch_block_t) block {
+//    [self.asyncQueue addBlock:block completion:nil];
 //}
 
 - (void) handleStreamEvent:(CFStreamEventType) eventType {

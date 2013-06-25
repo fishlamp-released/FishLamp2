@@ -79,11 +79,11 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 }
 
 - (void) willStartOperation:(FLAsyncOperationQueueElement*) operation {
-    [self.delegate performOptionalSelector:_startedOperationSelector withObject:self withObject:operation];
+    [self.observers notify:_startedOperationSelector withObject:self withObject:operation];
 }
 
 - (void) didFinishOperation:(FLAsyncOperationQueueElement*) operation {
-    [self.delegate performOptionalSelector:_finishedOperationSelector withObject:self withObject:operation];
+    [self.observers notify:_finishedOperationSelector withObject:self withObject:operation];
 }
 
 - (void) didFinish {
@@ -110,9 +110,9 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 - (void) requestCancel {
     [super requestCancel];
     self.error = [NSError cancelError];
-    
-    FLDispatchSelectorAsync(self.fifoQueue, self, @selector(processCancelRequest), nil);
-    FLDispatchSelectorAsync(self.fifoQueue, self, @selector(processQueue), nil);
+
+    [self.fifoQueue addBlock:^{ [self processCancelRequest]; }];
+    [self.fifoQueue addBlock:^{ [self processQueue]; }];
 }
 
 - (NSString*) queueName {
@@ -121,7 +121,7 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 
 - (void) didFinishProcessingQueueElement:(FLAsyncOperationQueueElement*) element {
 
-    [self.fifoQueue queueBlock: ^{
+    [self.fifoQueue addBlock: ^{
         [_activeQueue removeObject:element];
         self.processedObjectCount++;
     
@@ -136,9 +136,7 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
         }
 
         [self processQueue];
-    }
-    
-    completion:nil];
+    }];
 }
 
 - (FLAsyncOperationQueueElement*) queueElement:(id) input operation:(id) operation {
@@ -193,30 +191,22 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 }
 
 - (void) addObjectsFromArray:(NSArray*) queuedObjects {
-    FLDispatchSelectorAsync1(self.fifoQueue, self, @selector(processAddObjects:), queuedObjects, nil);
+    [self.fifoQueue addBlock:^{ [self processAddObjects:queuedObjects]; }];
 }
 
 - (void) addObject:(id) object {
-    FLDispatchSelectorAsync1(self.fifoQueue, self, @selector(processAddObject:), object, nil);
+    [self.fifoQueue addBlock:^{ [self processAddObject:object]; }];
 }
 
 - (void) startProcessing {
     self.error = nil;
     self.processing = YES;
-    FLDispatchSelectorAsync(self.fifoQueue, self, @selector(processQueue), nil);
+    [self.fifoQueue addBlock:^{ [self processQueue]; }];
 }
 
-- (id) startAsyncOperation {
+- (void) startOperation {
     [self startProcessing];
-    return nil;
 }
-
-//- (void) startAsyncOperation:(FLFinisher*) finisher {
-//    [super startAsyncOperation:finisher];
-//    
-//    FLTrace(@"starting async queue processing: %@", self);
-//    [self setQueueNeedsProcessing];
-//}
 
 #if FL_MRC 
 - (void) dealloc {

@@ -92,7 +92,7 @@
         error = [NSError failedResultError];
     }
 
-    [self.delegate finisher:self didFinishWithResult:result error:error];
+    [self.delegate finisherDidFinish:self withResult:result withError:error];
 
     FLPromise* promise = FLRetainWithAutorelease(self.firstPromise);
     self.firstPromise = nil;

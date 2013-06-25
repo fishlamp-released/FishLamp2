@@ -9,6 +9,7 @@
 
 #import "FLNotifierSanityCheck.h"
 #import "FLTimeoutTests.h"
+#import "FishLampAsync.h"
 
 @implementation FLNotifierSanityCheck
 

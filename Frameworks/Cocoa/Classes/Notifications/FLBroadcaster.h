@@ -9,34 +9,41 @@
 
 #import "FLCocoaRequired.h"
 
+typedef enum {
+    FLObserverNonretained       = (1 << 1),
+    FLObserverMainThreadOnly    = (1 << 2)
+} FLObserverBehavior;
+
 @interface FLBroadcaster : NSObject {
 @private 
     NSMutableArray* _listeners;
 }
 
-- (void) broadcast:(SEL) messageSelector;
+- (void) notify:(SEL) messageSelector;
 
-- (void) broadcast:(SEL) messageSelector  
-                     withObject:(id) object;
+- (void) notify:(SEL) messageSelector
+        withObject:(id) object;
 
-- (void) broadcast:(SEL) messageSelector 
-                     withObject:(id) object1
-                     withObject:(id) object2;
+- (void) notify:(SEL) messageSelector
+        withObject:(id) object1
+        withObject:(id) object2;
 
-- (void) broadcast:(SEL) messageSelector 
-                     withObject:(id) object1
-                     withObject:(id) object2
-                     withObject:(id) object3;
+- (void) notify:(SEL) messageSelector
+        withObject:(id) object1
+        withObject:(id) object2
+        withObject:(id) object3;
 
-- (void) broadcast:(SEL) messageSelector 
-                     withObject:(id) object1
-                     withObject:(id) object2
-                     withObject:(id) object3
-                     withObject:(id) object4;
+- (void) notify:(SEL) messageSelector
+        withObject:(id) object1
+        withObject:(id) object2
+        withObject:(id) object3
+        withObject:(id) object4;
 
-- (void) addListener:(id) listener;
+- (BOOL) hasObserver:(id) listener;
 
-- (void) removeListener:(id) listener;
+- (void) addObserverRetained:(id) observer;
+- (void) addObserverNonretained:(id) observer;
 
+- (void) removeObserver:(id) listener;
 
 @end

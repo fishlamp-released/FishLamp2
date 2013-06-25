@@ -18,30 +18,30 @@
 @synthesize serviceOpen = _serviceOpen;
 @synthesize superService = _superService;
 @synthesize subServices = _subServices;
-@synthesize delegate = _delegate;
+//@synthesize delegate = _delegate;
 
-- (id) init {
-    return [self initWithDelegate:nil];
-}
+//- (id) init {
+//    return [self initWithDelegate:nil];
+//}
 
-- (id) initWithDelegate:(id) delegate {
-	self = [super init];
-	if(self) {
-        self.delegate = delegate;
-	}
-	return self;
-}
-
-- (id) initWithRootNameForDelegateMethods:(NSString*) rootName {
-    self = [self initWithDelegate:nil];
-    if(self) {
-        if(rootName) {
-            _didOpenDelegateMethod = NSSelectorFromString([NSString stringWithFormat:@"%@DidOpen:", rootName]);
-            _didCloseDelegateMethod = NSSelectorFromString([NSString stringWithFormat:@"%@DidClose:", rootName]);
-        }
-    }
-    return self;
-}
+//- (id) initWithDelegate:(id) delegate {
+//	self = [super init];
+//	if(self) {
+//        self.delegate = delegate;
+//	}
+//	return self;
+//}
+//
+//- (id) initWithRootNameForDelegateMethods:(NSString*) rootName {
+//    self = [self initWithDelegate:nil];
+//    if(self) {
+//        if(rootName) {
+//            _didOpenDelegateMethod = NSSelectorFromString([NSString stringWithFormat:@"%@DidOpen:", rootName]);
+//            _didCloseDelegateMethod = NSSelectorFromString([NSString stringWithFormat:@"%@DidClose:", rootName]);
+//        }
+//    }
+//    return self;
+//}
 
 + (id) service {
     return FLAutorelease([[[self class] alloc] init]);
@@ -97,8 +97,9 @@
         [self performSelectorOnAllServices:@selector(willOpenService)];
         [self performSelectorOnAllServices:@selector(setOpen)];
         [self performSelectorOnAllServices:@selector(didOpenService)];
-        FLPerformSelector1(self.delegate, _didOpenDelegateMethod, self);
-        FLTrace(@"opened %@", NSStringFromClass([self class]));    
+
+//        FLPerformSelector1(self.delegate, _didOpenDelegateMethod, self);
+        FLTrace(@"opened %@", NSStringFromClass([self class]));
     }
 }
 
@@ -107,8 +108,8 @@
         [self performSelectorOnAllServices:@selector(willCloseService)];
         [self performSelectorOnAllServices:@selector(setClosed)];
         [self performSelectorOnAllServices:@selector(didCloseService)];
-        FLPerformSelector1(self.delegate, _didCloseDelegateMethod, self);
-        FLTrace(@"close %@", NSStringFromClass([self class]));    
+//        FLPerformSelector1(self.delegate, _didCloseDelegateMethod, self);
+        FLTrace(@"close %@", NSStringFromClass([self class]));
     }
 }
 
