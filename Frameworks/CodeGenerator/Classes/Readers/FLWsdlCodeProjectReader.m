@@ -383,7 +383,7 @@
     [self addServiceObject:self.wsdlDefinitions.service];
 
     for(FLWsdlCodeObject* object in [_objects objectEnumerator]) {
-        [object replacePlaceholderArrays:self];
+        [object postProcessObject:self];
     }
 
     FLCodeProject* project = [FLCodeProject codeProject];

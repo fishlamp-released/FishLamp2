@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-@class FLBroadcaster;
+#import "FLBroadcaster.h"
 
 @protocol FLObservable <NSObject>
 - (FLBroadcaster*) observers;

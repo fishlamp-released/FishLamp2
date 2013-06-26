@@ -18,10 +18,21 @@
 #import "FLWsdlBinding.h"
 #import "FLWsdlDefinitions.h"
 #import "FLHttpRequest.h"
+#import "FLWsdlMessageCodeObject.h"
+#import "FLCodeProperty.h"
 
 #import "FishLampCodeGeneratorObjects.h"
 
+@interface FLWsdlOperationCodeObject ()
+@property (readwrite, strong, nonatomic) FLWsdlInputOutput* wsdlOutput;
+@property (readwrite, strong, nonatomic) FLWsdlInputOutput* wsdlInput;
+
+@end
+
 @implementation FLWsdlOperationCodeObject
+
+@synthesize wsdlInput = _wsdlInput;
+@synthesize wsdlOutput = _wsdlOutput;
 
 - (id) init {	
 	self = [super init];
@@ -30,36 +41,44 @@
 	return self;
 }
 
-- (void) addPropertiesForWsdlMessage:(FLWsdlMessage*) message
-                             isInput:(BOOL) isInput
-                           operation:(FLWsdlOperation*) operation 
-                                  io:(FLWsdlInputOutput*) io
-            overrideInputOutputNames:(BOOL) overrideInputOutputNames {
-      
-//	FLWsdlMessage* message = [self getMessageObject:io.message];	
-//	FLConfirmNotNil(message);
-	
-    NSString* propertyType = message.name;
-	
-	if(message.parts.count) {
-		FLWsdlPart* part = [message.parts objectAtIndex:0];
-		BOOL isElement = FLStringIsNotEmpty(part.element);
-		if(isElement && message.parts.count == 1) {
-			// this means we'll be using a different object here, and we don't need a message object.
-			// this is for an input/output object
-			
-			// note that this if for wsdl:part that has elements, not type.
-			
-			//			  <wsdl:message name="GetChallengeSoapIn">
-			//			  <wsdl:part name="parameters" element="tns:GetChallenge"/>
-			//			  </wsdl:message>
-			
-			propertyType = part.element;
-		}
-	} 
-
-    [self addProperty:isInput ? @"input" : @"output" propertyType:propertyType];
+#if FL_MRC
+- (void)dealloc {
+	[_wsdlInput release];
+    [_wsdlOutput release];
+    [super dealloc];
 }
+#endif
+
+//- (void) addPropertiesForWsdlMessage:(FLWsdlMessage*) message
+//                             isInput:(BOOL) isInput
+//                           operation:(FLWsdlOperation*) operation 
+//                                  io:(FLWsdlInputOutput*) io
+//            overrideInputOutputNames:(BOOL) overrideInputOutputNames {
+//      
+////	FLWsdlMessage* message = [self getMessageObject:io.message];	
+////	FLConfirmNotNil(message);
+//	
+//    NSString* propertyType = message.name;
+//	
+//	if(message.parts.count) {
+//		FLWsdlPart* part = [message.parts objectAtIndex:0];
+//		BOOL isElement = FLStringIsNotEmpty(part.element);
+//		if(isElement && message.parts.count == 1) {
+//			// this means we'll be using a different object here, and we don't need a message object.
+//			// this is for an input/output object
+//			
+//			// note that this if for wsdl:part that has elements, not type.
+//			
+//			//			  <wsdl:message name="GetChallengeSoapIn">
+//			//			  <wsdl:part name="parameters" element="tns:GetChallenge"/>
+//			//			  </wsdl:message>
+//			
+//			propertyType = part.element;
+//		}
+//	} 
+//
+//    [self addProperty:isInput ? @"input" : @"output" propertyType:propertyType];
+//}
 
 
 - (void) addOperationNameProperty:(FLWsdlOperation*) operation {
@@ -120,21 +139,36 @@
     }
     
   	[self addOperationNameProperty:operation]; 
-    
-    if(operation.input.message) {
-        [self addPropertiesForWsdlMessage:[codeReader wsdlMessageForName:operation.input.message]
-                            isInput:YES 
-                          operation:operation 
-                                 io:operation.input 
-           overrideInputOutputNames:NO];
+
+//    NSString* propertyType = FLStringIsNotEmpty(property.message) ? propertyMessage :
+//                                                                    property.type;
+
+    if(FLStringIsNotEmpty(operation.input.message) || FLStringIsNotEmpty(operation.input.type)) {
+        FLConfirmNil(self.wsdlInput);
+        self.wsdlInput = operation.input;
+
+//        [self addProperty:@"input" propertyType:propertyType];
+
+
+//        [self addPropertiesForWsdlMessage:[codeReader wsdlMessageForName:operation.input.message]
+//                            isInput:YES 
+//                          operation:operation 
+//                                 io:operation.input 
+//           overrideInputOutputNames:NO];
     }
 
-    if(operation.output.message) {
-        [self addPropertiesForWsdlMessage:[codeReader wsdlMessageForName:operation.output.message] 
-                            isInput:NO 
-                          operation:operation 
-                                 io:operation.output
-           overrideInputOutputNames:NO];
+    if(FLStringIsNotEmpty(operation.output.message) || FLStringIsNotEmpty(operation.output.type)) {
+        FLConfirmNil(self.wsdlOutput);
+
+        self.wsdlOutput = operation.output;
+//        [self addProperty:@"output" propertyType:propertyType];
+
+
+//        [self addPropertiesForWsdlMessage:[codeReader wsdlMessageForName:operation.output.message] 
+//                            isInput:NO 
+//                          operation:operation 
+//                                 io:operation.output
+//           overrideInputOutputNames:NO];
     }
 }               
 
@@ -209,6 +243,70 @@
 //    FLWsdlCodeMethod* method = [FLWsdlCodeMethod wsdlCodeMethod:@"init"
 //    methodReturnType:@"id"];
     
+}
+
+- (NSString*) typeOrMessage:(FLWsdlInputOutput*) ioObject {
+    return FLStringIsNotEmpty(ioObject.message) ? ioObject.message : ioObject.type;
+}
+
+- (void) addIOProperty:(NSString*) name
+       wsdlInputOutput:(FLWsdlInputOutput*) wsdlObject
+            codeReader:(FLWsdlCodeProjectReader*) codeReader {
+
+    NSString* thePropertyType = [self typeOrMessage:wsdlObject];
+    FLAssertNotNil(thePropertyType);
+
+    FLWsdlMessage* message = [codeReader wsdlMessageForName:[self typeOrMessage:wsdlObject]];
+    if(message.parts.count == 1) {
+		FLWsdlPart* part = [message.parts objectAtIndex:0];
+
+        NSString* theName = FLStringIsNotEmpty(part.element) ? part.element : part.type;
+
+        if(FLStringIsNotEmpty(theName)) {
+            FLWsdlCodeObject* theType = [codeReader codeObjectForClassName:theName];
+            if(theType && theType.properties.count == 1) {
+                FLCodeProperty* property = [theType.properties objectAtIndex:0];
+                thePropertyType = [property type];
+            }
+        }
+
+
+//		BOOL isElement = FLStringIsNotEmpty(part.element);
+//		if(isElement && message.parts.count == 1) {
+//			// this means we'll be using a different object here, and we don't need a message object.
+//			// this is for an input/output object
+//			
+//			// note that this if for wsdl:part that has elements, not type.
+//			
+//			//			  <wsdl:message name="GetChallengeSoapIn">
+//			//			  <wsdl:part name="parameters" element="tns:GetChallenge"/>
+//			//			  </wsdl:message>
+//			
+//			propertyType = part.element;
+//		}
+
+
+    }
+
+//    FLWsdlCodeObject* theType = [codeReader codeObjectForClassName:];
+//
+//
+//    if(theType && theType.properties.count == 1) {
+//        FLCodeProperty* property = [theType.properties objectAtIndex:0];
+//        if([codeReader codeObjectForClassName:property.type]) {
+//            thePropertyType = [property type];
+//        }
+//    }
+
+    [self addProperty:name propertyType:thePropertyType];
+}
+
+- (void) postProcessObject:(FLWsdlCodeProjectReader*) codeReader {
+
+    [super postProcessObject:codeReader];
+
+    [self addIOProperty:@"input" wsdlInputOutput:self.wsdlInput codeReader:codeReader];
+    [self addIOProperty:@"output" wsdlInputOutput:self.wsdlOutput codeReader:codeReader];
 }
 
 

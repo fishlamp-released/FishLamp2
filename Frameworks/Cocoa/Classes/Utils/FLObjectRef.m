@@ -48,11 +48,16 @@
 }
 
 - (NSMethodSignature*)methodSignatureForSelector:(SEL)selector {
-    NSMethodSignature* signature = [super methodSignatureForSelector:selector];
-    if (!signature) {
-        signature = [self.object methodSignatureForSelector:selector];
-    }
-    return signature;
+
+    return [_object respondsToSelector:selector] ?
+                [_object methodSignatureForSelector:selector] :
+                _object;
+
+//    NSMethodSignature* signature =  [super methodSignatureForSelector:selector];
+//    if (!signature) {
+//        signature = [self.object methodSignatureForSelector:selector];
+//    }
+//    return signature;
 }
 
 //- (id) forwardingTargetForSelector:(SEL)aSelector {

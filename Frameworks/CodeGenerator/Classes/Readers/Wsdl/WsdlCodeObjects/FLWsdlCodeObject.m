@@ -128,7 +128,9 @@
                
 }
 
-- (void) replacePlaceholderArrays:(FLWsdlCodeProjectReader*) codeReader {
+- (void) postProcessObject:(FLWsdlCodeProjectReader*) codeReader {
+
+    // replace Arrays
 
     for(FLWsdlCodeProperty* property in self.properties) {
         FLWsdlCodeArray* array = [codeReader arrayForName:property.type];

@@ -11,9 +11,12 @@
 @class FLWsdlPortType;
 @class FLWsdlCodeProjectReader;
 @class FLWsdlBinding;
+@class FLWsdlInputOutput;
 
 @interface FLWsdlOperationCodeObject : FLWsdlCodeObject {
-
+@private
+    FLWsdlInputOutput* _wsdlOutput;
+    FLWsdlInputOutput* _wsdlInput;
 }
 
 + (id) wsdlOperationCodeObject:(NSString*) className;
