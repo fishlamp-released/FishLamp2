@@ -28,7 +28,8 @@
 - (FLCodeProperty*) propertyForName:(NSString*) name;
 - (FLCodeMethod*) methodForName:(NSString*) name;
 
-- (void) postProcessObject:(FLWsdlCodeProjectReader*) codeReader;
+- (void) replaceWsdlArrays:(FLWsdlCodeProjectReader*) codeReader;
+- (void) removeUnwantedObjects:(FLWsdlCodeProjectReader*) reader;
 
 @end
 

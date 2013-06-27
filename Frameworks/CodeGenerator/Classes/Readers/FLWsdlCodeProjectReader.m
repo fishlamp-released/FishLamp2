@@ -54,12 +54,17 @@
         _enums = [[NSMutableDictionary alloc] init];
         _arrays = [[NSMutableDictionary alloc] init];
         _declaredTypes = [[NSMutableDictionary alloc] init];
+        _ignoredMessages = [[NSMutableDictionary alloc] init];
+
+        _messageObjects = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
 
 #if FL_MRC
-- (void) dealloc {	
+- (void) dealloc {
+    [_ignoredMessages release];
+    [_messageObjects release];
     [_declaredTypes release];
 	[_arrays release];
     [_enums release];
@@ -71,6 +76,8 @@
 
 
 - (id) codeObjectForClassName:(NSString*) key {
+    FLAssertNotNil(key);
+
     return [_objects objectForKey:FLStringToKey(key)];
 }
 
@@ -211,19 +218,19 @@
 	return [self codeObjectForClassName:partType] != nil;
 }
 
-- (FLWsdlMessage*) wsdlMessageForName:(NSString*) name  {
-	name = FLStringToKey(name);
-
-	for(FLWsdlMessage* msg in self.wsdlDefinitions.messages) {
-		if([FLStringToKey(msg.name) isEqualToString:name]) {
-			return msg;
-		}
-	}
-	
-	FLConfirmationFailureWithComment(@"Didn't find expected message object %@ (object referenced but not defined)", name);
-	
-	return nil;
-}  
+//- (FLWsdlMessage*) wsdlMessageForName:(NSString*) name  {
+//	name = FLStringToKey(name);
+//
+//	for(FLWsdlMessage* msg in self.wsdlDefinitions.messages) {
+//		if([FLStringToKey(msg.name) isEqualToString:name]) {
+//			return msg;
+//		}
+//	}
+//	
+//	FLConfirmationFailureWithComment(@"Didn't find expected message object %@ (object referenced but not defined)", name);
+//	
+//	return nil;
+//}  
 
 - (NSString*) servicePortLocationFromBinding:(FLWsdlBinding*) binding {
 	FLConfirmStringIsNotEmpty(binding.name);
@@ -306,31 +313,48 @@
     [_objects setObject:object forKey:FLStringToKey(object.name)];
 }
 
-- (void) addMessageObjects:(NSArray*) messages {
-
-    for(FLWsdlMessage* message in messages) {
-        if(message.parts.count == 1) {	
-            FLWsdlPart* part = [message.parts objectAtIndex:0];
-            
-            if(FLStringIsNotEmpty(part.element)) {
-                // this means we'll be using a different object here, and we don't need a message object.
-                // this is for an input/output object
-
-                // note that this if for wsdl:part that has elements, not type.
-                
-    //			  <wsdl:message name="GetChallengeSoapIn">
-    //			  <wsdl:part name="parameters" element="tns:GetChallenge"/>
-    //			  </wsdl:message>
-
-                FLTrace(@"skipping part - name:%@, element: %@", part.name, part.element);
-                
-                continue;
-            }
-        }
-
-        [self addMessageObject:[FLWsdlMessageCodeObject wsdlMessageCodeObject:message]];
-	}
-}
+//- (void) addMessageObjects:(NSArray*) messages {
+//
+//    NSMutableArray* objectsToCreate = [NSMutableArray array];
+//
+//    for(FLWsdlMessage* message in messages) {
+//        if(message.parts.count == 1) {	
+//            FLWsdlPart* part = [message.parts objectAtIndex:0];
+//            if(FLStringIsNotEmpty(part.element)) {
+//
+//            }
+//        }
+//
+//    }
+//
+//    for(FLWsdlMessage* message in messages) {
+////        if(message.parts.count == 1) {	
+////            FLWsdlPart* part = [message.parts objectAtIndex:0];
+////            
+////            if(FLStringIsNotEmpty(part.element)) {
+////                // this means we'll be using a different object here, and we don't need a message object.
+////                // this is for an input/output object
+////
+////                // note that this if for wsdl:part that has elements, not type.
+////                
+////    //			  <wsdl:message name="GetChallengeSoapIn">
+////    //			  <wsdl:part name="parameters" element="tns:GetChallenge"/>
+////    //			  </wsdl:message>
+////
+////                FLTrace(@"skipping part - name:%@, element: %@", part.name, part.element);
+////                
+////                continue;
+////            }
+////        }
+//
+//        if([_ignoredMessages objectForKey:message.name] == 0) {
+//            [self addMessageObject:[FLWsdlMessageCodeObject wsdlMessageCodeObject:message]];
+//        }
+//        else {
+//            FLLog(@"ignored message %@", message.name);
+//        }
+//	}
+//}
 
 - (void) addBindingObject:(FLWsdlBindingCodeObject*) bindingObject {
     [_objects setObject:bindingObject forKey:FLStringToKey(bindingObject.name)];
@@ -354,6 +378,47 @@
     [self addCodeObject:[FLWsdlServiceCodeObject wsdlServiceCodeObject:service codeReader:self]];
 }
 
+- (void) addIgnoredMessage:(FLWsdlMessage*) message {
+    [_ignoredMessages setObject:message forKey:message.name];
+}
+
+- (void) prepareMessageObjects {
+    for(FLWsdlMessage* message in self.wsdlDefinitions.messages) {
+        NSString* name = [FLXmlParser removePrefix:message.name];
+
+        if(message.parts.count == 1) {	
+            FLWsdlPart* part = [message.parts objectAtIndex:0];
+            if(FLStringIsNotEmpty(part.element)) {
+                NSString* replacement = [FLXmlParser removePrefix:part.element];
+                [_messageObjects setObject:replacement forKey:name];
+                FLLog(@"replaced %@ with %@", name, replacement);
+                continue;
+            }
+        }
+
+        [_messageObjects setObject:name forKey:name];
+        
+        [self addMessageObject:[FLWsdlMessageCodeObject wsdlMessageCodeObject:message]];
+    }
+}
+
+- (NSString*) typeNameForMessageName:(NSString*) messageName {
+
+    messageName = [FLXmlParser removePrefix:messageName];
+
+    NSString* mappedName = [_messageObjects objectForKey:messageName];
+    FLConfirmStringIsNotEmptyWithComment(mappedName, @"message object for %@ not found", messageName);
+
+// this might be a primitive type, like string.
+
+    id object = [self codeObjectForClassName:mappedName];
+    if(object) {
+        return [object name];
+    }
+
+    return mappedName;
+}
+
 - (FLCodeProject *) parseProjectFromData:(NSData*) data {
         
     FLParsedXmlElement* parsedSoap = nil;
@@ -369,21 +434,23 @@
     }
 
     self.wsdlDefinitions = [FLWsdlDefinitions objectWithXmlElement:parsedSoap withObjectBuilder:[FLSoapObjectBuilder instance]];
-		
+
+    [self prepareMessageObjects];
+
 	for(FLWsdlSchema* schema in self.wsdlDefinitions.types) {
         [self addEnumerationsInSimpleTypes:schema.simpleTypes];
         [self addObjectsInComplexTypes:schema.complexTypes];
         [self addObjectsFromElements:schema.elements];
 	}
     
-    [self addMessageObjects:self.wsdlDefinitions.messages];
     [self addBindingObjects:self.wsdlDefinitions.bindings];
     [self addPortObjects:self.wsdlDefinitions.portTypes];
 
     [self addServiceObject:self.wsdlDefinitions.service];
 
+    
     for(FLWsdlCodeObject* object in [_objects objectEnumerator]) {
-        [object postProcessObject:self];
+        [object replaceWsdlArrays:self];
     }
 
     FLCodeProject* project = [FLCodeProject codeProject];

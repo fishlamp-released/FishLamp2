@@ -49,4 +49,6 @@ typedef enum {
             withXMLParser:(NSXMLParser*) parser;
 
 + (BOOL) canParseData:(NSData*) data;
+
++ (NSString*) removePrefix:(NSString*) string;
 @end

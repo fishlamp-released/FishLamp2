@@ -128,7 +128,7 @@
                
 }
 
-- (void) postProcessObject:(FLWsdlCodeProjectReader*) codeReader {
+- (void) replaceWsdlArrays:(FLWsdlCodeProjectReader*) codeReader {
 
     // replace Arrays
 
@@ -153,7 +153,8 @@
 
 }
 
-
+- (void) removeUnwantedObjects:(FLWsdlCodeProjectReader*) reader {
+}
 
 
 @end

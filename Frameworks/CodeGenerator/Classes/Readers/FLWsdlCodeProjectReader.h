@@ -26,13 +26,15 @@
     NSMutableDictionary* _enums;
     NSMutableDictionary* _arrays;
     NSMutableDictionary* _declaredTypes;
+    NSMutableDictionary* _ignoredMessages;
+
+    NSMutableDictionary* _messageObjects;
 }
 
 @property (readonly, strong, nonatomic) FLWsdlDefinitions* wsdlDefinitions;
 
 + (FLWsdlCodeProjectReader*) wsdlCodeReader;
 
-- (FLWsdlMessage*) wsdlMessageForName:(NSString*) name;
 - (BOOL) isEnum:(FLWsdlElement*) element;
 
 - (void) addArray:(FLWsdlCodeArray*) array;
@@ -47,6 +49,7 @@
 - (BOOL) partTypeIsObject:(FLWsdlPart*) part;
 - (NSString*) servicePortLocationFromBinding:(FLWsdlBinding*) binding;
 
+- (NSString*) typeNameForMessageName:(NSString*) messageName;
 
 @end
 
