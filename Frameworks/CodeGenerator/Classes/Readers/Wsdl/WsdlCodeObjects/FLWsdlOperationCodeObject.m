@@ -24,15 +24,15 @@
 #import "FishLampCodeGeneratorObjects.h"
 
 @interface FLWsdlOperationCodeObject ()
-@property (readwrite, strong, nonatomic) FLWsdlInputOutput* wsdlOutput;
-@property (readwrite, strong, nonatomic) FLWsdlInputOutput* wsdlInput;
+@property (readwrite, strong, nonatomic) NSString* wsdlOutputMessageName;
+@property (readwrite, strong, nonatomic) NSString* wsdlInputMessageName;
 
 @end
 
 @implementation FLWsdlOperationCodeObject
 
-@synthesize wsdlInput = _wsdlInput;
-@synthesize wsdlOutput = _wsdlOutput;
+@synthesize wsdlInputMessageName = _wsdlInputMessageName;
+@synthesize wsdlOutputMessageName = _wsdlOutputMessageName;
 
 - (id) init {	
 	self = [super init];
@@ -43,8 +43,8 @@
 
 #if FL_MRC
 - (void)dealloc {
-	[_wsdlInput release];
-    [_wsdlOutput release];
+	[_wsdlInputMessageName release];
+    [_wsdlOutputMessageName release];
     [super dealloc];
 }
 #endif
@@ -143,9 +143,9 @@
 //    NSString* propertyType = FLStringIsNotEmpty(property.message) ? propertyMessage :
 //                                                                    property.type;
 
-    if(FLStringIsNotEmpty(operation.input.message) || FLStringIsNotEmpty(operation.input.type)) {
-        FLConfirmNil(self.wsdlInput);
-        self.wsdlInput = operation.input;
+    if(FLStringIsNotEmpty(operation.input.message)) {
+        FLConfirmNil(self.wsdlInputMessageName);
+        self.wsdlInputMessageName = operation.input.message;
 
 //        [self addProperty:@"input" propertyType:propertyType];
 
@@ -157,10 +157,9 @@
 //           overrideInputOutputNames:NO];
     }
 
-    if(FLStringIsNotEmpty(operation.output.message) || FLStringIsNotEmpty(operation.output.type)) {
-        FLConfirmNil(self.wsdlOutput);
-
-        self.wsdlOutput = operation.output;
+    if(FLStringIsNotEmpty(operation.output.message)) {
+        FLConfirmNil(self.wsdlOutputMessageName);
+        self.wsdlOutputMessageName = operation.output.message;
 //        [self addProperty:@"output" propertyType:propertyType];
 
 
@@ -250,25 +249,26 @@
 }
 
 - (void) addIOProperty:(NSString*) name
-       wsdlInputOutput:(FLWsdlInputOutput*) wsdlObject
+           wsdlMessage:(FLWsdlMessage*) wsdlMessage
             codeReader:(FLWsdlCodeProjectReader*) codeReader {
-
-    NSString* thePropertyType = [self typeOrMessage:wsdlObject];
-    FLAssertNotNil(thePropertyType);
-
-    FLWsdlMessage* message = [codeReader wsdlMessageForName:[self typeOrMessage:wsdlObject]];
-    if(message.parts.count == 1) {
-		FLWsdlPart* part = [message.parts objectAtIndex:0];
-
-        NSString* theName = FLStringIsNotEmpty(part.element) ? part.element : part.type;
-
-        if(FLStringIsNotEmpty(theName)) {
-            FLWsdlCodeObject* theType = [codeReader codeObjectForClassName:theName];
-            if(theType && theType.properties.count == 1) {
-                FLCodeProperty* property = [theType.properties objectAtIndex:0];
-                thePropertyType = [property type];
-            }
+    
+    NSString* propType = wsdlMessage.name;
+    
+    if(wsdlMessage.parts.count == 1) {
+        FLWsdlPart* part = [wsdlMessage.parts objectAtIndex:0];
+        if(FLStringIsNotEmpty(part.element)) {
+            propType = part.element;
         }
+
+//        NSString* theName = FLStringIsNotEmpty(part.element) ? part.element : part.type;
+//
+//        if(FLStringIsNotEmpty(theName)) {
+//            FLWsdlCodeObject* theType = [codeReader codeObjectForClassName:theName];
+//            if(theType && theType.properties.count == 1) {
+//                FLCodeProperty* property = [theType.properties objectAtIndex:0];
+//                propType = [property type];
+//            }
+//        }
 
 
 //		BOOL isElement = FLStringIsNotEmpty(part.element);
@@ -288,25 +288,20 @@
 
     }
 
-//    FLWsdlCodeObject* theType = [codeReader codeObjectForClassName:];
-//
-//
-//    if(theType && theType.properties.count == 1) {
-//        FLCodeProperty* property = [theType.properties objectAtIndex:0];
-//        if([codeReader codeObjectForClassName:property.type]) {
-//            thePropertyType = [property type];
-//        }
-//    }
-
-    [self addProperty:name propertyType:thePropertyType];
+    [self addProperty:name propertyType:propType];
 }
 
 - (void) postProcessObject:(FLWsdlCodeProjectReader*) codeReader {
 
     [super postProcessObject:codeReader];
 
-    [self addIOProperty:@"input" wsdlInputOutput:self.wsdlInput codeReader:codeReader];
-    [self addIOProperty:@"output" wsdlInputOutput:self.wsdlOutput codeReader:codeReader];
+    [self addIOProperty:@"input" 
+        wsdlMessage:[codeReader wsdlMessageForName:self.wsdlInputMessageName] 
+             codeReader:codeReader];
+    
+    [self addIOProperty:@"output" 
+            wsdlMessage:[codeReader wsdlMessageForName:self.wsdlOutputMessageName] 
+             codeReader:codeReader];
 }
 
 

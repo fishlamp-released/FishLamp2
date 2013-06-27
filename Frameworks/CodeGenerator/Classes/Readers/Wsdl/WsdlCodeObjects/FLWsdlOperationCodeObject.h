@@ -15,8 +15,8 @@
 
 @interface FLWsdlOperationCodeObject : FLWsdlCodeObject {
 @private
-    FLWsdlInputOutput* _wsdlOutput;
-    FLWsdlInputOutput* _wsdlInput;
+    NSString* _wsdlOutputMessageName;
+    NSString* _wsdlInputMessageName;
 }
 
 + (id) wsdlOperationCodeObject:(NSString*) className;
