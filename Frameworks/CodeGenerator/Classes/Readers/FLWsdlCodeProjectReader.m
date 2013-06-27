@@ -409,13 +409,6 @@
     NSString* mappedName = [_messageObjects objectForKey:messageName];
     FLConfirmStringIsNotEmptyWithComment(mappedName, @"message object for %@ not found", messageName);
 
-// this might be a primitive type, like string.
-
-    id object = [self codeObjectForClassName:mappedName];
-    if(object) {
-        return [object name];
-    }
-
     return mappedName;
 }
 

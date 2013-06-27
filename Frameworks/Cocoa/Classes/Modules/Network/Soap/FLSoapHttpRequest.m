@@ -164,7 +164,8 @@
     FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:data];
 
     if(self.output) {
-        return [[self.output class] objectWithXmlElement:parsedSoap withObjectBuilder:[FLSoapObjectBuilder instance]];
+        return [[self.output class] objectWithXmlElement:[parsedSoap childElementForName:@"Body"] 
+                                       withObjectBuilder:[FLSoapObjectBuilder instance]];
     }
 
     return parsedSoap;

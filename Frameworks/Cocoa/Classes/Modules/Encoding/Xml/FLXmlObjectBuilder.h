@@ -28,7 +28,7 @@
 + (id) xmlObjectBuilder;
              
 - (FLParsedXmlElement*) findElementForBuilding:(NSString*) objectName 
-                         inParentElement:(FLParsedXmlElement*) parentElement;
+                               inParentElement:(FLParsedXmlElement*) parentElement;
 
 @end
 

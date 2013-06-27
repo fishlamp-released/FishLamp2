@@ -20,6 +20,7 @@
 #import "FLHttpRequest.h"
 #import "FLWsdlMessageCodeObject.h"
 #import "FLCodeProperty.h"
+#import "FLXmlParser.h"
 
 #import "FishLampCodeGeneratorObjects.h"
 
@@ -132,29 +133,37 @@
     return FLAutorelease([[[self class] alloc] initWithClassName:className]);
 }     
 
-
-- (NSString*) typeForIOProperty:(FLWsdlInputOutput*) ioObject
-                     codeReader:(FLWsdlCodeProjectReader*) codeReader {
-
-    if(FLStringIsNotEmpty(ioObject.message)) {
-        return [codeReader typeNameForMessageName:ioObject.message];
-    }
-
-    if(FLStringIsNotEmpty(ioObject.type)) {
-        return ioObject.type;
-    }
-    return nil;
-}
-
 - (void) addIOProperty:(NSString*) name
               ioObject:(FLWsdlInputOutput*) ioObject
             codeReader:(FLWsdlCodeProjectReader*) codeReader {
+    
+    NSString* propType = nil;
+    NSString* propName = nil;
+    
+    if(FLStringIsNotEmpty(ioObject.message)) {
+        propType = [codeReader typeNameForMessageName:ioObject.message];
+        
+        id object = [codeReader codeObjectForClassName:propType];
+        if(object) {
+            [self addProperty:propType propertyType:propType];
+            FLLog(@"-(%@) %@:%@", propType, self.name, propType);
+            
+            FLWsdlCodeProperty* property = [self addProperty:name propertyType:propType];
+            property.isReadOnly = YES;
+       //     property.defaultValue = [FLCode]
+        }
+        else {
+            [self addProperty:name propertyType:propType];
+            FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.message], self.name, name);
+        }
 
-    NSString* type = [self typeForIOProperty:ioObject codeReader:codeReader];
-    if(FLStringIsNotEmpty(type)) {
-        [self addProperty:name propertyType:type];
-
-        FLLog(@"added property -(%@) %@", type, name);
+    } 
+    else if(FLStringIsNotEmpty(ioObject.type)) {
+        
+        [self addProperty:name propertyType:[FLXmlParser removePrefix:ioObject.type]];
+            
+        
+        FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.type], self.name, name);
     }
 }
 
