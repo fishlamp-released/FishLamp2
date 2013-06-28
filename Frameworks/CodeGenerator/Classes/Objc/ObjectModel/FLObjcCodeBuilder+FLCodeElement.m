@@ -46,28 +46,28 @@
 
 @implementation FLCodeString (FLObjcCodeWriter)
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-    return [NSString stringWithFormat:@"@\"%@\"", [self.rep stringForObjcProject:project]];
+    return [NSString stringWithFormat:@"@\"%@\"", [self.string stringForObjcProject:project]];
 
 }
 @end
 
 @implementation FLCodeCreateObject (FLObjcCodeWriter)
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-    FLObjcType* theType = [project.typeRegistry typeForKey:[self.rep stringForObjcProject:project]];
+    FLObjcType* theType = [project.typeRegistry typeForKey:[self.objectType stringForObjcProject:project]];
     return [NSString stringWithFormat:@"FLAutorelease([[%@ alloc] init])", theType.generatedName];
 }
 @end
 
 @implementation FLCodeReturn (FLObjcCodeWriter)
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-    return [NSString stringWithFormat:@"return %@", [self.rep stringForObjcProject:project]];
+    return [NSString stringWithFormat:@"return %@", [self.returns stringForObjcProject:project]];
 }
 @end
 
 @implementation FLCodeClassName (FLObjcCodeWriter)
 
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-    FLObjcClassName* className = [FLObjcClassName objcClassName:[self.rep stringForObjcProject:project] prefix:project.classPrefix];
+    FLObjcClassName* className = [FLObjcClassName objcClassName:[self.className stringForObjcProject:project] prefix:project.classPrefix];
     return [className generatedName];
 }
 
@@ -75,6 +75,34 @@
 
 @implementation FLCodeStatement (FLObjcCodeWriter)
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-   return [NSString stringWithFormat:@"%@;", [self.rep stringForObjcProject:project]];
+   return [NSString stringWithFormat:@"%@;", [self.statement stringForObjcProject:project]];
+}
+@end
+
+@implementation FLCodeGetPropertyValue (FLObjcCodeWriter) 
+- (NSString*) stringForObjcProject:(FLObjcProject*) project {
+   return [NSString stringWithFormat:@"[%@ %@]", 
+                [self.object stringForObjcProject:project], 
+                [self.property stringForObjcProject:project]];
+}
+@end
+
+@implementation FLCodePropertyName (FLObjcCodeWriter) 
+- (NSString*) stringForObjcProject:(FLObjcProject*) project {
+    
+    FLObjcPropertyName* propertyName = [FLObjcPropertyName objcPropertyName:[self.propertyName stringForObjcProject:project]];
+    return [propertyName generatedName];
+}
+@end
+
+@implementation FLCodeObjectReference (FLObjcCodeWriter)
+- (NSString*) stringForObjcProject:(FLObjcProject*) project {
+   return [self.object stringForObjcProject:project];
+}
+@end
+
+@implementation FLCodeObjectSelfReference  (FLObjcCodeWriter)
+- (NSString*) stringForObjcProject:(FLObjcProject*) project {
+   return @"self";
 }
 @end

@@ -133,9 +133,11 @@
     return FLAutorelease([[[self class] alloc] initWithClassName:className]);
 }     
 
-- (void) addIOProperty:(NSString*) name
-              ioObject:(FLWsdlInputOutput*) ioObject
-            codeReader:(FLWsdlCodeProjectReader*) codeReader {
+#define kOutputName @"output"
+#define kInputName @"input"
+
+- (void) addOutputProperty:(FLWsdlInputOutput*) ioObject
+               codeReader:(FLWsdlCodeProjectReader*) codeReader {
     
     NSString* propType = nil;
     NSString* propName = nil;
@@ -143,29 +145,54 @@
     if(FLStringIsNotEmpty(ioObject.message)) {
         propType = [codeReader typeNameForMessageName:ioObject.message];
         
-        id object = [codeReader codeObjectForClassName:propType];
+        FLWsdlCodeObject* object = [codeReader codeObjectForClassName:propType];
         if(object) {
+            FLAssert(FLStringsAreEqual(object.name, propType));
+        
             [self addProperty:propType propertyType:propType];
+            
             FLLog(@"-(%@) %@:%@", propType, self.name, propType);
             
-            FLWsdlCodeProperty* property = [self addProperty:name propertyType:propType];
+            FLWsdlCodeProperty* property = [self addProperty:kOutputName propertyType:propType];
             property.isReadOnly = YES;
-       //     property.defaultValue = [FLCode]
+            property.isImmutable = YES;
+            property.defaultValue = 
+                [FLCodeGetPropertyValue codeGetPropertyValue:[FLCodeObjectSelfReference codeObjectSelfReference]
+                                                    property:[FLCodePropertyName codePropertyName:propType]];
         }
         else {
-            [self addProperty:name propertyType:propType];
-            FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.message], self.name, name);
+            [self addProperty:kOutputName propertyType:propType];
+            FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.message], self.name, kOutputName);
         }
 
     } 
     else if(FLStringIsNotEmpty(ioObject.type)) {
         
-        [self addProperty:name propertyType:[FLXmlParser removePrefix:ioObject.type]];
+        [self addProperty:kOutputName propertyType:[FLXmlParser removePrefix:ioObject.type]];
             
         
-        FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.type], self.name, name);
+        FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.type], self.name, kOutputName);
     }
 }
+
+- (void) addInputProperty:(FLWsdlInputOutput*) ioObject
+               codeReader:(FLWsdlCodeProjectReader*) codeReader {
+    
+    NSString* propType = nil;
+    NSString* propName = nil;
+    
+    if(FLStringIsNotEmpty(ioObject.message)) {
+        propType = [codeReader typeNameForMessageName:ioObject.message];
+        
+        [self addProperty:kInputName propertyType:propType];
+        FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.message], self.name, kInputName);
+    } 
+    else if(FLStringIsNotEmpty(ioObject.type)) {
+        [self addProperty:kInputName propertyType:[FLXmlParser removePrefix:ioObject.type]];
+        FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.type], self.name, kInputName);
+    }
+}
+
 
 
 - (void) addPropertiesWithOperation:(FLWsdlOperation*) operation
@@ -176,8 +203,8 @@
     }
     
   	[self addOperationNameProperty:operation];
-    [self addIOProperty:@"input" ioObject:operation.input codeReader:codeReader];
-    [self addIOProperty:@"output" ioObject:operation.output codeReader:codeReader];
+    [self addInputProperty:operation.input codeReader:codeReader];
+    [self addOutputProperty:operation.output codeReader:codeReader];
 }
 
 - (void) addPropertiesWithPortType:(FLWsdlPortType*) portType

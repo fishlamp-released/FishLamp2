@@ -15,9 +15,12 @@
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
-    if([[self object] respondsToSelector:[anInvocation selector]]) {
+    
+    id object = self.object;
+    
+    if([object respondsToSelector:[anInvocation selector]]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [anInvocation invokeWithTarget:self.object];
+            [anInvocation invokeWithTarget:object];
         });
     }
     else {
