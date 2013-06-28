@@ -88,6 +88,7 @@
         FLWsdlCodeProperty* property = [self addProperty:@"operationName" propertyType:@"string"];
         property.isReadOnly = YES;
         property.isImmutable = YES;
+        property.isPrivate = YES;
 
         property.defaultValue = [FLCodeString codeString:operation.name];
 
@@ -149,28 +150,34 @@
         if(object) {
             FLAssert(FLStringsAreEqual(object.name, propType));
         
-            [self addProperty:propType propertyType:propType];
-            
-            FLLog(@"-(%@) %@:%@", propType, self.name, propType);
-            
-            FLWsdlCodeProperty* property = [self addProperty:kOutputName propertyType:propType];
-            property.isReadOnly = YES;
+            FLWsdlCodeProperty* property = [self addProperty:@"xmlElementNameForResponse" propertyType:@"string"];
             property.isImmutable = YES;
-            property.defaultValue = 
-                [FLCodeGetPropertyValue codeGetPropertyValue:[FLCodeObjectSelfReference codeObjectSelfReference]
-                                                    property:[FLCodePropertyName codePropertyName:propType]];
-        }
-        else {
-            [self addProperty:kOutputName propertyType:propType];
-            FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.message], self.name, kOutputName);
-        }
+            property.isReadOnly = YES;
+            property.isPrivate = YES;
+            property.defaultValue = [FLCodeString codeString:propType];
+            FLLog(@"-(%@) %@:%@", @"string", self.name, @"xmlElementNameForResponse");
 
+        
+        
+//            [self addProperty:propType propertyType:propType];
+//            
+//            FLLog(@"-(%@) %@:%@", propType, self.name, propType);
+//            
+//            FLWsdlCodeProperty* property = [self addProperty:kOutputName propertyType:propType];
+//            property.isReadOnly = YES;
+//            property.isImmutable = YES;
+//            property.defaultValue = 
+//                [FLCodeGetPropertyValue codeGetPropertyValue:[FLCodeObjectSelfReference codeObjectSelfReference]
+//                                                    property:[FLCodePropertyName codePropertyName:propType]];
+        }
+        
+        FLWsdlCodeProperty* property = [self addProperty:kOutputName propertyType:propType];
+        FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.message], self.name, kOutputName);
     } 
     else if(FLStringIsNotEmpty(ioObject.type)) {
         
-        [self addProperty:kOutputName propertyType:[FLXmlParser removePrefix:ioObject.type]];
+        FLWsdlCodeProperty* property = [self addProperty:kOutputName propertyType:[FLXmlParser removePrefix:ioObject.type]];
             
-        
         FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.type], self.name, kOutputName);
     }
 }
@@ -227,6 +234,7 @@
         FLWsdlCodeProperty* prop = [self addProperty:@"url" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
+        prop.isPrivate = YES;
         prop.defaultValue = [FLCodeString codeString:url];
     }
 
@@ -237,6 +245,7 @@
         FLWsdlCodeProperty* prop = [self addProperty:@"targetNamespace" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
+        prop.isPrivate = YES;
         prop.defaultValue = [FLCodeString codeString:targetNamespace];
     }
 
@@ -244,6 +253,7 @@
         FLWsdlCodeProperty* prop = [self addProperty:@"verb" propertyType:@"string"];
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
+        prop.isPrivate = YES;
 
         prop.defaultValue = [FLCodeString codeString:binding.binding.verb];
 
@@ -254,6 +264,7 @@
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
         prop.defaultValue = [FLCodeString codeString:binding.binding.transport];
+        prop.isPrivate = YES;
     }
     
     FLWsdlOperation* subOperation = operation.operation;
@@ -262,7 +273,7 @@
             FLWsdlCodeProperty* prop = [self addProperty:@"soapAction" propertyType:@"string"];
             prop.isImmutable = YES;
             prop.isReadOnly = YES;
-
+            prop.isPrivate = YES;
             prop.defaultValue = [FLCodeString codeString:subOperation.soapAction];
         }
         
@@ -271,6 +282,7 @@
             prop.isImmutable = YES;
             prop.isReadOnly = YES;
             prop.defaultValue = [FLCodeString codeString:subOperation.location];
+            prop.isPrivate = YES;
         }
     }
 

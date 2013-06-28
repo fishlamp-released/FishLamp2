@@ -164,11 +164,20 @@
     FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:data];
 
     if(self.output) {
-        return [[self.output class] objectWithXmlElement:[parsedSoap childElementForName:@"Body"] 
+        return [[self.output class] objectWithXmlElement:
+                        [self findResponseElementInSoapResponse:parsedSoap]
                                        withObjectBuilder:[FLSoapObjectBuilder instance]];
     }
 
     return parsedSoap;
+}
+
+- (NSString*) xmlElementNameForResponse {
+    return @"Body";
+}
+
+- (FLParsedXmlElement*) findResponseElementInSoapResponse:(FLParsedXmlElement*) soapResponse {
+    return [soapResponse findChildElementWithName:[self xmlElementNameForResponse] maxDepth:3]; 
 }
 
 @end
