@@ -1,18 +1,18 @@
 //
-//  FLRetainedRef.m
+//  FLRetainedObject.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 6/24/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLRetainedRef.h"
+#import "FLRetainedObject.h"
 
-@interface FLRetainedRef ()
+@interface FLRetainedObject ()
 @property (readwrite, strong, nonatomic) id object;
 @end
 
-@implementation FLRetainedRef
+@implementation FLRetainedObject
 
 @synthesize object = _retainedObject;
 
@@ -31,7 +31,7 @@
 }
 #endif
 
-+ (id) retained:(id) object {
++ (id) retainedObject:(id) object {
     return FLAutorelease([[[self class] alloc] initWithObject:object]);
 }
 

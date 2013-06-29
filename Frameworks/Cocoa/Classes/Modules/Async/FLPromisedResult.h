@@ -8,20 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol FLPromisedResult <NSObject>
-- (NSError*) error;
-- (id) value;
+#define FLPromisedResult id
+
+@interface NSObject (FLPromisedResult)
+- (BOOL) isError;
++ (id) fromPromisedResult:(FLPromisedResult) promisedResult;
 @end
 
-@interface FLPromisedResult : NSObject<FLPromisedResult> {
-@private
-    id _value;
-    NSError* _error;
-}
-@property (readonly, strong, nonatomic) NSError* error;
-@property (readonly, strong, nonatomic) id value;
 
-- (id) initWithValue:(id) value error:(NSError*) error;
-+ (id) promisedResult:(id) value error:(NSError*) error;
 
-@end
+

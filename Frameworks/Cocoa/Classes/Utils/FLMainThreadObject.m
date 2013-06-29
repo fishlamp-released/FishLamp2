@@ -1,16 +1,16 @@
 //
-//  FLMainThreadRef.m
+//  FLMainThreadObject.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 6/24/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLMainThreadRef.h"
+#import "FLMainThreadObject.h"
 
-@implementation FLMainThreadRef
+@implementation FLMainThreadObject
 
-+ (id) mainThreadRef:(id) object {
++ (id) mainThreadObject:(id) object {
     return FLAutorelease([[[self class] alloc] initWithObject:object]);
 }
 

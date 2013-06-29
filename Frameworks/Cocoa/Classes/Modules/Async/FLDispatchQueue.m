@@ -196,7 +196,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
     FLThrowIfError(error);
 }
 
-- (FLPromisedResult*) runFinisherBlockSynchronously:(fl_finisher_block_t) block {
+- (FLPromisedResult) runFinisherBlockSynchronously:(fl_finisher_block_t) block {
     
     FLFinisher* finisher = [FLFinisher finisher];
     FLPromise* promise = [finisher addPromise];
@@ -212,7 +212,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
         }
     });
     
-    return [FLPromisedResult promisedResult:promise.result error:promise.error];
+    return promise.result;
 }
 
 - (FLPromise*) addBlock:(fl_block_t) block {
@@ -295,9 +295,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return [self addOperation:operation withCompletion:nil];
 }
 
-- (FLPromisedResult*) runOperationSynchronously:(id<FLDispatchable>) operation {
+- (FLPromisedResult) runOperationSynchronously:(id<FLDispatchable>) operation {
     
-    __block FLPromisedResult* result = nil;
+    __block FLPromisedResult result = nil;
         
     dispatch_sync(self.dispatch_queue_t, ^{
         result = [operation asyncQueueRunSynchronously:self];

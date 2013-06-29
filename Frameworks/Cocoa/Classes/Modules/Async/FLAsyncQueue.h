@@ -8,10 +8,9 @@
 //
 
 #import "FLAsyncBlockTypes.h"
+#import "FLPromisedResult.h"
 
 @class FLPromise;
-@class FLPromisedResult;
-
 @protocol FLDispatchable;
 
 @protocol FLAsyncQueue <NSObject>
@@ -44,9 +43,9 @@
 
 - (void) runBlockSynchronously:(fl_block_t) block;
 
-- (FLPromisedResult*) runFinisherBlockSynchronously:(fl_finisher_block_t) block;
+- (FLPromisedResult) runFinisherBlockSynchronously:(fl_finisher_block_t) block;
 
-- (FLPromisedResult*) runOperationSynchronously:(id<FLDispatchable>) operation;
+- (FLPromisedResult) runOperationSynchronously:(id<FLDispatchable>) operation;
 
 @end                    
 

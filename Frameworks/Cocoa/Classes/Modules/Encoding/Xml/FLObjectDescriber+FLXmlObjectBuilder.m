@@ -47,19 +47,23 @@
     for(FLParsedXmlElement* element in [parentElement.childElements objectEnumerator]) {
         
         FLPropertyDescriber* propertyDescriber = [self propertyForName:element.elementName];
+
+        NSString* propertyName = propertyDescriber.propertyName;
+
         if(propertyDescriber) {
-                
+
+
             id object = [propertyDescriber xmlObjectBuilder:builder  
                                      inflateElementContents:element];
             
             if(object) {
-                if([outObject valueForKey:element.elementName]) {
+                if([outObject valueForKey:propertyName]) {
                     FLTrace(@"replacing non-nil value for [%@ %@]", NSStringFromClass([object class]),  element.fullPath);
                 } 
             
 //                FLAssertNil([outObject valueForKey:element.elementName]);
             
-                [outObject setValue:object forKey:element.elementName];
+                [outObject setValue:object forKey:propertyName];
             }
             else {
 

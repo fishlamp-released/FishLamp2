@@ -122,7 +122,7 @@
         
            completion = FLCopyWithAutorelease(completion);
         
-            [[FLFadeOutAnimation fadeOutAnimation] startAnimating:toHide completion:^(id result, NSError* error) {
+            [[FLFadeOutAnimation fadeOutAnimation] startAnimating:toHide completion:^(FLPromisedResult result) {
                 [toHide removeFromSuperview];
 
                 if(completion) {

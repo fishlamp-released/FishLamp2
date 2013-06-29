@@ -10,12 +10,12 @@
 #import "FishLampCore.h"
 #import "FLObjectRef.h"
 
-@interface FLNonretainedRef : FLObjectRef
+@interface FLNonretainedObject : FLObjectRef
 
 @property (readonly, assign, nonatomic) id object;
 
-+ (FLNonretainedRef*) nonretained:(id) object;
++ (FLNonretainedObject*) nonretainedObject:(id) object;
 
 @end
 
-#define FLNonretainedRef(obj) [FLNonretainedRef nonretained:obj]
+#define FLNonretainedObject(obj) [FLNonretainedObject nonretained:obj]

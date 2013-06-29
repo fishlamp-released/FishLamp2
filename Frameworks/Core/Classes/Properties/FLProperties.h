@@ -22,7 +22,7 @@
     - (__TYPE__) __NAME__ { \
             if ( __IVAR__ == nil ) { \
                 id var = __VA_ARGS__; \
-                if ( OSAtomicCompareAndSwapPtrBarrier(nil, var, bridge_(void*, &__IVAR__)) == false ) { \
+                if ( OSAtomicCompareAndSwapPtrBarrier(nil, var, FLBridge(void*, &__IVAR__)) == false ) { \
                     FLRelease(var); /* already set by another thread, so release this one */ \
                 } \
             } \

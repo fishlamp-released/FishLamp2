@@ -33,7 +33,7 @@
 - (BOOL) runTestWithFinisher:(FLSelectorInfo*) info {
     __block BOOL wasRun = NO;
     
-    FLFinisher* notifier = [FLFinisher finisherWithBlock:^(id result, NSError* error){
+    FLFinisher* notifier = [FLFinisher finisherWithBlock:^(FLPromisedResult result){
         wasRun = YES;
     }];
     

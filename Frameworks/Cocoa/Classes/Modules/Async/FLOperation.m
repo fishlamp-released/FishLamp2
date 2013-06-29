@@ -116,11 +116,11 @@
     }
 }
 
-- (FLPromisedResult*) runSynchronously {
+- (FLPromisedResult) runSynchronously {
     return [[self.asyncQueue addOperation:self] waitUntilFinished];
 }
 
-- (FLPromisedResult*) runSynchronouslyInContext:(FLOperationContext*) context {
+- (FLPromisedResult) runSynchronouslyInContext:(FLOperationContext*) context {
     self.context = context;
     return [self runSynchronously];
 }
@@ -141,7 +141,7 @@
 
 - (void) willRunChildOperation:(FLOperation*) operation {
 
-    [operation.observers addObserverRetained:self.observers];
+    [operation.observers addObserver:[FLRetainedObject retainedObject:self.observers]];
 
     if([operation context] == nil) {
         [operation setContext:self.context];
@@ -159,16 +159,16 @@
     [operation.observers removeObserver:self.observers];
 }
 
-- (FLPromisedResult*) runChildSynchronously:(FLOperation*) operation {
+- (FLPromisedResult) runChildSynchronously:(FLOperation*) operation {
 
     [self willRunChildOperation:operation];
     
-    FLPromisedResult* result = nil;
+    FLPromisedResult result = nil;
     @try {
         result = [operation runSynchronously];
     }
     @catch(NSException* ex) {
-        result = [FLPromisedResult promisedResult:nil error:ex.error];
+        result = ex.error;
     }
 
     FLAssertNotNilWithComment(result, @"result should not be nil");
@@ -187,11 +187,11 @@
         completionOrNil = FLCopyWithAutorelease(completionOrNil);
     }
     
-    return [operation runAsynchronously:^(id result, NSError* error) {
+    return [operation runAsynchronously:^(FLPromisedResult result) {
         [self didRunChildOperation:operation];
         
         if(completionOrNil) {
-            completionOrNil(result, error);
+            completionOrNil(result);
         }
     }];
 }
@@ -207,16 +207,14 @@
 }
 
 - (void) finisherDidFinish:(FLFinisher*) finisher
-                withResult:(id) result
-                 withError:(NSError*) error {
+                withResult:(FLPromisedResult) result {
             
-    [self didFinishWithResult:result error:error];
+    [self didFinishWithResult:result];
 }
 
-- (void) didFinishWithResult:(id) result
-                       error:(NSError*) error {
+- (void) didFinishWithResult:(FLPromisedResult) result {
 
-    [self.observers notify:@selector(operationDidFinish:withResult:error:) withObject:self withObject:result withObject:error];
+    [self.observers notify:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
     self.context = nil;
     self.cancelled = NO;
 }
@@ -226,15 +224,10 @@
 }
 
 - (void) setFinishedWithResult:(id) result {
-    [self.finisher setFinishedWithResult:result error:nil];
+    [self.finisher setFinishedWithResult:result];
 }
 
-- (void) setFinishedWithResult:(id) result error:(NSError*) error{
-    [self.finisher setFinishedWithResult:result error:error];
-}
 
-- (void) setFinishedWithError:(NSError*) error{
-    [self.finisher setFinishedWithResult:nil error:error];
-}
+
 
 @end

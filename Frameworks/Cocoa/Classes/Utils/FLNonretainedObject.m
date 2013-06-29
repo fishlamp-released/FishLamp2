@@ -1,5 +1,5 @@
 //
-//  FLNonretainedRef.m
+//  FLNonretainedObject.m
 //  FishLampiOS-Lib
 //
 //  Created by Mike Fullerton on 2/5/12.
@@ -7,14 +7,14 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLNonretainedRef.h"
+#import "FLNonretainedObject.h"
 
-@implementation FLNonretainedRef
+@implementation FLNonretainedObject
 
 @dynamic object;
 
-+ (FLNonretainedRef*) nonretained:(id) object {
-	return FLAutorelease([[FLNonretainedRef alloc] initWithObject:object]);
++ (FLNonretainedObject*) nonretainedObject:(id) object {
+	return FLAutorelease([[FLNonretainedObject alloc] initWithObject:object]);
 }
 
 @end

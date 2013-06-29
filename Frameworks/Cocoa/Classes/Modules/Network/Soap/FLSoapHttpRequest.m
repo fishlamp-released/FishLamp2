@@ -163,10 +163,21 @@
 
     FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:data];
 
-    if(self.output) {
-        return [[self.output class] objectWithXmlElement:
-                        [self findResponseElementInSoapResponse:parsedSoap]
-                                       withObjectBuilder:[FLSoapObjectBuilder instance]];
+    if(FLStringIsNotEmpty([self classNameForSoapResponse])) {
+
+        FLParsedXmlElement* elementForObject = [self findResponseElementInSoapResponse:parsedSoap];
+        FLAssertNotNil(elementForObject);
+
+        Class theClass = NSClassFromString([self classNameForSoapResponse]);
+        FLAssertNotNil(theClass);
+
+
+        id soapResponse = [theClass objectWithXmlElement:elementForObject
+                                    withObjectBuilder:[FLSoapObjectBuilder instance]];
+
+        FLAssertNotNil(soapResponse);
+
+        return soapResponse;
     }
 
     return parsedSoap;
@@ -177,14 +188,19 @@
 }
 
 - (FLParsedXmlElement*) findResponseElementInSoapResponse:(FLParsedXmlElement*) soapResponse {
-    return [soapResponse findChildElementWithName:[self xmlElementNameForResponse] maxDepth:3]; 
+    return [soapResponse findChildElementWithName:[self xmlElementNameForResponse] maxDepth:5];
 }
+
+- (NSString*) classNameForSoapResponse {
+    return nil;
+}
+
 
 @end
 
 @implementation FLMutableSoapHttpRequest
 //@synthesize input =_input;
-@synthesize output = _output;
+//@synthesize output = _output;
 @synthesize soapAction = _soapAction;
 @synthesize targetNamespace = _targetNamespace;
 @synthesize operationName = _operationName;
@@ -192,7 +208,6 @@
 #if FL_MRC
 - (void) dealloc {
 //    [_input release];
-    [_output release];
     [_soapAction release];
     [_operationName release];
     [_targetNamespace release];

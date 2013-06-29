@@ -31,32 +31,32 @@
 //    id ref = nil;
 //
 //    if(FLBitTest(behavior, FLObserverNonretained)) {
-//        ref = [FLNonretainedRef nonretained:observer];
+//        ref = [FLNonretainedObject nonretained:observer];
 //    }
 //    else {
-//        ref = [FLRetainedRef retained:observer];
+//        ref = [FLRetainedObject retained:observer];
 //    }
 //
 //    if(FLBitTest(behavior, FLObserverMainThreadOnly)) {
-//        ref = [FLMainThreadRef mainThreadRef:ref];
+//        ref = [FLMainThreadObject mainThreadObject:ref];
 //    }
 //
 //    [_listeners addObject:ref];
 //}
 
-- (void) addObserverRetained:(id) object {
+- (void) addObserver:(id<FLObjectRef>) object {
     if(!_listeners) {
         _listeners = [[NSMutableArray alloc] init];
     }
     [_listeners addObject:object];
 }
 
-- (void) addObserverNonretained:(id) object {
-    if(!_listeners) {
-        _listeners = [[NSMutableArray alloc] init];
-    }
-    [_listeners addObject:[FLNonretainedRef nonretained:object]];
-}
+//- (void) addObserverNonretained:(id) object {
+//    if(!_listeners) {
+//        _listeners = [[NSMutableArray alloc] init];
+//    }
+//    [_listeners addObject:[FLNonretainedObject nonretained:object]];
+//}
 
 
 - (void) removeObserver:(id) listener {

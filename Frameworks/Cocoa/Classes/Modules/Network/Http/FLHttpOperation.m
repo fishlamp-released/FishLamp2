@@ -47,7 +47,7 @@
 }
 
 - (void) startOperation {
-    [self runChildAsynchronously:self.httpRequest completion:^(id result, NSError* error) {
+    [self runChildAsynchronously:self.httpRequest completion:^(FLPromisedResult result) {
         [self setFinishedWithResult:result error:error];
     }];
 }

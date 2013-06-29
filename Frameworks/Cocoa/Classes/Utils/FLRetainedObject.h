@@ -1,5 +1,5 @@
 //
-//  FLRetainedRef.h
+//  FLRetainedObject.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 6/24/13.
@@ -8,13 +8,13 @@
 
 #import "FLObjectRef.h"
 
-@interface FLRetainedRef : FLObjectRef {
+@interface FLRetainedObject : FLObjectRef {
 @private
     id _retainedObject;
 }
 
 @property (readonly, strong, nonatomic) id object;
 
-+ (id) retained:(id) object;
++ (id) retainedObject:(id) object;
 
 @end

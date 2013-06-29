@@ -127,11 +127,11 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
     
         if(!self.error) {
             
-            if(element.result.error) {
-                self.error = element.result.error;
+            if([element.operationResult isError]) {
+                self.error = element.operationResult;
             }
             
-            FLTrace(@"finished operation: %@ withResult: %@", element.operation, element.error ? element.result : @"OK");
+            FLTrace(@"finished operation: %@ withResult: %@", element.operation, [element.operationResult isError] ? element.operationResult : @"OK");
             [self didFinishOperation:element];
         }
 

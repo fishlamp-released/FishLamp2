@@ -59,9 +59,15 @@ FLWillThrowExceptionHandler* FLGetWillThrowExceptionHandler() {
     return [FLErrorException exceptionWithName:FLErrorExceptionName reason:self.localizedDescription userInfo:userInfo error:self];
 }
 
-- (NSError*) error {
-    return self;
+- (BOOL) isError {
+    return YES;
 }
 
+@end
+
+@implementation NSObject (FLException)
+- (BOOL) isError {
+    return NO;
+}
 @end
 

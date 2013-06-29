@@ -8,7 +8,6 @@
 //
 
 #import "FLOperation.h"
-#import "FLObjectStorage.h"
 
 @interface FLSynchronousOperation : FLOperation {
 @private

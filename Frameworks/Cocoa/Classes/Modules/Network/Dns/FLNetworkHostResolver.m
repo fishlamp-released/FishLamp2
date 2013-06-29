@@ -59,11 +59,11 @@
     id result = nil;
     
     if(error && error->domain != 0 && error->error != 0) {
-        [self closeWithResult:nil error:FLCreateErrorFromStreamError(error)];
+        [self closeWithResult:FLCreateErrorFromStreamError(error)];
     }
     else {
         self.networkHost.resolved = YES;
-        [self closeWithResult:self.networkHost error:nil];
+        [self closeWithResult:self.networkHost];
     }
     
 }
@@ -85,15 +85,15 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     }
 }
 
-- (void) closeWithResult:(id) result error:(NSError*) error{
+- (void) closeWithResult:(id) result {
     [self cancelRunLoop];
-    [self.finisher setFinishedWithResult:result error:error];
+    [self.finisher setFinishedWithResult:result];
     self.finisher = nil;
     self.networkHost = nil;
 }
 
-- (FLPromisedResult*) resolveHostSynchronously:(FLNetworkHost*) host {
-    FLPromisedResult* result = [[self startResolvingHost:host completion:nil] waitUntilFinished];
+- (id) resolveHostSynchronously:(FLNetworkHost*) host {
+    id result = [[self startResolvingHost:host completion:nil] waitUntilFinished];
     FLThrowIfError(result);
     return result;
 }
@@ -112,14 +112,14 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     FLAssertIsNotNilWithComment(cfhost, nil);
 
     if (!CFHostSetClient(cfhost, HostResolutionCallback, &context)) {
-        [self closeWithResult:nil error:[NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil]];
+        [self closeWithResult:[NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil]];
         
     }
     else {
         CFHostScheduleWithRunLoop(cfhost, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
         CFStreamError streamError = { 0, 0 };
         if (!CFHostStartInfoResolution(cfhost, self.networkHost.hostInfoType, &streamError) ) {
-            [self closeWithResult:nil error:FLCreateErrorFromStreamError(&streamError)];
+            [self closeWithResult:FLCreateErrorFromStreamError(&streamError)];
         }
     }
     return promise;

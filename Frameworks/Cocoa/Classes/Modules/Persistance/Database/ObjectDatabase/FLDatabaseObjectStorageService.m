@@ -47,8 +47,8 @@
     [self.databaseController dispatchAsync:^(FLObjectDatabase* database) {
         [database openDatabase];
     }
-    completion:^(id result, NSError* error) {
-        if(error) {
+    completion:^(FLPromisedResult result) {
+        if([result isError]) {
             FLLog(@"database error: %@", result)
         }
     }];
@@ -58,8 +58,8 @@
     [self.databaseController dispatchAsync:^(FLObjectDatabase* database) {
         [database openDatabase];
     }
-    completion:^(id result, NSError* error) {
-        if(error) {
+    completion:^(FLPromisedResult result) {
+        if([result isError]) {
             FLLog(@"database error: %@", result)
         }
     }];

@@ -50,7 +50,7 @@
     NSMutableArray* array = [NSMutableArray array];
     NSArray* workers = [self findTestWorkers];
     for(id worker in workers) {
-        FLPromisedResult* result = [self runChildSynchronously:worker];
+        id result = [self runChildSynchronously:worker];
         FLThrowIfError(result);
     
         [array addObject:result];

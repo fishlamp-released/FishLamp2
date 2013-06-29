@@ -70,7 +70,7 @@
 }
 
 - (void) addBlock:(dispatch_block_t) block {
-    [self.asyncQueue addBlock:block withCompletion:^(id result, NSError* error) {
+    [self.asyncQueue addBlock:block withCompletion:^(FLPromisedResult result) {
         [self didDispatchBlockInStream:_stream];
     }];
 }

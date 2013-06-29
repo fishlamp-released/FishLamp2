@@ -40,7 +40,7 @@ FLPromise* FLFinishAsync(id<FLAsyncQueue> queue,
 }
 
 NS_INLINE
-FLPromisedResult* FLFinishSync(id<FLAsyncQueue> queue,
+FLPromisedResult FLFinishSync(id<FLAsyncQueue> queue,
                       fl_finisher_block_t block) {
     FLAssertNotNil(queue);
     FLAssertNotNil(block);
@@ -48,7 +48,7 @@ FLPromisedResult* FLFinishSync(id<FLAsyncQueue> queue,
 }
 
 NS_INLINE
-FLPromisedResult* FLRunOperation(id<FLAsyncQueue> queue,
+FLPromisedResult FLRunOperation(id<FLAsyncQueue> queue,
                                  id<FLDispatchable> operation) {
     FLAssertNotNil(queue);
     FLAssertNotNil(operation);

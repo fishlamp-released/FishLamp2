@@ -58,7 +58,7 @@
 //      
 ////	FLWsdlMessage* message = [self getMessageObject:io.message];	
 ////	FLConfirmNotNil(message);
-//	
+//
 //    NSString* propertyType = message.name;
 //	
 //	if(message.parts.count) {
@@ -137,6 +137,25 @@
 #define kOutputName @"output"
 #define kInputName @"input"
 
+- (void) addElementNameProperty:(NSString*) propType {
+    FLWsdlCodeProperty* property1 = [self addProperty:@"xmlElementNameForResponse" propertyType:@"string"];
+    property1.isImmutable = YES;
+    property1.isReadOnly = YES;
+    property1.isPrivate = YES;
+    property1.defaultValue = [FLCodeString codeString:propType];
+    FLTrace(@"-(%@) %@:%@", @"string", self.name, @"xmlElementNameForResponse");
+}
+
+
+- (void) addClassNameProperty:(NSString*) className {
+    FLWsdlCodeProperty* property2 = [self addProperty:@"classNameForSoapResponse" propertyType:@"string"];
+    property2.isImmutable = YES;
+    property2.isReadOnly = YES;
+    property2.isPrivate = YES;
+    property2.defaultValue = [FLCodeString codeString:[FLCodeClassName codeClassName:className]];
+    FLTrace(@"-(%@) %@:%@", @"string", self.name, @"classNameForSoapResponse");
+}
+
 - (void) addOutputProperty:(FLWsdlInputOutput*) ioObject
                codeReader:(FLWsdlCodeProjectReader*) codeReader {
     
@@ -149,19 +168,32 @@
         FLWsdlCodeObject* object = [codeReader codeObjectForClassName:propType];
         if(object) {
             FLAssert(FLStringsAreEqual(object.name, propType));
-        
-            FLWsdlCodeProperty* property = [self addProperty:@"xmlElementNameForResponse" propertyType:@"string"];
-            property.isImmutable = YES;
-            property.isReadOnly = YES;
-            property.isPrivate = YES;
-            property.defaultValue = [FLCodeString codeString:propType];
-            FLLog(@"-(%@) %@:%@", @"string", self.name, @"xmlElementNameForResponse");
+
+            if(object.properties.count == 1) {
+                FLCodeProperty* prop = [object.properties objectAtIndex:0];
+                NSString* subType = [prop type];
+
+                FLWsdlCodeObject* subObject = [codeReader codeObjectForClassName:subType];
+
+                if(subObject) {
+                    [self addElementNameProperty:prop.name];
+                    [self addClassNameProperty:prop.type];
+                    return;
+                }
+            }
+
+            [self addElementNameProperty:propType];
+            [self addClassNameProperty:propType];
+
+
+
+
 
         
         
 //            [self addProperty:propType propertyType:propType];
 //            
-//            FLLog(@"-(%@) %@:%@", propType, self.name, propType);
+//            FLTrace(@"-(%@) %@:%@", propType, self.name, propType);
 //            
 //            FLWsdlCodeProperty* property = [self addProperty:kOutputName propertyType:propType];
 //            property.isReadOnly = YES;
@@ -171,15 +203,15 @@
 //                                                    property:[FLCodePropertyName codePropertyName:propType]];
         }
         
-        FLWsdlCodeProperty* property = [self addProperty:kOutputName propertyType:propType];
-        FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.message], self.name, kOutputName);
-    } 
-    else if(FLStringIsNotEmpty(ioObject.type)) {
-        
-        FLWsdlCodeProperty* property = [self addProperty:kOutputName propertyType:[FLXmlParser removePrefix:ioObject.type]];
-            
-        FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.type], self.name, kOutputName);
+//        FLWsdlCodeProperty* property = [self addProperty:kOutputName propertyType:propType];
+//        FLTrace(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.message], self.name, kOutputName);
     }
+//    else if(FLStringIsNotEmpty(ioObject.type)) {
+//        
+//        FLWsdlCodeProperty* property = [self addProperty:kOutputName propertyType:[FLXmlParser removePrefix:ioObject.type]];
+//            
+//        FLTrace(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.type], self.name, kOutputName);
+//    }
 }
 
 - (void) addInputProperty:(FLWsdlInputOutput*) ioObject
@@ -192,11 +224,11 @@
         propType = [codeReader typeNameForMessageName:ioObject.message];
         
         [self addProperty:kInputName propertyType:propType];
-        FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.message], self.name, kInputName);
+        FLTrace(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.message], self.name, kInputName);
     } 
     else if(FLStringIsNotEmpty(ioObject.type)) {
         [self addProperty:kInputName propertyType:[FLXmlParser removePrefix:ioObject.type]];
-        FLLog(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.type], self.name, kInputName);
+        FLTrace(@"-(%@) %@:%@", [FLXmlParser removePrefix:ioObject.type], self.name, kInputName);
     }
 }
 
@@ -310,7 +342,7 @@
 //            if(theType && theType.properties.count == 1) {
 //                FLCodeProperty* property = [theType.properties objectAtIndex:0];
 //
-//                FLLog(@" - (replaced %@ with %@.%@) %@", thePropertyType, theName, [property type], name);
+//                FLTrace(@" - (replaced %@ with %@.%@) %@", thePropertyType, theName, [property type], name);
 //
 //                [codeReader addIgnoredMessage:message];
 //
@@ -342,7 +374,7 @@
 //            if(theType && theType.properties.count == 1) {
 //                FLCodeProperty* property = [theType.properties objectAtIndex:0];
 //
-//                FLLog(@" - (replaced %@ with %@.%@) %@", thePropertyType, theName, [property type], name);
+//                FLTrace(@" - (replaced %@ with %@.%@) %@", thePropertyType, theName, [property type], name);
 //
 //                [codeReader addIgnoredMessage:message];
 //
