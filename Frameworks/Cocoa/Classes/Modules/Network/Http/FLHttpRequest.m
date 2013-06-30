@@ -35,10 +35,6 @@
 @property (readwrite, strong, nonatomic) FLHttpResponse* previousResponse;
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
 @property (readwrite, strong) FLHttpRequestByteCount* byteCount;
-
-- (void) finishRequestWithHttpResponse:(FLHttpResponse*) response;
-- (void) finishRequestWithError:(NSError*) error;
-
 @end
 
 @implementation FLHttpRequest
@@ -152,7 +148,7 @@ static int s_counter = 0;
     }
     
     if(![FLReachableNetwork instance].isReachable) {
-        [self finishRequestWithError:[NSError errorWithDomain:FLNetworkErrorDomain code:FLNetworkErrorCodeNoRouteToHost localizedDescription:NSLocalizedString(@"Network appears to be offline", nil) ]];
+        [self finishRequestWithResult:[NSError errorWithDomain:FLNetworkErrorDomain code:FLNetworkErrorCodeNoRouteToHost localizedDescription:NSLocalizedString(@"Network appears to be offline", nil) ]];
         return;
     }
     
@@ -235,12 +231,13 @@ static int s_counter = 0;
     [self.observers notify:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
 }
 
-- (void) finalizeRequestWithResult:(id) result error:(NSError*) error {
+- (void) finishRequestWithResult:(FLPromisedResult) result {
+    [self.byteCount setFinishTime];    
+    
     [self releaseResponseData];
                 
-    [self.observers notify:@selector(httpRequest:didCloseWithResult:error:) withObject:self withObject:result withObject:error];
-    [self didFinishWithResult:result error:error];
-    [self.finisher setFinishedWithResult:result];
+    [self setFinishedWithResult:result];
+    [self.observers notify:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
     
     [self.retryHandler resetRetryCount];
 
@@ -250,36 +247,10 @@ static int s_counter = 0;
     });
 }
 
-- (void) finishRequestWithError:(NSError*) error {
-    [self.byteCount setFinishTime];    
-    [self finalizeRequestWithResult:nil error:error];
-}
-
-- (void) finishRequestWithHttpResponse:(FLHttpResponse*) response {
-
-    [self.byteCount setFinishTime];    
-
-    id result = nil;
-    NSError* error = nil;
-
-    @try {
-        result = [self convertResponseToPromisedResult:response];
-    }
-    @catch(NSException* ex) {
-        error = ex.error;
-    }
-
-    if(!result) {
-        result = response;
-    }
-
-    [self finalizeRequestWithResult:result error:error];
-}
-
 - (void) requestCancel {
     [super requestCancel];
     [self.httpStream terminateStream];
-    [self finishRequestWithError:[NSError cancelError]];
+    [self finishRequestWithResult:[NSError cancelError]];
 }
 
 - (BOOL) tryRetry {
@@ -294,7 +265,7 @@ static int s_counter = 0;
     [self.httpStream terminateStream];
     
     if( [error isCancelError] || self.wasCancelled || ![self tryRetry]) {       
-        [self finishRequestWithError:error];
+        [self finishRequestWithResult:error];
     }
     
 }
@@ -311,16 +282,16 @@ static int s_counter = 0;
 willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders 
        responseData:(id<FLInputSink>) responseData {
        
-    FLHttpResponse* response = [FLHttpResponse httpResponse:[[self requestHeaders] requestURL]
+    FLHttpResponse* httpResponse = [FLHttpResponse httpResponse:[[self requestHeaders] requestURL]
                                                     headers:responseHeaders 
                                              redirectedFrom:self.previousResponse
                                                   inputSink:responseData];
     
-    response.byteCount = self.byteCount;
+    httpResponse.byteCount = self.byteCount;
     
     NSError* responseError = nil;
     @try {
-        [self throwErrorIfResponseIsError:response];
+        [self throwErrorIfResponseIsError:httpResponse];
     }
     @catch(NSException* ex) {
         responseError = FLRetainWithAutorelease(ex.error);
@@ -331,26 +302,38 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
     }
     
     if(responseError) {
-        [self finishRequestWithError:responseError];
+        [self finishRequestWithResult:responseError];
     }
     else {
 
         // FIXME: there was an issue here with progress getting fouled up on redirects.
         //    [self connectionGotTimerEvent];
 
-        BOOL redirect = response.wantsRedirect;
+        BOOL redirect = httpResponse.wantsRedirect;
         if(redirect) {
-            NSURL* redirectURL = response.redirectURL;
+            NSURL* redirectURL = httpResponse.redirectURL;
             redirect = [self shouldRedirectToURL:redirectURL];
 
             if(redirect) {
-                self.previousResponse = response;
+                self.previousResponse = httpResponse;
                 [self openAuthenticatedStreamWithURL:redirectURL];
             }
         }
 
         if(!redirect) {
-            [self finishRequestWithHttpResponse:response];
+            id finalResult = nil;
+            @try {
+                finalResult = [self convertResponseToPromisedResult:httpResponse];
+            }
+            @catch(NSException* ex) {
+                finalResult = ex.error;
+            }
+
+            if(!finalResult) {
+                finalResult = httpResponse;
+            }
+    
+            [self finishRequestWithResult:finalResult];
         }
     }
 }
@@ -375,9 +358,6 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
 
 - (id) convertResponseToPromisedResult:(FLHttpResponse*) httpResponse {
     return httpResponse;
-}
-
-- (void) didFinishWithResult:(id) result error:(NSError*) error {
 }
 
 - (BOOL) shouldRedirectToURL:(NSURL*) url {

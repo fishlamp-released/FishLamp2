@@ -12,6 +12,8 @@
 #import "FLReachableNetwork.h"
 #import "FishLampAsync.h"
 
+#import "FLTrace.h"
+
 @interface FLHttpRequestAuthenticationService ()
 @property (readwrite, strong, nonatomic) FLFifoAsyncQueue* asyncQueue; 
 @property (readwrite, assign) FLOperationContext* operationContext;
@@ -69,7 +71,7 @@
     if(user.authenticationHasExpired) {
     
         if([FLReachableNetwork instance].isReachable) {
-            FLTrace(@"Login expired, will reauthenticate %@", user.credentials.userName);
+            FLTrace(@"Login expired, will reauthenticate %@", user.userName);
             [user setLoginUnathenticated];
             return YES;
         }
@@ -144,6 +146,7 @@
     FLAssertNotNil(user); 
 
     [_asyncQueue addBlock:^{
+        FLTrace(@"started auth");
         [user resetAuthenticationTimestamp];
         [self authenticateUser:user];
         [user touchAuthenticationTimestamp];

@@ -43,5 +43,6 @@ const char* FLCStringCopyCharString(FLCharString charString) {
 
 
 @interface NSString (FLCharString)
+- (id) initWithCharString:(FLCharString) charString;
 + (NSString*) stringWithCharString:(FLCharString) charString;
 @end

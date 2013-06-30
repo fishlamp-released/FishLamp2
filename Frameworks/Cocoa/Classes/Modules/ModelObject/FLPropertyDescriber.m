@@ -24,24 +24,25 @@
 }
 @end
 
-#define LazyStringGetter(name, ivar, char_string) \
-- (NSString*) name { \
-    if(!ivar) { \
-        ivar = [NSString stringWithCharString:char_string]; \
-    } \
-    return ivar; \
-}
+//#define LazyStringGetter(name, ivar, char_string) \
+//- (NSString*) name { \
+//    if(!ivar) { \
+//        ivar = FLRetain([NSString stringWithCharString:char_string]); \
+//    } \
+//    return ivar; \
+//}
 
 #define LazySelectorGetter(name, ivar, char_string) \
 - (SEL) name { \
     if(!ivar) { \
-        ivar = NSSelectorFromString([NSString stringWithCharString:char_string]); \
+        SEL selector = NSSelectorFromString([NSString stringWithCharString:char_string]); \
+        OSAtomicCompareAndSwapPtrBarrier(nil, selector, FLBridge(void*, &ivar)); \
     } \
     return ivar; \
 }
 
 @interface FLPropertyDescriber ()
-@property (readwrite, strong) NSString* propertyName;
+
 @property (readwrite, strong) NSString* propertyKey;
 @property (readwrite, strong) FLObjectDescriber* representedObjectDescriber;
 @property (readwrite, strong) NSArray* containedTypes;
@@ -58,10 +59,15 @@
 @synthesize representedObjectDescriber = _representedObjectDescriber;
 @synthesize containedTypes = _containedTypes;
 @synthesize propertyKey = _propertyKey;
+@synthesize serializationKey = _serializationKey;
 
-LazyStringGetter(structName, _structName, _attributes.structName)
-LazyStringGetter(unionName, _unionName, _attributes.unionName)
-LazyStringGetter(ivarName, _ivarName, _attributes.ivar)
+//LazyStringGetter(structName, _structName, _attributes.structName)
+//LazyStringGetter(unionName, _unionName, _attributes.unionName)
+//LazyStringGetter(ivarName, _ivarName, _attributes.ivar)
+
+FLSynthesizeLazyGetterWithInit(structName, NSString*, _structName, [[NSString alloc] initWithCharString:_attributes.structName]);
+FLSynthesizeLazyGetterWithInit(unionName, NSString*, _unionName, [[NSString alloc] initWithCharString:_attributes.unionName]);
+FLSynthesizeLazyGetterWithInit(ivarName, NSString*, _ivarName, [[NSString alloc] initWithCharString:_attributes.ivar]);
 
 LazySelectorGetter(customGetter, _customGetter, _attributes.customGetter)
 LazySelectorGetter(customSetter, _customSetter, _attributes.customSetter)
@@ -108,6 +114,12 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     return property;
 }
 
+- (void) setPropertyNameAndKeys:(NSString*) name {
+    FLSetObjectWithRetain(_propertyName, name);
+    self.serializationKey = name;
+    self.propertyKey = [name lowercaseString];
+}
+
 + (id) propertyDescriberWithProperty_t:(objc_property_t) property_t {
 
     FLPropertyAttributes_t attributes = FLPropertyAttributesParse(property_t);
@@ -143,18 +155,16 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     
     FLAssertNotNilWithComment(property, @"propertyDescriber not created for %@", propertyName);
 
-    property.propertyName = propertyName;
-    property.propertyKey = [propertyName lowercaseString];
+    [property setPropertyNameAndKeys:propertyName];
     property.attributes = attributes;
 
     return property;
 }
 
 + (id) propertyDescriber:(NSString*) name propertyClass:(Class) aClass {
-    FLPropertyDescriber* describer = [FLPropertyDescriber propertyDescriber:aClass];
-    describer.propertyName = name;
-    describer.propertyKey = [name lowercaseString];
-    return describer;
+    FLPropertyDescriber* property = [FLPropertyDescriber propertyDescriber:aClass];
+    [property setPropertyNameAndKeys:name];
+    return property;
 }
 
 + (id) propertyDescriber:(NSString*) name class:(Class) aClass {
@@ -166,6 +176,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 }   
 
 - (FLPropertyDescriber*) containedTypeForName:(NSString*) name {
+// TODO: figure out a better way to make this thread safe
     @synchronized(self) {
         name = [name lowercaseString];
         for(FLPropertyDescriber* property in _containedTypes) {
@@ -178,18 +189,21 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 }
 
 - (NSUInteger) containedTypesCount {
+// TODO: figure out a better way to make this thread safe
     @synchronized(self) {
         return _containedTypes.count;
     }
 }
 
 - (FLPropertyDescriber*) containedTypeForIndex:(NSUInteger) idx {
+// TODO: figure out a better way to make this thread safe
     @synchronized(self) {
         return [_containedTypes objectAtIndex:idx];
     }
 }
 - (FLPropertyDescriber*) containedTypeForClass:(Class) aClass {
-    @synchronized(self) {
+ // TODO: figure out a better way to make this thread safe
+   @synchronized(self) {
         for(FLPropertyDescriber* subType in _containedTypes) {
             if([aClass isKindOfClass:[subType representedObjectClass]]) {
                 return subType;
@@ -204,11 +218,13 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 }
 
 - (void) setContainedTypes:(NSArray*) types {
+// TODO: figure out a better way to make this thread safe
     @synchronized(self) {
         FLSetObjectWithCopy(_containedTypes, types);
     }
 }
 
+// TODO: figure out a better way to make this thread safe
 - (NSArray*) containedTypes {
     @synchronized(self) {
         return FLCopyWithAutorelease(_containedTypes);
@@ -247,6 +263,10 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
 #if FL_MRC
 - (void) dealloc {
+    [_structName release];
+    [_ivarName release];
+    [_unionName release];
+    [_serializationKey release];
     [_propertyKey release];
     [_representedObjectDescriber release];
 	[_propertyName release];

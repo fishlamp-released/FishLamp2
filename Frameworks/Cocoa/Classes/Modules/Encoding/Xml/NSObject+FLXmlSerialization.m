@@ -23,7 +23,7 @@
             id object = [self valueForKey:property.propertyName];
             if(object) {
                 [xmlElement addElement:[FLObjectXmlElement objectXmlElement:object 
-                                                              xmlElementTag:property.propertyName 
+                                                              xmlElementTag:property.serializationKey 
                                                           propertyDescriber:property]];
             }
         }
@@ -57,7 +57,7 @@
 			FLPropertyDescriber* elementDesc = [propertyDescriber.containedTypes objectAtIndex:0];
 
 			for(id obj in self){
-                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.propertyName propertyDescriber:elementDesc]];
+                [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj xmlElementTag:elementDesc.serializationKey propertyDescriber:elementDesc]];
 			}
 		}
 		else {
@@ -68,7 +68,7 @@
                 FLPropertyDescriber* containedType = [propertyDescriber containedTypeForClass:[obj class]];
                 if(containedType) {
                     [xmlElement addElement:[FLObjectXmlElement objectXmlElement:obj 
-                                                                  xmlElementTag:containedType.propertyName 
+                                                                  xmlElementTag:containedType.serializationKey 
                                                               propertyDescriber:containedType]];
                 }
                 else {

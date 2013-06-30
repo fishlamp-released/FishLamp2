@@ -20,7 +20,12 @@
     
     if([object respondsToSelector:[anInvocation selector]]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [anInvocation invokeWithTarget:object];
+            @try {
+                [anInvocation invokeWithTarget:object];
+            }
+            @catch(NSException* ex) {
+            
+            }
         });
     }
     else {

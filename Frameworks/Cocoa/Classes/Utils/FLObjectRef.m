@@ -8,6 +8,8 @@
 
 #import "FLObjectRef.h"
 
+#import "FLTrace.h"
+
 @implementation FLObjectRef
 
 - (id) object {
@@ -39,41 +41,26 @@
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
-    if([[self object] respondsToSelector:[anInvocation selector]]) {
-        [anInvocation invokeWithTarget:self.object];
+    if([_object respondsToSelector:[anInvocation selector]]) {
+        [anInvocation invokeWithTarget:_object];
     }
     else {
-        [super forwardInvocation:anInvocation];
+        FLTrace(@"not responding to %@", NSStringFromSelector([anInvocation selector]));
     }
 }
 
 - (NSMethodSignature*)methodSignatureForSelector:(SEL)selector {
 
-    return [_object respondsToSelector:selector] ?
-                [_object methodSignatureForSelector:selector] :
-                _object;
-
-//    NSMethodSignature* signature =  [super methodSignatureForSelector:selector];
-//    if (!signature) {
-//        signature = [self.object methodSignatureForSelector:selector];
-//    }
-//    return signature;
+    NSMethodSignature* sig = [_object methodSignatureForSelector:selector];
+    if(!sig) {
+        sig = [NSMethodSignature signatureWithObjCTypes:"@^v^c"];
+        FLTrace(@"returning fake method signature for selector %@", NSStringFromSelector(selector));
+    }
+    return sig;
 }
 
-//- (id) forwardingTargetForSelector:(SEL)aSelector {
-//    if(![self respondsToSelector:aSelector] && [_object respondsToSelector:aSelector]) {
-//        return _object;
-//    }
-//
-//    return self;
-//}
-
 - (BOOL) respondsToSelector:(SEL)aSelector {
-    if(![super respondsToSelector:aSelector]) {
-        return [_object respondsToSelector:aSelector];
-    }
-
-    return NO;
+    return [_object respondsToSelector:aSelector];
 }
 
 

@@ -17,6 +17,7 @@
 @private
     NSString* _propertyName;
     NSString* _propertyKey;
+    NSString* _serializationKey;
     FLObjectDescriber* _representedObjectDescriber;
     NSMutableArray* _containedTypes;
     
@@ -32,14 +33,6 @@
 // property attributes
 @property (readonly, strong) NSString* propertyName;
 @property (readonly, strong) NSString* propertyKey; // lowercase version of name
-
-@property (readonly, strong, nonatomic) NSString* structName;
-@property (readonly, strong, nonatomic) NSString* ivarName;
-@property (readonly, strong, nonatomic) NSString* unionName;
-@property (readonly, assign, nonatomic) SEL customGetter;
-@property (readonly, assign, nonatomic) SEL customSetter;
-@property (readonly, assign, nonatomic) SEL selector;
-@property (readonly, assign, nonatomic) BOOL representsIvar;
 
 // represented object 
 @property (readonly, assign) Class representedObjectClass;
@@ -63,8 +56,24 @@
 
 - (NSString*) stringEncodingKeyForRepresentedData;
 
-@property (readonly, assign) FLDatabaseType databaseColumnType;          
+@property (readwrite, strong) NSString* serializationKey;
+
 @end
+
+@interface FLPropertyDescriber (RunTimeInfo)
+- (NSString*) structName;
+- (NSString*) ivarName;
+- (NSString*) unionName;
+- (SEL) customGetter;
+- (SEL) customSetter;
+- (SEL) selector;
+- (BOOL) representsIvar;
+@end
+
+@interface FLPropertyDescriber (Database)
+- (FLDatabaseType) databaseColumnType;          
+@end
+
 
 @interface FLPropertyDescriber (Deprecated)
 + (id) propertyDescriber:(NSString*) name class:(Class) aClass;

@@ -41,8 +41,9 @@ extern FLWillThrowExceptionHandler* FLGetWillThrowExceptionHandler();
 #define FLThrowError(__ERROR__) FLThrowErrorWithLoc(__ERROR__, __FILE_LOCATION__)
 
 #define FLThrowIfError(__OBJECT__) do { \
-                                        if([((id)__OBJECT__) isError]) { \
-                                            FLThrowErrorWithLoc(__OBJECT__, __FILE_LOCATION__); \
+                                        id __OBJECT = (id)(__OBJECT__);\
+                                        if([__OBJECT isError]) { \
+                                            FLThrowErrorWithLoc(__OBJECT, __FILE_LOCATION__); \
                                         } \
                                     } while(0)
 

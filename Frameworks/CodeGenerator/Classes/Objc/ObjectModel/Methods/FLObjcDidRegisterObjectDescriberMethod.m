@@ -39,34 +39,35 @@
     FLAssertNotNil(self.parentObject);
     FLAssertNotNil(codeBuilder);
     
-    BOOL foundContainerTypes = NO;
+    BOOL hasContent = NO;
     for(FLObjcProperty* property in [self.parentObject.properties objectEnumerator]) {
         NSArray* containerTypes = property.containerTypes;
         if(containerTypes && containerTypes.count) {
-            foundContainerTypes = YES;
-        }
-    }
-    
-    if(foundContainerTypes) {
-        BOOL hasContent = NO;
-        for(FLObjcProperty* property in [self.parentObject.properties objectEnumerator]) {
-            NSArray* containerTypes = property.containerTypes;
-            if(containerTypes && containerTypes.count) {
-                hasContent = YES;
-               
-                for(FLObjcContainerSubType* subType in containerTypes) {
-                    NSString* propertyDescriber = [NSString stringWithFormat:@"[FLPropertyDescriber propertyDescriber:@\"%@\" propertyClass:[%@ class]]", subType.subTypeName, subType.objcType.generatedObjectClassName];
-                
-                    [self.code appendLineWithFormat:@"[describer addContainerType:%@ forContainerProperty:@\"%@\"];", propertyDescriber, property.propertyName.generatedName];
-                }
+            hasContent = YES;
+           
+            for(FLObjcContainerSubType* subType in containerTypes) {
+                NSString* propertyDescriber = [NSString stringWithFormat:@"[FLPropertyDescriber propertyDescriber:@\"%@\" propertyClass:[%@ class]]", subType.subTypeName, subType.objcType.generatedObjectClassName];
+            
+                [self.code appendLineWithFormat:@"[describer addContainerType:%@ forContainerProperty:@\"%@\"];", propertyDescriber, property.propertyName.generatedName];
             }
         }
-
-        // only write the method if we have content
-        if(hasContent) {
-            [super writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
+        
+        FLObjcName* name = property.propertyName;
+        if(FLStringsAreNotEqual(name.original, name.generatedName)) {
+            hasContent = YES;
+            
+            [self.code appendLineWithFormat:@"[[describer propertyForName:@\"%@\"] setSerializationKey:@\"%@\"];",
+                name.generatedName,
+                name.original];
         }
+        
     }
+
+    // only write the method if we have content
+    if(hasContent) {
+        [super writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
+    }
+    
 }
 
 

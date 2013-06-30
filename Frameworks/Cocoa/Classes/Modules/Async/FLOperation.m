@@ -206,17 +206,17 @@
     }
 }
 
+
 - (void) finisherDidFinish:(FLFinisher*) finisher
                 withResult:(FLPromisedResult) result {
             
     [self didFinishWithResult:result];
-}
-
-- (void) didFinishWithResult:(FLPromisedResult) result {
-
     [self.observers notify:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
     self.context = nil;
     self.cancelled = NO;
+}
+
+- (void) didFinishWithResult:(FLPromisedResult) result {
 }
 
 - (void) setFinished {
