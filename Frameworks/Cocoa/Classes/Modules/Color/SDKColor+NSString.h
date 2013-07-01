@@ -7,8 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import <Foundation/Foundation.h>
-
+#import "FLCompatibility.h"
 
 // see http://www.w3schools.com/cssref/css_colornames.asp
 #import "FLHexColorDefines.h"

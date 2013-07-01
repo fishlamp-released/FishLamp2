@@ -8,6 +8,7 @@
 //
 
 #import "FLCancelError.h"
+#import "FishLampCore.h"
 
 NSString* const FLCancelExceptionName = @"com.fishlamp.exception.cancel";
 

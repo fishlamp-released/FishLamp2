@@ -7,10 +7,9 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 
 // NOTE: see NSScanner.h
-
 
 @interface NSString (FLStringUtilities)
 
@@ -50,10 +49,6 @@
 
 - (NSString*) stringByDeletingSuffix:(NSString*) suffix;
 - (NSString*) stringByAppendingSuffix:(NSString*) suffix;
-
-
-
-
 @end
 
 @interface NSMutableString (FLStringUtilities)

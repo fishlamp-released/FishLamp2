@@ -66,7 +66,7 @@
 //            FLAssertWithComment(self.remotePort != 0, @"remote port can't be zero");
 //            FLAssertStringIsNotEmpty(self.remoteHost);
 //           
-//            host = CFHostCreateWithName(NULL, bridge_(void*,self.remoteHost));
+//            host = CFHostCreateWithName(NULL, FLBridge(void*,self.remoteHost));
 //            if(!host) {
 //                FLThrowIfError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotFindHost localizedDescription:@"Unable to find to host"]);
 //            }

@@ -32,9 +32,9 @@
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"line" propertyClass:[FLCodeElement class]] forContainerProperty:@"lines"];
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"parameter" propertyClass:[FLCodeConstructorParameter class]] forContainerProperty:@"parameters"];
 }
-FLSynthesizeLazyGetter(lines, NSMutableArray, _lines);
+FLSynthesizeLazyGetterDeprecated(lines, NSMutableArray, _lines);
 @synthesize lines = _lines;
-FLSynthesizeLazyGetter(parameters, NSMutableArray, _parameters);
+FLSynthesizeLazyGetterDeprecated(parameters, NSMutableArray, _parameters);
 @synthesize parameters = _parameters;
 
 @end

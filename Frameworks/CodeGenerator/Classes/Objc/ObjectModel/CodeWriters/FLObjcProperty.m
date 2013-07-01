@@ -215,10 +215,11 @@
         if(self.lazyCreate && self.propertyType.isMutableObject) {
             FLConfirmNotNilWithComment(self.ivar, @"lazy properties must have an ivar");
         
-            [codeBuilder appendLineWithFormat:@"FLSynthesizeLazyGetter(%@, %@, %@);", 
+            [codeBuilder appendLineWithFormat:@"FLSynthesizeLazyGetter(%@, %@, %@, %@);",
                 self.propertyName.generatedName, 
                 self.propertyType.generatedName, 
-                self.ivar.variableName.generatedName];
+                self.ivar.variableName.generatedName
+                self.ivar.variableType.generatedName];
         }
         
         [codeBuilder appendSynthesize:self.propertyName.generatedReference ivarName:self.ivar.variableName.generatedName];

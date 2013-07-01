@@ -107,12 +107,16 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
     [_objectQueue removeAllObjects];
 }
 
+- (void) queueBlock:(dispatch_block_t) block {
+    [_fifoQueue addBlock:block];
+}
+
 - (void) requestCancel {
     [super requestCancel];
     self.error = [NSError cancelError];
 
-    [self.fifoQueue addBlock:^{ [self processCancelRequest]; }];
-    [self.fifoQueue addBlock:^{ [self processQueue]; }];
+    [self queueBlock:^{ [self processCancelRequest]; }];
+    [self queueBlock:^{ [self processQueue]; }];
 }
 
 - (NSString*) queueName {
@@ -121,7 +125,7 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 
 - (void) didFinishProcessingQueueElement:(FLAsyncOperationQueueElement*) element {
 
-    [self.fifoQueue addBlock: ^{
+    [self queueBlock: ^{
         [_activeQueue removeObject:element];
         self.processedObjectCount++;
     
@@ -191,17 +195,17 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 }
 
 - (void) addObjectsFromArray:(NSArray*) queuedObjects {
-    [self.fifoQueue addBlock:^{ [self processAddObjects:queuedObjects]; }];
+    [self queueBlock:^{ [self processAddObjects:queuedObjects]; }];
 }
 
 - (void) addObject:(id) object {
-    [self.fifoQueue addBlock:^{ [self processAddObject:object]; }];
+    [self queueBlock:^{ [self processAddObject:object]; }];
 }
 
 - (void) startProcessing {
     self.error = nil;
     self.processing = YES;
-    [self.fifoQueue addBlock:^{ [self processQueue]; }];
+    [self queueBlock:^{ [self processQueue]; }];
 }
 
 - (void) startOperation {

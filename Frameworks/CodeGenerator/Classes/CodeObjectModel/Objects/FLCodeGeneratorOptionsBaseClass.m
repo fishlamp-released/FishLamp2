@@ -35,7 +35,7 @@
 #endif
 @synthesize disabled = _disabled;
 @synthesize generateUserObjects = _generateUserObjects;
-FLSynthesizeLazyGetter(globalDefine, FLCodeDefine, _globalDefine);
+FLSynthesizeLazyGetterDeprecated(globalDefine, FLCodeDefine, _globalDefine);
 @synthesize globalDefine = _globalDefine;
 @synthesize objectsFolderName = _objectsFolderName;
 @synthesize typePrefix = _typePrefix;

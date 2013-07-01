@@ -69,7 +69,7 @@
 }
 
 static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, const CFStreamError *error, void *info) {
-    FLNetworkHostResolver* resolver = bridge_(id, info);
+    FLNetworkHostResolver* resolver = FLBridge(id, info);
     FLAssertIsKindOfClassWithComment(resolver, FLNetworkHostResolver, nil);
     [resolver resolutionCallback:theHost typeInfo:typeInfo error:error];
 }
@@ -79,7 +79,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
         CFHostRef host = self.networkHost.hostRef;
         if(host) {
             /*BOOL success = */ CFHostSetClient(host, NULL, NULL);
-            CFHostUnscheduleFromRunLoop(host, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
+            CFHostUnscheduleFromRunLoop(host, [[self.eventHandler runLoop] getCFRunLoop], FLBridge(void*,self.eventHandler.runLoopMode));
             CFHostCancelInfoResolution(host, self.networkHost.hostInfoType);
         }
     }
@@ -106,7 +106,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     
     self.networkHost = host;
     
-    CFHostClientContext context = { 0, bridge_(void*, self), NULL, NULL, NULL };
+    CFHostClientContext context = { 0, FLBridge(void*, self), NULL, NULL, NULL };
   
     CFHostRef cfhost = self.networkHost.hostRef;
     FLAssertIsNotNilWithComment(cfhost, nil);
@@ -116,7 +116,7 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
         
     }
     else {
-        CFHostScheduleWithRunLoop(cfhost, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
+        CFHostScheduleWithRunLoop(cfhost, [[self.eventHandler runLoop] getCFRunLoop], FLBridge(void*,self.eventHandler.runLoopMode));
         CFStreamError streamError = { 0, 0 };
         if (!CFHostStartInfoResolution(cfhost, self.networkHost.hostInfoType, &streamError) ) {
             [self closeWithResult:FLCreateErrorFromStreamError(&streamError)];

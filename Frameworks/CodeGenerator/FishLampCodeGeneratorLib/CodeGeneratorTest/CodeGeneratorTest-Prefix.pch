@@ -4,4 +4,16 @@
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
+    #import <Availability.h>
+
+    #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+        #import <UIKit/UIKit.h>
+        #import <CoreGraphics/CoreGraphics.h>
+        #import <MobileCoreServices/MobileCoreServices.h>
+        #import <ImageIO/ImageIO.h>
+    #else
+        #import <Cocoa/Cocoa.h>
+        #import <AppKit/AppKit.h>
+        #import <CoreServices/CoreServices.h>
+    #endif
 #endif

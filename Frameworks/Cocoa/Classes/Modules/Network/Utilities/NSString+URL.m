@@ -107,20 +107,20 @@
 
 - (NSString *) urlEncodeString:(NSStringEncoding)encoding
 {
-	return FLAutorelease(bridge_transfer_(NSString*,CFURLCreateStringByAddingPercentEscapes(
+	return FLAutorelease(FLBridgeTransfer(NSString*,CFURLCreateStringByAddingPercentEscapes(
 			kCFAllocatorDefault, 
-			bridge_(void*,self),
+			FLBridge(void*,self),
 			NULL, // escape all
-			bridge_(void*,@";/?:@&=$+{}<>,'\""),
+			FLBridge(void*,@";/?:@&=$+{}<>,'\""),
 			CFStringConvertNSStringEncodingToEncoding(encoding))));
 }  
 
 - (NSString *) urlDecodeString:(NSStringEncoding)encoding {
 
-	return FLAutorelease(bridge_transfer_(NSString*,
+	return FLAutorelease(FLBridgeTransfer(NSString*,
                 CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
                     kCFAllocatorDefault, 
-                    bridge_(void*,self),
+                    FLBridge(void*,self),
                     CFSTR(""), 
                     CFStringConvertNSStringEncodingToEncoding(encoding))));
 }

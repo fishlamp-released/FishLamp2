@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 
 #import <libkern/OSAtomic.h>
 #import "_FLAtomic.h"
@@ -70,13 +70,13 @@
             ((void*) FLAtomicGetInteger((atomic_integer_t*) &(__POINTER__)))
 
 //#define FLAtomicGetObject_(__OBJECT__) \
-//            bridge_(id, FLAtomicGetInteger_(bridge_(atomic_integer_t*, &(__OBJECT__))))
+//            FLBridge(id, FLAtomicGetInteger_(FLBridge(atomic_integer_t*, &(__OBJECT__))))
        
 #define FLAtomicSetPointer_(__POINTER__, __NEW_POINTER__) \
             FLAtomicSetInteger((atomic_integer_t*) &(__POINTER__), (atomic_integer_t*) __NEW_POINTER__)
 
 //#define FLAtomicSetObject_(__OBJECT__, __NEW_OBJECT__) \
-//            FLAtomicSetInteger_(bridge_(atomic_integer_t*, &(__OBJECT__)), bridge_(atomic_integer_t, __NEW_OBJECT__))
+//            FLAtomicSetInteger_(FLBridge(atomic_integer_t*, &(__OBJECT__)), FLBridge(atomic_integer_t, __NEW_OBJECT__))
 
 
 

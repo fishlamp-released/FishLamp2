@@ -9,6 +9,7 @@
 
 #import "FLAttributedString.h"
 #import "FLObjectDescriber.h"
+#import "FLCompatibility.h"
 
 @interface FLTextStyle ()
 @end
@@ -220,14 +221,14 @@
 //- (void) setFont:(SDKFont*) font forRange:(NSRange) range {
 //    FLAssertNotNil(font); 
 //    
-////    CTFontRef fontRef = CTFontCreateWithName(bridge_(CFStringRef, font.fontName), font.pointSize, NULL);
+////    CTFontRef fontRef = CTFontCreateWithName(FLBridge(CFStringRef, font.fontName), font.pointSize, NULL);
 ////    FLAssertIsNotNil(fontRef);
 ////    
 ////    if(fontRef) {
-////        [self setAttribute:bridge_(id, fontRef) forName:(NSString*) kCTFontAttributeName forRange:range];
+////        [self setAttribute:FLBridge(id, fontRef) forName:(NSString*) kCTFontAttributeName forRange:range];
 ////    
 //////        [self addAttribute:(NSString*) kCTFontAttributeName
-//////            value:bridge_(id, fontRef) 
+//////            value:FLBridge(id, fontRef) 
 //////            range:range];
 ////
 ////        CFRelease(fontRef);
@@ -263,7 +264,7 @@
 //
 ////    if(color) {
 ////        [self addAttribute:(NSString*) kCTForegroundColorAttributeName 
-////        value:bridge_(id, [NSColor NSColorToCGColor:color])
+////        value:FLBridge(id, [NSColor NSColorToCGColor:color])
 ////        range:range];
 ////    }
 ////    else {
@@ -288,7 +289,7 @@
 //#endif    
 ////    if(color) {
 ////        [self addAttribute:(NSString*) NSShadowAttributeName 
-////        value:bridge_(id, [NSColor NSColorToCGColor:color])
+////        value:FLBridge(id, [NSColor NSColorToCGColor:color])
 ////        range:range];
 ////    }
 ////    else {

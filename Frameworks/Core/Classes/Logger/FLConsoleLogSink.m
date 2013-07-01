@@ -8,8 +8,7 @@
 //
 
 #import "FLConsoleLogSink.h"
-#import "FLPrintf.h"
-#import "FLWhitespace.h"
+#import "FishLampCore.h"
 
 @implementation FLConsoleLogSink
 

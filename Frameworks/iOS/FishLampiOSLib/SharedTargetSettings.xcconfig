@@ -5,4 +5,4 @@
 //
 
 GCC_PRECOMPILE_PREFIX_HEADER = YES
-GCC_PREFIX_HEADER = FishLampCocoa-Prefix.pch
+GCC_PREFIX_HEADER = FishLampiOS-Prefix.pch

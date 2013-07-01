@@ -19,7 +19,7 @@
 
 @implementation FLTestObjectBaseClass
 
-FLSynthesizeLazyGetter(anArray, NSMutableArray, _anArray);
+FLSynthesizeLazyGetterDeprecated(anArray, NSMutableArray, _anArray);
 @synthesize anArray = _anArray;
 @synthesize anotherInt = _anotherInt;
 @synthesize bob = _bob;

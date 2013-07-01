@@ -8,7 +8,7 @@
 //
 
 #if OSX
-#import <Foundation/Foundation.h>
+#import "FishLampCore.h"
 #import <Cocoa/Cocoa.h>
 
 #import "FLCompatibleGeometry+OSX.h"

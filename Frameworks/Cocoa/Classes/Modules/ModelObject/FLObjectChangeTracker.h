@@ -13,6 +13,8 @@
 @interface FLObjectChangeTracker : NSObject<NSFastEnumeration> {
 @private
     NSMutableArray* _changes;
+    BOOL _dirty;
+    BOOL _disabled;
     __unsafe_unretained id _modelObject;
 }
 

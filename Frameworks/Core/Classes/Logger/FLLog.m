@@ -17,6 +17,7 @@
 #import "FLConsoleLogSink.h"
 #import "FLObjcRuntime.h"
 
+#import "FishLampCore.h"
 
 
 @implementation NSException (FLLogLogger) 

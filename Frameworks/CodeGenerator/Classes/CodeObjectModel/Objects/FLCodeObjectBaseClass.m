@@ -24,13 +24,13 @@
 @implementation FLCodeObjectBaseClass
 
 @synthesize canLazyCreate = _canLazyCreate;
-FLSynthesizeLazyGetter(categories, NSMutableArray, _categories);
+FLSynthesizeLazyGetterDeprecated(categories, NSMutableArray, _categories);
 @synthesize categories = _categories;
 + (id) codeObject {
     return FLAutorelease([[[self class] alloc] init]);
 }
 @synthesize comment = _comment;
-FLSynthesizeLazyGetter(constructors, NSMutableArray, _constructors);
+FLSynthesizeLazyGetterDeprecated(constructors, NSMutableArray, _constructors);
 @synthesize constructors = _constructors;
 #if FL_MRC
 - (void) dealloc {
@@ -48,7 +48,7 @@ FLSynthesizeLazyGetter(constructors, NSMutableArray, _constructors);
     [super dealloc];
 }
 #endif
-FLSynthesizeLazyGetter(dependencies, NSMutableArray, _dependencies);
+FLSynthesizeLazyGetterDeprecated(dependencies, NSMutableArray, _dependencies);
 @synthesize dependencies = _dependencies;
 + (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"method" propertyClass:[FLCodeMethod class]] forContainerProperty:@"methods"];
@@ -59,15 +59,15 @@ FLSynthesizeLazyGetter(dependencies, NSMutableArray, _dependencies);
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"constructor" propertyClass:[FLCodeConstructor class]] forContainerProperty:@"constructors"];
 }
 @synthesize isSingleton = _isSingleton;
-FLSynthesizeLazyGetter(members, NSMutableArray, _members);
+FLSynthesizeLazyGetterDeprecated(members, NSMutableArray, _members);
 @synthesize members = _members;
-FLSynthesizeLazyGetter(methods, NSMutableArray, _methods);
+FLSynthesizeLazyGetterDeprecated(methods, NSMutableArray, _methods);
 @synthesize methods = _methods;
 @synthesize name = _name;
-FLSynthesizeLazyGetter(properties, NSMutableArray, _properties);
+FLSynthesizeLazyGetterDeprecated(properties, NSMutableArray, _properties);
 @synthesize properties = _properties;
 @synthesize protocols = _protocols;
-FLSynthesizeLazyGetter(storageOptions, FLCodeStorageOptions, _storageOptions);
+FLSynthesizeLazyGetterDeprecated(storageOptions, FLCodeStorageOptions, _storageOptions);
 @synthesize storageOptions = _storageOptions;
 @synthesize superclass = _superclass;
 

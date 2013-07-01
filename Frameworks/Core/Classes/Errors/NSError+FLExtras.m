@@ -8,13 +8,7 @@
 //
 
 #import "NSError+FLExtras.h"
-
-#import "FLStringUtils.h"
-#import "FLDebug.h"
-#import "FLMutableError.h"
-#import "FLErrorDomainInfo.h"
-#import "NSDictionary+FLAdditions.h"
-#import "FLErrorException.h"
+#import "FishLampCore.h"
 
 NSString* const FLErrorCommentKey = @"com.fishlamp.error.comment";;
 NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
@@ -53,7 +47,7 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, stackTrace, s
              userInfo:(NSDictionary *) userInfo
               comment:(NSString*) comment {
 
-    NSString* errorCodeString = [[FLErrorDomainInfo instance] stringFromErrorCode:code withDomain:domain];
+    NSString* errorCodeString = nil; // [[FLErrorDomainInfo instance] stringFromErrorCode:code withDomain:domain];
 
     NSString* commentAddOn = nil;
     if(errorCodeString) {

@@ -1,0 +1,9 @@
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <Availability.h>
+    #import <UIKit/UIKit.h>
+    #import <CoreGraphics/CoreGraphics.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
+    #import <ImageIO/ImageIO.h>
+#endif

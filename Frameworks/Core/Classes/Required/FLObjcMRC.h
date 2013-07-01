@@ -40,10 +40,10 @@ void FLRetainObject(id object) {
 #define FLSuperDealloc() \
             [super dealloc]
             
-#define bridge_(__TO__, __FROM__) \
+#define FLBridge(__TO__, __FROM__) \
             ((__TO__) __FROM__)
 
-#define bridge_transfer_(__TO__, __FROM__) \
+#define FLBridgeTransfer(__TO__, __FROM__) \
             ((__TO__) __FROM__)
 
 #define bridge_retain_(__TO__, __FROM__) \

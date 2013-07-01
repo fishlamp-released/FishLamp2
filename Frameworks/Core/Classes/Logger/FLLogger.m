@@ -8,6 +8,7 @@
 //
 
 #import "FLLogger.h"
+#import "FishLampCore.h"
 #import <objc/runtime.h>
 
 @interface FLLogger()

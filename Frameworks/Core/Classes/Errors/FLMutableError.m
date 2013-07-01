@@ -8,7 +8,7 @@
 //
 
 #import "FLMutableError.h"
-#import "FLProperties.h"
+#import "FishLampCore.h"
 
 @interface FLMutableError ()
 @end

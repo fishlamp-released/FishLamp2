@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FishLampCore.h"
 
 typedef id (^FLCarefulDictionaryKeyMutator)(id key);
 

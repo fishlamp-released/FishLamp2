@@ -19,7 +19,7 @@
 
 @implementation FLCodePropertyBaseClass
 
-FLSynthesizeLazyGetter(arrayTypes, NSMutableArray, _arrayTypes);
+FLSynthesizeLazyGetterDeprecated(arrayTypes, NSMutableArray, _arrayTypes);
 @synthesize arrayTypes = _arrayTypes;
 @synthesize canLazyCreate = _canLazyCreate;
 + (id) codeProperty {
@@ -45,7 +45,7 @@ FLSynthesizeLazyGetter(arrayTypes, NSMutableArray, _arrayTypes);
 + (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"arrayType" propertyClass:[FLCodeArrayType class]] forContainerProperty:@"arrayTypes"];
 }
-FLSynthesizeLazyGetter(getter, FLCodeMethod, _getter);
+FLSynthesizeLazyGetterDeprecated(getter, FLCodeMethod, _getter);
 @synthesize getter = _getter;
 @synthesize isImmutable = _isImmutable;
 @synthesize isPrivate = _isPrivate;
@@ -55,7 +55,7 @@ FLSynthesizeLazyGetter(getter, FLCodeMethod, _getter);
 @synthesize isWildcardArray = _isWildcardArray;
 @synthesize memberName = _memberName;
 @synthesize name = _name;
-FLSynthesizeLazyGetter(setter, FLCodeMethod, _setter);
+FLSynthesizeLazyGetterDeprecated(setter, FLCodeMethod, _setter);
 @synthesize setter = _setter;
 @synthesize storage = _storage;
 - (FLCodeStorageMask) storageEnum {
@@ -70,7 +70,7 @@ FLSynthesizeLazyGetter(setter, FLCodeMethod, _setter);
 - (void) setStorageEnumSet:(FLCodeStorageMaskEnumSet*) value {
     self.storage = value.concatenatedString;
 }
-FLSynthesizeLazyGetter(storageOptions, FLCodeStorageOptions, _storageOptions);
+FLSynthesizeLazyGetterDeprecated(storageOptions, FLCodeStorageOptions, _storageOptions);
 @synthesize storageOptions = _storageOptions;
 @synthesize type = _type;
 @synthesize useForEquality = _useForEquality;

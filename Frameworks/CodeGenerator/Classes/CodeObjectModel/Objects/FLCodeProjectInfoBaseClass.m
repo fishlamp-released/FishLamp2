@@ -29,7 +29,7 @@
 }
 #endif
 @synthesize license = _license;
-FLSynthesizeLazyGetter(organization, FLCodeCompany, _organization);
+FLSynthesizeLazyGetterDeprecated(organization, FLCodeCompany, _organization);
 @synthesize organization = _organization;
 @synthesize projectName = _projectName;
 @synthesize schemaName = _schemaName;

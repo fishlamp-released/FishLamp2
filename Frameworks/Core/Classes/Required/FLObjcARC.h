@@ -9,28 +9,17 @@
 
 #if FL_ARC
 
-#define FLRetain(__OBJ__) \
-            __OBJ__
+#define FLRetain(__OBJ__) __OBJ__
 
 #define FLRetainObject(__OBJ__) 
 
 #define FLRelease(__OBJ__) 
 
-#define FLAutorelease(__OBJ__) \
-            __OBJ__
+#define FLAutorelease(__OBJ__) __OBJ__
 
 #define FLAutoreleaseObject(__OBJ__)    
 
 #define FLSuperDealloc()
-
-#define bridge_(__TO__, __FROM__) \
-            ((__bridge __TO__) __FROM__)
-            
-#define bridge_transfer_(__TO__, __FROM__) \
-            ((__bridge_transfer __TO__) __FROM__)
-
-#define bridge_retain(__TO__, __FROM__) \
-            ((__bridge_retained __TO__) __FROM__)
 
 #define FLBridge(__TO__, __FROM__) \
             ((__bridge __TO__) __FROM__)

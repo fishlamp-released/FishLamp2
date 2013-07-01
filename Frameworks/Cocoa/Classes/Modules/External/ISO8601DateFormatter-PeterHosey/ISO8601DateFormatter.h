@@ -5,7 +5,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
  */
 
-#import <Foundation/Foundation.h>
+#import "FishLampCore.h"
 
 /*This class converts dates to and from ISO 8601 strings. A good introduction to ISO 8601: <http://www.cl.cam.ac.uk/~mgk25/iso-time.html>
  *

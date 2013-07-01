@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCoreRequired.h"
 
 typedef struct {
     const char* string;

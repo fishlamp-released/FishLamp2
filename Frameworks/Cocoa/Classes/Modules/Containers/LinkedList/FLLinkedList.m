@@ -477,7 +477,7 @@
 	}	
 	else {
 		// Subsequent iterations, get the current progress out of state->state
-		currentObject = bridge_(id, (void*)state->state);
+		currentObject = FLBridge(id, (void*)state->state);
 	}
 	    
 	// Accumulate nodes from the list until we reach the object's
@@ -489,7 +489,7 @@
 		batchCount++;
 	}
 
-	state->state = currentObject == nil ? NSIntegerMax : (unsigned long) bridge_(void*, currentObject);
+	state->state = currentObject == nil ? NSIntegerMax : (unsigned long) FLBridge(void*, currentObject);
 	state->itemsPtr = buffer;
 	state->mutationsPtr = (unsigned long*) &_mutationCount;
 
@@ -889,13 +889,13 @@ int main()
 	}
 
 	state->itemsPtr = buffer;
-	state->mutationsPtr = bridge_(void*, self);
+	state->mutationsPtr = FLBridge(void*, self);
     
 	// Accumulate nodes from the list until we reach the object's
 	// _endOfListPlusOneObject
 	if(self.current) {
         self.next = [self.current nextObjectInLinkedList];
-        state->state = (unsigned long) bridge_(void*, self.current);
+        state->state = (unsigned long) FLBridge(void*, self.current);
         return 1;
     }
     

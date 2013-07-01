@@ -8,6 +8,8 @@
 //
 
 #import "FLAssertions.h"
+#import "FishLampCore.h"
+
 id _FLAssertIsClass(id object, Class aClass) {
     if(object) {
         FLAssertNotNilWithComment(aClass, @"class for %@ is nil", NSStringFromClass(aClass));

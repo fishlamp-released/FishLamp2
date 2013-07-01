@@ -8,6 +8,7 @@
 //
 
 #import "FLLogEntry.h"
+#import "FishLampCore.h"
 
 @interface FLLogEntry () 
 @property (readwrite, strong, nonatomic) NSString* logName;

@@ -44,14 +44,18 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
+- (void) queueBlock:(dispatch_block_t) block {
+    [self.asyncQueue addBlock:block];
+}
+
 - (void) queueSelector:(SEL) selector withObject:(id) object {
-    [self addBlock:^{ 
+    [self queueBlock:^{
         [self.stream performSelector:selector withObject:object];
     }];
 }
 
 - (void) queueSelector:(SEL) selector {
-    [self addBlock:^{ 
+    [self queueBlock:^{
     
         @try { 
             [self.stream performSelector:selector];
@@ -64,16 +68,6 @@
 }
 
 #pragma GCC diagnostic pop
-
-- (void) didDispatchBlockInStream:(FLNetworkStream*) stream {
-
-}
-
-- (void) addBlock:(dispatch_block_t) block {
-    [self.asyncQueue addBlock:block withCompletion:^(FLPromisedResult result) {
-        [self didDispatchBlockInStream:_stream];
-    }];
-}
 
 - (void) handleStreamEvent:(CFStreamEventType) eventType {
 

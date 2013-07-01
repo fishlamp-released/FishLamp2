@@ -25,7 +25,7 @@
     [super dealloc];
 }
 #endif
-FLSynthesizeLazyGetter(wildcardProperty, FLCodeProperty, _wildcardProperty);
+FLSynthesizeLazyGetterDeprecated(wildcardProperty, FLCodeProperty, _wildcardProperty);
 @synthesize wildcardProperty = _wildcardProperty;
 
 @end

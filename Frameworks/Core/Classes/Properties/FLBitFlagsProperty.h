@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 #import "FLBitFlags.h"
 
 #define FLBitFlagProperty(__PROPERTY_NAME__) \

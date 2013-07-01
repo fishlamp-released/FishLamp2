@@ -484,7 +484,7 @@ sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
 @implementation NSNumber (FLSqlStatement)
 - (void) bindToStatement:(FLSqlStatement*) statement parameterIndex:(int) parameterIndex {
 	
-    switch(CFNumberGetType(bridge_(CFNumberRef, self))) {
+    switch(CFNumberGetType(FLBridge(CFNumberRef, self))) {
 		case kCFNumberCGFloatType: 
 		case kCFNumberDoubleType:
 		case kCFNumberFloatType:

@@ -9,6 +9,7 @@
 
 #import "FLPrintf.h"
 #import "FLWhitespace.h"
+#import "FishLampCore.h"
 
 static NSUInteger s_indent = 0;
 

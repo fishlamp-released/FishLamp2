@@ -26,7 +26,7 @@
     #define FL_SHIP_ONLY_INLINE NS_INLINE
 #endif
 
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 #import "FishLampVersion.h"
 // TODO: push these out to the frameworks?
 #if IOS
@@ -41,7 +41,6 @@
 #endif
 
 // Errors
-#import "FLErrors.h"
 #import "FLExceptions.h"
 
 #import "FLAssertionFailedError.h"
@@ -49,7 +48,6 @@
 #import "FLAssertions.h"
 #import "FLCancelError.h"
 #import "FLConfirmations.h"
-#import "FLErrorDomainInfo.h"
 #import "FLErrorException.h"
 #import "FLErrorCodes.h"
 #import "FLMutableError.h"
@@ -102,3 +100,4 @@
     #import "FLCharString.h"
 
 */
+

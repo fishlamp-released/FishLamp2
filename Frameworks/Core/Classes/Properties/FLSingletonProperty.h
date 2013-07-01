@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 
 /// FLSingletonProperty is a macro for defining a singleton object.
 /// @param __class The type of the class (for example MyClass). 

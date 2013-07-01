@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import <Foundation/Foundation.h>
+#import "FishLampCore.h"
 
 extern NSTimeInterval FLTimeBlock (dispatch_block_t block);
 

@@ -19,9 +19,9 @@
 
 @implementation FLCodeMethodBaseClass
 
-FLSynthesizeLazyGetter(code, FLCodeCodeSnippet, _code);
+FLSynthesizeLazyGetterDeprecated(code, FLCodeCodeSnippet, _code);
 @synthesize code = _code;
-FLSynthesizeLazyGetter(codeLines, NSMutableArray, _codeLines);
+FLSynthesizeLazyGetterDeprecated(codeLines, NSMutableArray, _codeLines);
 @synthesize codeLines = _codeLines;
 + (id) codeMethod {
     return FLAutorelease([[[self class] alloc] init]);
@@ -45,7 +45,7 @@ FLSynthesizeLazyGetter(codeLines, NSMutableArray, _codeLines);
 @synthesize isPrivate = _isPrivate;
 @synthesize isStatic = _isStatic;
 @synthesize name = _name;
-FLSynthesizeLazyGetter(parameters, NSMutableArray, _parameters);
+FLSynthesizeLazyGetterDeprecated(parameters, NSMutableArray, _parameters);
 @synthesize parameters = _parameters;
 @synthesize returnType = _returnType;
 

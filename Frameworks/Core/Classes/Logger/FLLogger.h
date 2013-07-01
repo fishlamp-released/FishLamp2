@@ -7,18 +7,18 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLRequired.h"
-#import "FLLogEntry.h"
-#import "FLLogSink.h"
+#import "FLCoreRequired.h"
 #import "FLStringFormatter.h"
-#import "FLWhitespace.h"
 
 #define FLLogTypeNone       nil
 #define FLLogTypeLog        @"com.fishlamp.log"
 #define FLLogTypeError      @"com.fishlamp.error"
 #define FLLogTypeException  @"com.fishlamp.exception"
 
+@protocol FLLogSink;
 @class FLLogger;
+@class FLLogEntry;
+@class FLStackTrace;
 
 @interface FLLogger : FLStringFormatter<FLStringFormatterOutput> {
 @private

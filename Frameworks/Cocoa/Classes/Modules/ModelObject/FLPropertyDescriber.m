@@ -24,19 +24,14 @@
 }
 @end
 
-//#define LazyStringGetter(name, ivar, char_string) \
-//- (NSString*) name { \
-//    if(!ivar) { \
-//        ivar = FLRetain([NSString stringWithCharString:char_string]); \
-//    } \
-//    return ivar; \
-//}
-
 #define LazySelectorGetter(name, ivar, char_string) \
 - (SEL) name { \
     if(!ivar) { \
-        SEL selector = NSSelectorFromString([NSString stringWithCharString:char_string]); \
-        OSAtomicCompareAndSwapPtrBarrier(nil, selector, FLBridge(void*, &ivar)); \
+        @synchronized(self) { \
+            if(!ivar) { \
+                ivar = NSSelectorFromString([NSString stringWithCharString:_attributes.customSetter]); \
+            } \
+        } \
     } \
     return ivar; \
 }
@@ -61,13 +56,29 @@
 @synthesize propertyKey = _propertyKey;
 @synthesize serializationKey = _serializationKey;
 
-//LazyStringGetter(structName, _structName, _attributes.structName)
-//LazyStringGetter(unionName, _unionName, _attributes.unionName)
-//LazyStringGetter(ivarName, _ivarName, _attributes.ivar)
+FLSynthesizeLazyGetterWithBlock(structName, NSString*, _structName, ^{
+    return [NSString stringWithCharString:_attributes.structName]; }
+    );
 
-FLSynthesizeLazyGetterWithInit(structName, NSString*, _structName, [[NSString alloc] initWithCharString:_attributes.structName]);
-FLSynthesizeLazyGetterWithInit(unionName, NSString*, _unionName, [[NSString alloc] initWithCharString:_attributes.unionName]);
-FLSynthesizeLazyGetterWithInit(ivarName, NSString*, _ivarName, [[NSString alloc] initWithCharString:_attributes.ivar]);
+FLSynthesizeLazyGetterWithBlock(unionName, NSString*, _unionName, ^{
+    return [NSString stringWithCharString:_attributes.unionName];
+});
+
+FLSynthesizeLazyGetterWithBlock(ivarName, NSString*, _ivarName, ^{
+    return [NSString stringWithCharString:_attributes.ivar]; }
+);
+
+//FLSynthesizeLazyGetterWithBlock(customGetter, SEL, _customGetter, ^{ \
+//    return NSSelectorFromString([NSString stringWithCharString:_attributes.customGetter]); \
+//})'
+//
+//FLSynthesizeLazyGetterWithBlock(customSetter, SEL, _customSetter, ^{ \
+//    return NSSelectorFromString([NSString stringWithCharString:_attributes.customSetter]); \
+//});
+//
+//FLSynthesizeLazyGetterWithBlock(selector, SEL, _customSetter, ^{ \
+//    return NSSelectorFromString([NSString stringWithCharString:_attributes.customSetter]); \
+//});
 
 LazySelectorGetter(customGetter, _customGetter, _attributes.customGetter)
 LazySelectorGetter(customSetter, _customSetter, _attributes.customSetter)

@@ -8,7 +8,7 @@
 //
 
 #import "FLStringFormatter.h"
-#import "NSArray+FLExtras.h"
+#import "FishLampCore.h"
 
 /*
 /// concrete base class.

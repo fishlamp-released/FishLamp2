@@ -7,18 +7,16 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLRequired.h"
-#import "FLExceptions.h"
+#import "FLCoreRequired.h"
+//#import "FLExceptions.h"
 #import "FLStringUtils.h"
-#import "FLAssertionFailureErrorDomain.h"
+//#import "FLAssertionFailureErrorDomain.h"
 
-#import "FLAssertionFailedError.h"
+//#import "FLAssertionFailedError.h"
 
 #if !defined(ASSERTIONS) && (defined(DEBUG) || defined(TEST))
 #define ASSERTIONS 1
 #endif
-
-
 
 #import "FLConfirmations.h"
 

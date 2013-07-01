@@ -24,9 +24,9 @@
 
 @implementation FLCodeProjectBaseClass
 
-FLSynthesizeLazyGetter(arrays, NSMutableArray, _arrays);
+FLSynthesizeLazyGetterDeprecated(arrays, NSMutableArray, _arrays);
 @synthesize arrays = _arrays;
-FLSynthesizeLazyGetter(classes, NSMutableArray, _classes);
+FLSynthesizeLazyGetterDeprecated(classes, NSMutableArray, _classes);
 @synthesize classes = _classes;
 + (id) codeProject {
     return FLAutorelease([[[self class] alloc] init]);
@@ -47,9 +47,9 @@ FLSynthesizeLazyGetter(classes, NSMutableArray, _classes);
     [super dealloc];
 }
 #endif
-FLSynthesizeLazyGetter(defines, NSMutableArray, _defines);
+FLSynthesizeLazyGetterDeprecated(defines, NSMutableArray, _defines);
 @synthesize defines = _defines;
-FLSynthesizeLazyGetter(dependencies, NSMutableArray, _dependencies);
+FLSynthesizeLazyGetterDeprecated(dependencies, NSMutableArray, _dependencies);
 @synthesize dependencies = _dependencies;
 + (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"dependency" propertyClass:[FLCodeTypeDefinition class]] forContainerProperty:@"dependencies"];
@@ -60,15 +60,15 @@ FLSynthesizeLazyGetter(dependencies, NSMutableArray, _dependencies);
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"enumType" propertyClass:[FLCodeEnumType class]] forContainerProperty:@"enumTypes"];
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"typeDefinition" propertyClass:[FLCodeTypeDefinition class]] forContainerProperty:@"typeDefinitions"];
 }
-FLSynthesizeLazyGetter(enumTypes, NSMutableArray, _enumTypes);
+FLSynthesizeLazyGetterDeprecated(enumTypes, NSMutableArray, _enumTypes);
 @synthesize enumTypes = _enumTypes;
-FLSynthesizeLazyGetter(imports, NSMutableArray, _imports);
+FLSynthesizeLazyGetterDeprecated(imports, NSMutableArray, _imports);
 @synthesize imports = _imports;
-FLSynthesizeLazyGetter(info, FLCodeProjectInfo, _info);
+FLSynthesizeLazyGetterDeprecated(info, FLCodeProjectInfo, _info);
 @synthesize info = _info;
-FLSynthesizeLazyGetter(options, FLCodeGeneratorOptions, _options);
+FLSynthesizeLazyGetterDeprecated(options, FLCodeGeneratorOptions, _options);
 @synthesize options = _options;
-FLSynthesizeLazyGetter(typeDefinitions, NSMutableArray, _typeDefinitions);
+FLSynthesizeLazyGetterDeprecated(typeDefinitions, NSMutableArray, _typeDefinitions);
 @synthesize typeDefinitions = _typeDefinitions;
 
 @end

@@ -6,7 +6,7 @@
 //	Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 #import "FLSingletonProperty.h"
 #import "FLAssociatedProperty.h"
 #import "FLAtomicProperties.h"
@@ -15,22 +15,6 @@
 #import "FLDefaultProperty.h"
 #import "FLBitFlagsProperty.h"
 
-// last parameter (...) is init like this
-//      FLSynthesizeLazyGetterWithInit(foo, FOO*, _foo, [[FOO alloc] init])
-
-#define FLSynthesizeLazyGetterWithInit(__NAME__, __TYPE__, __IVAR__, ... ) \
-    - (__TYPE__) __NAME__ { \
-            if ( __IVAR__ == nil ) { \
-                id var = __VA_ARGS__; \
-                if ( OSAtomicCompareAndSwapPtrBarrier(nil, var, FLBridge(void*, &__IVAR__)) == false ) { \
-                    FLRelease(var); /* already set by another thread, so release this one */ \
-                } \
-            } \
-        return __IVAR__; \
-    }
-
-#define FLSynthesizeLazyGetter(__NAME__, __TYPE__, __IVAR__) \
-            FLSynthesizeLazyGetterWithInit(__NAME__, __TYPE__*, __IVAR__, [[__TYPE__ alloc] init])
 
 #define FLSynthesizeDictionaryGetterProperty(__GETTER__, __TYPE__, __KEY__, __DICTIONARY__) \
     - (__TYPE__) __GETTER__ { \

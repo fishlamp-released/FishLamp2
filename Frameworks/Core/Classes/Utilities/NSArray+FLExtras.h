@@ -10,7 +10,7 @@
 /// @category NSArray(FLExtras)
 /// @brief A Category for adding a couple of obvious methods to NSArray.
 
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 
 @interface NSArray (FLExtras)
 

@@ -28,7 +28,7 @@
 + (void) didRegisterObjectDescriber:(FLObjectDescriber*) describer {
     [describer addContainerType:[FLPropertyDescriber propertyDescriber:@"statement" propertyClass:[FLCodeElement class]] forContainerProperty:@"statements"];
 }
-FLSynthesizeLazyGetter(statements, NSMutableArray, _statements);
+FLSynthesizeLazyGetterDeprecated(statements, NSMutableArray, _statements);
 @synthesize statements = _statements;
 
 @end

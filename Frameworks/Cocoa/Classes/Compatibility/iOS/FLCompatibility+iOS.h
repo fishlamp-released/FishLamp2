@@ -10,7 +10,7 @@
 
 #if IOS
 
-#import <Foundation/Foundation.h>
+#import "FishLampCore.h"
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 #import <MobileCoreServices/MobileCoreServices.h>

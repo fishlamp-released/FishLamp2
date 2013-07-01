@@ -28,12 +28,12 @@
 
 /* Begin PBXBuildFile section */
 		27821241175D43BC007C5F26 /* libFishLampCore-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27821237175D4388007C5F26 /* libFishLampCore-OSX-64-MRC.a */; };
+		2788F77A1781F6C200B9677F /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 2788F7791781F6C200B9677F /* FishLampCocoa-Prefix.pch */; };
+		2788F77B1781F6C200B9677F /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 2788F7791781F6C200B9677F /* FishLampCocoa-Prefix.pch */; };
+		2788F77C1781F6C200B9677F /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 2788F7791781F6C200B9677F /* FishLampCocoa-Prefix.pch */; };
+		2788F77D1781F6C200B9677F /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 2788F7791781F6C200B9677F /* FishLampCocoa-Prefix.pch */; };
 		27C62D3B170B45C80093F260 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C62D3A170B45C80093F260 /* Foundation.framework */; };
 		27C62D4A170B46670093F260 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C62D49170B46670093F260 /* main.m */; };
-		27CBBFEE16768BA600753D0A /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
-		27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
-		27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
-		27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */; };
 		27DF71ED1777A354004A954C /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF6F451777A353004A954C /* FLCompatibility.h */; };
 		27DF71EE1777A354004A954C /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF6F451777A353004A954C /* FLCompatibility.h */; };
 		27DF71EF1777A354004A954C /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF6F451777A353004A954C /* FLCompatibility.h */; };
@@ -2821,6 +2821,7 @@
 		27048EF0161CB58600C38ADA /* libFishLampCocoa-OSX-32-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-32-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		270E056F175D436D00802761 /* FishLampCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampCore.xcodeproj; path = ../../Core/FishLampCoreLib/FishLampCore.xcodeproj; sourceTree = "<group>"; };
 		27314C79165328400027850D /* libFishLampCocoa-OSX-64-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2788F7791781F6C200B9677F /* FishLampCocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCocoa-Prefix.pch"; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoa-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27C62AD3170B37EC0093F260 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -2845,7 +2846,6 @@
 		27C62DC8170B4DC90093F260 /* TestToolSharedConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestToolSharedConfig.xcconfig; sourceTree = "<group>"; };
 		27C62DCA170B4E870093F260 /* CocoaSharedConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CocoaSharedConfig.xcconfig; sourceTree = "<group>"; };
 		27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-Universal-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-Universal-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCocoa-Prefix.pch"; sourceTree = "<group>"; };
 		27DF6F451777A353004A954C /* FLCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCompatibility.h; sourceTree = "<group>"; };
 		27DF6F471777A353004A954C /* FLCompatibility+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibility+iOS.h"; sourceTree = "<group>"; };
 		27DF6F481777A353004A954C /* FLCompatibleGeometry+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibleGeometry+iOS.h"; sourceTree = "<group>"; };
@@ -3518,7 +3518,6 @@
 				27C62DB1170B4BD80093F260 /* FishLampCocoaTestTool */,
 				27E957E8170B575D00587A8F /* FishLampProjectSettings */,
 				27C62DBA170B4BD80093F260 /* FishLampCocoa */,
-				27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -3614,6 +3613,7 @@
 		27C62DBA170B4BD80093F260 /* FishLampCocoa */ = {
 			isa = PBXGroup;
 			children = (
+				2788F7791781F6C200B9677F /* FishLampCocoa-Prefix.pch */,
 				27C62DBB170B4BD80093F260 /* CocoaTargetSettings-OSX-32-MRC.xcconfig */,
 				27C62DBC170B4BD80093F260 /* CocoaTargetSettings-OSX-Universal-MRC.xcconfig */,
 				27C62DBD170B4BD80093F260 /* CocoaTargetSettings-OSX-64-ARC.xcconfig */,
@@ -4909,6 +4909,7 @@
 				27DF7B901777A355004A954C /* FLAssertionTests.h in Headers */,
 				27DF742D1777A354004A954C /* FLCommandLineTask.h in Headers */,
 				27DF791B1777A354004A954C /* FLDatabaseErrors.h in Headers */,
+				2788F77A1781F6C200B9677F /* FishLampCocoa-Prefix.pch in Headers */,
 				27DF73481777A354004A954C /* FLSynchronousOperation.h in Headers */,
 				27DF7D231779078E004A954C /* FLMainThreadObject.h in Headers */,
 				27DF7B361777A355004A954C /* FLObservableTests.h in Headers */,
@@ -4988,7 +4989,6 @@
 				27DF74631777A354004A954C /* FLBatchDictionary.h in Headers */,
 				27DF73CF1777A354004A954C /* FLColorRangeColorValues.h in Headers */,
 				27DF77FC1777A354004A954C /* FLDataSink.h in Headers */,
-				27D1E5C3166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
 				27DF74F21777A354004A954C /* FLSoapDataEncoder.h in Headers */,
 				27DF794C1777A354004A954C /* FLSqlStatement.h in Headers */,
 				27DF72881777A354004A954C /* FLFolder.h in Headers */,
@@ -5227,6 +5227,7 @@
 				27DF7B921777A355004A954C /* FLAssertionTests.h in Headers */,
 				27DF742F1777A354004A954C /* FLCommandLineTask.h in Headers */,
 				27DF791D1777A354004A954C /* FLDatabaseErrors.h in Headers */,
+				2788F77C1781F6C200B9677F /* FishLampCocoa-Prefix.pch in Headers */,
 				27DF734A1777A354004A954C /* FLSynchronousOperation.h in Headers */,
 				27DF7D251779078E004A954C /* FLMainThreadObject.h in Headers */,
 				27DF7B381777A355004A954C /* FLObservableTests.h in Headers */,
@@ -5306,7 +5307,6 @@
 				27DF74651777A354004A954C /* FLBatchDictionary.h in Headers */,
 				27DF73D11777A354004A954C /* FLColorRangeColorValues.h in Headers */,
 				27DF77FE1777A354004A954C /* FLDataSink.h in Headers */,
-				27D1E5C4166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
 				27DF74F41777A354004A954C /* FLSoapDataEncoder.h in Headers */,
 				27DF794E1777A354004A954C /* FLSqlStatement.h in Headers */,
 				27DF728A1777A354004A954C /* FLFolder.h in Headers */,
@@ -5545,6 +5545,7 @@
 				27DF7B911777A355004A954C /* FLAssertionTests.h in Headers */,
 				27DF742E1777A354004A954C /* FLCommandLineTask.h in Headers */,
 				27DF791C1777A354004A954C /* FLDatabaseErrors.h in Headers */,
+				2788F77B1781F6C200B9677F /* FishLampCocoa-Prefix.pch in Headers */,
 				27DF73491777A354004A954C /* FLSynchronousOperation.h in Headers */,
 				27DF7D241779078E004A954C /* FLMainThreadObject.h in Headers */,
 				27DF7B371777A355004A954C /* FLObservableTests.h in Headers */,
@@ -5624,7 +5625,6 @@
 				27DF74641777A354004A954C /* FLBatchDictionary.h in Headers */,
 				27DF73D01777A354004A954C /* FLColorRangeColorValues.h in Headers */,
 				27DF77FD1777A354004A954C /* FLDataSink.h in Headers */,
-				27D1E5C2166D355C00DB680E /* FishLampCocoa-Prefix.pch in Headers */,
 				27DF74F31777A354004A954C /* FLSoapDataEncoder.h in Headers */,
 				27DF794D1777A354004A954C /* FLSqlStatement.h in Headers */,
 				27DF72891777A354004A954C /* FLFolder.h in Headers */,
@@ -5863,6 +5863,7 @@
 				27DF7B931777A355004A954C /* FLAssertionTests.h in Headers */,
 				27DF74301777A354004A954C /* FLCommandLineTask.h in Headers */,
 				27DF791E1777A354004A954C /* FLDatabaseErrors.h in Headers */,
+				2788F77D1781F6C200B9677F /* FishLampCocoa-Prefix.pch in Headers */,
 				27DF734B1777A354004A954C /* FLSynchronousOperation.h in Headers */,
 				27DF7D261779078E004A954C /* FLMainThreadObject.h in Headers */,
 				27DF7B391777A355004A954C /* FLObservableTests.h in Headers */,
@@ -5942,7 +5943,6 @@
 				27DF74661777A354004A954C /* FLBatchDictionary.h in Headers */,
 				27DF73D21777A354004A954C /* FLColorRangeColorValues.h in Headers */,
 				27DF77FF1777A354004A954C /* FLDataSink.h in Headers */,
-				27CBBFEE16768BA600753D0A /* FishLampCocoa-Prefix.pch in Headers */,
 				27DF74F51777A354004A954C /* FLSoapDataEncoder.h in Headers */,
 				27DF794F1777A354004A954C /* FLSqlStatement.h in Headers */,
 				27DF728B1777A354004A954C /* FLFolder.h in Headers */,

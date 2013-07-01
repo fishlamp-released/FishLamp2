@@ -31,17 +31,17 @@
         domainStr = NSOSStatusErrorDomain;
     }
     else if (streamError.domain == kCFStreamErrorDomainNetServices) {
-        domainStr = bridge_(NSString*, kCFErrorDomainCFNetwork);
+        domainStr = FLBridge(NSString*, kCFErrorDomainCFNetwork);
     }
     else if (streamError.domain == kCFStreamErrorDomainNetDB) {
-        domainStr = bridge_(NSString*, kCFErrorDomainCFNetwork);
+        domainStr = FLBridge(NSString*, kCFErrorDomainCFNetwork);
         code = kCFHostErrorUnknown;
         userInfo = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:streamError.error], kCFGetAddrInfoFailureKey, nil];
     }
     else {
         // If it's something we don't understand, we just assume it comes from 
         // CFNetwork.
-        domainStr = bridge_(NSString*, kCFErrorDomainCFNetwork);
+        domainStr = FLBridge(NSString*, kCFErrorDomainCFNetwork);
     }
 
     NSError* error = [NSError errorWithDomain:domainStr code:code userInfo:userInfo];

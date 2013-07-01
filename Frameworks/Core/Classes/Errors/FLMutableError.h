@@ -7,10 +7,9 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLRequired.h"
-
-#import "FLErrorDomainInfo.h"
-#import "NSError+FLExtras.h"
+#import "FLCoreRequired.h"
+//#import "NSError+FLExtras.h"
+@class FLStackTrace;
 
 extern NSString* const FLErrorStackTraceKey;
 

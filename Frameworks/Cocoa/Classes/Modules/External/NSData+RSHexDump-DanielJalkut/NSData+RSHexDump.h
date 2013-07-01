@@ -9,7 +9,7 @@
 //	Based on code from Dan Wood 
 //	http://gigliwood.com/weblog/Cocoa/Better_description_.html
 //
-#import <Foundation/Foundation.h>
+#import "FishLampCore.h"
 
 @interface NSData (RSHexDump)
 

@@ -8,6 +8,7 @@
 //
 
 #import "FLAssertionFailedError.h"
+#import "FishLampCore.h"
 
 @implementation FLAssertionFailedError
 

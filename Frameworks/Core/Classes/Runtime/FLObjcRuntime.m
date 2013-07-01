@@ -12,6 +12,8 @@
 #import <stdlib.h>
 #import <string.h>
 #import <stdio.h>
+#import "FishLampCore.h"
+
 // experimental
 
 //id objc_getProperty(id self, SEL _cmd, ptrdiff_t offset, BOOL atomic);

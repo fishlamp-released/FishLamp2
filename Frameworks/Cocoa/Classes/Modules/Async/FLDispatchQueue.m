@@ -29,7 +29,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
         dispatch_retain(_dispatch_queue);
 #if __MAC_10_8
         if(OSXVersionIsAtLeast10_7()) {        
-            dispatch_queue_set_specific(_dispatch_queue, s_queue_key, bridge_(void*, self), nil);
+            dispatch_queue_set_specific(_dispatch_queue, s_queue_key, FLBridge(void*, self), nil);
         }
 #endif
         _label = [[NSString alloc] initWithCString:dispatch_queue_get_label(_dispatch_queue) encoding:NSASCIIStringEncoding];
@@ -99,7 +99,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 #if __MAC_10_8
     if(OSXVersionIsAtLeast10_7()) {        
-        return bridge_(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
+        return FLBridge(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
     }
 #endif    
     return nil;

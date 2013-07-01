@@ -97,7 +97,7 @@
 	
 	state->state = _index;
 	state->itemsPtr = stackbuf;
-	state->mutationsPtr = bridge_(void*, self); // mutations are allowed, this is essentially a no-op
+	state->mutationsPtr = FLBridge(void*, self); // mutations are allowed, this is essentially a no-op
 
 	return 1;
 }

@@ -9,6 +9,7 @@
 
 #if OSX
 #import "NSImage+FLCompatibility.h"
+#import "FLCompatibility.h"
 
 @implementation NSImage (FLCompatibility)
 
