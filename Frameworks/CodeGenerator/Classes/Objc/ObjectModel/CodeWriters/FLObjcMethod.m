@@ -145,6 +145,11 @@
     return _stringStatement.codeBuilder;
 }
 
+- (BOOL) hasCode {
+    return [_statement hasCode];
+}
+
+
 
 @end
 

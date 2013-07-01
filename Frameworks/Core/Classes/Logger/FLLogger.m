@@ -44,8 +44,6 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-  
-
 - (void) dealloc {
     dispatch_release(_fifoQueue);
 #if FL_MRC
@@ -91,6 +89,7 @@
         }
     } 
     [entry releaseToCache];
+    _length ++ ;
 }
 
 - (void) logEntry:(FLLogEntry*) entry {
@@ -179,6 +178,12 @@
     [self stringFormatter:stringFormatter appendString:attributedString.string];
 }
 
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter
+appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
+
+}
+
+
 - (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
     [self dispatchBlock: ^{
         ++_indentLevel; 
@@ -217,6 +222,9 @@
     }];
 }
 
+- (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter {
+    return _length;
+}
 
 //- (void) logException:(NSException*) exception withComment:(NSString*) comment {
 //

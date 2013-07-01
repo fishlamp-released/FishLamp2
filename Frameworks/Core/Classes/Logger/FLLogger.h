@@ -26,6 +26,7 @@
     dispatch_queue_t _fifoQueue;
     NSInteger _indentLevel;
     NSMutableString* _line;
+    NSUInteger _length;
 }
 
 + (id) logger;

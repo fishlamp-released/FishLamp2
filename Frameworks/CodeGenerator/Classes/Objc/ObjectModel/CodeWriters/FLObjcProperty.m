@@ -160,12 +160,12 @@
         }
     }
 
-    if(codeProperty.defaultValue) {
-        FLCodeElement* element = [FLCodeStatement codeStatement:
-                                        [FLCodeReturn codeReturn:codeProperty.defaultValue]];
-
-        [self.getter.code appendCodeElement:element
-                                withProject:self.project];
+    if(FLStringIsNotEmpty(codeProperty.defaultValue)) {
+        FLCodeElement* element = [self.propertyType defaultValueForString:codeProperty.defaultValue];
+        if(element) {
+            [self.getter.code appendCodeElement:element
+                                    withProject:self.project];
+        }
     }
 
     [self.parentObject addProperty:self];
@@ -212,14 +212,22 @@
         [_getter writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
     }
     else {
-        if(self.lazyCreate && self.propertyType.isMutableObject) {
+
+        if(_getter.hasCode) {
+            [_getter writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
+        }
+        else if(self.lazyCreate && self.propertyType.isMutableObject) {
             FLConfirmNotNilWithComment(self.ivar, @"lazy properties must have an ivar");
         
-            [codeBuilder appendLineWithFormat:@"FLSynthesizeLazyGetter(%@, %@, %@, %@);",
+            [codeBuilder appendLineWithFormat:@"FLSynthesizeLazyGetter(%@, %@*, %@, %@);",
                 self.propertyName.generatedName, 
                 self.propertyType.generatedName, 
-                self.ivar.variableName.generatedName
+                self.ivar.variableName.generatedName,
                 self.ivar.variableType.generatedName];
+        }
+
+        if(_setter.hasCode) {
+            [_setter writeCodeToSourceFile:file withCodeBuilder:codeBuilder];
         }
         
         [codeBuilder appendSynthesize:self.propertyName.generatedReference ivarName:self.ivar.variableName.generatedName];

@@ -8,6 +8,7 @@
 
 #import "FLObjcType.h"
 #import "FLObjcCodeGeneratorHeaders.h"
+#import "FishLampCodeGeneratorObjects.h"
 
 @interface FLObjcType ()
 @property (readwrite, strong, nonatomic) FLObjcName* typeName;
@@ -96,6 +97,11 @@ didConfigureProperty:(FLObjcProperty*) property {
 
 - (BOOL) isMutableObject {
     return NO;
+}
+
+- (FLCodeElement*) defaultValueForString:(NSString*) string {
+    return [FLCodeStatement codeStatement:
+                [FLCodeReturn codeReturn:string]];
 }
 
 @end

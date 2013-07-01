@@ -62,6 +62,7 @@
 #import "FLObjcImmutableObjectType.h"
 #import "FLObjcConstructor.h"
 #import "FLObjcGeneratedBaseClassName.h"
+#import "FLObjcStringType.h"
 
 #import "FLCodeGeneratorErrors.h"
 #import "FishLampCodeGeneratorObjects.h"

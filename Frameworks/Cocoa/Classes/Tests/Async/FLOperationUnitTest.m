@@ -66,7 +66,7 @@
 //    [op assertNotRun];
 //    [op assertNotInQueue];
 //
-//    [q addOperation:op];
+//    [q queueOperation:op];
 //    [op assertNotRun];
 //    [op assertInQueue];
 //    

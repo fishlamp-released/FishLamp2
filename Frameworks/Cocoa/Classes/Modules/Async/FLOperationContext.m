@@ -137,7 +137,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 
 }
 
-- (void) addOperation:(FLOperation*) operation  {
+- (void) queueOperation:(FLOperation*) operation  {
     
     BOOL wasIdle = YES;
     

@@ -9,6 +9,7 @@
 
 #import "FLCustomButton.h"
 #import "FLAttributedString.h"
+#import "FLColorModule.h"
 
 @implementation FLCustomButton
 

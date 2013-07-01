@@ -10,6 +10,7 @@
 #import "FLNavigationTitle.h"
 #import "FLAttributedString.h"
 #import "FLCoreText.h"
+#import "FLColorModule.h"
 
 @interface FLNavigationTitle ()
 @property (readwrite, strong, nonatomic) id identifier;

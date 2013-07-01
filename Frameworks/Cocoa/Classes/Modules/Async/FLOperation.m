@@ -81,7 +81,7 @@
 
 - (void) setContext:(FLOperationContext*) context {
     if(context) {
-        [context addOperation:self];
+        [context queueOperation:self];
     }
     else {
         [self.context removeOperation:self];
@@ -117,7 +117,7 @@
 }
 
 - (FLPromisedResult) runSynchronously {
-    return [[self.asyncQueue addOperation:self] waitUntilFinished];
+    return [[self.asyncQueue queueOperation:self] waitUntilFinished];
 }
 
 - (FLPromisedResult) runSynchronouslyInContext:(FLOperationContext*) context {
@@ -126,7 +126,7 @@
 }
 
 - (FLPromise*) runAsynchronously:(fl_completion_block_t) completion {
-    return [self.asyncQueue addOperation:self withCompletion:completion];
+    return [self.asyncQueue queueOperation:self withCompletion:completion];
 }
 
 - (FLPromise*) runAsynchronously {

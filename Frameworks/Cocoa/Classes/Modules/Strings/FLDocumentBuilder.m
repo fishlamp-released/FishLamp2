@@ -43,21 +43,22 @@
 //    [[self openedSection] stringFormatter:stringFormatter appendString:string appendAttributedString:attributedString lineUpdate:lineUpdate];
 //}                                                 
 
-- (id<FLStringFormatter, FLBuildableString>) openedSection {
+- (id<FLStringFormatter>) openedSection {
     return [_document openedStringBuilder];
 }
 
-- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
-    [_document.rootStringBuilder buildStringIntoStringFormatter:stringFormatter];
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter
+appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
+    [anotherStringFormatter appendStringFormatter:_document.rootStringBuilder];
 }
 
-- (void) openSection:(id<FLStringFormatter, FLBuildableString>) element {
+- (void) openSection:(id<FLStringFormatter>) element {
     [self.document openStringBuilder:element];
 }
 
-- (void) appendStringFormatter:(id<FLStringFormatter, FLBuildableString>) element {
-    [self.document appendStringFormatter:element];
-}
+//- (void) appendStringFormatter:(id<FLStringFormatter>) element {
+//    [self.document appendStringFormatter:element];
+//}
 
 - (void) closeSection {
     [self.document closeStringBuilder];
@@ -97,7 +98,7 @@
 
 - (NSString*) description {
     FLPrettyString* string = [FLPrettyString prettyString];
-    [self buildStringIntoStringFormatter:string];
+    [string appendStringFormatter:self];
     return string.string;
 }
 
@@ -105,9 +106,9 @@
     return nil;
 }
 
-- (void) appendDocument:(FLDocumentBuilder*) document {
-
-}
+//- (void) appendDocument:(FLDocumentBuilder*) document {
+//    [self appendStringFormatter:document];
+//}
 
 - (NSString*) buildString {
     return [self buildStringWithWhitespace:[FLPrettyString defaultWhitespace]];
@@ -115,7 +116,7 @@
 
 - (NSString*) buildStringWithWhitespace:(FLWhitespace*) whitespace {
     FLPrettyString* prettyString = [FLPrettyString prettyString:whitespace];
-    [prettyString appendBuildableString:self];
+    [prettyString appendStringFormatter:self];
     return prettyString.string;
 }
 
@@ -123,6 +124,9 @@
     return [self buildStringWithWhitespace:nil];
 }
 
+- (NSUInteger) stringFormatterGetLength:(id<FLStringFormatter>) formatter {
+    return [_document length];
+}
 
 
 @end

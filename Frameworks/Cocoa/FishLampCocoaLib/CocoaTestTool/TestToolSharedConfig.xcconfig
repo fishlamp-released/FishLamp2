@@ -10,7 +10,7 @@
 #include "FishLampXcodeConfigs/FishLampIncludedConfig-TestTool.xcconfig"
 
 GCC_PRECOMPILE_PREFIX_HEADER = YES
-GCC_PREFIX_HEADER = FishLampCocoa/FishLampCocoa-Prefix.pch
+GCC_PREFIX_HEADER = ../Classes/FishLampCocoa-Prefix.pch
 HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_COCOA)
 
 

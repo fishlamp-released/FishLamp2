@@ -33,23 +33,23 @@
 }
 #endif
 
-- (id<FLStringFormatter, FLBuildableString>) rootStringBuilder {
+- (id<FLStringFormatter>) rootStringBuilder {
     FLAssertNotNil([_stack firstObject]);
     return [_stack firstObject];
 }
 
-- (id<FLStringFormatter, FLBuildableString>) openedStringBuilder {
+- (id<FLStringFormatter>) openedStringBuilder {
     FLAssertNotNil([_stack lastObject]);
     return [_stack lastObject];
 }
 
-- (void) appendStringFormatter:(id<FLStringFormatter, FLBuildableString>) stringBuilder {
+- (void) appendStringFormatter:(id<FLStringFormatter>) stringBuilder {
     FLAssert(_stack.count > 0);
     
     [self.openedStringBuilder appendStringFormatter:stringBuilder];
 }
 
-- (void) openStringBuilder:(id<FLStringFormatter, FLBuildableString>) stringBuilder {
+- (void) openStringBuilder:(id<FLStringFormatter>) stringBuilder {
     [self appendStringFormatter:stringBuilder];
     
     FLAssert(_stack.count > 0);
@@ -74,6 +74,16 @@
 - (void) deleteAllStringBuilders {
     [_stack removeAllObjects];
     [_stack addObject:[FLDocumentSection stringBuilder]];
+}
+
+- (NSUInteger) length {
+
+    NSUInteger length = 0;
+    for(id<FLStringFormatter> formatter in _stack) {
+        length += formatter.length;
+    }
+
+    return length;
 }
 
 @end

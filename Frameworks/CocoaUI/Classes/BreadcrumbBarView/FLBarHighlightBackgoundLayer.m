@@ -8,6 +8,7 @@
 //
 
 #import "FLBarHighlightBackgoundLayer.h"
+#import "FLColorModule.h"
 
 @implementation FLBarHighlightBackgoundLayer
 

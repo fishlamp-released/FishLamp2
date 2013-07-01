@@ -9,6 +9,7 @@
 
 #import "FLLinkTextField.h"
 #import "FLAttributedString.h"
+#import "FLColorModule.h"
 
 @implementation FLLinkTextField
 

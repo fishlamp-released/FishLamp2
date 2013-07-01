@@ -37,7 +37,7 @@ extern NSString* const FLWorkerContextOpened;
 
 - (void) requestCancel;          
 
-- (void) addOperation:(FLOperation*) operation;
+- (void) queueOperation:(FLOperation*) operation;
 - (void) removeOperation:(FLOperation*) operation;
 
 - (void) visitOperations:(FLOperationVisitor) visitor;

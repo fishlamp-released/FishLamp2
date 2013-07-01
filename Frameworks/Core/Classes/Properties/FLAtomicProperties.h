@@ -72,4 +72,4 @@ extern void FLAtomicCreateIfNilWithBlock(id __strong* addr, FLAtomicCreateBlock 
 
 
 #define FLSynthesizeLazyGetterDeprecated(__PROPERTY_NAME__, __PROPERTY_TYPE__, __IVAR_NAME__) \
-            FLSynthesizeLazyGetterWithIvarType(__PROPERTY_NAME__, __PROPERTY_TYPE__*, __IVAR_NAME__, __PROPERTY_TYPE__)
+            FLSynthesizeLazyGetter(__PROPERTY_NAME__, __PROPERTY_TYPE__*, __IVAR_NAME__, __PROPERTY_TYPE__)

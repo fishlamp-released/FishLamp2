@@ -6,10 +6,6 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#import "FLCocoaRequired.h"
-#import "FLGeometry.h"
-#import "FishLampAsync.h"
+#import "FishLampCocoa.h"
 
-// remove this?
-#import "FLColorModule.h"
 

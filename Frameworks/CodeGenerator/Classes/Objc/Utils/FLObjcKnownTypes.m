@@ -58,7 +58,7 @@
 		{ @"FLObjcImmutableObjectType", @"NSValue", nil },
 		{ @"FLObjcImmutableObjectType", @"NSDate", nil },
 		{ @"FLObjcImmutableObjectType", @"NSData", nil },
-		{ @"FLObjcImmutableObjectType", @"NSString", nil },
+		{ @"FLObjcStringType", @"NSString", nil },
 
 		{ @"FLObjcProtocolType", @"NSCoder", nil },
 

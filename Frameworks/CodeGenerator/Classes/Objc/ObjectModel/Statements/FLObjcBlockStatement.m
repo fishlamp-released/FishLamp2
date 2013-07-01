@@ -46,5 +46,17 @@
 }
 #endif
 
+- (BOOL) hasCode {
+
+    for(id statement in _statements) {
+        if([statement hasCode]) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+
 
 @end

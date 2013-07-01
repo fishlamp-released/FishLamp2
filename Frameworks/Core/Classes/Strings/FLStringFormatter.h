@@ -11,10 +11,17 @@
 
 typedef void (^FLStringFormatterBlock)();
 
+@protocol FLStringFormatter;
 
-@protocol FLStringFormatter <NSObject>
+@protocol FLAppendableString <NSObject>
+- (void) appendSelfToStringFormatter:(id<FLStringFormatter>) stringFormatter;
+@end
+
+@protocol FLStringFormatter <FLAppendableString>
 
 @property (readonly, assign, nonatomic) BOOL lineIsOpen;
+@property (readonly, assign, nonatomic) NSUInteger length;
+@property (readonly, assign, nonatomic) BOOL isEmpty;
 
 /// ends currently open line, opens a new one.
 - (void) openLineWithString:(NSString*) string;
@@ -79,7 +86,7 @@ typedef void (^FLStringFormatterBlock)();
 }
 @property (readwrite, assign, nonatomic) id parent;
 
-@property (readwrite, nonatomic, assign) __unsafe_unretained id<FLStringFormatterOutput> stringFormatterOutput;
+@property (readwrite, nonatomic, assign) id<FLStringFormatterOutput> stringFormatterOutput;
 
 - (void) didMoveToParent:(id) parent;
 
@@ -93,11 +100,13 @@ typedef void (^FLStringFormatterBlock)();
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString;
 - (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter;
 - (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter;
+- (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter;
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter
+appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter;
+
+
 @end
 
-@protocol FLBuildableString <NSObject>
-- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter;
-@end
 
 
 

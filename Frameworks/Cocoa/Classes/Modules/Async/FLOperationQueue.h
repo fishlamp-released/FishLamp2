@@ -19,7 +19,7 @@
 @property (readonly, strong) id lastOperation; 
 @property (readonly, assign) NSUInteger count;
 
-- (void) addOperation:(FLOperation*) operation;
+- (void) queueOperation:(FLOperation*) operation;
 
 - (void) addOperationWithTarget:(id) target action:(SEL) action; // @selector(callback:) parameter is the operation
 

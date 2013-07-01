@@ -45,7 +45,7 @@
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
 - (void) queueBlock:(dispatch_block_t) block {
-    [self.asyncQueue addBlock:block];
+    [self.asyncQueue queueBlock:block];
 }
 
 - (void) queueSelector:(SEL) selector withObject:(id) object {

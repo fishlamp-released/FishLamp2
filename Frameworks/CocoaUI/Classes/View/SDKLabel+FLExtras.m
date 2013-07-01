@@ -9,6 +9,7 @@
 
 #import "SDKLabel+FLExtras.h"
 #import "SDKColor+FLUtils.h"
+#import "FLColorModule.h"
 
 @implementation SDKLabel (FLExtras)
 

@@ -6,7 +6,10 @@
         </organization>
         <license>Individual licensees only</license>
     </info>
-    <options typePrefix="FL" canLazyCreate="YES" generateUserObjects="YES"/>
+    <options typePrefix="FL" canLazyCreate="YES" generateUserObjects="YES">
+        <objectsFolderName>Generated</objectsFolderName>
+        <userObjectsFolderName>Objects</userObjectsFolderName>
+	</options>
     <enumType name="MyEnum">
         <enum name="foo"/>
         <enum name="bar"/>
@@ -31,7 +34,7 @@
         <property type="CGRect" name="rect"/>
         <property type="CGPoint" name="point"/>
         <property type="CGSize" name="size"/>
-        <property type="MyEnum" name="stateEnum" defaultValue="FLMyEnumfoobar"/>
+        <property type="MyEnum" name="stateEnum" defaultValue="FLMyEnumFoobar"/>
         <property type="bool" name="myBool" defaultValue="YES"/>
         <property type="FLGuid" name="databaseGuid">
             <storageOptions isPrimaryKey="YES"/>

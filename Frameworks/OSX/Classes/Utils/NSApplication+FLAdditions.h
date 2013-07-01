@@ -9,7 +9,7 @@
 
 #import "FLCompatibility.h"
 
-@interface SDKApplication (FLAdditionas)
+@interface NSApplication (FLAdditionas)
 
 + (void) openURLFromBundleWithKey:(NSString*) key;
 

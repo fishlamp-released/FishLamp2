@@ -7,23 +7,19 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "SDKApplication+FLAdditions.h"
+#import "NSApplication+FLAdditions.h"
 #import "NSBundle+FLAdditions.h"
 
-@implementation SDKApplication (FLAdditionas)
+@implementation NSApplication (FLAdditionas)
 
 + (void) openURLFromBundleWithKey:(NSString*) key {
     
     NSURL* url = [[NSBundle mainBundle] URLInInfoDictionaryForKey:key];
+    FLAssertNotNil(url);
+
     if(url) {
-#if OSX    
         [[NSWorkspace sharedWorkspace] openURL:url];
-#else 
-
-#endif
     }
-
-
 }
 
 @end

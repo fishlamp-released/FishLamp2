@@ -101,15 +101,14 @@
     } 
 }
 
-- (void) appendBuildableString:(id<FLBuildableString>) buildableString {
-    [buildableString buildStringIntoStringFormatter:self];
-}
-
 - (NSString*) description {
     return [self string];
 }
 
-
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter
+appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
+    [anotherStringFormatter appendString:self.string];
+}
 
 - (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
     if(_whitespace) { 
@@ -140,6 +139,9 @@
     --_indentLevel;
 }
 
+- (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter {
+    return [_storage length];
+}
 
 
 
@@ -225,9 +227,9 @@
     FLPerformSelector2(self.delegate, @selector(prettyString:didAppendAttributedString:), self, stringToAppend); 
 }
            
-- (void) appendPrettyString:(FLPrettyString*) string {
-    [self appendStringContainingMultipleLines:string.string];
-}
+//- (void) appendPrettyString:(FLPrettyString*) string {
+//    [self appendStringContainingMultipleLines:string.string];
+//}
 
 @end
 

@@ -61,7 +61,7 @@
     // this avoids the block from retain self.
     FLObjectDatabase* database = _objectDatabase;
     
-    return [_schedulingQueue addFinishableBlock:^(FLFinisher *finisher) {
+    return [_schedulingQueue queueFinishableBlock:^(FLFinisher *finisher) {
                 block(database);
                 [finisher setFinished];
             }

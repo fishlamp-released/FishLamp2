@@ -65,6 +65,10 @@
     return NO;
 }
 
+- (BOOL) hasCode {
+    return NO;
+}
+
 - (FLObjcFileHeader*) generatedFileHeader {
     FLObjcFileHeader* fileHeader = [FLObjcGeneratedFileHeader objcFileHeader:self.project];
     [fileHeader configureWithInputProject:self.project.inputProject];

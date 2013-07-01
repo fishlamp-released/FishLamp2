@@ -92,6 +92,15 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
     [_log stringFormatterOutdent:stringFormatter];
 }
 
+- (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter {
+    return [_log length];
+}
+
+- (void) stringFormatter:(FLStringFormatter*) myFormatter
+appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
+    [_log stringFormatter:myFormatter appendSelfToStringFormatter:anotherStringFormatter];
+}
+
 
 //- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
 //            appendString:(NSString*) string

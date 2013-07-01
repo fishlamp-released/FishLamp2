@@ -34,10 +34,6 @@
 
 + (id) prettyStringWithString:(NSString*) string;
 
-- (void) appendPrettyString:(FLPrettyString*) string;
-
-- (void) appendBuildableString:(id<FLBuildableString>) buildableString;
-
 - (void) deleteAllCharacters;
 
 // for subclasses

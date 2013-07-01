@@ -119,7 +119,7 @@ void FLAtomicCreateIfNilWithBlock(id __strong* addr, FLAtomicCreateBlock block) 
         OSSpinLock *slotlock = &FLPropertyLocks[GOODHASH(addr)];
         OSSpinLockLock(slotlock);
         if(*addr == nil) {
-            *addr = block();
+            *addr = FLRetain(block());
         }
         OSSpinLockUnlock(slotlock);
     }

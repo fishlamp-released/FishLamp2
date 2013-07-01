@@ -109,7 +109,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return [NSString stringWithFormat:@"%@ %@", [super description], self.label];
 }
 
-- (void) addBlock:(fl_block_t) block
+- (void) queueBlock:(fl_block_t) block
         withDelay:(NSTimeInterval) delay
      withFinisher:(FLFinisher*) finisher {
 
@@ -127,7 +127,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
     });
 }                                 
 
-- (void) addBlock:(FLBlock) block
+- (void) queueBlock:(FLBlock) block
      withFinisher:(FLFinisher*) finisher {
 
     dispatch_async(_dispatch_queue, ^{
@@ -143,7 +143,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
     });
 }
 
-- (void) addFinishableBlock:(fl_finisher_block_t) block
+- (void) queueFinishableBlock:(fl_finisher_block_t) block
                withFinisher:(FLFinisher*) finisher {
     
     dispatch_async(_dispatch_queue, ^{
@@ -215,11 +215,11 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return promise.result;
 }
 
-- (FLPromise*) addBlock:(fl_block_t) block {
-    return [self addBlock:block withCompletion:nil];
+- (FLPromise*) queueBlock:(fl_block_t) block {
+    return [self queueBlock:block withCompletion:nil];
 }
 
-- (FLPromise*) addBlock:(fl_block_t) block
+- (FLPromise*) queueBlock:(fl_block_t) block
                 withCompletion:(fl_completion_block_t) completion {
 
     FLFinisher* finisher = [FLFinisher finisher];
@@ -228,16 +228,16 @@ static void * const s_queue_key = (void*)&s_queue_key;
     FLAssertNotNil(block);
     FLAssertNotNil(finisher);
 
-    [self addBlock:block withFinisher:finisher];
+    [self queueBlock:block withFinisher:finisher];
 
     return promise;    
 }
 
-//- (FLFinisher*) addFinishableBlock:(fl_finisher_block_t) block {
-//    return [self addFinishableBlock:block completion:nil];
+//- (FLFinisher*) queueFinishableBlock:(fl_finisher_block_t) block {
+//    return [self queueFinishableBlock:block completion:nil];
 //}
 
-- (FLPromise*) addFinishableBlock:(fl_finisher_block_t) block
+- (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block
                           withCompletion:(fl_completion_block_t) completion {
 
 
@@ -246,31 +246,31 @@ static void * const s_queue_key = (void*)&s_queue_key;
     
     FLAssertNotNil(block);
     FLAssertNotNil(finisher);
-    [self addFinishableBlock:block withFinisher:finisher];
+    [self queueFinishableBlock:block withFinisher:finisher];
     return promise;
 }
 
-- (FLPromise*) addFinishableBlock:(fl_finisher_block_t) block {
-    return [self addFinishableBlock:block withCompletion:nil];
+- (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block {
+    return [self queueFinishableBlock:block withCompletion:nil];
 }
 
-- (FLPromise*) addBlock:(fl_block_t) block
+- (FLPromise*) queueBlock:(fl_block_t) block
               withDelay:(NSTimeInterval) delay
          withCompletion:(fl_completion_block_t) completion {
 
     FLFinisher* finisher = [FLFinisher finisher];
     FLPromise* promise = [finisher addPromiseWithBlock:completion];
     
-    [self addBlock:block withDelay:delay withFinisher:finisher];
+    [self queueBlock:block withDelay:delay withFinisher:finisher];
     return promise;
 }                          
-- (FLPromise*) addBlock:(fl_block_t) block
+- (FLPromise*) queueBlock:(fl_block_t) block
               withDelay:(NSTimeInterval) delay {
 
-    return [self addBlock:block withDelay:delay withCompletion:nil];
+    return [self queueBlock:block withDelay:delay withCompletion:nil];
 }
 
-- (FLPromise*) addOperation:(id<FLDispatchable>) operation
+- (FLPromise*) queueOperation:(id<FLDispatchable>) operation
              withCompletion:(fl_result_block_t) completion {
 
     FLAssertNotNil(operation);
@@ -291,8 +291,8 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return promise;
 }                  
 
-- (FLPromise*) addOperation:(id<FLDispatchable>) operation {
-    return [self addOperation:operation withCompletion:nil];
+- (FLPromise*) queueOperation:(id<FLDispatchable>) operation {
+    return [self queueOperation:operation withCompletion:nil];
 }
 
 - (FLPromisedResult) runOperationSynchronously:(id<FLDispatchable>) operation {
