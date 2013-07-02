@@ -7,7 +7,6 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#include "FishLampXcodeConfigs/FishLampIncludedConfig-TestTool.xcconfig"
 
 GCC_PRECOMPILE_PREFIX_HEADER = YES
 GCC_PREFIX_HEADER = ../Classes/FishLampCocoa-Prefix.pch

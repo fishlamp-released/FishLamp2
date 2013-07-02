@@ -6,4 +6,5 @@
 #  Created by Mike Fullerton on 6/22/13.
 #
 
-cat /usr/local/fishlamp/fishlamp-help.txt
+INSTALL_PATH="`fishlamp-script-dir`"
+cat "$INSTALL_PATH/fishlamp-help.txt"

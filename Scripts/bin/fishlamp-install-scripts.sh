@@ -3,20 +3,21 @@
 
 MY_PATH="`dirname \"$0\"`"              
 MY_PATH="`( cd \"$MY_PATH\" && pwd )`"  
-INSTALL_PATH="/usr/local/fishlamp"
 
 cd "$MY_PATH/../scripts"
 
+INSTALL_PATH="`bash fishlamp-commands/script-dir.sh`"
+
 # reset install folder
 if [ -d "$INSTALL_PATH" ]; then
-	sudo rm -rd "$INSTALL_PATH"
+	rm -rd "$INSTALL_PATH"
 fi
 
-sudo mkdir "$INSTALL_PATH" || { echo "unable to create folder: $INSTALL_PATH"; exit 1; }
-sudo chmod u+rwx "$INSTALL_PATH" || { echo "unable to change permissions on: $INSTALL_PATH"; exit 1; }
+INSTALL_PATH="`bash fishlamp-commands/script-dir.sh --create`"
+
+chmod u+rwx "$INSTALL_PATH" || { echo "unable to change permissions on: $INSTALL_PATH"; exit 1; }
 
 # install scripts
-
 
 SOURCE_PATH=`pwd`
 
@@ -31,15 +32,15 @@ for file in $FILES; do
         dest="$INSTALL_PATH/$filename_no_extension"
     fi
 
-    sudo cp -R "$src" "$dest" || { echo "unable to copy script to: $dest"; exit 1; }
+    cp -R "$src" "$dest" || { echo "unable to copy script to: $dest"; exit 1; }
     echo "# installed: \"$dest\""
 done
 
-sudo chmod -R 755 "$INSTALL_PATH" || { echo "unable to change permissions on: $INSTALL_PATH"; exit 1; }
+chmod -R u+rwx "$INSTALL_PATH" || { echo "unable to change permissions on: $INSTALL_PATH"; exit 1; }
 
 # update bash profile
 
-sudo sed -i -e "/usr\/local\/fishlamp/d" ~/.bash_profile 
+sed -i -e "/~\/Library\/FishLamp\/Scripts/d" ~/.bash_profile 
 echo "export PATH=\"\$PATH:$INSTALL_PATH\"" >> ~/.bash_profile
 
 echo "# updated: $HOME/.bash_profile"
