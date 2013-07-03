@@ -9,15 +9,11 @@
 
 #import "FLCoreRequired.h"
 #import "FLStackTrace.h"
+#import "NSError+FLExtras.h"
 
-@interface NSError (FLExceptionCreation)
-- (NSException*) createException:(NSDictionary*) userInfo;
-
-- (NSException*) createExceptionWithStackTrace:(FLStackTrace_t) stackTrace 
-                                      userInfo:(NSDictionary*) userInfo;
-
-- (BOOL) isError; 
-@end
+#ifndef __INCLUDE_STACK_TRACE__
+#define __INCLUDE_STACK_TRACE__ YES
+#endif
 
 typedef NSException* FLWillThrowExceptionHandler(NSException *exception);
 
@@ -25,34 +21,41 @@ extern void FLSetWillThrowExceptionHandler(FLWillThrowExceptionHandler* handler)
 
 extern FLWillThrowExceptionHandler* FLGetWillThrowExceptionHandler();
 
-#ifndef __INCLUDE_STACK_TRACE__
-#define __INCLUDE_STACK_TRACE__ YES
-#endif
+#define FLThrowException(__EX__) \
+            @throw FLGetWillThrowExceptionHandler()(__EX__)
 
-#define FLThrowException(__EX__) @throw FLGetWillThrowExceptionHandler()(__EX__)
+#define FLThrowError(__ERROR__) \
+            do {  \
+                NSError* __error = __ERROR__; \
+                if(!__error.stackTrace) { \
+                    __error = [NSError errorWithError:__error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]; \
+                } \
+                \
+                FLThrowException([__error createContainingException]); \
+            } \
+            while(0)
 
-#define FLThrowErrorWithLoc(__ERROR__, __LOC__) \
-            FLThrowException([__ERROR__ createExceptionWithStackTrace:FLStackTraceMake(__LOC__, __INCLUDE_STACK_TRACE__) userInfo:nil])
 
-#define FLThrowError(__ERROR__) FLThrowErrorWithLoc(__ERROR__, __FILE_LOCATION__)
-
-#define FLThrowIfError(__OBJECT__) do { \
-                                        id __OBJECT = (id)(__OBJECT__);\
-                                        if([__OBJECT isError]) { \
-                                            FLThrowErrorWithLoc(__OBJECT, __FILE_LOCATION__); \
-                                        } \
-                                    } while(0)
+#define FLThrowIfError(__OBJECT__) \
+            do { \
+                id __object = (id)(__OBJECT__);\
+                if([__object isError]) { \
+                    FLThrowError(__object); \
+                } \
+            } while(0)
 
 #define FLThrowErrorCodeWithComment(__DOMAIN__, __CODE__, __FORMAT__, ...) \
             FLThrowError([NSError errorWithDomain:__DOMAIN__ \
-                            code:(__CODE__) \
+                            code:__CODE__ \
                             localizedDescription: nil \
                             userInfo:nil \
-                            comment:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__)])
+                            comment:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) \
+                            stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)])
 
 #define FLThrowErrorCode(__DOMAIN__, __CODE__) \
             FLThrowError([NSError errorWithDomain:__DOMAIN__ \
-                            code:(__CODE__) \
+                            code:__CODE__ \
                             localizedDescription:nil \
                             userInfo:nil \
-                            comment:nil])
+                            comment:nil \
+                            stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)])

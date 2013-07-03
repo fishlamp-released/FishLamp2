@@ -25,28 +25,3 @@ FLWillThrowExceptionHandler* FLGetWillThrowExceptionHandler() {
 }
 
 
-@implementation NSError (FLExceptionCreation)
-
-- (NSException*) createExceptionWithStackTrace:(FLStackTrace_t) stackTrace userInfo:(NSDictionary*) userInfo {
-    self.stackTrace = [FLStackTrace stackTrace:stackTrace];
-    NSException* exception = [self createException:userInfo];
-    exception.error = self;
-    return exception;
-}
-
-- (NSException*) createException:(NSDictionary*) userInfo {
-    return [FLErrorException exceptionWithName:FLErrorExceptionName reason:self.localizedDescription userInfo:userInfo error:self];
-}
-
-- (BOOL) isError {
-    return YES;
-}
-
-@end
-
-@implementation NSObject (FLException)
-- (BOOL) isError {
-    return NO;
-}
-@end
-

@@ -12,6 +12,7 @@
 @class FLStackTrace;
 
 extern NSString* const FLErrorCommentKey;
+extern NSString* const FLStackTraceKey;
 
 @interface NSError (FLExtras) 
 
@@ -19,7 +20,7 @@ extern NSString* const FLErrorCommentKey;
 
 // fishlamp properties
 @property (readonly, strong, nonatomic) NSString* comment;
-@property (readwrite, strong, nonatomic) FLStackTrace* stackTrace;
+@property (readonly, strong, nonatomic) FLStackTrace* stackTrace;
 
 // sdk helpers
 @property (readonly, strong, nonatomic) NSError* underlyingError;
@@ -31,7 +32,8 @@ extern NSString* const FLErrorCommentKey;
                  code:(NSInteger) code
  localizedDescription:(NSString*) localizedDescription
              userInfo:(NSDictionary *)dict
-              comment:(NSString*) comment;
+              comment:(NSString*) comment
+           stackTrace:(FLStackTrace*) stackTrace;
 
 + (NSError*) errorWithDomain:(id) domainStringOrDomainObject
                         code:(NSInteger) code
@@ -41,8 +43,10 @@ extern NSString* const FLErrorCommentKey;
                         code:(NSInteger)code
         localizedDescription:(NSString*) localizedDescription
                     userInfo:(NSDictionary *)dict
-                     comment:(NSString*) commentOrNil;
+                     comment:(NSString*) commentOrNil
+                  stackTrace:(FLStackTrace*) stackTrace;
 
++ (NSError*) errorWithError:(NSError*) error stackTrace:(FLStackTrace*) stackTrace;
 
 // utils.
 
@@ -50,6 +54,9 @@ extern NSString* const FLErrorCommentKey;
 
 - (BOOL) isErrorDomain:(NSString*) domain;
 
+- (NSException*) createContainingException;
+
+- (BOOL) isError;
 
 @end
 

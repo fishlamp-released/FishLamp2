@@ -9,11 +9,13 @@
 
 #import "FLCoreRequired.h"
 #import "FLErrorException.h"
+@class FLStackTrace;
 
 @interface FLAssertionFailedError : NSError
 + (id) assertionFailedError:(NSInteger) code 
                      reason:(NSString*) reason 
-                    comment:(NSString*) comment ;
+                    comment:(NSString*) comment
+                 stackTrace:(FLStackTrace*) stackTrace;
 @end
 
 extern NSString* const FLAssertionFailedExceptionName;

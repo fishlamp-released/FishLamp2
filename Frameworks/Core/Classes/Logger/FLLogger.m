@@ -198,27 +198,24 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 
 - (void) logError:(NSError*) error {
     [self dispatchBlock: ^{
-        for(id<FLLogSink> sink in _sinks) {
-            FLLogEntry* entry = [FLLogEntry logEntry];
-            entry.logType = FLLogTypeError;
-            entry.indentLevel = _indentLevel;
-            entry.error = error;
-            entry.stackTrace = error.stackTrace;
-            [self sendEntryToSinks:entry];
-        }
+        FLLogEntry* entry = [FLLogEntry logEntry];
+        entry.logType = FLLogTypeError;
+        entry.indentLevel = _indentLevel;
+        entry.error = error;
+        entry.stackTrace = error.stackTrace;
+        [self sendEntryToSinks:entry];
     }];
 }
 
 - (void) logException:(NSException*) exception withComment:(NSString*) comment {
     [self dispatchBlock: ^{
-        for(id<FLLogSink> sink in _sinks) {
-            FLLogEntry* entry = [FLLogEntry logEntry];
-            entry.logString = comment;
-            entry.logType = FLLogTypeException;
-            entry.indentLevel = _indentLevel;
-            entry.exception = exception;
-            [self sendEntryToSinks:entry];
-        }
+        FLLogEntry* entry = [FLLogEntry logEntry];
+        entry.logString = comment;
+        entry.logType = FLLogTypeException;
+        entry.indentLevel = _indentLevel;
+        entry.exception = exception;
+        entry.stackTrace = exception.error.stackTrace;
+        [self sendEntryToSinks:entry];
     }];
 }
 

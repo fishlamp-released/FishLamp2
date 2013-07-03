@@ -31,6 +31,7 @@ typedef enum {
 	FLActionErrorCodeInvalidContext,
     FLErrorResultFailed,
     FLUnhandledServiceRequestErrorCode,
+    FLUnknownExceptionErrorCode
 } FLErrorCode;
 
 //@interface FLFrameworkErrorDomainInfo : NSObject<FLErrorDomainInfo>

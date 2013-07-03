@@ -25,7 +25,7 @@ for dir in `find . -name "FishLampXcodeConfigs"`; do
 	
 	pushd "$dir/.." >> /dev/null 
 
-	fishlamp-install-xcode-build-support || { echo "##! updating \"`pwd`\" failed"; exit 1; }
+	fishlamp install-xcode-build-support || { echo "##! updating \"`pwd`\" failed"; exit 1; }
 	
 	popd >> /dev/null 
 done

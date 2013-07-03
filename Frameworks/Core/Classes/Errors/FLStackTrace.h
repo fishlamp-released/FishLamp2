@@ -50,7 +50,7 @@ FLLocationInSourceFile_t FLLocationInSourceFileMake(const char* filePath, const 
     return loc;
 }
 
-#define __FILE_LOCATION__ FLLocationInSourceFileMake(__FILE__, __PRETTY_FUNCTION__, __LINE__)
+#define FLSourceFileLocation() FLLocationInSourceFileMake(__FILE__, __PRETTY_FUNCTION__, __LINE__)
 
 typedef struct {
     const char** lines;
@@ -97,7 +97,7 @@ const char* FLStackEntryAtIndex(FLCallStack_t stack, NSUInteger index) {
 
 
 #define FLStackTraceToHere(__WITH_STACK_TRACE__) \
-            FLStackTraceMake(__FILE_LOCATION__, __WITH_STACK_TRACE__)
+            FLStackTraceMake(FLSourceFileLocation(), __WITH_STACK_TRACE__)
 
 #define FLCreateStackTrace(__WITH_STACK_TRACE__) \
             [FLStackTrace stackTrace:FLStackTraceToHere(__WITH_STACK_TRACE__)]

@@ -75,11 +75,13 @@ NSUncaughtExceptionHandler* s_previousUncaughtExceptionHandler = nil;
 
 NSException* FLWillThrowExceptionHandlerForLogger(NSException *exception) {
 
-    FLStackTrace* stackTrace = exception.error.stackTrace;
+    [[FLLogLogger instance] logException:exception];
 
-    [[FLLogLogger instance] logString:[NSString stringWithFormat:@"%@: %@", exception.name, exception.reason]
-                           logType:FLLogTypeException 
-                        stackTrace:stackTrace];
+//    FLStackTrace* stackTrace = exception.error.stackTrace;
+//
+//    [[FLLogLogger instance] logString:[NSString stringWithFormat:@"%@: %@", exception.name, exception.reason]
+//                           logType:FLLogTypeException 
+//                        stackTrace:stackTrace];
 
     return exception;
 

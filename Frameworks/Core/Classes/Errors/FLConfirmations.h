@@ -7,9 +7,10 @@
 //
 // this is meant to be included by FLAssertions.h
 #import "FLAssertionFailedError.h"
+#import "FLStackTrace.h"
 
 #define FLThrowConfirmationFailure(__CODE__, __REASON__, __COMMENT__) \
-            FLThrowError([FLAssertionFailedError assertionFailedError:__CODE__ reason:__REASON__ comment:__COMMENT__]) 
+            FLThrowError([FLAssertionFailedError assertionFailedError:__CODE__ reason:__REASON__ comment:__COMMENT__ stackTrace:FLCreateStackTrace(YES)])
 
 /// @brief: Assert that any condition is true
 #define FLConfirm(__CONDITION__) \
@@ -39,29 +40,29 @@ NS_INLINE BOOL __FLConfirmationDidFail() { return NO; }
 #define FLConfirmIsNil(__CONDITION__) \
     if((__CONDITION__) != nil) \
         FLThrowConfirmationFailure( FLAssertionFailureIsNotNil, \
-                                            FLStringWithFormatOrNil(@"Pointer unexpectedly not nil: %s", #__CONDITION__), \
-                                            nil) 
+                                            FLStringWithFormatOrNil(@"%s != nil", #__CONDITION__), \
+                                            @"Assertion Failure")
 
 /// @brief: Assert a pointer is nil
 #define FLConfirmIsNilWithComment(__CONDITION__, __COMMENT__, ...) \
     if((__CONDITION__) != nil) \
         FLThrowConfirmationFailure( FLAssertionFailureIsNotNil, \
-                                            FLStringWithFormatOrNil(@"Pointer unexpectedly not nil: %s", #__CONDITION__), \
+                                            FLStringWithFormatOrNil(@"%s != nil", #__CONDITION__), \
                                             FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
 
 /// @brief: Assert a pointer is NOT nil
 #define FLConfirmIsNotNil(__CONDITION__) \
     if((__CONDITION__) == nil) \
         FLThrowConfirmationFailure( FLAssertionFailureIsNil, \
-                                            FLStringWithFormatOrNil(@"\"%s == nil\"", #__CONDITION__), \
-                                            nil) 
+                                            FLStringWithFormatOrNil(@"%s == nil", #__CONDITION__), \
+                                            @"Assertion Failure")
 
 
 /// @brief: Assert a pointer is NOT nil
 #define FLConfirmIsNotNilWithComment(__CONDITION__, __COMMENT__, ...) \
     if((__CONDITION__) == nil) \
         FLThrowConfirmationFailure( FLAssertionFailureIsNil, \
-                                            FLStringWithFormatOrNil(@"\"%s == nil\"", #__CONDITION__), \
+                                            FLStringWithFormatOrNil(@"%s == nil\"", #__CONDITION__), \
                                             FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
 
 /// @brief: Assert a string is empty (either nil or of length 0)

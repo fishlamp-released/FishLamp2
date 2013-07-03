@@ -210,10 +210,11 @@ static FLLogger* s_outputLogger = nil;
                     [result setPassed];
                 }
                 @catch(NSException* ex) {
-                    [[results testResultForKey:testCase.testCaseName] setError:ex.error];
+   //                 [[results testResultForKey:testCase.testCaseName] setError:ex.error];
                 }
-
-                [[FLUnitTest logger] removeLoggerSink:result];
+                @finally {
+                    [[FLUnitTest logger] removeLoggerSink:result];
+                }
                 
                 if(result.passed) {
                     [[FLUnitTest outputLog] appendLineWithFormat:@"Passed: %@", testCase.testCaseName];

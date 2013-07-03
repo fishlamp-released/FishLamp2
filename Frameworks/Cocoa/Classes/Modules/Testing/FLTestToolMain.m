@@ -28,7 +28,12 @@ int FLTestToolMain(int argc, const char *argv[], NSString* bundleIdentifier, NSS
             [FLUnitTest setOutputLog:logger];
         
             FLUnitTestRunner* runner = [FLUnitTestRunner unitTestRunner];
-            [runner runSynchronously];
+            FLPromisedResult result = [runner runSynchronously];
+
+            if([result isError]) {
+                return 1;
+            }
+
             return 0;
         }
         @catch(NSException* ex) {

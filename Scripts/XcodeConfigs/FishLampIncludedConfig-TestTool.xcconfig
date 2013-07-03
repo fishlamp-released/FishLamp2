@@ -7,8 +7,7 @@
 //
 
 DEPLOYMENT_LOCATION = YES
-DSTROOT = /
-INSTALL_PATH = ~/FishLamp/Tests
+DSTROOT = ~/Library/Developer/FishLamp
+INSTALL_PATH = /Tests
 MACH_O_TYPE = mh_execute
 EXECUTABLE_EXTENSION = 
-

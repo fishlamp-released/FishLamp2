@@ -11,6 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 27337ACC1783293400F56276 /* Build configuration list for PBXAggregateTarget "FishLampCocoaTest" */;
 			buildPhases = (
+				279D118B178371A500B5A423 /* ShellScript */,
 			);
 			dependencies = (
 				27337AD01783294700F56276 /* PBXTargetDependency */,
@@ -6619,6 +6620,23 @@
 		};
 /* End PBXReferenceProxy section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		279D118B178371A500B5A423 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$HOME/Library/Developer/FishLamp/Scripts/fishlamp run-tests\n\n\n# $HOME/Library/Developer/FishLamp/Tests/FishLampCocoaTestTool-64-ARC || { echo \"FishLampCocoaTestTool-64-ARC:0: error: unit tests failed\"; exit 1; }\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		27048B71161CB58600C38ADA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -8493,6 +8511,7 @@
 				27337ACE1783293400F56276 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27337B0817832C3400F56276 /* Build configuration list for PBXNativeTarget "FishLampCocoaTestTool-iOS-ARC" */ = {
 			isa = XCConfigurationList;

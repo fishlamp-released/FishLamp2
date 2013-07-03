@@ -50,6 +50,7 @@
     }
     @catch(NSException* ex) {
         result = ex.error;
+        FLAssertNotNil(result);
     }
     
     if(self.wasCancelled) {

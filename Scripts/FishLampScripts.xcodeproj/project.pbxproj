@@ -77,6 +77,7 @@
 		276806CC175D2F1C00B1D643 /* version-bump-build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "version-bump-build.sh"; sourceTree = "<group>"; };
 		276806CD175D2F1C00B1D643 /* version-get.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "version-get.sh"; sourceTree = "<group>"; };
 		276806CE175D2F1C00B1D643 /* git-tag-version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "git-tag-version.sh"; sourceTree = "<group>"; };
+		279D118A17836FC100B5A423 /* run-tests.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "run-tests.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -152,6 +153,7 @@
 				27337B271783337300F56276 /* version.sh */,
 				27337B281783337300F56276 /* ynq.sh */,
 				27337B2917833BFC00F56276 /* hello.sh */,
+				279D118A17836FC100B5A423 /* run-tests.sh */,
 			);
 			path = "fishlamp-commands";
 			sourceTree = "<group>";

@@ -9,17 +9,22 @@
 
 #import "FLCancelError.h"
 #import "FishLampCore.h"
+#import "FLErrorException.h"
 
-NSString* const FLCancelExceptionName = @"com.fishlamp.exception.cancel";
+NSString* const FLCancelExceptionName = @"cancel";
 
 @implementation FLCancelError
 - (BOOL) isCancelError {
     return YES;
 }
 
-- (NSException*) createException:(NSDictionary *)userInfo {
-    return [FLCancelException exceptionWithName:FLCancelExceptionName reason:self.localizedDescription userInfo:userInfo];
+- (NSException*) createContainingException {
+    return [FLCancelException exceptionWithName:FLAssertionFailedExceptionName
+                                         reason:self.localizedDescription
+                                       userInfo:nil
+                                          error:self];
 }
+
 
 #if DEBUG
 - (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict {

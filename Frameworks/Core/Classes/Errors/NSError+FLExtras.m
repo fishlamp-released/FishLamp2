@@ -11,7 +11,10 @@
 #import "FishLampCore.h"
 
 NSString* const FLErrorCommentKey = @"com.fishlamp.error.comment";;
-NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
+//NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
+
+NSString* const FLStackTraceKey = @"stacktrace";
+
 
 @implementation NSError (FLExtras)
 
@@ -20,17 +23,18 @@ FLSynthesizeDictionaryGetterProperty(stringEncoding, NSArray*, NSStringEncodingE
 FLSynthesizeDictionaryGetterProperty(URL, NSURL*, NSURLErrorKey, self.userInfo)
 FLSynthesizeDictionaryGetterProperty(filePath, NSString*, NSFilePathErrorKey, self.userInfo)
 FLSynthesizeDictionaryGetterProperty(comment, NSString*, FLErrorCommentKey, self.userInfo)
-FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, stackTrace, setStackTrace, FLStackTrace*);
+FLSynthesizeDictionaryGetterProperty(stackTrace, FLStackTrace*, FLStackTraceKey, self.userInfo);
 
 + (NSError*) errorWithDomain:(id) domain
                         code:(NSInteger) code
         localizedDescription:(NSString*) localizedDescription {
 
     return FLAutorelease([[[self class] alloc] initWithDomain:domain 
-                                           code:code
+                                                         code:code
                                          localizedDescription:localizedDescription
-                                       userInfo:nil
-                                        comment:nil]);
+                                                     userInfo:nil
+                                                      comment:nil
+                                                   stackTrace:nil]);
 }
 
 - (BOOL) isErrorCode:(NSInteger) code domain:(NSString*) domain {
@@ -45,10 +49,12 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, stackTrace, s
                  code:(NSInteger) code
  localizedDescription:(NSString*) localizedDescription
              userInfo:(NSDictionary *) userInfo
-              comment:(NSString*) comment {
+              comment:(NSString*) comment
+           stackTrace:(FLStackTrace*) stackTrace {
 
+
+#if 0
     NSString* errorCodeString = nil; // [[FLErrorDomainInfo instance] stringFromErrorCode:code withDomain:domain];
-
     NSString* commentAddOn = nil;
     if(errorCodeString) {
         commentAddOn = [NSString stringWithFormat:@"[%@:%ld (%@)]", domain, (long) code, errorCodeString];
@@ -57,7 +63,6 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, stackTrace, s
         commentAddOn = [NSString stringWithFormat:@"[%@:%ld]", domain, (long)code];
     }
 
-#if DEBUG
     if(comment) {
         localizedDescription = [NSString stringWithFormat:@"%@ (%@) %@", localizedDescription, comment, commentAddOn];
     }
@@ -65,7 +70,6 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, stackTrace, s
         localizedDescription = [NSString stringWithFormat:@"%@ %@", localizedDescription, commentAddOn];
     }
     
-#endif    
 
     if(comment) {
         comment = [NSString stringWithFormat:@"%@ %@", comment, commentAddOn];
@@ -73,40 +77,76 @@ FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, stackTrace, s
     else {
         comment = commentAddOn;
     }
-    
-    
-    if(userInfo) {
-        NSMutableDictionary* newUserInfo = FLMutableCopyWithAutorelease(userInfo);
-    
-//        [userInfo setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
-        [newUserInfo setObject:comment forKey:FLErrorCommentKey];
-        [newUserInfo setObject:localizedDescription forKey:NSLocalizedDescriptionKey];
-        
-        userInfo = newUserInfo;
-    }
-    else {
-        userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                    reason, NSLocalizedFailureReasonErrorKey, 
-                                    comment,  FLErrorCommentKey,
-                                    localizedDescription, NSLocalizedDescriptionKey,
-                                    nil];
-    }
-    
+#endif    
 
-    return [self initWithDomain:domain code:code userInfo:userInfo];
+
+//    if(comment) {
+//        localizedDescription = [NSString stringWithFormat:@"%@ (%@)", localizedDescription, comment];
+//    }
+
+    NSMutableDictionary* newUserInfo = userInfo != nil ?
+                                            FLMutableCopyWithAutorelease(userInfo) :
+                                            [NSMutableDictionary dictionaryWithCapacity:5];
+
+//        [userInfo setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
+
+    if(FLStringIsNotEmpty(comment)) {
+        [newUserInfo setObject:comment forKey:FLErrorCommentKey];
+    }
+    if(FLStringIsNotEmpty(localizedDescription)) {
+        [newUserInfo setObject:localizedDescription forKey:NSLocalizedDescriptionKey];
+    }
+    if(stackTrace) {
+        [newUserInfo setObject:stackTrace forKey:FLStackTraceKey];
+    }
+
+    return [self initWithDomain:domain code:code userInfo:newUserInfo];
 }
 
 + (NSError*) errorWithDomain:(id) domain
-                          code:(NSInteger)code
-                        localizedDescription:localizedDescription
-                      userInfo:(NSDictionary *)dict
-                       comment:(NSString*) commentOrNil  {
+                        code:(NSInteger)code
+        localizedDescription:localizedDescription
+                    userInfo:(NSDictionary *)dict
+                     comment:(NSString*) commentOrNil
+                  stackTrace:(FLStackTrace*) stackTrace {
 
     return FLAutorelease([[[self class] alloc] initWithDomain:domain
                                                         code:code
                                          localizedDescription:localizedDescription
                                                     userInfo:dict
-                                                     comment:commentOrNil]);
+                                                     comment:commentOrNil
+                                                     stackTrace:stackTrace]);
+}
+
++ (NSError*) errorWithError:(NSError*) error stackTrace:(FLStackTrace*) stackTrace {
+
+    NSDictionary* userInfo = error.userInfo;
+    if(stackTrace) {
+        if(userInfo) {
+            NSMutableDictionary* newUserInfo = FLMutableCopyWithAutorelease(userInfo);
+            [newUserInfo setObject:stackTrace forKey:FLStackTraceKey];
+            userInfo = newUserInfo;
+        }
+        else {
+            userInfo = [NSDictionary dictionaryWithObject:stackTrace forKey:FLStackTraceKey];
+        }
+
+        return FLAutorelease([[[error class] alloc] initWithDomain:error.domain code:error.code userInfo:userInfo]);
+    }
+    else {
+        return FLRetainWithAutorelease(error);
+    }
+}
+
+- (NSException*) createContainingException {
+    return [FLErrorException exceptionWithName:FLErrorExceptionName
+                                        reason:self.localizedDescription
+                                      userInfo:nil
+                                         error:self];
+}
+
+- (BOOL) isError {
+    return YES;
 }
 @end
 

@@ -26,7 +26,6 @@
     FLMutableError* mutableError = [FLMutableError mutableErrorWithError:error];
     
     FLAssertObjectsAreEqual(mutableError, error);
-    
 }
 
 @end

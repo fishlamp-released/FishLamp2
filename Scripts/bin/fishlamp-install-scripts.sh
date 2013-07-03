@@ -40,7 +40,10 @@ chmod -R u+rwx "$INSTALL_PATH" || { echo "unable to change permissions on: $INST
 
 # update bash profile
 
-sed -i -e "/~\/Library\/FishLamp\/Scripts/d" ~/.bash_profile 
+# this deletes the line
+sed -i -e "/Library\/Developer\/FishLamp\/Scripts/d" ~/.bash_profile
+
+# this adds the line back
 echo "export PATH=\"\$PATH:$INSTALL_PATH\"" >> ~/.bash_profile
 
 echo "# updated: $HOME/.bash_profile"
