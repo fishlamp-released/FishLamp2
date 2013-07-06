@@ -15,8 +15,8 @@
 
 @implementation FLObjectDescriber (FLXmlObjectBuilder)
 
-- (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-   inflateRootObjectWithXML:(FLParsedXmlElement*) element {
+- (id) buildObjectWithObjectBuilder:(FLXmlObjectBuilder*) builder
+                            withXML:(FLParsedXmlElement*) element {
 
 //    NSString* encodingKey = typeDesc.stringEncodingKeyForRepresentedData;
 //    if(encodingKey) {
@@ -35,12 +35,12 @@
 
 @implementation FLModelObjectDescriber (FLXmlObjectBuilder)
 
-- (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-   inflateRootObjectWithXML:(FLParsedXmlElement*) parentElement {
+- (id) buildObjectWithObjectBuilder:(FLXmlObjectBuilder*) builder
+                            withXML:(FLParsedXmlElement*) parentElement {
 
     FLAssert([self.objectClass isModelObject]);
 
-//    FLConfirmIsNilWithComment(element.sibling, @"duplicate elements for property \"%@\"", element.elementName);   
+//    FLConfirmIsNilWithComment(element.siblingElement, @"duplicate elements for property \"%@\"", element.elementName);   
     
     id outObject = FLAutorelease([[self.objectClass alloc] init]);
     
@@ -105,7 +105,7 @@
                         }
 
                     }
-                    walker = walker.sibling;
+                    walker = walker.siblingElement;
                 }
             }
             else {

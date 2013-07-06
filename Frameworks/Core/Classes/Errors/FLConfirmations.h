@@ -40,21 +40,21 @@ NS_INLINE BOOL __FLConfirmationDidFail() { return NO; }
 #define FLConfirmIsNil(__CONDITION__) \
     if((__CONDITION__) != nil) \
         FLThrowConfirmationFailure( FLAssertionFailureIsNotNil, \
-                                            FLStringWithFormatOrNil(@"%s != nil", #__CONDITION__), \
+                                            FLStringWithFormatOrNil(@"\"%s != nil\"", #__CONDITION__), \
                                             @"Assertion Failure")
 
 /// @brief: Assert a pointer is nil
 #define FLConfirmIsNilWithComment(__CONDITION__, __COMMENT__, ...) \
     if((__CONDITION__) != nil) \
         FLThrowConfirmationFailure( FLAssertionFailureIsNotNil, \
-                                            FLStringWithFormatOrNil(@"%s != nil", #__CONDITION__), \
+                                            FLStringWithFormatOrNil(@"\"%s != nil\"", #__CONDITION__), \
                                             FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
 
 /// @brief: Assert a pointer is NOT nil
 #define FLConfirmIsNotNil(__CONDITION__) \
     if((__CONDITION__) == nil) \
         FLThrowConfirmationFailure( FLAssertionFailureIsNil, \
-                                            FLStringWithFormatOrNil(@"%s == nil", #__CONDITION__), \
+                                            FLStringWithFormatOrNil(@"\"%s == nil\"", #__CONDITION__), \
                                             @"Assertion Failure")
 
 
@@ -62,7 +62,7 @@ NS_INLINE BOOL __FLConfirmationDidFail() { return NO; }
 #define FLConfirmIsNotNilWithComment(__CONDITION__, __COMMENT__, ...) \
     if((__CONDITION__) == nil) \
         FLThrowConfirmationFailure( FLAssertionFailureIsNil, \
-                                            FLStringWithFormatOrNil(@"%s == nil\"", #__CONDITION__), \
+                                            FLStringWithFormatOrNil(@"\"%s == nil\"", #__CONDITION__), \
                                             FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
 
 /// @brief: Assert a string is empty (either nil or of length 0)

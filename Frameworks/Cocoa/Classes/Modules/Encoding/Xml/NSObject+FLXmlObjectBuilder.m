@@ -13,32 +13,7 @@
 #import "FLObjectDescriber+FLXmlObjectBuilder.h"
 #import "FLXmlParser.h"
 
-@implementation NSObject (FLXmlObjectBuilder)
-+ (id) objectWithXmlElement:(FLParsedXmlElement*) xmlElement 
-          withObjectBuilder:(FLXmlObjectBuilder*) builder {
-
-    FLAssertNotNil(builder);
-    FLAssertNotNil(builder.decoder);
-    FLAssertNotNil(xmlElement);
-
-    FLObjectDescriber* objectDescriber = [self objectDescriber];
-    return [objectDescriber xmlObjectBuilder:builder inflateRootObjectWithXML:xmlElement];
-}
-
-
-+ (id) objectWithXmlElement:(FLParsedXmlElement*) xmlElement 
-                elementName:(NSString*) elementName
-          withObjectBuilder:(FLXmlObjectBuilder*) builder {
-
-    FLAssertNotNil(builder);
-    FLAssertNotNil(builder.decoder);
-    FLAssertNotNil(xmlElement);
-    
-    FLParsedXmlElement* buildElement = [builder findElementForBuilding:elementName inParentElement:xmlElement];
-    
-    return [self objectWithXmlElement:buildElement withObjectBuilder:builder];
-                      
-}          
+@implementation NSObject (FLXmlObjectBuilder)       
 
 + (id) objectWithXmlFilePath:(NSString*) xmlFilePath {
     FLParsedXmlElement* xml = [[FLXmlParser xmlParser] parseFileAtPath:xmlFilePath];
@@ -46,8 +21,7 @@
         return nil;
     }
     
-    return [self objectWithXmlElement:xml 
-                    withObjectBuilder:[FLXmlObjectBuilder xmlObjectBuilder]];
+    return [[FLXmlObjectBuilder xmlObjectBuilder] buildObjectOfClass:[self class] withXML:xml];
 }
 
 + (id) objectWithXmlFile:(NSString*) xmlFileName inBundle:(NSBundle*) bundle {

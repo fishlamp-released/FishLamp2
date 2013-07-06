@@ -11,3 +11,5 @@
 @interface FLSuccessfulResult : NSObject
 + (id) successfulResult;
 @end
+
+#define FLSuccess [FLSuccessfulResult successfulResult]

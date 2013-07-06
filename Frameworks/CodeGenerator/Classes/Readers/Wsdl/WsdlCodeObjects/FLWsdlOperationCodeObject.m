@@ -142,19 +142,22 @@
     property1.isImmutable = YES;
     property1.isReadOnly = YES;
     property1.isPrivate = YES;
-    property1.defaultValue = [FLCodeString codeString:propType];
+    property1.defaultValue = propType;
     FLTrace(@"-(%@) %@:%@", @"string", self.name, @"xmlElementNameForResponse");
 }
 
 
-- (void) addClassNameProperty:(NSString*) className {
-    FLWsdlCodeProperty* property2 = [self addProperty:@"classNameForSoapResponse" propertyType:@"string"];
+- (void) addClassNameProperty:(NSString*) className isModelObject:(BOOL) isModelObject {
+    FLWsdlCodeProperty* property2 = [self addProperty:@"typeNameForSoapResponse" propertyType:@"string"];
     property2.isImmutable = YES;
     property2.isReadOnly = YES;
     property2.isPrivate = YES;
-    property2.defaultValue = [FLCodeString codeString:[FLCodeClassName codeClassName:className]];
-    FLTrace(@"-(%@) %@:%@", @"string", self.name, @"classNameForSoapResponse");
+    property2.defaultValue = [FLCodeClassName codeClassName:className];
+
+    FLTrace(@"-(%@) %@:%@", @"string", self.name, @"typeNameForSoapResponse");
 }
+
+
 
 - (void) addOutputProperty:(FLWsdlInputOutput*) ioObject
                codeReader:(FLWsdlCodeProjectReader*) codeReader {
@@ -175,22 +178,14 @@
 
                 FLWsdlCodeObject* subObject = [codeReader codeObjectForClassName:subType];
 
-                if(subObject) {
-                    [self addElementNameProperty:prop.name];
-                    [self addClassNameProperty:prop.type];
-                    return;
-                }
+                [self addElementNameProperty:prop.name];
+                [self addClassNameProperty:prop.type isModelObject:subObject != nil];
+            }
+            else {
+                [self addElementNameProperty:propType];
+                [self addClassNameProperty:propType isModelObject:YES];
             }
 
-            [self addElementNameProperty:propType];
-            [self addClassNameProperty:propType];
-
-
-
-
-
-        
-        
 //            [self addProperty:propType propertyType:propType];
 //            
 //            FLTrace(@"-(%@) %@:%@", propType, self.name, propType);
@@ -267,7 +262,7 @@
         prop.isImmutable = YES;
         prop.isReadOnly = YES;
         prop.isPrivate = YES;
-        prop.defaultValue = [FLCodeString codeString:url];
+        prop.defaultValue = url;
     }
 
     NSString* targetNamespace = reader.wsdlDefinitions.targetNamespace;

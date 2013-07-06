@@ -77,12 +77,15 @@
 	if(data && data.length >0 ) {
 		char* first = strnstr((const char*) [data bytes], "Fault", MIN([data length], (unsigned int) MAX_ERR_LEN));
         if(first) {
-            FLParsedXmlElement* soap = [[FLSoapParser soapParser] parseData:data];
-            
-            FLSoapFault11* soapFault = [FLSoapFault11 objectWithXmlElement:soap 
-                                                               elementName:@"Fault"
-                                                         withObjectBuilder:[FLSoapObjectBuilder instance]];
-            
+            FLParsedXmlElement* soap = [[[FLSoapParser soapParser] parseData:data] childElementWithName:@"Fault" maxSearchDepth:5];
+            FLAssertNotNil(soap);
+
+            FLSoapFault11* soapFault = [[FLSoapObjectBuilder instance] buildObjectOfClass:[FLSoapFault11 class] withXML:soap];
+
+//            [FLSoapFault11 objectWithXmlElement:soap
+//                                                               elementName:@"Fault"
+//                                                         withObjectBuilder:[FLSoapObjectBuilder instance]];
+
             FLAssertNotNil(soapFault);
 			FLLog(@"Soap Fault:%@/%@", [soapFault faultcode], [soapFault faultstring]);
             return soapFault;
@@ -163,17 +166,20 @@
 
     FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:data];
 
-    if(FLStringIsNotEmpty([self classNameForSoapResponse])) {
+    if(FLStringIsNotEmpty([self typeNameForSoapResponse])) {
 
         FLParsedXmlElement* elementForObject = [self findResponseElementInSoapResponse:parsedSoap];
         FLAssertNotNil(elementForObject);
 
-        Class theClass = NSClassFromString([self classNameForSoapResponse]);
-        FLAssertNotNil(theClass);
+        id soapResponse = [[FLSoapObjectBuilder instance] buildObjectOfType:[self typeNameForSoapResponse] withXML:elementForObject];
 
 
-        id soapResponse = [theClass objectWithXmlElement:elementForObject
-                                    withObjectBuilder:[FLSoapObjectBuilder instance]];
+//        Class theClass = NSClassFromString([self typeNameForSoapResponse]);
+//        FLAssertNotNil(theClass);
+//
+//
+//        id soapResponse = [theClass objectWithXmlElement:elementForObject
+//                                       withObjectBuilder:[FLSoapObjectBuilder instance]];
 
         FLAssertNotNil(soapResponse);
 
@@ -188,10 +194,10 @@
 }
 
 - (FLParsedXmlElement*) findResponseElementInSoapResponse:(FLParsedXmlElement*) soapResponse {
-    return [soapResponse findChildElementWithName:[self xmlElementNameForResponse] maxDepth:5];
+    return [soapResponse childElementWithName:[self xmlElementNameForResponse] maxSearchDepth:5];
 }
 
-- (NSString*) classNameForSoapResponse {
+- (NSString*) typeNameForSoapResponse {
     return nil;
 }
 

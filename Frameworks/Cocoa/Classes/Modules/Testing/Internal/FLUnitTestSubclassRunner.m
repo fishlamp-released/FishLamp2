@@ -58,11 +58,9 @@
     }
 }
 
-- (id) performSynchronously {
-    
+- (NSDictionary*) sortClassesIntoGroups:(NSArray*) classList {
     NSMutableDictionary* groups = [NSMutableDictionary dictionary];
-    
-    for(Class aClass in _classList) {
+    for(Class aClass in classList) {
         FLUnitTestGroup* group = [aClass unitTestGroup];
         NSMutableArray* groupClassList = [groups objectForKey:group];
         if(!groupClassList) {
@@ -72,18 +70,55 @@
         
         [groupClassList addObject:aClass];
     }
-    
-    NSMutableArray* groupList = FLAutorelease([[groups allKeys] mutableCopy]);
-    [groupList sortUsingComparator:^NSComparisonResult(FLUnitTestGroup* obj1, FLUnitTestGroup* obj2) {
-        
+    return groups;
+}
+
+- (NSArray*) sortedGroupListWithGroupDictionary:(NSDictionary*) groups {
+    return [[groups allKeys] sortedArrayUsingComparator:
+        ^NSComparisonResult(FLUnitTestGroup* obj1, FLUnitTestGroup* obj2) {
         if(obj1.groupPriority == obj2.groupPriority) {
             return NSOrderedSame;
         }
     
         return obj1.groupPriority  > obj2.groupPriority ? NSOrderedAscending : NSOrderedDescending;
-    }]; 
+    }];
+}
+
+- (NSArray*) classListWithRemovingBaseClasses:(NSArray*) classList {
+    NSMutableArray* newList = [NSMutableArray array];
+
+    for(NSInteger i = 0; i < classList.count; i++) {
+        Class outerClass = [classList objectAtIndex:i];
+
+        BOOL foundSubclass = NO;
+
+        for(NSInteger j = i + 1; j < classList.count; j++) {
+            Class innerClass = [classList objectAtIndex:j];
+
+            if( [innerClass isSubclassOfClass:outerClass]) {
+                foundSubclass = YES;
+                break;
+            }
+
+        }
+
+        if(!foundSubclass) {
+            [newList addObject:outerClass];
+        }
+    }
+
+    return newList;
+}
+
+- (FLPromisedResult) performSynchronously {
+
+    NSArray* allClassesList = [self classListWithRemovingBaseClasses:_classList];
     
-    [[FLUnitTest outputLog] appendLineWithFormat:@"Found %d unit test classes in %d groups", _classList.count, groupList.count];
+    NSDictionary* groups = [self sortClassesIntoGroups:allClassesList];
+
+    NSArray* groupList = [self sortedGroupListWithGroupDictionary:groups];
+
+    [[FLUnitTest outputLog] appendLineWithFormat:@"Found %d unit test classes in %d groups", allClassesList.count, groupList.count];
     
     NSMutableArray* resultArray = [NSMutableArray array];
     
@@ -118,7 +153,7 @@
     
     return resultArray;
     
-// - (id) performSynchronously {
+// - (FLPromisedResult) performSynchronously {
 //
 //    NSMutableArray* array = [NSMutableArray array];
 //    NSArray* allResults = [self findUnitTests];
@@ -158,7 +193,7 @@
 - (void) addPossibleUnitTestClass:(FLRuntimeInfo) info {
 //class_conformsToProtocol
     if(!info.isMetaClass) {
-        if([NSObject superclass:[FLUnitTest class] hasSubclass:info.class]) {
+        if(FLRuntimeClassHasSubclass([FLUnitTest class], info.class)) {
             [_classList addObject:info.class];
         }
     }

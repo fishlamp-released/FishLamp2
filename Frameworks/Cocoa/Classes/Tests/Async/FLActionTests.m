@@ -18,7 +18,7 @@
     return [self frameworkTestGroup];
 }
 
-- (void) setupTests {
+- (void) firstTest {
 //   [self.results setTestResult:[FLCountedTestResult countedTestResult:6] forKey:@"counter"];
 }
 

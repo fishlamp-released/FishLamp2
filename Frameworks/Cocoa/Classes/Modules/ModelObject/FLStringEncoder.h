@@ -10,9 +10,12 @@
 #import "FishLampCore.h"
 #import "ISO8601DateFormatter.h"
 
+@class FLBase64Data;
+
 @protocol FLStringEncoding <NSObject>
 - (NSString*) stringFromObject:(id) object;
 - (id) objectFromString:(NSString*) string;
+- (NSArray*) encodingKeys;
 @end
 
 @interface NSObject (FLEncodingSelectors)
@@ -41,4 +44,11 @@
 
 @interface FLBoolStringEncoder : NSObject<FLStringEncoding>
 + (id) boolStringEncoder;
+@end
+
+@interface FLBase64DataStringEncoder : NSObject<FLStringEncoding> {
+@private
+    id<FLStringEncoding> _stringEncoder;
+}
++ (id) base64DataStringEncoder:(id<FLStringEncoding>) stringEncoder;
 @end

@@ -11,11 +11,6 @@
 #import "FLDataDecoding.h"
 #import "FLStringEncoder.h"
 
-//@protocol FLProtocolStringEncoding <NSObject>
-//- (NSString*) stringDecodedFromString:(NSString*) string;
-//- (NSString*) stringEncodedFromString:(NSString*) string;
-//@end
-
 @interface FLDataEncoder : NSObject<FLDataEncoding, FLDataDecoding> {
 @private
     NSMutableDictionary* _stringEncoders;
@@ -23,7 +18,8 @@
 
 + (id) dataEncoder;
 
-- (void) setStringEncoder:(id<FLStringEncoding>) encoder forKey:(NSString*) encodingKey;
+- (void) addStringEncoder:(id<FLStringEncoding>) encoder;
+
 - (id<FLStringEncoding>) stringEncoderForKey:(NSString*) key;
 
 @end

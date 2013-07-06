@@ -9,6 +9,8 @@
 
 #import "FLCocoaRequired.h"
 
+#define FLParsedElementDefaultSearchDepth 0
+
 @interface FLParsedXmlElement : NSObject {
 @private
     NSDictionary* _attributes;
@@ -16,11 +18,11 @@
     NSString* _elementName;
     NSString* _qualifiedName;
     NSMutableString* _elementValue;
-    NSMutableDictionary* _elements;
-    FLParsedXmlElement* _sibling;
+    NSMutableDictionary* _childElements;
+    FLParsedXmlElement* _siblingElement;
     NSString* _prefix;
 
-    __unsafe_unretained FLParsedXmlElement* _parent;
+    __unsafe_unretained FLParsedXmlElement* _parentElement;
 }
 - (id) initWithName:(NSString*) name elementValue:(NSString*) elementValue;
 
@@ -39,21 +41,26 @@
 
 - (void) appendStringToValue:(NSString*) string;
 
-// parent
-@property (readonly, assign, nonatomic) FLParsedXmlElement* parent;
+// parentElement
+@property (readonly, assign, nonatomic) FLParsedXmlElement* parentElement;
 
 // siblings
-@property (readwrite, strong, nonatomic) FLParsedXmlElement* sibling;
-@property (readonly, assign, nonatomic) NSUInteger siblingCount;
+@property (readwrite, strong, nonatomic) FLParsedXmlElement* siblingElement;
+- (NSUInteger) countSiblingElements;
 
 // childElements 
 @property (readonly, strong, nonatomic) NSDictionary* childElements;
-- (void) addChildElement:(FLParsedXmlElement*) element;
-- (FLParsedXmlElement*) childElementAtPath:(NSString*) path;
-- (FLParsedXmlElement*) childElementForName:(NSString*) name;
-- (FLParsedXmlElement*) findChildElementWithName:(NSString*) name 
-                                      maxDepth:(NSInteger) maxDepth;
+- (void) addChildElement:(FLParsedXmlElement*) childElement;
 
+- (FLParsedXmlElement*) childElementWithPath:(NSString*) path;
+
+- (FLParsedXmlElement*) childElementWithName:(NSString*) name;
+
+- (FLParsedXmlElement*) childElementWithName:(NSString*) name
+                              maxSearchDepth:(NSInteger) maxDepth;
+
+
+// TODO: abstract this???
 - (void) describeToStringFormatter:(id<FLStringFormatter>) stringFormatter;
 
 @end

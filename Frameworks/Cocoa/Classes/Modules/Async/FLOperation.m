@@ -161,6 +161,8 @@
 
 - (FLPromisedResult) runChildSynchronously:(FLOperation*) operation {
 
+    FLAssertNotNilWithComment(operation, @"child operation is nil");
+
     [self willRunChildOperation:operation];
     
     FLPromisedResult result = nil;

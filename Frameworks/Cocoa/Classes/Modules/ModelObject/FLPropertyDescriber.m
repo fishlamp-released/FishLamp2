@@ -311,10 +311,6 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     return YES;
 }
 
-//- (id<FLStringEncoder>) objectEncoder {
-//    return [[self representedObjectClass] objectEncoder];
-//}
-
 - (id) createRepresentedObject {
     return FLAutorelease([[[self representedObjectClass] alloc] init]);
 }

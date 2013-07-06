@@ -55,5 +55,9 @@ static NSString* s_noValues[] = {
     return nil;
 }
 
+//- (NSString*) generatedObjectClassName {
+//    return @"NSNumber";
+//}
+
 
 @end

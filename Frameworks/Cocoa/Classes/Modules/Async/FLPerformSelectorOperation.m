@@ -24,7 +24,7 @@
 	return FLAutorelease([[[self class] alloc] initWithTarget:target action:action]);
 }
 
-- (id) performSynchronously {
+- (FLPromisedResult) performSynchronously {
     FLPerformSelector1(_target, _action, self);
 
     return [FLSuccessfulResult successfulResult];

@@ -16,7 +16,7 @@
     return [self sanityCheckTestGroup];
 }
 
-- (void) setupTests {
+- (void) firstTest {
 //    [self.results setTestResultForNumber:1];
 }
 

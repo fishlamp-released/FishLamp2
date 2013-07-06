@@ -35,7 +35,7 @@
     return FLAutorelease([[[self class] alloc] initWithCodeGenerator:codeGenerator projectProvider:provider]);
 }
 
-- (id) performSynchronously {
+- (FLPromisedResult) performSynchronously {
 
     FLCodeProject* project = nil;
     @try {

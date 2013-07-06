@@ -46,8 +46,14 @@
 
 @implementation FLCodeString (FLObjcCodeWriter)
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-    return [NSString stringWithFormat:@"@\"%@\"", [self.string stringForObjcProject:project]];
 
+    NSString* string = [self.string stringForObjcProject:project];
+
+    if([string hasPrefix:@"@\""] && [string hasSuffix:@"\""]) {
+        return string;
+    }
+
+    return [NSString stringWithFormat:@"@\"%@\"", string];
 }
 @end
 
@@ -67,8 +73,13 @@
 @implementation FLCodeClassName (FLObjcCodeWriter)
 
 - (NSString*) stringForObjcProject:(FLObjcProject*) project {
-    FLObjcClassName* className = [FLObjcClassName objcClassName:[self.className stringForObjcProject:project] prefix:project.classPrefix];
-    return [className generatedName];
+
+    FLObjcType* type = [project.typeRegistry typeForKey:[self.className stringForObjcProject:project]];
+
+//    FLObjcName* className = type.typeName;
+
+//    [FLObjcClassName objcClassName: prefix:project.classPrefix];
+    return [type generatedName];
 }
 
 @end

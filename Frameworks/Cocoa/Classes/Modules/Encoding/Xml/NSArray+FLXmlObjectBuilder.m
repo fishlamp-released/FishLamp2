@@ -97,7 +97,7 @@ arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
     
     for(FLParsedXmlElement* element in [self.childElements objectEnumerator]) {
         
-        if(element.sibling != nil) {
+        if(element.siblingElement != nil) {
             FLParsedXmlElement* walker = element;
             while(walker != nil) {
                 id object = [self objectForArray:walker propertyDescriber:propertyDescriber objectBuilder:builder];
@@ -112,7 +112,7 @@ arrayWithElementContents:(FLPropertyDescriber*) propertyDescriber {
 #endif                    
                 }
                 
-                walker = walker.sibling;
+                walker = walker.siblingElement;
             }
         }
         else {

@@ -35,7 +35,7 @@
         FLXmlObjectBuilder* builder = [FLXmlObjectBuilder xmlObjectBuilder:[FLDataEncoder dataEncoder]];
         builder.strict = YES;
         
-        FLCodeProject* project = [FLCodeProject objectWithXmlElement:parsedXml withObjectBuilder:builder];
+        FLCodeProject* project = [builder buildObjectOfClass:[FLCodeProject class] withXML:parsedXml];
         FLAssertNotNil(project);
         
         return project;

@@ -426,7 +426,12 @@
         return nil;
     }
 
-    self.wsdlDefinitions = [FLWsdlDefinitions objectWithXmlElement:parsedSoap withObjectBuilder:[FLSoapObjectBuilder instance]];
+    FLWsdlDefinitions* definitions = [[FLSoapObjectBuilder instance] buildObjectOfClass:[FLWsdlDefinitions class]
+                                                                                withXML:parsedSoap];
+
+    FLAssertNotNil(definitions);
+
+    self.wsdlDefinitions = definitions;
 
     [self prepareMessageObjects];
 

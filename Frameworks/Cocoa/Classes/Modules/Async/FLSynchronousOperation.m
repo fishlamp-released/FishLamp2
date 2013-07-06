@@ -22,7 +22,7 @@
 	return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (id) performSynchronously {
+- (FLPromisedResult) performSynchronously {
     return [FLSuccessfulResult successfulResult];
 }
 

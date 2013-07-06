@@ -160,8 +160,9 @@
         }
     }
 
-    if(FLStringIsNotEmpty(codeProperty.defaultValue)) {
-        FLCodeElement* element = [self.propertyType defaultValueForString:codeProperty.defaultValue];
+    if(codeProperty.defaultValue) {
+
+        FLCodeElement* element = [self.propertyType defaultValueForString:[codeProperty.defaultValue stringForObjcProject:self.project]];
         if(element) {
             [self.getter.code appendCodeElement:element
                                     withProject:self.project];

@@ -52,6 +52,10 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
     [anotherStringFormatter appendStringFormatter:_document.rootStringBuilder];
 }
 
+- (void) appendStringFormatter:(id<FLStringFormatter>) element {
+    [self.document appendStringFormatter:element];
+}
+
 - (void) openSection:(id<FLStringFormatter>) element {
     [self.document openStringBuilder:element];
 }

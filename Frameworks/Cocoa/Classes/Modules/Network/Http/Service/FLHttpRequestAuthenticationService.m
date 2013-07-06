@@ -141,15 +141,11 @@
 
 }
 
-- (void) queueBlock:(dispatch_block_t) block withCompletion:(fl_completion_block_t) completion {
-    [_asyncQueue queueBlock:block withCompletion:completion];
-}
-
-- (void) beginAuthenticating:(fl_completion_block_t) completion {
+- (FLPromise*) beginAuthenticating:(fl_completion_block_t) completion {
     FLHttpUser* user = self.user;
     FLAssertNotNil(user); 
 
-    [self queueBlock:^{
+    return [self.asyncQueue queueBlock:^{
         FLTrace(@"started auth");
         [user resetAuthenticationTimestamp];
         [self authenticateUser:user];

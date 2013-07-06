@@ -78,7 +78,7 @@
     return response;
 }
 
-//- (id) performSynchronously {
+//- (FLPromisedResult) performSynchronously {
 //	
 //    
 //    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];

@@ -27,7 +27,7 @@
 - (NSString*) url;
 
 - (NSString*) xmlElementNameForResponse;
-- (NSString*) classNameForSoapResponse;
+- (NSString*) typeNameForSoapResponse;
 
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
 

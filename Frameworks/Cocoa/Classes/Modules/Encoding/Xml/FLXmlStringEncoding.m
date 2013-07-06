@@ -11,6 +11,7 @@
 
 
 @implementation FLXmlStringEncoder
+
 + (id) xmlStringEncoder {
     return FLAutorelease([[[self class] alloc] init]);
 }
