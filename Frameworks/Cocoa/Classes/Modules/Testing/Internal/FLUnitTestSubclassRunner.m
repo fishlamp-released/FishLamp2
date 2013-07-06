@@ -92,10 +92,15 @@
 
         BOOL foundSubclass = NO;
 
-        for(NSInteger j = i + 1; j < classList.count; j++) {
+        for(NSInteger j = 0; j < classList.count; j++) {
+
+            if( i == j ) {
+                continue;
+            }
+
             Class innerClass = [classList objectAtIndex:j];
 
-            if( [innerClass isSubclassOfClass:outerClass]) {
+            if( [innerClass isSubclassOfClass:outerClass] ) {
                 foundSubclass = YES;
                 break;
             }
