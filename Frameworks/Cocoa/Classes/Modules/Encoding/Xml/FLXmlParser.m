@@ -141,7 +141,9 @@ didStartElement:(NSString *)elementName
     [prettyString appendFormat:@"XMLParsing Error: %@ (%d) at line: %d, column: %d in %@", FLXmlParserErrorCodeStringFromEnum(parseError.code), parseError.code, parser.lineNumber, parser.columnNumber, self.fileNameForErrors];
 
     for(FLParsedXmlElement* element in _stack) {
-        [prettyString appendFormat:@" <%@>", element.elementName];
+        if(FLStringIsNotEmpty(element.elementName)) {
+            [prettyString appendFormat:@" <%@>"];
+        }
     }
 
 #if DEBUG
