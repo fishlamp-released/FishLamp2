@@ -8,9 +8,9 @@
     <options>
         <canLazyCreate>YES</canLazyCreate>
         <allIncludesFileName>FishLampCodeGeneratorObjects</allIncludesFileName>
-        <objectsFolderName>Generated</objectsFolderName>
+        <objectsFolderName>NewGenerated</objectsFolderName>
         <typePrefix>FL</typePrefix>
         <generateUserObjects>YES</generateUserObjects>
-        <userObjectsFolderName>Objects</userObjectsFolderName>
+        <userObjectsFolderName>NewObjects</userObjectsFolderName>
     </options>
-</project>
+</fishlamp>

@@ -412,11 +412,11 @@
     return mappedName;
 }
 
-- (FLCodeProject *) parseProjectFromData:(NSData*) data {
+- (FLCodeProject *) parseProjectFromData:(NSData*) data fromURL:(NSURL*) url {
         
     FLParsedXmlElement* parsedSoap = nil;
     @try {
-        parsedSoap = [[FLSoapParser soapParser] parseData:data];
+        parsedSoap = [[FLSoapParser soapParser] parseData:data fileNameForErrors:url.absoluteString];
             
         if(!FLStringsAreEqual(@"definitions", parsedSoap.elementName)) {
             return nil;

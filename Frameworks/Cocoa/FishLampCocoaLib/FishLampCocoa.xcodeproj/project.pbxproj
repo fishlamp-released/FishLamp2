@@ -127,6 +127,15 @@
 		27B5EA2217860E38002F7457 /* FLBase64Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 27B5EA1917860E38002F7457 /* FLBase64Data.m */; };
 		27C62D3B170B45C80093F260 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C62D3A170B45C80093F260 /* Foundation.framework */; };
 		27C62D4A170B46670093F260 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C62D49170B46670093F260 /* main.m */; };
+		27DB05DC17887EF900AECA12 /* FLXmlParserErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB05DA17887EF900AECA12 /* FLXmlParserErrorCode.h */; };
+		27DB05DD17887EF900AECA12 /* FLXmlParserErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB05DA17887EF900AECA12 /* FLXmlParserErrorCode.h */; };
+		27DB05DE17887EF900AECA12 /* FLXmlParserErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB05DA17887EF900AECA12 /* FLXmlParserErrorCode.h */; };
+		27DB05DF17887EF900AECA12 /* FLXmlParserErrorCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DB05DA17887EF900AECA12 /* FLXmlParserErrorCode.h */; };
+		27DB05E017887EF900AECA12 /* FLXmlParserErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DB05DB17887EF900AECA12 /* FLXmlParserErrorCode.m */; };
+		27DB05E117887EF900AECA12 /* FLXmlParserErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DB05DB17887EF900AECA12 /* FLXmlParserErrorCode.m */; };
+		27DB05E217887EF900AECA12 /* FLXmlParserErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DB05DB17887EF900AECA12 /* FLXmlParserErrorCode.m */; };
+		27DB05E317887EF900AECA12 /* FLXmlParserErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DB05DB17887EF900AECA12 /* FLXmlParserErrorCode.m */; };
+		27DB05E417887EF900AECA12 /* FLXmlParserErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DB05DB17887EF900AECA12 /* FLXmlParserErrorCode.m */; };
 		27DF71ED1777A354004A954C /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF6F451777A353004A954C /* FLCompatibility.h */; };
 		27DF71EE1777A354004A954C /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF6F451777A353004A954C /* FLCompatibility.h */; };
 		27DF71EF1777A354004A954C /* FLCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF6F451777A353004A954C /* FLCompatibility.h */; };
@@ -3123,6 +3132,9 @@
 		27C62DC8170B4DC90093F260 /* TestToolSharedConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = TestToolSharedConfig.xcconfig; sourceTree = "<group>"; };
 		27C62DCA170B4E870093F260 /* CocoaSharedConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CocoaSharedConfig.xcconfig; sourceTree = "<group>"; };
 		27CBC1F416768BA600753D0A /* libFishLampCocoa-OSX-Universal-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-Universal-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27DB05CD17887D0E00AECA12 /* FLXmlParserErrorCode.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = FLXmlParserErrorCode.flproj; path = ../../../../../../../../FishLamp/Frameworks/Cocoa/Classes/Modules/Encoding/Xml/FLXmlParserErrorCode.flproj; sourceTree = "<group>"; };
+		27DB05DA17887EF900AECA12 /* FLXmlParserErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FLXmlParserErrorCode.h; path = ../../../../../../../../FishLamp/Frameworks/Cocoa/Classes/Modules/Encoding/Xml/FLXmlParserErrorCode.h; sourceTree = "<group>"; };
+		27DB05DB17887EF900AECA12 /* FLXmlParserErrorCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FLXmlParserErrorCode.m; path = ../../../../../../../../FishLamp/Frameworks/Cocoa/Classes/Modules/Encoding/Xml/FLXmlParserErrorCode.m; sourceTree = "<group>"; };
 		27DF6F451777A353004A954C /* FLCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCompatibility.h; sourceTree = "<group>"; };
 		27DF6F471777A353004A954C /* FLCompatibility+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibility+iOS.h"; sourceTree = "<group>"; };
 		27DF6F481777A353004A954C /* FLCompatibleGeometry+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLCompatibleGeometry+iOS.h"; sourceTree = "<group>"; };
@@ -4322,6 +4334,9 @@
 		27DF700E1777A353004A954C /* Xml */ = {
 			isa = PBXGroup;
 			children = (
+				27DB05CD17887D0E00AECA12 /* FLXmlParserErrorCode.flproj */,
+				27DB05DA17887EF900AECA12 /* FLXmlParserErrorCode.h */,
+				27DB05DB17887EF900AECA12 /* FLXmlParserErrorCode.m */,
 				27DF700F1777A353004A954C /* FLObjectDescriber+FLXmlObjectBuilder.h */,
 				27DF70101777A353004A954C /* FLObjectDescriber+FLXmlObjectBuilder.m */,
 				27DF70111777A353004A954C /* FLObjectXmlElement.h */,
@@ -5198,6 +5213,7 @@
 				27DF73AB1777A354004A954C /* FLCStyleCodeBuilder.h in Headers */,
 				27DF75551777A354004A954C /* FLXmlElement.h in Headers */,
 				27DF75FA1777A354004A954C /* FLRectLayout_Inlines.h in Headers */,
+				27DB05DC17887EF900AECA12 /* FLXmlParserErrorCode.h in Headers */,
 				27DF7D181779050C004A954C /* FLNonretainedObject.h in Headers */,
 				27DF78B41777A354004A954C /* FLRetryHandler.h in Headers */,
 				27DF75161777A354004A954C /* FLObjectDescriber+FLXmlObjectBuilder.h in Headers */,
@@ -5519,6 +5535,7 @@
 				27DF73AD1777A354004A954C /* FLCStyleCodeBuilder.h in Headers */,
 				27DF75571777A354004A954C /* FLXmlElement.h in Headers */,
 				27DF75FC1777A354004A954C /* FLRectLayout_Inlines.h in Headers */,
+				27DB05DE17887EF900AECA12 /* FLXmlParserErrorCode.h in Headers */,
 				27DF7D1A1779050C004A954C /* FLNonretainedObject.h in Headers */,
 				27DF78B61777A354004A954C /* FLRetryHandler.h in Headers */,
 				27DF75181777A354004A954C /* FLObjectDescriber+FLXmlObjectBuilder.h in Headers */,
@@ -5840,6 +5857,7 @@
 				27DF73AC1777A354004A954C /* FLCStyleCodeBuilder.h in Headers */,
 				27DF75561777A354004A954C /* FLXmlElement.h in Headers */,
 				27DF75FB1777A354004A954C /* FLRectLayout_Inlines.h in Headers */,
+				27DB05DD17887EF900AECA12 /* FLXmlParserErrorCode.h in Headers */,
 				27DF7D191779050C004A954C /* FLNonretainedObject.h in Headers */,
 				27DF78B51777A354004A954C /* FLRetryHandler.h in Headers */,
 				27DF75171777A354004A954C /* FLObjectDescriber+FLXmlObjectBuilder.h in Headers */,
@@ -6161,6 +6179,7 @@
 				27DF73AE1777A354004A954C /* FLCStyleCodeBuilder.h in Headers */,
 				27DF75581777A354004A954C /* FLXmlElement.h in Headers */,
 				27DF75FD1777A354004A954C /* FLRectLayout_Inlines.h in Headers */,
+				27DB05DF17887EF900AECA12 /* FLXmlParserErrorCode.h in Headers */,
 				27DF7D1B1779050C004A954C /* FLNonretainedObject.h in Headers */,
 				27DF78B71777A354004A954C /* FLRetryHandler.h in Headers */,
 				27DF75191777A354004A954C /* FLObjectDescriber+FLXmlObjectBuilder.h in Headers */,
@@ -6905,6 +6924,7 @@
 				27DF76E71777A354004A954C /* FLNetworkServerContext.m in Sources */,
 				27DF72B11777A354004A954C /* FLTempFolder.m in Sources */,
 				27DF74291777A354004A954C /* FLCommandLineProcessor.m in Sources */,
+				27DB05E117887EF900AECA12 /* FLXmlParserErrorCode.m in Sources */,
 				27DF77261777A354004A954C /* NSURLRequest+HTTP.m in Sources */,
 				27DF79481777A354004A954C /* FLDatabaseTable.m in Sources */,
 				27DF757E1777A354004A954C /* NSArray+FLXmlObjectBuilder.m in Sources */,
@@ -7196,6 +7216,7 @@
 				27DF76E91777A354004A954C /* FLNetworkServerContext.m in Sources */,
 				27DF72B31777A354004A954C /* FLTempFolder.m in Sources */,
 				27DF742B1777A354004A954C /* FLCommandLineProcessor.m in Sources */,
+				27DB05E317887EF900AECA12 /* FLXmlParserErrorCode.m in Sources */,
 				27DF77281777A354004A954C /* NSURLRequest+HTTP.m in Sources */,
 				27DF794A1777A354004A954C /* FLDatabaseTable.m in Sources */,
 				27DF75801777A354004A954C /* NSArray+FLXmlObjectBuilder.m in Sources */,
@@ -7519,6 +7540,7 @@
 				27DF76E61777A354004A954C /* FLNetworkServerContext.m in Sources */,
 				27DF72B01777A354004A954C /* FLTempFolder.m in Sources */,
 				27DF74281777A354004A954C /* FLCommandLineProcessor.m in Sources */,
+				27DB05E017887EF900AECA12 /* FLXmlParserErrorCode.m in Sources */,
 				27DF77251777A354004A954C /* NSURLRequest+HTTP.m in Sources */,
 				27DF79471777A354004A954C /* FLDatabaseTable.m in Sources */,
 				27DF757D1777A354004A954C /* NSArray+FLXmlObjectBuilder.m in Sources */,
@@ -7810,6 +7832,7 @@
 				27DF76E81777A354004A954C /* FLNetworkServerContext.m in Sources */,
 				27DF72B21777A354004A954C /* FLTempFolder.m in Sources */,
 				27DF742A1777A354004A954C /* FLCommandLineProcessor.m in Sources */,
+				27DB05E217887EF900AECA12 /* FLXmlParserErrorCode.m in Sources */,
 				27DF77271777A354004A954C /* NSURLRequest+HTTP.m in Sources */,
 				27DF79491777A354004A954C /* FLDatabaseTable.m in Sources */,
 				27DF757F1777A354004A954C /* NSArray+FLXmlObjectBuilder.m in Sources */,
@@ -8109,6 +8132,7 @@
 				27DF76EA1777A354004A954C /* FLNetworkServerContext.m in Sources */,
 				27DF72B41777A354004A954C /* FLTempFolder.m in Sources */,
 				27DF742C1777A354004A954C /* FLCommandLineProcessor.m in Sources */,
+				27DB05E417887EF900AECA12 /* FLXmlParserErrorCode.m in Sources */,
 				27DF77291777A354004A954C /* NSURLRequest+HTTP.m in Sources */,
 				27DF794B1777A354004A954C /* FLDatabaseTable.m in Sources */,
 				27DF75811777A354004A954C /* NSArray+FLXmlObjectBuilder.m in Sources */,

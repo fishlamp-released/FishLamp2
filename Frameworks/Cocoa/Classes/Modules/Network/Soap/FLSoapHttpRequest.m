@@ -73,11 +73,11 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-+ (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data {
+- (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data {
 	if(data && data.length >0 ) {
 		char* first = strnstr((const char*) [data bytes], "Fault", MIN([data length], (unsigned int) MAX_ERR_LEN));
         if(first) {
-            FLParsedXmlElement* soap = [[[FLSoapParser soapParser] parseData:data] childElementWithName:@"Fault" maxSearchDepth:5];
+            FLParsedXmlElement* soap = [[[FLSoapParser soapParser] parseData:data fileNameForErrors:self.soapAction] childElementWithName:@"Fault" maxSearchDepth:5];
             FLAssertNotNil(soap);
 
             FLSoapFault11* soapFault = [[FLSoapObjectBuilder instance] buildObjectOfClass:[FLSoapFault11 class] withXML:soap];
@@ -143,7 +143,7 @@
     NSData* data = httpResponse.responseData.data;
     FLAssertNotNil(data);
     
-    FLSoapFault11* fault = [FLSoapHttpRequest checkForSoapFaultInData:data];
+    FLSoapFault11* fault = [self checkForSoapFaultInData:data];
     if(fault) {
         NSError* error =  [NSError errorWithSoapFault:fault];
 #if DEBUG
@@ -164,7 +164,7 @@
     FLLog(FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]));
 #endif    
 
-    FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:data];
+    FLParsedXmlElement* parsedSoap = [[FLSoapParser soapParser] parseData:data fileNameForErrors:self.soapAction];
 
     if(FLStringIsNotEmpty([self typeNameForSoapResponse])) {
 

@@ -11,7 +11,7 @@
 @class FLCodeProject;
 
 @protocol FLCodeProjectReader <NSObject>
-- (FLCodeProject *) parseProjectFromData:(NSData*) data;
+- (FLCodeProject *) parseProjectFromData:(NSData*) data fromURL:(NSURL*) url;
 @end
 
 @interface FLCodeProjectReader : NSObject<FLCodeProjectReader> {

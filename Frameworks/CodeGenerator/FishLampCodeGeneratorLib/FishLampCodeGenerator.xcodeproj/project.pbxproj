@@ -582,7 +582,7 @@
 		27795D4F1763A5E800B314EA /* FLCodeProjectLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeProjectLocation.m; sourceTree = "<group>"; };
 		27795D501763A5E800B314EA /* FLCodeProjectReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeProjectReader.h; sourceTree = "<group>"; };
 		27795D511763A5E800B314EA /* FLCodeProjectReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeProjectReader.m; sourceTree = "<group>"; };
-		27795D911763A5E800B314EA /* ObjectModel.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ObjectModel.flproj; sourceTree = "<group>"; };
+		27795D911763A5E800B314EA /* ObjectModelOld.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ObjectModelOld.flproj; sourceTree = "<group>"; };
 		27795DDA1763A96100B314EA /* FLObjcClassConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcClassConstructor.h; sourceTree = "<group>"; };
 		27795DDB1763A96100B314EA /* FLObjcClassConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcClassConstructor.m; sourceTree = "<group>"; };
 		2787B43E17415ACF0010C2C6 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -724,6 +724,7 @@
 		27B3601B175D4FC3002A4A3E /* FLObjcTypeRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLObjcTypeRegistry.h; sourceTree = "<group>"; };
 		27B3601C175D4FC3002A4A3E /* FLObjcTypeRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLObjcTypeRegistry.m; sourceTree = "<group>"; };
 		27B87CBC175FCB1F004A41B3 /* FishLampOSXAppLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FishLampOSXAppLib.xcodeproj; path = ../../OSX/FishLampOSXAppLib/FishLampOSXAppLib.xcodeproj; sourceTree = "<group>"; };
+		27DB05CC1788773A00AECA12 /* CodeGeneratorObjects.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CodeGeneratorObjects.flproj; sourceTree = "<group>"; };
 		27F01EF5176F776800DEE29A /* FLCodeGeneratorError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeGeneratorError.h; sourceTree = "<group>"; };
 		27F01EF6176F776800DEE29A /* FLCodeGeneratorError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeGeneratorError.m; sourceTree = "<group>"; };
 		27F01F01176F938800DEE29A /* FLCodeGeneratorOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeGeneratorOperation.h; sourceTree = "<group>"; };
@@ -1126,12 +1127,13 @@
 				27795D4F1763A5E800B314EA /* FLCodeProjectLocation.m */,
 				27795D501763A5E800B314EA /* FLCodeProjectReader.h */,
 				27795D511763A5E800B314EA /* FLCodeProjectReader.m */,
-				27795D911763A5E800B314EA /* ObjectModel.flproj */,
+				27795D911763A5E800B314EA /* ObjectModelOld.flproj */,
 				2729CA621777507900D59B4F /* CodeElements.flproj */,
 				2729CA671777515B00D59B4F /* CodeObject.flproj */,
 				2729CA68177751C500D59B4F /* CodeOptions.flproj */,
 				2729CA691777522F00D59B4F /* CodeEnum.flproj */,
 				2729CA6A1777526400D59B4F /* CodeProject.flproj */,
+				27DB05CC1788773A00AECA12 /* CodeGeneratorObjects.flproj */,
 			);
 			path = CodeObjectModel;
 			sourceTree = "<group>";

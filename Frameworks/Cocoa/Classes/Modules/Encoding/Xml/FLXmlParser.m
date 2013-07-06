@@ -8,12 +8,14 @@
 //
 
 #import "FLXmlParser.h"
+#import "FLXmlParserErrorCode.h"
 
 @interface FLXmlParser ()
 @property (readwrite, strong, nonatomic) NSMutableArray* stack;
 @property (readwrite, strong, nonatomic) NSXMLParser* parser; // only valid during parse
 @property (readwrite, strong, nonatomic) NSError* error; // only valid during parse
 @property (readwrite, strong, nonatomic) FLParsedXmlElement* rootElement;
+@property (readwrite, strong, nonatomic) NSString* fileNameForErrors;
 @end
 
 
@@ -23,6 +25,8 @@
 @synthesize parser = _parser;
 @synthesize error = _error;
 @synthesize rootElement = _rootElement;
+@synthesize fileNameForErrors = _fileNameForErrors;
+
 
 
 + (id) xmlParser {
@@ -33,6 +37,7 @@
 	_parser.delegate = nil;
 
 #if FL_MRC
+    [_fileNameForErrors release];
     [_rootElement release];
     [_parser release];
     [_stack release];
@@ -131,19 +136,36 @@ didStartElement:(NSString *)elementName
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-    self.error = parseError;
+
+    FLPrettyString* prettyString = [FLPrettyString prettyString];
+    [prettyString appendFormat:@"XMLParsing Error: %@ (%d) at line: %d, column: %d in %@", FLXmlParserErrorCodeStringFromEnum(parseError.code), parseError.code, parser.lineNumber, parser.columnNumber, self.fileNameForErrors];
+
+    for(FLParsedXmlElement* element in _stack) {
+        [prettyString appendFormat:@" <%@>", element.elementName];
+    }
+
+#if DEBUG
+    FLLog(@"Parsing error: %@", prettyString.string);
+#endif
+
+    self.error = [NSError errorWithDomain:parseError.domain code:parseError.code localizedDescription:prettyString.string];
+
     [parser abortParsing];
 }
 
 - (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError {
+#if DEBUG
+    FLLog(@"Parsing validation error: %@", validationError);
+#endif
+
     self.error = validationError;
     [parser abortParsing];
 }
 
-- (FLParsedXmlElement*) parseData:(NSData*) data {
+- (FLParsedXmlElement*) parseData:(NSData*) data fileNameForErrors:(NSString*) fileName {
 
     self.stack = [NSMutableArray array];
-//    [self.stack addObject:[FLParsedXmlElement parsedXmlElement]];
+    self.fileNameForErrors = fileName;
 
     @try {
         FLAutoreleasePool(
@@ -163,6 +185,7 @@ didStartElement:(NSString *)elementName
     }
     @finally {
 		_parser.delegate = nil;
+        self.fileNameForErrors = nil;
         self.parser = nil;
         self.stack = nil;
         self.error = nil;
@@ -179,7 +202,7 @@ didStartElement:(NSString *)elementName
     NSData* data = [NSData dataWithContentsOfURL:url options:0  error:&err];
     FLThrowIfError(FLAutorelease(err));
         
-    return [self parseData:data];
+    return [self parseData:data fileNameForErrors:url.absoluteString];
 }
 
 + (BOOL) canParseData:(NSData*) data {
@@ -197,5 +220,6 @@ didStartElement:(NSString *)elementName
 
     return string;
 }
+
 
 @end

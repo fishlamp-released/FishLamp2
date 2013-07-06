@@ -29,7 +29,7 @@
 - (NSString*) xmlElementNameForResponse;
 - (NSString*) typeNameForSoapResponse;
 
-+ (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
+- (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
 
 - (FLParsedXmlElement*) findResponseElementInSoapResponse:(FLParsedXmlElement*) soapResponse;
 @end
