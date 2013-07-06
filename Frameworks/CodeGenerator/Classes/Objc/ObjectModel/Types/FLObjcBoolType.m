@@ -27,4 +27,37 @@
 //+ (id) objcNumberValueType:(NSString*) numberType {
 //    return FLAutorelease([[[self class] alloc] init]);
 //}
+
+static NSString* s_yesValues[] = {
+    @"YES", @"TRUE", @"1", nil
+};
+static NSString* s_noValues[] = {
+    @"NO", @"FALSE", @"0", nil
+};
+
+- (FLCodeElement*) defaultValueForString:(NSString*) string {
+
+    for(int i = 0; s_yesValues[i] != nil; i++) {
+        if(FLStringsAreEqualCaseInsensitive(s_yesValues[i], string)) {
+            return [FLCodeStatement codeStatement:
+                        [FLCodeReturn codeReturn:@"YES"]];
+        }
+    }
+
+    for(int i = 0; s_noValues[i] != nil; i++) {
+        if(FLStringsAreEqualCaseInsensitive(s_yesValues[i], string)) {
+            return [FLCodeStatement codeStatement:
+                        [FLCodeReturn codeReturn:@"NO"]];
+        }
+    }
+
+
+    return nil;
+}
+
+//- (NSString*) generatedObjectClassName {
+//    return @"NSNumber";
+//}
+
+
 @end

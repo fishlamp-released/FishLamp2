@@ -8,7 +8,7 @@
 //
 
 #import "FLConfirmations.h"
-
+#import "FishLampCore.h"
 
 /*
 #define InitArguments(__OBJ__, __FIRST__) \
@@ -45,7 +45,7 @@ NSString* func(id condition, ...) {
     void* obj = nil;
     while ((obj = va_arg(valist, void*))) { 
         if(count == 0) {
-            first = bridge_(id, obj);
+            first = FLBridge(id, obj);
         }
         else {
             FLAssert(count < kMaxSize);

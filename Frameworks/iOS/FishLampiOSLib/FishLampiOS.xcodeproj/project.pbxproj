@@ -1388,7 +1388,7 @@
 		27D1E5BE166D34DE00DB680E /* FishLampTargetSettings-OSX-32.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-32.xcconfig"; sourceTree = "<group>"; };
 		27D1E5BF166D34DE00DB680E /* FishLampTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
 		27D1E5C0166D34DE00DB680E /* FishLampTargetSettings-OSX-64.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64.xcconfig"; sourceTree = "<group>"; };
-		27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampCocoa-Prefix.pch"; sourceTree = "<group>"; };
+		27D1E5C1166D355C00DB680E /* FishLampiOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampiOS-Prefix.pch"; sourceTree = "<group>"; };
 		27EE26A516CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLHttpRequestHeaders+iOS.h"; sourceTree = "<group>"; };
 		27EE26A616CB06DD00E4CC98 /* FLHttpRequestHeaders+iOS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLHttpRequestHeaders+iOS.m"; sourceTree = "<group>"; };
 		27EF7B38165A9C1E00EB7949 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -1418,7 +1418,7 @@
 			isa = PBXGroup;
 			children = (
 				2798DB81166D8A7F00A0863D /* SharedTargetSettings.xcconfig */,
-				27D1E5C1166D355C00DB680E /* FishLampCocoa-Prefix.pch */,
+				27D1E5C1166D355C00DB680E /* FishLampiOS-Prefix.pch */,
 				27D1E5BA166D34DE00DB680E /* XcodeConfigs */,
 			);
 			name = "Supporting Files";
@@ -3748,6 +3748,7 @@
 				27367B8F175E4CD00018996B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "FishLampiOS" */ = {
 			isa = XCConfigurationList;

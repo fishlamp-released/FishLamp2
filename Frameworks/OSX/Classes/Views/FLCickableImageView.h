@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import <Cocoa/Cocoa.h>
+#import "FishLamp.h"
 
 @interface FLCickableImageView : NSImageView
 

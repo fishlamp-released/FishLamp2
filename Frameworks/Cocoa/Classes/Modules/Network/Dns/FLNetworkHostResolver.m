@@ -59,17 +59,17 @@
     id result = nil;
     
     if(error && error->domain != 0 && error->error != 0) {
-        [self closeWithResult:nil error:FLCreateErrorFromStreamError(error)];
+        [self closeWithResult:FLCreateErrorFromStreamError(error)];
     }
     else {
         self.networkHost.resolved = YES;
-        [self closeWithResult:self.networkHost error:nil];
+        [self closeWithResult:self.networkHost];
     }
     
 }
 
 static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, const CFStreamError *error, void *info) {
-    FLNetworkHostResolver* resolver = bridge_(id, info);
+    FLNetworkHostResolver* resolver = FLBridge(id, info);
     FLAssertIsKindOfClassWithComment(resolver, FLNetworkHostResolver, nil);
     [resolver resolutionCallback:theHost typeInfo:typeInfo error:error];
 }
@@ -79,21 +79,21 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
         CFHostRef host = self.networkHost.hostRef;
         if(host) {
             /*BOOL success = */ CFHostSetClient(host, NULL, NULL);
-            CFHostUnscheduleFromRunLoop(host, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
+            CFHostUnscheduleFromRunLoop(host, [[self.eventHandler runLoop] getCFRunLoop], FLBridge(void*,self.eventHandler.runLoopMode));
             CFHostCancelInfoResolution(host, self.networkHost.hostInfoType);
         }
     }
 }
 
-- (void) closeWithResult:(id) result error:(NSError*) error{
+- (void) closeWithResult:(id) result {
     [self cancelRunLoop];
-    [self.finisher setFinishedWithResult:result error:error];
+    [self.finisher setFinishedWithResult:result];
     self.finisher = nil;
     self.networkHost = nil;
 }
 
-- (FLPromisedResult*) resolveHostSynchronously:(FLNetworkHost*) host {
-    FLPromisedResult* result = [[self startResolvingHost:host completion:nil] waitUntilFinished];
+- (id) resolveHostSynchronously:(FLNetworkHost*) host {
+    id result = [[self startResolvingHost:host completion:nil] waitUntilFinished];
     FLThrowIfError(result);
     return result;
 }
@@ -106,20 +106,20 @@ static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, c
     
     self.networkHost = host;
     
-    CFHostClientContext context = { 0, bridge_(void*, self), NULL, NULL, NULL };
+    CFHostClientContext context = { 0, FLBridge(void*, self), NULL, NULL, NULL };
   
     CFHostRef cfhost = self.networkHost.hostRef;
     FLAssertIsNotNilWithComment(cfhost, nil);
 
     if (!CFHostSetClient(cfhost, HostResolutionCallback, &context)) {
-        [self closeWithResult:nil error:[NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil]];
+        [self closeWithResult:[NSError errorWithDomain:NSPOSIXErrorDomain code:EINVAL userInfo:nil]];
         
     }
     else {
-        CFHostScheduleWithRunLoop(cfhost, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
+        CFHostScheduleWithRunLoop(cfhost, [[self.eventHandler runLoop] getCFRunLoop], FLBridge(void*,self.eventHandler.runLoopMode));
         CFStreamError streamError = { 0, 0 };
         if (!CFHostStartInfoResolution(cfhost, self.networkHost.hostInfoType, &streamError) ) {
-            [self closeWithResult:nil error:FLCreateErrorFromStreamError(&streamError)];
+            [self closeWithResult:FLCreateErrorFromStreamError(&streamError)];
         }
     }
     return promise;

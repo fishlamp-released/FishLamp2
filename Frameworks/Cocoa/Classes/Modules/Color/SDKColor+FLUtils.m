@@ -17,11 +17,15 @@
                        green:(CGFloat) green
                         blue:(CGFloat) blue
                        alpha:(CGFloat) alpha {
-    
-	return [SDKColor colorWithRed:FLRgbColorToDecimalColor(red)
+
+#if OSX
+	return [NSColor colorWithDeviceRed:FLRgbColorToDecimalColor(red)
                            green:FLRgbColorToDecimalColor(green)
                             blue:FLRgbColorToDecimalColor(blue)
                            alpha:alpha ];
+#else
+
+#endif
 }
 
 

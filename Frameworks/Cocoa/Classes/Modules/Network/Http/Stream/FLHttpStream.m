@@ -59,7 +59,7 @@
 
 - (CFReadStreamRef) allocReadStreamRef {
     if(_bodyStream) {
-        return CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault, _requestHeaders.messageRef, bridge_(CFReadStreamRef, _bodyStream));
+        return CFReadStreamCreateForStreamedHTTPRequest(kCFAllocatorDefault, _requestHeaders.messageRef, FLBridge(CFReadStreamRef, _bodyStream));
     }
     
     return CFReadStreamCreateForHTTPRequest(kCFAllocatorDefault, _requestHeaders.messageRef);
@@ -115,7 +115,7 @@
 
 - (unsigned long) bytesWritten {
     if(self.streamRef) {
-        NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
+        NSNumber* number = FLAutorelease(FLBridgeTransfer(NSNumber*,
             CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyHTTPRequestBytesWrittenCount)));
         
         return number.unsignedLongValue;

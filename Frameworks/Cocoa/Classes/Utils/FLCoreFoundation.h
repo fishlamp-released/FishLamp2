@@ -20,10 +20,10 @@ void _FLReleaseCFRef(CFTypeRef* ref) {
 #define FLReleaseCRef_(__REF__) _FLReleaseCFRef((CFTypeRef*) &(__REF__))
 
 //#define FLBridgeTransferToCFString( __OBJ__) \
-//            bridge_transfer_(CFStringRef, __OBJ__)
+//            FLBridgeTransfer(CFStringRef, __OBJ__)
 //
 //#define FLBridgeToCFString(__OBJ__) \
-//            bridge_(CFStringRef, __OBJ__)
+//            FLBridge(CFStringRef, __OBJ__)
 //
 //#define FLBridgeRetainToCFString(__OBJ__) \
 //            bridge_retain_(CFStringRef, __OBJ__)

@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
+#import "FishLamp.h"
 #import "FLStringFormatter.h"
 
 @interface FLTextViewLogger : FLStringFormatter<FLStringFormatterOutput> {

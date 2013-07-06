@@ -47,7 +47,7 @@
 
 #define kDelay 0.5
 
-- (void) addBlock:(dispatch_block_t) block {
+- (void) queueBlock:(dispatch_block_t) block {
 
     if(block) block();
     return;
@@ -114,7 +114,7 @@
 }
 
 - (void) clearContents {
-    [self addBlock:^{
+    [self queueBlock:^{
         [[_textView textStorage] deleteCharactersInRange:NSMakeRange(0, [_textView textStorage].length) ];
         self.buffer = nil;
     }];
@@ -148,6 +148,14 @@
     --_indentLevel;
 }
 
+- (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter {
+    return [_textView textStorage].length + _buffer.length;
+}
+
+- (void) stringFormatter:(FLStringFormatter*) stringFormatter
+appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
+
+}
 
 @end
 

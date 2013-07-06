@@ -27,4 +27,5 @@ typedef enum {
                             code:(__CODE__) \
                             localizedDescription: FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) \
                             userInfo:nil \
-                            comment:nil])
+                            comment:nil \
+                            stackTrace:FLCreateStackTrace(YES)])

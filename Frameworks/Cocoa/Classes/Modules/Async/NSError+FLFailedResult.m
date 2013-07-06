@@ -17,7 +17,8 @@
                                code:FLErrorResultFailed
                localizedDescription:NSLocalizedString(@"An operation failed.", nil)
                            userInfo:nil
-                            comment:nil]);
+                            comment:nil
+                            stackTrace:nil]);
 }
 @end
 

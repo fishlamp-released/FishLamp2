@@ -1,20 +1,19 @@
 //
-//	FLTestCase.h
+//	FLUnitTest.h
 //	WreckingBall
 //
 //	Created by Mike Fullerton on 9/12/09.
 //	Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#import "FLCocoaRequired.h"
-#import "FLLog.h"
-#import "FLTestCase.h"
-#import "FLUnitTestResult.h"
-#import "FLFinisher.h"
-#import "FLTestResultCollection.h"
+#import "FishLamp.h"
 #import "FLSynchronousOperation.h"
+
+#import "FLUnitTestResult.h"
+#import "FLTestResultCollection.h"
 #import "FLUnitTestGroup.h"
-#import "FLDispatchQueue.h"
+
+@class FLTestCaseList;
 
 #define FLLogTypeTest       @"com.fishlamp.unit-test"
 
@@ -28,21 +27,11 @@
 */
 @interface FLUnitTest : FLSynchronousOperation {
 @private
-    NSMutableArray* _testCases;
 }
 
 @property (readonly, strong) NSString* unitTestName;
 
 + (FLUnitTest*) unitTest;
-
-- (void) addTestCase:(FLTestCase*) testCase;
-
-- (FLTestCase*) findTestCaseForName:(NSString*) name;
-- (FLTestCase*) findTestCaseForSelector:(SEL) selector;
-
-- (void) setupTests; 
-- (void) teardownTests;
-- (BOOL) willRunTests;
 
 + (FLUnitTestGroup*) unitTestGroup; // defaultTestGroup by default.
 
@@ -61,6 +50,22 @@
 + (FLUnitTestGroup*) importantTestGroup;
 + (FLUnitTestGroup*) defaultTestGroup;
 + (FLUnitTestGroup*) lastTestGroup;
+
+// optional overrides
+
+// NOTE: these are NOT tests. Thrown exceptions will terminate everything.
+- (void) setup:(FLTestCaseList*) testCases withResults:(FLTestResultCollection*) results;
+- (void) teardown:(FLTestCaseList*) testCases withResults:(FLTestResultCollection*) results;
+
+
+// any method with "test" in it (no params) will be run.
+
+// tests with "first" and "test" will be run first
+
+// tests with "last" and "test" will be run last;
+
+// all other tests are run in alphebetical order.
+
 
 @end
 

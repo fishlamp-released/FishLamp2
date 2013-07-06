@@ -23,10 +23,10 @@
 - (void) testConnectionToGoogle {
     FLHttpRequest *request = [FLHttpRequest httpRequestWithURL:[NSURL URLWithString:@"http://www.google.com"] httpMethod:@"GET"];
 
-    FLPromisedResult* result = [request runSynchronously];
+    id result = [request runSynchronously];
     FLThrowIfError(result);
 
-    FLHttpResponse* response = result.value;
+    FLHttpResponse* response = result;
     
     FLAssertNotNil(response);
     FLAssert([response isKindOfClass:[FLHttpResponse class]]);

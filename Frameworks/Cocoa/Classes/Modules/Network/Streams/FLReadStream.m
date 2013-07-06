@@ -25,7 +25,7 @@ CFIndex _FLReadStreamRead(CFReadStreamRef stream, UInt8 *buffer, CFIndex bufferL
 
 static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventType eventType, void *clientCallBackInfo) {
 
-    FLNetworkStream* stream = bridge_(FLReadStream*, clientCallBackInfo);
+    FLNetworkStream* stream = FLBridge(FLReadStream*, clientCallBackInfo);
     [stream.eventHandler handleStreamEvent:eventType];
 }
 
@@ -47,7 +47,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 - (void) killStream {
     if(_streamRef) {
         CFReadStreamClose(_streamRef);
-        CFReadStreamUnscheduleFromRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
+        CFReadStreamUnscheduleFromRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], FLBridge(void*,self.eventHandler.runLoopMode));
         CFRelease(_streamRef);
         _streamRef = nil;
     }
@@ -69,7 +69,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 }
 
 - (NSError*) streamError {
-    return FLAutorelease(bridge_transfer_(NSError*, CFReadStreamCopyError(self.streamRef)));
+    return FLAutorelease(FLBridgeTransfer(NSError*, CFReadStreamCopyError(self.streamRef)));
 }
 
 - (CFReadStreamRef) allocReadStreamRef {
@@ -96,7 +96,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
             kCFStreamEventEndEncountered | 
             kCFStreamEventErrorOccurred;
 
-    CFStreamClientContext ctxt = {0, bridge_(void*, self), NULL, NULL, NULL};
+    CFStreamClientContext ctxt = {0, FLBridge(void*, self), NULL, NULL, NULL};
     CFReadStreamSetClient(_streamRef, flags, ReadStreamClientCallBack, &ctxt);
 
     if(self.streamSecurity == FLNetworkStreamSecuritySSL) {
@@ -118,7 +118,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 #endif                            
 
     CFReadStreamOpen(_streamRef);
-    CFReadStreamScheduleWithRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], bridge_(CFStringRef,self.eventHandler.runLoopMode));
+    CFReadStreamScheduleWithRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], FLBridge(CFStringRef,self.eventHandler.runLoopMode));
 }
 
 - (void) willCloseWithResponseData:(id<FLInputSink>) responseData {
@@ -234,7 +234,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 - (unsigned long) bytesRead {
     if(_streamRef) {
-        NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
+        NSNumber* number = FLAutorelease(FLBridgeTransfer(NSNumber*,
             CFReadStreamCopyProperty(self.streamRef, kCFStreamPropertyDataWritten)));
 
         return [number unsignedLongValue];

@@ -9,7 +9,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FLCoreFlags.h"
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 
 #define FLSetRandomSeed() srandom(time(NULL))
 

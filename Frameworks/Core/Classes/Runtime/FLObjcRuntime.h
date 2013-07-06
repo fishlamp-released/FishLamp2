@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
  *
  */
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 #import <objc/runtime.h>
 
 #import "FLRuntimeInfo.h"
@@ -20,6 +20,7 @@ typedef void (^FLRuntimeSelectorVisitor)(FLRuntimeInfo info, BOOL* stop);
 typedef void (^FLRuntimeFilterBlock)(FLRuntimeInfo info, BOOL* passed, BOOL* stop);
 
 extern void FLSwizzleInstanceMethod(Class c, SEL originalSelector, SEL newSelector);
+
 extern void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector);
 
 extern int FLArgumentCountForSelector(SEL selector);
@@ -27,30 +28,29 @@ extern int FLArgumentCountForSelector(SEL selector);
 // doesn't count the first two hidden arguments so a selector like this @selector(foo:) will return 1
 extern int FLArgumentCountForClassSelector(Class aClass, SEL selector);
 
-@interface NSObject (FLObjcRuntime)
+extern NSArray* FLRuntimeMethodsForClass(Class aClass, FLRuntimeFilterBlock filterOrNil);
 
-+ (BOOL) visitEveryClass:(FLRuntimeClassVisitor) visitor;
+extern void FLRuntimeVisitEachSelectorInClassAndSuperclass(Class aClass, FLRuntimeSelectorVisitor visitor); // not including NSObject
 
-+ (BOOL) visitEachSelectorInClass:(Class) aClass
-                          visitor:(FLRuntimeSelectorVisitor) visitor;
+extern BOOL FLRuntimeVisitEachSelectorInClass(Class aClass, FLRuntimeSelectorVisitor visitor);
 
-+ (BOOL) classRespondsToSelector:(Class) aClass selector:(SEL) selector;
+extern BOOL FLRuntimeVisitEveryClass(FLRuntimeClassVisitor visitor);
 
-+ (NSArray*) methodsForClass:(Class) aClass
-                      filter:(FLRuntimeFilterBlock) filterOrNil;
+extern NSArray* FLRuntimeAllClassesMatchingFilter(FLRuntimeFilterBlock filter);
 
+extern NSArray* FLRuntimeClassesImplementingInstanceMethod(SEL theMethod);
 
-+ (NSArray*) classesImplementingInstanceMethod:(SEL) theMethod;
+extern NSArray* FLRuntimeSubclassesForClass(Class theClass);
 
-+ (BOOL) superclass:(Class) superclass hasSubclass:(Class) aClass;
+extern BOOL FLRuntimeClassHasSubclass(Class aSuperclass, Class aSubclass);
 
-+ (NSArray*) subclassesForClass:(Class) aClass;
-
+extern BOOL FLRuntimeClassRespondsToSelector(Class aClass, SEL aSelector);
 
 #if DEBUG
-+ (void) logMethodsForClass:(Class) aClass;
+void FLRuntimeLogMethodsForClass(Class aClass);
 #endif
 
+@interface NSObject (FLObjcRuntime)
 
 // http://www.cocoawithlove.com/2008/03/supersequent-implementation.html
 // Lookup the next implementation of the given selector after the

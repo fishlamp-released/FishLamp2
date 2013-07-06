@@ -7,6 +7,8 @@
 //
 
 #import "FLNonretainedArray.h"
+#if EXPERIMENTAL
+#if MRC
 
 const void* RetainCallback(CFAllocatorRef allocator, const void *value) {
     return value;
@@ -254,3 +256,6 @@ static CFArrayCallBacks s_callbacks = {
 
 
 @end
+
+#endif
+#endif

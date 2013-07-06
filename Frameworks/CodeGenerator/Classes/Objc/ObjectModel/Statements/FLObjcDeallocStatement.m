@@ -25,4 +25,9 @@
     [codeBuilder appendSuperDealloc];
 }
 
+- (BOOL) hasCode {
+    return YES;
+}
+
+
 @end

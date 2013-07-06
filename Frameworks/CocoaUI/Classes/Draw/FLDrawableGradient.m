@@ -87,7 +87,7 @@ return;
 //        nil];
 
     
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, bridge_(CFArrayRef, colors), locations);
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, FLBridge(CFArrayRef, colors), locations);
     CGColorSpaceRelease(colorSpace);  // Release owned Core Foundation object.
     
 //    CGPoint startPoint = CGPointMake(0.0, 0.0);

@@ -53,7 +53,7 @@
 
 - (FLFinisher*) openConnection {
 
-//    return [self.dispatchQueue addBlock:^{
+//    return [self.dispatchQueue queueBlock:^{
 //        
 //        FLAssertIsNil(self.readStream);
 //        FLAssertIsNil(self.writeStream);
@@ -66,7 +66,7 @@
 //            FLAssertWithComment(self.remotePort != 0, @"remote port can't be zero");
 //            FLAssertStringIsNotEmpty(self.remoteHost);
 //           
-//            host = CFHostCreateWithName(NULL, bridge_(void*,self.remoteHost));
+//            host = CFHostCreateWithName(NULL, FLBridge(void*,self.remoteHost));
 //            if(!host) {
 //                FLThrowIfError([NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorCannotFindHost localizedDescription:@"Unable to find to host"]);
 //            }
@@ -120,7 +120,7 @@
 - (void) closeConnectionWithResult:(id) result error:(NSErro*) error {
     self.terminate = YES;
     
-    [self.dispatchQueue addBlock:^{
+    [self.dispatchQueue queueBlock:^{
 //        if(_readStream) {
 //            [_readStream setDelegate:nil];
 //            [_readStream closeStreamWithResult:result];
@@ -267,7 +267,7 @@
 }
 
 - (void) updateRequestQueue {
-    [self.dispatchQueue addBlock:^{
+    [self.dispatchQueue queueBlock:^{
         [self updateQueue];
     }];
 }

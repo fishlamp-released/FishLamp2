@@ -16,3 +16,7 @@
                withProject:(FLObjcProject*) project;
 
 @end
+
+@interface NSObject (FLCodeElement)
+- (NSString*) stringForObjcProject:(FLObjcProject*) project;
+@end

@@ -111,8 +111,8 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
     [super requestCancel];
     self.error = [NSError cancelError];
 
-    [self.fifoQueue addBlock:^{ [self processCancelRequest]; }];
-    [self.fifoQueue addBlock:^{ [self processQueue]; }];
+    [self.fifoQueue queueBlock:^{ [self processCancelRequest]; }];
+    [self.fifoQueue queueBlock:^{ [self processQueue]; }];
 }
 
 - (NSString*) queueName {
@@ -121,17 +121,17 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 
 - (void) didFinishProcessingQueueElement:(FLAsyncOperationQueueElement*) element {
 
-    [self.fifoQueue addBlock: ^{
+    [self.fifoQueue queueBlock: ^{
         [_activeQueue removeObject:element];
         self.processedObjectCount++;
     
         if(!self.error) {
             
-            if(element.result.error) {
-                self.error = element.result.error;
+            if([element.operationResult isError]) {
+                self.error = element.operationResult;
             }
             
-            FLTrace(@"finished operation: %@ withResult: %@", element.operation, element.error ? element.result : @"OK");
+            FLTrace(@"finished operation: %@ withResult: %@", element.operation, [element.operationResult isError] ? element.operationResult : @"OK");
             [self didFinishOperation:element];
         }
 
@@ -191,17 +191,17 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 }
 
 - (void) addObjectsFromArray:(NSArray*) queuedObjects {
-    [self.fifoQueue addBlock:^{ [self processAddObjects:queuedObjects]; }];
+    [self.fifoQueue queueBlock:^{ [self processAddObjects:queuedObjects]; }];
 }
 
 - (void) addObject:(id) object {
-    [self.fifoQueue addBlock:^{ [self processAddObject:object]; }];
+    [self.fifoQueue queueBlock:^{ [self processAddObject:object]; }];
 }
 
 - (void) startProcessing {
     self.error = nil;
     self.processing = YES;
-    [self.fifoQueue addBlock:^{ [self processQueue]; }];
+    [self.fifoQueue queueBlock:^{ [self processQueue]; }];
 }
 
 - (void) startOperation {

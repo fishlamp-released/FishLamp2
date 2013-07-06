@@ -188,4 +188,14 @@ didStartElement:(NSString *)elementName
     return [parser parse];
 }
 
++ (NSString*) removePrefix:(NSString*) string {
+    for(NSInteger i = 0; i < string.length; i++) {
+        if([string characterAtIndex:i] == ':') {
+            return [string substringFromIndex:i + 1];
+        }
+    }
+
+    return string;
+}
+
 @end

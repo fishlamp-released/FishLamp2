@@ -376,7 +376,7 @@
     NSString* extension = [[self pathForFile:name] pathExtension];
     FLConfirmStringIsNotEmptyWithComment(extension, @"failed to get file extension for %@", name);
     
-    NSString* UTI = FLAutorelease(bridge_transfer_(NSString*, UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,  bridge_(CFStringRef, extension), NULL)));
+    NSString* UTI = FLAutorelease(FLBridgeTransfer(NSString*, UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension,  FLBridge(CFStringRef, extension), NULL)));
 
     FLConfirmNotNilWithComment(UTI, @"failed to get UTI for extension for file %@", name);
 

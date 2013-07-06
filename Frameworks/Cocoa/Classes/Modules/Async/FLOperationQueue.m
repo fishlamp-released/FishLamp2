@@ -49,7 +49,7 @@
 - (void) operationWasAdded:(id) operation {
 }
 
-- (void) addOperation:(FLOperation*) operation {
+- (void) queueOperation:(FLOperation*) operation {
     FLAssertIsNotNil(operation);
     [_operations setObject:operation forKey:operation.identifier];
     [self operationWasAdded:operation];
@@ -57,12 +57,12 @@
 
 - (void) addOperationsWithArray:(NSArray*) operations {
     for(FLOperation* operation in operations) {
-        [self addOperation:operation];
+        [self queueOperation:operation];
     }
 }
 
 - (void) addOperationWithTarget:(id) target action:(SEL) action {
-    [self addOperation:[FLPerformSelectorOperation performSelectorOperation:target action:action ]];
+    [self queueOperation:[FLPerformSelectorOperation performSelectorOperation:target action:action ]];
 }
 
 - (id) operationForIdentifier:(id) identifier {

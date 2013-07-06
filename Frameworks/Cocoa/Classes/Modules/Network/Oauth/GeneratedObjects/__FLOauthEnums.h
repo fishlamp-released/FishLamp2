@@ -9,6 +9,7 @@
 // Copywrite (C) 2012 GreenTongue Software, LLC. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
+#import "FishLampCore.h"
 
 #define FLOAuthHttpAuthorizationHeader @"Authorization" // for http header
 #define FLOAuthVersion @"1.0" 

@@ -47,7 +47,7 @@
 }
 
 - (void) startOperation {
-    [self runChildAsynchronously:self.httpRequest completion:^(id result, NSError* error) {
+    [self runChildAsynchronously:self.httpRequest completion:^(FLPromisedResult result) {
         [self setFinishedWithResult:result error:error];
     }];
 }
@@ -69,10 +69,9 @@
 }
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
-  didCloseWithResult:(id) result
-               error:(NSError*) error {
+  didCloseWithResult:(FLPromisedResult) result {
 
-    FLPerformSelector3(self.delegate, @selector(httpRequest:didCloseWithResult:error:), httpRequest, result, error);
+    FLPerformSelector3(self.delegate, @selector(httpRequest:didCloseWithResult:), httpRequest, result);
 }    
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 

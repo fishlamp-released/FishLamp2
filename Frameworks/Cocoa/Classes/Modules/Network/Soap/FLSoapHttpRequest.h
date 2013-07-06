@@ -25,9 +25,13 @@
 - (NSString*) targetNamespace;
 - (NSString*) operationName;
 - (NSString*) url;
-- (id) output;
+
+- (NSString*) xmlElementNameForResponse;
+- (NSString*) typeNameForSoapResponse;
 
 + (FLSoapFault11*) checkForSoapFaultInData:(NSData*) data;
+
+- (FLParsedXmlElement*) findResponseElementInSoapResponse:(FLParsedXmlElement*) soapResponse;
 @end
 
 @interface FLMutableSoapHttpRequest : FLSoapHttpRequest {
@@ -35,11 +39,9 @@
     NSString* _targetNamespace;
     NSString* _soapAction;
     NSString* _operationName;
-    id _output;
 }
 @property (readwrite, strong, nonatomic) NSString* soapAction;
 @property (readwrite, strong, nonatomic) NSString* targetNamespace;
 @property (readwrite, strong, nonatomic) NSString* operationName;
-@property (readwrite, strong, nonatomic) id output;
 
 @end

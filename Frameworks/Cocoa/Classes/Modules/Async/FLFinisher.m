@@ -11,7 +11,7 @@
 #import "FishLampAsync.h"
 
 @interface FLPromise ()
-- (void) setFinishedWithResult:(id) result error:(NSError*) error;
+- (void) setFinishedWithResult:(FLPromisedResult) result;
 @property (readwrite, strong) FLPromise* nextPromise;
 @end
 
@@ -86,37 +86,29 @@
     return self.firstPromise != nil;
 }
 
-- (void) setFinishedWithResult:(id) result error:(NSError*) error {
-    
-    if(!result && !error) {
-        error = [NSError failedResultError];
+- (void) setFinishedWithResult:(FLPromisedResult) result {
+
+    if(!result) {
+        result = [NSError failedResultError];
     }
 
-    [self.delegate finisherDidFinish:self withResult:result withError:error];
+    [self.delegate finisherDidFinish:self withResult:result];
 
     FLPromise* promise = FLRetainWithAutorelease(self.firstPromise);
     self.firstPromise = nil;
     while(promise) {
-        [promise setFinishedWithResult:result error:error];
+        [promise setFinishedWithResult:result];
         promise = promise.nextPromise;
     }
 }      
 
 
-- (void) setFinishedWithError:(NSError*) error {
-    [self setFinishedWithResult:nil error:error];
-}
-
-- (void) setFinishedWithResult:(id) result {
-    [self setFinishedWithResult:result error:nil];
-}
-                        
 - (void) setFinished {
-    [self setFinishedWithResult:[FLSuccessfulResult successfulResult] error:nil];
+    [self setFinishedWithResult:[FLSuccessfulResult successfulResult]];
 }
 
 - (void) setFinishedWithCancel {
-    [self setFinishedWithResult:nil error:[NSError cancelError]];
+    [self setFinishedWithResult:[NSError cancelError]];
 }
 
 

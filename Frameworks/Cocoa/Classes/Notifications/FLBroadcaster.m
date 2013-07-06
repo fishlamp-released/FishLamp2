@@ -23,41 +23,12 @@
     return [_listeners containsObject:listener];
 }
 
-//- (void) addObserver:(id) observer behavior:(FLObserverBehavior) behavior {
-//    if(!_listeners) {
-//        _listeners = [[NSMutableArray alloc] init];
-//    }
-//
-//    id ref = nil;
-//
-//    if(FLBitTest(behavior, FLObserverNonretained)) {
-//        ref = [FLNonretainedRef nonretained:observer];
-//    }
-//    else {
-//        ref = [FLRetainedRef retained:observer];
-//    }
-//
-//    if(FLBitTest(behavior, FLObserverMainThreadOnly)) {
-//        ref = [FLMainThreadRef mainThreadRef:ref];
-//    }
-//
-//    [_listeners addObject:ref];
-//}
-
-- (void) addObserverRetained:(id) object {
+- (void) addObserver:(id<FLObjectRef>) object {
     if(!_listeners) {
         _listeners = [[NSMutableArray alloc] init];
     }
     [_listeners addObject:object];
 }
-
-- (void) addObserverNonretained:(id) object {
-    if(!_listeners) {
-        _listeners = [[NSMutableArray alloc] init];
-    }
-    [_listeners addObject:[FLNonretainedRef nonretained:object]];
-}
-
 
 - (void) removeObserver:(id) listener {
     [_listeners removeObject:listener];
@@ -65,15 +36,23 @@
 
 - (void) notify:(SEL) messageSelector {
     for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
-        [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector];
+        @try {
+            [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector];
+        }
+        @catch(NSException* ex) {
+        }
     }
 }
 
 - (void) notify:(SEL) messageSelector  
                      withObject:(id) object {
     for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
-        [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
+        @try {
+            [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
                                                    withObject:object];
+        }
+        @catch(NSException* ex) {
+        }
     }
 }
 
@@ -81,9 +60,13 @@
                      withObject:(id) object1
                      withObject:(id) object2 {
     for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
-        [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
-                                                   withObject:object1
-                                                   withObject:object2];
+        @try {
+            [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
+                                                       withObject:object1
+                                                       withObject:object2];
+        }
+        @catch(NSException* ex) {
+        }
     }
 }
 
@@ -92,10 +75,14 @@
                      withObject:(id) object2
                      withObject:(id) object3 {
     for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
-        [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
-                                                   withObject:object1
-                                                   withObject:object2
-                                                   withObject:object3];
+        @try {
+            [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
+                                                       withObject:object1
+                                                       withObject:object2
+                                                       withObject:object3];
+        }
+        @catch(NSException* ex) {
+        }
     }
 }
 
@@ -105,11 +92,15 @@
                      withObject:(id) object3
                      withObject:(id) object4 {
     for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
-        [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
-                                                   withObject:object1
-                                                   withObject:object2
-                                                   withObject:object3
-                                                   withObject:object4];
+        @try {
+            [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
+                                                       withObject:object1
+                                                       withObject:object2
+                                                       withObject:object3
+                                                       withObject:object4];
+        }
+        @catch(NSException* ex) {
+        }
     }
 }
 

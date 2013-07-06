@@ -17,8 +17,8 @@ FLSynthesizeSingleton(FLXmlDataEncoder)
 - (id) init {	
 	self = [super init];
 	if(self) {
-		[self setStringEncoder:[FLXmlStringEncoder xmlStringEncoder] forKey:[NSString stringEncodingKey]];
-		[self setStringEncoder:[FLXmlURLStringEncoder xmlURLStringEncoder] forKey:[NSURL stringEncodingKey]];
+		[self addStringEncoder:[FLXmlStringEncoder xmlStringEncoder]];
+		[self addStringEncoder:[FLXmlURLStringEncoder xmlURLStringEncoder]];
 	}
 	return self;
 }

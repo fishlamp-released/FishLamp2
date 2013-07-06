@@ -31,7 +31,7 @@
         }   
         
         _message = CFHTTPMessageCreateRequest(kCFAllocatorDefault, 
-            bridge_(void*,httpMethod), bridge_(void*,url), kCFHTTPVersion1_1);
+            FLBridge(void*,httpMethod), FLBridge(void*,url), kCFHTTPVersion1_1);
             
         FLConfirmNotNil(_message);    
     }
@@ -43,28 +43,28 @@
 }
 
 - (NSData*) bodyData {
-    return FLAutorelease(bridge_transfer_(NSData*,CFHTTPMessageCopyBody(_message)));
+    return FLAutorelease(FLBridgeTransfer(NSData*,CFHTTPMessageCopyBody(_message)));
 }
 
 - (void) setBodyData:(NSData*) bodyData {
-    CFHTTPMessageSetBody(_message, bridge_(void*,bodyData));
+    CFHTTPMessageSetBody(_message, FLBridge(void*,bodyData));
 }
 
 - (void) setHeader:(NSString*) header value:(NSString*) value {
-    CFHTTPMessageSetHeaderFieldValue(_message, bridge_(void*,header), bridge_(void*,value));
+    CFHTTPMessageSetHeaderFieldValue(_message, FLBridge(void*,header), FLBridge(void*,value));
 }
 
 - (NSString*) valueForHeader:(NSString*) header {
-    return FLAutorelease(bridge_transfer_(NSString*,
-                CFHTTPMessageCopyHeaderFieldValue(_message, bridge_(void*,header))));
+    return FLAutorelease(FLBridgeTransfer(NSString*,
+                CFHTTPMessageCopyHeaderFieldValue(_message, FLBridge(void*,header))));
 }
 
 - (NSString*) httpVersion {
-    return FLAutorelease(bridge_transfer_(NSString*,CFHTTPMessageCopyVersion(_message)));
+    return FLAutorelease(FLBridgeTransfer(NSString*,CFHTTPMessageCopyVersion(_message)));
 }
 
 - (NSDictionary*) allHeaders {
-    return FLAutorelease(bridge_transfer_(NSDictionary*,CFHTTPMessageCopyAllHeaderFields(_message)));
+    return FLAutorelease(FLBridgeTransfer(NSDictionary*,CFHTTPMessageCopyAllHeaderFields(_message)));
 }
 
 - (void) dealloc {
@@ -106,11 +106,11 @@
 }
 
 - (NSURL*) requestURL {
-    return FLAutorelease(bridge_transfer_(NSURL*,CFHTTPMessageCopyRequestURL(_message)));
+    return FLAutorelease(FLBridgeTransfer(NSURL*,CFHTTPMessageCopyRequestURL(_message)));
 }
 
 - (NSString*) httpMethod {
-    return FLAutorelease(bridge_transfer_(NSString*,CFHTTPMessageCopyRequestMethod(_message)));
+    return FLAutorelease(FLBridgeTransfer(NSString*,CFHTTPMessageCopyRequestMethod(_message)));
 }
 
 - (NSInteger) responseStatusCode {
@@ -118,7 +118,7 @@
 }
 
 - (NSString*) responseStatusLine {
-    return FLAutorelease(bridge_transfer_(NSString*,CFHTTPMessageCopyResponseStatusLine(_message)));
+    return FLAutorelease(FLBridgeTransfer(NSString*,CFHTTPMessageCopyResponseStatusLine(_message)));
 }
 
 - (void) setHeaders:(NSDictionary*) headers {

@@ -8,11 +8,11 @@
 //
 
 #import "FishLampCore.h"
-
+#import "FLPromisedResult.h"
 @class FLFinisher;
 
 typedef dispatch_block_t fl_block_t;
-typedef void (^fl_result_block_t)(id result, NSError* error);
+typedef void (^fl_result_block_t)(FLPromisedResult result);
 typedef void (^fl_finisher_block_t)(FLFinisher* finisher);
 typedef fl_result_block_t fl_completion_block_t;
 

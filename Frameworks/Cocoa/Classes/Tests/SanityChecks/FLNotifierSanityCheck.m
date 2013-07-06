@@ -25,7 +25,7 @@
     
     __block BOOL fired = NO;
     
-    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(id result, NSError* error) {
+    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(FLPromisedResult result) {
         fired = YES; 
     }];
     
@@ -42,7 +42,7 @@
     
     __block BOOL fired = NO;
     
-    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(id result, NSError* error) { 
+    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(FLPromisedResult result) { 
         fired = YES; 
     }];
     

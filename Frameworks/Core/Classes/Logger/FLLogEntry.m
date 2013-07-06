@@ -8,6 +8,7 @@
 //
 
 #import "FLLogEntry.h"
+#import "FishLampCore.h"
 
 @interface FLLogEntry () 
 @property (readwrite, strong, nonatomic) NSString* logName;
@@ -87,14 +88,14 @@ static NSMutableArray* s_cache = nil;
 
 - (id)copyWithZone:(NSZone *)zone {
     FLLogEntry* entry = [[FLLogEntry alloc] init];
-    entry.logString = self.logString;
-    entry.logType = self.logType;
-    entry.logName = self.logName;
+    entry.logString = FLCopyWithAutorelease(self.logString);
+    entry.logType = FLCopyWithAutorelease(self.logType);
+    entry.logName = FLCopyWithAutorelease(self.logName);
     entry.stackTrace = self.stackTrace;
     entry.logCount = self.logCount;
     entry.timestamp = self.timestamp;
-    entry.error = self.error;
-    entry.exception = self.exception;
+    entry.error = FLCopyWithAutorelease(self.error);
+    entry.exception = FLCopyWithAutorelease(self.exception);
     entry.indentLevel = self.indentLevel;
     return entry;
 }

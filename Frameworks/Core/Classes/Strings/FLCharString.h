@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import <Foundation/Foundation.h>
+#import "FLCoreRequired.h"
 
 typedef struct {
     const char* string;
@@ -43,5 +43,6 @@ const char* FLCStringCopyCharString(FLCharString charString) {
 
 
 @interface NSString (FLCharString)
+- (id) initWithCharString:(FLCharString) charString;
 + (NSString*) stringWithCharString:(FLCharString) charString;
 @end

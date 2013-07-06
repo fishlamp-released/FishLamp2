@@ -8,6 +8,7 @@
 //
 
 #import "FLWhitespace.h"
+#import "FishLampCore.h"
 
 @interface FLWhitespace ()
 @property (readwrite, strong, nonatomic) NSString* eolString;

@@ -312,11 +312,11 @@ FLAssertFailedWithComment(@"refactor this");
         _upgradeTaskList = [[FLVersionUpgradeLengthyTaskList alloc] initWithFromVersion:dataVersion.versionString toVersion:[FLAppInfo appVersion]];
         
         if([_cacheDatabase databaseNeedsUpgrade]) {
-            [_upgradeTaskList.operations addOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_cacheDatabase]];
+            [_upgradeTaskList.operations queueOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_cacheDatabase]];
         }
 
         if([_documentsDatabase databaseNeedsUpgrade]) {
-            [_upgradeTaskList.operations addOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_documentsDatabase]];
+            [_upgradeTaskList.operations queueOperation:[FLUpgradeDatabaseLengthyTask upgradeDatabaseLengthyTask:_documentsDatabase]];
         }
         
  //       [self sendMessage:@"userDataService:appVersionWillChange:" withObject:_upgradeTaskList];

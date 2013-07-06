@@ -15,8 +15,8 @@
 
 @implementation FLObjectDescriber (FLXmlObjectBuilder)
 
-- (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-   inflateRootObjectWithXML:(FLParsedXmlElement*) element {
+- (id) buildObjectWithObjectBuilder:(FLXmlObjectBuilder*) builder
+                            withXML:(FLParsedXmlElement*) element {
 
 //    NSString* encodingKey = typeDesc.stringEncodingKeyForRepresentedData;
 //    if(encodingKey) {
@@ -35,31 +35,35 @@
 
 @implementation FLModelObjectDescriber (FLXmlObjectBuilder)
 
-- (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
-   inflateRootObjectWithXML:(FLParsedXmlElement*) parentElement {
+- (id) buildObjectWithObjectBuilder:(FLXmlObjectBuilder*) builder
+                            withXML:(FLParsedXmlElement*) parentElement {
 
     FLAssert([self.objectClass isModelObject]);
 
-//    FLConfirmIsNilWithComment(element.sibling, @"duplicate elements for property \"%@\"", element.elementName);   
+//    FLConfirmIsNilWithComment(element.siblingElement, @"duplicate elements for property \"%@\"", element.elementName);   
     
     id outObject = FLAutorelease([[self.objectClass alloc] init]);
     
     for(FLParsedXmlElement* element in [parentElement.childElements objectEnumerator]) {
         
         FLPropertyDescriber* propertyDescriber = [self propertyForName:element.elementName];
+
+        NSString* propertyName = propertyDescriber.propertyName;
+
         if(propertyDescriber) {
-                
+
+
             id object = [propertyDescriber xmlObjectBuilder:builder  
                                      inflateElementContents:element];
             
             if(object) {
-                if([outObject valueForKey:element.elementName]) {
+                if([outObject valueForKey:propertyName]) {
                     FLTrace(@"replacing non-nil value for [%@ %@]", NSStringFromClass([object class]),  element.fullPath);
                 } 
             
 //                FLAssertNil([outObject valueForKey:element.elementName]);
             
-                [outObject setValue:object forKey:element.elementName];
+                [outObject setValue:object forKey:propertyName];
             }
             else {
 
@@ -101,7 +105,7 @@
                         }
 
                     }
-                    walker = walker.sibling;
+                    walker = walker.siblingElement;
                 }
             }
             else {

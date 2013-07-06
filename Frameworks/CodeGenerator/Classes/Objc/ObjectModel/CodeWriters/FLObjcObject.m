@@ -12,6 +12,7 @@
 #import "FLCodeObject.h"
 #import "FLCodeStorageOptions.h"
 #import "FLCodeProjectInfo.h"
+#import "FLObjectDescriber.h"
 
 @interface FLObjcObject ()
 @property (readwrite, strong, nonatomic) FLCodeObject* codeObject;
@@ -73,7 +74,7 @@
 
 - (void) addDependency:(FLObjcType*) type {
 
-    [_dependencies addObject:type.typeName.identifierName];
+    [_dependencies addObject:type.typeName.identifier];
 
 //    [_dependencies addObject:type.iden];
 }
@@ -197,6 +198,7 @@
 }
 
 - (void) addStandardBaseClassMethodsWithInputObject:(FLCodeObject*) codeObject {
+    [self addDependency:[self.project.typeRegistry typeForClass:[FLObjectDescriber class]]];
     [self addMethod:[FLObjcDidRegisterObjectDescriberMethod objcDidRegisterObjectDescriberMethod:self.project]];
     [self addMethod:[FLObjcDeallocMethod objcMethod:self.project]];
 }

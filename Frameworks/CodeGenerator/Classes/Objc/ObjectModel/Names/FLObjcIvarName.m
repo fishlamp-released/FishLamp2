@@ -14,7 +14,7 @@
 }
 
 - (NSString*) generatedName {
-    return [NSString stringWithFormat:@"%@%@%@", self.prefix, [self.identifierName stringWithLowercaseFirstLetter], self.suffix];
+    return [NSString stringWithFormat:@"%@%@%@", self.prefix, [self.identifier stringWithLowercaseFirstLetter], self.suffix];
 }
 
 @end

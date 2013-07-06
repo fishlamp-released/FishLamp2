@@ -18,13 +18,13 @@
 
 typedef void (^FLTestBlock)();
 
-#define FLTestCasePriorityLow       1
-#define FLTestCasePriorityNormal    (NSIntegerMax / 2)
-#define FLTestCasePriorityHigh      (NSIntegerMax - 1)
+//#define FLTestCasePriorityLow       1
+//#define FLTestCasePriorityNormal    (NSIntegerMax / 2)
+//#define FLTestCasePriorityHigh      (NSIntegerMax - 1)
 
 @interface FLTestCase : FLSynchronousOperation {
 @private
-    NSInteger _priority;
+//    NSInteger _priority;
     NSString* _testCaseName;
     FLTestBlock _testCaseBlock;
     SEL _testCaseSelector;
@@ -34,7 +34,6 @@ typedef void (^FLTestBlock)();
 }
 
 - (void) setDisabledWithReason:(NSString*) reason;
-@property (readwrite, assign, nonatomic) NSInteger priority; 
 
 @property (readonly, strong, nonatomic) NSString* disabledReason;
 @property (readonly, strong, nonatomic) NSString* testCaseName;
@@ -50,8 +49,6 @@ typedef void (^FLTestBlock)();
 // run by block
 - (id) initWithName:(NSString*) name testBlock:(FLTestBlock) block;
 + (id) testCase:(NSString*) name testBlock:(FLTestBlock) block;
-
-- (NSComparisonResult) compare:(FLTestCase *)other;
 
 @end
 

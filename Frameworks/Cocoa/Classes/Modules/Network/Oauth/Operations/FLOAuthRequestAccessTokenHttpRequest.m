@@ -99,7 +99,7 @@
     return session;
 }
 
-//- (id) performSynchronously {
+//- (FLPromisedResult) performSynchronously {
 //
 //
 //    FLHttpRequest* request = [FLHttpRequest httpPostRequestWithURL:_url];

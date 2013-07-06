@@ -8,8 +8,7 @@
 //
 
 #import "FLConsoleLogSink.h"
-#import "FLPrintf.h"
-#import "FLWhitespace.h"
+#import "FishLampCore.h"
 
 @implementation FLConsoleLogSink
 
@@ -41,10 +40,10 @@
     NSString* whitespace = [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:entry.indentLevel];
     
     if(entry.error) {
-        logString = [NSString stringWithFormat:@"%@: %@", entry.error.localizedDescription, entry.error.comment];
+        logString = [NSString stringWithFormat:@"%@ (%@)", entry.error.localizedDescription, entry.error.comment];
     }
     else if(entry.exception) {
-        logString = [NSString stringWithFormat:@"%@: %@", 
+        logString = [NSString stringWithFormat:@"%@ (%@)",
             entry.exception.name, 
             entry.exception.reason];
     }

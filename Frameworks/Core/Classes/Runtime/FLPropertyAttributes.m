@@ -8,6 +8,7 @@
 //
 
 #import "FLPropertyAttributes.h"
+#import "FishLampCore.h"
 
 // https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html
 

@@ -128,7 +128,9 @@
                
 }
 
-- (void) replacePlaceholderArrays:(FLWsdlCodeProjectReader*) codeReader {
+- (void) replaceWsdlArrays:(FLWsdlCodeProjectReader*) codeReader {
+
+    // replace Arrays
 
     for(FLWsdlCodeProperty* property in self.properties) {
         FLWsdlCodeArray* array = [codeReader arrayForName:property.type];
@@ -151,7 +153,8 @@
 
 }
 
-
+- (void) removeUnwantedObjects:(FLWsdlCodeProjectReader*) reader {
+}
 
 
 @end

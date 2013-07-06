@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 
 // WARNING: don't import anything here. This file is imported by FishLamp.  This is imported by everything.
 #define FLSynthesizeStructGetterProperty(GET_NAME, __TYPE__, STRUCT) \

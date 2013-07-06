@@ -12,12 +12,6 @@
 @class FLXmlObjectBuilder;
 
 @interface NSObject (FLXmlObjectBuilder)
-+ (id) objectWithXmlElement:(FLParsedXmlElement*) xmlElement 
-          withObjectBuilder:(FLXmlObjectBuilder*) builder;
-
-+ (id) objectWithXmlElement:(FLParsedXmlElement*) xmlElement 
-                elementName:(NSString*) elementName
-          withObjectBuilder:(FLXmlObjectBuilder*) builder;
 
 + (id) objectWithXmlFilePath:(NSString*) xmlFilePath;
 

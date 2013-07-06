@@ -9,51 +9,7 @@
 
 #import "FLStringEncoder.h"
 #import "ISO8601DateFormatter.h"
-
-//@interface FLStringEncoder ()
-//@end
-//
-//@implementation FLStringEncoder
-//
-//@synthesize encodeSelector = _encodeSelector;
-//@synthesize decodeSelector = _decodeSelector;
-//
-//- (id) initWithEncodingKey:(NSString*) encodingKey {
-//
-//    FLAssert([encodingKey rangeOfString:@"_"].length == 0);
-//
-//    self = [super init];
-//    if(self) {
-//        self.encodeSelector = NSSelectorFromString([NSString stringWithFormat:@"encodeStringWith%@:", encodingKey]);
-//        self.decodeSelector = NSSelectorFromString([NSString stringWithFormat:@"decode%@FromString:", encodingKey]);
-//    }
-//
-//    return self;
-//}    
-//
-//+ (id) objectEncoderWithEncodingKey:(NSString*) encodingKey {
-//	return FLAutorelease([[[self class] alloc] initWithEncodingKey:encodingKey]);
-//}
-//
-//- (id) copyWithZone:(NSZone*) zone {
-//    return FLRetain(self);
-//}
-//
-//#pragma GCC diagnostic push
-//#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
-//
-//- (NSString*) encodeObjectToString:(id) object withEncoder:(id) encoder {
-//    return [encoder performSelector:self.encodeSelector withObject:object];
-//}
-//
-//- (id) decodeStringToObject:(NSString*) string withDecoder:(id) decoder {
-//    return [decoder performSelector:self.decodeSelector withObject:string];
-//}
-//
-//#pragma GCC diagnostic pop
-//@end
-
-//const FLEncodingSelectors FLEncodingSelectorsZero = { nil, nil };
+#import "FLBase64Data.h"
 
 @implementation NSObject (FLEncodingSelectors)
 + (NSString*) stringEncodingKey {
@@ -61,80 +17,24 @@
 }
 @end
 
-//@implementation NSString (FLCoreTypes)
-//+ (id<FLStringEncoder>) stringEncoder {
-//    FLReturnStaticObject([[FLStringEncoder alloc] initWithEncodingKey:@"String"]);
-//}
-//
-//@end
-
-//@implementation NSArray (FLCoreTypes)
-//+ (id<FLStringEncoder>) stringEncoder {
-//    FLReturnStaticObject([[FLStringEncoder alloc] initWithEncodingKey:@"Array"]);
-//}
-//@end
-
-//@implementation NSMutableArray (FLCoreTypes)
-//+ (id<FLStringEncoder>) stringEncoder {
-//    FLReturnStaticObject([[FLMutableArrayType alloc] initWithEncodingKey:@"MutableArray"]);
-//}
-//@end
-
-//@implementation NSURL (FLCoreTypes)
-////+ (id<FLStringEncoder>) stringEncoder {
-////    FLReturnStaticObject([[FLStringEncoder alloc] initWithEncodingKey:@"URL" ]);
-////}
-//
-//+ (NSString*) encodingKey {
-//    return @"url";
-//}
-//
-//@end
-//
-//@implementation NSData (FLCoreTypes)
-//+ (NSString*) encodingKey {
-//    return @"data";
-//}
-//@end
-//
-//@implementation NSDate (FLCoreTypes)
-//+ (NSString*) encodingKey {
-//    return @"date";
-//}
-//@end
-//
-//@implementation SDKFont (FLCoreTypes)
-//+ (NSString*) encodingKey {
-//    return @"font";
-//}
-//@end
-//
-//@implementation SDKColor (FLCoreTypes)
-//+ (NSString*) encodingKey {
-//    return @"color";
-//}
-//@end
-//
-//@implementation NSNumber (FLCoreTypes) 
-//+ (NSString*) encodingKey {
-//    return @"number";
-//}
-//@end
-
-
 @implementation FLStringEncoder
 
 + (id) stringEncoder {
     return FLAutorelease([[[self class] alloc] init]);
 }
+
 - (NSString*) stringFromObject:(id) object {
     FLAssert([object isKindOfClass:[NSString class]]);
     return object;
 }
+
 - (id) objectFromString:(NSString*) string {
     return string;
 }
 
+- (NSArray*) encodingKeys {
+    return [NSArray arrayWithObject:[NSString stringEncodingKey]];
+}
 
 @end
 
@@ -160,6 +60,46 @@
     return [self dateFromString:string];
 }
 
+- (NSArray*) encodingKeys {
+    return [NSArray arrayWithObject:[NSDate stringEncodingKey]];
+}
+
+@end
+
+@implementation FLBase64DataStringEncoder
+
+- (id) initWithStringEncoder:(id<FLStringEncoding>) stringEncoder {
+	self = [super init];
+	if(self) {
+		_stringEncoder = FLRetain(stringEncoder);
+	}
+	return self;
+}
+
++ (id) base64DataStringEncoder:(id<FLStringEncoding>) stringEncoder {
+    return FLAutorelease([[[self class] alloc] initWithStringEncoder:stringEncoder]);
+}
+
+#if FL_MRC
+- (void)dealloc {
+	[_stringEncoder release];
+	[super dealloc];
+}
+#endif
+
+- (NSString*) stringFromObject:(id) object {
+    return [_stringEncoder stringFromObject:[object encodedData]];
+}
+
+- (id) objectFromString:(NSString*) string {
+    return [FLBase64Data base64DataWithEncodedData:[_stringEncoder objectFromString:string]]; // [self dateFromString:string];
+}
+
+- (NSArray*) encodingKeys {
+    return [NSArray arrayWithObject:[FLBase64Data stringEncodingKey]];
+}
+
+
 @end
 
 @implementation FLURLStringEncoder
@@ -174,6 +114,10 @@
 
 - (id) objectFromString:(NSString*) string {
     return [NSURL URLWithString:string];
+}
+
+- (NSArray*) encodingKeys {
+    return [NSArray arrayWithObject:[NSURL stringEncodingKey]];
 }
 
 @end
@@ -192,6 +136,26 @@
     return [self numberFromString:string];
 }
 
+- (NSArray*) encodingKeys {
+    return [NSArray arrayWithObjects:   @"char",
+                                        @"unsigned char",
+                                        @"int",
+                                        @"integer",
+                                        @"unsigned",
+                                        @"unsigned long",
+                                        @"long",
+                                        @"double",
+                                        @"float",
+                                        @"short",
+                                        @"unsigned short",
+                                        @"NSInteger",
+                                        @"NSUInteger",
+                                        [NSNumber stringEncodingKey],
+                                        nil];
+}
+
+
+
 @end
 
 @implementation FLUTF8DataStringEncoder
@@ -208,6 +172,11 @@
 - (id) objectFromString:(NSString*) string {
     return [string dataUsingEncoding:NSUTF8StringEncoding];;
 }
+
+- (NSArray*) encodingKeys {
+    return [NSArray arrayWithObject:[NSData stringEncodingKey]];
+}
+
 @end
 
 @implementation FLBoolStringEncoder
@@ -220,5 +189,13 @@
 - (id) objectFromString:(NSString*) string {
     return [NSNumber numberWithBool:[string boolValue]];
 }
+
+- (NSArray*) encodingKeys {
+    return [NSArray arrayWithObjects:   @"bool",
+                                        @"boolean",
+                                        [FLBoolStringEncoder stringEncodingKey],
+                                        nil];
+}
+
 @end
 

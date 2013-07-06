@@ -11,8 +11,7 @@
 #import "FishLampAsync.h"
 
 @interface FLPromise ()
-@property (readwrite, strong) NSError* error;
-@property (readwrite, strong) id result;
+@property (readwrite, strong) FLPromisedResult result;
 @property (readwrite, strong) FLPromise* nextPromise;
 @property (readwrite, assign, getter=isFinished) BOOL finished;
 @property (readwrite, copy) fl_completion_block_t completion;
@@ -25,7 +24,6 @@
 @synthesize finished = _finished;
 @synthesize finishOnMainThread = _finishOnMainThread;
 @synthesize completion = _completion;
-@synthesize error =_error;
 
 - (id) initWithCompletion:(fl_completion_block_t) completion {
     
@@ -60,7 +58,6 @@
     }
     
 #if FL_MRC
-    [_error release];
     [_nextPromise release];
     [_completion release];
     [_result release];
@@ -76,7 +73,7 @@
     return FLAutorelease([[[self class] alloc] initWithCompletion:completion]);
 }
 
-- (FLPromisedResult*) waitUntilFinished {
+- (FLPromisedResult) waitUntilFinished {
     
     FLRetainObject(self);
     
@@ -100,14 +97,14 @@
 
     FLAssertNotNilWithComment(self.result, @"result should not be nil!!");
 
-    return [FLPromisedResult promisedResult:self.result error:self.error];
+    return self.result;
 }
 
 - (void) notifyFinished {
     if(_completion) {
-        _completion(self.result, self.error);
+        _completion(self.result);
     }
-    FLPerformSelector2(_target, _action, self.result, self.error);
+    FLPerformSelector1(_target, _action, self.result);
 
     self.finished = YES;
 
@@ -117,15 +114,14 @@
     }
 }
 
-- (void) setFinishedWithResult:(id) result error:(id) error {
+- (void) setFinishedWithResult:(FLPromisedResult) result {
     
     FLAssertIsNilWithComment(self.result, @"already finished");
 
     self.result = result;
-    self.error = error;
 
-    if(self.result == nil && self.error == nil) {
-        self.error = [NSError failedResultError];
+    if(self.result == nil) {
+        self.result = [NSError failedResultError];
     }
 
     if(!self.finishOnMainThread || 

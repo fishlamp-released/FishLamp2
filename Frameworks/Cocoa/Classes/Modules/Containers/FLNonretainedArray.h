@@ -6,7 +6,10 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FishLampCore.h"
+
+#if EXPERIMENTAL
+#if MRC
 
 @interface FLNonretainedArray : NSObject<NSCopying, NSMutableCopying, NSFastEnumeration> {
 @private
@@ -40,3 +43,6 @@
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject;
 - (void) removeObject:(id) object;
 @end
+
+#endif
+#endif

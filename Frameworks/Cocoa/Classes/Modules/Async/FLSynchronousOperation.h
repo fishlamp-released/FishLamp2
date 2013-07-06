@@ -8,7 +8,6 @@
 //
 
 #import "FLOperation.h"
-#import "FLObjectStorage.h"
 
 @interface FLSynchronousOperation : FLOperation {
 @private
@@ -17,7 +16,7 @@
 + (id) synchronousOperation;
 
 /// @brief Required override point
-- (id) performSynchronously;
+- (FLPromisedResult) performSynchronously;
 
 // this will raise an abort exception if runState has been signaled as finished.
 // only for subclasses to call while executing operation.

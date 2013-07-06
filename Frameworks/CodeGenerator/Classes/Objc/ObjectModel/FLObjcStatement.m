@@ -32,5 +32,9 @@
     return NO;
 }
 
+- (BOOL) hasCode {
+    return NO;
+}
+
 @end
 

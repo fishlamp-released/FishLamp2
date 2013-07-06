@@ -8,7 +8,7 @@
 //
 
 #import "FLStringFormatter.h"
-#import "NSArray+FLExtras.h"
+#import "FishLampCore.h"
 
 /*
 /// concrete base class.
@@ -31,8 +31,6 @@
     [_output stringFormatter:self appendAttributedString:string];
 
 }
-
-
 
 - (void) processAndAppendString:(NSString*) string {
 
@@ -304,9 +302,20 @@
 - (void) didMoveToParent:(id) parent {
 }
 
-- (void) appendStringFormatter:(id<FLStringFormatter>) stringBuilder {
-
-    FLAssertFailedWithComment(@"not implemented");
-    
+- (void) appendSelfToStringFormatter:(id<FLStringFormatter>) stringFormatter {
+    [_output stringFormatter:self appendSelfToStringFormatter:stringFormatter];
 }
+
+- (void) appendStringFormatter:(id<FLStringFormatter>) stringFormatter {
+    [stringFormatter appendSelfToStringFormatter:self];
+}
+
+- (NSUInteger) length {
+    return [_output stringFormatterGetLength:self];
+}
+
+- (BOOL) isEmpty {
+    return self.length == 0;
+}
+
 @end

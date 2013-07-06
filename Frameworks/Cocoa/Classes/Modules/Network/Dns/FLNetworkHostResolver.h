@@ -9,8 +9,8 @@
 
 #import "FLNetworkStream.h"
 #import "FishLampAsync.h"
+#import "FLPromisedResult.h"
 
-@class FLPromisedResult;
 @class FLNetworkHost;
 @class FLFinisher;
 
@@ -22,11 +22,11 @@
 
 + (id) networkHostResolver;
 
-- (FLPromisedResult*) resolveHostSynchronously:(FLNetworkHost*) host;
+- (id) resolveHostSynchronously:(FLNetworkHost*) host;
 
 - (FLPromise*) startResolvingHost:(FLNetworkHost*) host completion:(fl_completion_block_t) completion;
 
-- (void) closeWithResult:(id) result error:(NSError*) error;
+- (void) closeWithResult:(id) result;
 
 
 @end

@@ -12,20 +12,20 @@
 @interface FLAsyncOperationQueueElement ()
 @property (readwrite, strong, nonatomic) id input;
 @property (readwrite, strong, nonatomic) id operation;
-@property (readwrite, strong, nonatomic) FLPromisedResult* result;
+@property (readwrite, strong, nonatomic) id operationResult;
 @end
 
 @implementation FLAsyncOperationQueueElement
 
 @synthesize input =_input;
 @synthesize operation = _operation;
-@synthesize result =_result;
+@synthesize operationResult =_operationResult;
 
 #if FL_MRC
 - (void)dealloc {
 	[_input release];
     [_operation release];
-    [_result release];
+    [_operationResult release];
     [super dealloc];
 }
 #endif
@@ -50,8 +50,8 @@
 
     completion = FLCopyWithAutorelease(completion);
 
-    [queue runChildAsynchronously:self.operation completion:^(id result, NSError* error) {
-        self.result = [FLPromisedResult promisedResult:result error:error];
+    [queue runChildAsynchronously:self.operation completion:^(FLPromisedResult result) {
+        self.operationResult = result;
         completion();
     }];
 }
