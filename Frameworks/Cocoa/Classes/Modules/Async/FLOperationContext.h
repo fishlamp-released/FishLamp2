@@ -9,6 +9,7 @@
 
 #import "FLService.h"
 #import "FLFinisher.h"
+#import "FLObservable.h"
 
 @class FLOperation;
 @class FLFifoAsyncQueue;
@@ -20,7 +21,7 @@ extern NSString* const FLWorkerContextFinished;
 extern NSString* const FLWorkerContextClosed;
 extern NSString* const FLWorkerContextOpened;
 
-@interface FLOperationContext : NSObject {
+@interface FLOperationContext : FLObservable {
 @private
     NSMutableSet* _operations;
     NSUInteger _contextID;
