@@ -134,7 +134,7 @@
 }
 
 - (FLPromise*) runAsynchronouslyInContext:(FLOperationContext*) context 
-                         completion:(fl_completion_block_t) completionOrNil {
+                               completion:(fl_completion_block_t) completionOrNil {
     self.context = context;
     return [self runAsynchronously:completionOrNil];
 }

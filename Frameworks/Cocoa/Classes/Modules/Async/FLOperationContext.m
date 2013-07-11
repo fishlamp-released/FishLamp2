@@ -157,7 +157,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
             [operation.context removeOperation:operation];
         }
         [operation wasAddedToContext:self];
-        
+        [operation.observers addObserver:[FLNonretainedObject nonretainedObject:self]];
     }
 
     [self didAddOperation:operation];
@@ -184,6 +184,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
         [_operations removeObject:[NSValue valueWithNonretainedObject:operation]];
         if(operation.context == self) {
             [operation wasRemovedFromContext:self];
+            [operation.observers removeObserver:self];
         }
 
         didStop = _operations.count == 0;
