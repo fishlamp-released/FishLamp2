@@ -9,7 +9,9 @@
 #import "FLRetainedObject.h"
 
 @interface FLMainThreadObject : FLRetainedObject
-
 + (id) mainThreadObject:(id) object;
+@end
 
+@interface NSObject (FLMainThreadObject)
+- (id) onMainThread;
 @end

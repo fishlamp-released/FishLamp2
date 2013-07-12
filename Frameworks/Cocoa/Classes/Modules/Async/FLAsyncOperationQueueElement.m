@@ -11,7 +11,7 @@
 
 @interface FLAsyncOperationQueueElement ()
 @property (readwrite, strong, nonatomic) id input;
-@property (readwrite, strong, nonatomic) id operation;
+@property (readwrite, strong) id operation;
 @property (readwrite, strong, nonatomic) id operationResult;
 @end
 
@@ -54,6 +54,10 @@
         self.operationResult = result;
         completion();
     }];
+}
+
+- (void) requestCancel {
+    [self.operation requestCancel];
 }
 
 @end

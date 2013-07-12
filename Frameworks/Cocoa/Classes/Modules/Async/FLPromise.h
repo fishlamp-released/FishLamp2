@@ -45,3 +45,7 @@
 //    FLPromiseStateResolved,
 //    FLPromiseStateRejected
 //} FLPromiseState;
+
+// TODO:
+// 1. add better state
+// 2. add ability to chain promises after "begin" is called

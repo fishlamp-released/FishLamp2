@@ -51,8 +51,8 @@
 
 - (void) updateNavigationTitlesAnimated:(BOOL) animated {
     
-    BOOL selected = NO;
-    
+//    BOOL selected = NO;
+
     for(FLNavigationTitle* title in self.breadcrumbView.titles) {
         FLNavigationTitleState state = 
             [self.delegate titleNavigationController:self navigationTitleState:title];

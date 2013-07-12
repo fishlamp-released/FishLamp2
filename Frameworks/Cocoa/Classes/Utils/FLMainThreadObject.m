@@ -34,3 +34,9 @@
 }
 
 @end
+
+@implementation NSObject (FLMainThreadObject)
+- (id) onMainThread {
+    return [NSThread isMainThread] ? self : [FLMainThreadObject mainThreadObject:self];
+}
+@end

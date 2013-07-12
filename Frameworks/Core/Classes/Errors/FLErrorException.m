@@ -14,7 +14,6 @@ NSString* const FLErrorExceptionName = @"error";
 
 @interface FLUnknownExceptionError : NSError {
 @private
-    NSException* _exception;
 }
 @end
 

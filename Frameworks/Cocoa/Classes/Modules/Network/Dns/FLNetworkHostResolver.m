@@ -56,8 +56,6 @@
     FLAssertAreEqualWithComment(self.networkHost.hostRef, theHost, nil);
     FLAssertAreEqualWithComment(self.networkHost.hostInfoType, typeInfo, nil);
     
-    id result = nil;
-    
     if(error && error->domain != 0 && error->error != 0) {
         [self closeWithResult:FLCreateErrorFromStreamError(error)];
     }

@@ -19,12 +19,13 @@
 @property (readonly, strong, nonatomic) id operationResult;
 
 @property (readonly, strong, nonatomic) id input;
-@property (readonly, strong, nonatomic) id operation;
+@property (readonly, strong) id operation;
 
 + (id) asyncOperationQueueElement:(id) input operation:(id) operation;
 
 - (void) beginOperationInQueue:(FLAsyncOperationQueue*) queue
                     completion:(dispatch_block_t) completion;
+
 
 
 @end
