@@ -110,7 +110,7 @@ didStartElement:(NSString *)elementName
     }
 
     [_prefixStack addObject:prefix];
-    [_prefixDictionary setObject:namespaceURI forKey:prefix];.
+    [_prefixDictionary setObject:namespaceURI forKey:prefix];
 }
 
 - (void)parser:(NSXMLParser *)parser didEndMappingPrefix:(NSString *)prefix {
@@ -222,7 +222,6 @@ didStartElement:(NSString *)elementName
 
     return string;
 }
-#if 0
 
 
 @end
