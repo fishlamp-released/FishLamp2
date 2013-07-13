@@ -6,7 +6,11 @@
         </organization>
         <license>Individual licensees only</license>
     </info>
-    <options typePrefix="FL" canLazyCreate="YES" generateUserObjects="YES"/>
+    <options typePrefix="FL" canLazyCreate="YES" generateUserObjects="YES">
+        <objectsFolderName>Generated</objectsFolderName>
+        <userObjectsFolderName>Objects</userObjectsFolderName>
+
+	</options>
     <enumType name="MyEnum">
         <enum name="foo"/>
         <enum name="bar"/>
