@@ -19,6 +19,7 @@
     id object = self.object;
     
     if([object respondsToSelector:[anInvocation selector]]) {
+        [anInvocation retainArguments];
         dispatch_async(dispatch_get_main_queue(), ^{
             @try {
                 [anInvocation invokeWithTarget:object];
