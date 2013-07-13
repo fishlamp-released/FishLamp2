@@ -12,24 +12,14 @@
 
 #define FLXmlParserDomain @"FLXmlParserDomain"
 
-typedef enum {
-	FLXmlParserErrorCodeUnknownElement = 1,
-    FLXmlParserErrorCodeObjectNotFound
-    
-} FLXmlParserErrorCode;
-
-typedef enum {
-    FLXmlParserParseErrorHint,
-    FLXmlParserValidationErrorHint,
-} FLXmlParserErrorHint;
-
-
 @interface FLXmlParser : NSObject<NSXMLParserDelegate> {
 @private
     NSXMLParser* _parser;
     NSMutableArray* _stack;
     NSError* _error;
-    
+
+    NSString* _fileNameForErrors;
+
     FLParsedXmlElement* _rootElement;
     
     NSMutableDictionary* _prefixDictionary;
@@ -42,7 +32,7 @@ typedef enum {
 
 - (FLParsedXmlElement*) parseFileAtURL:(NSURL*) url;
 
-- (FLParsedXmlElement*) parseData:(NSData*) data;
+- (FLParsedXmlElement*) parseData:(NSData*) data fileNameForErrors:(NSString*) fileName;
 
 // optional override
 - (void) willParseXMLData:(NSData*) data 

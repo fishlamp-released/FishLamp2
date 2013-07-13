@@ -7,15 +7,15 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 #import "FLErrorException.h"
-
-#import "FLAssertionFailureErrorDomain.h"
+@class FLStackTrace;
 
 @interface FLAssertionFailedError : NSError
 + (id) assertionFailedError:(NSInteger) code 
                      reason:(NSString*) reason 
-                    comment:(NSString*) comment ;
+                    comment:(NSString*) comment
+                 stackTrace:(FLStackTrace*) stackTrace;
 @end
 
 extern NSString* const FLAssertionFailedExceptionName;

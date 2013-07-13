@@ -25,6 +25,8 @@
 
 - (BOOL) includeInAllFiles;
 
+- (BOOL) hasCode;
+
 @end
 
 @interface FLObjcCodeWriter : NSObject<FLObjcCodeWriter, FLGenerated> {

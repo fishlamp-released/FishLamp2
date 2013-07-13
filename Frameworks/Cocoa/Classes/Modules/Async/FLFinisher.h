@@ -9,6 +9,7 @@
 
 #import "FishLampCore.h"
 #import "FLAsyncBlockTypes.h"
+#import "FLPromisedResult.h"
 
 @protocol FLFinisherDelegate;
 @class FLPromise;
@@ -35,12 +36,10 @@
 - (void) addPromise:(FLPromise*) promise;
 
 // notify finish with one of these
-- (void) setFinishedWithResult:(id) result error:(NSError*) error;
 
 // convienience methods - these call setFinishedWithResult:error
 - (void) setFinished;
-- (void) setFinishedWithResult:(id) result;
-- (void) setFinishedWithError:(NSError*) result;
+- (void) setFinishedWithResult:(FLPromisedResult) result;
 
 - (void) setFinishedWithCancel;
 
@@ -48,6 +47,5 @@
 
 @protocol FLFinisherDelegate <NSObject>
 - (void) finisherDidFinish:(FLFinisher*) finisher
-                withResult:(id) resultOrNil
-                 withError:(NSError*) errorOrNil;
+                withResult:(FLPromisedResult) resultOrNil;
 @end

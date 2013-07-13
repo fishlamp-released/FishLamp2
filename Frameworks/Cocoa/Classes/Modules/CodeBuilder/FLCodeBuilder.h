@@ -17,9 +17,5 @@
 }
 
 + (id) codeBuilder;
-
-//- (void) addCodeChunk:(FLCodeChunk*) codeChunk;
-//- (void) openCodeChunk:(FLCodeChunk*) codeChunk;
-//- (void) closeCodeChunk;
 @end
 

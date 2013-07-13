@@ -22,7 +22,7 @@
 
 @synthesize dataEncoder = _dataEncoder;
 
-FLSynthesizeLazyGetterWithInit(dateEncoder, id<FLDataEncoding>, _dataEncoder, [[FLDataEncoder alloc] init]);
+FLSynthesizeLazyGetter(dateEncoder, id<FLDataEncoding>, _dataEncoder, FLDataEncoder);
 
 - (id) init {
     self = [super init];
@@ -38,7 +38,6 @@ FLSynthesizeLazyGetterWithInit(dateEncoder, id<FLDataEncoding>, _dataEncoder, [[
 
 - (void) openDocument {
 }
-
 #if FL_MRC
 - (void) dealloc {
     [_dataEncoder release];

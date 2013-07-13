@@ -8,6 +8,10 @@
 //
 
 #import "FLCocoaRequired.h"
+#import "FLObjectRef.h"
+#import "FLRetainedObject.h"
+#import "FLNonretainedObject.h"
+#import "FLMainThreadObject.h"
 
 typedef enum {
     FLObserverNonretained       = (1 << 1),
@@ -41,8 +45,7 @@ typedef enum {
 
 - (BOOL) hasObserver:(id) listener;
 
-- (void) addObserverRetained:(id) observer;
-- (void) addObserverNonretained:(id) observer;
+- (void) addObserver:(id<FLObjectRef>) observer;
 
 - (void) removeObserver:(id) listener;
 

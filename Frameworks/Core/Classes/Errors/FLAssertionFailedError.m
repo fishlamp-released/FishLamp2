@@ -8,23 +8,29 @@
 //
 
 #import "FLAssertionFailedError.h"
+#import "FishLampCore.h"
+#import "FLErrorException.h"
 
 @implementation FLAssertionFailedError
 
 + (id) assertionFailedError:(NSInteger) code 
                      reason:(NSString*) reason 
-                    comment:(NSString*) comment {
+                    comment:(NSString*) comment
+                 stackTrace:(FLStackTrace*) stackTrace{
  
-    return [self errorWithDomain:FLAssertionFailureErrorDomain code:code localizedDescription:reason userInfo:nil comment:comment];                                                     
+    return [self errorWithDomain:FLAssertionFailureErrorDomain code:code localizedDescription:reason userInfo:nil comment:comment stackTrace:stackTrace];
 }                    
 
-- (NSException*) createException:(NSDictionary *)userInfo {
-    return [FLAssertionFailedException exceptionWithName:FLAssertionFailedExceptionName reason:self.localizedDescription userInfo:userInfo];
+- (NSException*) createContainingException {
+    return [FLAssertionFailedException exceptionWithName:FLAssertionFailedExceptionName
+                                                  reason:self.localizedDescription
+                                                userInfo:nil
+                                                   error:self];
 }
 
 @end
 
-NSString* const FLAssertionFailedExceptionName = @"com.fishlamp.exception.assertion-failed";
+NSString* const FLAssertionFailedExceptionName = @"assert";
 
 @implementation FLAssertionFailedException
 

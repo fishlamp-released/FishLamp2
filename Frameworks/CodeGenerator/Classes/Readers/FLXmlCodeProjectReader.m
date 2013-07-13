@@ -19,11 +19,11 @@
     return FLAutorelease([[FLXmlCodeProjectReader alloc] init]);
 }
 
-- (FLCodeProject *) parseProjectFromData:(NSData*) data {
+- (FLCodeProject *) parseProjectFromData:(NSData*) data fromURL:(NSURL*) url{
 
     FLParsedXmlElement* parsedXml = nil;
     @try {
-        parsedXml = [[FLXmlParser xmlParser] parseData:data];
+        parsedXml = [[FLXmlParser xmlParser] parseData:data fileNameForErrors:url.absoluteString];
     }
     @catch(NSException* ex) {
         
@@ -35,7 +35,7 @@
         FLXmlObjectBuilder* builder = [FLXmlObjectBuilder xmlObjectBuilder:[FLDataEncoder dataEncoder]];
         builder.strict = YES;
         
-        FLCodeProject* project = [FLCodeProject objectWithXmlElement:parsedXml withObjectBuilder:builder];
+        FLCodeProject* project = [builder buildObjectOfClass:[FLCodeProject class] withXML:parsedXml];
         FLAssertNotNil(project);
         
         return project;

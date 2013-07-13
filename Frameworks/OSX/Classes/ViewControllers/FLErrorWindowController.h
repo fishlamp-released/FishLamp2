@@ -8,7 +8,6 @@
 //
 
 #import "FishLamp.h"
-#import "FLErrors.h"
 
 @interface FLErrorWindowController : NSWindowController {
 @private

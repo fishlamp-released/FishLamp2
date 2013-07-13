@@ -17,7 +17,7 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (FLCodeProject *) parseProjectFromData:(NSData*) data  {
+- (FLCodeProject *) parseProjectFromData:(NSData*) data fromURL:(NSURL*) url {
 
     id jsonObject = nil;
     @try {

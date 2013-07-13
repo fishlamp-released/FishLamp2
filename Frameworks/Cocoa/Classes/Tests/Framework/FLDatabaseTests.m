@@ -33,7 +33,7 @@
     return FLAutorelease([[FLDatabase alloc] initWithFilePath:filePath]);
 }
 
-- (void) setupTests {
+- (void) firstTest {
     FLTempFolder* folder = [FLTempFolder tempFolder];
     [folder createIfNeeded];
     
@@ -45,7 +45,7 @@
     FLAssertWithComment([_database isOpen], @"database is not open");
 }
 
-- (void) teardownTests {
+- (void) lastTest {
 
     [_database closeDatabase];
     [_database deleteOnDisk];

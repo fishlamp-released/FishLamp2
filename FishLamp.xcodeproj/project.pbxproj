@@ -40,7 +40,9 @@
 			buildPhases = (
 			);
 			dependencies = (
-				27F1AF82175FC38E0086E14A /* PBXTargetDependency */,
+				273379A81782222800F56276 /* PBXTargetDependency */,
+				273379AA1782222800F56276 /* PBXTargetDependency */,
+				273379AC1782222800F56276 /* PBXTargetDependency */,
 				27F1AF54175FC34C0086E14A /* PBXTargetDependency */,
 				27F1AF5A175FC34C0086E14A /* PBXTargetDependency */,
 				27F1AF5C175FC34C0086E14A /* PBXTargetDependency */,
@@ -65,6 +67,27 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXContainerItemProxy section */
+		273379A71782222800F56276 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E9D00B175E4BF500BD6205 /* FishLampCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27E9CF94175E4A3600BD6205;
+			remoteInfo = FishLampCore;
+		};
+		273379A91782222800F56276 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E9D00C175E4BF500BD6205 /* FishLampCocoa.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27E9CFA2175E4A5500BD6205;
+			remoteInfo = FishLampCocoa;
+		};
+		273379AB1782222800F56276 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E9D00D175E4BF500BD6205 /* FishLampCocoaUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27E9CFB9175E4A7B00BD6205;
+			remoteInfo = FishLampCocoaUI;
+		};
 		27367AE4175E4C240018996B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 27E9D00D175E4BF500BD6205 /* FishLampCocoaUI.xcodeproj */;
@@ -436,13 +459,6 @@
 			remoteGlobalIDString = 27E9CF94175E4A3600BD6205;
 			remoteInfo = FishLampCore;
 		};
-		27F1AF81175FC38E0086E14A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 27E9D001175E4BA400BD6205 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 27E9D007175E4BD500BD6205;
-			remoteInfo = FishLamp;
-		};
 		27F1AF83175FC3A20086E14A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 27E9D001175E4BA400BD6205 /* Project object */;
@@ -595,7 +611,7 @@
 			isa = PBXGroup;
 			children = (
 				27AC5C78175E4D4D002629F5 /* PackMule.app */,
-				27AC5C7A175E4D4D002629F5 /* Whittle */,
+				27AC5C7A175E4D4D002629F5 /* whittle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -959,16 +975,31 @@
 			remoteRef = 27AC5C77175E4D4D002629F5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		27AC5C7A175E4D4D002629F5 /* Whittle */ = {
+		27AC5C7A175E4D4D002629F5 /* whittle */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
-			path = Whittle;
+			path = whittle;
 			remoteRef = 27AC5C79175E4D4D002629F5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXTargetDependency section */
+		273379A81782222800F56276 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FishLampCore;
+			targetProxy = 273379A71782222800F56276 /* PBXContainerItemProxy */;
+		};
+		273379AA1782222800F56276 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FishLampCocoa;
+			targetProxy = 273379A91782222800F56276 /* PBXContainerItemProxy */;
+		};
+		273379AC1782222800F56276 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FishLampCocoaUI;
+			targetProxy = 273379AB1782222800F56276 /* PBXContainerItemProxy */;
+		};
 		27367B67175E4C560018996B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FishLampCocoaUI;
@@ -1033,11 +1064,6 @@
 			isa = PBXTargetDependency;
 			name = FishLampCore;
 			targetProxy = 27F1AF7F175FC3860086E14A /* PBXContainerItemProxy */;
-		};
-		27F1AF82175FC38E0086E14A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 27E9D007175E4BD500BD6205 /* FishLamp */;
-			targetProxy = 27F1AF81175FC38E0086E14A /* PBXContainerItemProxy */;
 		};
 		27F1AF84175FC3A20086E14A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

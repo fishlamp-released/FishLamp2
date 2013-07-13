@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import <Foundation/Foundation.h>
+#import "FishLampCore.h"
 #import "FLHttpRequest.h"
 #import "FLService.h"
 #import "FLDispatchQueue.h"
@@ -37,7 +37,7 @@
 // optional override
 - (BOOL) credentialsNeedAuthentication:(FLHttpUser*) user;
 
-- (void) beginAuthenticating:(fl_completion_block_t) completion;
+- (FLPromise*) beginAuthenticating:(fl_completion_block_t) completion;
 
 @end
 

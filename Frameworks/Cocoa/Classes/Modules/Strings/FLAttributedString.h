@@ -8,6 +8,8 @@
 //
 
 #import "FishLampCore.h"
+#import "FLCocoaRequired.h"
+
 #import "FLModelObject.h"
 
 @class SDKFont;

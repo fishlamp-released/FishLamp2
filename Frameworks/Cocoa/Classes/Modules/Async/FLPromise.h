@@ -8,14 +8,12 @@
 //
 #import "FishLampCore.h"
 #import "FLAsyncBlockTypes.h"
-
-@class FLPromisedResult;
+#import "FLPromisedResult.h"
 
 @interface FLPromise : NSObject {
 @private
     dispatch_semaphore_t _semaphore;
-    id _result;
-    NSError* _error;
+    FLPromisedResult _result;
 
     fl_completion_block_t _completion;
     BOOL _finished;
@@ -24,22 +22,21 @@
     __unsafe_unretained id _target;
     SEL _action;
 }
-@property (readonly, strong) id result;
-@property (readonly, strong) NSError* error;
+@property (readonly, strong) FLPromisedResult result;
 
 @property (readonly, assign, getter=isFinished) BOOL finished;
 
 @property (readwrite, assign) BOOL finishOnMainThread; 
 
 - (id) initWithCompletion:(fl_completion_block_t) completion;
-- (id) initWithTarget:(id) target action:(SEL) action; // @selector(id result, NSError* error)
+- (id) initWithTarget:(id) target action:(SEL) action; // @selector(FLPromisedResult result)
 
 + (id) promise;
 + (id) promise:(fl_completion_block_t) completion;
 + (id) promise:(id) target action:(SEL) action;
 
 // blocks in current thread. 
-- (FLPromisedResult*) waitUntilFinished;
+- (FLPromisedResult) waitUntilFinished;
 @end
 
 
@@ -48,3 +45,7 @@
 //    FLPromiseStateResolved,
 //    FLPromiseStateRejected
 //} FLPromiseState;
+
+// TODO:
+// 1. add better state
+// 2. add ability to chain promises after "begin" is called

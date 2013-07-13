@@ -10,12 +10,17 @@
 #import "FLCharString.h"
 
 @implementation NSString (FLCharString)
-+ (NSString*) stringWithCharString:(FLCharString) charString {
+
+- (id) initWithCharString:(FLCharString) charString {
     if(charString.length == 0) {
         return nil;
     }
 
-    return FLAutorelease([[NSString alloc] initWithBytes:charString.string length:charString.length encoding:NSASCIIStringEncoding]);
+    return [self initWithBytes:charString.string length:charString.length encoding:NSASCIIStringEncoding];
+}
+
++ (NSString*) stringWithCharString:(FLCharString) charString {
+    return FLAutorelease([[NSString alloc] initWithCharString:charString]);
 
 }
 @end

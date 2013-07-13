@@ -96,8 +96,6 @@
 
 - (void) throwErrorIfResponseIsError:(FLHttpResponse*) httpResponse;
 
-- (void) didFinishWithResult:(id) result error:(NSError*) error;
-
 @end
 
 
@@ -114,8 +112,7 @@
 - (void) httpRequestDidOpen:(FLHttpRequest*) httpRequest;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest 
-  didCloseWithResult:(id) result
-               error:(NSError*) error;
+  didCloseWithResult:(FLPromisedResult) result;
 
 - (void) httpRequest:(FLHttpRequest*) httpRequest didReadBytes:(FLHttpRequestByteCount*) amount;
 

@@ -163,9 +163,9 @@ void FLTcpServerAcceptCallBack(
 // this is skanky - where is this coming from? Am I sending this in somewhere?
     CFSocketNativeHandle nativeSocket = *((CFSocketNativeHandle *) data);
 
-    FLTcpListener* server = bridge_(FLTcpListener*, info);
+    FLTcpListener* server = FLBridge(FLTcpListener*, info);
     [server _handleNewConnection:socket 
-        addressData:bridge_(id, address)
+        addressData:FLBridge(id, address)
         nativeSocket:nativeSocket];
 }
 
@@ -176,7 +176,7 @@ void FLTcpServerAcceptCallBack(
     
     CFSocketContext context;
     memset(&context, sizeof(CFSocketContext), 0);    
-    context.info = bridge_(void*, self);
+    context.info = FLBridge(void*, self);
 
 	_socket = CFSocketCreate(kCFAllocatorDefault, 
         PF_INET, 
@@ -213,7 +213,7 @@ void FLTcpServerAcceptCallBack(
 	address.sin_port = htons(_port); 
     
     NSData *addressData = [NSData dataWithBytes: &address length: sizeof(address)];
-    if (CFSocketSetAddress(_socket, bridge_(void*,addressData)) != kCFSocketSuccess) {
+    if (CFSocketSetAddress(_socket, FLBridge(void*,addressData)) != kCFSocketSuccess) {
 //        fprintf(stderr, "CFSocketSetAddress() failed\n");
 //        CFRelease(TCPServer);
 //        return EXIT_FAILURE;

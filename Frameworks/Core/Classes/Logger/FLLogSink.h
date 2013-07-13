@@ -7,9 +7,9 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLRequired.h"
-#import "FLStringFormatter.h"
-#import "FLLogEntry.h"
+#import "FLCoreRequired.h"
+
+@class FLLogEntry;
 
 typedef enum {
     FLLogOutputSimple           = 0,

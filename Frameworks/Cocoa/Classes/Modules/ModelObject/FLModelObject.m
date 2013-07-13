@@ -44,11 +44,11 @@ FLSynthesizeModelObjectMethods();
     FLObjectDescriber* typeDesc = [self objectDescriber];
     FLAssertNotNil(typeDesc);
     
-    for(NSString* propertyName in typeDesc.properties) {
-        id value = [self valueForKey:propertyName];
+    for(FLPropertyDescriber* property in [typeDesc.properties objectEnumerator]) {
+        id value = [self valueForKey:property.propertyName];
         
         if(value) {
-            [string appendLineWithFormat:@"%@ = %@", propertyName, [value description]];
+            [string appendLineWithFormat:@"%@ = %@", property.propertyName, [value description]];
         }
     }
 }

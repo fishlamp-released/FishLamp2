@@ -10,6 +10,7 @@
 #import "FLStringUtils.h"
 #import "FLUnitTest.h"
 #import "FLObjcRuntime.h"
+#import "FLTestCaseResult.h"
 
 //#define FLTestCaseFlagBrokenString              @"_broken"
 //#define FLTestCaseFlagVerboseString             @"_debug"
@@ -45,13 +46,11 @@ FLTestCaseFlagPair s_flagPairs[] = {
 
 @implementation FLTestCase
 @synthesize disabled = _disabled;
-@synthesize priority = _priority;
 @synthesize disabledReason = _disabledReason;
 @synthesize testCaseBlock = _testCaseBlock;
 @synthesize testCaseSelector = _testCaseSelector;
 @synthesize testCaseTarget = _testCaseTarget;
 @synthesize testCaseName = _testCaseName;
-
 
 - (void) setDisabledWithReason:(NSString*) reason {
     self.disabled = YES;
@@ -106,7 +105,6 @@ FLTestCaseFlagPair s_flagPairs[] = {
 - (id) initWithName:(NSString*) name testBlock:(FLTestBlock) block {
     self = [super init];
     if(self) {
-        self.priority = FLTestCasePriorityNormal; 
         self.testCaseBlock = block;
         self.testCaseName = name;
     }
@@ -117,7 +115,6 @@ FLTestCaseFlagPair s_flagPairs[] = {
 - (id) initWithName:(NSString*) name target:(id) target selector:(SEL) selector {
     self = [super init];
     if(self) {
-        self.priority = FLTestCasePriorityNormal; 
         self.testCaseTarget = target;
         self.testCaseSelector = selector;
         self.testCaseName = name;
@@ -133,17 +130,6 @@ FLTestCaseFlagPair s_flagPairs[] = {
     return FLAutorelease([[FLTestCase alloc] initWithName:name testBlock:block]);
 }
 
-- (void) setTestCaseSelector:(SEL) sel {
-    _testCaseSelector = sel;
-
-    if(FLSelectorsAreEqual(@selector(setupTests), sel)) {
-        self.priority = FLTestCasePriorityHigh + 1;
-    }
-    else if(FLSelectorsAreEqual(@selector(teardownTests), sel)) {
-        self.priority = FLTestCasePriorityLow - 1;
-    }
-}
-
 #if FL_MRC
 - (void) dealloc {
  
@@ -156,33 +142,45 @@ FLTestCaseFlagPair s_flagPairs[] = {
 }
 #endif
 
-- (NSComparisonResult) compare:(FLTestCase *)other {
+- (FLPromisedResult) performSynchronously {
 
-    NSInteger otherPriority = other.priority;
-
-    if(self.priority == otherPriority) {
-        return (self.priority > otherPriority) ? NSOrderedAscending : NSOrderedDescending;
-    }
-
-//    if(_sortOrder == FLTestSortOrderFirst || otherSortOrder == FLTestSortOrderLast) {
-//        return NSOrderedAscending;
-//    }
-//    
-//    if(_sortOrder == FLTestSortOrderLast || otherSortOrder == FLTestSortOrderFirst) {
-//        return NSOrderedDescending;
-//    }
-
-    return [self.testCaseName compare:other.testCaseName];
-}
-
-- (id) performSynchronously {
-    if(!FLPerformSelector0(_testCaseTarget, _testCaseSelector)) {
-        if(_testCaseBlock) {
-            _testCaseBlock();
+    FLTestCaseResult* result = [FLTestCaseResult testCaseResult:self];
+    [[FLUnitTest logger] pushLoggerSink:result];
+        
+    @try {
+        if(!self.isDisabled) {
+            if(!FLPerformSelector0(_testCaseTarget, _testCaseSelector)) {
+                if(_testCaseBlock) {
+                    _testCaseBlock();
+                }
+            }
         }
+
+        [result setPassed];
+    }
+    @catch(NSException* ex) {
+//                 [[results testResultForKey:testCase.testCaseName] setError:ex.error];
+    }
+    @finally {
+        [[FLUnitTest logger] removeLoggerSink:result];
     }
     
-    return [FLSuccessfulResult successfulResult];
+    if(result.passed) {
+        if(self.isDisabled) {
+            [[FLUnitTest outputLog] appendLineWithFormat:@"DISABLED: %@", self.testCaseName];
+        }
+        else {
+            [[FLUnitTest outputLog] appendLineWithFormat:@"Passed: %@", self.testCaseName];
+        }
+    }
+    else {
+        [[FLUnitTest outputLog] appendLineWithFormat:@"FAILED: %@", self.testCaseName ];
+        [[FLUnitTest outputLog] indent:^{
+            [[FLUnitTest logger] logEntries:result.logEntries];
+        }];
+    }
+
+    return result;
 }
 
 

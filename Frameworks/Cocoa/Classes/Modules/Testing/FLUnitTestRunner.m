@@ -27,30 +27,32 @@
 //    [workers addObject:[FLSanityCheckRunner sanityTestRunner]];
     [workers addObject:[FLUnitTestSubclassRunner unitTestSubclassRunner]];
 
-    FLRuntimeClassVisitor classVisitor = ^(FLRuntimeInfo classInfo, BOOL* stop) {
-        for(id runner in workers) {
-            [runner addPossibleUnitTestClass:classInfo];
-        }
-
-        [NSObject visitEachSelectorInClass:classInfo.class visitor:^(FLRuntimeInfo methodInfo, BOOL* stopInner) {
+    FLRuntimeVisitEveryClass(
+        ^(FLRuntimeInfo classInfo, BOOL* stop) {
             for(id runner in workers) {
-                [runner addPossibleTestMethod:methodInfo];
+                [runner addPossibleUnitTestClass:classInfo];
             }
-        }];
-        
-    };
 
-    [NSObject visitEveryClass:classVisitor];
-    
+            FLRuntimeVisitEachSelectorInClass(classInfo.class,
+                ^(FLRuntimeInfo methodInfo, BOOL* stopInner) {
+                    for(id runner in workers) {
+                        [runner addPossibleTestMethod:methodInfo];
+                    }
+                }
+            );
+            
+        }
+    );
+
     return workers;
 }
 
-- (id) performSynchronously {
+- (FLPromisedResult) performSynchronously {
 
     NSMutableArray* array = [NSMutableArray array];
     NSArray* workers = [self findTestWorkers];
     for(id worker in workers) {
-        FLPromisedResult* result = [self runChildSynchronously:worker];
+        id result = [self runChildSynchronously:worker];
         FLThrowIfError(result);
     
         [array addObject:result];

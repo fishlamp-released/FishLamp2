@@ -39,5 +39,8 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
+- (BOOL) hasCode {
+    return ![_codeBuilder isEmpty];
+}
 
 @end

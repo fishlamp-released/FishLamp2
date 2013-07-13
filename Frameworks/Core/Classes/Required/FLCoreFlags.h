@@ -23,7 +23,7 @@
 #undef OSX
 #endif
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_2_0
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
     #define IOS 1
 #else
     #define MAC 1
@@ -58,4 +58,12 @@
 
 #endif
 
+#if DEBUG
+    #define FL_SHIP_ONLY_INLINE 
+#else
+    #define FL_SHIP_ONLY_INLINE NS_INLINE
+#endif
 
+#ifndef EXPERIMENTAL
+#define EXPERIMENTAL DEBUG
+#endif

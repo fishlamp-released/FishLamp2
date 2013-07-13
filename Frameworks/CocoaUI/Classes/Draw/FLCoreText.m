@@ -81,7 +81,7 @@ CTFrameRef CTAttributedStringGetFrame(NSAttributedString* string, CGRect bounds)
     
         CGPathAddRect(path, NULL, bounds);
 
-        framesetter = CTFramesetterCreateWithAttributedString(bridge_(CFAttributedStringRef, string));
+        framesetter = CTFramesetterCreateWithAttributedString(FLBridge(CFAttributedStringRef, string));
         if(!framesetter) {
             return nil;
         }
@@ -228,7 +228,7 @@ CGFloat CGGetLineHeightForFont(CTFontRef iFont)
 //                runBounds = FLRectMoveVertically(runBounds, (bounds.size.height - offset.height));
 //#endif
 //
-//                NSDictionary* attributes = bridge_(NSDictionary*, CTRunGetAttributes(run));
+//                NSDictionary* attributes = FLBridge(NSDictionary*, CTRunGetAttributes(run));
 //                FLAttributedString* breadcrumb = [attributes objectForKey:@"com.fishlamp.breadcrumb"];
 //                if(breadcrumb) {
 //                    [breadcrumb addRunFrame:runBounds];

@@ -18,11 +18,11 @@
     return [self frameworkTestGroup];
 }
 
-- (void) testNotImplemented_broken_debug_verbose:(FLTestCase*) test {
-    [FLTestCase runTestWithExpectedFailure:^{  FLAssertIsImplementedWithComment(@"this is a test"); }];
-    [FLTestCase runTestWithExpectedFailure:^{  FLAssertIsImplementedWithComment(nil); } ];
-    [FLTestCase runTestWithExpectedFailure:^{  FLAssertIsBugWithComment(@"this is a bug", nil); } ];
-}
+//- (void) testNotImplemented_broken_debug_verbose:(FLTestCase*) test {
+//    [FLTestCase runTestWithExpectedFailure:^{  FLAssertIsImplementedWithComment(@"this is a test"); }];
+//    [FLTestCase runTestWithExpectedFailure:^{  FLAssertIsImplementedWithComment(nil); } ];
+//    [FLTestCase runTestWithExpectedFailure:^{  FLAssertIsBugWithComment(@"this is a bug", nil); } ];
+//}
 
 
 @end

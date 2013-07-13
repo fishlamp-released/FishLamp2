@@ -42,7 +42,7 @@
     self = [super init];
     if(self) {
         FLAssertStringIsNotEmpty(name);
-        _hostRef = CFHostCreateWithName(nil, bridge_(CFStringRef, name));
+        _hostRef = CFHostCreateWithName(nil, FLBridge(CFStringRef, name));
         FLAssertNotNil(_hostRef);
         self.hostName = name;
     }
@@ -53,7 +53,7 @@
 - (id) initWithAddress:(NSData*) address {
     self = [super init];
     if(self) {
-        _hostRef = CFHostCreateWithAddress(NULL, bridge_(CFDataRef, address));
+        _hostRef = CFHostCreateWithAddress(NULL, FLBridge(CFDataRef, address));
         FLAssertNotNil(_hostRef);
         self.addressData = address;
     }
@@ -87,7 +87,7 @@
         }
         
         if(data) {
-            _hostRef = CFHostCreateWithAddress(NULL, bridge_(CFDataRef, data));
+            _hostRef = CFHostCreateWithAddress(NULL, FLBridge(CFDataRef, data));
         }
         
         FLAssertNotNil(_hostRef);
@@ -115,7 +115,7 @@
     FLAssertIsNotNilWithComment(_hostRef, nil);
     
     if(!_resolvedAddresses && _hostRef) {
-        NSArray* result = bridge_(id, CFHostGetAddressing(_hostRef, (Boolean*) &_resolved));
+        NSArray* result = FLBridge(id, CFHostGetAddressing(_hostRef, (Boolean*) &_resolved));
         if (_resolved ) {
             self.resolvedAddresses  = result;
         }
@@ -160,7 +160,7 @@
     FLAssertIsNotNilWithComment(_hostRef, nil);
     
     if(!_resolvedHostNames && _hostRef) {
-        NSArray* result = bridge_(id, CFHostGetNames(_hostRef, (Boolean*) &_resolved));
+        NSArray* result = FLBridge(id, CFHostGetNames(_hostRef, (Boolean*) &_resolved));
         if (_resolved) {
             self.resolvedHostNames = result;
         }

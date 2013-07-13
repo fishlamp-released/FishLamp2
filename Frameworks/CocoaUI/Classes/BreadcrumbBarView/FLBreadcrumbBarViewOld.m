@@ -155,7 +155,7 @@
 //                runBounds = FLRectMoveVertically(runBounds, (bounds.size.height - offset));
 //#endif
 //
-//                NSDictionary* attributes = bridge_(NSDictionary*, CTRunGetAttributes(run));
+//                NSDictionary* attributes = FLBridge(NSDictionary*, CTRunGetAttributes(run));
 //                FLAttributedString* str = [attributes objectForKey:@"com.fishlamp.string"];
 //                if(str) {
 //                    [_runFrames addObject:[NSValue valueWithCGRect:runBounds] forKey:str.string];
@@ -180,7 +180,7 @@
 //    
 //        CGPathAddRect(path, NULL, bounds);
 //
-//        framesetter = CTFramesetterCreateWithAttributedString(bridge_(CFAttributedStringRef, attributedStringToDraw));
+//        framesetter = CTFramesetterCreateWithAttributedString(FLBridge(CFAttributedStringRef, attributedStringToDraw));
 //        if(!framesetter) {
 //            return nil;
 //        }

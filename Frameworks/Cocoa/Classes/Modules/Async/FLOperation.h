@@ -11,9 +11,9 @@
 #import "FLFinisher.h"
 #import "FLDispatchable.h"
 #import "FLObservable.h"
+#import "FLPromisedResult.h"
 
 @class FLOperationContext;
-@class FLPromisedResult;
 @class FLFinisher;
 @class FLPromise;
 @protocol FLAsyncQueue;
@@ -53,7 +53,7 @@
 - (void) startOperation;
 
 // optional override
-- (void) didFinishWithResult:(id) result error:(NSError*) error;
+- (void) didFinishWithResult:(FLPromisedResult) result;
 
 @end
 
@@ -63,17 +63,15 @@
 
 - (void) setFinished;
 - (void) setFinishedWithResult:(id) result;
-- (void) setFinishedWithError:(NSError*) error;
-- (void) setFinishedWithResult:(id) result error:(NSError*) error;
 
 - (void) abortIfCancelled; // throws cancelError
 @end
 
 @interface FLOperation (Synchronous)
 // run synchronously
-- (FLPromisedResult*) runSynchronously;
+- (FLPromisedResult) runSynchronously;
 
-- (FLPromisedResult*) runSynchronouslyInContext:(FLOperationContext*) context;
+- (FLPromisedResult) runSynchronouslyInContext:(FLOperationContext*) context;
 @end
 
 @interface FLOperation (Async)
@@ -90,7 +88,7 @@
 @interface FLOperation (ChildOperations)
 // these call willRunInParent on the child before operation
 // is run or started.
-- (FLPromisedResult*) runChildSynchronously:(FLOperation*) operation;
+- (FLPromisedResult) runChildSynchronously:(FLOperation*) operation;
 
 - (FLPromise*) runChildAsynchronously:(FLOperation*) operation;
 
@@ -109,7 +107,7 @@
 @protocol FLOperationDelegate <NSObject>
 @optional
 - (void) operationWillBegin:(id) operation;
-- (void) operationDidFinish:(id) operation withResult:(id) result error:(NSError*) error;
+- (void) operationDidFinish:(id) operation withResult:(FLPromisedResult) result;
 @end
 
 

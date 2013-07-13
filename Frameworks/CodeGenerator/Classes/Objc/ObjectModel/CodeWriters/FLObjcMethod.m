@@ -51,7 +51,7 @@
 }
 
 - (void) addParameter:(FLObjcParameter*) parameter {
-    FLConfirmWithComment([self parameterForName:parameter.variableName.identifierName] == nil, @"parameter for %@ already exists", parameter.variableName.identifierName);
+    FLConfirmWithComment([self parameterForName:parameter.variableName.identifier] == nil, @"parameter for %@ already exists", parameter.variableName.identifier);
     
     [_parameters addObject:parameter];
 }
@@ -59,7 +59,7 @@
 - (FLObjcParameter*) parameterForName:(NSString*) name {
 
     for(FLObjcParameter* parameter in _parameters) {
-        if(FLStringsAreEqual(name, parameter.variableName.identifierName)) {
+        if(FLStringsAreEqual(name, parameter.variableName.identifier)) {
             return parameter;
         }
     }
@@ -77,7 +77,7 @@
 }
 
 - (void) addOrReplaceParameter:(FLObjcParameter*) parameter {
-    FLObjcParameter* oldParam = [self parameterForName:parameter.variableName.identifierName];
+    FLObjcParameter* oldParam = [self parameterForName:parameter.variableName.identifier];
     if(oldParam) {
         [self replaceParameter:oldParam withParameter:parameter];
     }
@@ -144,6 +144,11 @@
 - (FLObjcCodeBuilder*) code {
     return _stringStatement.codeBuilder;
 }
+
+- (BOOL) hasCode {
+    return [_statement hasCode];
+}
+
 
 
 @end

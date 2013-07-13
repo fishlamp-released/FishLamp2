@@ -12,6 +12,8 @@
 #import <stdlib.h>
 #import <string.h>
 #import <stdio.h>
+#import "FishLampCore.h"
+
 // experimental
 
 //id objc_getProperty(id self, SEL _cmd, ptrdiff_t offset, BOOL atomic);
@@ -261,9 +263,88 @@ void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector) {
 //
 //@end
 
-@implementation NSObject (FLObjcRuntime)
+BOOL FLRuntimeVisitEachSelectorInClass(Class aClass, FLRuntimeSelectorVisitor visitor) {
 
-+ (BOOL) visitEveryClass:(FLRuntimeClassVisitor) visitor {
+    BOOL stop = NO;
+    FLRuntimeInfo info = { aClass, nil, 0, 0, class_isMetaClass(aClass) };
+    
+    Method* methods = class_copyMethodList(aClass, &info.total);
+
+    for (info.index = 0; info.index < info.total; info.index++) {
+        
+        info.selector = method_getName(methods[info.index]);
+        visitor(info, &stop);
+        
+        if(stop) {
+            break;
+        }
+    }
+
+    free(methods);
+    
+    return stop;
+}
+
+void FLRuntimeVisitEachSelectorInClassAndSuperclass(Class aClass, FLRuntimeSelectorVisitor visitor) {
+    Class walker = aClass;
+    while(walker) {
+       
+        BOOL stop = FLRuntimeVisitEachSelectorInClass(walker, visitor);
+        if(stop) {
+            walker = nil;
+        }
+        else {
+            walker = [walker superclass];
+            
+            if( walker == [NSObject class]) {
+                walker = nil;
+            }
+        }
+    }
+}
+
+NSArray* FLRuntimeMethodsForClass(Class inClass, FLRuntimeFilterBlock filterOrNil) {
+    __block NSMutableArray* array = nil;
+
+    FLRuntimeSelectorVisitor selectorVisitor = ^(FLRuntimeInfo info, BOOL *stop) {
+            
+        BOOL passed = YES;
+        if(filterOrNil) {
+            passed = NO;
+            filterOrNil(info, &passed, stop);
+        }
+        
+        if(passed) {
+            if(!array) {
+                 array = [NSMutableArray array];
+            }
+        
+            [array addObject:[FLSelectorInfo selectorInfoWithClass:info.class selector:info.selector]];
+        }
+    };
+
+    Class walker = inClass;
+    while(walker) {
+       
+        BOOL stop = FLRuntimeVisitEachSelectorInClass(walker, selectorVisitor);
+        
+        if(stop) {
+            walker = nil;
+        }
+        else {
+            walker = [walker superclass];
+            
+            if( walker == [NSObject class]) {
+                walker = nil;
+            }
+        }
+    }
+ 
+    return array;
+
+}
+
+BOOL FLRuntimeVisitEveryClass(FLRuntimeClassVisitor visitor) {
 
     FLRuntimeInfo info = { nil, nil, 0, 0, NO };
     
@@ -296,97 +377,7 @@ void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector) {
 }
 
 
-+ (BOOL) visitEachSelectorInClass:(Class) aClass
-                          visitor:(FLRuntimeSelectorVisitor) visitor {
-
-    BOOL stop = NO;
-    FLRuntimeInfo info = { aClass, nil, 0, 0, class_isMetaClass(aClass) };
-    
-    Method* methods = class_copyMethodList(aClass, &info.total);
-
-    for (info.index = 0; info.index < info.total; info.index++) {
-        
-        info.selector = method_getName(methods[info.index]);
-        visitor(info, &stop);
-        
-        if(stop) {
-            break;
-        }
-    }
-
-    free(methods);
-    
-    return stop;
-}
-
-+ (NSArray*) methodsForClass:(Class) inClass
-                      filter:(FLRuntimeFilterBlock) filterOrNil {
-
-    __block NSMutableArray* array = nil;
-    
-    FLRuntimeSelectorVisitor selectorVisitor = ^(FLRuntimeInfo info, BOOL *stop) {
-            
-        BOOL passed = YES;
-        if(filterOrNil) {
-            passed = NO;
-            filterOrNil(info, &passed, stop);
-        }
-        
-        if(passed) {
-            if(!array) {
-                 array = [NSMutableArray array];
-            }
-        
-            [array addObject:[FLSelectorInfo selectorInfoWithClass:info.class selector:info.selector]];
-        }
-    };
-
-    Class walker = inClass;
-    while(walker) {
-       
-        __block BOOL stop = NO;
-        [NSObject visitEachSelectorInClass:walker visitor:selectorVisitor];
-        
-        if(stop) {
-            walker = nil;
-        }
-        else {
-            walker = [walker superclass];
-            
-            if( walker == [NSObject class]) {
-                walker = nil;
-            }
-        }
-    }
- 
-    return array;
-}
-
-
-//+ (NSArray*) findInstanceMethodNamesForClass:(Class) aClass
-//                                  superclass:(Class) recursivelySearchToSuperclassOrNil
-//                                      filter:(FLRuntimeFilterBlock) filterOrNil {
-//
-//}
-
-
-//- (NSArray*) findInstanceMethodsByName:(BOOL (^)(NSString* name, BOOL* stop)) nameMatcher {
-//    NSMutableArray* array = [NSMutableArray array];
-//
-//    [self visitEachSelectorInClass:[self class] visitor:]
-//
-//    NSSet* methods = FLRuntimeInstanceMethodNamesForClass([self class], [FLUnitTest class]);
-//
-//    for(NSString* methodName in methods) {
-//        if(nameMatcher(methodName)) {
-//           [list addObject:[FLCallback callback:self action:NSSelectorFromString(methodName)]];
-//        }
-//    }
-//    return array;
-//}
-
-
-+ (NSArray*) allClassesMatchingFilter:(FLRuntimeFilterBlock) filter {
+NSArray* FLRuntimeAllClassesMatchingFilter(FLRuntimeFilterBlock filter) {
     NSMutableArray* array = [NSMutableArray array];
     
     FLRuntimeSelectorVisitor selectorVisitor = ^(FLRuntimeInfo info, BOOL* stop) {
@@ -399,16 +390,109 @@ void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector) {
             }
         }
     };
-    
-    FLRuntimeClassVisitor classVisitor = ^(FLRuntimeInfo info, BOOL* stop) {
-        *stop = [NSObject visitEachSelectorInClass:info.class visitor:selectorVisitor];
-        };
-    
-    [NSObject visitEveryClass:classVisitor];
+
+    FLRuntimeVisitEveryClass(^(FLRuntimeInfo info, BOOL* stop) {
+        *stop = FLRuntimeVisitEachSelectorInClass(info.class, selectorVisitor);
+        });
     return array;
 }
 
-+ (BOOL) superclass:(Class) aSuperclass hasSubclass:(Class) aClass {
+NSArray* FLRuntimeClassesImplementingInstanceMethod(SEL theMethod) {
+    
+    NSMutableArray* result = [NSMutableArray array];
+
+    FLRuntimeVisitEveryClass(
+        ^(FLRuntimeInfo info, BOOL* stop) {
+            if(info.isMetaClass) {
+                if(FLRuntimeClassRespondsToSelector(info.class, theMethod)) {
+                    [result addObject:[FLSelectorInfo selectorInfoWithClass:info.class selector:theMethod]];
+                }
+            }
+        });
+
+    return result;
+}
+
+int FLArgumentCountForSelector(SEL sel) {
+
+    if(!sel) return 0;
+
+    const char* name = sel_getName(sel);
+    int count = 0;
+    while(*name) {
+        if(*name++ == ':') {
+            ++count;
+        }
+    }
+    
+    return count;
+}
+
+int FLArgumentCountForClassSelector(Class aClass, SEL selector) {
+
+    Method method = class_getInstanceMethod(aClass, selector);
+    if(!method) {
+        method = class_getInstanceMethod(object_getClass(aClass), selector);
+    }
+    
+    if(method) {
+        return method_getNumberOfArguments(method) - 2;
+    }
+    
+    FLAssertFailedWithComment(@"couldn't get argument count");
+    
+    return -1;
+}
+
+NSArray* FLRuntimeSubclassesForClass(Class theClass) {
+	int count = objc_getClassList(NULL, 0);
+
+    NSMutableArray* theClassNames = [NSMutableArray array];
+
+    Class* classList = (__unsafe_unretained Class*) malloc(sizeof(Class) * count);
+	
+	objc_getClassList(classList, count);
+ 
+//    const char* theClassName = class_getName(theClass);
+    
+	for(int i = 0; i < count; i++) {
+
+        Class aClass = classList[i];
+
+        if(FLRuntimeClassHasSubclass(theClass, aClass)) {
+            [theClassNames addObject:aClass];
+        }
+
+//        // some things in the returned don't have classes - e.g. object_getClass returns nil
+////        aClass = object_getClass(aClass);
+////        if(!aClass) {
+////            continue;
+////        }
+//    
+//        // some objects don't have super classes - whatever Apple, whatever.
+//        Class superClass = class_getSuperclass(aClass);
+//        if(!superClass) {
+//            continue;
+//        }
+//        
+//        // okay now we have a class name for the current classes superclass - or do we?
+//        const char* superClassName = class_getName(superClass);
+//        if(!superClassName) {
+//            continue;
+//        }
+//    
+//        // okay fine, we do, see if the superclass is a the class we want, if so Yay. If not, whatever.
+//        if(strcmp(superClassName, theClassName) == 0) {
+//            [theClassNames addObject:aClass];
+//        }
+	}
+	
+	free(classList);
+    
+    return theClassNames;
+}
+
+extern BOOL FLRuntimeClassHasSubclass(Class aSuperclass, Class aClass) {
     if(!aSuperclass || !aClass || aSuperclass == aClass) {
         return NO;
     }
@@ -457,65 +541,16 @@ void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector) {
 //    return [aClass isSubclassOfClass:aSuperclass];
 }
 
-+ (NSArray*) subclassesForClass:(Class) theClass {
-	int count = objc_getClassList(NULL, 0);
-
-    NSMutableArray* theClassNames = [NSMutableArray array];
-
-    Class* classList = (__unsafe_unretained Class*) malloc(sizeof(Class) * count);
-	
-	objc_getClassList(classList, count);
- 
-//    const char* theClassName = class_getName(theClass);
-    
-	for(int i = 0; i < count; i++) {
-
-        Class aClass = classList[i];
-
-        if([NSObject superclass:theClass hasSubclass:aClass]) {
-            [theClassNames addObject:aClass];
-        }
-
-//        // some things in the returned don't have classes - e.g. object_getClass returns nil
-////        aClass = object_getClass(aClass);
-////        if(!aClass) {
-////            continue;
-////        }
-//    
-//        // some objects don't have super classes - whatever Apple, whatever.
-//        Class superClass = class_getSuperclass(aClass);
-//        if(!superClass) {
-//            continue;
-//        }
-//        
-//        // okay now we have a class name for the current classes superclass - or do we?
-//        const char* superClassName = class_getName(superClass);
-//        if(!superClassName) {
-//            continue;
-//        }
-//    
-//        // okay fine, we do, see if the superclass is a the class we want, if so Yay. If not, whatever.
-//        if(strcmp(superClassName, theClassName) == 0) {
-//            [theClassNames addObject:aClass];
-//        }
-	}
-	
-	free(classList);
-    
-    return theClassNames;
-}
-
-+ (BOOL) classRespondsToSelector:(Class) theClass selector:(SEL) inSelector {
-
+BOOL FLRuntimeClassRespondsToSelector(Class aClass, SEL aSelector) {
     FLRuntimeSelectorVisitor visitor = ^(FLRuntimeInfo info, BOOL* stop) {
-        if( FLSelectorsAreEqual(inSelector, info.selector)) {
+        if( FLSelectorsAreEqual(aSelector, info.selector)) {
             *stop = YES;
         }
     };
 
-    Class walker = theClass;
+    Class walker = aClass;
     while(walker) {
-        if([self visitEachSelectorInClass:walker visitor:visitor]) {
+        if(FLRuntimeVisitEachSelectorInClass(walker, visitor)) {
             return YES;
         }
         walker = class_getSuperclass(walker);
@@ -525,27 +560,8 @@ void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector) {
 }
 
 
-+ (NSArray*) classesImplementingInstanceMethod:(SEL) theMethod {
-    
-    NSMutableArray* result = [NSMutableArray array];
-
-    FLRuntimeClassVisitor visitor = ^(FLRuntimeInfo info, BOOL* stop) {
-        if(info.isMetaClass) {
-            if([NSObject classRespondsToSelector:info.class selector:theMethod]) {
-                [result addObject:[FLSelectorInfo selectorInfoWithClass:info.class selector:theMethod]];
-            }
-        }
-    };
-    
-    [self visitEveryClass:visitor];
-
-    return result;
-}
-
-
-
 #if DEBUG
-+ (void) logMethodsForClass:(Class) aClass {
+void FLRuntimeLogMethodsForClass(Class aClass) {
     unsigned int count = 0;
     Method* methods = class_copyMethodList(aClass, &count);
     for(NSUInteger i = 0; i < count; i++) {
@@ -555,7 +571,10 @@ void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector) {
     free(methods);
 }
 #endif
- 
+
+
+@implementation NSObject (FLObjcRuntime)
+
 // Lookup the next implementation of the given selector after the
 // default one. Returns nil if no alternate implementation is found.
 - (IMP)getImplementationOf:(SEL)lookup after:(IMP)skip
@@ -606,41 +625,6 @@ void FLSwizzleClassMethod(Class c, SEL originalSelector, SEL newSelector) {
 
 @end
 
-@implementation NSObject (FLCreateInstance)
-+ (id) create {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-@end
 
 
-int FLArgumentCountForSelector(SEL sel) {
-
-    if(!sel) return 0;
-
-    const char* name = sel_getName(sel);
-    int count = 0;
-    while(*name) {
-        if(*name++ == ':') {
-            ++count;
-        }
-    }
-    
-    return count;
-}
-
-int FLArgumentCountForClassSelector(Class aClass, SEL selector) {
-
-    Method method = class_getInstanceMethod(aClass, selector);
-    if(!method) {
-        method = class_getInstanceMethod(object_getClass(aClass), selector);
-    }
-    
-    if(method) {
-        return method_getNumberOfArguments(method) - 2;
-    }
-    
-    FLAssertFailedWithComment(@"couldn't get argument count");
-    
-    return -1;
-}
 

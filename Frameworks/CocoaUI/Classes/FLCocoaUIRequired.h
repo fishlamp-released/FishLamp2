@@ -7,14 +7,8 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FishLamp.h"
+#import "FishLampCocoa.h"
 
-#if OSX
-#import <Quartz/Quartz.h>
-#else
-#import <QuartzCore/CoreAnimation.h>
-#import <CoreText/CoreText.h>
-#endif
 
 
 

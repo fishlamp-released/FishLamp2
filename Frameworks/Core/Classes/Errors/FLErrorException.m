@@ -8,61 +8,64 @@
 //
 
 #import "FLErrorException.h"
-#import "FLErrorDomainInfo.h"
+#import "FLErrorCodes.h"
 
-//static FLExceptionHook s_exceptionHook = nil;
+NSString* const FLErrorExceptionName = @"error";
 
-NSString* const FLErrorExceptionName = @"com.fishlamp.exception.error";
+@interface FLUnknownExceptionError : NSError {
+@private
+}
+@end
+
+@implementation FLUnknownExceptionError
+
+- (id) initWithException:(NSException*) exception {
+	return [super initWithDomain:FLErrorDomain code:FLUnknownExceptionErrorCode
+        userInfo:[NSDictionary dictionaryWithObject:exception forKey:FLErrorExceptionName]];
+}
+
++ (id) unknownExceptionError:(NSException*) exception {
+    return FLAutorelease([[[self class] alloc] initWithException:exception]);
+}
+
+@end
 
 @implementation NSException (NSError)
 
-FLSynthesizeAssociatedProperty(FLAssociationPolicyRetainNonatomic, _error, setError, NSError*);
-
 - (NSError*) error {
-    NSError* error = [self _error];
-    if(!error) {
-    
+    NSError* error = [self.userInfo objectForKey:NSUnderlyingErrorKey];
+    if(error) {
+        return error;
     }
-    return error;
+
+    return [FLUnknownExceptionError unknownExceptionError:self];
 }
 
-- (id)initWithName:(NSString *)aName reason:(NSString *)aReason userInfo:(NSDictionary *)aUserInfo error:(NSError*) error {
-    self = [self initWithName:aName reason:aReason userInfo:aUserInfo];
-    if(self) {
-        self.error = error;
+- (id)initWithName:(NSString *)aName
+            reason:(NSString *)aReason
+          userInfo:(NSDictionary *)aUserInfo
+             error:(NSError*) error {
+
+    if(error) {
+        if(aUserInfo) {
+            NSMutableDictionary* newUserInfo = FLMutableCopyWithAutorelease(aUserInfo);
+            [newUserInfo setObject:error forKey:NSUnderlyingErrorKey];
+            aUserInfo = newUserInfo;
+        }
+        else {
+            aUserInfo = [NSDictionary dictionaryWithObject:error forKey:NSUnderlyingErrorKey];
+        }
     }
-    return self;
+
+    return [self initWithName:aName reason:aReason userInfo:aUserInfo];
 }
 
-+ (NSException *)exceptionWithName:(NSString *)name reason:(NSString *)reason userInfo:(NSDictionary *)userInfo error:(NSError*) error {
++ (NSException *)exceptionWithName:(NSString *)name
+                            reason:(NSString *)reason
+                          userInfo:(NSDictionary *)userInfo
+                             error:(NSError*) error {
     return FLAutorelease([[[self class] alloc] initWithName:name reason:reason userInfo:userInfo error:error]);
 }
-
-
-//- (id) initWithError:(NSError*)error name:(NSString*) name reason:(NSString*) reason {
-//
-//    FLAssertNotNil(error);
-//
-//    NSString* reason = error.localizedDescription;
-//    NSString* name = FLErrorException
-//
-//    FLErrorDomainInfo* info = [[FLErrorDomainInfo instance] infoForErrorDomain:error.domain];
-//        
-//        
-//        
-//    [self setError:error];
-//    
-//    
-//    
-//    return [self initWithName:inName
-//                       reason:inReason
-//                     userInfo:inUserInfo];
-//}
-//
-
-//+ (NSException*) errorException:(NSError*)error userInfo:(NSDictionary*) userInfo {
-//    return [error createExceptionForError:userInfo];
-//}
 
 @end
 

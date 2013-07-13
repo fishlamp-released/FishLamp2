@@ -60,7 +60,8 @@ inflateObjectWithElement:(FLParsedXmlElement*) element {
 - (id) xmlObjectBuilder:(FLXmlObjectBuilder*) builder 
 inflateObjectWithElement:(FLParsedXmlElement*) xmlElement {
 
-    return [self.representedObjectClass objectWithXmlElement:xmlElement withObjectBuilder:builder];
+    return [builder buildObjectOfClass:self.representedObjectClass withXML:xmlElement];
+
 }
 
 @end

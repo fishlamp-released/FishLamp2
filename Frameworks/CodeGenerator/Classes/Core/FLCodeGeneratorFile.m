@@ -97,7 +97,7 @@
     [self writeCodeToCodeBuilder:codeBuilder];
     
     FLPrettyString* string = [FLPrettyString prettyString:[FLWhitespace tabbedWithSpacesWhitespace]];
-    [string appendBuildableString:codeBuilder];
+    [string appendStringFormatter:codeBuilder];
     NSString* generatedFileContents = [string string];
     FLAssertStringIsNotEmpty(generatedFileContents);
 

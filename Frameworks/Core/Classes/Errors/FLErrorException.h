@@ -7,13 +7,13 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 
 extern NSString* const FLErrorExceptionName;
 
 @interface NSException (NSError)
 
-@property (readwrite, copy, nonatomic) NSError* error;
+@property (readonly, strong, nonatomic) NSError* error;
 
 + (NSException *)exceptionWithName:(NSString *)name 
                             reason:(NSString *)reason 

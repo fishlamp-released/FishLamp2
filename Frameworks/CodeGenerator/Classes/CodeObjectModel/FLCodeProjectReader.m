@@ -48,7 +48,7 @@
     return [self readProjectFromLocation:projectLocation];
 }
 
-- (FLCodeProject *) parseProjectFromData:(NSData*) data {
+- (FLCodeProject *) parseProjectFromData:(NSData*) data fromURL:(NSURL*) url {
     return nil;
 }
 
@@ -59,7 +59,7 @@
     NSData* data = [location loadDataInResource];
 
     for(id<FLCodeProjectReader> reader in _fileReaders) {
-        FLCodeProject* project = [reader parseProjectFromData:data];
+        FLCodeProject* project = [reader parseProjectFromData:data fromURL:location.URL];
         if(project) {
             [project didLoadFromLocation:location withProjectReader:self];
             return project;

@@ -9,6 +9,7 @@
 
 #import "FLService.h"
 #import "FLFinisher.h"
+#import "FLObservable.h"
 
 @class FLOperation;
 @class FLFifoAsyncQueue;
@@ -20,7 +21,7 @@ extern NSString* const FLWorkerContextFinished;
 extern NSString* const FLWorkerContextClosed;
 extern NSString* const FLWorkerContextOpened;
 
-@interface FLOperationContext : NSObject {
+@interface FLOperationContext : FLObservable {
 @private
     NSMutableSet* _operations;
     NSUInteger _contextID;
@@ -37,7 +38,7 @@ extern NSString* const FLWorkerContextOpened;
 
 - (void) requestCancel;          
 
-- (void) addOperation:(FLOperation*) operation;
+- (void) queueOperation:(FLOperation*) operation;
 - (void) removeOperation:(FLOperation*) operation;
 
 - (void) visitOperations:(FLOperationVisitor) visitor;

@@ -11,12 +11,13 @@
 
 @interface FLCodeIdentifier : NSObject<NSCopying, FLGenerated> {
 @private
-    NSString* _identifierName;
+    NSString* _original;
     NSString* _prefix;
     NSString* _suffix;
 }
 
-@property (readonly, strong, nonatomic) NSString* identifierName;
+@property (readonly, strong, nonatomic) NSString* original;
+@property (readonly, strong, nonatomic) NSString* identifier;
 @property (readonly, strong, nonatomic) NSString* prefix;
 @property (readonly, strong, nonatomic) NSString* suffix;
 

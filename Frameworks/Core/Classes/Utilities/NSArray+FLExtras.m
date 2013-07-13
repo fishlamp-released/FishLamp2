@@ -8,8 +8,7 @@
 //
 
 #import "NSArray+FLExtras.h"
-#import "FLAssertions.h"
-#import "FLStringUtils.h"
+#import "FishLampCore.h"
 
 @implementation NSObject (FLLameWorkaroundForArrayRTTI)
 - (BOOL) isArray {

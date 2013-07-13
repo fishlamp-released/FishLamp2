@@ -8,16 +8,16 @@
 
 #import "FLObjcStatement.h"
 
-@interface FLObjcReturnStatement : FLObjcStatement {
-@private
-    FLObjcRuntimeValue* _returnValue;
-}
-
-@property (readwrite, strong, nonatomic) FLObjcRuntimeValue* returnValue;
-
-+ (id) objcReturnStatement:(FLObjcRuntimeValue*) returnValue;
-
-
-@end
-
-
+//@interface FLObjcReturnStatement : FLObjcStatement {
+//@private
+//    FLObjcRuntimeValue* _returnValue;
+//}
+//
+//@property (readwrite, strong, nonatomic) FLObjcRuntimeValue* returnValue;
+//
+//+ (id) objcReturnStatement:(FLObjcRuntimeValue*) returnValue;
+//
+//
+//@end
+//
+//

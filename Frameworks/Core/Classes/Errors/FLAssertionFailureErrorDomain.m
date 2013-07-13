@@ -10,6 +10,7 @@
 #import "FLAssertionFailureErrorDomain.h"
 NSString* const FLAssertionFailureErrorDomain = @"FishLampAssertionFailure";
 
+#if REFACTOR
 @implementation FLAssertionFailureErrorDomainInfo
 
 + (id) assertionFailureErrorDomainInfo {
@@ -76,6 +77,8 @@ NSString* const FLAssertionFailureErrorDomain = @"FishLampAssertionFailure";
 
 
 @end
+#endif
+
 #if 0
 
 #define FLFailureErrorDomainUrl @"com.fishlamp.assertion"

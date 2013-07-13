@@ -5,7 +5,7 @@
 //
 
 GCC_PRECOMPILE_PREFIX_HEADER = YES
-GCC_PREFIX_HEADER = FishLampOSX-Prefix.pch
+GCC_PREFIX_HEADER = ../Classes/FishLampOSX-Prefix.pch
 HEADER_SEARCH_PATHS= $(inherited) $(FISHLAMP_OSX)
 
 MACH_O_TYPE = staticlib

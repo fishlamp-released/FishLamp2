@@ -5,4 +5,5 @@
 //
 
 #include "FishLampXcodeConfigs/FishLampTargetSettings-OSX-64-ARC.xcconfig"
+#include "FishLampXcodeConfigs/FishLampIncludedConfig-TestTool.xcconfig"
 #include "CocoaTestTool/TestToolSharedConfig.xcconfig"

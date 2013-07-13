@@ -22,7 +22,7 @@
 	return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (id) performSynchronously {
+- (FLPromisedResult) performSynchronously {
     return [FLSuccessfulResult successfulResult];
 }
 
@@ -40,30 +40,30 @@
     [self runSynchronously];
 }
 
-- (FLPromisedResult*) runSynchronously {
+- (FLPromisedResult) runSynchronously {
 
     id result = nil;
-    NSError* error = nil;
 
     @try {
         [self abortIfNeeded];
         result = [self performSynchronously];
     }
     @catch(NSException* ex) {
-        error = ex.error;
+        result = ex.error;
+        FLAssertNotNil(result);
     }
     
     if(self.wasCancelled) {
-        error = [NSError cancelError];
+        result = [NSError cancelError];
     }
     
-    if(!result && !error) {
-        error = [NSError failedResultError];
+    if(!result) {
+        result = [NSError failedResultError];
     }
     
-    [self.finisher setFinishedWithResult:result error:error];
+    [self.finisher setFinishedWithResult:result];
 
-    return [FLPromisedResult promisedResult:result error:error];
+    return result;
 }
 @end
 

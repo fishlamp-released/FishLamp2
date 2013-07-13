@@ -26,9 +26,9 @@
 - (id) initWithDataDecoder:(id<FLDataDecoding>) decoder;
 + (id) xmlObjectBuilder:(id<FLDataDecoding>) decoder;
 + (id) xmlObjectBuilder;
-             
-- (FLParsedXmlElement*) findElementForBuilding:(NSString*) objectName 
-                         inParentElement:(FLParsedXmlElement*) parentElement;
+
+- (id) buildObjectOfClass:(Class) aClass withXML:(FLParsedXmlElement*) element;
+- (id) buildObjectOfType:(NSString*) type withXML:(FLParsedXmlElement*) element;
 
 @end
 

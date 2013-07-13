@@ -409,21 +409,14 @@
     NSString* mappedName = [_messageObjects objectForKey:messageName];
     FLConfirmStringIsNotEmptyWithComment(mappedName, @"message object for %@ not found", messageName);
 
-// this might be a primitive type, like string.
-
-    id object = [self codeObjectForClassName:mappedName];
-    if(object) {
-        return [object name];
-    }
-
     return mappedName;
 }
 
-- (FLCodeProject *) parseProjectFromData:(NSData*) data {
+- (FLCodeProject *) parseProjectFromData:(NSData*) data fromURL:(NSURL*) url {
         
     FLParsedXmlElement* parsedSoap = nil;
     @try {
-        parsedSoap = [[FLSoapParser soapParser] parseData:data];
+        parsedSoap = [[FLSoapParser soapParser] parseData:data fileNameForErrors:url.absoluteString];
             
         if(!FLStringsAreEqual(@"definitions", parsedSoap.elementName)) {
             return nil;
@@ -433,7 +426,12 @@
         return nil;
     }
 
-    self.wsdlDefinitions = [FLWsdlDefinitions objectWithXmlElement:parsedSoap withObjectBuilder:[FLSoapObjectBuilder instance]];
+    FLWsdlDefinitions* definitions = [[FLSoapObjectBuilder instance] buildObjectOfClass:[FLWsdlDefinitions class]
+                                                                                withXML:parsedSoap];
+
+    FLAssertNotNil(definitions);
+
+    self.wsdlDefinitions = definitions;
 
     [self prepareMessageObjects];
 

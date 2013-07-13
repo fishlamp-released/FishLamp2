@@ -176,12 +176,12 @@
 
     [self.credentialDataSource  loginPanel:self 
  beginAuthenticatingWithCredentials:self.credentialsEditor 
-                         completion:^(id result, NSError* error) {
+                         completion:^(FLPromisedResult result) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            if(error) {
+            if([result isError]) {
                 [self showEntryFields:YES completion:^{
-                    [self.delegate loginPanel:self authenticationFailed:error];
+                    [self.delegate loginPanel:self authenticationFailed:result];
                 }];
             }
             else {

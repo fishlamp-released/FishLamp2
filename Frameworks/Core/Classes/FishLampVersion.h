@@ -1,4 +1,4 @@
-// version 3.0.0.31 tagged Wed Jun 26 08:24:58 PDT 2013
+// version 3.0.0.32 tagged Sat Jul  6 08:55:32 PDT 2013
 #ifndef FishLampVersion
-#define FishLampVersion @"3.0.0.31"
+#define FishLampVersion @"3.0.0.32"
 #endif

@@ -12,7 +12,7 @@
 
 @implementation FLObservable 
 
-FLSynthesizeLazyGetter(observers, FLBroadcaster, _observers)
+FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
 
 #if FL_MRC
 - (void)dealloc {

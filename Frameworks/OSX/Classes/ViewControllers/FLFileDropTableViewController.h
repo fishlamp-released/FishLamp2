@@ -7,7 +7,8 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import <Cocoa/Cocoa.h>
+#import "FishLamp.h"
+
 #define BasicTableViewDragAndDropDataType @"BasicTableViewDragAndDropDataType"
 
 @interface FLFileDropTableViewController : NSViewController {

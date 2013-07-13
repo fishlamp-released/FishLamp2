@@ -8,4 +8,3 @@
 //
 
 #import "FishLampCocoaUI.h"
-#import "__OSXHeaders.h"

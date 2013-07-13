@@ -42,7 +42,6 @@
 @property (readwrite, strong, nonatomic) FLObjcName* methodName;
 @property (readwrite, strong, nonatomic) FLObjcType* returnType;
 
-
 // parameters
 - (void) addParameter:(FLObjcParameter*) parameter;
 - (void) addOrReplaceParameter:(FLObjcParameter*) parameter;

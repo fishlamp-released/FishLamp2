@@ -10,8 +10,8 @@
 #import "FLObjcType.h"
 #import "FLObjcName.h"
 #import "FLObjcCodeGeneratorHeaders.h"
-
 #import "FLObjcRuntime.h"
+#import "FLBase64Data.h"
 
 // TODO: load these in from a file or something more configable than a .m file
 
@@ -36,9 +36,9 @@
 		 @"unsigned int", @"unsignedint",
 		 @"unsigned int", @"unsigned",
          @"id", @"object",
-
-// TODO: abstract this.
-         @"NSData", @"base64binary",
+         @"double", @"decimal",
+         @"FLBase64Data", @"base64binary",
+         @"FLBase64Data", @"base64",
          nil];
 }
 
@@ -58,7 +58,7 @@
 		{ @"FLObjcImmutableObjectType", @"NSValue", nil },
 		{ @"FLObjcImmutableObjectType", @"NSDate", nil },
 		{ @"FLObjcImmutableObjectType", @"NSData", nil },
-		{ @"FLObjcImmutableObjectType", @"NSString", nil },
+		{ @"FLObjcStringType", @"NSString", nil },
 
 		{ @"FLObjcProtocolType", @"NSCoder", nil },
 
@@ -96,7 +96,6 @@
 		{ @"FLObjcNumberValueType", @"short", nil },
 		{ @"FLObjcNumberValueType", @"unsigned short", nil },
 		{ @"FLObjcNumberValueType", @"float", nil },
-		{ @"FLObjcNumberValueType", @"decimal", nil },
 		{ @"FLObjcNumberValueType", @"double", nil },
 //		{ @"FLObjcEnumType",        @"enum", nil },
 		
@@ -120,7 +119,8 @@
 		{ @"FLObjcMutableObjectType", @"FLObjectDescriber", @"FLObjectDescriber.h" },
 		{ @"FLObjcMutableObjectType", @"FLModelObject", @"FLModelObject.h" },
 		{ @"FLObjcImmutableObjectType", @"FLGuid", @"FLGuid.h" },
-        
+		{ @"FLObjcImmutableObjectType", @"FLBase64Data", @"FLBase64Data.h" },
+
         { @"FLObjcObjectType", @"FLHttpRequest", @"FLHttpRequest.h" },
         { @"FLObjcObjectType", @"FLSoapHttpRequest", @"FLSoapHttpRequest.h" },
         { @"FLObjcObjectType", @"FLJsonHttpRequest", @"FLJsonHttpRequest.h" },

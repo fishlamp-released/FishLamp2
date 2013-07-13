@@ -11,6 +11,7 @@
 @class FLObjcObject;
 @class FLObjcProperty;
 @class FLObjcProject;
+@class FLCodeElement;
 
 @interface FLObjcType : NSObject<FLGenerated, NSCopying> {
 @private
@@ -30,6 +31,8 @@
 
 - (void) objcObject:(FLObjcObject*) object 
 didConfigureProperty:(FLObjcProperty*) property;
+
+- (FLCodeElement*) defaultValueForString:(NSString*) string;
 
 @end
 

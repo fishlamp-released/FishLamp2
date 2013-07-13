@@ -13,7 +13,7 @@
 
 @synthesize textView = _textView;
 @synthesize logger = _logger;
-FLSynthesizeLazyGetterWithInit(logger, FLTextViewLogger*, _logger, [[FLTextViewLogger alloc] initWithTextView:self.textView]);
+FLSynthesizeLazyGetterWithBlock(logger, FLTextViewLogger*, _logger, ^{ return [FLTextViewLogger textViewLogger:self.textView]; } );
 
 - (void) setLinkAttributes {
     NSMutableDictionary* attr = [NSMutableDictionary dictionary];

@@ -7,8 +7,9 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#if OSX
+#import "FishLampCore.h"
 
+#if OSX
 
 #define SDKColor             NSColor
 #define SDKControl           NSControl

@@ -27,7 +27,7 @@
 }
 
 - (NSString*) keyFromObjcName:(FLObjcName*) name {
-    return name.identifierName;
+    return name.identifier;
 }
 
 - (void) addObject:(id) object forObjcName:(FLObjcName*) name {

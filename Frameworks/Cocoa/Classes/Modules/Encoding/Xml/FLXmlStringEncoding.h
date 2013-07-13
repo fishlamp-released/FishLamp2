@@ -10,7 +10,7 @@
 #import "FLStringEncoder.h"
 #import "NSString+XML.h"
 
-@interface FLXmlStringEncoder : NSObject<FLStringEncoding>
+@interface FLXmlStringEncoder : FLStringEncoder
 + (id) xmlStringEncoder;
 @end
 

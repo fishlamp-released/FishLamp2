@@ -9,14 +9,14 @@
 #import "FLCodeIdentifier.h"
 
 @interface FLCodeIdentifier ()
-@property (readwrite, strong, nonatomic) NSString* identifierName;
+@property (readwrite, strong, nonatomic) NSString* original;
 @property (readwrite, strong, nonatomic) NSString* prefix;
 @property (readwrite, strong, nonatomic) NSString* suffix;
 @end
 
 @implementation FLCodeIdentifier
 
-@synthesize identifierName = _identifierName;
+@synthesize original = _original;
 @synthesize prefix = _prefix;
 @synthesize suffix = _suffix;
 
@@ -37,35 +37,30 @@
         }
         if(!suffix) {
             suffix = @"";
-        }
-        
-        name = [name stringByDeletingPrefix:prefix];
-        name = [name stringByDeletingSuffix:suffix];
-
-//        if(prefix.length) {
-//            NSRange range = [name rangeOfString:prefix options:NSCaseInsensitiveSearch];
-//            if(range.location == 0 && range.length) {
-//                name = [name substringFromIndex:range.length];
-//            }
-//        }
-//
-//        if(suffix.length) { 
-//            NSRange range = [name rangeOfString:prefix options:NSCaseInsensitiveSearch | NSBackwardsSearch];
-//            if(range.location == name.length - range.length) {
-//                name = [name substringToIndex:range.location];
-//            }
-//
-//        }
-
+        }        
+//        name = [name stringByDeletingPrefix:prefix];
+//        name = [name stringByDeletingSuffix:suffix];
         self.prefix = prefix;
         self.suffix = suffix;
-        self.identifierName = name;
+        self.original = name;
 	}
 	return self;
 }
 
+- (NSString*) identifier {
+    NSString* baseName = _original;
+    if(FLStringIsNotEmpty(_prefix)) {
+        baseName = [baseName stringByDeletingPrefix:_prefix];
+    }
+    if(FLStringIsNotEmpty(_suffix)) {
+        baseName = [baseName stringByDeletingSuffix:_suffix];
+    }
+    return baseName; 
+    
+}
+
 - (NSString*) generatedName {
-    return [NSString stringWithFormat:@"%@%@%@", _prefix, _identifierName, _suffix];
+    return [NSString stringWithFormat:@"%@%@%@", _prefix, self.identifier, _suffix];
 }
 
 - (NSString*) generatedReference {
@@ -73,24 +68,23 @@
 }
 
 - (id) copyWithZone:(NSZone *)zone {
-    FLCodeIdentifier* name = [[[self class] alloc] init];
-    name.identifierName = FLCopyWithAutorelease(self.identifierName);
-    name.prefix = FLCopyWithAutorelease(self.prefix);
-    name.suffix = FLCopyWithAutorelease(self.suffix);
+    FLCodeIdentifier* name = [[[self class] alloc] initWithIdentifierName:FLCopyWithAutorelease(self.original)
+                                                                   prefix:FLCopyWithAutorelease(self.prefix)
+                                                                   suffix:FLCopyWithAutorelease(self.suffix)];
     return name;
 }
 
 - (BOOL)isEqual:(FLCodeIdentifier*)object {
-    return FLStringsAreEqual(self.identifierName, [object identifierName]);
+    return FLStringsAreEqual(self.generatedName, [object generatedName]);
 }
 
 - (NSUInteger)hash {
-    return [self.identifierName hash];
+    return [self.generatedName hash];
 }
 
 #if FL_MRC
 - (void) dealloc {
-	[_identifierName release];
+	[_original release];
     [_prefix release];
     [_suffix release];
     [super dealloc];
@@ -98,8 +92,8 @@
 #endif
 
 - (void) describeSelf:(FLPrettyString *)string {
-    [string appendLineWithFormat:@"identifierName=%@", self.identifierName];
-    [string appendLineWithFormat:@"generatedName=%@", self.generatedName];
+    [string appendLineWithFormat:@"original=%@", self.original];
+    [string appendLineWithFormat:@"generated=%@", self.generatedName];
 }
 
 - (NSString*) description {

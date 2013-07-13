@@ -8,14 +8,12 @@
 //
 
 #import "FLAtomicProperties.h"
-
 #import "FLAtomic.h"
+#import "FishLampCore.h"
 
 
 // this code is based on: http://www.opensource.apple.com/source/objc4/objc4-371.2/runtime/Accessors.subproj/objc-accessors.m
-// trying not to use ungodly knowledge of object layout at runtime.
 
-// I don't get this magic number for the hashtable... ??? 
 #define GOODPOWER 7
 #define GOODMASK ((1<<GOODPOWER)-1) // 1<<y == 128. 
 #define GOODHASH(x) (((long)x >> 5) & GOODMASK)
@@ -67,6 +65,8 @@ void FLAtomicPropertyCopy(id* addr, id newValue, dispatch_block_t setter) {
     [oldValue release];
 }
 
+
+
 #else 
 
 id FLAtomicPropertyGet(id __strong * addr) {
@@ -103,4 +103,24 @@ void FLAtomicPropertySet(id __strong * addr, id newValue, dispatch_block_t sette
 
 #endif
 
+void FLAtomicCreateIfNil(id __strong * addr, Class theClass) {
+    if(addr && *addr == nil) {
+        OSSpinLock *slotlock = &FLPropertyLocks[GOODHASH(addr)];
+        OSSpinLockLock(slotlock);
+        if(*addr == nil) {
+            *addr = [[theClass alloc] init];
+        }
+        OSSpinLockUnlock(slotlock);
+    }
+}
 
+void FLAtomicCreateIfNilWithBlock(id __strong* addr, FLAtomicCreateBlock block) {
+    if(addr && *addr == nil) {
+        OSSpinLock *slotlock = &FLPropertyLocks[GOODHASH(addr)];
+        OSSpinLockLock(slotlock);
+        if(*addr == nil) {
+            *addr = FLRetain(block());
+        }
+        OSSpinLockUnlock(slotlock);
+    }
+}

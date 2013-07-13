@@ -159,7 +159,7 @@ generationDidFailForProject:(FLCodeProject*) project
     FLCodeGeneratorProjectProvider* provider = [FLCodeGeneratorProjectProvider codeGeneratorProjectProvider:[self fileURL]];
     FLObjcCodeGenerator* generator = [FLObjcCodeGenerator  objcCodeGenerator];
 
-    [generator.observers addObserverRetained:[FLMainThreadRef mainThreadRef:self]];
+    [generator.observers addObserver:[FLMainThreadObject mainThreadObject:[FLNonretainedObject nonretainedObject:self]]];
 
     FLCodeGeneratorOperation* operation = [FLCodeGeneratorOperation codeGeneratorOperation:generator projectProvider:provider];
     [operation runAsynchronously];

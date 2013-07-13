@@ -81,7 +81,7 @@
 	[xml addElement:element];
     
     FLPrettyString* string = [FLPrettyString prettyString];
-    [string appendBuildableString:xml];
+    [string appendStringFormatter:xml];
 
     return [string.string dataUsingEncoding:NSUTF8StringEncoding];
 

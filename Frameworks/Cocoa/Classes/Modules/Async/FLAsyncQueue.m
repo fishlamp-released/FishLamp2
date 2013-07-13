@@ -27,7 +27,7 @@ FLPromise* FLDispatchAsync(id<FLAsyncQueue> queue,
                             fl_completion_block_t completionOrNil) {
     FLAssertNotNil(queue);
     FLAssertNotNil(block);
-    return [queue addBlock:block withCompletion:completionOrNil];
+    return [queue queueBlock:block withCompletion:completionOrNil];
 }
 
 NS_INLINE
@@ -36,11 +36,11 @@ FLPromise* FLFinishAsync(id<FLAsyncQueue> queue,
                           fl_completion_block_t completionOrNil) {
     FLAssertNotNil(queue);
     FLAssertNotNil(block);
-    return [queue addFinishableBlock:block withCompletion:completionOrNil];
+    return [queue queueFinishableBlock:block withCompletion:completionOrNil];
 }
 
 NS_INLINE
-FLPromisedResult* FLFinishSync(id<FLAsyncQueue> queue,
+FLPromisedResult FLFinishSync(id<FLAsyncQueue> queue,
                       fl_finisher_block_t block) {
     FLAssertNotNil(queue);
     FLAssertNotNil(block);
@@ -48,7 +48,7 @@ FLPromisedResult* FLFinishSync(id<FLAsyncQueue> queue,
 }
 
 NS_INLINE
-FLPromisedResult* FLRunOperation(id<FLAsyncQueue> queue,
+FLPromisedResult FLRunOperation(id<FLAsyncQueue> queue,
                                  id<FLDispatchable> operation) {
     FLAssertNotNil(queue);
     FLAssertNotNil(operation);
@@ -61,7 +61,7 @@ FLPromise* FLStartOperation(id<FLAsyncQueue> queue,
                              fl_completion_block_t completionOrNil) {
     FLAssertNotNil(queue);
     FLAssertNotNil(operation);
-    return [queue addOperation:operation withCompletion:completionOrNil];
+    return [queue queueOperation:operation withCompletion:completionOrNil];
 }
 
 // these return NIL if the target doesn't respond to selector.
@@ -128,7 +128,7 @@ FLPromise* FLDispatchSelectorAsync0(id<FLAsyncQueue> queue,
                                     fl_completion_block_t completion) {
 
     if([target respondsToSelector:selector]) {
-        return [queue addBlock:^{ 
+        return [queue queueBlock:^{ 
             [target performSelector:selector]; 
         } withCompletion:completion];
     }
@@ -143,7 +143,7 @@ FLPromise* FLDispatchSelectorAsync1(id<FLAsyncQueue> queue,
                                               fl_completion_block_t completion) {
     
     if([target respondsToSelector:selector]) {
-        return [queue addBlock:^{ 
+        return [queue queueBlock:^{ 
             [target performSelector:selector withObject:object]; 
         } withCompletion:completion];
     }
@@ -158,7 +158,7 @@ FLPromise* FLDispatchSelectorAsync2(id<FLAsyncQueue> queue,
                                                   id object2,
                                                   fl_completion_block_t completion) {
     if([target respondsToSelector:selector]) {
-        return [queue addBlock:^{ 
+        return [queue queueBlock:^{ 
             [target performSelector:selector withObject:object1 withObject:object2]; 
         } withCompletion:completion];
     }
@@ -176,7 +176,7 @@ FLPromise* FLDispatchSelectorAsync3(id<FLAsyncQueue> queue,
                                                 fl_completion_block_t completion) {
     
     if([target respondsToSelector:selector]) {
-        return [queue addBlock:^{ 
+        return [queue queueBlock:^{ 
             [target performSelector:selector withObject:object1 withObject:object2 withObject:object3]; 
         } withCompletion:completion];
     }

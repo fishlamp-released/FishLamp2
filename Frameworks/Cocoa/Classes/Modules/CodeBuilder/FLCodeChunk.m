@@ -25,19 +25,20 @@
 }
 #endif
 
-- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
+- (void) appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
+
     if(FLStringIsNotEmpty(_openScopeString)) {
-        [stringFormatter appendLine:_openScopeString];
-        [stringFormatter indent:^{
-            [super buildStringIntoStringFormatter:stringFormatter];
+        [anotherStringFormatter appendLine:_openScopeString];
+        [anotherStringFormatter indent:^{
+            [super appendSelfToStringFormatter:anotherStringFormatter];
         }];
         
         if(FLStringIsNotEmpty(_closeScopeString)) {
-            [stringFormatter appendLine:_closeScopeString];
+            [anotherStringFormatter appendLine:_closeScopeString];
         }
     }
     else {
-        [super buildStringIntoStringFormatter:stringFormatter];
+        [super appendSelfToStringFormatter:anotherStringFormatter];
     }
 }
 

@@ -10,7 +10,7 @@
 #import "FLParsedXmlElement.h"
 
 @interface FLParsedXmlElement ()
-@property (readwrite, assign, nonatomic) FLParsedXmlElement* parent;
+@property (readwrite, assign, nonatomic) FLParsedXmlElement* parentElement;
 @property (readwrite, strong, nonatomic) NSString* prefix;
 
 @end
@@ -22,9 +22,9 @@
 @synthesize elementName = _elementName;
 @synthesize qualifiedName = _qualifiedName;
 @synthesize elementValue = _elementValue;
-@synthesize childElements = _elements;
-@synthesize parent = _parent;
-@synthesize sibling = _sibling;
+@synthesize childElements = _childElements;
+@synthesize parentElement = _parentElement;
+@synthesize siblingElement = _siblingElement;
 @synthesize prefix = _prefix;
 
 - (id) initWithName:(NSString*) name elementValue:(NSString*) elementValue {	
@@ -44,6 +44,20 @@
     return FLAutorelease([[[self class] alloc] initWithName:name elementValue:elementValue]);
 }
 
+#if FL_MRC
+- (void) dealloc {
+    [_prefix release];
+    [_siblingElement release];
+    [_attributes release];
+    [_namespace release];
+    [_elementName release];
+    [_qualifiedName release];
+    [_elementValue release];
+    [_childElements release];
+    [super dealloc];
+}
+#endif
+
 - (void) setElementValue:(NSString*) string {
     FLSetObjectWithMutableCopy(_elementValue, string);
 }
@@ -59,60 +73,46 @@
     }
 }
 
-- (void) addSibling:(FLParsedXmlElement*) sibling {
+- (void) addSibling:(FLParsedXmlElement*) siblingElement {
     FLParsedXmlElement* walker = self;
-    while(walker.sibling) {
-        walker = walker.sibling;
+    while(walker.siblingElement) {
+        walker = walker.siblingElement;
     }
     FLAssertNotNil(walker);
-    FLAssertIsNil(walker.sibling);
-    walker.sibling = sibling;
+    FLAssertIsNil(walker.siblingElement);
+    walker.siblingElement = siblingElement;
 }
 
 - (void) addChildElement:(FLParsedXmlElement*) element {
-    if(!_elements) {
-        _elements = [[NSMutableDictionary alloc] init];
+    if(!_childElements) {
+        _childElements = [[NSMutableDictionary alloc] init];
     }
-    element.parent = self;
+    element.parentElement = self;
 
-    FLParsedXmlElement* current = [_elements objectForKey:element.elementName];
+    FLParsedXmlElement* current = [_childElements objectForKey:element.elementName];
     if(current) {
         [current addSibling:element];
     }
     else {
-        [_elements setObject:element forKey:element.elementName];
+        [_childElements setObject:element forKey:element.elementName];
     }
 }
 
-- (FLParsedXmlElement*) childElementForName:(NSString*) name {
-    return [_elements objectForKey:name];
+- (FLParsedXmlElement*) childElementWithName:(NSString*) name {
+    return [self childElementWithName:name maxSearchDepth:FLParsedElementDefaultSearchDepth];
 }
 
-#if FL_MRC
-- (void) dealloc {
-    [_prefix release];
-    [_sibling release];
-    [_attributes release];
-    [_namespace release];
-    [_elementName release];
-    [_qualifiedName release];
-    [_elementValue release];
-    [_elements release];
-    [super dealloc];
-}
-#endif
-
-- (FLParsedXmlElement*) findChildElementWithName:(NSString*) name maxDepth:(NSInteger) maxDepth {
-    FLParsedXmlElement* item = [_elements objectForKey:name];
+- (FLParsedXmlElement*) childElementWithName:(NSString*) name maxSearchDepth:(NSInteger) maxSearchDepth {
+    FLParsedXmlElement* item = [_childElements objectForKey:name];
     if(item) {
         return item;
     }
 
-    if(maxDepth > 0) {
-        maxDepth--;
+    if(maxSearchDepth > 0) {
+        maxSearchDepth--;
         
-        for(FLParsedXmlElement* childElement in [_elements objectEnumerator]) {
-            FLParsedXmlElement* found = [childElement findChildElementWithName:name maxDepth:maxDepth];
+        for(FLParsedXmlElement* childElement in [_childElements objectEnumerator]) {
+            FLParsedXmlElement* found = [childElement childElementWithName:name maxSearchDepth:maxSearchDepth];
             if(found) {
                 return found;
             }
@@ -122,11 +122,11 @@
     return nil;
 }
 
-- (FLParsedXmlElement*) childElementAtPath:(NSString*) path {
+- (FLParsedXmlElement*) childElementWithPath:(NSString*) path {
     FLParsedXmlElement* obj = self;
     NSArray* pathComponents = [path pathComponents];
     for(NSString* component in pathComponents) {
-        obj = [obj childElementForName:component];
+        obj = [obj childElementWithName:component maxSearchDepth:0];
     }
     return obj;
 }
@@ -158,7 +158,7 @@
 
     [stringFormatter appendLineWithFormat:@"</%@>", self.elementName];
 
-    [stringFormatter appendLineWithFormat:@"<!-- %d siblings -->", self.siblingCount];
+    [stringFormatter appendLineWithFormat:@"<!-- %d siblings -->", self.countSiblingElements];
 }
 
 - (BOOL) isQualified {
@@ -199,11 +199,11 @@
 //    ];
 }
 
-- (NSUInteger) siblingCount {
+- (NSUInteger) countSiblingElements {
     NSUInteger count = 0;
     FLParsedXmlElement* walker = self;
-    while(walker.sibling) {
-        walker = walker.sibling;
+    while(walker.siblingElement) {
+        walker = walker.siblingElement;
         
         ++count;
     }
@@ -212,8 +212,8 @@
 }
 
 - (void) appendFullPath:(NSMutableString*) path {
-    if(self.parent) {
-        [self.parent appendFullPath:path];
+    if(self.parentElement) {
+        [self.parentElement appendFullPath:path];
     }
 
     [path appendFormat:@"<%@>", self.elementName];
@@ -226,137 +226,3 @@
 }
 
 @end
-
-////
-////  FLParsedXmlElement.m
-////  FishLampCocoa
-////
-////  Created by Mike Fullerton on 3/13/13.
-////  Copyright (c) 2013 Mike Fullerton. All rights reserved.
-////
-//
-//#import "FLParsedXmlElement.h"
-//
-//@interface FLParsedXmlElement ()
-//@property (readwrite, assign, nonatomic) FLParsedXmlElement* parent;
-//
-//@end
-//
-//@implementation FLParsedXmlElement
-//
-//@synthesize attributes = _attributes;
-//@synthesize namespaceURI = _namespace;
-//@synthesize elementName = _elementName;
-//@synthesize qualifiedName = _qualifiedName;
-//@synthesize value = _elementValue;
-//@synthesize elements = _elements;
-//@synthesize parent = _parent;
-//
-//- (id) initWithName:(NSString*) name value:(NSString*) value {	
-//	self = [super init];
-//	if(self) {
-//		self.elementName = name;
-//        _elementValue = [value mutableCopy];
-//	}
-//	return self;
-//}
-//
-//+ (id) parsedXmlElement {
-//    return FLAutorelease([[[self class] alloc] init]);
-//}
-//
-//+ (id) parsedXmlElement:(NSString*) name value:(NSString*) value {
-//    return FLAutorelease([[[self class] alloc] initWithName:name value:value]);
-//}
-//
-//- (void) appendStringToValue:(NSString*) string {
-//    if(FLStringIsNotEmpty(string)) {
-//        if(_elementValue) {
-//            [_elementValue appendString:string];
-//        }
-//        else {
-//            _elementValue = [string mutableCopy];
-//        }
-//    }
-//}
-//
-//- (void) addElement:(FLParsedXmlElement*) element {
-//    if(!_elements) {
-//        _elements = [[NSMutableDictionary alloc] init];
-//    }
-//    id existing = [_elements objectForKey:element.elementName];
-//    if(!existing) {
-//        [_elements setObject:element forKey:element.elementName];
-//    }
-//    else if([existing isKindOfClass:[NSMutableArray class]]) {
-//        [((NSMutableArray*)existing) addObject:element];
-//    }
-//    else {
-//        NSMutableArray* array = [NSMutableArray arrayWithObjects:existing, element, nil];
-//        [_elements setObject:array forKey:element.elementName];
-//    }
-//    element.parent = self;
-//}
-//
-//- (FLParsedXmlElement*) elementForElementName:(NSString*) name {
-//    return [_elements objectForKey:name];
-//}
-//
-//#if FL_MRC
-//- (void) dealloc {
-//    [_attributes release];
-//    [_namespace release];
-//    [_elementName release];
-//    [_qualifiedName release];
-//    [_elementValue release];
-//    [_elements release];
-//    [super dealloc];
-//}
-//#endif
-//
-//- (FLParsedXmlElement*) findElementWithName:(NSString*) name maxDepth:(NSInteger) maxDepth {
-//    FLParsedXmlElement* item = [_elements objectForKey:name];
-//    if(item) {
-//        return item;
-//    }
-//
-//    if(maxDepth > 0) {
-//        maxDepth--;
-//        
-//        for(FLParsedXmlElement* childElement in [_elements objectEnumerator]) {
-//            FLParsedXmlElement* found = [childElement findElementWithName:name maxDepth:maxDepth];
-//            if(found) {
-//                return found;
-//            }
-//        }
-//    }
-//    
-//    return nil;
-//}
-//
-//- (FLParsedXmlElement*) elementAtPath:(NSString*) path {
-//    FLParsedXmlElement* obj = self;
-//    NSArray* pathComponents = [path pathComponents];
-//    for(NSString* component in pathComponents) {
-//        obj = [obj elementForElementName:component];
-//    }
-//    return obj;
-//}
-//
-//- (NSDictionary*) childrenAtPath:(NSString*) parentalPath {
-//    return [[self elementAtPath:parentalPath] elements];
-//}
-//
-//- (NSString*) description {
-//
-//    return [NSString stringWithFormat:@"elementName:%@, namespace:%@, qualifiedName:%@, attributes:%@, value:%@, elements:%@ \n",
-//        FLEmptyStringOrString(self.elementName),
-//        FLEmptyStringOrString(self.namespaceURI),
-//        FLEmptyStringOrString(self.qualifiedName),
-//        FLEmptyStringOrString([self.attributes description]),
-//        FLEmptyStringOrString(self.value),
-//        FLEmptyStringOrString([self.elements description])
-//    ];
-//}
-//
-//@end

@@ -9,7 +9,7 @@
 
 #import "FLCocoaRequired.h"
 #import "FLCoreFlags.h"
-#import "FLRequired.h"
+#import "FLCoreRequired.h"
 
 /// @category NSObject(FLComparison)
 ///  An extension to NSObject to help with copying objects

@@ -15,16 +15,18 @@
 @end
 
 @implementation NSString (FLDocumentSection)
-- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
-    [stringFormatter appendLine:self];
+
+- (void) appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
+    [anotherStringFormatter appendLine:self];
 }
+
 @end
 
-@interface FLDocumentSectionIndent : NSObject<FLBuildableString>
+@interface FLDocumentSectionIndent : NSObject<FLAppendableString>
 + (id) documentSectionIndent;
 @end
 
-@interface FLDocumentSectionOutdent : NSObject<FLBuildableString>
+@interface FLDocumentSectionOutdent : NSObject<FLAppendableString>
 + (id) documentSectionOutdent;
 @end
 
@@ -32,21 +34,19 @@
 + (id) documentSectionIndent {
     FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));
 }
-- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
+- (void) appendSelfToStringFormatter:(id<FLStringFormatter>) stringFormatter {
     [stringFormatter indent];
 }
 - (NSString*) description {
     return @"INDENT";
 }
-
-
 @end
 
 @implementation FLDocumentSectionOutdent
 + (id) documentSectionOutdent {
     FLReturnStaticObject(FLAutorelease([[[self class] alloc] init]));
 }
-- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
+- (void) appendSelfToStringFormatter:(id<FLStringFormatter>) stringFormatter {
     [stringFormatter outdent];
 }
 - (NSString*) description {
@@ -156,7 +156,7 @@
 
 - (NSString*) description {
     FLPrettyString* str = [FLPrettyString prettyString];
-    [str appendBuildableString:self];
+    [str appendStringFormatter:self];
     return str.string;
 }
 
@@ -166,19 +166,19 @@
 - (void) didBuildWithStringFormatter:(id<FLStringFormatter>) stringFormatter {
 }
 
-- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
+- (void) stringFormatter:(FLStringFormatter*) myFormatter
+appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 
-    [self willBuildWithStringFormatter:stringFormatter];
+    [self willBuildWithStringFormatter:anotherStringFormatter];
 
-    for(id<FLBuildableString> line in _lines) {
-        [line buildStringIntoStringFormatter:stringFormatter];
+    for(id<FLStringFormatter> line in _lines) {
+        [anotherStringFormatter appendStringFormatter:line];
     }
 
-    [self didBuildWithStringFormatter:stringFormatter];
+    [self didBuildWithStringFormatter:anotherStringFormatter];
 }
 
-- (void) appendStringFormatter:(id<FLStringFormatter, FLBuildableString>) stringBuilder {
-
+- (void) appendStringFormatter:(id<FLStringFormatter>) stringBuilder {
     [_lines addObject:stringBuilder];
     [stringBuilder setParent:self];
     _needsLine = YES;
@@ -187,6 +187,16 @@
 - (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) formatter {
     [_lines removeAllObjects];
 }
+
+- (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter {
+
+    NSUInteger length = 0;
+    for(id<FLStringFormatter> line in _lines) {
+        length += line.length;
+    }
+    return length;
+}
+
 
 @end
 
@@ -250,7 +260,7 @@
     return line;
 }
 
-- (void) buildStringIntoStringFormatter:(id<FLStringFormatter>) stringFormatter {
+- (void) appendSelfToStringFormatter:(id<FLStringFormatter>) stringFormatter {
     if(FLStringIsNotEmpty(_string)) {
         [prettyString appendLine:_string];
     }

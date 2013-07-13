@@ -22,6 +22,6 @@
 #import "FLBroadcaster.h"
 
 #import "FLObjectRef.h"
-#import "FLNonretainedRef.h"
-#import "FLRetainedRef.h"
-#import "FLMainThreadRef.h"
+#import "FLNonretainedObject.h"
+#import "FLRetainedObject.h"
+#import "FLMainThreadObject.h"

@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import <Foundation/Foundation.h>
+#import "FishLampCore.h"
 #import "FLCocoaRequired.h"
 #import "FLWhitespace.h"
 #import "FLStringFormatter.h"
@@ -15,7 +15,7 @@
 #import "FLPrettyString.h"
 #import "FLStringDocument.h"
 
-@interface FLDocumentBuilder : FLStringFormatter<FLBuildableString, FLStringFormatterOutput> {
+@interface FLDocumentBuilder : FLStringFormatter<FLStringFormatterOutput> {
 @private
     FLStringDocument* _document;
 }
@@ -24,9 +24,7 @@
 @property (readonly, strong, nonatomic) FLStringDocument* document;
 @property (readonly, strong, nonatomic) FLDocumentSection* openedSection;
 
-- (void) appendStringFormatter:(id<FLStringFormatter, FLBuildableString>) document;
-
-- (void) openSection:(id<FLStringFormatter, FLBuildableString>) element;
+- (void) openSection:(id<FLStringFormatter>) element;
 - (void) closeSection;
 
 - (void) closeAllSections;

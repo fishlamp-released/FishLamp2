@@ -7,8 +7,9 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import <Foundation/Foundation.h>
+#import "FishLampCore.h"
 #import "FLStringFormatter.h"
+#import "FLCompatibility.h"
 
 extern NSString* const FLActivityLogUpdated;
 extern NSString* const FLActivityLogStringKey;

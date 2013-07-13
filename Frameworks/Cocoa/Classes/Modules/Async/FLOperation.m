@@ -81,7 +81,7 @@
 
 - (void) setContext:(FLOperationContext*) context {
     if(context) {
-        [context addOperation:self];
+        [context queueOperation:self];
     }
     else {
         [self.context removeOperation:self];
@@ -116,17 +116,17 @@
     }
 }
 
-- (FLPromisedResult*) runSynchronously {
-    return [[self.asyncQueue addOperation:self] waitUntilFinished];
+- (FLPromisedResult) runSynchronously {
+    return [[self.asyncQueue queueOperation:self] waitUntilFinished];
 }
 
-- (FLPromisedResult*) runSynchronouslyInContext:(FLOperationContext*) context {
+- (FLPromisedResult) runSynchronouslyInContext:(FLOperationContext*) context {
     self.context = context;
     return [self runSynchronously];
 }
 
 - (FLPromise*) runAsynchronously:(fl_completion_block_t) completion {
-    return [self.asyncQueue addOperation:self withCompletion:completion];
+    return [self.asyncQueue queueOperation:self withCompletion:completion];
 }
 
 - (FLPromise*) runAsynchronously {
@@ -134,14 +134,14 @@
 }
 
 - (FLPromise*) runAsynchronouslyInContext:(FLOperationContext*) context 
-                         completion:(fl_completion_block_t) completionOrNil {
+                               completion:(fl_completion_block_t) completionOrNil {
     self.context = context;
     return [self runAsynchronously:completionOrNil];
 }
 
 - (void) willRunChildOperation:(FLOperation*) operation {
 
-    [operation.observers addObserverRetained:self.observers];
+    [operation.observers addObserver:[FLRetainedObject retainedObject:self.observers]];
 
     if([operation context] == nil) {
         [operation setContext:self.context];
@@ -159,16 +159,18 @@
     [operation.observers removeObserver:self.observers];
 }
 
-- (FLPromisedResult*) runChildSynchronously:(FLOperation*) operation {
+- (FLPromisedResult) runChildSynchronously:(FLOperation*) operation {
+
+    FLAssertNotNilWithComment(operation, @"child operation is nil");
 
     [self willRunChildOperation:operation];
     
-    FLPromisedResult* result = nil;
+    FLPromisedResult result = nil;
     @try {
         result = [operation runSynchronously];
     }
     @catch(NSException* ex) {
-        result = [FLPromisedResult promisedResult:nil error:ex.error];
+        result = ex.error;
     }
 
     FLAssertNotNilWithComment(result, @"result should not be nil");
@@ -187,11 +189,11 @@
         completionOrNil = FLCopyWithAutorelease(completionOrNil);
     }
     
-    return [operation runAsynchronously:^(id result, NSError* error) {
+    return [operation runAsynchronously:^(FLPromisedResult result) {
         [self didRunChildOperation:operation];
         
         if(completionOrNil) {
-            completionOrNil(result, error);
+            completionOrNil(result);
         }
     }];
 }
@@ -206,19 +208,17 @@
     }
 }
 
+
 - (void) finisherDidFinish:(FLFinisher*) finisher
-                withResult:(id) result
-                 withError:(NSError*) error {
+                withResult:(FLPromisedResult) result {
             
-    [self didFinishWithResult:result error:error];
-}
-
-- (void) didFinishWithResult:(id) result
-                       error:(NSError*) error {
-
-    [self.observers notify:@selector(operationDidFinish:withResult:error:) withObject:self withObject:result withObject:error];
+    [self didFinishWithResult:result];
+    [self.observers notify:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
     self.context = nil;
     self.cancelled = NO;
+}
+
+- (void) didFinishWithResult:(FLPromisedResult) result {
 }
 
 - (void) setFinished {
@@ -226,15 +226,10 @@
 }
 
 - (void) setFinishedWithResult:(id) result {
-    [self.finisher setFinishedWithResult:result error:nil];
+    [self.finisher setFinishedWithResult:result];
 }
 
-- (void) setFinishedWithResult:(id) result error:(NSError*) error{
-    [self.finisher setFinishedWithResult:result error:error];
-}
 
-- (void) setFinishedWithError:(NSError*) error{
-    [self.finisher setFinishedWithResult:nil error:error];
-}
+
 
 @end

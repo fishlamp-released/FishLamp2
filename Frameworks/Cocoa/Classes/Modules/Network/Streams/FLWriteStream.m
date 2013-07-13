@@ -18,7 +18,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
                                       CFStreamEventType eventType, 
                                       void *clientCallBackInfo) {
     
-    FLNetworkStream* stream = bridge_(FLWriteStream*, clientCallBackInfo);
+    FLNetworkStream* stream = FLBridge(FLWriteStream*, clientCallBackInfo);
     [stream.eventHandler handleStreamEvent:eventType];
 }
 
@@ -43,7 +43,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
                     kCFStreamEventEndEncountered | 
                     kCFStreamEventErrorOccurred;
 
-            CFStreamClientContext ctxt = {0, bridge_(void*,self), NULL, NULL, NULL};
+            CFStreamClientContext ctxt = {0, FLBridge(void*,self), NULL, NULL, NULL};
             CFWriteStreamSetClient(_streamRef, flags, WriteStreamClientCallBack, &ctxt);
         }
     }
@@ -84,18 +84,18 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
 }
 
 - (NSError*) streamError {
-    return FLAutorelease(bridge_transfer_(NSError*,CFWriteStreamCopyError(self.streamRef)));
+    return FLAutorelease(FLBridgeTransfer(NSError*,CFWriteStreamCopyError(self.streamRef)));
 }
 
 - (void) openStream {
     FLAssertIsNotNil(_streamRef);
-    CFWriteStreamScheduleWithRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
+    CFWriteStreamScheduleWithRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], FLBridge(void*,self.eventHandler.runLoopMode));
     CFWriteStreamOpen(_streamRef);
 }
 
 - (void) closeStream {
     FLAssertIsNotNil(_streamRef);
-    CFWriteStreamUnscheduleFromRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], bridge_(void*,self.eventHandler.runLoopMode));
+    CFWriteStreamUnscheduleFromRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], FLBridge(void*,self.eventHandler.runLoopMode));
     CFWriteStreamClose(_streamRef);
     [self didClose];
 }
@@ -126,7 +126,7 @@ static void WriteStreamClientCallBack(CFWriteStreamRef writeStream,
 }
 
 - (unsigned long) bytesWritten {
-    NSNumber* number = FLAutorelease(bridge_transfer_(NSNumber*,
+    NSNumber* number = FLAutorelease(FLBridgeTransfer(NSNumber*,
         CFWriteStreamCopyProperty(self.streamRef, kCFStreamPropertyDataWritten)));
     return [number unsignedLongValue];
 }
