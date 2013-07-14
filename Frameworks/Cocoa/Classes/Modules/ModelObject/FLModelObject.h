@@ -14,7 +14,8 @@
 
 @protocol FLModelObject <NSCopying, NSCoding>
 - (void) startTrackingChanges;
-@property (readwrite, strong, nonatomic) FLObjectChangeTracker* changeTracker;
+- (void) setChangeTracker:(FLObjectChangeTracker*) changeTracker;
+- (FLObjectChangeTracker*) changeTracker;
 @end
 
 @interface FLModelObject : NSObject<FLModelObject> {

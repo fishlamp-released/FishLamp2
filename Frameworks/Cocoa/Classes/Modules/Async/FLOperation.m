@@ -71,7 +71,7 @@
 }
 
 - (void) startOperation {
-    FLLog(@"operation did nothing.");
+    FLLog(@"%@ operation did nothing, you must override startOperation.", NSStringFromClass([self class]));
     [self.finisher setFinished];
 }
 
@@ -141,7 +141,8 @@
 
 - (void) willRunChildOperation:(FLOperation*) operation {
 
-    [operation.observers addObserver:[FLRetainedObject retainedObject:self.observers]];
+//    [operation.observers addObserver:[self.observers broadcasterReference]];
+    [operation.observers addObserver:self];
 
     if([operation context] == nil) {
         [operation setContext:self.context];
@@ -156,7 +157,8 @@
 }
 
 - (void) didRunChildOperation:(FLOperation*) operation {
-    [operation.observers removeObserver:self.observers];
+//    [operation.observers removeObserver:self.observers];
+    [operation.observers removeObserver:self];
 }
 
 - (FLPromisedResult) runChildSynchronously:(FLOperation*) operation {

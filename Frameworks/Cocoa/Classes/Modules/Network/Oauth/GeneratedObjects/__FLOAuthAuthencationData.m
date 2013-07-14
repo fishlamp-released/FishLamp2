@@ -65,25 +65,6 @@
     return FLAutorelease([[FLOAuthAuthencationData alloc] init]);
 }
 
-+ (FLObjectDescriber*) objectDescriber
-{
-    
-    static dispatch_once_t pred = 0;
-    dispatch_once(&pred, ^{
-        
-		
-            FLLegacyObjectDescriber* describer = [FLLegacyObjectDescriber registerClass:[self class]];
-        
-        
-
-        [describer addPropertyWithName:@"oauth_token_secret" withClass:[NSString class]];
-        [describer addPropertyWithName:@"oauth_callback_confirmed" withClass:[NSString class]];
-        [describer addPropertyWithName:@"oauth_token" withClass:[NSString class]];
-        [describer addPropertyWithName:@"oauth_verifier" withClass:[NSString class]];
-    });
-    return [FLObjectDescriber objectDescriber:[self class]];
-}
-
 
 - (BOOL) isModelObject {
     return YES;

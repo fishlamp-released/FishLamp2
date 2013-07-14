@@ -11,6 +11,13 @@
 
 @protocol FLObservable <NSObject>
 - (FLBroadcaster*) observers;
+
+- (BOOL) hasObserver:(id) listener;
+
+- (void) addObserver:(id) observer;
+
+- (void) removeObserver:(id) listener;
+
 @end
 
 @interface FLObservable : NSObject<FLObservable> {

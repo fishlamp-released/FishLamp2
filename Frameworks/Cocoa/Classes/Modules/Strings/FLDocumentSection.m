@@ -17,6 +17,8 @@
 @implementation NSString (FLDocumentSection)
 
 - (void) appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
+    FLAssertNotNil(anotherStringFormatter);
+
     [anotherStringFormatter appendLine:self];
 }
 
@@ -55,7 +57,6 @@
 
 @end
 
-
 @implementation FLDocumentSection 
 
 @synthesize lines = _lines;
@@ -81,24 +82,38 @@
 #endif
 
 - (id) lastLine {
+    FLAssertNotNil(_lines);
     FLAssertNotNil([_lines lastObject]);
     return [_lines lastObject];
 }
 
 - (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
+    FLAssertNotNil(_lines);
+    FLAssertNotNil(stringFormatter);
+
     [_lines addObject:@""];
 }
 
 - (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
-    _needsLine = YES;    
+    FLAssertNotNil(_lines);
+    FLAssertNotNil(stringFormatter);
+
+    _needsLine = YES;
 }
 
 - (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
-    _needsLine = YES;    
+    FLAssertNotNil(_lines);
+    FLAssertNotNil(stringFormatter);
+    _needsLine = YES;
 }
 
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter 
             appendString:(NSString*) string {
+
+    FLAssertNotNil(_lines);
+    FLAssertNotNil(stringFormatter);
+    FLAssertNotNil(string);
+
     if(_needsLine) {
         [_lines addObject:FLAutorelease([string mutableCopy])];
         _needsLine = NO;
@@ -117,42 +132,16 @@
 }
 
 - (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+    FLAssertNotNil(_lines);
+    FLAssertNotNil(stringFormatter);
     [_lines addObject:[FLDocumentSectionIndent documentSectionIndent]];
 }
 
 - (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+    FLAssertNotNil(_lines);
+    FLAssertNotNil(stringFormatter);
     [_lines addObject:[FLDocumentSectionOutdent documentSectionOutdent]];
 }
-
-
-//- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-//            appendString:(NSString*) string
-//  appendAttributedString:(NSAttributedString*) attributedString
-//              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
-//
-//// NOTE: we're ignoring lineUpdate.openLine and closeLine since our lines are
-//// in an array. 
-//    
-//    if(lineUpdate.prependBlankLine) {
-//        [_lines addObject:@""];
-//    }
-//    
-//    if(attributedString) {
-//        string = attributedString.string;
-//    }
-//    
-//    FLAssertNotNil(string);
-//    
-//    if(lineUpdate.openLine || _needsLine) {
-//        [_lines addObject:FLAutorelease([string mutableCopy])];
-//        _needsLine = NO;
-//    }
-//    else if(string) {
-//        FLAssert([self.lastLine isKindOfClass:[NSMutableString class]]);
-//        [self.lastLine appendString:string];
-//    }
-//    
-//}            
 
 - (NSString*) description {
     FLPrettyString* str = [FLPrettyString prettyString];
@@ -169,6 +158,10 @@
 - (void) stringFormatter:(FLStringFormatter*) myFormatter
 appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 
+    FLAssertNotNil(_lines);
+    FLAssertNotNil(myFormatter);
+    FLAssertNotNil(anotherStringFormatter);
+
     [self willBuildWithStringFormatter:anotherStringFormatter];
 
     for(id<FLStringFormatter> line in _lines) {
@@ -179,16 +172,25 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 }
 
 - (void) appendStringFormatter:(id<FLStringFormatter>) stringBuilder {
+
+    FLAssertNotNil(_lines);
+    FLAssertNotNil(stringBuilder);
+
     [_lines addObject:stringBuilder];
-    [stringBuilder setParent:self];
     _needsLine = YES;
+    [stringBuilder setParent:self];
 }
 
-- (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) formatter {
+- (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) stringFormatter {
+    FLAssertNotNil(_lines);
+    FLAssertNotNil(stringFormatter);
+
     [_lines removeAllObjects];
 }
 
 - (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter {
+    FLAssertNotNil(_lines);
+    FLAssertNotNil(stringFormatter);
 
     NSUInteger length = 0;
     for(id<FLStringFormatter> line in _lines) {
@@ -200,83 +202,3 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 
 @end
 
-/*
-@interface FLStringBuilderLine : NSObject<NSCopying> {
-@private 
-    NSMutableString* _string;
-    __unsafe_unretained id _parent;
-}
-
-+ (id) stringBuilderLine;
-
-@property (readwrite, strong, nonatomic) NSString* string;
-@property (readwrite, assign, nonatomic) id parent;
-- (void) didMoveToParent:(id) parent;
-
-- (void) appendString:(NSString*) string;
-- (void) appendStringToLine:(NSString*) string;
-@end
-
-@implementation FLStringBuilderLine 
-
-@synthesize string = _string;
-@synthesize parent = _parent;
-
-+ (id) stringBuilderLine {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-#if FL_MRC
-- (void) dealloc {
-    [_string release];
-    [super dealloc];
-}
-#endif
-
-- (void) setString:(NSString*) string {
-    FLReleaseWithNil(_string);
-    [self appendString:string];
-}
-
-- (void) appendString:(NSString*) string {
-
-    if(string && string.length) {
-        if(!_string) {
-            _string = [string mutableCopy];
-        }
-        else {
-            [_string appendString:string];
-        }
-    }
-}
-
-- (void) appendStringToLine:(NSString*) string {
-    [self appendString:string];
-}
-
-- (id) copyWithZone:(NSZone *)zone {
-    FLStringBuilderLine* line = [[[self class] alloc] init];
-    [line appendString:line.string];
-    return line;
-}
-
-- (void) appendSelfToStringFormatter:(id<FLStringFormatter>) stringFormatter {
-    if(FLStringIsNotEmpty(_string)) {
-        [prettyString appendLine:_string];
-    }
-}
-
-- (void) didMoveToParent:(id) parent {
-}
-
-- (void) setParent:(id) parent {
-    _parent = parent;
-    [self didMoveToParent:_parent];
-}
-
-- (NSString*) description {
-    return FLStringIsEmpty(_string) ? @"\"\"" : [NSString stringWithFormat:@"\"%@\"", _string]; 
-}
-
-@end
-*/

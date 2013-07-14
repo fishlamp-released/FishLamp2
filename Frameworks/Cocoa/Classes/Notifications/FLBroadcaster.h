@@ -45,8 +45,10 @@ typedef enum {
 
 - (BOOL) hasObserver:(id) listener;
 
-- (void) addObserver:(id<FLObjectRef>) observer;
+- (void) addObserver:(id) observer;
 
 - (void) removeObserver:(id) listener;
+
+- (id) broadcasterReference;
 
 @end

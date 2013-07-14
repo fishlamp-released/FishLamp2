@@ -105,9 +105,13 @@
     FLObjectXmlElement* element = [FLObjectXmlElement soapXmlElementWithObject:self.input
                                                                  xmlElementTag:self.operationName
                                                                   xmlNamespace:self.targetNamespace];
-            
+
 	[soapStringBuilder addElement:element];
     NSString* soap = [soapStringBuilder buildStringWithNoWhitespace];
+
+    if([soap rangeOfString:@"LoadPhotoSet"].length > 0) {
+        FLAssert([soap rangeOfString:@"photoSetId"].length > 0);
+    }
 
     [self.requestHeaders setValue:self.soapAction forHTTPHeaderField:@"SOAPAction"];
     [self.requestBody setUtf8Content:soap];

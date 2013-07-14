@@ -10,39 +10,68 @@
 
 #import "FLTrace.h"
 
+@implementation NSObject (FLObjectRef)
+
+- (id) representedObjectForObjectReference {
+    return self;
+}
+
+- (id) representedObject {
+    return self;
+}
+
+@end
+
 @implementation FLObjectRef
 
-- (id) object {
-    return _object;
+- (id) representedObjectForObjectReference {
+    FLAssertNotNil(_unretainedRepresentedObject);
+    id object = [_unretainedRepresentedObject representedObjectForObjectReference];
+    FLAssertNotNil(object);
+    return object;
+}
+
+- (id) representedObject {
+
+// NOTE: for some reason this returns nil if we call NSObject's version of representedObject
+// some quirk in the objc runtime??
+
+    FLAssertNotNil(_unretainedRepresentedObject);
+    id object = [_unretainedRepresentedObject representedObjectForObjectReference];
+    FLAssertNotNil(object);
+    return object;
 }
 
 - (id) init {	
-	return [self initWithObject:nil];
+	return [self initWithRepresentedObject:nil];
 }
 
-- (id) initWithObject:(id) object {
-    _object = object;
+- (id) initWithRepresentedObject:(id) representedObject {
+    FLAssertNotNil(representedObject);
+
+    _unretainedRepresentedObject = representedObject;
 	return self;
 }
 
 - (NSString*) description {
 	return [NSString stringWithFormat:@"%@ holding a %@:\n%@",
         NSStringFromClass([self class]),
-        NSStringFromClass([_object class]),
-        [_object description]];
+        NSStringFromClass([_unretainedRepresentedObject class]),
+        [_unretainedRepresentedObject description]];
 }
 
-- (BOOL)isEqual:(id)object {
-	return [_object isEqual:object];
+- (BOOL)isEqual:(id)representedObject {
+	return [[self representedObject] isEqual:representedObject];
 }
 
 - (NSUInteger)hash {
-	return [_object hash];
+	return [[self representedObject] hash];
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
-    if([_object respondsToSelector:[anInvocation selector]]) {
-        [anInvocation invokeWithTarget:_object];
+    id object = [self representedObject];
+    if([object respondsToSelector:[anInvocation selector]]) {
+        [anInvocation invokeWithTarget:object];
     }
     else {
         FLTrace(@"not responding to %@", NSStringFromSelector([anInvocation selector]));
@@ -51,7 +80,7 @@
 
 - (NSMethodSignature*)methodSignatureForSelector:(SEL)selector {
 
-    NSMethodSignature* sig = [_object methodSignatureForSelector:selector];
+    NSMethodSignature* sig = [[self representedObject] methodSignatureForSelector:selector];
     if(!sig) {
         sig = [NSMethodSignature signatureWithObjCTypes:"@^v^c"];
         FLTrace(@"returning fake method signature for selector %@", NSStringFromSelector(selector));
@@ -60,7 +89,7 @@
 }
 
 - (BOOL) respondsToSelector:(SEL)aSelector {
-    return [_object respondsToSelector:aSelector];
+    return [[self representedObject] respondsToSelector:aSelector];
 }
 
 

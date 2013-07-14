@@ -11,10 +11,8 @@
 
 @implementation FLNonretainedObject
 
-@dynamic object;
-
 + (FLNonretainedObject*) nonretainedObject:(id) object {
-	return FLAutorelease([[FLNonretainedObject alloc] initWithObject:object]);
+	return FLAutorelease([[FLNonretainedObject alloc] initWithRepresentedObject:object]);
 }
 
 @end

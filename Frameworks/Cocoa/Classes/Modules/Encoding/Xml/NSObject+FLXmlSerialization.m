@@ -14,25 +14,45 @@
 
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
        propertyDescriber:(FLPropertyDescriber*) propertyDescriber {
-      
+
+    FLAssertNotNil(propertyDescriber);
+    FLAssertNotNil(xmlElement);
+
 	if([[self class] isModelObject]) {
-    
+
+        BOOL foundIt = NO;
+
       	FLObjectDescriber* typeDesc = [[self class] objectDescriber];
         for(FLPropertyDescriber* property in [typeDesc.properties objectEnumerator]) {
 
             id object = [self valueForKey:property.propertyName];
+
+            if(FLStringsAreEqual(@"photoSetId",property.propertyName)) {
+                FLAssertNotNil(object);
+                foundIt = YES;
+            }
+
+//            FLLog(@"%@.%@ = %@", NSStringFromClass([self class]), property.propertyName, [object description])
+
             if(object) {
                 [xmlElement addElement:[FLObjectXmlElement objectXmlElement:object 
                                                               xmlElementTag:property.serializationKey 
                                                           propertyDescriber:property]];
             }
         }
+
+        if(FLStringsAreEqual(@"ZFLoadPhotoSet", NSStringFromClass([self class]))) {
+            FLAssert(foundIt);
+        }
+
     }
     else {
-    
+
+
         NSString* encodingKey = [propertyDescriber stringEncodingKeyForRepresentedData];
         if(encodingKey) {
             NSString* line = [xmlElement.dataEncoder stringFromObject:self encodingKey:encodingKey];
+            FLAssertStringIsNotEmpty(line);
 
 //            NSString* line = [objectEncoder encodeObjectToString:self withEncoder:xmlElement.dataEncoder];
             [xmlElement appendLine:line];
@@ -50,7 +70,10 @@
 
 - (void) addToXmlElement:(FLXmlElement*) xmlElement
        propertyDescriber:(FLPropertyDescriber*) propertyDescriber {
-    
+
+    FLAssertNotNil(propertyDescriber);
+    FLAssertNotNil(xmlElement);
+
 	if(propertyDescriber && self.count) {
 
 		if(propertyDescriber.containedTypes.count == 1) {

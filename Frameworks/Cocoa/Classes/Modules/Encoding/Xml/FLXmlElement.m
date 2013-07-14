@@ -23,11 +23,13 @@
 
 - (id) initWithXmlElementTag:(NSString*) xmlElementTag 
           xmlElementCloseTag:(NSString*) xmlElementCloseTag {
-          
+
+    FLAssertStringIsNotEmpty(xmlElementTag);
+
     self = [super init];
     if(self) {
         self.xmlElementTag = xmlElementTag;
-        self.xmlElementCloseTag = xmlElementCloseTag;
+        self.xmlElementCloseTag = FLStringIsNotEmpty(xmlElementCloseTag) ? xmlElementCloseTag : xmlElementTag;
     }
     return self;
 }
@@ -55,6 +57,29 @@
 }
 #endif
 
+- (id<FLDataEncoding>) dataEncoder {
+    if(!_dataEncoder) {
+        id walker = self.parent;
+        while(walker) {
+            if([walker respondsToSelector:@selector(dataEncoder)]) {
+                id dataEncoder = [walker dataEncoder];
+                if(dataEncoder) {
+                    self.dataEncoder = dataEncoder;
+                    break;
+                }
+
+            }
+            walker = [walker parent];
+        }
+    
+        FLAssertNotNil([self dataEncoder]);
+    }
+
+
+    return _dataEncoder;
+}
+
+
 - (void) appendFullPath:(NSMutableString*) path {
     if(self.parent) {
         [self.parent appendFullPath:path];
@@ -75,6 +100,9 @@
 }
 
 - (void) setAttribute:(NSString*) attributeValue forKey:(NSString*) key {
+    FLAssertNotNil(attributeValue);
+    FLAssertNotNil(key);
+
     if(!_attributes) {
         _attributes = [[NSMutableDictionary alloc] init];
     }
@@ -83,6 +111,9 @@
 }
 
 - (void) appendAttribute:(NSString*) attributeValue forKey:(NSString*) key {
+
+    FLAssertNotNil(attributeValue);
+    FLAssertNotNil(key);
 
     if(!_attributes) {
         [self setAttribute:attributeValue forKey:key];
@@ -108,6 +139,7 @@
 }
 
 - (void) addElement:(FLXmlElement*) element {
+    FLAssertNotNil(element);
     [self appendStringFormatter:element];
 }
 
@@ -141,11 +173,24 @@
 
 - (void) appendSelfToStringFormatter:(id<FLStringFormatter>) stringFormatter {
 
+    FLAssertNotNil(stringFormatter);
+    FLAssertNotNil(self.lines);
+
+  //  FLLog(@"appending %@ to %@", [self description], [stringFormatter description]);
+
     if(_comments) {
         [stringFormatter appendStringFormatter:_comments];
     }
-    
+
     BOOL hasLines = self.lines.count > 0;
+//    FLAssert(hasLines); // xml element should always have something, right?
+
+#if DEBUG
+    if(!hasLines) {
+        FLLog(@"xml element %@ has no lines", self.xmlElementTag)
+    }
+#endif
+
     [stringFormatter appendLine:[self xmlOpenTag:!hasLines]];
     if(hasLines) {
         [stringFormatter indent:^{

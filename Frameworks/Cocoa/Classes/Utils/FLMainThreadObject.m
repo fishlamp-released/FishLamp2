@@ -11,21 +11,24 @@
 @implementation FLMainThreadObject
 
 + (id) mainThreadObject:(id) object {
-    return FLAutorelease([[[self class] alloc] initWithObject:object]);
+    return FLAutorelease([[[self class] alloc] initWithRepresentedObject:object]);
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     
-    id object = self.object;
+    id object = [self representedObject];
+    FLAssertNotNil(object);
     
-    if([object respondsToSelector:[anInvocation selector]]) {
+    if(![NSThread isMainThread] &&
+        [object respondsToSelector:[anInvocation selector]]) {
+
         [anInvocation retainArguments];
         dispatch_async(dispatch_get_main_queue(), ^{
             @try {
                 [anInvocation invokeWithTarget:object];
             }
             @catch(NSException* ex) {
-            
+                FLLog([ex description]);
             }
         });
     }
@@ -38,6 +41,6 @@
 
 @implementation NSObject (FLMainThreadObject)
 - (id) onMainThread {
-    return [NSThread isMainThread] ? self : [FLMainThreadObject mainThreadObject:self];
+    return [FLMainThreadObject mainThreadObject:self];
 }
 @end

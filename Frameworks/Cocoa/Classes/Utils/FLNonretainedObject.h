@@ -11,11 +11,7 @@
 #import "FLObjectRef.h"
 
 @interface FLNonretainedObject : FLObjectRef
-
-@property (readonly, assign, nonatomic) id object;
-
 + (FLNonretainedObject*) nonretainedObject:(id) object;
-
 @end
 
 #define FLNonretainedObject(obj) [FLNonretainedObject nonretained:obj]

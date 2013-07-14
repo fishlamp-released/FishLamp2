@@ -9,14 +9,13 @@
 #import "FishLampCore.h"
 
 @protocol FLObjectRef <NSObject>
-- (id) object;
+- (id) representedObject;
 @end
 
 @interface FLObjectRef : NSProxy<FLObjectRef> {
 @private
-    __unsafe_unretained id _object;
+    __unsafe_unretained id _unretainedRepresentedObject;
 }
-- (id) object;
-- (id) initWithObject:(id) object;
+- (id) initWithRepresentedObject:(id) object;
 
 @end

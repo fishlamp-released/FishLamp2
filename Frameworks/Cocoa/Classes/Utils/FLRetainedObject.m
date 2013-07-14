@@ -8,18 +8,12 @@
 
 #import "FLRetainedObject.h"
 
-@interface FLRetainedObject ()
-@property (readwrite, strong, nonatomic) id object;
-@end
-
 @implementation FLRetainedObject
 
-@synthesize object = _retainedObject;
-
-- (id) initWithObject:(id) object {
-	self = [super initWithObject:object];
+- (id) initWithRepresentedObject:(id) object {
+	self = [super initWithRepresentedObject:object];
 	if(self) {
-		self.object = object;
+        _retainedObject = FLRetain(object);
 	}
 	return self;
 }
@@ -32,7 +26,7 @@
 #endif
 
 + (id) retainedObject:(id) object {
-    return FLAutorelease([[[self class] alloc] initWithObject:object]);
+    return FLAutorelease([[[self class] alloc] initWithRepresentedObject:object]);
 }
 
 @end

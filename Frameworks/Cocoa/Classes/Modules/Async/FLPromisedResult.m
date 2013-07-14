@@ -82,4 +82,15 @@
 - (BOOL) isError {
     return YES;
 }
+
++ (id) fromPromisedResult:(FLPromisedResult) promisedResult {
+    FLConfirmWithComment(
+        [promisedResult isKindOfClass:[self class]],
+        @"Result expected to be a \"%@\" instead it's a \"%@\"",
+            NSStringFromClass([self class]),
+            NSStringFromClass([promisedResult class]));
+
+    return promisedResult;
+
+}
 @end

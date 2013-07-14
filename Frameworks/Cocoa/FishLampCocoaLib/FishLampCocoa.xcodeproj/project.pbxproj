@@ -116,6 +116,15 @@
 		274813CC1790F1A5009DADF9 /* FLXmlParserErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 274813C41790F1A5009DADF9 /* FLXmlParserErrorCode.m */; };
 		274813CD1790F1A5009DADF9 /* FLXmlParserErrorCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 274813C41790F1A5009DADF9 /* FLXmlParserErrorCode.m */; };
 		27821241175D43BC007C5F26 /* libFishLampCore-OSX-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27821237175D4388007C5F26 /* libFishLampCore-OSX-64-MRC.a */; };
+		279519CD1792223E00EEAE90 /* FLArrayBlaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 279519CB1792223E00EEAE90 /* FLArrayBlaster.h */; };
+		279519CE1792223E00EEAE90 /* FLArrayBlaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 279519CB1792223E00EEAE90 /* FLArrayBlaster.h */; };
+		279519CF1792223E00EEAE90 /* FLArrayBlaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 279519CB1792223E00EEAE90 /* FLArrayBlaster.h */; };
+		279519D01792223E00EEAE90 /* FLArrayBlaster.h in Headers */ = {isa = PBXBuildFile; fileRef = 279519CB1792223E00EEAE90 /* FLArrayBlaster.h */; };
+		279519D11792223E00EEAE90 /* FLArrayBlaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 279519CC1792223E00EEAE90 /* FLArrayBlaster.m */; };
+		279519D21792223E00EEAE90 /* FLArrayBlaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 279519CC1792223E00EEAE90 /* FLArrayBlaster.m */; };
+		279519D31792223E00EEAE90 /* FLArrayBlaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 279519CC1792223E00EEAE90 /* FLArrayBlaster.m */; };
+		279519D41792223E00EEAE90 /* FLArrayBlaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 279519CC1792223E00EEAE90 /* FLArrayBlaster.m */; };
+		279519D51792223E00EEAE90 /* FLArrayBlaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 279519CC1792223E00EEAE90 /* FLArrayBlaster.m */; };
 		27B5EA0E1785D3D7002F7457 /* FLTestCaseList.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B5EA0C1785D3D7002F7457 /* FLTestCaseList.h */; };
 		27B5EA0F1785D3D7002F7457 /* FLTestCaseList.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B5EA0C1785D3D7002F7457 /* FLTestCaseList.h */; };
 		27B5EA101785D3D7002F7457 /* FLTestCaseList.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B5EA0C1785D3D7002F7457 /* FLTestCaseList.h */; };
@@ -3108,6 +3117,8 @@
 		274813C21790F1A5009DADF9 /* FLXmlParserErrorCode.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FLXmlParserErrorCode.flproj; sourceTree = "<group>"; };
 		274813C31790F1A5009DADF9 /* FLXmlParserErrorCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXmlParserErrorCode.h; sourceTree = "<group>"; };
 		274813C41790F1A5009DADF9 /* FLXmlParserErrorCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLXmlParserErrorCode.m; sourceTree = "<group>"; };
+		279519CB1792223E00EEAE90 /* FLArrayBlaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLArrayBlaster.h; sourceTree = "<group>"; };
+		279519CC1792223E00EEAE90 /* FLArrayBlaster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLArrayBlaster.m; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCocoa-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCocoa-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCocoa-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B5EA0C1785D3D7002F7457 /* FLTestCaseList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTestCaseList.h; sourceTree = "<group>"; };
@@ -5081,6 +5092,8 @@
 				27DF7D2D17790817004A954C /* FLObjectRef.m */,
 				27DF7D37177908C9004A954C /* FLRetainedObject.h */,
 				27DF7D38177908C9004A954C /* FLRetainedObject.m */,
+				279519CB1792223E00EEAE90 /* FLArrayBlaster.h */,
+				279519CC1792223E00EEAE90 /* FLArrayBlaster.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -5320,6 +5333,7 @@
 				27DF743F1777A354004A954C /* FLToolCommand.h in Headers */,
 				27DF72C61777A354004A954C /* FishLampAsync.h in Headers */,
 				27DF71F51777A354004A954C /* FLCompatibleGeometry+iOS.h in Headers */,
+				279519CD1792223E00EEAE90 /* FLArrayBlaster.h in Headers */,
 				27DF77571777A354004A954C /* NSObject+JsonParser.h in Headers */,
 				27DF75FE1777A354004A954C /* FLRectOptimize.h in Headers */,
 				27DF77D81777A354004A954C /* FLOAuthRequestTokenHttpRequest.h in Headers */,
@@ -5642,6 +5656,7 @@
 				27DF74411777A354004A954C /* FLToolCommand.h in Headers */,
 				27DF72C81777A354004A954C /* FishLampAsync.h in Headers */,
 				27DF71F71777A354004A954C /* FLCompatibleGeometry+iOS.h in Headers */,
+				279519CF1792223E00EEAE90 /* FLArrayBlaster.h in Headers */,
 				27DF77591777A354004A954C /* NSObject+JsonParser.h in Headers */,
 				27DF76001777A354004A954C /* FLRectOptimize.h in Headers */,
 				27DF77DA1777A354004A954C /* FLOAuthRequestTokenHttpRequest.h in Headers */,
@@ -5964,6 +5979,7 @@
 				27DF74401777A354004A954C /* FLToolCommand.h in Headers */,
 				27DF72C71777A354004A954C /* FishLampAsync.h in Headers */,
 				27DF71F61777A354004A954C /* FLCompatibleGeometry+iOS.h in Headers */,
+				279519CE1792223E00EEAE90 /* FLArrayBlaster.h in Headers */,
 				27DF77581777A354004A954C /* NSObject+JsonParser.h in Headers */,
 				27DF75FF1777A354004A954C /* FLRectOptimize.h in Headers */,
 				27DF77D91777A354004A954C /* FLOAuthRequestTokenHttpRequest.h in Headers */,
@@ -6286,6 +6302,7 @@
 				27DF74421777A354004A954C /* FLToolCommand.h in Headers */,
 				27DF72C91777A354004A954C /* FishLampAsync.h in Headers */,
 				27DF71F81777A354004A954C /* FLCompatibleGeometry+iOS.h in Headers */,
+				279519D01792223E00EEAE90 /* FLArrayBlaster.h in Headers */,
 				27DF775A1777A354004A954C /* NSObject+JsonParser.h in Headers */,
 				27DF76011777A354004A954C /* FLRectOptimize.h in Headers */,
 				27DF77DB1777A354004A954C /* FLOAuthRequestTokenHttpRequest.h in Headers */,
@@ -6800,6 +6817,7 @@
 				27DF7A4D1777A355004A954C /* FLTestToolMain.m in Sources */,
 				27DF77141777A354004A954C /* FLHttpRequestHeaders.m in Sources */,
 				27DF79751777A354004A954C /* FLObjectDatabase.m in Sources */,
+				279519D21792223E00EEAE90 /* FLArrayBlaster.m in Sources */,
 				27DF77E61777A354004A954C /* FLGlobalNetworkActivityIndicator.m in Sources */,
 				27DF77911777A354004A954C /* __FLOauthEnums.m in Sources */,
 				27DF73E61777A354004A954C /* FLColorValues.m in Sources */,
@@ -7092,6 +7110,7 @@
 				27DF7A4F1777A355004A954C /* FLTestToolMain.m in Sources */,
 				27DF77161777A354004A954C /* FLHttpRequestHeaders.m in Sources */,
 				27DF79771777A354004A954C /* FLObjectDatabase.m in Sources */,
+				279519D41792223E00EEAE90 /* FLArrayBlaster.m in Sources */,
 				27DF77E81777A354004A954C /* FLGlobalNetworkActivityIndicator.m in Sources */,
 				27DF77931777A354004A954C /* __FLOauthEnums.m in Sources */,
 				27DF73E81777A354004A954C /* FLColorValues.m in Sources */,
@@ -7416,6 +7435,7 @@
 				27DF7A4C1777A355004A954C /* FLTestToolMain.m in Sources */,
 				27DF77131777A354004A954C /* FLHttpRequestHeaders.m in Sources */,
 				27DF79741777A354004A954C /* FLObjectDatabase.m in Sources */,
+				279519D11792223E00EEAE90 /* FLArrayBlaster.m in Sources */,
 				27DF77E51777A354004A954C /* FLGlobalNetworkActivityIndicator.m in Sources */,
 				27DF77901777A354004A954C /* __FLOauthEnums.m in Sources */,
 				27DF73E51777A354004A954C /* FLColorValues.m in Sources */,
@@ -7708,6 +7728,7 @@
 				27DF7A4E1777A355004A954C /* FLTestToolMain.m in Sources */,
 				27DF77151777A354004A954C /* FLHttpRequestHeaders.m in Sources */,
 				27DF79761777A354004A954C /* FLObjectDatabase.m in Sources */,
+				279519D31792223E00EEAE90 /* FLArrayBlaster.m in Sources */,
 				27DF77E71777A354004A954C /* FLGlobalNetworkActivityIndicator.m in Sources */,
 				27DF77921777A354004A954C /* __FLOauthEnums.m in Sources */,
 				27DF73E71777A354004A954C /* FLColorValues.m in Sources */,
@@ -8008,6 +8029,7 @@
 				27DF7A501777A355004A954C /* FLTestToolMain.m in Sources */,
 				27DF77171777A354004A954C /* FLHttpRequestHeaders.m in Sources */,
 				27DF79781777A354004A954C /* FLObjectDatabase.m in Sources */,
+				279519D51792223E00EEAE90 /* FLArrayBlaster.m in Sources */,
 				27DF77E91777A354004A954C /* FLGlobalNetworkActivityIndicator.m in Sources */,
 				27DF77941777A354004A954C /* __FLOauthEnums.m in Sources */,
 				27DF73E91777A354004A954C /* FLColorValues.m in Sources */,

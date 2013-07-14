@@ -21,6 +21,19 @@ FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
 }
 #endif
 
+- (BOOL) hasObserver:(id) listener {
+    return [self.observers hasObserver:listener];
+}
+
+- (void) addObserver:(id<FLObjectRef>) observer {
+    [self.observers addObserver:observer];
+}
+
+- (void) removeObserver:(id) listener {
+    [self.observers removeObserver:listener];
+}
+
+
 @end
 
 #if REFACTOR
@@ -175,6 +188,7 @@ FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
               withObject:(id) object4  {
     return [observer receiveObservation:selector withObject:object1 withObject:object2 withObject:object3 withObject:object4];
 }
+
 
 @end
 

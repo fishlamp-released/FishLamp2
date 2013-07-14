@@ -50,7 +50,7 @@ typedef FLOperation* (^FLOperationFactory)(id object);
 - (void) startProcessing;
 
 // optional overrides
-- (FLOperation*) createOperationForObject:(id) object;
+- (FLOperation*) createOperationForQueuedInputObject:(id) object;
 
 - (void) willStartOperation:(FLAsyncOperationQueueElement*) operation;
 - (void) didFinishOperation:(FLAsyncOperationQueueElement*) operation;

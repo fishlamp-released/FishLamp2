@@ -13,8 +13,6 @@
     id _retainedObject;
 }
 
-@property (readonly, strong, nonatomic) id object;
-
 + (id) retainedObject:(id) object;
 
 @end

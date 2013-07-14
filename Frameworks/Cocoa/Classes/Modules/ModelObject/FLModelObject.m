@@ -29,7 +29,6 @@
 
 @implementation FLModelObject 
 FLSynthesizeModelObjectMethods();
-@synthesize changeTracker = _changeTracker;
 
 - (void)dealloc {
     _changeTracker.modelObject = nil;
@@ -56,6 +55,15 @@ FLSynthesizeModelObjectMethods();
 - (NSString*) description {
     return [self prettyDescription];
 }
+
+- (void) setChangeTracker:(FLObjectChangeTracker*) changeTracker {
+    FLSetObjectWithRetain(_changeTracker, changeTracker);
+}
+
+- (FLObjectChangeTracker*) changeTracker {
+    return _changeTracker;
+}
+
 
 @end
 

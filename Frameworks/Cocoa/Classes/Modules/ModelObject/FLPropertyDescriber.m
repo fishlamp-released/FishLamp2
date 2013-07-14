@@ -16,11 +16,18 @@
 + (id) propertyDescriber {
     return [FLObjectPropertyDescriber propertyDescriber];
 }
++ (Class) propertyDescriberClass {
+    return [self isModelObject] ?   [FLModelObjectPropertyDescriber class] :
+                                    [FLObjectPropertyDescriber class];
+}
 @end
 
 @implementation NSArray (FLXmlBuilder)
 + (id) propertyDescriber {
     return [FLArrayPropertyDescriber propertyDescriber];
+}
++ (Class) propertyDescriberClass {
+    return [FLArrayPropertyDescriber class];
 }
 @end
 
@@ -38,10 +45,9 @@
 
 @interface FLPropertyDescriber ()
 
-@property (readwrite, strong) NSString* propertyKey;
-@property (readwrite, strong) FLObjectDescriber* representedObjectDescriber;
+//@property (readwrite, strong) NSString* propertyKey;
+@property (readonly, strong) FLObjectDescriber* representedObjectDescriber;
 @property (readwrite, strong) NSArray* containedTypes;
-@property (readwrite, assign) FLPropertyAttributes_t attributes;
 
 + (id) propertyDescriberWithProperty_t:(objc_property_t) property_t;
 - (void) addContainedProperty:(NSString*) name withClass:(Class) aClass; 
@@ -55,6 +61,7 @@
 @synthesize containedTypes = _containedTypes;
 @synthesize propertyKey = _propertyKey;
 @synthesize serializationKey = _serializationKey;
+@synthesize attributes = _attributes;
 
 FLSynthesizeLazyGetterWithBlock(structName, NSString*, _structName, ^{
     return [NSString stringWithCharString:_attributes.structName]; }
@@ -68,23 +75,97 @@ FLSynthesizeLazyGetterWithBlock(ivarName, NSString*, _ivarName, ^{
     return [NSString stringWithCharString:_attributes.ivar]; }
 );
 
-//FLSynthesizeLazyGetterWithBlock(customGetter, SEL, _customGetter, ^{ \
-//    return NSSelectorFromString([NSString stringWithCharString:_attributes.customGetter]); \
-//})'
-//
-//FLSynthesizeLazyGetterWithBlock(customSetter, SEL, _customSetter, ^{ \
-//    return NSSelectorFromString([NSString stringWithCharString:_attributes.customSetter]); \
-//});
-//
-//FLSynthesizeLazyGetterWithBlock(selector, SEL, _customSetter, ^{ \
-//    return NSSelectorFromString([NSString stringWithCharString:_attributes.customSetter]); \
-//});
-
 LazySelectorGetter(customGetter, _customGetter, _attributes.customGetter)
 LazySelectorGetter(customSetter, _customSetter, _attributes.customSetter)
 LazySelectorGetter(selector, _selector, _attributes.selector)
 
-@synthesize attributes = _attributes;
+
+- (id) initWithPropertyName:(NSString*) name
+            objectDescriber:(FLObjectDescriber*) objectDescriber {
+    self = [super init];
+    if(self) {
+        _propertyName = FLRetain(name);
+        _serializationKey = FLRetain(name);
+        _propertyKey = FLRetain([name lowercaseString]);
+        _representedObjectDescriber = FLRetain(objectDescriber);
+    }
+
+    return self;
+}
+
+- (id) initWithPropertyName:(NSString*) name
+            objectDescriber:(FLObjectDescriber*) objectDescriber
+                 attributes:(FLPropertyAttributes_t) attributes {
+
+    self = [self initWithPropertyName:name objectDescriber:objectDescriber];
+    if(self) {
+        _attributes = attributes;
+    }
+
+    return self;
+}
+
++ (id) propertyDescriber {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
++ (id) propertyDescriber:(NSString*) name
+            objectDescriber:(FLObjectDescriber*) objectDescriber
+            attributes:(FLPropertyAttributes_t) attributes {
+    return FLAutorelease([[[self class] alloc] initWithPropertyName:name
+                                                    objectDescriber:objectDescriber
+                                                         attributes:attributes]);
+}
+
++ (id) propertyDescriber:(NSString*) name propertyClass:(Class) aClass {
+
+    return FLAutorelease([[[aClass propertyDescriberClass] alloc] initWithPropertyName:name
+                                                                       objectDescriber:[aClass objectDescriber]]);
+}
+
++ (id) propertyDescriber:(NSString*) name class:(Class) aClass {
+    return [FLPropertyDescriber propertyDescriber:name propertyClass:aClass];
+}
+
++ (id) propertyDescriberWithProperty_t:(objc_property_t) property_t {
+
+    FLPropertyAttributes_t attributes = FLPropertyAttributesParse(property_t);
+
+    NSString* propertyName = FLAutorelease([[NSString alloc] initWithCString:attributes.propertyName encoding:NSASCIIStringEncoding]);
+    FLAssertStringIsNotEmpty(propertyName);
+
+    if(attributes.is_object) {
+
+        Class objectClass = nil;
+        if(attributes.className.string) {
+            objectClass = NSClassFromString([NSString stringWithCharString:attributes.className]);
+        }
+        else {
+            objectClass = [FLAbstractObjectType class];
+        }
+
+        FLAssertNotNilWithComment(objectClass,
+                                  @"Can't find class for: \"%@\"",
+                                  [NSString stringWithCharString:attributes.className] );
+
+        return [[objectClass propertyDescriberClass] propertyDescriber:propertyName
+                                                       objectDescriber:[objectClass objectDescriber]
+                                                            attributes:attributes];
+
+    }
+    else {
+        if(attributes.is_bool_number) {
+            return [FLBoolNumberPropertyDescriber propertyDescriber:propertyName objectDescriber:nil attributes:attributes];
+        }
+        else if(attributes.is_number) {
+            return [FLNumberPropertyDescriber propertyDescriber:propertyName objectDescriber:nil attributes:attributes];
+        }
+    }
+
+    FLAssertFailedWithComment(@"No property describer created for property: \"%@\"", propertyName );
+
+    return nil;
+}
 
 - (BOOL) representsIvar {
     return _attributes.ivar.length > 0;
@@ -104,82 +185,6 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
 - (id) createRepresentedObject {
     return nil; 
-}
-
-+ (id) propertyDescriber {
-    return FLAutorelease([[[self class] alloc] init]);
-}
-
-+ (id) propertyDescriber:(Class) objectClass {
-    FLPropertyDescriber* property = nil;
-
-    if([objectClass isModelObject]) {
-        property = [FLModelObjectPropertyDescriber propertyDescriber];
-    }
-    else {
-        property = [objectClass propertyDescriber];
-    }
-
-    property.representedObjectDescriber = [objectClass objectDescriber];
-
-    return property;
-}
-
-- (void) setPropertyNameAndKeys:(NSString*) name {
-    FLSetObjectWithRetain(_propertyName, name);
-    self.serializationKey = name;
-    self.propertyKey = [name lowercaseString];
-}
-
-+ (id) propertyDescriberWithProperty_t:(objc_property_t) property_t {
-
-    FLPropertyAttributes_t attributes = FLPropertyAttributesParse(property_t);
-
-    NSString* propertyName = FLAutorelease([[NSString alloc] initWithCString:attributes.propertyName encoding:NSASCIIStringEncoding]);
-    FLAssertStringIsNotEmpty(propertyName);
-    
-    FLPropertyDescriber* property = nil;
-
-    if(attributes.is_object) {
-
-        Class objectClass = nil;
-        
-        if(attributes.className.string) {
-            objectClass = NSClassFromString([NSString stringWithCharString:attributes.className]);
-        }
-        else {
-            objectClass = [FLAbstractObjectType class];
-        }
-
-        FLAssertNotNilWithComment(objectClass, @"Can't find class for: \"%@\"", [NSString stringWithCharString:attributes.className] );
-
-        property = [FLPropertyDescriber propertyDescriber:objectClass];
-    }
-    else {
-        if(attributes.is_bool_number) {
-            property = [FLBoolNumberPropertyDescriber propertyDescriber];
-        }
-        else if(attributes.is_number) {
-            property = [FLNumberPropertyDescriber propertyDescriber];
-        }
-    }
-    
-    FLAssertNotNilWithComment(property, @"propertyDescriber not created for %@", propertyName);
-
-    [property setPropertyNameAndKeys:propertyName];
-    property.attributes = attributes;
-
-    return property;
-}
-
-+ (id) propertyDescriber:(NSString*) name propertyClass:(Class) aClass {
-    FLPropertyDescriber* property = [FLPropertyDescriber propertyDescriber:aClass];
-    [property setPropertyNameAndKeys:name];
-    return property;
-}
-
-+ (id) propertyDescriber:(NSString*) name class:(Class) aClass {
-    return [FLPropertyDescriber propertyDescriber:name propertyClass:aClass];
 }
 
 - (Class) representedObjectClass {

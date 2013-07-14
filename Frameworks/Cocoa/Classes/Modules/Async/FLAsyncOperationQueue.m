@@ -74,7 +74,7 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
     return FLAutorelease([[[self class] alloc] initWithQueuedObjects:queuedObjects]);
 }
 
-- (FLOperation*) createOperationForObject:(id) object {
+- (FLOperation*) createOperationForQueuedInputObject:(id) object {
     return _operationFactory ? _operationFactory(object) : (FLOperation*) object;
 }
 
@@ -122,9 +122,9 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 - (void) didFinishProcessingQueueElement:(FLAsyncOperationQueueElement*) element {
 
     [self.fifoQueue queueBlock: ^{
-        [_activeQueue removeObject:element];
         self.processedObjectCount++;
-    
+
+    // don't do anything if we already hit an error
         if(!self.error) {
             
             if([element.operationResult isError]) {
@@ -135,6 +135,7 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
             [self didFinishOperation:element];
         }
 
+        [_activeQueue removeObject:element];
         [self processQueue];
     }];
 }
@@ -156,7 +157,7 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
         
         while(!self.error && _activeQueue.count < max && _objectQueue.count) {
             id object = [_objectQueue removeFirstObject];
-            FLAsyncOperationQueueElement* element = [self queueElement:object operation:[self createOperationForObject:object]];
+            FLAsyncOperationQueueElement* element = [self queueElement:object operation:[self createOperationForQueuedInputObject:object]];
             [_activeQueue addObject:element];
 
             [self willStartOperation:element];

@@ -57,6 +57,7 @@
 - (NSString*) stringEncodingKeyForRepresentedData;
 
 @property (readwrite, strong) NSString* serializationKey;
+@property (readonly, assign) FLPropertyAttributes_t attributes;
 
 @end
 
