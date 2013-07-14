@@ -29,11 +29,11 @@ for file in $FILES; do
     if [[ "$extension" == "sh" ]]; then
 
         if [[ "$PARM" != "-s" ]]; then
-            echo "$filename_no_extension:"
+            echo "fishlamp $filename_no_extension:"
             bash "$file" --help | awk '{print "    "$0}'
             echo ""
         else
-            echo "$filename_no_extension"
+            echo "fishlamp $filename_no_extension"
         fi
     fi
 done

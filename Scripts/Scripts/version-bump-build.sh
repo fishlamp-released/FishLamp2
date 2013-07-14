@@ -4,15 +4,21 @@ version="$1"
 which="$2"
 
 if [ "$version" == "" ]; then
+    echo "increments version build number by 1"
+
 	echo "usage:"
 	echo " version-bump <1.2.3.4>"
 	exit 1
 fi
 
-DOTS=${version//[^\.]}
+if [ "$1" == "--help" ]; then
+    usage
+    exit 0;
+fi
 
+DOTS=${version//[^\.]}
 if [ ${#DOTS} != 3 ]; then
-    echo "version not in 1.2.3.4 format";
+    echo "'$version' not in 1.2.3.4 format (found ${#DOTS} dots)"
     exit 1;
 fi
 

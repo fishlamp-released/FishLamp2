@@ -30,12 +30,12 @@ header="Frameworks/Core/Classes/FishLampVersion.h"
 packmule_version_file="Tools/PackMule/PackMule/Info.plist"
 
 # bump the version
-version=`version-get $file`
+version=`plist-get-version $file`
 version=`version-bump-build "$version"`
 
 # set versions in file
-version-set "$file" "$version" > /dev/null 2>&1
-version-set "$packmule_version_file" "$version" > /dev/null 2>&1
+plist-set-version "$file" "$version" > /dev/null 2>&1
+plist-set-version "$packmule_version_file" "$version" > /dev/null 2>&1
 git add "$file"
 git add "$packmule_version_file"
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#  version-set.sh
+#  plist-set-version.sh
 #  FishLampScripts
 #
 #  Created by Mike Fullerton on 6/5/13.
@@ -10,19 +10,14 @@ plist_file="$1"
 version="$2"
 
 function usage() {
+    echo "sets version in a plist file"
 	echo "usage:"
-	echo " version-set <plistfile> <version>"
+	echo " plist-set-version <plistfile> <version>"
 }
 
-if [ "$plist_file" == "" ]; then
+if [ "plist_file" == "--help" ]; then
     usage
-	exit 1
-fi
-
-if [ ! -f "$plist_file" ]; then
-	echo "##! can't find plist file $plist_file"
-    usage
-	exit 1
+    exit 0;
 fi
 
 if [[ "$version" == "" ]]; then
@@ -30,10 +25,20 @@ if [[ "$version" == "" ]]; then
     exit 1;
 fi
 
+if [ "$plist_file" == "" ]; then
+    usage
+	exit 1
+fi
+
+if [ ! -f "$plist_file" ]; then
+	echo "##! can't find plist file: \"$plist_file\""
+    exit 1
+fi
+
 DOTS=${version//[^\.]}
 
 if [ ${#DOTS} != 3 ]; then
-    echo "version not in 1.2.3.4 format";
+    echo "'$version' not in 1.2.3.4 format (found ${#DOTS} dots)"
     exit 1;
 fi
 
@@ -45,7 +50,7 @@ echo "$version"
 
 exit 0
 
-version=`version-get "$plist_file"` || { exit 1; }
+version=`plist-get-version "$plist_file"` || { exit 1; }
 
 if [ "$version" == "" ]; then
 	echo "##! build version is empty"

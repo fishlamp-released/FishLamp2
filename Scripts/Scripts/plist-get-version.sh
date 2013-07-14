@@ -2,9 +2,19 @@
 
 plist_file="$1"
 
-if [ "$plist_file" == "" ]; then
+function usage() {
+    echo "prints version from a plist file"
 	echo "usage:"
-	echo " version-get <plistfile>"
+	echo " plist-get-version <plistfile>"
+}
+
+if [ "$1" == "--help" ]; then
+    usage
+    exit 0;
+fi
+
+if [ "$plist_file" == "" ]; then
+    usage
 	exit 1
 fi
 

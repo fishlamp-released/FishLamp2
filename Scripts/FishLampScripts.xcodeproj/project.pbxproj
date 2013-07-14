@@ -57,7 +57,7 @@
 		270E0550175D3C4E00802761 /* FishLampTargetSettings-OSX-Universal-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-Universal-MRC.xcconfig"; sourceTree = "<group>"; };
 		270E0551175D3C4E00802761 /* FishLampTargetSettings-OSX-64-ARC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-ARC.xcconfig"; sourceTree = "<group>"; };
 		270E0552175D3C4E00802761 /* FishLampTargetSettings-OSX-64-MRC.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "FishLampTargetSettings-OSX-64-MRC.xcconfig"; sourceTree = "<group>"; };
-		27104784175FA10C0024B1D3 /* version-set.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "version-set.sh"; sourceTree = "<group>"; };
+		27104784175FA10C0024B1D3 /* plist-set-version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "plist-set-version.sh"; sourceTree = "<group>"; };
 		271F60291776074B002BF937 /* fishlamp-install-scripts.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "fishlamp-install-scripts.sh"; sourceTree = "<group>"; };
 		27337B1C1783337300F56276 /* create-connect-lib.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "create-connect-lib.sh"; sourceTree = "<group>"; };
 		27337B1D1783337300F56276 /* find.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = find.sh; sourceTree = "<group>"; };
@@ -75,8 +75,9 @@
 		276806C5175D2F1C00B1D643 /* install.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
 		276806CB175D2F1C00B1D643 /* fishlamp.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fishlamp.sh; sourceTree = "<group>"; };
 		276806CC175D2F1C00B1D643 /* version-bump-build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "version-bump-build.sh"; sourceTree = "<group>"; };
-		276806CD175D2F1C00B1D643 /* version-get.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "version-get.sh"; sourceTree = "<group>"; };
+		276806CD175D2F1C00B1D643 /* plist-get-version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "plist-get-version.sh"; sourceTree = "<group>"; };
 		276806CE175D2F1C00B1D643 /* git-tag-version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "git-tag-version.sh"; sourceTree = "<group>"; };
+		279519D717931E8F00EEAE90 /* plist-bump-version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "plist-bump-version.sh"; sourceTree = "<group>"; };
 		279D118A17836FC100B5A423 /* run-tests.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "run-tests.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,8 +176,9 @@
 				276806CB175D2F1C00B1D643 /* fishlamp.sh */,
 				276806CE175D2F1C00B1D643 /* git-tag-version.sh */,
 				276806CC175D2F1C00B1D643 /* version-bump-build.sh */,
-				276806CD175D2F1C00B1D643 /* version-get.sh */,
-				27104784175FA10C0024B1D3 /* version-set.sh */,
+				276806CD175D2F1C00B1D643 /* plist-get-version.sh */,
+				27104784175FA10C0024B1D3 /* plist-set-version.sh */,
+				279519D717931E8F00EEAE90 /* plist-bump-version.sh */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
@@ -218,7 +220,8 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# $PROJECT_DIR/scripts/fishlamp-install-scripts.sh";
+			shellScript = "$PROJECT_DIR/bin/fishlamp-install-scripts.sh";
+			showEnvVarsInLog = 0;
 		};
 		27AC5C96175E54F7002629F5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

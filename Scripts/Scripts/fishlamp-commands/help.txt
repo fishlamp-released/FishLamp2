@@ -34,11 +34,11 @@ version-bump-build [version]
     Build numbers are in format major.minor.revision.build (1.2.3.4).
     Parameters:
         Version number to be incremented.
-version-get [plist file]
+plist-get-version [plist file]
     Prints bundle version string from plist file.
     Parameters:
         Path to plist file.
-version-set [plist file] [new version]
+plist-set-version [plist file] [new version]
     Sets the BundleVersion and BundleShortVersionString in a plist file to version passed in.
     Parameters:
         plist file: path to plist file

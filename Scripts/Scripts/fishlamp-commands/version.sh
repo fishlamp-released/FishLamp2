@@ -22,4 +22,4 @@ MY_PATH="`( cd \"$MY_PATH\" && pwd )`"
 FISHLAMP_RELATIVE_PATH=`fishlamp find -r` || { echo "##! FishLamp not found. Must be in current or parent directory."; exit 1; }
 FISHLAMP_ROOT=`fishlamp find -a` || { echo "##! FishLamp not found. Must be in current or parent directory."; exit 1; }
 
-version-get "$FISHLAMP_ROOT/Version.plist"
+plist-get-version "$FISHLAMP_ROOT/Version.plist"
