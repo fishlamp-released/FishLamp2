@@ -78,6 +78,7 @@
 		276806CD175D2F1C00B1D643 /* plist-get-version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "plist-get-version.sh"; sourceTree = "<group>"; };
 		276806CE175D2F1C00B1D643 /* git-tag-version.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "git-tag-version.sh"; sourceTree = "<group>"; };
 		279519D717931E8F00EEAE90 /* plist-bump-version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "plist-bump-version.sh"; sourceTree = "<group>"; };
+		279519D817932DB000EEAE90 /* assert-exists-on-disk.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "assert-exists-on-disk.sh"; sourceTree = "<group>"; };
 		279D118A17836FC100B5A423 /* run-tests.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "run-tests.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,6 +180,7 @@
 				276806CD175D2F1C00B1D643 /* plist-get-version.sh */,
 				27104784175FA10C0024B1D3 /* plist-set-version.sh */,
 				279519D717931E8F00EEAE90 /* plist-bump-version.sh */,
+				279519D817932DB000EEAE90 /* assert-exists-on-disk.sh */,
 			);
 			path = Scripts;
 			sourceTree = "<group>";
