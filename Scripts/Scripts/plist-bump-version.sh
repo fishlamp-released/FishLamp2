@@ -30,4 +30,4 @@ new_version=`version-bump-build "$version"` || { exit 1; }
 
 new_version=`plist-set-version "$THE_FILE" "$new_version"` || { echo "failed"; exit 1; }
 
-echo "bumped build from $version to $new_version"
+echo "$new_version"
