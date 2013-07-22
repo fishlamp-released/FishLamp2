@@ -30,7 +30,7 @@
     FLAssertNotNil(_valueLookup);
     FLAssertNotNil(_stringLookup);
     
-    NSArray* strings = [concatenatedString componentsSeparatedByCharactersInSet:
+    NSArray* strings = [concatenatedString componentsSeparatedByCharactersInSet_fl:
                         [NSCharacterSet characterSetWithCharactersInString:delimeter] allowEmptyStrings:NO];
     
     for(NSString* string in strings) {

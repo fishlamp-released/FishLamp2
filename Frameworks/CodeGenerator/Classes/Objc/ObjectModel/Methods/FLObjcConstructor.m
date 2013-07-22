@@ -29,7 +29,7 @@
 + (FLObjcMethodName*) methodNameForConstructor:(FLCodeConstructor*) constructor {
     return [FLObjcMethodName objcMethodName:
             [NSString stringWithFormat:@"initWith%@",
-         [[[constructor.parameters objectAtIndex:0] name] stringWithUppercaseFirstLetter]]];
+         [[[constructor.parameters objectAtIndex:0] name] stringWithUppercaseFirstLetter_fl]]];
 }
 
 - (void) configureWithInputConstructor:(FLCodeConstructor*) constructor 

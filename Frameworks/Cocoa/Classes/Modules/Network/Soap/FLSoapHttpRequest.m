@@ -24,6 +24,8 @@
 
 #define TRACE 0
 
+#define BIG_TRACE 0
+
 @implementation FLSoapHttpRequest 
 
 #define MAX_ERR_LEN 500
@@ -108,14 +110,15 @@
 
 	[soapStringBuilder addElement:element];
     NSString* soap = [soapStringBuilder buildStringWithNoWhitespace];
-
-    if([soap rangeOfString:@"LoadPhotoSet"].length > 0) {
-        FLAssert([soap rangeOfString:@"photoSetId"].length > 0);
-    }
-
     [self.requestHeaders setValue:self.soapAction forHTTPHeaderField:@"SOAPAction"];
     [self.requestBody setUtf8Content:soap];
     
+#if BIG_TRACE
+    FLLog(@"Soap Request:");
+    FLLog([self.requestHeaders description]);
+    FLLog(soap);
+#endif
+
 //#if DEBUG
 //    FLPrettyString* debugString = [FLPrettyString prettyString];
 //    [debugString appendBuildableString:soapStringBuilder];
@@ -162,7 +165,7 @@
     NSData* data = [httpResponse.responseData data];
     FLAssertNotNil(data);
 
-#if TRACE
+#if BIG_TRACE
     FLLog(@"Soap Response:");
     FLLog([[httpResponse responseHeaders] description]);
     FLLog(FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]));
@@ -176,15 +179,6 @@
         FLAssertNotNil(elementForObject);
 
         id soapResponse = [[FLSoapObjectBuilder instance] buildObjectOfType:[self typeNameForSoapResponse] withXML:elementForObject];
-
-
-//        Class theClass = NSClassFromString([self typeNameForSoapResponse]);
-//        FLAssertNotNil(theClass);
-//
-//
-//        id soapResponse = [theClass objectWithXmlElement:elementForObject
-//                                       withObjectBuilder:[FLSoapObjectBuilder instance]];
-
         FLAssertNotNil(soapResponse);
 
         return soapResponse;

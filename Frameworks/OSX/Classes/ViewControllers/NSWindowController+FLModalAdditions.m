@@ -8,6 +8,7 @@
 //
 
 #import "NSWindowController+FLModalAdditions.h"
+#import "FLResponderChainState.h"
 
 @implementation NSViewController (FLModalAdditions)
 
@@ -21,8 +22,6 @@
     
     return [self.view.window showModalWindow:windowController withDefaultButton:nil];
 }
-
-
 
 @end
 
@@ -54,12 +53,12 @@
 - (FLSheetHandler*) showModalWindow:(NSWindowController*) modalWindow {
     return [self showModalWindow:modalWindow withDefaultButton:nil];
 }
+
 @end
 
 @interface FLSheetHandler ()
 @property (readwrite, assign, nonatomic) NSModalSession modalSession;
-
-@property (readwrite, strong, nonatomic) id firstResponder;
+@property (readwrite, strong, nonatomic) FLResponderChainState* responderState;
 @end
 
 @implementation FLSheetHandler 
@@ -67,10 +66,9 @@
 @synthesize modalWindow = _modalWindow;
 @synthesize modalWindowController = _modalWindowController;
 @synthesize hostWindow = _hostWindow;
-@synthesize firstResponder = _firstResponder;
 @synthesize appModal = _appModal;
 @synthesize defaultButton = _defaultButton;
-
+@synthesize responderState = _responderState;
 
 + (id) sheetHandler {
     return FLAutorelease([[[self class] alloc] init]);
@@ -81,7 +79,7 @@
     [_modalWindow release];
     [_modalWindowController release];
     [_hostWindow release];
-    [_firstResponder release];
+    [_defaultButton release];
     [super dealloc];
 }
 #endif
@@ -89,15 +87,20 @@
 - (void) finish {
     if(_modalSession) {
         [NSApp endModalSession:_modalSession];
+        _modalSession = nil;
     }
     [_modalWindow orderOut:self];
-    [_hostWindow makeFirstResponder:_firstResponder];
 
+
+    [_hostWindow makeFirstResponder:nil];
+
+    [self.responderState restore];
+
+    self.responderState = nil;
     self.hostWindow = nil;
     self.modalWindow = nil;
     self.modalWindowController = nil;
     self.modalSession = nil;
-    self.firstResponder = nil;
 }
 
 - (void) sheetDidEnd:(NSWindow*) sheet 
@@ -108,12 +111,6 @@
     [handler finish];
 }
 
-- (void)keyDown:(NSEvent *)theEvent {
-
-    FLLog(@"got it");
-}
-
-
 - (void) beginSheet {
 
     if(!self.modalWindow && self.modalWindowController) {
@@ -123,18 +120,21 @@
     FLAssertNotNilWithComment(self.hostWindow, @"host window not set");
     FLAssertNotNilWithComment(self.modalWindow, @"modal window or modal window controller not set");
 
-    self.firstResponder = self.hostWindow.firstResponder;
-    if(self.appModal) {
-        self.modalSession = [NSApp beginModalSessionForWindow:_hostWindow];
-        [NSApp runModalSession:self.modalSession];
-    }
+    self.responderState = [FLResponderChainState responderState:_hostWindow];
 
     [[NSApplication sharedApplication] beginSheet:self.modalWindow
                                    modalForWindow:self.hostWindow
                                     modalDelegate:self 
                                    didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:) 
                                       contextInfo:FLBridgeRetain(void*, self)];
-    
+
+    self.modalWindow.nextResponder = self.hostWindow;
+    [self.hostWindow makeFirstResponder:[self.modalWindow initialFirstResponder]];
+
+    if(self.appModal) {
+        self.modalSession = [NSApp beginModalSessionForWindow:_hostWindow];
+        [NSApp runModalSession:self.modalSession];
+    }
 
     if(!self.defaultButton) {
         self.defaultButton = [self.modalWindowController closeModalWindowButton];
@@ -143,28 +143,8 @@
     if(self.defaultButton) {
         [self.defaultButton setTarget:self.modalWindow];
         [self.defaultButton setAction:@selector(closeModalWindow:)];
-//        [hostWindow setDefaultButtonCell:[button cell]];
-//        [modalWindow setDefaultButtonCell:[button cell]];
-//        [modalWindow makeFirstResponder:button];
-    }    
-    else {
-//        if(self.modalWindowController) {
-//            [modalWindow makeFirstResponder:self.modalWindowController];
-//        }
     }
-    
-    self.nextResponder = self.modalWindow;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.modalWindow makeFirstResponder:self];
-    });
 }
-
-//- (void) beginSheetWithWindowController:(NSWindowController*) modalWindowController modalForWindow:(NSWindow*) hostWindow  withDefaultButton:(NSButton*) button {
-//    self.modalWindowController = modalWindowController;
-//    [self beginSheetWithWindow:modalWindowController.window modalForWindow:hostWindow withDefaultButton:button];
-//}
-
-
 
 
 @end

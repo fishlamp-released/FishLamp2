@@ -429,7 +429,7 @@
                        animated:(BOOL) animated
                      completion:(FLPanelViewControllerBlock) completion {
 
-    NSUInteger idx = [_panels indexForKey:identifier];
+    NSInteger idx = [_panels indexForKey:identifier];
     FLAssert(idx != NSNotFound);
     
     if(idx != NSNotFound) {
@@ -497,6 +497,15 @@
 - (BOOL) isPanelSelected:(id) identifier {
     return [[self panelForIdentifier:identifier] isSelected];
 }
+//
+//- (BOOL) setFirstResponder {
+//    [self.view.window makeFirstResponder:[self selectedPanel]];
+//    return YES;
+//}
+//
+//- (BOOL) acceptsFirstResponder {
+//    return YES;
+//}
 
 - (void) startPanelManager {
     [self setNextResponder:self.view.window];
@@ -507,6 +516,7 @@
 
 - (void) showPanelsInWindow:(NSWindow*) window {
     [window setContentView:self.view];
+//    [window setInitialFirstResponder:self.view];
     [self startPanelManager];
 }
 

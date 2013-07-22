@@ -10,33 +10,31 @@
 #import "FLCocoaRequired.h"
 #import "FLObservable.h"
 
-@interface FLService : FLObservable {
-@private
-    NSMutableArray* _subServices;
-    BOOL _serviceOpen;
-    __unsafe_unretained id _superService;
-
-//    SEL _didOpenDelegateMethod;
-//    SEL _didCloseDelegateMethod;
-}
-
-//- (id) initWithDelegate:(id) delegate;
-//- (id) initWithRootNameForDelegateMethods:(NSString*) rootName;
-+ (id) service;
-
+@protocol FLService <NSObject, FLObservable>
 @property (readonly, assign) id superService;
 @property (readonly, assign) id rootService;
-
-@property (readonly, strong) NSArray* subServices; 
-- (void) addSubService:(FLService*) service;
-- (void) removeSubService:(FLService*) service;
-- (void) visitSubServices:(void (^)(id service, BOOL* stop)) visitor;
 
 @property (readonly, assign, getter=isServiceOpen) BOOL serviceOpen;
 - (void) openService:(id) opener;
 - (void) closeService:(id) opener;
 
+@property (readonly, strong) NSArray* subServices; 
+- (void) addSubService:(id<FLService>) service;
+- (void) removeSubService:(id<FLService>) service;
+- (void) visitSubServices:(void (^)(id service, BOOL* stop)) visitor;
+@end
 
+@interface FLService : FLObservable<FLService> {
+@private
+    NSMutableArray* _subServices;
+    BOOL _serviceOpen;
+    __unsafe_unretained id _superService;
+}
+
++ (id) service;
+@end
+
+@interface FLService (OptionalOverrides)
 // optional overrides
 - (void) didMoveToSuperService:(id) superService;
 
@@ -47,13 +45,5 @@
 - (void) willCloseService;
 - (void) closeService;
 - (void) didCloseService;
-
 @end
-
-@protocol FLServiceDelegate <NSObject>
-
-@end
-
-
-
 

@@ -11,7 +11,11 @@
 #import "FLObjectStorage.h"
 #import "FLBlobStorage.h"
 
-@interface FLStorageService : FLService<FLObjectStorage> {
+@protocol FLStorageService <FLService, FLObjectStorage>
+
+@end
+
+@interface FLStorageService : FLService<FLStorageService> {
 @private
 }
 
@@ -21,3 +25,6 @@
 
 @end
 
+@interface FLNoStorageService : FLService<FLStorageService>
++ (id) noStorageService;
+@end

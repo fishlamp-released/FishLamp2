@@ -38,8 +38,8 @@
         if(!suffix) {
             suffix = @"";
         }        
-//        name = [name stringByDeletingPrefix:prefix];
-//        name = [name stringByDeletingSuffix:suffix];
+//        name = [name stringByDeletingPrefix_fl:prefix];
+//        name = [name stringByDeletingSuffix_fl:suffix];
         self.prefix = prefix;
         self.suffix = suffix;
         self.original = name;
@@ -50,10 +50,10 @@
 - (NSString*) identifier {
     NSString* baseName = _original;
     if(FLStringIsNotEmpty(_prefix)) {
-        baseName = [baseName stringByDeletingPrefix:_prefix];
+        baseName = [baseName stringByDeletingPrefix_fl:_prefix];
     }
     if(FLStringIsNotEmpty(_suffix)) {
-        baseName = [baseName stringByDeletingSuffix:_suffix];
+        baseName = [baseName stringByDeletingSuffix_fl:_suffix];
     }
     return baseName; 
     

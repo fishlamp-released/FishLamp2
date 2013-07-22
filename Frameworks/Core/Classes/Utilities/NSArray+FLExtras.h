@@ -17,14 +17,9 @@
 /// Returns index of last object
 
 /// @returns Index of object or NSNotFound
-- (NSUInteger) indexOfLastObject; 
+- (NSUInteger) indexOfLastObject_fl;
 
-/// Get the first object in the array.
-
-/// Same a [array objectAtIndex:0]
-/// @returns Object or nil.
-- (id) firstObject;
-
+// TODO: move these out of core??
 + (NSArray*) arrayOfLinesFromFile:(NSString*) path encoding:(NSStringEncoding)encoding error:(NSError **)error;
 
 + (NSArray*) arrayOfColumnArraysFromCSVFile:(NSString*) path encoding:(NSStringEncoding)encoding error:(NSError **)error;
@@ -38,20 +33,20 @@
 
 /// Move an object from one index to another index.
 
-- (void) moveObjectToNewIndex:(NSUInteger) fromIndex toIndex:(NSUInteger) toIndex;
+- (void) moveObjectToNewIndex_fl:(NSUInteger) fromIndex toIndex:(NSUInteger) toIndex;
 
 /// Remove and return last object in list.
 
-- (id) removeLastObject;
+- (id) removeLastObject_fl;
 
 /// Push object on front of the list. 
 
 /// Same as [list insertObject:obj atIndex:0]
-- (void) pushObject:(id) object;
+- (void) pushObject_fl:(id) object;
 
 /// Remove and returns the first object in the list.
 
-- (id) removeFirstObject;
+- (id) removeFirstObject_fl;
 
 /// Adds an object as normal, but then calls the configureObject block.
 
@@ -62,8 +57,7 @@
 /// }];`
 /// @param object The object to add.
 /// @param configureObject The block to run just after adding the object to the list.
-- (void) addObject:(id) object configureObject:(void (^)(id object)) configureObject;
-
+- (void) addObject_fl:(id) object configureObject:(void (^)(id object)) configureObject;
 
 @end
 
@@ -76,15 +70,13 @@
 
 
 @interface NSArray (FLThreadAndMutationSafe)
-- (void) forwardObjectVisitor:(void (^)(id operation, BOOL* stop)) visitor;
-- (BOOL) reverseObjectVisitor:(void (^)(id object, BOOL* stop)) visitor;
-
-
+- (void) visitObjectsForward_fl:(void (^)(id object, BOOL* stop)) visitor;
+- (BOOL) visitObjectsReverse_fl:(void (^)(id object, BOOL* stop)) visitor;
 @end
 
 @interface NSObject (FLLameWorkaroundForArrayRTTI)
 // there are issues with isKindOfClass:[NSArray class] 
 // this works around this.
-- (BOOL) isArray;
+- (BOOL) isArray_fl;
 @end
 

@@ -44,6 +44,14 @@
 		27337A3617822ABB00F56276 /* FishLampOSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27337A3417822ABB00F56276 /* FishLampOSX-Prefix.pch */; };
 		27337A3717822ABB00F56276 /* FishLampOSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27337A3417822ABB00F56276 /* FishLampOSX-Prefix.pch */; };
 		27337A3817822ABB00F56276 /* FishLampOSX-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 27337A3417822ABB00F56276 /* FishLampOSX-Prefix.pch */; };
+		2781F2A0179C35B8008DCAFB /* FLResponderChainState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2781F29E179C35B8008DCAFB /* FLResponderChainState.h */; };
+		2781F2A1179C35B8008DCAFB /* FLResponderChainState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2781F29E179C35B8008DCAFB /* FLResponderChainState.h */; };
+		2781F2A2179C35B8008DCAFB /* FLResponderChainState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2781F29E179C35B8008DCAFB /* FLResponderChainState.h */; };
+		2781F2A3179C35B8008DCAFB /* FLResponderChainState.h in Headers */ = {isa = PBXBuildFile; fileRef = 2781F29E179C35B8008DCAFB /* FLResponderChainState.h */; };
+		2781F2A4179C35B8008DCAFB /* FLResponderChainState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781F29F179C35B8008DCAFB /* FLResponderChainState.m */; };
+		2781F2A5179C35B8008DCAFB /* FLResponderChainState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781F29F179C35B8008DCAFB /* FLResponderChainState.m */; };
+		2781F2A6179C35B8008DCAFB /* FLResponderChainState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781F29F179C35B8008DCAFB /* FLResponderChainState.m */; };
+		2781F2A7179C35B8008DCAFB /* FLResponderChainState.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781F29F179C35B8008DCAFB /* FLResponderChainState.m */; };
 		2782162A175D449B007C5F26 /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D3175D449B007C5F26 /* FishLampCommandLineTool.h */; };
 		2782162B175D449B007C5F26 /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D3175D449B007C5F26 /* FishLampCommandLineTool.h */; };
 		2782162C175D449B007C5F26 /* FishLampCommandLineTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 278215D3175D449B007C5F26 /* FishLampCommandLineTool.h */; };
@@ -400,6 +408,8 @@
 		27337A2217822AAA00F56276 /* NSApplication+FLAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+FLAdditions.h"; sourceTree = "<group>"; };
 		27337A2317822AAA00F56276 /* NSApplication+FLAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+FLAdditions.m"; sourceTree = "<group>"; };
 		27337A3417822ABB00F56276 /* FishLampOSX-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FishLampOSX-Prefix.pch"; sourceTree = "<group>"; };
+		2781F29E179C35B8008DCAFB /* FLResponderChainState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLResponderChainState.h; sourceTree = "<group>"; };
+		2781F29F179C35B8008DCAFB /* FLResponderChainState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLResponderChainState.m; sourceTree = "<group>"; };
 		278215D3175D449B007C5F26 /* FishLampCommandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishLampCommandLineTool.h; sourceTree = "<group>"; };
 		278215D4175D449B007C5F26 /* FLCommandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCommandLineTool.h; sourceTree = "<group>"; };
 		278215D5175D449B007C5F26 /* FLCommandLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCommandLineTool.m; sourceTree = "<group>"; };
@@ -462,6 +472,12 @@
 		27821623175D449B007C5F26 /* FLWizardNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardNavigationViewController.m; sourceTree = "<group>"; };
 		27821624175D449B007C5F26 /* FLWizardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWizardViewController.h; sourceTree = "<group>"; };
 		27821625175D449B007C5F26 /* FLWizardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWizardViewController.m; sourceTree = "<group>"; };
+		27951C2E1793409000EEAE90 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLErrorWindowController.xib; sourceTree = "<group>"; };
+		27951C301793409000EEAE90 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLLoginPanel.xib; sourceTree = "<group>"; };
+		27951C321793409000EEAE90 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLProgressPanel.xib; sourceTree = "<group>"; };
+		27951C341793409000EEAE90 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FLWizardViewController.xib; sourceTree = "<group>"; };
+		27951C361793409000EEAE90 /* attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attention.png; sourceTree = "<group>"; };
+		27951C371793409000EEAE90 /* attention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attention@2x.png"; sourceTree = "<group>"; };
 		279FE7C3176E2EB20047B077 /* NSTextView+FLTextWrapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+FLTextWrapping.h"; sourceTree = "<group>"; };
 		279FE7C4176E2EB20047B077 /* NSTextView+FLTextWrapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+FLTextWrapping.m"; sourceTree = "<group>"; };
 		27A43AC415CDCCCB001CB13E /* libFishLampOSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampOSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -541,6 +557,8 @@
 				27337A2117822AAA00F56276 /* FLHttpController+UserLogin.m */,
 				27337A2217822AAA00F56276 /* NSApplication+FLAdditions.h */,
 				27337A2317822AAA00F56276 /* NSApplication+FLAdditions.m */,
+				2781F29E179C35B8008DCAFB /* FLResponderChainState.h */,
+				2781F29F179C35B8008DCAFB /* FLResponderChainState.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -711,9 +729,32 @@
 			path = WizardViewController;
 			sourceTree = "<group>";
 		};
+		27951C2C1793409000EEAE90 /* FishLampResources */ = {
+			isa = PBXGroup;
+			children = (
+				27951C2D1793409000EEAE90 /* FLErrorWindowController.xib */,
+				27951C2F1793409000EEAE90 /* FLLoginPanel.xib */,
+				27951C311793409000EEAE90 /* FLProgressPanel.xib */,
+				27951C331793409000EEAE90 /* FLWizardViewController.xib */,
+				27951C351793409000EEAE90 /* Images */,
+			);
+			name = FishLampResources;
+			path = ../FishLampResources;
+			sourceTree = "<group>";
+		};
+		27951C351793409000EEAE90 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				27951C361793409000EEAE90 /* attention.png */,
+				27951C371793409000EEAE90 /* attention@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		27A43A7115CDCC1B001CB13E = {
 			isa = PBXGroup;
 			children = (
+				27951C2C1793409000EEAE90 /* FishLampResources */,
 				278215D0175D449B007C5F26 /* Classes */,
 				27A43A7E15CDCC1B001CB13E /* Frameworks */,
 				27A43A7D15CDCC1B001CB13E /* Products */,
@@ -791,6 +832,7 @@
 				278216AA175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */,
 				278216B2175D449B007C5F26 /* FLLinkTextField.h in Headers */,
 				27337A2417822AAA00F56276 /* FLHttpController+UserLogin.h in Headers */,
+				2781F2A0179C35B8008DCAFB /* FLResponderChainState.h in Headers */,
 				278216BA175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
 				278216C2175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
 				278216CA175D449B007C5F26 /* FLPanelWizard.h in Headers */,
@@ -836,6 +878,7 @@
 				278216AC175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */,
 				278216B4175D449B007C5F26 /* FLLinkTextField.h in Headers */,
 				27337A2617822AAA00F56276 /* FLHttpController+UserLogin.h in Headers */,
+				2781F2A2179C35B8008DCAFB /* FLResponderChainState.h in Headers */,
 				278216BC175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
 				278216C4175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
 				278216CC175D449B007C5F26 /* FLPanelWizard.h in Headers */,
@@ -881,6 +924,7 @@
 				278216AB175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */,
 				278216B3175D449B007C5F26 /* FLLinkTextField.h in Headers */,
 				27337A2517822AAA00F56276 /* FLHttpController+UserLogin.h in Headers */,
+				2781F2A1179C35B8008DCAFB /* FLResponderChainState.h in Headers */,
 				278216BB175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
 				278216C3175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
 				278216CB175D449B007C5F26 /* FLPanelWizard.h in Headers */,
@@ -926,6 +970,7 @@
 				278216AD175D449B007C5F26 /* FLImagePlaceholderView.h in Headers */,
 				278216B5175D449B007C5F26 /* FLLinkTextField.h in Headers */,
 				27337A2717822AAA00F56276 /* FLHttpController+UserLogin.h in Headers */,
+				2781F2A3179C35B8008DCAFB /* FLResponderChainState.h in Headers */,
 				278216BD175D449B007C5F26 /* FLTextFieldCell.h in Headers */,
 				278216C5175D449B007C5F26 /* NSView+FLAdditions.h in Headers */,
 				278216CD175D449B007C5F26 /* FLPanelWizard.h in Headers */,
@@ -1114,6 +1159,7 @@
 				2782166E175D449B007C5F26 /* FLErrorWindowController.m in Sources */,
 				27821676175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */,
 				2782167E175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */,
+				2781F2A4179C35B8008DCAFB /* FLResponderChainState.m in Sources */,
 				27821686175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */,
 				2782168E175D449B007C5F26 /* FLButtonCell.m in Sources */,
 				27821696175D449B007C5F26 /* FLCickableImageView.m in Sources */,
@@ -1156,6 +1202,7 @@
 				27821670175D449B007C5F26 /* FLErrorWindowController.m in Sources */,
 				27821678175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */,
 				27821680175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */,
+				2781F2A6179C35B8008DCAFB /* FLResponderChainState.m in Sources */,
 				27821688175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */,
 				27821690175D449B007C5F26 /* FLButtonCell.m in Sources */,
 				27821698175D449B007C5F26 /* FLCickableImageView.m in Sources */,
@@ -1198,6 +1245,7 @@
 				2782166F175D449B007C5F26 /* FLErrorWindowController.m in Sources */,
 				27821677175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */,
 				2782167F175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */,
+				2781F2A5179C35B8008DCAFB /* FLResponderChainState.m in Sources */,
 				27821687175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */,
 				2782168F175D449B007C5F26 /* FLButtonCell.m in Sources */,
 				27821697175D449B007C5F26 /* FLCickableImageView.m in Sources */,
@@ -1240,6 +1288,7 @@
 				27821671175D449B007C5F26 /* FLErrorWindowController.m in Sources */,
 				27821679175D449B007C5F26 /* FLFileDropTableViewController.m in Sources */,
 				27821681175D449B007C5F26 /* NSViewController+FLErrorSheet.m in Sources */,
+				2781F2A7179C35B8008DCAFB /* FLResponderChainState.m in Sources */,
 				27821689175D449B007C5F26 /* NSWindowController+FLModalAdditions.m in Sources */,
 				27821691175D449B007C5F26 /* FLButtonCell.m in Sources */,
 				27821699175D449B007C5F26 /* FLCickableImageView.m in Sources */,
@@ -1292,6 +1341,41 @@
 			targetProxy = 27E9CFDA175E4AA800BD6205 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		27951C2D1793409000EEAE90 /* FLErrorWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27951C2E1793409000EEAE90 /* en */,
+			);
+			name = FLErrorWindowController.xib;
+			sourceTree = "<group>";
+		};
+		27951C2F1793409000EEAE90 /* FLLoginPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27951C301793409000EEAE90 /* en */,
+			);
+			name = FLLoginPanel.xib;
+			sourceTree = "<group>";
+		};
+		27951C311793409000EEAE90 /* FLProgressPanel.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27951C321793409000EEAE90 /* en */,
+			);
+			name = FLProgressPanel.xib;
+			sourceTree = "<group>";
+		};
+		27951C331793409000EEAE90 /* FLWizardViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27951C341793409000EEAE90 /* en */,
+			);
+			name = FLWizardViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		27048EEC161CB58600C38ADA /* Debug */ = {

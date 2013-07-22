@@ -111,7 +111,7 @@
                
 - (void) popStatusViewAnimated:(BOOL) animated completion:(void (^)()) completion {
 
-    SDKView* toHide = [_stack removeLastObject];
+    SDKView* toHide = [_stack removeLastObject_fl];
             
     if(animated) {
         if(_stack.count >= 2) {

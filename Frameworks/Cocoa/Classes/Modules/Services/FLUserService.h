@@ -8,27 +8,37 @@
 //
 #import "FishLampCore.h"
 #import "FLService.h"
-#import "FLAuthenticated.h"
-#import "FLCredentialsStorage.h"
+#import "FLCredentialsEditor.h"
 
-@protocol FLUserLoginServiceDelegate;
+@protocol FLCredentials;
+@protocol FLCredentialsEditor;
+@protocol FLUserServiceDelegate;
+@protocol FLCredentialsStorage;
 
-@interface FLUserService : FLService<FLAuthenticated> {
-@private    
-    id<FLCredentials> _authCredentials;
+@protocol FLUserService <FLService, FLCredentialsEditorDelegate>
+- (BOOL) canAuthenticate;
+- (id<FLCredentials>) credentials;
+
+- (FLCredentialsEditor*) credentialEditor;
+@end
+
+@protocol FLUserServiceDelegate <NSObject>
+- (void) userServiceDidOpen:(id<FLUserService>) service;
+- (void) userServiceDidClose:(id<FLUserService>) service;
+@end
+
+@interface FLUserService : FLService<FLUserService> {
+@private
+    id<FLCredentials> _credentials;
     id<FLCredentialsStorage> _credentialStorage;
 }
-@property (readwrite, strong, nonatomic) id<FLCredentialsStorage> credentialStorage;
+
+@property (readwrite, strong) id<FLCredentials> credentials;
+@property (readwrite, strong) id<FLCredentialsStorage> credentialStorage;
 
 + (id) userService;
++ (id) userService:(id<FLCredentials>) credentials;
 
-- (BOOL) canAuthenticate;
-- (NSString*) userName;
+- (id) initWithCredentials:(id<FLCredentials>) credentials;
 
 @end
-
-@protocol FLUserLoginServiceDelegate <FLServiceDelegate>
-- (void) userServiceDidOpen:(FLUserService*) service;
-- (void) userServiceDidClose:(FLUserService*) service;
-@end
-

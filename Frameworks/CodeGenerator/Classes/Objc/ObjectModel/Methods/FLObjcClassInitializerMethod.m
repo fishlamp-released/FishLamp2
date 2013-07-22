@@ -15,7 +15,7 @@
 - (void) configureWithInputConstructor:(FLCodeConstructor*) constructor 
                             withObject:(FLObjcObject*) object {
     
-    self.methodName = [FLObjcMethodName objcMethodName:[object.objectName.generatedName stringByDeletingPrefix:self.project.classPrefix]];
+    self.methodName = [FLObjcMethodName objcMethodName:[object.objectName.generatedName stringByDeletingPrefix_fl:self.project.classPrefix]];
 
     self.returnType = [self.project.typeRegistry typeForKey:@"id"];
     self.isStatic = YES;

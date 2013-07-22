@@ -41,19 +41,6 @@ typedef id (^FLAtomicCreateBlock)();
 extern void FLAtomicCreateIfNil(id __strong* addr, Class type);
 extern void FLAtomicCreateIfNilWithBlock(id __strong* addr, FLAtomicCreateBlock block);
 
-#if 0
-#define FLSynthesizeLazyGetterWithInit(__PROPERTY_NAME__, __PROPERTY_TYPE__, __IVAR_NAME__, ... ) \
-    - (__PROPERTY_TYPE__) __PROPERTY_NAME__ { \
-            if ( __IVAR_NAME__ == nil ) { \
-                id var = __VA_ARGS__; \
-                if ( OSAtomicCompareAndSwapPtrBarrier(nil, var, (__bridge_retained void*) __IVAR_NAME__) == false ) { \
-                    FLRelease(var); /* already set by another thread, so release this one */ \
-                } \
-            } \
-        return __IVAR_NAME__; \
-    }
-#endif
-
 #define FLSynthesizeLazyGetter(__PROPERTY_NAME__, __PROPERTY_TYPE__, __IVAR_NAME__, __IVAR_TYPE__) \
             - (__PROPERTY_TYPE__) __PROPERTY_NAME__ { \
                 if ( __IVAR_NAME__ == nil ) { \
@@ -69,7 +56,6 @@ extern void FLAtomicCreateIfNilWithBlock(id __strong* addr, FLAtomicCreateBlock 
                 } \
                 return __IVAR_NAME__; \
             }
-
 
 #define FLSynthesizeLazyGetterDeprecated(__PROPERTY_NAME__, __PROPERTY_TYPE__, __IVAR_NAME__) \
             FLSynthesizeLazyGetter(__PROPERTY_NAME__, __PROPERTY_TYPE__*, __IVAR_NAME__, __PROPERTY_TYPE__)

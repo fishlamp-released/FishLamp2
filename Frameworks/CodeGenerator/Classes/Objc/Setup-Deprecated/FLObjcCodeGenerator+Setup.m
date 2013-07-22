@@ -453,7 +453,7 @@
         
 	}
 
-	method.name = [method.name stringWithLowercaseFirstLetter];
+	method.name = [method.name stringWithLowercaseFirstLetter_fl];
 	method.isPrivate = [NSNumber numberWithBool:NO];
 	method.isStatic = [NSNumber numberWithBool:YES];
 	method.returnType = object.typeName;
@@ -866,7 +866,7 @@
 			[builder appendLine:@"}"];
 
 			FLCodeMethod* method = [FLCodeMethod method];
-			method.name = [NSString stringWithFormat:@"create%@IfNil", [[self getterNameForProperty:prop] stringWithUppercaseFirstLetter]];
+			method.name = [NSString stringWithFormat:@"create%@IfNil", [[self getterNameForProperty:prop] stringWithUppercaseFirstLetter_fl]];
 			method.isStatic = NO;
 			method.isPrivate = NO;
 			method.code.lines = [builder string];			

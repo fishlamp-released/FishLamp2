@@ -24,9 +24,9 @@
 
 - (void) addOperationProperty:(FLWsdlOperationCodeObject*) operationCodeObject {
 
-    NSString* factoryName = [operationCodeObject.name stringWithDeletedSubstring:self.name];
+    NSString* factoryName = [operationCodeObject.name stringWithDeletedSubstring_fl:self.name];
     
-    factoryName = [NSString stringWithFormat:@"create%@", [factoryName stringWithUppercaseFirstLetter]];
+    factoryName = [NSString stringWithFormat:@"create%@", [factoryName stringWithUppercaseFirstLetter_fl]];
     
     if([self methodForName:factoryName] == nil) {
         FLWsdlCodeMethod* method = [self addMethod:factoryName methodReturnType:operationCodeObject.name];

@@ -350,7 +350,7 @@
 @implementation NSObject (FLDatabaseTable) 
 
 + (FLDatabaseTable*) sharedDatabaseTable { 
-    return [[self objectDescriber] databaseTable]; 
+    return [[self objectDescriber] storageRepresentation];
 }
 
 + (NSString*) databaseTableName {

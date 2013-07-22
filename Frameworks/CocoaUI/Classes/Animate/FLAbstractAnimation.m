@@ -28,10 +28,10 @@
 }
 
 
-- (void) startAnimationWithPrepareBlock:(FLBlock) prepare
-                          commitBlock:(FLBlock) commit
-                          finishBlock:(FLBlock) finish
-                      completionBlock:(FLBlock) completion {
+- (void) startAnimationWithPrepareBlock:(fl_block_t) prepare
+                          commitBlock:(fl_block_t) commit
+                          finishBlock:(fl_block_t) finish
+                      completionBlock:(fl_block_t) completion {
 
   
     completion = FLCopyWithAutorelease(completion);

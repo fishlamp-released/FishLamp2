@@ -127,7 +127,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
     });
 }                                 
 
-- (void) queueBlock:(FLBlock) block
+- (void) queueBlock:(fl_block_t) block
      withFinisher:(FLFinisher*) finisher {
 
     dispatch_async(_dispatch_queue, ^{

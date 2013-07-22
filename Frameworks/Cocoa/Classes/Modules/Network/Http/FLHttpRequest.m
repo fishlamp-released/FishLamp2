@@ -292,6 +292,7 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
     NSError* responseError = nil;
     @try {
         [self throwErrorIfResponseIsError:httpResponse];
+        FLThrowIfError(httpResponse.error);
     }
     @catch(NSException* ex) {
         responseError = FLRetainWithAutorelease(ex.error);
@@ -330,7 +331,7 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
             }
 
             if(!finalResult) {
-                finalResult = httpResponse;
+                finalResult =  httpResponse;
             }
     
             [self finishRequestWithResult:finalResult];

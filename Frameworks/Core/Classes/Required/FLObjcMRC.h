@@ -96,7 +96,14 @@ void _FLReleaseBlockWithNil(dispatch_block_t* block) {
         } \
     }
 
+NS_INLINE
+void FLSaveBlockForLater(dispatch_block_t* block) {
+    if(block && *block) {
+        *block = [[*block copy] autorelease];
+    }
+}
 
-    
+#define FLPrepareBlockForFutureUse(__BLOCK__) \
+    FLSaveBlockForLater((dispatch_block_t*) &__BLOCK__)
 
 #endif

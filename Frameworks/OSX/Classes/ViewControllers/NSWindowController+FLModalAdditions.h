@@ -8,15 +8,18 @@
 //
 #import "FishLamp.h"
 
+@class FLResponderChainState;
+
 @interface FLSheetHandler : NSResponder {
 @private
     NSModalSession _modalSession;
     NSWindow* _modalWindow;
     NSWindow* _hostWindow;
     NSWindowController* _modalWindowController;
-    id _firstResponder;
     BOOL _appModal;
     NSButton* _defaultButton;
+
+    FLResponderChainState* _responderState;
 }
 @property (readwrite, strong, nonatomic) NSWindow* modalWindow;
 @property (readwrite, strong, nonatomic) NSWindow* hostWindow;
@@ -45,6 +48,10 @@
             withDefaultButton:(NSButton*) button;
 
 - (FLSheetHandler*) showModalWindow:(NSWindowController*) modalWindow;
+
+#if DEBUG
+- (NSString*) stringFromResponderChain;
+#endif
 
 @end
 

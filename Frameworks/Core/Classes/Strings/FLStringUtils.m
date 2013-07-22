@@ -29,7 +29,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 
 @implementation NSString (FLStringUtilities)
 
-- (NSString*) stringWithDeletedSubstring:(NSString*) substring {
+- (NSString*) stringWithDeletedSubstring_fl:(NSString*) substring {
 
     NSRange range = [self rangeOfString:substring];
     if(range.length > 0) {
@@ -43,7 +43,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 
 
 
-+ (NSString*) stringWithFormatOrNil:(NSString*) format, ... {
++ (NSString*) stringWithFormatOrNil_fl:(NSString*) format, ... {
     if(format) {
         va_list va;
         va_start(va, format);
@@ -56,18 +56,18 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 }
 
 
-- (NSString*) trimmedStringWithNoLFCR
+- (NSString*) trimmedStringWithNoLFCR_fl
 {
-	NSString* str = [self trimmedString];
+	NSString* str = [self trimmedString_fl];
 	str = [str stringByReplacingOccurrencesOfString:@"\r" withString:@""];
 	return [str stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 }
 // TODO: is there a better way to do this?
-- (NSString*) trimmedString {
+- (NSString*) trimmedString_fl {
 	return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
-- (NSString*) stringWithPadding:(NSUInteger) width {
+- (NSString*) stringWithPadding_fl:(NSUInteger) width {
     NSMutableString* str = [NSMutableString stringWithString:self];
     for(NSUInteger i = self.length; i < width; i++) {
         [str appendString:@" "];
@@ -75,19 +75,19 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
     return str;
 }
 
-- (BOOL)isEqualToString:(NSString *)aString caseSensitive:(BOOL) caseSensitive {
+- (BOOL)isEqualToString_fl:(NSString *)aString caseSensitive:(BOOL) caseSensitive {
 	return caseSensitive ?	[self isEqualToString:aString] :		
 							[self caseInsensitiveCompare:aString] == NSOrderedSame; 
 }
 
-- (NSString*) stringWithUppercaseFirstLetter
+- (NSString*) stringWithUppercaseFirstLetter_fl
 {
 	return [NSString stringWithFormat:@"%c%@", 
 					toupper([self characterAtIndex:0]),
 					[self substringFromIndex:1]];
 }
 
-- (NSString*) stringWithLowercaseFirstLetter
+- (NSString*) stringWithLowercaseFirstLetter_fl
 {
 	return [NSString stringWithFormat:@"%c%@", 
 			tolower([self characterAtIndex:0]),
@@ -95,7 +95,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 }
 
 
-- (NSString*) camelCaseSpaceDelimitedString
+- (NSString*) camelCaseSpaceDelimitedString_fl
 {
 	NSArray* split = [self componentsSeparatedByString:@" "];
 	
@@ -105,13 +105,13 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 	
 	for(NSUInteger i = 1; i < split.count; i++)
 	{
-		[outString appendString:[[split objectAtIndex:i] stringWithUppercaseFirstLetter]];
+		[outString appendString:[[split objectAtIndex:i] stringWithUppercaseFirstLetter_fl]];
 	}
 	
 	return outString;
 }
 
-- (NSString*) stringWithRemovingQuotes {
+- (NSString*) stringWithRemovingQuotes_fl {
     
     if(self.length >= 2) {
         NSRange r;
@@ -133,11 +133,11 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 }
 
 
-- (BOOL) containsString:(NSString*) string {
+- (BOOL) containsString_fl:(NSString*) string {
     return FLStringIsNotEmpty(string) && [self rangeOfString:string].length == string.length;
 }
 
-- (NSUInteger) subStringCount:(NSString*) substring {
+- (NSUInteger) subStringCount_fl:(NSString*) substring {
     NSUInteger count = 0;
     NSUInteger subLen = substring.length;
     NSUInteger len = self.length;
@@ -159,7 +159,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
     return count;
 }
 
-- (NSArray*) componentsSeparatedByCharactersInSet:(NSCharacterSet*) charSet 
+- (NSArray*) componentsSeparatedByCharactersInSet_fl:(NSCharacterSet*) charSet
                                 allowEmptyStrings:(BOOL) allowEmptyStrings {
 
     NSArray* components = [self componentsSeparatedByCharactersInSet:charSet];
@@ -176,7 +176,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
     return components;
 }                                
 
-- (NSString*) stringByDeletingPrefix:(NSString*) prefix {
+- (NSString*) stringByDeletingPrefix_fl:(NSString*) prefix {
 
     if(FLStringIsNotEmpty(prefix)) {
         NSRange range = [self rangeOfString:prefix options:NSCaseInsensitiveSearch];
@@ -190,7 +190,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 }
 
 
-- (NSString*) stringByDeletingSuffix:(NSString*) suffix {
+- (NSString*) stringByDeletingSuffix_fl:(NSString*) suffix {
 
     if(FLStringIsNotEmpty(suffix)) {
         NSRange range = [self rangeOfString:suffix
@@ -205,16 +205,16 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
     return self;
 }
 
-- (NSString*) stringByPrependingPrefix:(NSString*) prefix {
+- (NSString*) stringByPrependingPrefix_fl:(NSString*) prefix {
     if(FLStringIsNotEmpty(prefix)) {
-        return [prefix stringByAppendingString:[self stringByDeletingPrefix:prefix]];
+        return [prefix stringByAppendingString:[self stringByDeletingPrefix_fl:prefix]];
     }
     return self;
 }
 
-- (NSString*) stringByAppendingSuffix:(NSString*) suffix {
+- (NSString*) stringByAppendingSuffix_fl:(NSString*) suffix {
     if(FLStringIsNotEmpty(suffix)) {
-        return [[self stringByDeletingSuffix:suffix] stringByAppendingString:suffix];
+        return [[self stringByDeletingSuffix_fl:suffix] stringByAppendingString:suffix];
     }
     return self;
 }
@@ -224,7 +224,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 
 @implementation NSMutableString (FLStringUtilities)
 
-- (BOOL) insertString:(NSString*) substring beforeString:(NSString*) beforeString withBackwardsSearch:(BOOL) searchBackwards {
+- (BOOL) insertString_fl:(NSString*) substring beforeString:(NSString*) beforeString withBackwardsSearch:(BOOL) searchBackwards {
 
     NSStringCompareOptions options = searchBackwards ? NSBackwardsSearch: 0;
     
@@ -238,7 +238,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
     return NO;
 }
 
-- (BOOL) insertString:(NSString*) substring afterString:(NSString*) afterString withBackwardsSearch:(BOOL) searchBackwards {
+- (BOOL) insertString_fl:(NSString*) substring afterString:(NSString*) afterString withBackwardsSearch:(BOOL) searchBackwards {
 
     NSStringCompareOptions options = searchBackwards ? NSBackwardsSearch: 0;
     

@@ -13,47 +13,47 @@
 
 @interface NSString (FLStringUtilities)
 
-- (BOOL)isEqualToString:(NSString *)aString caseSensitive:(BOOL) caseSensitive;
+- (BOOL)isEqualToString_fl:(NSString *)aString caseSensitive:(BOOL) caseSensitive;
 
 // FL version isn't to happy with nil.
 // this returns @"" if formatOrNil is nil.
-+ (NSString*) stringWithFormatOrNil:(NSString*) formatOrNil, ...;
++ (NSString*) stringWithFormatOrNil_fl:(NSString*) formatOrNil, ...;
 
-- (NSString*) trimmedStringWithNoLFCR;
+- (NSString*) trimmedStringWithNoLFCR_fl;
 
-- (NSString*) trimmedString;
+- (NSString*) trimmedString_fl;
 
-- (NSString*) stringWithPadding:(NSUInteger) width;
+- (NSString*) stringWithPadding_fl:(NSUInteger) width;
 
-- (NSString*) stringWithDeletedSubstring:(NSString*) substring;
+- (NSString*) stringWithDeletedSubstring_fl:(NSString*) substring;
 
-- (NSString*) stringWithUppercaseFirstLetter;
+- (NSString*) stringWithUppercaseFirstLetter_fl;
 
-- (NSString*) stringWithLowercaseFirstLetter;
+- (NSString*) stringWithLowercaseFirstLetter_fl;
 
-- (NSString*) camelCaseSpaceDelimitedString;
+- (NSString*) camelCaseSpaceDelimitedString_fl;
 
-- (NSString*) stringWithRemovingQuotes; // if the string is "..." or '...' it will remove the leading and trailing quotes quotes. 
+- (NSString*) stringWithRemovingQuotes_fl; // if the string is "..." or '...' it will remove the leading and trailing quotes quotes.
 
-- (BOOL) containsString:(NSString*) string;
+- (BOOL) containsString_fl:(NSString*) string;
 
-- (NSUInteger) subStringCount:(NSString*) substring;
+- (NSUInteger) subStringCount_fl:(NSString*) substring;
 
-- (NSArray*) componentsSeparatedByCharactersInSet:(NSCharacterSet*) set 
+- (NSArray*) componentsSeparatedByCharactersInSet_fl:(NSCharacterSet*) set
                                 allowEmptyStrings:(BOOL) allowEmptyStrings;
 
 
 // these are case insensitve
-- (NSString*) stringByDeletingPrefix:(NSString*) prefix;
-- (NSString*) stringByPrependingPrefix:(NSString*) prefix;
+- (NSString*) stringByDeletingPrefix_fl:(NSString*) prefix;
+- (NSString*) stringByPrependingPrefix_fl:(NSString*) prefix;
 
-- (NSString*) stringByDeletingSuffix:(NSString*) suffix;
-- (NSString*) stringByAppendingSuffix:(NSString*) suffix;
+- (NSString*) stringByDeletingSuffix_fl:(NSString*) suffix;
+- (NSString*) stringByAppendingSuffix_fl:(NSString*) suffix;
 @end
 
 @interface NSMutableString (FLStringUtilities)
-- (BOOL) insertString:(NSString*) substring beforeString:(NSString*) beforeString withBackwardsSearch:(BOOL) searchBackwards;
-- (BOOL) insertString:(NSString*) substring afterString:(NSString*) afterString withBackwardsSearch:(BOOL) searchBackwards;
+- (BOOL) insertString_fl:(NSString*) substring beforeString:(NSString*) beforeString withBackwardsSearch:(BOOL) searchBackwards;
+- (BOOL) insertString_fl:(NSString*) substring afterString:(NSString*) afterString withBackwardsSearch:(BOOL) searchBackwards;
 @end
 
 // this also accepts a nil formatString (which is why it exists)

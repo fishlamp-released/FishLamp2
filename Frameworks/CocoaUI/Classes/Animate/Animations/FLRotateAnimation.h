@@ -18,12 +18,12 @@
 //
 //- (void) startRotating:(id) target 
 //       degreesToRotate:(CGFloat) degrees 
-//            completion:(FLBlock) completion;
+//            completion:(fl_block_t) completion;
 //
 //- (void) startRotating:(id) target 
 //            fromDegree:(CGFloat) from 
 //              toDegree:(CGFloat) toDegree 
-//            completion:(FLBlock) completion;
+//            completion:(fl_block_t) completion;
 //
 //@end
 

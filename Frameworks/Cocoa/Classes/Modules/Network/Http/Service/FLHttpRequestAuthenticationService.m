@@ -99,7 +99,6 @@
 }
 
 - (void) authenticateHttpRequest:(FLHttpRequest*) request {
-
     FLHttpUser* user = self.user;
     FLAssertNotNil(user); 
         
@@ -119,26 +118,6 @@
             [self authenticateHttpRequest:request withAuthenticatedUser:user];
         }
     }];
-    
-    
-
-//    return [[_asyncQueue queueBlock:^{
-//        FLHttpUser* user = self.user;
-//        FLAssertNotNil(user); 
-//        
-//        if([self shouldAuthenticateUser:user]) {
-//            [self resetAuthenticationTimestamp];
-//
-//            user = [self authenticateUser:user];
-//                                               
-//            [self touchAuthenticationTimestamp];
-//            FLPerformSelector2(self.delegate, @selector(httpRequestAuthenticationService:didAuthenticateUser:), self, user);
-//        }
-//        
-//        [self authenticateHttpRequest:request withUser:user];
-//    
-//    }] waitUntilFinished];
-
 }
 
 - (FLPromise*) beginAuthenticating:(fl_completion_block_t) completion {

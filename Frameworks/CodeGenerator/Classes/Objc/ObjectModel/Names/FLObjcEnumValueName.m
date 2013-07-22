@@ -15,6 +15,6 @@
     return FLAutorelease([[[self class] alloc] initWithIdentifierName:name prefix:prefix suffix:nil]);
 }
 - (NSString*) generatedName {
-    return [NSString stringWithFormat:@"%@%@", self.prefix, [self.identifier stringWithUppercaseFirstLetter]];
+    return [NSString stringWithFormat:@"%@%@", self.prefix, [self.identifier stringWithUppercaseFirstLetter_fl]];
 }
 @end

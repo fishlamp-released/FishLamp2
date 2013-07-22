@@ -18,44 +18,53 @@
 // TODO (MWF): removing this coupling
 #import "FLDatabaseObjectStorageService.h"
 
+@protocol FLHttpControllerServiceFactory;
+
+@protocol FLUserService;
+
 extern NSString* const FLHttpControllerDidLogoutUserNotification;
 
 @interface FLHttpController : FLNetworkOperationContext<
-    FLHttpRequestAuthenticationServiceDelegate, FLUserLoginServiceDelegate,  FLHttpRequestContext,
+    FLHttpRequestAuthenticationServiceDelegate, FLUserServiceDelegate,  FLHttpRequestContext,
     FLDatabaseObjectStorageServiceDelegate> {
 @private
     id _httpUser;
-    FLUserService* _userLoginService;
+    id<FLUserService> _userService;
+
+    id<FLStorageService> _storageService;
+
     FLService* _authenticatedServices;
-    FLStorageService* _storageService;
     FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
     FLNetworkStreamSecurity _streamSecurity;
+
+    id<FLHttpControllerServiceFactory> _serviceFactory;
 
     __unsafe_unretained id _delegate;
 }
 
-@property (readwrite, nonatomic) FLNetworkStreamSecurity streamSecurity;
+- (id) initWithServiceFactory:(id<FLHttpControllerServiceFactory>) factory;
+
++ (id) httpController:(id<FLHttpControllerServiceFactory>) factory;
+
+@property (readonly, strong) id<FLHttpControllerServiceFactory> serviceFactory;
+
+@property (readwrite, assign, nonatomic) FLNetworkStreamSecurity streamSecurity;
 @property (readwrite, assign, nonatomic) id delegate;
 
 @property (readonly, assign, nonatomic) BOOL isAuthenticated;
 @property (readonly, strong) FLService* authenticatedServices;
-@property (readonly, strong) FLUserService* userService;
-@property (readonly, strong) FLStorageService* storageService;
+
+@property (readonly, strong) id<FLUserService> userService;
+
+@property (readonly, strong) id<FLStorageService> storageService;
+
 @property (readonly, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
+
 @property (readonly, strong) id httpUser;
 
 - (void) logoutUser;
 
 - (void) openUserService;
-
-
-// TODO (MWF): Not too happy with this construction abstraction.
-// optional overrides
-- (FLHttpUser*) createHttpUserForCredentials:(id<FLCredentials>) credentials;
-- (FLUserService*) createUserService;
-- (FLStorageService*) createStorageService;
-- (FLHttpRequestAuthenticationService*) createHttpRequestAuthenticationService;
-
 @end
 
 @protocol FLHttpControllerDelegate <NSObject>
@@ -71,4 +80,18 @@ extern NSString* const FLHttpControllerDidLogoutUserNotification;
 - (void) httpControllerDidOpen:(FLHttpController*) controller;
 @end
 
+@protocol FLHttpControllerServiceFactory <NSObject>
+- (FLHttpUser*) httpController:(FLHttpController*) controller
+  createHttpUserForCredentials:(id<FLCredentials>) credentials;
 
+- (id<FLUserService>) httpControllerCreateUserService:(FLHttpController*) controller;
+
+- (id<FLStorageService>) httpControllerCreateStorageService:(FLHttpController*) controller;
+
+- (FLHttpRequestAuthenticationService*) httpControllerCreateHttpRequestAuthenticationService:(FLHttpController*) controller;
+
+@end
+
+@interface FLHttpControllerServiceFactory : NSObject<FLHttpControllerServiceFactory>
++ (id<FLHttpControllerServiceFactory>) httpControllerServiceFactory;
+@end

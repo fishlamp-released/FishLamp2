@@ -45,6 +45,8 @@ void FLManuallyRelease(id* obj) {
 
 #define FLAutoreleasePoolClose(__NAME__) 
 
+#define FLPrepareBlockForFutureUse(__BLOCK__)
+
 #endif
 
 

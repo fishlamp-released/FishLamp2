@@ -177,7 +177,7 @@ FLPromise* FLDispatchSelectorAsync3(id<FLAsyncQueue> queue,
     
     if([target respondsToSelector:selector]) {
         return [queue queueBlock:^{ 
-            [target performSelector:selector withObject:object1 withObject:object2 withObject:object3]; 
+            [target performSelector_fl:selector withObject:object1 withObject:object2 withObject:object3];
         } withCompletion:completion];
     }
     
@@ -241,7 +241,7 @@ BOOL FLDispatchSelectorSync3(id<FLAsyncQueue> queue,
                                         
     if([target respondsToSelector:selector]) {
         [queue runBlockSynchronously:^{ 
-            [target performSelector:selector withObject:object1 withObject:object2 withObject:object3]; } 
+            [target performSelector_fl:selector withObject:object1 withObject:object2 withObject:object3]; }
         ];
 
         return YES;

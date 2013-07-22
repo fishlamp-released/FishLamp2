@@ -84,9 +84,11 @@ OSStatus FLKeychainSetHttpPassword(     NSString* inUserName,
 		NULL								//  ref to the actual item (not needed now)
 	);
 
+#if DEBUG
     if(status != noErr) {
         FLLog(@"addInternetPassword returned %d", status);
     }
+#endif
 
     return status;
 }
@@ -145,11 +147,13 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
     if(passwordBytes) {
 		SecKeychainItemFreeContent(NULL, passwordBytes); 
     }
-    
+
+#if DEBUG
     if(err != noErr && err != errSecItemNotFound) {
         FLLog(@"Find internet password returned: %d", err);
     }
-    
+#endif
+
     return err;
 }
 
@@ -175,8 +179,6 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
     OSStatus status = 0;
 	@synchronized(self) {
         status = FLKeychainSetHttpPassword(userName, domain, password);
-    
-        FLLog(@"Save pw result: %d", status);
     }
     return status;
     
@@ -188,8 +190,6 @@ OSStatus FLKeychainFindHttpPassword(    NSString* inUserName,
     OSStatus status = 0;
 	@synchronized(self) {
         status = FLKeychainDeleteHttpPassword(userName, domain);
-
-        FLLog(@"Remove pw result: %d", status);
     }
     return status;
 }

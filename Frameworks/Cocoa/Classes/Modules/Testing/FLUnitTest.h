@@ -12,6 +12,7 @@
 #import "FLUnitTestResult.h"
 #import "FLTestResultCollection.h"
 #import "FLUnitTestGroup.h"
+#import "FLTestCaseList.h"
 
 @class FLTestCaseList;
 
@@ -51,11 +52,13 @@
 + (FLUnitTestGroup*) defaultTestGroup;
 + (FLUnitTestGroup*) lastTestGroup;
 
++ (NSInteger) unitTestRunCount;
+
 // optional overrides
 
 // NOTE: these are NOT tests. Thrown exceptions will terminate everything.
-- (void) setup:(FLTestCaseList*) testCases withResults:(FLTestResultCollection*) results;
-- (void) teardown:(FLTestCaseList*) testCases withResults:(FLTestResultCollection*) results;
+- (void) willRunTestCases:(FLTestCaseList*) testCases withResults:(FLTestResultCollection*) results;
+- (void) didRunTestCases:(FLTestCaseList*) testCases withResults:(FLTestResultCollection*) results;
 
 
 // any method with "test" in it (no params) will be run.

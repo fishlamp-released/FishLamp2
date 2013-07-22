@@ -18,7 +18,7 @@
 
 - (void) startShowingView:(SDKView*) viewToShow 
                viewToHide:(SDKView*) viewToHide
-               completion:(FLBlock) completion;
+               completion:(fl_block_t) completion;
 
 // overrides
 - (void) prepareTransition:(CALayer*) showLayer hideLayer:(CALayer*) hideLayer;

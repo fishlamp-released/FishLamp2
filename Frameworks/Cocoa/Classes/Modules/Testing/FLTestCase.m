@@ -34,11 +34,13 @@ typedef enum {
 
 typedef struct {
     __unsafe_unretained NSString* name;
-    FLTestCaseFlag flag;
+    long flag;
 } FLTestCaseFlagPair;
 
 FLTestCaseFlagPair s_flagPairs[] = {
     { FLTestCaseFlagOffString,  FLTestCaseFlagDisabled},
+//    { FLTestCaseOrderFirstString, FLTestCaseOrderFirst},
+//    { FLTestCaseOrderLastString,  FLTestCaseOrderLast},
 //    { FLTestCaseFlagBroken, FLTestCaseFlagBrokenString },
 //    { FLTestCaseFlagDebug, FLTestCaseFlagVerboseString },
 //    { FLTestCaseFlagExpectingException, FLTestCaseFlagExpectingExceptionString }
@@ -51,6 +53,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 @synthesize testCaseSelector = _testCaseSelector;
 @synthesize testCaseTarget = _testCaseTarget;
 @synthesize testCaseName = _testCaseName;
+@synthesize runOrder =_runOrder;
 
 - (void) setDisabledWithReason:(NSString*) reason {
     self.disabled = YES;
@@ -107,6 +110,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
     if(self) {
         self.testCaseBlock = block;
         self.testCaseName = name;
+        _runOrder = FLTestCaseOrderDefault;
     }
     return self;
 }
@@ -118,6 +122,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
         self.testCaseTarget = target;
         self.testCaseSelector = selector;
         self.testCaseName = name;
+        _runOrder = FLTestCaseOrderDefault;
     }
     return self;
 }

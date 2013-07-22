@@ -12,45 +12,54 @@
 #import "FLDatabaseObjectStorageService.h"
 #import "FLAppInfo.h"
 #import "FLSynchronousOperation.h"
-#import "FLUserLogin+Additions.h"
+
 NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDidLogoutUserNotification";
 
 @interface FLHttpController ()
-@property (readwrite, strong) FLUserService* userService;
-@property (readwrite, strong) FLStorageService* storageService;
+@property (readwrite, strong) id<FLUserService> userService;
+@property (readwrite, strong) id<FLStorageService> storageService;
 @property (readwrite, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
 @property (readwrite, strong) FLService* authenticatedServices;
 @property (readwrite, strong) id httpUser;
 @end
 
 @implementation FLHttpController
-@synthesize userService = _userLoginService;
+@synthesize userService = _userService;
 @synthesize storageService = _storageService;
 @synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
 @synthesize delegate = _delegate;
 @synthesize authenticatedServices = _authenticatedServices;
 @synthesize streamSecurity = _streamSecurity;
 @synthesize httpUser = _httpUser;
+@synthesize serviceFactory = _serviceFactory;
 
 - (id) init {
+    return [self initWithServiceFactory:nil];
+}
 
-    self = [super init]; 
+- (id) initWithServiceFactory:(id<FLHttpControllerServiceFactory>) factory {
+
+    self = [super init];
     if(self) {
+        _serviceFactory = FLRetain(factory);
+        FLAssertNotNil(_serviceFactory);
+
         self.authenticatedServices = [FLService service];
                          
-        self.userService = [self createUserService];
+        self.userService = [self.serviceFactory httpControllerCreateUserService:self];
     
         FLAssertNotNil(self.userService);
         [self.userService.observers addObserver:[FLNonretainedObject nonretainedObject:self]];
 
-        self.httpRequestAuthenticator = [self createHttpRequestAuthenticationService];
+        self.httpRequestAuthenticator = [self.serviceFactory httpControllerCreateHttpRequestAuthenticationService:self];
         FLAssertNotNil(self.httpRequestAuthenticator);
         self.httpRequestAuthenticator.delegate = self;
         [self.userService addSubService:self.httpRequestAuthenticator];    
     
-        self.storageService = [self createStorageService];
-        FLAssertNotNil(self.storageService);
-        [self.authenticatedServices addSubService:self.storageService];
+        self.storageService = [self.serviceFactory httpControllerCreateStorageService:self];
+        if(self.storageService) {
+            [self.authenticatedServices addSubService:self.storageService];
+        }
      
         [self.userService openService:self];
     }
@@ -61,11 +70,16 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) userServiceDidOpen:(FLUserService*) service {
-    self.httpUser = [self createHttpUserForCredentials:service.credentials];
++ (id) httpController:(id<FLHttpControllerServiceFactory>) factory {
+    return FLAutorelease([[[self class] alloc] initWithServiceFactory:factory]);
 }
 
-- (void) userServiceDidClose:(FLUserService*) service {
+- (void) userServiceDidOpen:(id<FLUserService>) service {
+    self.httpUser = [self.serviceFactory httpController:self
+                           createHttpUserForCredentials:service.credentials];
+}
+
+- (void) userServiceDidClose:(id<FLUserService>) service {
     [[NSNotificationCenter defaultCenter] postNotificationName:FLHttpControllerDidLogoutUserNotification object:self];
     self.httpUser = nil;
 }
@@ -75,11 +89,12 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 }
 
 #if FL_MRC
-- (void) dealloc { 
+- (void) dealloc {
+    [_serviceFactory release];
     [_httpUser release];
     [_httpRequestAuthenticator release];
     [_storageService release];
-    [_userLoginService release];
+    [_userService release];
     [super dealloc];
 }
 #endif
@@ -120,10 +135,6 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
     editor.password = nil;
     [editor stopEditing];
     
-//    [self.userService setPassword:nil];
-//    [self.userService saveCredentials];
-//    [self.userService closeService:self];
-//    [self.authenticatedServices closeService:self];
     [self.delegate httpController:self didLogoutUser:self.httpUser];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:FLHttpControllerDidLogoutUserNotification object:self];
@@ -148,27 +159,31 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
     return self.httpUser;
 }
 
-- (FLUserService*) createUserService {
-    return [FLUserService userService];
-}
-
-- (FLStorageService*) createStorageService {
-    return [FLDatabaseObjectStorageService databaseObjectStorageService:self];
-}
-
-- (FLHttpUser*) createHttpUserForCredentials:(id<FLCredentials>) credentials {
-    return  [FLHttpUser httpUser:[FLUserLogin userLoginWithCredentials:credentials]];
-}
-
-- (FLHttpRequestAuthenticationService*) createHttpRequestAuthenticationService {
-    return [FLHttpRequestAuthenticationService httpRequestAuthenticationService];
-}
-
 - (NSString*) databaseObjectStorageServiceGetDatabasePath:(FLDatabaseObjectStorageService*) service {
     return [[self.httpUser userDataFolderPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.sqlite", [FLAppInfo bundleIdentifier]]];
 }
-
-
 @end
 
+@implementation FLHttpControllerServiceFactory
 
++ (id<FLHttpControllerServiceFactory>) httpControllerServiceFactory {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (id<FLUserService>) httpControllerCreateUserService:(FLHttpController*) controller {
+    return [FLUserService userService];
+}
+
+- (id<FLStorageService>) httpControllerCreateStorageService:(FLHttpController*) controller {
+    return [FLDatabaseObjectStorageService databaseObjectStorageService:controller];
+}
+
+- (FLHttpUser*) httpController:(FLHttpController*) controller
+  createHttpUserForCredentials:(id<FLCredentials>) credentials {
+    return  [FLHttpUser httpUser:[FLUserLogin userLoginWithCredentials:credentials]];
+}
+
+- (FLHttpRequestAuthenticationService*) httpControllerCreateHttpRequestAuthenticationService:(FLHttpController*) controller {
+    return [FLHttpRequestAuthenticationService httpRequestAuthenticationService];
+}
+@end

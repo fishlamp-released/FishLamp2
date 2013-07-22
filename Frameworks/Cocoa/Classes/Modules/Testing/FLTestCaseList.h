@@ -19,8 +19,12 @@
 
 - (void) addTestCase:(FLTestCase*) testCase;
 
-- (FLTestCase*) findTestCaseForName:(NSString*) name;
-- (FLTestCase*) findTestCaseForSelector:(SEL) selector;
+- (FLTestCase*) testCaseForName:(NSString*) name;
+- (FLTestCase*) testCaseForSelector:(SEL) selector;
 
+- (void) setRunOrder:(long) order forSelector:(SEL) selector;
+- (void) setRunOrder:(long) order forTestCase:(FLTestCase*) testCase;
+
+- (void) sort;
 
 @end

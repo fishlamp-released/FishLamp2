@@ -135,14 +135,19 @@
         [self sortClassList:classList];
         
         for(Class aClass in classList) {
-            FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
 
-            [[FLUnitTest outputLog] indent:^{
-                id results = [self runChildSynchronously:test];
-                FLThrowIfError(results);
-                
-                [resultArray addObject:results];
-            }];
+            NSInteger runCount = [aClass unitTestRunCount];
+
+            for(NSInteger i = 0; i < runCount; i++) {
+                FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
+
+                [[FLUnitTest outputLog] indent:^{
+                    id results = [self runChildSynchronously:test];
+                    FLThrowIfError(results);
+                    
+                    [resultArray addObject:results];
+                }];
+            }
                 
 //            if(results.testResults.count) {
 //                NSArray* failedResults = [results failedResults];

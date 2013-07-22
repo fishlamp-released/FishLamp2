@@ -26,7 +26,7 @@
 }
 
 - (void) setFileName:(NSString*) fileName {
-    [super setFileName:[fileName stringByAppendingSuffix:@".h"]];
+    [super setFileName:[fileName stringByAppendingSuffix_fl:@".h"]];
 }
 
 - (BOOL) canUpdateExistingFile {

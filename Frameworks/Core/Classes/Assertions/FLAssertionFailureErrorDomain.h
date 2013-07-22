@@ -33,8 +33,3 @@ typedef enum {
     FLAssertionFailureRequiredOverride
 } FLAssertionFailure;
 
-//@interface FLAssertionFailureErrorDomainInfo : NSObject<FLErrorDomainInfo>
-//
-//+ (id) assertionFailureErrorDomainInfo;
-//@end
-

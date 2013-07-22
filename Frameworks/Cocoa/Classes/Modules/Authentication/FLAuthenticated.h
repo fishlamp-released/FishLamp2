@@ -13,10 +13,5 @@
 @protocol FLAuthenticated <NSObject>
 - (FLCredentials*) credentials;
 
-- (FLCredentialsEditor*) credentialEditor;
-
-- (void) startEditingCredentials:(FLCredentialsEditor*) editor;
-- (void) credentialsDidChange:(FLCredentialsEditor*) editor;
-- (void) finishEditingCredentials:(FLCredentialsEditor*) editor;
 @end
 

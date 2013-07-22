@@ -61,7 +61,7 @@
     FLAssert(_stack.count > 0);
     
     id last = FLRetainWithAutorelease(self.openedStringBuilder);
-    [_stack removeLastObject];
+    [_stack removeLastObject_fl];
     return last;
 }
 

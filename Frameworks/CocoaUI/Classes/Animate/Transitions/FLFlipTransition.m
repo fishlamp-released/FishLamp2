@@ -107,7 +107,7 @@
 
 - (void) startShowingView:(SDKView*) bottomView 
                viewToHide:(SDKView*) topView
-               completion:(FLBlock) completion {
+               completion:(fl_block_t) completion {
     
     NSView* hostView = bottomView.superview;
 

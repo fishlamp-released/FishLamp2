@@ -65,7 +65,7 @@
 }
 
 - (void) popElement {
-    [self.stack removeLastObject];
+    [self.stack removeLastObject_fl];
 }
 
 - (void)parser:(NSXMLParser *)parser 
@@ -128,7 +128,7 @@ didStartElement:(NSString *)elementName
     FLAssertObjectsAreEqual(elementName, lastElement.elementName);
     
     if(FLStringIsNotEmpty(lastElement.elementValue)) {
-        lastElement.elementValue = [lastElement.elementValue trimmedString];
+        lastElement.elementValue = [lastElement.elementValue trimmedString_fl];
     }
 
     
@@ -164,7 +164,11 @@ didStartElement:(NSString *)elementName
     [parser abortParsing];
 }
 
-- (FLParsedXmlElement*) parseData:(NSData*) data fileNameForErrors:(NSString*) fileName {
+- (FLParsedXmlElement*) parseData:(NSData*) data
+                fileNameForErrors:(NSString*) fileName {
+
+    FLAssertNotNil(data);
+    FLAssert(data.length > 0);
 
     self.stack = [NSMutableArray array];
     self.fileNameForErrors = fileName;

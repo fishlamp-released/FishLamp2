@@ -49,7 +49,7 @@
 
     #define FLAtomicDecrementInteger   FLAtomicIncrement64
 
-    #define atomic_integer_t           int64_t
+    #define fl_atomic_integer_t           int64_t
 
 #else 
 
@@ -61,22 +61,22 @@
 
     #define FLAtomicDecrementInteger   FLAtomicIncrement32
 
-    #define atomic_integer_t           int32_t
+    #define fl_atomic_integer_t           int32_t
 
 #endif
 
 
 #define FLAtomicGetPointer_(__POINTER__) \
-            ((void*) FLAtomicGetInteger((atomic_integer_t*) &(__POINTER__)))
+            ((void*) FLAtomicGetInteger((fl_atomic_integer_t*) &(__POINTER__)))
 
 //#define FLAtomicGetObject_(__OBJECT__) \
-//            FLBridge(id, FLAtomicGetInteger_(FLBridge(atomic_integer_t*, &(__OBJECT__))))
+//            FLBridge(id, FLAtomicGetInteger_(FLBridge(fl_atomic_integer_t*, &(__OBJECT__))))
        
 #define FLAtomicSetPointer_(__POINTER__, __NEW_POINTER__) \
-            FLAtomicSetInteger((atomic_integer_t*) &(__POINTER__), (atomic_integer_t*) __NEW_POINTER__)
+            FLAtomicSetInteger((fl_atomic_integer_t*) &(__POINTER__), (fl_atomic_integer_t*) __NEW_POINTER__)
 
 //#define FLAtomicSetObject_(__OBJECT__, __NEW_OBJECT__) \
-//            FLAtomicSetInteger_(FLBridge(atomic_integer_t*, &(__OBJECT__)), FLBridge(atomic_integer_t, __NEW_OBJECT__))
+//            FLAtomicSetInteger_(FLBridge(fl_atomic_integer_t*, &(__OBJECT__)), FLBridge(fl_atomic_integer_t, __NEW_OBJECT__))
 
 
 

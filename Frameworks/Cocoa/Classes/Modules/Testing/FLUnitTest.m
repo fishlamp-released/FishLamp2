@@ -74,10 +74,6 @@ static FLLogger* s_outputLogger = nil;
     return [self defaultTestGroup];
 }
 
-- (BOOL) willRunTests {
-    return YES;
-}
-
 - (void) discoverTestCases:(FLTestCaseList*) list {
 
     NSMutableSet* set = [NSMutableSet set];
@@ -89,8 +85,17 @@ static FLLogger* s_outputLogger = nil;
                     *stop = YES;
                 }
                 else {
-                    if([NSStringFromSelector(info.selector) rangeOfString:@"test"
-                                                                    options:NSCaseInsensitiveSearch].length > 0) {
+
+//                    NSRange range =
+
+//                    if([NSStringFromSelector(info.selector) rangeOfString:@"test"
+//                                                                    options:NSCaseInsensitiveSearch].length > 0) {
+
+                    NSString* name = NSStringFromSelector(info.selector);
+
+                    if(     [name hasPrefix:@"test"] ||
+                            FLStringsAreEqual(name, @"firstTest") ||
+                            FLStringsAreEqual(name, @"lastTest")) {
 
                         [set addObject:NSStringFromSelector(info.selector)];
                     };
@@ -116,40 +121,36 @@ static FLLogger* s_outputLogger = nil;
 - (FLPromisedResult) performSynchronously {
 //    FLTestResultCollection* results = [FLTestResultCollection testResultCollection];
 
-    if([self willRunTests]) {
+    FLTestCaseList* testCases = [FLTestCaseList testCaseList];
+    [self discoverTestCases:testCases];
+    [testCases sort];
 
-        FLTestCaseList* testCases = [FLTestCaseList testCaseList];
-        [self discoverTestCases:testCases];
+    FLTestResultCollection* testCaseResults = [FLTestResultCollection testResultCollection];
 
-        FLTestResultCollection* testCaseResults = [FLTestResultCollection testResultCollection];
+    [self willRunTestCases:testCases withResults:testCaseResults];
 
-        [self setup:testCases withResults:testCaseResults];
+    for(FLTestCase* testCase in testCases) {
+        FLTestCaseResult* result = [FLTestCaseResult fromPromisedResult:
+                                        [self runChildSynchronously:testCase]];
 
-        for(FLTestCase* testCase in testCases) {
-            FLTestCaseResult* result = [FLTestCaseResult fromPromisedResult:
-                                            [self runChildSynchronously:testCase]];
+        [testCaseResults setTestResult:result forKey:testCase.testCaseName];
+    }
 
-            [testCaseResults setTestResult:result forKey:testCase.testCaseName];
-        }
+    [self didRunTestCases:testCases withResults:testCaseResults];
 
-        [self teardown:testCases withResults:testCaseResults];
-
-        return testCaseResults;
-     }
-
-    return FLSuccess;
+    return testCaseResults;
 }
 
 - (NSString*) description {
     return [NSString stringWithFormat:@"%@ { group=%@ }", [super description], [[[self class] unitTestGroup] description]];
 }
 
-- (void) setup:(FLTestCaseList*) testCases
-   withResults:(FLTestResultCollection*) results {
+- (void) willRunTestCases:(FLTestCaseList*) testCases
+              withResults:(FLTestResultCollection*) results {
 }
 
-- (void) teardown:(FLTestCaseList*) testCases
-      withResults:(FLTestResultCollection*) results {
+- (void) didRunTestCases:(FLTestCaseList*) testCases
+             withResults:(FLTestResultCollection*) results {
 }
 
 + (NSArray*) unitTestDependencies {
@@ -199,6 +200,10 @@ static FLLogger* s_outputLogger = nil;
 
 + (FLUnitTestGroup*) lastTestGroup {
     FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Last Tests" priority:FLUnitTestPriorityLow]);
+}
+
++ (NSInteger) unitTestRunCount {
+    return 1;
 }
 
 @end

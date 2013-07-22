@@ -55,3 +55,28 @@
 
 
 @end
+
+@implementation FLNoStorageService
+
++ (id) noStorageService {
+    return FLAutorelease([[[self class] alloc] init]);
+}
+
+- (void) writeObject:(id) object {
+}
+
+- (id) readObject:(id) inputObject {
+    return nil;
+}
+
+- (void) deleteObject:(id) object {
+}
+
+- (BOOL) containsObject:(id) object {
+    return NO;
+}
+
+- (void) writeObjectsInArray:(NSArray*) array {
+}
+
+@end

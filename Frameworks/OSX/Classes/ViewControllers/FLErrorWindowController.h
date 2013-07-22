@@ -17,6 +17,7 @@
     NSString* _title;
     NSString* _explanation;
 
+    IBOutlet NSView* _errorWindowView;
 }
 @property (readonly, assign, nonatomic) NSButton* okButton;
 

@@ -48,7 +48,7 @@
 
 - (void) startShowingView:(SDKView*) viewToShow 
                viewToHide:(SDKView*) viewToHide
-               completion:(FLBlock) completion {
+               completion:(fl_block_t) completion {
     
     FLAssertNotNil(viewToShow);
     FLAssertNotNil(viewToShow.superview);

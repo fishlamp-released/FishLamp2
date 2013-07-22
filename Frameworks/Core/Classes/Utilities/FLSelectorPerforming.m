@@ -20,7 +20,7 @@ BOOL FLPerformSelector(id target, SEL selector, id __strong * arguments, int arg
     FLAssertWithComment(FLArgumentCountForClassSelector([target class], selector) == argCount, @"@selector(%@) arg count is %d, should be: %d", NSStringFromSelector(selector), argCount, FLArgumentCountForClassSelector([target class], selector));
 
     if([target respondsToSelector:selector]) {
-        [target performSelector:selector withArguments:arguments argumumentCount:argCount];
+        [target performSelector_fl:selector withArguments:arguments argumumentCount:argCount];
         return YES;
     }
     return NO;
@@ -53,7 +53,7 @@ BOOL FLPerformSelector2(id target, SEL selector, id object1, id object2) {
 
 BOOL FLPerformSelector3(id target, SEL selector, id object1, id object2, id object3) {
     if([target respondsToSelector:selector]) {
-        [target performSelector:selector withObject:object1 withObject:object2 withObject:object3];
+        [target performSelector_fl:selector withObject:object1 withObject:object2 withObject:object3];
         return YES;
     }
 
@@ -62,7 +62,7 @@ BOOL FLPerformSelector3(id target, SEL selector, id object1, id object2, id obje
 
 BOOL FLPerformSelector4(id target, SEL selector, id object1, id object2, id object3, id object4) {
     if([target respondsToSelector:selector]) {
-        [target performSelector:selector withObject:object1 withObject:object2 withObject:object3  withObject:object4];
+        [target performSelector_fl:selector withObject:object1 withObject:object2 withObject:object3  withObject:object4];
         return YES;
     }
 
@@ -118,11 +118,11 @@ BOOL FLPerformSelectorOnMainThread2(id target, SEL selector, id object1, id obje
 BOOL FLPerformSelectorOnMainThread3(id target, SEL selector, id object1, id object2, id object3) {
     if([target respondsToSelector:selector]) {
         if([NSThread currentThread] == [NSThread mainThread]) {
-            [target performSelector:selector withObject:object1 withObject:object2 withObject:object3];
+            [target performSelector_fl:selector withObject:object1 withObject:object2 withObject:object3];
         }
         else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [target performSelector:selector withObject:object1 withObject:object2 withObject:object3];
+                [target performSelector_fl:selector withObject:object1 withObject:object2 withObject:object3];
             });
         }
         return YES;
@@ -133,11 +133,11 @@ BOOL FLPerformSelectorOnMainThread3(id target, SEL selector, id object1, id obje
 BOOL FLPerformSelectorOnMainThread4(id target, SEL selector, id object1, id object2, id object3, id object4) {
     if([target respondsToSelector:selector]) {
         if([NSThread currentThread] == [NSThread mainThread]) {
-            [target performSelector:selector withObject:object1 withObject:object2 withObject:object3 withObject:object4];
+            [target performSelector_fl:selector withObject:object1 withObject:object2 withObject:object3 withObject:object4];
         }
         else {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [target performSelector:selector withObject:object1 withObject:object2 withObject:object3 withObject:object4];
+                [target performSelector_fl:selector withObject:object1 withObject:object2 withObject:object3 withObject:object4];
             });
         }
         return YES;

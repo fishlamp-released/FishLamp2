@@ -34,7 +34,7 @@
         }
         
         FLWsdlCodeMethod* method =
-            [object addMethod:[portType.name stringWithDeletedSubstring:service.name] methodReturnType:portCodeObject.name];
+            [object addMethod:[portType.name stringWithDeletedSubstring_fl:service.name] methodReturnType:portCodeObject.name];
 
         [method.codeLines addObject:[FLCodeStatement codeStatement:
                                         [FLCodeReturn codeReturn:

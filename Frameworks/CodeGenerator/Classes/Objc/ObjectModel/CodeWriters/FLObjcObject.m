@@ -139,7 +139,7 @@
 
 - (void) addProtocols:(FLCodeObject*) codeObject {
     if(FLStringIsNotEmpty(codeObject.protocols)) {
-        NSArray* protocols = [[codeObject protocols] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ,"] allowEmptyStrings:NO];
+        NSArray* protocols = [[codeObject protocols] componentsSeparatedByCharactersInSet_fl:[NSCharacterSet characterSetWithCharactersInString:@" ,"] allowEmptyStrings:NO];
 
         for(NSString* protocol in protocols) {
             FLObjcType* type = [self.project.typeRegistry typeForKey:protocol];

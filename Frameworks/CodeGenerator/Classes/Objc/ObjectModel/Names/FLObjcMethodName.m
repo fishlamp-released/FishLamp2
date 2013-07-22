@@ -17,7 +17,7 @@
 }
 
 - (NSString*) generatedName {
-    return [[super generatedName] stringWithLowercaseFirstLetter];
+    return [[super generatedName] stringWithLowercaseFirstLetter_fl];
 }
 
 @end

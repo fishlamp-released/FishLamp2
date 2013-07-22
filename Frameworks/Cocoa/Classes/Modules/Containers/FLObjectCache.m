@@ -68,7 +68,7 @@
     NSMutableArray* cache = [_cache objectForKey:cacheKey];
     if(cache && cache.count) {
         object = FLAutorelease(FLRetain([cache lastObject]));
-        [cache removeLastObject];
+        [cache removeLastObject_fl];
 
         [object wasUncachedFromCache:self];
     }

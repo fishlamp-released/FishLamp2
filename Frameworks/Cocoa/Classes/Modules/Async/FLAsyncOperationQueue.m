@@ -156,7 +156,7 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
         
         
         while(!self.error && _activeQueue.count < max && _objectQueue.count) {
-            id object = [_objectQueue removeFirstObject];
+            id object = [_objectQueue removeFirstObject_fl];
             FLAsyncOperationQueueElement* element = [self queueElement:object operation:[self createOperationForQueuedInputObject:object]];
             [_activeQueue addObject:element];
 

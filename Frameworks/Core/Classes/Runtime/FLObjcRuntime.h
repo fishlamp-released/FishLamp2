@@ -50,7 +50,10 @@ extern BOOL FLRuntimeClassRespondsToSelector(Class aClass, SEL aSelector);
 void FLRuntimeLogMethodsForClass(Class aClass);
 #endif
 
+
+#if EXPERIMENTAL
 @interface NSObject (FLObjcRuntime)
+
 
 // http://www.cocoawithlove.com/2008/03/supersequent-implementation.html
 // Lookup the next implementation of the given selector after the
@@ -71,3 +74,4 @@ void FLRuntimeLogMethodsForClass(Class aClass);
 
 
 
+#endif

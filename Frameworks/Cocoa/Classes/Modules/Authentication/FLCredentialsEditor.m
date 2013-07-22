@@ -8,40 +8,35 @@
 //
 
 #import "FLCredentialsEditor.h"
-#import "FLAuthenticated.h"
+#import "FLCredentials.h"
 
 @interface FLCredentialsEditor ()
-@property (readwrite, strong, nonatomic) id<FLAuthenticated> authenticated;
 @property (readwrite, assign, nonatomic, getter=isEditing) BOOL editing;
 @end
 
 @implementation FLCredentialsEditor
 
-@synthesize authenticated = _authenticated;
 @synthesize editing = _editing;
+@synthesize delegate = _delegate;
+@synthesize credentials = _credentials;
 
 #if FL_MRC
 - (void) dealloc {
-	[_authCredentials release];
-    [_authenticated release];
+	[_credentials release];
 	[super dealloc];
 }
 #endif
 
-- (id) initWithCredentials:(id<FLCredentials>) creds
-                 authenticated:(id<FLAuthenticated>) authenticated {
+- (id) initWithCredentials:(id<FLCredentials>) creds {
 	self = [super init];
 	if(self) {
-        self.credentials = creds;
-        self.authenticated = authenticated;
+        _credentials = [creds mutableCopyWithZone:nil];
     }
 	return self;
 }                 
 
-+ (id) authCredentialEditor:(id<FLCredentials>) creds 
-                 authenticated:(id<FLAuthenticated>) authenticator {
-     return FLAutorelease([[[self class] alloc] initWithCredentials:creds 
-                                                          authenticated:authenticator]);
++ (id) authCredentialEditor:(id<FLCredentials>) creds {
+     return FLAutorelease([[[self class] alloc] initWithCredentials:creds]);
 }
 
 - (void) openIfNeeded {
@@ -52,75 +47,75 @@
 }
 
 - (NSString*) userName {
-    FLAssertNotNil(_authCredentials);
-    return _authCredentials.userName;
+    FLAssertNotNil(_credentials);
+    return _credentials.userName;
 }
 
 - (void) didChange {
     [self startEditing];
-    [_authenticated credentialsDidChange:self];
+    [self.delegate credentialsEditor:self credentialsDidChange:self.credentials];
 }
 
 - (void) setUserName:(NSString*) userName {
-    FLAssertNotNil(_authCredentials);
+    FLAssertNotNil(_credentials);
 
-    if(FLStringsAreNotEqual(_authCredentials.userName, userName)) {
+    if(FLStringsAreNotEqual(_credentials.userName, userName)) {
         [self didChange];
-        _authCredentials.userName = userName;
+        _credentials.userName = userName;
     }
 }
 
 - (NSString*) password {
-    FLAssertNotNil(_authCredentials);
-    return _authCredentials.password;
+    FLAssertNotNil(_credentials);
+    return _credentials.password;
 }
 
 - (void) setPassword:(NSString*) password {
-    FLAssertNotNil(_authCredentials);
-    if(FLStringsAreNotEqual(_authCredentials.password, password)) {
+    FLAssertNotNil(_credentials);
+    if(FLStringsAreNotEqual(_credentials.password, password)) {
         [self didChange];
-        _authCredentials.password = password;
+        _credentials.password = password;
     }
 }
 
 - (BOOL) rememberPassword {
-    FLAssertNotNil(_authCredentials);
-    return _authCredentials.rememberPassword;
+    FLAssertNotNil(_credentials);
+    return _credentials.rememberPassword;
 }
 
 - (void) setRememberPassword:(BOOL) remember {
     [self openIfNeeded];
-    FLAssertNotNil(_authCredentials);
+    FLAssertNotNil(_credentials);
 
-    if( remember != _authCredentials.rememberPassword) {
+    if( remember != _credentials.rememberPassword) {
         [self didChange];
-        _authCredentials.rememberPassword = remember;
+        _credentials.rememberPassword = remember;
     }
 }
 
 - (void) startEditing {
     if(!_editing) {
-        FLAssertNotNil(_authCredentials);
-        [_authenticated startEditingCredentials:self];
+        FLAssertNotNil(_credentials);
+        [self.delegate credentialsEditor:self willStartEditingCredentials:self.credentials];
         _editing = YES;
     }
 }
 
 - (void) stopEditing {
     if(_editing) {
-        FLAssertNotNil(_authCredentials);
-        [_authenticated finishEditingCredentials:self];
+        FLAssertNotNil(_credentials);
+        [self.delegate credentialsEditor:self didFinishEditingCredentials:self.credentials];
         _editing = NO;
     }
 }
 
-- (id<FLCredentials>) credentials {
-    return FLCopyWithAutorelease(_authCredentials);
-}
-
-- (void) setCredentials:(id<FLCredentials>) creds {
-    FLSetObjectWithMutableCopy(_authCredentials, creds);
-}
+//- (id<FLCredentials>) credentials {
+//    return FLCopyWithAutorelease(_credentials);
+//}
+//
+//- (void) setCredentials:(id<FLCredentials>) creds {
+//    FLSetObjectWithMutableCopy(_credentials, creds);
+//}
 
 
 @end

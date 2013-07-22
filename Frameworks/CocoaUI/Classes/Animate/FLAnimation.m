@@ -43,7 +43,7 @@
 }
 
 - (void) startAnimating:(id) target
-             completion:(FLBlock) completion {
+             completion:(fl_block_t) completion {
     
     FLAssertWithComment([NSThread isMainThread], @"not on main thread");
 

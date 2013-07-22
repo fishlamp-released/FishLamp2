@@ -22,26 +22,6 @@
                 <property type="date" name="lastUpdate"/>
             </properties>
         </class>
-        <class name="FLUserLogin">
-            <properties>
-                <property type="NSString" name="userGuid">
-                    <storageOptions isPrimaryKey="YES"/>
-                </property>
-                <property type="NSString" name="userName">
-                    <storageOptions isIndexed="YES" isUnique="YES"/>
-                </property>
-                <property type="NSString" name="password">
-                    <storageOptions isStorable="NO"/>
-                </property>
-                <property type="BOOL" name="isAuthenticated"/>
-                <property type="NSString" name="authToken"/>
-                <property type="NSString" name="email">
-                    <storageOptions isIndexed="YES" isUnique="YES"/>
-                </property>
-                <property type="double" name="authTokenLastUpdateTime"/>
-                <property type="dictionary" name="userInfo"/>
-            </properties>
-        </class>
         <class name="FLApplicationDataVersion">
             <properties>
                 <property type="string" name="userGuid">

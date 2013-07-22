@@ -27,10 +27,10 @@
         whitespace:(NSString*) whitespace {
          
     if(FLTestAnyBit(self.outputFlags, FLLogOutputWithLocation | FLLogOutputWithStackTrace)) { 
-        FLPrintFormat(@"%@%@    (%s:%d)\n", whitespace, [[logString substringWithRange:range] stringWithPadding:80], entry.stackTrace.fileName, entry.stackTrace.lineNumber); 
+        FLPrintFormat(@"%@%@    (%s:%d)\n", whitespace, [[logString substringWithRange:range] stringWithPadding_fl:80], entry.stackTrace.fileName, entry.stackTrace.lineNumber); 
     } 
     else { 
-        FLPrintFormat(@"%@%@\n", whitespace, [[logString substringWithRange:range] stringWithPadding:80]); 
+        FLPrintFormat(@"%@%@\n", whitespace, [[logString substringWithRange:range] stringWithPadding_fl:80]); 
     }
 }            
 

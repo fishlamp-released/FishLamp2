@@ -11,23 +11,19 @@
 #import "FishLampCore.h"
 
 @implementation NSObject (FLLameWorkaroundForArrayRTTI)
-- (BOOL) isArray {
+- (BOOL) isArray_fl {
     return NO;
 }
 @end
 
 @implementation NSArray (FLExtras)
-- (BOOL) isArray {
+- (BOOL) isArray_fl {
     return YES;
 }
 
-- (NSUInteger) indexOfLastObject {
+- (NSUInteger) indexOfLastObject_fl {
 	return self.count > 0 ? self.count - 1 : NSNotFound;
 }
-- (id) firstObject {
-	return [self objectAtIndex:0];
-}
-
 
 + (NSArray*) arrayOfLinesFromFile:(NSString*) path 
                          encoding:(NSStringEncoding)encoding 
@@ -73,7 +69,7 @@
     NSMutableArray* lines = [NSMutableArray array];
     [file enumerateLinesUsingBlock:^(NSString* string, BOOL* stop) {
         
-        string = [string trimmedString];
+        string = [string trimmedString_fl];
     
         [lines addObject:[string componentsSeparatedByString:@","]];
     }];
@@ -84,7 +80,7 @@
 
 @implementation NSArray (FLThreadAndMutationSafe)
 
-- (BOOL) reverseObjectVisitor:(void (^)(id object, BOOL* stop)) visitor {
+- (BOOL) visitObjectsReverse_fl:(void (^)(id object, BOOL* stop)) visitor {
     
     NSInteger idx = 0;
     BOOL started = NO;
@@ -120,7 +116,7 @@
     return stop;
 }
 
-- (void) forwardObjectVisitor:(void (^)(id object, BOOL* stop)) visitor {
+- (void) visitObjectsForward_fl:(void (^)(id object, BOOL* stop)) visitor {
 
     BOOL stop = NO;
     NSUInteger idx = 0;
@@ -150,9 +146,10 @@
 
 @end
 
+
 @implementation NSMutableArray (FLExtras)
 
-- (void) moveObjectToNewIndex:(NSUInteger) fromIndex toIndex:(NSUInteger) toIndex {
+- (void) moveObjectToNewIndex_fl:(NSUInteger) fromIndex toIndex:(NSUInteger) toIndex {
 	FLAssertWithComment(fromIndex < (NSUInteger)self.count, @"bad from idx");
 	FLAssertWithComment(toIndex < (NSUInteger)self.count, @"bad from idx");
 
@@ -171,7 +168,7 @@
 	
 }
 
-- (void) addObject:(id) object configureObject:(void (^)(id object)) configureObject {
+- (void) addObject_fl:(id) object configureObject:(void (^)(id object)) configureObject {
     if(configureObject) {
         configureObject(object);
     }
@@ -179,7 +176,7 @@
     [self addObject:object];
 }
 
-- (id) removeLastObject {
+- (id) removeLastObject_fl {
     if(self.count) {
         id object = FLAutorelease(FLRetain([self lastObject]));
         [self removeLastObject];
@@ -189,11 +186,11 @@
     return nil;
 }
 
-- (void) pushObject:(id) object {
+- (void) pushObject_fl:(id) object {
 	[self insertObject:object atIndex:0];
 }
 
-- (id) removeFirstObject {
+- (id) removeFirstObject_fl {
     if(self.count) {
         id object = FLAutorelease(FLRetain([self objectAtIndex:0]));
         [self removeObjectAtIndex:0];

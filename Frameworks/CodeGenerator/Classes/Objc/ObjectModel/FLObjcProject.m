@@ -243,7 +243,7 @@
 // add a all includes file if needed
     if(FLStringIsNotEmpty(inputProject.options.allIncludesFileName)) {
 
-        NSString* fileName = [inputProject.options.allIncludesFileName stringByAppendingSuffix:@".h"];
+        NSString* fileName = [inputProject.options.allIncludesFileName stringByAppendingSuffix_fl:@".h"];
 
 //        NSString* fileName = [NSString stringWithFormat:@"%@%@All", 
 //                              FLEmptyStringOrString(self.classPrefix), 

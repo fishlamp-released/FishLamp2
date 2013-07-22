@@ -63,9 +63,9 @@
 
 - (void) bindToSqlStatement:(FLSqlStatement*) statement {
 
-    FLAssertWithComment([_sqlString subStringCount:@"?"] == self.objects.count,   
+    FLAssertWithComment([_sqlString subStringCount_fl:@"?"] == self.objects.count,   
         @"binding failure. placeholder count:%d, object count: %d", 
-        [_sqlString subStringCount:@"?"], 
+        [_sqlString subStringCount_fl:@"?"], 
         self.objects.count);
 
     if(self.objects) {

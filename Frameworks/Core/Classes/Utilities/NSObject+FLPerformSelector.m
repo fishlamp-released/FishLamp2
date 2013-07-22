@@ -26,7 +26,7 @@ void FLConfirmNoReturnObject(id obj) {
 #define FLAssertNotMetaClass(c) FLAssertWithComment(!class_isMetaClass(c), @"attempting to execute selector on a meta class");
 
 
-- (void) performSelector:(SEL) selector
+- (void) performSelector_fl:(SEL) selector
                 argCount:(int) argCount
               withObject:(id) object1
               withObject:(id) object2
@@ -48,7 +48,7 @@ void FLConfirmNoReturnObject(id obj) {
         break;
 
         case 3: 
-            [self performSelector:selector withObject:object1 withObject:object2 withObject:object3];
+            [self performSelector_fl:selector withObject:object1 withObject:object2 withObject:object3];
         break;
         
         default:
@@ -57,7 +57,7 @@ void FLConfirmNoReturnObject(id obj) {
     }
 }
 
-- (void) performSelector:(SEL) selector 
+- (void) performSelector_fl:(SEL) selector 
            withArguments:(id __strong *) objects
          argumumentCount:(NSUInteger) argCount {
 
@@ -96,7 +96,7 @@ void FLConfirmNoReturnObject(id obj) {
     FLAssertWithComment([[invocation methodSignature] methodReturnLength] == 0, @"returned objects will leak so it's not supported (blame ARC)." );
 }  
 
-- (void) performSelector:(SEL) selector
+- (void) performSelector_fl:(SEL) selector
               withObject:(id) object1
               withObject:(id) object2 
               withObject:(id) object3 {
@@ -116,7 +116,7 @@ void FLConfirmNoReturnObject(id obj) {
     FLAssertWithComment([[invocation methodSignature] methodReturnLength] == 0, @"returned objects will leak so it's not supported (blame ARC)." );
 }              
 
-- (void) performSelector:(SEL) selector
+- (void) performSelector_fl:(SEL) selector
               withObject:(id) object1
               withObject:(id) object2 
               withObject:(id) object3
@@ -140,7 +140,7 @@ void FLConfirmNoReturnObject(id obj) {
 
 
 
-- (void) performSelector:(SEL) selector
+- (void) performSelector_fl:(SEL) selector
                outObject:(id*) outObject {
 
     FLConfirmIsNotNil(selector);
@@ -154,7 +154,7 @@ void FLConfirmNoReturnObject(id obj) {
     [invocation invoke];
 }
 
-- (void) performSelector:(SEL) selector
+- (void) performSelector_fl:(SEL) selector
               withObject:(id) object
                outObject:(id*) outObject {
 
@@ -170,29 +170,29 @@ void FLConfirmNoReturnObject(id obj) {
     [invocation invoke];
 }
 
-- (BOOL) performOptionalSelector:(SEL) selector {
+- (BOOL) performOptionalSelector_fl:(SEL) selector {
     return FLPerformSelector0(self, selector);
 }
 
-- (BOOL) performOptionalSelector:(SEL) selector  
+- (BOOL) performOptionalSelector_fl:(SEL) selector
              withObject:(id) object {
     return FLPerformSelector1(self, selector, object);
 }             
 
-- (BOOL) performOptionalSelector:(SEL) selector 
+- (BOOL) performOptionalSelector_fl:(SEL) selector
                withObject:(id) object1
                withObject:(id) object2 {
     return FLPerformSelector2(self, selector, object1, object2);
 }             
 
-- (BOOL) performOptionalSelector:(SEL) selector 
+- (BOOL) performOptionalSelector_fl:(SEL) selector
                withObject:(id) object1
                withObject:(id) object2
                withObject:(id) object3 {
     return FLPerformSelector3(self, selector, object1, object2, object3);
 }             
 
-- (BOOL) performOptionalSelector:(SEL) selector 
+- (BOOL) performOptionalSelector_fl:(SEL) selector 
                withObject:(id) object1
                withObject:(id) object2
                withObject:(id) object3 

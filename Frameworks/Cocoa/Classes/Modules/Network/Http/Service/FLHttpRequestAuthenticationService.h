@@ -15,7 +15,6 @@
 
 @protocol FLHttpRequestAuthenticationServiceDelegate;
 
-
 @interface FLHttpRequestAuthenticationService : FLService<FLHttpRequestAuthenticator> {
 @private
     FLFifoAsyncQueue* _asyncQueue;
@@ -28,18 +27,21 @@
 @property (readwrite, assign, nonatomic) id<FLHttpRequestAuthenticationServiceDelegate> delegate;
 @property (readonly, assign) FLOperationContext* operationContext;
 
+- (FLPromise*) beginAuthenticating:(fl_completion_block_t) completion;
+
+@end
+
+@interface FLHttpRequestAuthenticationService (Overrides)
 // required overrides
 - (void) authenticateUser:(FLHttpUser*) user;
 
 - (void) authenticateHttpRequest:(FLHttpRequest*) request 
-    withAuthenticatedUser:(FLHttpUser*) user;
+           withAuthenticatedUser:(FLHttpUser*) user;
 
 // optional override
 - (BOOL) credentialsNeedAuthentication:(FLHttpUser*) user;
-
-- (FLPromise*) beginAuthenticating:(fl_completion_block_t) completion;
-
 @end
+
 
 @protocol FLHttpRequestAuthenticationServiceDelegate <NSObject>
 

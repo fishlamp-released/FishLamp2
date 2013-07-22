@@ -19,7 +19,7 @@
 
 @protocol FLLoginPanelDelegate;
 
-@interface FLLoginPanel : FLPanelViewController<NSControlTextEditingDelegate, FLProgressPanelDelegate>  {
+@interface FLLoginPanel : FLPanelViewController<NSTextFieldDelegate, FLProgressPanelDelegate>  {
 @private
     IBOutlet NSTextField* _userNameTextField;
     IBOutlet NSSecureTextField* _passwordEntryField;

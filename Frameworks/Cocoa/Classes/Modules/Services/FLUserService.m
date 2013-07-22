@@ -8,28 +8,19 @@
 //
 
 #import "FLUserService.h"
-#import "FLApplicationDataVersion.h"
-#import "NSFileManager+FLExtras.h"
-#import "NSString+Guid.h"
-#import "FLService.h"
-#import "FLKeychain.h"
-//#import "NSUserDefaults+FLAdditions.h"
-#import "FLUserDefaultsCredentialStorage.h"
-#import "FLBroadcaster.h"
-
-@interface FLUserService ()
-@property (readwrite, strong, nonatomic) id<FLCredentials> credentials;
-@end
+#import "FLCredentialsEditor.h"
+#import "FLCredentials.h"
+#import "FLCredentialsStorage.h"
 
 @implementation FLUserService
-@synthesize credentials = _authCredentials;
+
+@synthesize credentials = _credentials;
 @synthesize credentialStorage = _credentialStorage;
 
-- (id) init {
+- (id) initWithCredentials:(id<FLCredentials>) credentials {
     self = [super init];
     if(self) {
-        self.credentialStorage = [FLUserDefaultsCredentialStorage instance];
-        self.credentials = [self.credentialStorage readCredentialsForLastUser];
+        _credentials = FLRetain(credentials);
     }
     return self;
 }
@@ -38,39 +29,20 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
++ (id) userService:(id<FLCredentials>) credentials {
+    return FLAutorelease([[[self class] alloc] initWithCredentials:credentials]);
+}
+
 #if FL_MRC
 - (void) dealloc {
     [_credentialStorage release];
-    [_authCredentials release];
+    [_credentials release];
     [super dealloc];
 }
 #endif
 
-- (FLCredentialsEditor*) credentialEditor {
-    return [FLCredentialsEditor authCredentialEditor:self.credentials authenticated:self]; 
-}
-
-- (void) startEditingCredentials:(FLCredentialsEditor*) editor {
-   [self closeService:self];
-}
-
-- (void) credentialsDidChange:(FLCredentialsEditor*) editor {
-    self.credentials = editor.credentials;
-    [self.credentialStorage writeCredentials:self.credentials];
-}
-
-- (void) finishEditingCredentials:(FLCredentialsEditor*) editor {
-    self.credentials = editor.credentials;
-    [self.credentialStorage writeCredentials:self.credentials];
-    [self openService:self];
-}
-
 - (BOOL) canAuthenticate {
     return [self.credentials canAuthenticate];
-}
-
-- (NSString*) userName {
-    return [self.credentials userName];
 }
 
 - (void) didOpenService {
@@ -81,7 +53,40 @@
     [self.observers notify:@selector(userServiceDidClose:) withObject:self];
 }
 
+- (FLCredentialsEditor*) credentialEditor {
+    FLCredentialsEditor* editor = [FLCredentialsEditor authCredentialEditor:self.credentials];
+    editor.delegate = self;
+    return editor;
+}
+
+- (void) credentialsEditor:(FLCredentialsEditor*) editor
+willStartEditingCredentials:(id<FLCredentials>) credentials {
+
+   [self closeService:self];
+}
+
+- (void) credentialsEditor:(FLCredentialsEditor*) editor
+      credentialsDidChange:(id<FLCredentials>) credentials {
+
+    self.credentials = editor.credentials;
+
+    if(self.credentialStorage) {
+        [self.credentialStorage writeCredentials:self.credentials];
+    }
+}
+
+- (void) credentialsEditor:(FLCredentialsEditor*) editor
+didFinishEditingCredentials:(id<FLCredentials>) credentials {
+    self.credentials = editor.credentials;
+    if(self.credentialStorage) {
+        [self.credentialStorage writeCredentials:self.credentials];
+    }
+    [self openService:self];
+}
+
+
+
+
+
+
 @end
-
-
-

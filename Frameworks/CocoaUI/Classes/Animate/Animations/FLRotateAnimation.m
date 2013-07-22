@@ -71,7 +71,7 @@
 //        startFlags:(FLAnimationStartFlags) startFlags
 //            fromDegree:(CGFloat) from 
 //              toDegree:(CGFloat) toDegree 
-//            completion:(FLBlock) completion {
+//            completion:(fl_block_t) completion {
 //    _fromDegree = from;
 //    _toDegree = toDegree;
 //    
@@ -82,7 +82,7 @@
 //
 //- (void) startRotating:(id) target 
 //       degreesToRotate:(CGFloat) degrees 
-//            completion:(FLBlock) completion {
+//            completion:(fl_block_t) completion {
 //    
 //    _deltaAmount = degrees;
 //    

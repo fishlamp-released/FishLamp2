@@ -95,7 +95,7 @@
     }
     
     if(_tokens.count) {
-        [_tokens removeLastObject];
+        [_tokens removeLastObject_fl];
     }
     
     self.unparsedString = nil;
@@ -121,7 +121,7 @@
 }
 
 - (void) popTokenizer {
-    [_tokenizers removeLastObject];
+    [_tokenizers removeLastObject_fl];
 }
 
 @end

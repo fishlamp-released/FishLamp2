@@ -211,7 +211,7 @@ NSDictionary* FLGetHeaders(NSString* header)
 		NSArray* pair = [item componentsSeparatedByString:@"="];
 		if(pair.count == 2)
 		{
-			[dict setObject:[[pair objectAtIndex:1] trimmedString] forKey:[[pair objectAtIndex:0] trimmedString] ];
+			[dict setObject:[[pair objectAtIndex:1] trimmedString_fl] forKey:[[pair objectAtIndex:0] trimmedString_fl] ];
 		}
 	}
 	

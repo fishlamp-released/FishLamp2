@@ -16,7 +16,7 @@
 - (id) initWithAnimationDirection:(FLAnimationDirection) direction;
 
 - (void) startAnimating:(id) target
-             completion:(FLBlock) completion;
+             completion:(fl_block_t) completion;
 
 // overrides
 // animations are disabled during prepare and finish,

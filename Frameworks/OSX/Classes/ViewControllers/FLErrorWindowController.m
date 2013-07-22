@@ -15,6 +15,41 @@
 
 @end
 
+@interface FLErrorWindowView : NSView {
+@private
+    IBOutlet NSButton* _button;
+}
+
+@end
+
+@implementation FLErrorWindowView
+
+- (BOOL) acceptsFirstResponder {
+    return YES;
+}
+
+- (BOOL) becomeFirstResponder {
+    return YES;
+}
+
+- (void)keyDown:(NSEvent *)theEvent {
+    NSString* chars = [theEvent charactersIgnoringModifiers];
+    if([chars length] == 1) {
+        unichar c = [chars characterAtIndex:0];
+        if(c == NSCarriageReturnCharacter || c == NSEnterCharacter) {
+            id button = _button;
+            _button = nil;
+            if(button) {
+                dispatch_async(dispatch_get_main_queue(), ^(void){
+                    [button performClick:nil];
+                });
+            }
+        }
+    }
+}
+
+@end
+
 @implementation FLErrorWindowController
 @synthesize okButton = _okButton;
 
@@ -47,8 +82,10 @@
     if(FLStringIsNotEmpty(_explanation)) {
         [_explanationField.textStorage appendAttributedString:FLAutorelease([[NSAttributedString alloc] initWithString:_explanation]) ];
     }
-}
 
+    [self.window setContentView:_errorWindowView];
+    [self.window setDefaultButtonCell:[_okButton cell]];
+}
 
 @end
 

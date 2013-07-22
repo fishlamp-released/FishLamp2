@@ -49,7 +49,7 @@
     @synchronized(self) {
         for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
             @try {
-                [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector];
+                [[_listeners objectAtIndex:i] performOptionalSelector_fl:messageSelector];
             }
             @catch(NSException* ex) {
             }
@@ -62,7 +62,7 @@
     @synchronized(self) {
         for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
             @try {
-                [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
+                [[_listeners objectAtIndex:i] performOptionalSelector_fl:messageSelector
                                                        withObject:object];
             }
             @catch(NSException* ex) {
@@ -77,7 +77,7 @@
     @synchronized(self) {
         for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
             @try {
-                [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
+                [[_listeners objectAtIndex:i] performOptionalSelector_fl:messageSelector
                                                            withObject:object1
                                                            withObject:object2];
             }
@@ -94,7 +94,7 @@
     @synchronized(self) {
         for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
             @try {
-                [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
+                [[_listeners objectAtIndex:i] performOptionalSelector_fl:messageSelector
                                                            withObject:object1
                                                            withObject:object2
                                                            withObject:object3];
@@ -113,7 +113,7 @@
     @synchronized(self) {
         for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
             @try {
-                [[_listeners objectAtIndex:i] performOptionalSelector:messageSelector
+                [[_listeners objectAtIndex:i] performOptionalSelector_fl:messageSelector
                                                            withObject:object1
                                                            withObject:object2
                                                            withObject:object3

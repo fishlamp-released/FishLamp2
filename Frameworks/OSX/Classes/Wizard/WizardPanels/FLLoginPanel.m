@@ -41,6 +41,11 @@
     self.title = NSLocalizedString(@"Login", nil);
     self.prompt =  NSLocalizedString(@"Login to your account", nil);
     self.panelFillsView = NO;
+
+
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingDidEnd:)
+//        name:NSControlTextDidEndEditingNotification object:nil];
+
 }
 
 + (id) loginPanel {
@@ -105,9 +110,14 @@
 
 
 #if OSX
+
 - (void)controlTextDidChange:(NSNotification *)note {
     [self updateCredentialsEditor];
     [self updateNextButton];
+
+//    if(self.view.window.initial               [self.view.window setInitialFirstResponder:_passwordEntryField];
+
+
 }
 
 - (void)controlTextDidEndEditing:(NSNotification *) note {
@@ -131,17 +141,17 @@
 #endif
 
 - (void) setNextResponder {
-    if(self.view.window) {
-        [self performBlockOnMainThread:^{
-            if(FLStringIsEmpty(self.userName)) {
-                [self.view.window makeFirstResponder:_userNameTextField];
-            }
-            else {
-                [self.view.window makeFirstResponder:_passwordEntryField];
-            }
-            [self updateNextButton];
-        }];
+
+    _userNameTextField.nextResponder = self.view.window;
+    _passwordEntryField.nextResponder = self.view.window;
+
+    if(FLStringIsEmpty(self.userName)) {
+        [self.view.window makeFirstResponder:_userNameTextField];
     }
+    else {
+        [self.view.window makeFirstResponder:_passwordEntryField];
+    }
+    [self updateNextButton];
 }
 
 - (void) showEntryFields:(BOOL) animated completion:(dispatch_block_t) completion {
@@ -180,6 +190,8 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if([result isError]) {
+                [self.view.window setInitialFirstResponder:_passwordEntryField];
+
                 [self showEntryFields:YES completion:^{
                     [self.delegate loginPanel:self authenticationFailed:result];
                 }];
@@ -262,6 +274,10 @@
     [super panelWillAppear];
     _userNameTextField.stringValue = @"";
     _passwordEntryField.stringValue = @"";
+
+    _passwordEntryField.delegate = self;
+    _userNameTextField.delegate = self;
+
     [self loadCredentials];
     [self updateNextButton];
 }
@@ -269,7 +285,7 @@
 - (void) panelWillDisappear {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
-    [self.view.window makeFirstResponder:self.view.window];
+    [self.view.window makeFirstResponder:nil];
     [super panelWillDisappear];
     [self updateCredentialsEditor];
     [self.credentialsEditor stopEditing];

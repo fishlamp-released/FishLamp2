@@ -136,6 +136,6 @@
 - (NSString*) stringByRemovingUniqueWord:(NSString*) word
 {
 	NSString* string = [self stringByReplacingOccurrencesOfString:word withString:@""];
-	return [string trimmedString];
+	return [string trimmedString_fl];
 }
 @end

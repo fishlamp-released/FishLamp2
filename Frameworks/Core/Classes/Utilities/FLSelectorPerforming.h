@@ -9,7 +9,6 @@
 
 #import "FLCoreRequired.h"
 #import "NSObject+FLPerformSelector.h"
-#import "FLObserving.h"
 
 // the functions are here to accept target and selectors that are nil. also
 // if the target doesn't respond to the selector, the functions return NO 
