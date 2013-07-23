@@ -31,7 +31,7 @@ archive_folder="$HOME/Enlistments/Cobble-Builds"
 build_destination_folder="$build_folder/Products/$configuration"
 build_version=""
 verbose="NO"
-built_product_extension=".app"
+built_product_extension="app"
 app_name=""
 
 # required
