@@ -69,10 +69,6 @@ willStartEditingCredentials:(id<FLCredentials>) credentials {
       credentialsDidChange:(id<FLCredentials>) credentials {
 
     self.credentials = editor.credentials;
-
-    if(self.credentialStorage) {
-        [self.credentialStorage writeCredentials:self.credentials];
-    }
 }
 
 - (void) credentialsEditor:(FLCredentialsEditor*) editor

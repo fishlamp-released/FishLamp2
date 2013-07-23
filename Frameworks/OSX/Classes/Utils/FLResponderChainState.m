@@ -24,7 +24,7 @@
 	if(self) {
         FLAssertNotNil(window);
 		_window = FLRetain(window);
-        _responder = FLRetain([window initialFirstResponder]);
+        _responder = FLRetain([window firstResponder]);
         _timeout = 1.0; // much longer than this will cause weird UI
     }
 	return self;

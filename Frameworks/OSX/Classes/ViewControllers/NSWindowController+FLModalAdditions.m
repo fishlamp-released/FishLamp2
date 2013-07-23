@@ -94,7 +94,7 @@
 
     [_hostWindow makeFirstResponder:nil];
 
-    [self.responderState restore];
+//    [self.responderState restore];
 
     self.responderState = nil;
     self.hostWindow = nil;
@@ -120,7 +120,7 @@
     FLAssertNotNilWithComment(self.hostWindow, @"host window not set");
     FLAssertNotNilWithComment(self.modalWindow, @"modal window or modal window controller not set");
 
-    self.responderState = [FLResponderChainState responderState:_hostWindow];
+//    self.responderState = [FLResponderChainState responderState:_hostWindow];
 
     [[NSApplication sharedApplication] beginSheet:self.modalWindow
                                    modalForWindow:self.hostWindow

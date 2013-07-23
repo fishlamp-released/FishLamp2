@@ -536,10 +536,11 @@
             completion:(dispatch_block_t) completion {
     
     [_contentView addSubview:[toShow view]];
-    
+
+    FLPrepareBlockForFutureUse(completion);
+
     if(transition) {
-        completion = FLCopyWithAutorelease(completion);
-        
+
         [transition startShowingView:toShow.view 
                           viewToHide:toHide.view 
                           completion:^{
@@ -547,18 +548,23 @@
             
             [toHide.view removeFromSuperview];
               
-            if(completion) {
-              completion();
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(completion) {
+                  completion();
+                }
+            });
         }];
     }
     else {
             
         [toHide.view removeFromSuperview];
 
-        if(completion) {
-            completion();
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(completion) {
+                completion();
+            }
+        });
+
     }
 
     

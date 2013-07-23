@@ -24,6 +24,7 @@
 - (IBAction) startLogin:(id) sender;
 - (IBAction) passwordCheckboxToggled:(id) sender;
 @property (readwrite, strong, nonatomic) FLCredentialsEditor* credentialsEditor;
+- (void) setNextResponderIfNeeded;
 @end
 
 @implementation FLLoginPanel
@@ -35,17 +36,16 @@
     return [self initWithNibName:@"FLLoginPanel" bundle:[NSBundle currentBundle]];
 }
 
+- (void) windowDidUpdate:(id) update {
+    [self setNextResponderIfNeeded];
+}
+
 - (void) awakeFromNib {
     [super awakeFromNib];
 
     self.title = NSLocalizedString(@"Login", nil);
     self.prompt =  NSLocalizedString(@"Login to your account", nil);
     self.panelFillsView = NO;
-
-
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editingDidEnd:)
-//        name:NSControlTextDidEndEditingNotification object:nil];
-
 }
 
 + (id) loginPanel {
@@ -140,18 +140,30 @@
 
 #endif
 
-- (void) setNextResponder {
+- (void) setNextResponderIfNeeded {
 
-    _userNameTextField.nextResponder = self.view.window;
-    _passwordEntryField.nextResponder = self.view.window;
-
-    if(FLStringIsEmpty(self.userName)) {
-        [self.view.window makeFirstResponder:_userNameTextField];
-    }
-    else {
-        [self.view.window makeFirstResponder:_passwordEntryField];
-    }
     [self updateNextButton];
+
+    if( [[NSApplication sharedApplication] keyWindow ] == self.view.window &&
+        [self.view.window attachedSheet] == nil ) {
+
+        id nextResponder = [self.view.window firstResponder];
+        while(nextResponder) {
+            if( nextResponder == _userNameTextField ||
+                nextResponder == _passwordEntryField ) {
+                return;
+            }
+
+            nextResponder = [nextResponder nextResponder];
+        }
+
+        if(FLStringIsEmpty(self.userName)) {
+            [self.view.window makeFirstResponder:_userNameTextField];
+        }
+        else {
+            [self.view.window makeFirstResponder:_passwordEntryField];
+        }
+    }
 }
 
 - (void) showEntryFields:(BOOL) animated completion:(dispatch_block_t) completion {
@@ -164,7 +176,7 @@
                           withTransition:nil 
                           completion:^{
                           
-            [self setNextResponder];
+            [self setNextResponderIfNeeded];
             
             if(completion) {
                 completion();
@@ -190,8 +202,6 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if([result isError]) {
-                [self.view.window setInitialFirstResponder:_passwordEntryField];
-
                 [self showEntryFields:YES completion:^{
                     [self.delegate loginPanel:self authenticationFailed:result];
                 }];
@@ -261,13 +271,16 @@
 - (void) panelDidAppear {
     [super panelDidAppear];
     [self updateNextButton];
-    [self setNextResponder];
+    [self setNextResponderIfNeeded];
 
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(applicationWillTerminate:)
                                                  name: NSApplicationWillTerminateNotification
                                                object: [NSApplication sharedApplication]];
-    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidUpdate:)
+        name:NSWindowDidUpdateNotification object:nil];
+
 }
 
 - (void) panelWillAppear {
