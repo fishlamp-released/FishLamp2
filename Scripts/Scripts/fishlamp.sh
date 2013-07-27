@@ -40,10 +40,10 @@ MY_COMMAND="$1"
 MY_SCRIPT="$MY_COMMAND.sh"
 MY_PARMS=${*:2}
 
-# echo "command = $COMMAND $PARMS"
+# echo "command = $MY_COMMAND $PARMS"
 
 if [ -f "$SUB_PATH/$MY_SCRIPT" ]; then
-    "$SUB_PATH/$MY_SCRIPT" "$MY_PARMS"
+    "$SUB_PATH/$MY_SCRIPT" $MY_PARMS
 else
     echo "unknown command \"$MY_COMMAND\""
     exit 1
