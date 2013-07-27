@@ -81,6 +81,7 @@
 		279519D817932DB000EEAE90 /* assert-exists-on-disk.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "assert-exists-on-disk.sh"; sourceTree = "<group>"; };
 		279D118A17836FC100B5A423 /* run-tests.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "run-tests.sh"; sourceTree = "<group>"; };
 		27A114EC1793488700E37559 /* cobble2.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = cobble2.sh; sourceTree = "<group>"; };
+		27AD490117A4283500D85D21 /* new-repo-from-folder.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "new-repo-from-folder.sh"; sourceTree = "<group>"; };
 		78114A9917A16CB100BDC654 /* extract-folder.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "extract-folder.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +145,7 @@
 		27337B1B1783337300F56276 /* fishlamp-commands */ = {
 			isa = PBXGroup;
 			children = (
+				27AD490117A4283500D85D21 /* new-repo-from-folder.sh */,
 				27337B1C1783337300F56276 /* create-connect-lib.sh */,
 				27337B1D1783337300F56276 /* find.sh */,
 				27337B1F1783337300F56276 /* help.sh */,
