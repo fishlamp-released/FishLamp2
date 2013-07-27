@@ -79,8 +79,8 @@ git checkout develop
 
 git remote add -f temp "$temp_fishlamp" || { exit 1; }
 git merge -s ours --no-commit temp/develop || { exit 1; }
-git read-tree --prefix="$folder_to_extract" -u temp/develop || { exit 1; }
-
+# git read-tree --prefix="$folder_to_extract" -u temp/develop || { exit 1; }
+git read-tree --prefix="/" -u temp/develop || { exit 1; }
 git remote rm temp
 git rm "hello-world"
 git commit -a -m "imported files from FishLamp"
