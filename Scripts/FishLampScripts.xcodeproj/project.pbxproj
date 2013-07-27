@@ -81,6 +81,7 @@
 		279519D817932DB000EEAE90 /* assert-exists-on-disk.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "assert-exists-on-disk.sh"; sourceTree = "<group>"; };
 		279D118A17836FC100B5A423 /* run-tests.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "run-tests.sh"; sourceTree = "<group>"; };
 		27A114EC1793488700E37559 /* cobble2.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = cobble2.sh; sourceTree = "<group>"; };
+		78114A9917A16CB100BDC654 /* extract-folder.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "extract-folder.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -157,6 +158,7 @@
 				27337B281783337300F56276 /* ynq.sh */,
 				27337B2917833BFC00F56276 /* hello.sh */,
 				279D118A17836FC100B5A423 /* run-tests.sh */,
+				78114A9917A16CB100BDC654 /* extract-folder.sh */,
 			);
 			path = "fishlamp-commands";
 			sourceTree = "<group>";
