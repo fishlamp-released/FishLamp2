@@ -23,7 +23,9 @@
 #import "FLNetworkErrors.h"
 #import "FLRetryHandler.h"
 
+#if 0
 #define FORCE_NO_SSL DEBUG
+#endif
 
 //#define kStreamReadChunkSize 1024
 

@@ -13,12 +13,15 @@
 
 @interface FLLogger()
 @property (readwrite, strong, nonatomic) NSMutableString* line;
+@property (readonly, strong, nonatomic) NSMutableArray* sinks;
+@property (readwrite, assign, nonatomic) NSInteger indentLevel;
 @end
 
 @implementation FLLogger
 
 @synthesize line = _line;
-
+@synthesize sinks = _sinks;
+@synthesize indentLevel = _indentLevel;
 
 - (id) init {
     self = [super init];
@@ -53,29 +56,35 @@
 #endif
 }
 
-- (void) logger:(FLLogger*) logger dispatchBlock:(dispatch_block_t) block {
-    dispatch_async(_fifoQueue, block); 
-}
+//- (void) logger:(FLLogger*) logger dispatchBlock:(dispatch_block_t) block {
+//    dispatch_async(_fifoQueue, block); 
+//}
 
-- (void) dispatchBlock:(dispatch_block_t) block {
-    dispatch_sync(_fifoQueue, block); 
+- (void) dispatchBlock:(FLLoggerBlock) block {
+
+    FLPrepareBlockForFutureUse(block);
+
+    __unsafe_unretained FLLogger* logger = self;
+    dispatch_sync(_fifoQueue, ^{
+        block(logger);
+    });
 }
 
 - (void) pushLoggerSink:(id<FLLogSink>) sink {
-    [self dispatchBlock: ^{
-        [_sinks insertObject:sink atIndex:0];
+    [self dispatchBlock: ^(FLLogger* logger) {
+        [logger.sinks insertObject:sink atIndex:0];
     }];
 }
 
 - (void) addLoggerSink:(id<FLLogSink>) sink {
-    [self dispatchBlock: ^{
-        [_sinks addObject:sink];
+    [self dispatchBlock: ^(FLLogger* logger){
+        [logger.sinks addObject:sink];
     }];
 }
 
 - (void) removeLoggerSink:(id<FLLogSink>) sink {
-    [self dispatchBlock: ^{
-        [_sinks removeObject:sink];
+    [self dispatchBlock: ^(FLLogger* logger){
+        [logger.sinks removeObject:sink];
     }];
 }
 
@@ -93,15 +102,16 @@
 }
 
 - (void) logEntry:(FLLogEntry*) entry {
-    [self dispatchBlock: ^{
-        [self sendEntryToSinks:entry];
+    [self dispatchBlock: ^(FLLogger* logger){
+        [logger sendEntryToSinks:entry];
     }];
 }
 
 - (void) logEntries:(NSArray*) entryArray {
-    [self dispatchBlock: ^{
+
+    [self dispatchBlock: ^(FLLogger* logger){
         for(FLLogEntry* entry in entryArray) {
-            [self sendEntryToSinks:entry];
+            [logger sendEntryToSinks:entry];
         }
     }];
 }
@@ -131,26 +141,26 @@
     NSCAssert(string != nil, @"logger line is nil");
 #endif
 
-    [self dispatchBlock: ^{
-    
-        [self closeCurrentLine];
+    [self dispatchBlock: ^(FLLogger* logger){
+
+        [logger closeCurrentLine];
     
         FLLogEntry* entry = [FLLogEntry logEntry];
         entry.indentLevel = _indentLevel;
         entry.logString = string;
         entry.logType = logType;
         entry.stackTrace = stackTrace;
-        [self sendEntryToSinks:entry];
+        [logger sendEntryToSinks:entry];
     }];
 }
 
 - (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
-    [self dispatchBlock: ^{
+    [self dispatchBlock: ^(FLLogger* logger){
         FLLogEntry* entry = [FLLogEntry logEntry];
         entry.logString = @"";
         entry.logType = FLLogTypeLog;
         entry.indentLevel = _indentLevel;
-        [self sendEntryToSinks:entry];
+        [logger sendEntryToSinks:entry];
     }];
 }
 
@@ -158,18 +168,18 @@
 }
 
 - (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
-    [self dispatchBlock: ^{
-        [self closeCurrentLine];
+    [self dispatchBlock: ^(FLLogger* logger){
+        [logger closeCurrentLine];
     }];
 }
 
 - (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
-    [self dispatchBlock: ^{
-        if(self.line) {
-            [self.line appendString:string];
+    [self dispatchBlock: ^(FLLogger* logger){
+        if(logger.line) {
+            [logger.line appendString:string];
         }
         else {
-            self.line = FLMutableCopyWithAutorelease(string);
+            logger.line = FLMutableCopyWithAutorelease(string);
         }
     }];
 }
@@ -185,19 +195,19 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 
 
 - (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
-    [self dispatchBlock: ^{
-        ++_indentLevel; 
+    [self dispatchBlock: ^(FLLogger* logger){
+        logger.indentLevel++;
     }];
 }
 
 - (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
-    [self dispatchBlock: ^{
-        --_indentLevel; 
+    [self dispatchBlock: ^(FLLogger* logger){
+        logger.indentLevel--;
     }];
 }
 
 - (void) logError:(NSError*) error {
-    [self dispatchBlock: ^{
+    [self dispatchBlock: ^(FLLogger* logger){
         FLLogEntry* entry = [FLLogEntry logEntry];
         entry.logType = FLLogTypeError;
         entry.indentLevel = _indentLevel;
@@ -208,7 +218,7 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 }
 
 - (void) logException:(NSException*) exception withComment:(NSString*) comment {
-    [self dispatchBlock: ^{
+    [self dispatchBlock: ^(FLLogger* logger){
         FLLogEntry* entry = [FLLogEntry logEntry];
         entry.logString = comment;
         entry.logType = FLLogTypeException;
