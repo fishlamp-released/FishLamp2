@@ -267,7 +267,6 @@
     [self didShowPanel:toShow];
 }                                          
 
-#define ANIMATED 1
 
 - (void) showPanelAtIndex:(NSUInteger) idx 
                  animated:(BOOL) animated
@@ -354,8 +353,7 @@
     [self panelStateDidChange:toHide];
     [self panelStateDidChange:toShow];
 
-#if ANIMATED
-    if(animated && toHide != nil) {
+    if(animated && toHide != nil && OSXVersionIsAtLeast10_7()) {
         completion = FLCopyWithAutorelease(completion);
 
         CGRect toShowFromFrame = toShow.view.frame;
@@ -395,23 +393,22 @@
         }];
     }
     
-#else
 
-    if(transition) {
-        completion = FLCopyWithAutorelease(completion);
-        
-        [transition startShowingView:toShow.view 
-                          viewToHide:toHide.view 
-                          completion:^{
+//    if(transition) {
+//        completion = FLCopyWithAutorelease(completion);
+//        
+//        [transition startShowingView:toShow.view 
+//                          viewToHide:toHide.view 
+//                          completion:^{
+//
+//            [self didShowPanel:toShow didHidePanel:toHide];
+//            
+//            if(completion) {
+//              completion(toShow);
+//            }
+//        }];
+//    }
 
-            [self didShowPanel:toShow didHidePanel:toHide];
-            
-            if(completion) {
-              completion(toShow);
-            }
-        }];
-    }
-#endif    
     else {
         [self didShowPanel:toShow didHidePanel:toHide];
             
