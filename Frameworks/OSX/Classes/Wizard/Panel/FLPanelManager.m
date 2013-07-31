@@ -353,6 +353,7 @@
     [self panelStateDidChange:toHide];
     [self panelStateDidChange:toShow];
 
+#if _MAC_10_7
     if(animated && toHide != nil && OSXVersionIsAtLeast10_7()) {
         completion = FLCopyWithAutorelease(completion);
 
@@ -409,7 +410,9 @@
 //        }];
 //    }
 
-    else {
+    else 
+#endif   
+    {
         [self didShowPanel:toShow didHidePanel:toHide];
             
         if(completion) {

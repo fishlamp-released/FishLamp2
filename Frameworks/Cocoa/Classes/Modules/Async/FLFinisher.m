@@ -17,6 +17,7 @@
 
 @interface FLFinisher ()
 @property (readwrite, strong) FLPromise* firstPromise;
+- (id) initWithPromise:(FLPromise*) promise;
 @end
 
 @implementation FLFinisher 

@@ -24,6 +24,10 @@
 
 + (NSArray*) arrayOfColumnArraysFromCSVFile:(NSString*) path encoding:(NSStringEncoding)encoding error:(NSError **)error;
 
+#ifndef __MAC_10_7
+- (id) firstObject;
+#endif
+
 @end
 
 /// @category NSMutableArray(FLExtras)

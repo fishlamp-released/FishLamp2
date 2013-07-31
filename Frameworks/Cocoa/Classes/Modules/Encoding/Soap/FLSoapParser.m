@@ -24,7 +24,7 @@
 - (NSDictionary*) bodyContentsForDictionary:(NSDictionary*) soap {
     NSDictionary* outDict = [soap objectForKey:@"Envelope"];
     outDict = [outDict objectForKey:@"Body"];
-    outDict = [[outDict allValues] firstObject];
+    outDict = [[outDict allValues] objectAtIndex:0];
     return outDict;
 }
 

@@ -77,7 +77,7 @@
     return isAcceptable;
 }
 
-
+#if __MAC_10_7
 -(void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
     if (operation == NSDragOperationNone) {
         //delete object, remove from view, etc.
@@ -91,6 +91,7 @@
    
    [session setAnimatesToStartingPositionsOnCancelOrFail:NO];
 }
+#endif
 
 - (NSURL*) urlForRow:(NSUInteger) row {
     return [_urls objectAtIndex:row];
@@ -122,7 +123,12 @@ writeRowsWithIndexes:(NSIndexSet *)rowIndexes
     for(NSURL* url in urls) {
         BOOL isDir = NO;
         if([[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDir] && isDir) {
-            NSArray* items = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:url includingPropertiesForKeys:nil options:nil error:nil];
+
+
+            NSArray* items = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:url 
+                                                           includingPropertiesForKeys:nil 
+                                                                              options:0 
+                                                                                error:nil];
             [self addURLs:items utiTypes:utiTypes];
         }
         else if([self isAcceptableFile:url utiTypes:utiTypes]) {

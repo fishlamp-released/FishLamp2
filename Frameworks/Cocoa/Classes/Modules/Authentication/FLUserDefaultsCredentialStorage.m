@@ -84,11 +84,12 @@ FLSynthesizeSingleton(FLUserDefaultsCredentialStorage);
 
 - (void) readFromUserDefaults {
     if(!self.userName) {
-        self.rememberPassword = nil;
+        self.rememberPassword = NO;
         self.password = @"";
         
         self.userName = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardLastUserNameKey];
-        self.rememberPassword = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardSavePasswordKey];
+        NSNumber* remember = [[NSUserDefaults standardUserDefaults] objectForKey:FLDefaultsKeyWizardSavePasswordKey];
+        self.rememberPassword = remember ? [remember boolValue] : NO;
 
         [self readPasswordFromKeychain];
     }

@@ -44,6 +44,7 @@
             
     NSAttributedString* attributedString = FLAutorelease([[NSAttributedString alloc] initWithString:title attributes:attr]);
     
+#if _MAC_10_7
     if(animated && OSXVersionIsAtLeast10_7()) {
         NSTextField* old = FLAutorelease([[[_titleView class] alloc] initWithFrame:_titleView.frame]);
         old.textColor = _titleView.textColor;
@@ -70,7 +71,9 @@
         }];
 
     }
-    else {
+    else 
+#endif    
+    {
         _titleView.attributedStringValue = attributedString;
     }
     
@@ -86,6 +89,7 @@
         _logoutButton.hidden = NO;
         _welcomeText.hidden = NO;
 
+#if _MAC_10_7
         if(OSXVersionIsAtLeast10_7()) {
             _logoutButton.alphaValue = 0.0;
             _welcomeText.alphaValue = 0.0;
@@ -98,12 +102,15 @@
             } completionHandler: ^{
             }];
         }
-        else {
+        else 
+#endif
+        {
             _logoutButton.alphaValue = 1.0;
             _welcomeText.alphaValue = 1.0;
         }
     }
     else if(!panel.isAuthenticated && !_logoutButton.isHidden) {
+#if _MAC_10_7
         if(OSXVersionIsAtLeast10_7()) {
             [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
                 [context setDuration: kAnimationDuration];
@@ -118,7 +125,9 @@
                 _welcomeText.alphaValue = 1.0;
             }];
         }
-        else {
+        else 
+#endif        
+        {
             _logoutButton.hidden = YES;
             _welcomeText.hidden = YES;
             _logoutButton.alphaValue = 1.0;

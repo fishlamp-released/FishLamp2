@@ -9,6 +9,7 @@
 #import "FLResponderChainState.h"
 
 @interface FLResponderChainState ()
+- (id) initWithWindow:(NSWindow*) window;
 @end
 
 @implementation FLResponderChainState

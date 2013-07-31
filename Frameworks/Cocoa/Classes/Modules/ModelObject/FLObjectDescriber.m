@@ -20,7 +20,7 @@ typedef void (^FLPropertyDescriberVisitorRecursive)(FLObjectDescriber* object, F
 //#import "FLTrace.h"
 
 @interface FLPropertyDescriber (Internal)
-@property (readwrite) FLObjectDescriber* representedObjectDescriber;
+@property (readwrite, strong) FLObjectDescriber* representedObjectDescriber;
 @property (readwrite, copy) NSArray* containedTypes;
 
 - (id) initWithProperty_t:(objc_property_t) property_t;
@@ -31,6 +31,8 @@ typedef void (^FLPropertyDescriberVisitorRecursive)(FLObjectDescriber* object, F
 
 
 @interface FLObjectDescriber ()
+@property (readwrite, assign) Class objectClass;
+
 - (void) addPropertiesForClass:(Class) aClass;
 - (id) initWithClass:(Class) aClass;
 
@@ -42,8 +44,7 @@ typedef void (^FLPropertyDescriberVisitorRecursive)(FLObjectDescriber* object, F
 // deprected
 - (void) addPropertyWithName:(NSString*) name withArrayTypes:(NSArray*) types;
 - (void) addArrayProperty:(NSString*) name withArrayTypes:(NSArray*) types;
-
-@property (readwrite, assign) Class objectClass;
+- (void) describeSelfForObjectDescriber;
 @end
 
 @implementation FLObjectDescriber

@@ -107,7 +107,9 @@
         [self.finisher setFinishedWithResult:ex];
     }
     @finally {
+#if __MAC_10_8
         task.terminationHandler = nil;
+#endif
     }
 }
 

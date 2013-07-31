@@ -15,5 +15,5 @@
     __unsafe_unretained FLNetworkStream* _stream;
     __unsafe_unretained NSThread* _thread;
 }
-
+- (NSString*) runLoopMode;
 @end

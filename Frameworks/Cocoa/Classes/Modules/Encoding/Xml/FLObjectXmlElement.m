@@ -13,6 +13,11 @@
 @interface FLObjectXmlElement ()
 @property (readwrite, strong, nonatomic) id object;
 @property (readwrite, strong, nonatomic) FLPropertyDescriber* propertyDescriber;
+
+- (id) initWithObject:(id) object 
+        xmlElementTag:(NSString*) xmlElementTag 
+   xmlElementCloseTag:(NSString*) xmlElementCloseTag
+    propertyDescriber:(FLPropertyDescriber*) propertyDescriber;
 @end
 
 @implementation FLObjectXmlElement
