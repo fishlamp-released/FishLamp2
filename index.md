@@ -11,8 +11,7 @@ This is the help site for the FishLamp SDK.
 
 ###General Information 
 
-- [Overview](/pages/overview/overview.html)
-- [Topology](/pages/overview/topology.html)
+- [Topology](/organization.html)
 
 ###About the source code
 
