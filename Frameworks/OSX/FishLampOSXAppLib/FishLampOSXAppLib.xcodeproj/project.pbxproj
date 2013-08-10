@@ -430,7 +430,7 @@
 		273BB06F175D4530005AC73E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				273BB077175D4530005AC73E /* libFishLampCocoaUI-iOS-ARC.a */,
+				273BB077175D4530005AC73E /* lib.a */,
 				273BB079175D4530005AC73E /* libFishLampCocoaUI-OSX-32-MRC.a */,
 				273BB07B175D4530005AC73E /* libFishLampCocoaUI-OSX-64-MRC.a */,
 				273BB07D175D4530005AC73E /* libFishLampCocoaUI-OSX-64-ARC.a */,
@@ -442,7 +442,7 @@
 		273BB080175D4530005AC73E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				273BB08B175D4530005AC73E /* libFishLampCocoa-iOS-ARC.a */,
+				273BB08B175D4530005AC73E /* lib.a */,
 				273BB08D175D4530005AC73E /* libFishLampCocoa-OSX-32-MRC.a */,
 				273BB08F175D4530005AC73E /* libFishLampCocoa-OSX-64-MRC.a */,
 				273BB091175D4530005AC73E /* libFishLampCocoa-OSX-64-ARC.a */,
@@ -739,10 +739,10 @@
 			remoteRef = 27337B4A17836AC700F56276 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		273BB077175D4530005AC73E /* libFishLampCocoaUI-iOS-ARC.a */ = {
+		273BB077175D4530005AC73E /* lib.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libFishLampCocoaUI-iOS-ARC.a";
+			path = lib.a;
 			remoteRef = 273BB076175D4530005AC73E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -774,10 +774,10 @@
 			remoteRef = 273BB07E175D4530005AC73E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		273BB08B175D4530005AC73E /* libFishLampCocoa-iOS-ARC.a */ = {
+		273BB08B175D4530005AC73E /* lib.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libFishLampCocoa-iOS-ARC.a";
+			path = lib.a;
 			remoteRef = 273BB08A175D4530005AC73E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

@@ -49,7 +49,7 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
         self.userService = [self.serviceFactory httpControllerCreateUserService:self];
     
         FLAssertNotNil(self.userService);
-        [self.userService.observers addObserver:[FLNonretainedObject nonretainedObject:self]];
+        [self.userService.observers addObserver:[self nonretained_fl]];
 
         self.httpRequestAuthenticator = [self.serviceFactory httpControllerCreateHttpRequestAuthenticationService:self];
         FLAssertNotNil(self.httpRequestAuthenticator);
