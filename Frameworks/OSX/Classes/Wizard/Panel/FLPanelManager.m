@@ -354,7 +354,7 @@
     [self panelStateDidChange:toHide];
     [self panelStateDidChange:toShow];
 
-#if ANIMATED
+#if MAC_10_8
     if(animated && toHide != nil) {
         completion = FLCopyWithAutorelease(completion);
 

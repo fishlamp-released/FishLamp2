@@ -13,6 +13,7 @@
 @property (readwrite, assign, nonatomic) BOOL rememberPassword;
 @property (readwrite, strong, nonatomic) NSString* userName;
 @property (readwrite, strong, nonatomic) NSString* password;
+
 @end
 
 @implementation FLCredentials
@@ -22,7 +23,7 @@
 @synthesize rememberPassword = _rememberPassword;
 
 - (id) init {	
-    return [self initWithUserName:nil password:nil rememberPassword:nil];
+    return [self initWithUserName:nil password:nil rememberPassword:NO];
 }
 
 - (id) initWithUserName:(NSString*) userName 

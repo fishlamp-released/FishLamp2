@@ -247,17 +247,16 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
     }
 }
 
-- (void) addContainedProperty:(NSString*) name withClass:(Class) aClass {
-
-    [self addContainedProperty:[FLPropertyDescriber propertyDescriber:name class:aClass]];
-}
-
 - (void) addContainedProperty:(FLPropertyDescriber*) propertyDescriber {
     if(!_containedTypes) {
         _containedTypes = [[NSMutableArray alloc] init];
     }
 
     [_containedTypes addObject:propertyDescriber];
+}
+
+- (void) addContainedProperty:(NSString*) name withClass:(Class) aClass {
+    [self addContainedProperty:[FLPropertyDescriber propertyDescriber:name class:aClass]];
 }
 
 - (NSString*) description {

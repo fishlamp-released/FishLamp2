@@ -20,7 +20,7 @@ typedef void (^FLPropertyDescriberVisitorRecursive)(FLObjectDescriber* object, F
 //#import "FLTrace.h"
 
 @interface FLPropertyDescriber (Internal)
-@property (readwrite) FLObjectDescriber* representedObjectDescriber;
+@property (readwrite, strong) FLObjectDescriber* representedObjectDescriber;
 @property (readwrite, copy) NSArray* containedTypes;
 
 - (id) initWithProperty_t:(objc_property_t) property_t;
@@ -33,6 +33,7 @@ typedef void (^FLPropertyDescriberVisitorRecursive)(FLObjectDescriber* object, F
 @interface FLObjectDescriber ()
 - (void) addPropertiesForClass:(Class) aClass;
 - (id) initWithClass:(Class) aClass;
+- (void) describeSelfForObjectDescriber;
 
 // type registration
 // NOTE THE METHODS BELOW ARE NOT THREAD SAFE

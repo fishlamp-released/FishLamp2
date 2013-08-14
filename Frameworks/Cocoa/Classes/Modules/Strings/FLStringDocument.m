@@ -34,8 +34,8 @@
 #endif
 
 - (id<FLStringFormatter>) rootStringBuilder {
-    FLAssertNotNil([_stack firstObject]);
-    return [_stack firstObject];
+    FLAssertNotNil([_stack objectAtIndex:0]);
+    return [_stack objectAtIndex:0];
 }
 
 - (id<FLStringFormatter>) openedStringBuilder {

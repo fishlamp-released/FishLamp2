@@ -97,6 +97,7 @@
 
 - (void) finishTask:(NSTask*) task {
 
+#if __MAC_10_8
     @try {
         [self.finisher setFinishedWithResult:[self didFinishTask:task]];
     }
@@ -109,6 +110,7 @@
     @finally {
         task.terminationHandler = nil;
     }
+#endif
 }
 
 - (void) willStartTask:(NSTask*) task {

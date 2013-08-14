@@ -13,10 +13,6 @@
 
 @implementation FLResponderChainState
 
-- (id) init {	
-    return [self initWithWindow:nil];
-}
-
 - (id) initWithWindow:(NSWindow*) window {
     FLAssertNotNil(window);
     
@@ -28,6 +24,10 @@
         _timeout = 1.0; // much longer than this will cause weird UI
     }
 	return self;
+}
+
+- (id) init {	
+    return [self initWithWindow:nil];
 }
 
 + (id) responderState:(NSWindow*) window {

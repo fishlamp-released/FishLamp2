@@ -9,6 +9,8 @@
 
 #import "FLCocoaUIRequired.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 typedef enum {
     FLAnimationDirectionRight,
     FLAnimationDirectionLeft,
@@ -73,6 +75,7 @@ typedef enum {
                       completionBlock:(fl_block_t) completion;
  
 // subclass utils
+
 - (CAMediaTimingFunction*) timingFunction;
 
 - (void) configureAnimation:(CAAnimation*) animation;

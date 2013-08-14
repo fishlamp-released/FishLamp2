@@ -77,7 +77,7 @@
     return isAcceptable;
 }
 
-
+#if __MAC_10_8
 -(void)draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
     if (operation == NSDragOperationNone) {
         //delete object, remove from view, etc.
@@ -91,6 +91,7 @@
    
    [session setAnimatesToStartingPositionsOnCancelOrFail:NO];
 }
+#endif
 
 - (NSURL*) urlForRow:(NSUInteger) row {
     return [_urls objectAtIndex:row];

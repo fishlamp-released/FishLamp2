@@ -35,6 +35,7 @@
 @property (readwrite, strong, nonatomic) FLHttpResponse* previousResponse;
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
 @property (readwrite, strong) FLHttpRequestByteCount* byteCount;
+- (void) finishRequestWithResult:(FLPromisedResult) result;
 @end
 
 @implementation FLHttpRequest

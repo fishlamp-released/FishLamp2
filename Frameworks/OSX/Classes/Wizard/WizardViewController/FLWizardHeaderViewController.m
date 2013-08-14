@@ -9,6 +9,8 @@
 
 #import "FLWizardHeaderViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #define kAnimationDuration 0.2
 
 @interface FLWizardHeaderViewController ()
