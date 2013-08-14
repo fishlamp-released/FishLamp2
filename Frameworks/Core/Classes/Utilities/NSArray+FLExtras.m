@@ -76,12 +76,6 @@
 
     return lines;
 }
-
-#ifndef __MAC_10_7
-- (id) firstObject {
-    return [self objectAtIndex:0];
-}
-#endif
 @end
 
 @implementation NSArray (FLThreadAndMutationSafe)

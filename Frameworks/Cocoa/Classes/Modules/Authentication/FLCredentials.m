@@ -22,7 +22,7 @@
 @synthesize rememberPassword = _rememberPassword;
 
 - (id) init {	
-    return [self initWithUserName:nil password:nil rememberPassword:NO];
+    return [self initWithUserName:nil password:nil rememberPassword:nil];
 }
 
 - (id) initWithUserName:(NSString*) userName 

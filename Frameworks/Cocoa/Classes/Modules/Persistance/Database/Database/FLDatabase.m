@@ -25,8 +25,6 @@ static NSString* s_version = nil;
 @property (readwrite, assign) sqlite3* sqlite3;
 @property (readwrite, assign) BOOL isOpen;
 @property (readwrite, strong, nonatomic) NSMutableDictionary* tables;
-- (void) writeDatabaseVersion:(NSString*) version;
-
 @end
 
 @implementation FLDatabase

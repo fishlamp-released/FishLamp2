@@ -111,7 +111,7 @@
 - (NSArray*) objectArrayWithJsonObjectBuilder:(FLJsonObjectBuilder*) builder withTypeDescs:(NSArray*) arrayOfObjectDescribers {
 
 // TODO: handle hetrogenous arrays
-    FLPropertyDescriber* typeDesc = [arrayOfObjectDescribers objectAtIndex:0];
+    FLPropertyDescriber* typeDesc = [arrayOfObjectDescribers firstObject];
 
     NSMutableArray* newArray = [NSMutableArray arrayWithCapacity:self.count];
     for(id child in self) {	

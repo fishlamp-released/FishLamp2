@@ -23,9 +23,7 @@
 #import "FLNetworkErrors.h"
 #import "FLRetryHandler.h"
 
-#if 0
 #define FORCE_NO_SSL DEBUG
-#endif
 
 //#define kStreamReadChunkSize 1024
 
@@ -37,7 +35,6 @@
 @property (readwrite, strong, nonatomic) FLHttpResponse* previousResponse;
 @property (readwrite, strong, nonatomic) FLHttpStream* httpStream;
 @property (readwrite, strong) FLHttpRequestByteCount* byteCount;
-- (void) finishRequestWithResult:(FLPromisedResult) result;
 @end
 
 @implementation FLHttpRequest

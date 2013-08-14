@@ -105,7 +105,7 @@
 - (void) updateCredentialsEditor {
     _credentialsEditor.userName = self.userName;
     _credentialsEditor.password = self.password;
-    _credentialsEditor.rememberPassword = self.savePasswordInKeychain;
+    _credentialsEditor.rememberPassword = [NSNumber numberWithBool:self.savePasswordInKeychain];
 }
 
 

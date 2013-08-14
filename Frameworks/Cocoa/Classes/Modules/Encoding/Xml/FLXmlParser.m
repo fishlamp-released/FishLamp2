@@ -85,13 +85,11 @@ didStartElement:(NSString *)elementName
             [newElement addChildElement:[FLParsedXmlElement parsedXmlElement:attributeName elementValue:[attributes objectForKey:attributeName]]];
         }
     }
-
-#if EXPERIMENTAL
+    
 //    if(_prefixStack && _prefixStack.count) {
 //        newElement.prefix = [_prefixStack lastObject];
 //        newElement.mappedToNamespace = [_prefixDictionary objectForKey:newElement.prefix];
 //    }
-#endif
 
     [self pushElement:newElement];
 }
@@ -106,7 +104,6 @@ didStartElement:(NSString *)elementName
 
 - (void)parser:(NSXMLParser *)parser didStartMappingPrefix:(NSString *)prefix toURI:(NSString *)namespaceURI {
 
-#if EXPERIMENTAL
     if(!_prefixStack) {
         _prefixStack = [[NSMutableArray alloc] init];
         _prefixDictionary = [[NSMutableDictionary alloc] init];
@@ -114,14 +111,11 @@ didStartElement:(NSString *)elementName
 
     [_prefixStack addObject:prefix];
     [_prefixDictionary setObject:namespaceURI forKey:prefix];
-#endif
 }
 
 - (void)parser:(NSXMLParser *)parser didEndMappingPrefix:(NSString *)prefix {
-#if EXPERIMENTAL
 //    FLAssert(FLStringsAreEqual(prefix, [_prefixStack lastObject]));
 //    [_prefixStack removeLastObject];
-#endif
 }
 
 

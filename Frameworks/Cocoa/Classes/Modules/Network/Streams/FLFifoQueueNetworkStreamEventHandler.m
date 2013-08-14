@@ -49,23 +49,19 @@
 }
 
 - (void) queueSelector:(SEL) selector withObject:(id) object {
-
-    __unsafe_unretained FLNetworkStream* stream = self.stream;
     [self queueBlock:^{
-        [stream performSelector:selector withObject:object];
+        [self.stream performSelector:selector withObject:object];
     }];
 }
 
 - (void) queueSelector:(SEL) selector {
-
-    __unsafe_unretained FLNetworkStream* stream = self.stream;
     [self queueBlock:^{
     
         @try { 
-            [stream performSelector:selector];
+            [self.stream performSelector:selector];
         }
         @catch(NSException* ex) {
-            stream.wasTerminated = YES;
+            self.stream.wasTerminated = YES;
             FLLog(@"stream encountered secondary error: %@", [ex.error localizedDescription]);
         }
     }];

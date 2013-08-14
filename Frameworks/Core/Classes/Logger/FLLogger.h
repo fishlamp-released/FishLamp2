@@ -37,11 +37,9 @@
 
 @end
 
-typedef void (^FLLoggerBlock)(FLLogger* logger);
-
 @interface FLLogger (GrossImplementationMethods)
 // for subclasses.
-- (void) dispatchBlock:(FLLoggerBlock) block;
+- (void) dispatchBlock:(dispatch_block_t) block;
 - (void) logString:(NSString*) string
            logType:(NSString*) logType
         stackTrace:(FLStackTrace*) stackTrace;

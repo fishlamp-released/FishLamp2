@@ -44,8 +44,7 @@
             
     NSAttributedString* attributedString = FLAutorelease([[NSAttributedString alloc] initWithString:title attributes:attr]);
     
-#if _MAC_10_7
-    if(animated && OSXVersionIsAtLeast10_7()) {
+    if(animated) {
         NSTextField* old = FLAutorelease([[[_titleView class] alloc] initWithFrame:_titleView.frame]);
         old.textColor = _titleView.textColor;
         old.drawsBackground = _titleView.drawsBackground;
@@ -71,9 +70,7 @@
         }];
 
     }
-    else 
-#endif    
-    {
+    else {
         _titleView.attributedStringValue = attributedString;
     }
     
@@ -88,51 +85,31 @@
     if(panel.isAuthenticated && _logoutButton.isHidden) {
         _logoutButton.hidden = NO;
         _welcomeText.hidden = NO;
+        _logoutButton.alphaValue = 0.0;
+        _welcomeText.alphaValue = 0.0;
 
-#if _MAC_10_7
-        if(OSXVersionIsAtLeast10_7()) {
-            _logoutButton.alphaValue = 0.0;
-            _welcomeText.alphaValue = 0.0;
-            [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-                    [context setDuration: kAnimationDuration];
-                [context setTimingFunction: [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseIn]];
-                
-                [_welcomeText.animator setAlphaValue:1.0];
-                [_logoutButton.animator setAlphaValue: 1.0];
-            } completionHandler: ^{
-            }];
-        }
-        else 
-#endif
-        {
-            _logoutButton.alphaValue = 1.0;
-            _welcomeText.alphaValue = 1.0;
-        }
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            [context setDuration: kAnimationDuration];
+            [context setTimingFunction: [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseIn]];
+            
+            [_welcomeText.animator setAlphaValue:1.0];
+            [_logoutButton.animator setAlphaValue: 1.0];
+        } completionHandler: ^{
+        }];    
     }
     else if(!panel.isAuthenticated && !_logoutButton.isHidden) {
-#if _MAC_10_7
-        if(OSXVersionIsAtLeast10_7()) {
-            [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-                [context setDuration: kAnimationDuration];
-                [context setTimingFunction: [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseIn]];
-                
-                [_logoutButton.animator setAlphaValue:0.0];
-                [_welcomeText.animator setAlphaValue: 0.0];
-            } completionHandler: ^{
-                _logoutButton.hidden = YES;
-                _welcomeText.hidden = YES;
-                _logoutButton.alphaValue = 1.0;
-                _welcomeText.alphaValue = 1.0;
-            }];
-        }
-        else 
-#endif        
-        {
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            [context setDuration: kAnimationDuration];
+            [context setTimingFunction: [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseIn]];
+            
+            [_logoutButton.animator setAlphaValue:0.0];
+            [_welcomeText.animator setAlphaValue: 0.0];
+        } completionHandler: ^{
             _logoutButton.hidden = YES;
             _welcomeText.hidden = YES;
             _logoutButton.alphaValue = 1.0;
             _welcomeText.alphaValue = 1.0;
-        }
+        }];
     }
 }
 

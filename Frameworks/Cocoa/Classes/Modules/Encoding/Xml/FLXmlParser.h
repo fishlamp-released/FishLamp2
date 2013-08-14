@@ -21,11 +21,9 @@
     NSString* _fileNameForErrors;
 
     FLParsedXmlElement* _rootElement;
-
-#if EXPERIMENTAL
+    
     NSMutableDictionary* _prefixDictionary;
     NSMutableArray* _prefixStack;
-#endif
 }
 
 + (id) xmlParser;

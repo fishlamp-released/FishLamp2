@@ -8,7 +8,6 @@
 //
 
 #import "FLCocoaUIRequired.h"
-#import <QuartzCore/QuartzCore.h>
 
 typedef enum {
     FLAnimationDirectionRight,
