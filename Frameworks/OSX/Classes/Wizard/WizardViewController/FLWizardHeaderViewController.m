@@ -45,8 +45,10 @@
         nil];
             
     NSAttributedString* attributedString = FLAutorelease([[NSAttributedString alloc] initWithString:title attributes:attr]);
-    
+
+#if __MAC_10_8    
     if(animated) {
+
         NSTextField* old = FLAutorelease([[[_titleView class] alloc] initWithFrame:_titleView.frame]);
         old.textColor = _titleView.textColor;
         old.drawsBackground = _titleView.drawsBackground;
@@ -75,6 +77,9 @@
     else {
         _titleView.attributedStringValue = attributedString;
     }
+#else 
+    _titleView.attributedStringValue = attributedString;
+#endif
     
 }
 
@@ -84,6 +89,9 @@
 
 - (void) panelWillAppear:(FLPanelViewController*) panel {
 
+
+
+#if __MAC_10_8    
     if(panel.isAuthenticated && _logoutButton.isHidden) {
         _logoutButton.hidden = NO;
         _welcomeText.hidden = NO;
@@ -113,6 +121,17 @@
             _welcomeText.alphaValue = 1.0;
         }];
     }
+#else
+    if(panel.isAuthenticated && _logoutButton.isHidden) {
+        _logoutButton.hidden = NO;
+        _welcomeText.hidden = NO;
+    }
+    else {
+        _logoutButton.hidden = YES;
+        _welcomeText.hidden = YES;
+    }
+
+#endif
 }
 
 - (void) setTextNextToLogoutButton:(NSString*) welcomeText {

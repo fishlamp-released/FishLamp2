@@ -394,25 +394,26 @@
             }
         }];
     }
+    else {
     
 #else
+    {
 
-    if(transition) {
-        completion = FLCopyWithAutorelease(completion);
-        
-        [transition startShowingView:toShow.view 
-                          viewToHide:toHide.view 
-                          completion:^{
-
-            [self didShowPanel:toShow didHidePanel:toHide];
-            
-            if(completion) {
-              completion(toShow);
-            }
-        }];
-    }
+//    if(transition) {
+//        completion = FLCopyWithAutorelease(completion);
+//        
+//        [transition startShowingView:toShow.view 
+//                          viewToHide:toHide.view 
+//                          completion:^{
+//
+//            [self didShowPanel:toShow didHidePanel:toHide];
+//            
+//            if(completion) {
+//              completion(toShow);
+//            }
+//        }];
+//    }
 #endif    
-    else {
         [self didShowPanel:toShow didHidePanel:toHide];
             
         if(completion) {

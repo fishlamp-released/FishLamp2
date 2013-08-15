@@ -123,7 +123,7 @@ writeRowsWithIndexes:(NSIndexSet *)rowIndexes
     for(NSURL* url in urls) {
         BOOL isDir = NO;
         if([[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDir] && isDir) {
-            NSArray* items = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:url includingPropertiesForKeys:nil options:nil error:nil];
+            NSArray* items = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:url includingPropertiesForKeys:nil options:0 error:nil];
             [self addURLs:items utiTypes:utiTypes];
         }
         else if([self isAcceptableFile:url utiTypes:utiTypes]) {
