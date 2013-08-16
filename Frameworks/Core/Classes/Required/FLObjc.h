@@ -125,5 +125,5 @@ id _FLReleaseWithNil(id __strong * obj) {
 extern id FLCopyOrRetainObject(id src);
 
 #ifndef NS_ENUM
-#define NS_ENUM(type, name) enum name
+#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
 #endif
