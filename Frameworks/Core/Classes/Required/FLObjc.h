@@ -123,3 +123,7 @@ id _FLReleaseWithNil(id __strong * obj) {
             FLAutoreleasePoolClose(pool)
 
 extern id FLCopyOrRetainObject(id src);
+
+#ifndef NS_ENUM
+#define NS_ENUM(type, name) enum name
+#endif
