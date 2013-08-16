@@ -50,12 +50,22 @@
 
         NSString* propertyName = propertyDescriber.propertyName;
 
+
         if(propertyDescriber) {
 
 
             id object = [propertyDescriber xmlObjectBuilder:builder  
                                      inflateElementContents:element];
             
+if ([propertyName isEqualToString:@"id"]) {
+    FLLog(@"id");
+    
+            long value = [object longValue];
+            long long value2 = [object longLongValue];
+    
+}
+
+
             if(object) {
                 if([outObject valueForKey:propertyName]) {
                     FLTrace(@"replacing non-nil value for [%@ %@]", NSStringFromClass([object class]),  element.fullPath);
