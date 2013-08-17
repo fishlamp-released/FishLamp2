@@ -1,5 +1,5 @@
 //
-//  FLObjcEnum.h
+//  FLObjcEnumCodeWriter.h
 //  CodeGenerator
 //
 //  Created by Mike Fullerton on 5/13/13.
@@ -8,15 +8,17 @@
 
 #import "FLObjcCodeWriter.h"
 #import "FLObjcType.h"
+#import "FLObjcObjectBuilder.h"
 
 @class FLObjcProject;
 @class FLCodeEnumType;
 @class FLObjcEnumValueType;
+@class FLObjcEnumType;
 
-@interface FLObjcEnum : FLObjcCodeWriter {
+@interface FLObjcEnumCodeWriter : FLObjcCodeWriter {
 @private
     NSMutableArray* _enumValues;
-    FLObjcType* _enumType;
+    FLObjcEnumType* _enumType;
     FLObjcName* _enumName;
     
     NSMutableDictionary* _defines;
@@ -25,16 +27,11 @@
 + (id) objcEnum:(FLObjcProject*) project;
 
 @property (readonly, strong, nonatomic) NSArray* enumValues;
-@property (readwrite, strong, nonatomic) FLObjcType* enumType;
+@property (readwrite, strong, nonatomic) FLObjcEnumType* enumType;
 @property (readwrite, strong, nonatomic) FLObjcName* enumName;
 
 - (void) addValue:(FLObjcEnumValueType*) enumValueType;
 - (void) configureWithCodeEnumType:(FLCodeEnumType*) codeEnumType;
-
-
-// called from FLObjcEnumType
-- (void) objcObject:(FLObjcObject*) object 
-didConfigureProperty:(FLObjcProperty *)property;
 
 @end
 

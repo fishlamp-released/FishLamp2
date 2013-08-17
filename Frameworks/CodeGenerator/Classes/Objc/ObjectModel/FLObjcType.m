@@ -10,6 +10,7 @@
 #import "FLObjcCodeGeneratorHeaders.h"
 #import "FishLampCodeGeneratorObjects.h"
 
+
 @interface FLObjcType ()
 @property (readwrite, strong, nonatomic) FLObjcName* typeName;
 @property (readwrite, strong, nonatomic) NSString* importFileName;
@@ -86,11 +87,6 @@
     return [[[self class] alloc] initWithTypeName:self.typeName importFileName:self.importFileName];
 }
 
-- (void) objcObject:(FLObjcObject*) object 
-didConfigureProperty:(FLObjcProperty*) property {
-
-}
-
 - (BOOL) canForwardReference {
     return self.isObject;
 }
@@ -103,6 +99,9 @@ didConfigureProperty:(FLObjcProperty*) property {
     return [FLCodeStatement codeStatement:
                 [FLCodeReturn codeReturn:string]];
 }
+
+
+
 
 @end
 

@@ -143,7 +143,7 @@
     for(FLCodeEnumType* codeEnum in inputProject.enumTypes) {
         FLAssert(codeEnum.enums.count > 0);
         
-        FLObjcEnum* anEnum = [FLObjcEnum objcEnum:self];
+        FLObjcEnumCodeWriter* anEnum = [FLObjcEnumCodeWriter objcEnum:self];
         [anEnum configureWithCodeEnumType:codeEnum];
 
         if([self.typeRegistry hasType:anEnum.enumType]) {

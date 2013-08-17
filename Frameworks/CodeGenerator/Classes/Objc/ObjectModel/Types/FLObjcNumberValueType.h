@@ -9,5 +9,31 @@
 #import "FLObjcValueType.h"
 
 @interface FLObjcNumberValueType : FLObjcValueType
-//+ (id) objcNumberValueType:(NSString*) numberType;
+- (NSString*) numberWithString;
+- (NSString*) numberValueString;
+@end
+
+@interface FLObjcCharType : FLObjcNumberValueType
+@end
+@interface FLObjcUnsignedCharType : FLObjcNumberValueType
+@end
+@interface FLObjcNSIntegerType : FLObjcNumberValueType
+@end
+@interface FLObjcNSUIntegerType : FLObjcNumberValueType
+@end
+@interface FLObjcSInt32Type : FLObjcNumberValueType
+@end
+@interface FLObjcUInt32Type : FLObjcNumberValueType
+@end
+@interface FLObjcSInt64Type : FLObjcNumberValueType
+@end
+@interface FLObjcUInt64Type : FLObjcNumberValueType
+@end
+@interface FLObjcSInt16Type : FLObjcNumberValueType
+@end
+@interface FLObjcUInt16Type : FLObjcNumberValueType
+@end
+@interface FLObjcFloatType : FLObjcNumberValueType
+@end
+@interface FLObjcDoubleType : FLObjcNumberValueType
 @end

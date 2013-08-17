@@ -12,6 +12,13 @@
 @interface FLObjcEnumType : FLObjcObjectType 
 + (id) objcEnumType:(FLObjcName*) typeName 
        importFileName:(NSString*) importFileName;
+
+- (NSString*) enumSetClassName;
+- (NSString*) stringFromEnumFunctionName;
+- (NSString*) enumFromStringFunctionName;
+- (NSString*) stringFromEnumFunctionPrototype;
+- (NSString*) enumFromStringFunctionPrototype;
+
 @end
 
 

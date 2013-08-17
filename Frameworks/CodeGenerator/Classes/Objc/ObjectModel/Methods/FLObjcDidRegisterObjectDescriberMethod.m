@@ -46,12 +46,9 @@
             hasContent = YES;
            
             for(FLObjcContainerSubType* subType in containerTypes) {
-
-                FLObjcType* registeredSubType = [self.project.typeRegistry typeForKey:subType.subTypeName];
-
                 NSString* propertyDescriber = [NSString stringWithFormat:@"[FLPropertyDescriber propertyDescriber:@\"%@\" propertyClass:[%@ class]]",
-                                               registeredSubType.generatedName,
-                                               registeredSubType.generatedObjectClassName];
+                                               subType.subTypeName,
+                                               subType.objcType.generatedObjectClassName];
             
                 [self.code appendLineWithFormat:@"[describer addContainerType:%@ forContainerProperty:@\"%@\"];", propertyDescriber, property.propertyName.generatedName];
             }

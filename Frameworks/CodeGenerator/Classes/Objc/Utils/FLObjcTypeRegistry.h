@@ -12,7 +12,7 @@
 @class FLCodeProject;
 @class FLObjcType;
 @class FLObjcName;
-@class FLObjcEnum;
+@class FLObjcEnumCodeWriter;
 @class FLCodeProject;
 
 @interface FLObjcTypeRegistry : FLObjcNamedObjectCollection {

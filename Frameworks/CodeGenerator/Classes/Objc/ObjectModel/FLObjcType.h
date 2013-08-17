@@ -7,13 +7,15 @@
 //
 
 #import "FLGenerated.h"
+#import "FLObjcObjectBuilder.h"
+
 @class FLObjcName;
 @class FLObjcObject;
 @class FLObjcProperty;
 @class FLObjcProject;
 @class FLCodeElement;
 
-@interface FLObjcType : NSObject<FLGenerated, NSCopying> {
+@interface FLObjcType : FLObjcObjectBuilder<FLGenerated, NSCopying> {
 @private
     FLObjcName* _typeName;
     NSString* _importFileName;
@@ -29,10 +31,8 @@
 @property (readonly, assign, nonatomic) BOOL canForwardReference;
 @property (readonly, assign, nonatomic) BOOL isMutableObject;
 
-- (void) objcObject:(FLObjcObject*) object 
-didConfigureProperty:(FLObjcProperty*) property;
-
 - (FLCodeElement*) defaultValueForString:(NSString*) string;
+
 
 @end
 

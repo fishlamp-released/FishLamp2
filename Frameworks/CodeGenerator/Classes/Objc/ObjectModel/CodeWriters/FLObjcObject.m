@@ -171,12 +171,9 @@
 }
 
 - (void) addPropertiesWithInputObject:(FLCodeObject*) codeObject {
-    for(FLCodeProperty* codeProp in codeObject.properties) {
-    
-        FLObjcProperty* prop = [FLObjcProperty objcProperty:self.project];
-        [prop configureWithCodeProperty:codeProp forObject:self];
-
-        [[prop propertyType] objcObject:self didConfigureProperty:prop];
+    for(FLCodeProperty* codeProperty in codeObject.properties) {
+        FLObjcType* type = [self.project.typeRegistry typeForKey:[codeProperty type]];
+        [type addPropertiesToObjcObject:self withCodeProperty:codeProperty];
     }
 }
 

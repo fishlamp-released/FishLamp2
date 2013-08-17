@@ -57,14 +57,14 @@
             id object = [propertyDescriber xmlObjectBuilder:builder  
                                      inflateElementContents:element];
             
-if ([propertyName isEqualToString:@"id"]) {
-    FLLog(@"id");
-    
-            long value = [object longValue];
-            long long value2 = [object longLongValue];
-    
-}
-
+//if ([propertyName isEqualToString:@"id"]) {
+//    FLLog(@"id");
+//    
+//            long value = [object longValue];
+//            long long value2 = [object longLongValue];
+//    
+//}
+//
 
             if(object) {
                 if([outObject valueForKey:propertyName]) {

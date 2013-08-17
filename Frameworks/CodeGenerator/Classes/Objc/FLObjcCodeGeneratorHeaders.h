@@ -5,7 +5,7 @@
 #import "FLObjcProject.h"
 #import "FLObjcCodeBlock.h"
 #import "FLObjcCodeWriter.h"
-#import "FLObjcEnum.h"
+#import "FLObjcEnumCodeWriter.h"
 #import "FLObjcFileHeader.h"
 #import "FLObjcMethod.h"
 #import "FLObjcNamedObjectCollection.h"

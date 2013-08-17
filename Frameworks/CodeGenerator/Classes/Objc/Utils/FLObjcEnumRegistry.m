@@ -15,15 +15,15 @@
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (BOOL) hasEnum:(FLObjcEnum*) theEnum {
+- (BOOL) hasEnum:(FLObjcEnumCodeWriter*) theEnum {
     return [self hasObjcName:theEnum.enumName];
 }
 
-- (void) addEnum:(FLObjcEnum*) theEnum {
+- (void) addEnum:(FLObjcEnumCodeWriter*) theEnum {
     [self addObject:theEnum forObjcName:theEnum.enumName];
 }
 
-- (void) replaceEnum:(FLObjcEnum*) theEnum {
+- (void) replaceEnum:(FLObjcEnumCodeWriter*) theEnum {
     [self replaceObject:theEnum forObjcName:theEnum.enumName];
 }
 
