@@ -19,7 +19,7 @@
 @end
 
 @interface NSObject (FLEncodingSelectors)
-+ (NSString*) typeNameForStringToObjectConverting;
++ (NSString*) typeNameForStringSerialization;
 @end
 
 @interface FLStringToObjectConverter : NSObject<FLStringToObjectConverting>

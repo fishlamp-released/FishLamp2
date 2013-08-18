@@ -24,7 +24,7 @@
 //        FLAssertNotNil(builder.decoder);
 //        return [builder.decoder objectFromString:self forTypeName:forTypeName];
 
-    NSString* forTypeName = [[self objectClass] typeNameForStringToObjectConverting];
+    NSString* forTypeName = [[self objectClass] typeNameForStringSerialization];
   
     id object = [builder.decoder objectFromString:[element elementValue] forTypeName:forTypeName];
     FLAssertNotNil(object);
@@ -34,98 +34,129 @@
      
 @end
 
+
+@implementation NSObject (FLXmlObjectBuilder)
+
+- (void) setPropertyWithXML:(FLParsedXmlElement*) element
+          withObjectBuilder:(FLXmlObjectBuilder*) builder
+    withPropertyDescriber:(FLPropertyDescriber*) propertyDescriber {
+
+    NSString* propertyName = propertyDescriber.propertyName;
+
+    id object = [propertyDescriber xmlObjectBuilder:builder
+                             inflateElementContents:element];
+
+    if(object) {
+        if([self valueForKey:propertyName]) {
+            FLTrace(@"replacing non-nil value for [%@ %@]", NSStringFromClass([object class]),  element.fullPath);
+        } 
+    
+//                FLAssertNil([outObject valueForKey:element.elementName]);
+    
+        [self setValue:object forKey:propertyName];
+    }
+    else {
+
+        if(FLStringIsNotEmpty(element.elementValue)) {
+
+            FLTrace(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.fullPath);
+
+            if(builder.strict) {
+                FLConfirmationFailureWithComment(@"object not inflated for \"%@\" (%@)", element.fullPath, element.elementValue);
+            }
+        }
+    }
+}
+
+- (void) setContainerPropertyWithXML:(FLParsedXmlElement*) element
+          withObjectBuilder:(FLXmlObjectBuilder*) builder
+    withPropertyDescriber:(FLPropertyDescriber*) propertyDescriber {
+
+    if(propertyDescriber) {
+
+    // TODO: (MWF) - support other types of containers!!
+
+        NSString* propertyName = propertyDescriber.propertyName;
+        NSMutableArray* array = [self valueForKey:propertyName];
+        if(!array) {
+            array = [NSMutableArray array];
+            [self setValue:array forKey:propertyName];
+        }
+        
+        FLParsedXmlElement* walker = element;
+        while(walker){ 
+            FLPropertyDescriber* containedType = [propertyDescriber containedTypeForName:walker.elementName];
+            id objectForArray = [containedType xmlObjectBuilder:builder inflateElementContents:walker];
+            
+            if(objectForArray) {
+                [array addObject:objectForArray];
+            }
+            else {
+                FLTrace(@"array object not inflated for %@.%@",
+                    NSStringFromClass([outObject class]),
+                    walker.fullPath);
+
+                if(builder.strict) {
+                    FLConfirmationFailureWithComment(@"Array object not inflated: %@:%@",
+                                                     NSStringFromClass([self class]),
+                                                     walker.fullPath);
+                }
+
+            }
+            walker = walker.siblingElement;
+        }
+    }
+    else {
+        FLTrace(@"object builder skipped missing propertyDescriber named: %@:%@",
+                NSStringFromClass(self.objectClass),
+                element.fullPath);
+
+        if(builder.strict) {
+            FLConfirmationFailureWithComment(@"Unknown property: %@", element.fullPath);
+        }
+
+    }
+}
+
+- (id) initWithXMLElement:(FLParsedXmlElement*) xmlElement
+        withObjectBuilder:(FLXmlObjectBuilder*) builder {
+
+    self = [self init];
+    if(self) {
+        FLObjectDescriber* describer = [self objectDescriber];
+
+        for(FLParsedXmlElement* element in [xmlElement.childElements objectEnumerator]) {
+            
+            FLPropertyDescriber* propertyDescriber = [describer propertyForName:element.elementName];
+
+            if(propertyDescriber) {
+                [self setPropertyWithXML:element
+                       withObjectBuilder:builder
+                   withPropertyDescriber:propertyDescriber];
+            }
+            else {
+                [self setContainerPropertyWithXML:element
+                                withObjectBuilder:builder
+                            withPropertyDescriber:[describer propertyForContainerTypeByName:element.elementName]];
+
+            }
+            
+        }
+    }
+
+    return self;
+}
+
+@end
+
 @implementation FLModelObjectDescriber (FLXmlObjectBuilder)
 
 - (id) buildObjectWithObjectBuilder:(FLXmlObjectBuilder*) builder
                             withXML:(FLParsedXmlElement*) parentElement {
 
     FLAssert([self.objectClass isModelObject]);
-
-//    FLConfirmIsNilWithComment(element.siblingElement, @"duplicate elements for property \"%@\"", element.elementName);   
-    
-    id outObject = FLAutorelease([[self.objectClass alloc] init]);
-    
-    for(FLParsedXmlElement* element in [parentElement.childElements objectEnumerator]) {
-        
-        if(FLStringsAreEqual(element.elementName, @"Id")) {
-            FLLog(@"wtf");
-        }   
-        
-        FLPropertyDescriber* propertyDescriber = [self propertyForName:element.elementName];
-
-        NSString* propertyName = propertyDescriber.propertyName;
-
-
-        if(propertyDescriber) {
-
-
-            id object = [propertyDescriber xmlObjectBuilder:builder  
-                                     inflateElementContents:element];
-
-            if(object) {
-                if([outObject valueForKey:propertyName]) {
-                    FLTrace(@"replacing non-nil value for [%@ %@]", NSStringFromClass([object class]),  element.fullPath);
-                } 
-            
-//                FLAssertNil([outObject valueForKey:element.elementName]);
-            
-                [outObject setValue:object forKey:propertyName];
-            }
-            else {
-
-                if(FLStringIsNotEmpty(element.elementValue)) {
-
-                    FLTrace(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.fullPath);
-
-                    if(builder.strict) {
-                        FLConfirmationFailureWithComment(@"object not inflated for \"%@\" (%@)", element.fullPath, element.elementValue);
-                    }
-                }
-            }
-        }
-        else {
-            propertyDescriber = [self propertyForContainerTypeByName:element.elementName];
-            if(propertyDescriber) {
-            
-                NSMutableArray* array = [outObject valueForKey:propertyDescriber.propertyName];
-                if(!array) {
-                    array = [NSMutableArray array];
-                    [outObject setValue:array forKey:propertyDescriber.propertyName];
-                }
-                
-                FLParsedXmlElement* walker = element;
-                while(walker){ 
-                    FLPropertyDescriber* containedType = [propertyDescriber containedTypeForName:walker.elementName];
-                    id objectForArray = [containedType xmlObjectBuilder:builder inflateElementContents:walker];
-                    
-                    if(objectForArray) {
-                        [array addObject:objectForArray];
-                    }
-                    else {
-                        FLTrace(@"array object not inflated for %@.%@",
-                            NSStringFromClass([outObject class]),
-                            walker.fullPath);
-
-                        if(builder.strict) {
-                            FLConfirmationFailureWithComment(@"Array object not inflated: %@:%@", NSStringFromClass([outObject class]), walker.fullPath);
-                        }
-
-                    }
-                    walker = walker.siblingElement;
-                }
-            }
-            else {
-                FLTrace(@"object builder skipped missing propertyDescriber named: %@:%@", NSStringFromClass(self.objectClass),element.fullPath);
-
-                if(builder.strict) {
-                    FLConfirmationFailureWithComment(@"Unknown property: %@", element.fullPath);
-                }
-
-            }
-        }
-        
-    }
-    
+    id outObject = FLAutorelease([[self.objectClass alloc] initWithXMLElement:parentElement withObjectBuilder:builder]);
+    FLAssertNotNil(outObject);
     return outObject;
 }
 

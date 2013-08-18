@@ -12,7 +12,7 @@
 #import "FLBase64Data.h"
 
 @implementation NSObject (FLEncodingSelectors)
-+ (NSString*) typeNameForStringToObjectConverting {
++ (NSString*) typeNameForStringSerialization {
     return NSStringFromClass([self class]);
 }
 @end
@@ -33,7 +33,7 @@
 }
 
 + (NSArray*) typeNames {
-    return [NSArray arrayWithObject:[NSString typeNameForStringToObjectConverting]];
+    return [NSArray arrayWithObject:[NSString typeNameForStringSerialization]];
 }
 
 @end
@@ -65,7 +65,7 @@
 }
 
 + (NSArray*) typeNames {
-    return [NSArray arrayWithObject:[NSDate typeNameForStringToObjectConverting]];
+    return [NSArray arrayWithObject:[NSDate typeNameForStringSerialization]];
 }
 
 @end
@@ -100,7 +100,7 @@
 }
 
 + (NSArray*) typeNames {
-    return [NSArray arrayWithObject:[FLBase64Data typeNameForStringToObjectConverting]];
+    return [NSArray arrayWithObject:[FLBase64Data typeNameForStringSerialization]];
 }
 
 
@@ -117,7 +117,7 @@
 }
 
 + (NSArray*) typeNames {
-    return [NSArray arrayWithObject:[NSURL typeNameForStringToObjectConverting]];
+    return [NSArray arrayWithObject:[NSURL typeNameForStringSerialization]];
 }
 
 @end
@@ -204,7 +204,7 @@
                                         @"unsigned short",
                                         @"NSInteger",
                                         @"NSUInteger",
-                                        [NSNumber typeNameForStringToObjectConverting],
+                                        [NSNumber typeNameForStringSerialization],
                                         nil];
 }
 
@@ -257,7 +257,7 @@
 }
 
 + (NSArray*) typeNames {
-    return [NSArray arrayWithObject:[NSData typeNameForStringToObjectConverting]];
+    return [NSArray arrayWithObject:[NSData typeNameForStringSerialization]];
 }
 
 @end
@@ -275,7 +275,7 @@
 + (NSArray*) typeNames {
     return [NSArray arrayWithObjects:   @"bool",
                                         @"boolean",
-                                        [FLBoolStringToNSNumberObjectConverter typeNameForStringToObjectConverting],
+                                        [FLBoolStringToNSNumberObjectConverter typeNameForStringSerialization],
                                         nil];
 }
 

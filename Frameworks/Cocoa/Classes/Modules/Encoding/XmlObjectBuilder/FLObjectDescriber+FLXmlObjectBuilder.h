@@ -19,3 +19,9 @@
                             withXML:(FLParsedXmlElement*) xmlElement;
 
 @end
+
+
+@interface NSObject (FLObjectBuilder)
+- (id) initWithXMLElement:(FLParsedXmlElement*) xmlElement
+        withObjectBuilder:(FLXmlObjectBuilder*) builder;
+@end

@@ -29,7 +29,7 @@
 #endif
 
 - (void) addConverter:(id<FLStringToObjectConverting>) converter {
-    NSArray* keys = [converter typeNames];
+    NSArray* keys = [[converter class] typeNames];
     if(keys) {
         for(NSString* key in keys) {
             [_converters setObject:converter forKey:Key(key)];
