@@ -131,7 +131,7 @@
         [user touchAuthenticationTimestamp];
         [self.delegate httpRequestAuthenticationService:self didAuthenticateUser:user];
     } 
-    withCompletion:completion];
+    completion:completion];
 
 }
 

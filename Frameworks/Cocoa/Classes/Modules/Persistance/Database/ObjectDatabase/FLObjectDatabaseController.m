@@ -65,7 +65,7 @@
                 block(database);
                 [finisher setFinished];
             }
-            withCompletion:completion];
+            completion:completion];
 }             
 
 - (void) runBlockSynchronously:(FLObjectDatabaseBlock) block {

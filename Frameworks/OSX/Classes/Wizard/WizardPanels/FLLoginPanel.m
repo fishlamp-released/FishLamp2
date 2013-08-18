@@ -18,7 +18,6 @@
 
 
 @interface FLLoginPanel ()
-- (void) applicationWillTerminate:(id)sender;
 - (void) updateNextButton;
 - (IBAction) resetLogin:(id) sender;
 - (IBAction) startLogin:(id) sender;
@@ -254,11 +253,11 @@
     [self updateCredentialsEditor];
 }
 
-- (void) applicationWillTerminate:(id)sender {
-    [self updateCredentialsEditor];
-    [self.credentialsEditor stopEditing];
-}
-   
+//- (void) applicationWillTerminate:(id)sender {
+//    [self updateCredentialsEditor];
+//    [self.credentialsEditor stopEditing];
+//}
+
 - (void) respondToNextButton:(BOOL*) handledIt {
     if(self.canLogin) {
         [self updateCredentialsEditor];
@@ -273,10 +272,10 @@
     [self updateNextButton];
     [self setNextResponderIfNeeded];
 
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(applicationWillTerminate:)
-                                                 name: NSApplicationWillTerminateNotification
-                                               object: [NSApplication sharedApplication]];
+//    [[NSNotificationCenter defaultCenter] addObserver: self
+//                                             selector: @selector(applicationWillTerminate:)
+//                                                 name: NSApplicationWillTerminateNotification
+//                                               object: [NSApplication sharedApplication]];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidUpdate:)
         name:NSWindowDidUpdateNotification object:nil];
@@ -296,7 +295,7 @@
 }
 
 - (void) panelWillDisappear {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidUpdateNotification object:nil];
 
     [self.view.window makeFirstResponder:nil];
     [super panelWillDisappear];

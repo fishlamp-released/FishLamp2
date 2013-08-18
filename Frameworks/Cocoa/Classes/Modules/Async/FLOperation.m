@@ -126,7 +126,7 @@
 }
 
 - (FLPromise*) runAsynchronously:(fl_completion_block_t) completion {
-    return [self.asyncQueue queueOperation:self withCompletion:completion];
+    return [self.asyncQueue queueOperation:self completion:completion];
 }
 
 - (FLPromise*) runAsynchronously {

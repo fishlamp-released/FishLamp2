@@ -14,6 +14,38 @@
 @property (readwrite, assign, nonatomic, getter=isSelected) BOOL selected;
 @end
 
+@interface FLPanelViewController(FLPanelManager)
+- (void) prepareToBeShown;
+- (void) prepareToBeHidden;
+@end
+
+@implementation FLPanelViewController (FLPanelManager)
+
+- (void) applicationWillTerminate:(id) sender {
+    [self panelWillDisappear];
+    [self panelDidDisappear];
+}
+
+- (void) prepareToBeShown {
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(applicationWillTerminate:)
+                                                 name: NSApplicationWillTerminateNotification
+                                                 object:[NSApplication sharedApplication]];
+}
+
+- (void) prepareToBeHidden {
+    @try {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NSApplicationWillTerminateNotification
+                                                      object:[NSApplication sharedApplication]];
+    }
+    @catch(NSException* ex) {
+        // don't care
+    }
+}
+
+@end
+
 @interface FLPanelManager ()
 @property (readonly, strong, nonatomic) FLOrderedCollection* panels;
 @property (readwrite, strong, nonatomic) id selectedPanelIdentifier;
@@ -331,6 +363,7 @@
     [self setPanelFrame:toShow];
 
     if(toHide) {
+        [toHide prepareToBeHidden];
         [toHide panelWillDisappear];
         [self willHidePanel:toHide];
 
@@ -344,6 +377,7 @@
     self.selectedPanelIdentifier = [_panels keyAtIndex:idx];
     
     [_contentView addSubview:[toShow view]];
+    [toShow prepareToBeShown];
     [toShow panelWillAppear];
     for(id panelArea in _panelAreas) {
         FLPerformSelector1(panelArea, @selector(panelWillAppear:), toShow);
@@ -354,8 +388,8 @@
     [self panelStateDidChange:toHide];
     [self panelStateDidChange:toShow];
 
-#if MAC_10_8
-    if(animated && toHide != nil) {
+#if __MAC_10_8
+    if(animated && toHide != nil && OSXVersionIsAtLeast10_8()) {
         completion = FLCopyWithAutorelease(completion);
 
         CGRect toShowFromFrame = toShow.view.frame;
@@ -398,22 +432,7 @@
     
 #else
     {
-
-//    if(transition) {
-//        completion = FLCopyWithAutorelease(completion);
-//        
-//        [transition startShowingView:toShow.view 
-//                          viewToHide:toHide.view 
-//                          completion:^{
-//
-//            [self didShowPanel:toShow didHidePanel:toHide];
-//            
-//            if(completion) {
-//              completion(toShow);
-//            }
-//        }];
-//    }
-#endif    
+#endif
         [self didShowPanel:toShow didHidePanel:toHide];
             
         if(completion) {

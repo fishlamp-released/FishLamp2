@@ -83,3 +83,6 @@
 @end
 
 
+#define FLForegroundQueue       [FLDispatchQueue mainThreadQueue]
+#define FLBackgroundQueue       [FLDispatchQueue defaultQueue]
+#define FLBackgroundFifoQueue   [FLDispatchQueue fifoQueue]
