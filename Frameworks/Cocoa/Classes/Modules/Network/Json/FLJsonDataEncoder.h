@@ -10,9 +10,9 @@
 #import "FLCocoaRequired.h"
 #import "FishLampCore.h"
 
-#import "FLDataEncoder.h"
+#import "FLStringToObjectConversionManager.h"
 
-@interface FLJsonDataEncoder : FLDataEncoder {
+@interface FLJsonDataEncoder : FLStringToObjectConversionManager {
 @private
 }
 

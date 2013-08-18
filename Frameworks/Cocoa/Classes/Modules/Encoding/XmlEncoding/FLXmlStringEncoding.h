@@ -7,14 +7,13 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLStringEncoder.h"
+#import "FLStringToObjectConverting.h"
 #import "NSString+XML.h"
 
-@interface FLXmlStringEncoder : FLStringEncoder
+@interface FLXmlStringEncoder : FLStringToObjectConverter
 + (id) xmlStringEncoder;
 @end
 
-
-@interface FLXmlURLStringEncoder : FLURLStringEncoder
+@interface FLXmlURLStringEncoder : FLURLStringToNSURLObjectConverter
 + (id) xmlURLStringEncoder;
 @end

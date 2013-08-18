@@ -7,17 +7,18 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLDataDecoding.h"
-#import "FLObjectDescriber.h"
+#import "FishLampCore.h"
+
+@class FLStringToObjectConversionManager;
 
 @interface FLJsonObjectBuilder : NSObject {
 @private
-    id<FLDataDecoding> _decoder;
+    FLStringToObjectConversionManager* _decoder;
 }
-@property (readonly, strong,nonatomic) id<FLDataDecoding> decoder;
+@property (readonly, strong,nonatomic) FLStringToObjectConversionManager* decoder;
 
-- (id) initWithDataDecoder:(id<FLDataDecoding>) decoder;
-+ (id) jsonObjectBuilder:(id<FLDataDecoding>) decoder;
+- (id) initWithDataDecoder:(FLStringToObjectConversionManager*) decoder;
++ (id) jsonObjectBuilder:(FLStringToObjectConversionManager*) decoder;
 + (id) jsonObjectBuilder;
 
 - (NSArray*) arrayOfObjectsFromJSON:(id) jsonObject withTypeDescs:(NSArray*) arrayOfObjectDescriber;

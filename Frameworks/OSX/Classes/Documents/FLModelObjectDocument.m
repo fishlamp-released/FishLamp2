@@ -13,6 +13,7 @@
 #import "FLXmlDocumentBuilder.h"
 #import "FLModelObject.h"
 #import "FLObjectXmlElement.h"
+#import "FLObjectDescriber.h"
 
 @implementation FLModelObjectDocument
 

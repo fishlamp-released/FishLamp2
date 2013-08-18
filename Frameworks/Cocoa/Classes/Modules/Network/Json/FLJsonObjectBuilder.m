@@ -9,9 +9,10 @@
 
 #import "FLJsonObjectBuilder.h"
 #import "FLBase64Encoding.h"
-#import "FLDataEncoder.h"
+#import "FLStringToObjectConversionManager.h"
 #import "FLPropertyDescriber.h"
 #import "FLObjectDescriber.h"
+#import "FLJsonDataEncoder.h"
 
 @interface FLJsonObjectBuilder ()
 - (id) objectFromJSON:(id) jsonObject withTypeDesc:(FLPropertyDescriber*) type;
@@ -24,10 +25,10 @@
     FLAssertNotNil(typeDesc);
     
     
-    NSString* encodingKey = typeDesc.stringEncodingKeyForRepresentedData;
-    if(encodingKey) {
+    NSString* forTypeName = typeDesc.stringEncodingKeyForRepresentedData;
+    if(forTypeName) {
         FLAssertNotNil(builder.decoder);
-        return [builder.decoder objectFromString:self encodingKey:encodingKey];
+        return [builder.decoder objectFromString:self forTypeName:forTypeName];
     }
     else {
         FLLog(@"Json property %@ has no encoder key", typeDesc.propertyName);
@@ -144,10 +145,10 @@
 @synthesize decoder = _decoder;
 
 - (id) init {
-    return [self initWithDataDecoder:[FLDataEncoder dataEncoder]];
+    return [self initWithDataDecoder:[FLJsonDataEncoder instance]];
 }
 
-- (id) initWithDataDecoder:(id<FLDataDecoding>) decoder {
+- (id) initWithDataDecoder:(FLStringToObjectConversionManager*) decoder {
     self = [super init];
     if(self) {
         _decoder = FLRetain(decoder);
@@ -162,7 +163,7 @@
 }
 #endif
 
-+ (id) jsonObjectBuilder:(id<FLDataDecoding>) decoder {
++ (id) jsonObjectBuilder:(FLStringToObjectConversionManager*) decoder {
     return FLAutorelease([[[self class] alloc] initWithDataDecoder:decoder]);
 }
 

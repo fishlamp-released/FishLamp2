@@ -7,13 +7,9 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLCocoaRequired.h"
 #import "FLDocumentSection.h"
-#import "FLDataEncoding.h"
 
-@protocol FLDataEncoder;
-@class FLObjectDescriber;
-@class FLXmlDocumentBuilder;
+@class FLStringToObjectConversionManager;
 @class FLXmlComment;
 
 // This is for WRITING Xml Elements only with the FLXmlDocumentBuilder.
@@ -22,11 +18,11 @@
 	NSMutableDictionary* _attributes;
     NSString* _openTag;
     NSString* _closeTag;
-    id<FLDataEncoding> _dataEncoder;
+    FLStringToObjectConversionManager* _dataEncoder;
     FLXmlComment* _comments;
 }
 
-@property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
+@property (readwrite, strong, nonatomic) FLStringToObjectConversionManager* dataEncoder;
 @property (readonly, strong, nonatomic) FLXmlComment* comments;
 
 @property (readonly, strong, nonatomic) NSString* xmlElementTag;

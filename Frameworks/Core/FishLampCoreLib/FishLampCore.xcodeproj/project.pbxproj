@@ -453,6 +453,10 @@
 		2781F2D2179C4CBC008DCAFB /* FLConfirmations.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781F2B0179C4CBC008DCAFB /* FLConfirmations.m */; };
 		2781F2D3179C4CBC008DCAFB /* FLConfirmations.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781F2B0179C4CBC008DCAFB /* FLConfirmations.m */; };
 		2781F2D4179C4CBC008DCAFB /* FLConfirmations.m in Sources */ = {isa = PBXBuildFile; fileRef = 2781F2B0179C4CBC008DCAFB /* FLConfirmations.m */; };
+		27B7210817C13D5600093216 /* FLTestable.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7210717C13D5600093216 /* FLTestable.h */; };
+		27B7210917C13D5600093216 /* FLTestable.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7210717C13D5600093216 /* FLTestable.h */; };
+		27B7210A17C13D5600093216 /* FLTestable.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7210717C13D5600093216 /* FLTestable.h */; };
+		27B7210B17C13D5600093216 /* FLTestable.h in Headers */ = {isa = PBXBuildFile; fileRef = 27B7210717C13D5600093216 /* FLTestable.h */; };
 		27F1AF07175FBEEB0086E14A /* FishLampVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1AF06175FBEEB0086E14A /* FishLampVersion.h */; };
 		27F1AF08175FBEEB0086E14A /* FishLampVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1AF06175FBEEB0086E14A /* FishLampVersion.h */; };
 		27F1AF09175FBEEB0086E14A /* FishLampVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F1AF06175FBEEB0086E14A /* FishLampVersion.h */; };
@@ -611,6 +615,7 @@
 		2781F2B0179C4CBC008DCAFB /* FLConfirmations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLConfirmations.m; sourceTree = "<group>"; };
 		27A43AB415CDCC89001CB13E /* libFishLampCore-iOS-ARC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-iOS-ARC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A43AC415CDCCCB001CB13E /* libFishLampCore-OSX-64-MRC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libFishLampCore-OSX-64-MRC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27B7210717C13D5600093216 /* FLTestable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTestable.h; sourceTree = "<group>"; };
 		27C62DCC170B537B0093F260 /* CoreTargetSettings-OSX-32-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "CoreTargetSettings-OSX-32-MRC.xcconfig"; sourceTree = "<group>"; };
 		27C62DCD170B537B0093F260 /* SharedTargetSettings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SharedTargetSettings.xcconfig; sourceTree = "<group>"; };
 		27C62DCE170B537B0093F260 /* CoreTargetSettings-OSX-Universal-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "CoreTargetSettings-OSX-Universal-MRC.xcconfig"; sourceTree = "<group>"; };
@@ -686,6 +691,7 @@
 				27680718175D370700B1D643 /* Runtime */,
 				27680721175D370700B1D643 /* Strings */,
 				2768072C175D370700B1D643 /* Utilities */,
+				27B7210717C13D5600093216 /* FLTestable.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -930,6 +936,7 @@
 				2768080A175D370700B1D643 /* FLTrace.h in Headers */,
 				27680813175D370700B1D643 /* FLAssociatedProperty.h in Headers */,
 				2768081C175D370700B1D643 /* FLAtomicProperties.h in Headers */,
+				27B7210817C13D5600093216 /* FLTestable.h in Headers */,
 				27680825175D370700B1D643 /* FLBitFlagsProperty.h in Headers */,
 				27680829175D370700B1D643 /* FLDefaultProperty.h in Headers */,
 				2768082D175D370700B1D643 /* FLProperties.h in Headers */,
@@ -995,6 +1002,7 @@
 				2768080C175D370700B1D643 /* FLTrace.h in Headers */,
 				27680815175D370700B1D643 /* FLAssociatedProperty.h in Headers */,
 				2768081E175D370700B1D643 /* FLAtomicProperties.h in Headers */,
+				27B7210A17C13D5600093216 /* FLTestable.h in Headers */,
 				27680827175D370700B1D643 /* FLBitFlagsProperty.h in Headers */,
 				2768082B175D370700B1D643 /* FLDefaultProperty.h in Headers */,
 				2768082F175D370700B1D643 /* FLProperties.h in Headers */,
@@ -1060,6 +1068,7 @@
 				2768080B175D370700B1D643 /* FLTrace.h in Headers */,
 				27680814175D370700B1D643 /* FLAssociatedProperty.h in Headers */,
 				2768081D175D370700B1D643 /* FLAtomicProperties.h in Headers */,
+				27B7210917C13D5600093216 /* FLTestable.h in Headers */,
 				27680826175D370700B1D643 /* FLBitFlagsProperty.h in Headers */,
 				2768082A175D370700B1D643 /* FLDefaultProperty.h in Headers */,
 				2768082E175D370700B1D643 /* FLProperties.h in Headers */,
@@ -1125,6 +1134,7 @@
 				2768080D175D370700B1D643 /* FLTrace.h in Headers */,
 				27680816175D370700B1D643 /* FLAssociatedProperty.h in Headers */,
 				2768081F175D370700B1D643 /* FLAtomicProperties.h in Headers */,
+				27B7210B17C13D5600093216 /* FLTestable.h in Headers */,
 				27680828175D370700B1D643 /* FLBitFlagsProperty.h in Headers */,
 				2768082C175D370700B1D643 /* FLDefaultProperty.h in Headers */,
 				27680830175D370700B1D643 /* FLProperties.h in Headers */,

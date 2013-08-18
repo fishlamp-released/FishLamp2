@@ -9,6 +9,9 @@
 
 #import "NSObject+FLXmlSerialization.h"
 #import "FLObjectXmlElement.h"
+#import "FLObjectDescriber.h"
+#import "FLStringToObjectConversionManager.h"
+#import "FLXmlElement.h"
 
 @implementation NSObject (FLXmlSerialization)
 
@@ -49,9 +52,9 @@
     else {
 
 
-        NSString* encodingKey = [propertyDescriber stringEncodingKeyForRepresentedData];
-        if(encodingKey) {
-            NSString* line = [xmlElement.dataEncoder stringFromObject:self encodingKey:encodingKey];
+        NSString* forTypeName = [propertyDescriber stringEncodingKeyForRepresentedData];
+        if(forTypeName) {
+            NSString* line = [xmlElement.dataEncoder stringFromObject:self forTypeName:forTypeName];
             FLAssertStringIsNotEmpty(line);
 
 //            NSString* line = [objectEncoder encodeObjectToString:self withEncoder:xmlElement.dataEncoder];

@@ -8,7 +8,7 @@
 //
 
 #import "FLSoapStringBuilder.h"
-#import "FLSoapDataEncoder.h"
+#import "FLXmlDataEncoder.h"
 #import "FLObjectXmlElement.h"
 
 @interface FLSoapStringBuilder ()
@@ -34,7 +34,7 @@
 #endif
 
 - (void) openDocument {
-    self.dataEncoder = [FLSoapDataEncoder instance];
+    self.dataEncoder = [FLXmlDataEncoder instance];
     
     [self appendDefaultXmlHeader];
 

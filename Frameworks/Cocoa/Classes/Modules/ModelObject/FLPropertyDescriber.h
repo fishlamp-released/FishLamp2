@@ -8,7 +8,7 @@
 //
 
 #import "FLPropertyAttributes.h"
-#import "FLStringEncoder.h"
+#import "FLStringToObjectConverting.h"
 #import "FLDatabase.h"
 
 @class FLObjectDescriber;
@@ -39,7 +39,7 @@
 @property (readonly, assign) BOOL representsObject;
 @property (readonly, assign) BOOL representsModelObject;
 @property (readonly, assign) BOOL representsArray;
-//@property (readonly, strong) id<FLStringEncoder> objectEncoder;
+//@property (readonly, strong) id<FLStringToObjectConverter> objectEncoder;
 - (BOOL) representsClass:(Class) aClass;
 - (id) createRepresentedObject;
 

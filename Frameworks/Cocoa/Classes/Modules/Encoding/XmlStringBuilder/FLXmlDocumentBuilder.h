@@ -7,13 +7,6 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLCocoaRequired.h"
-#import "FishLampCore.h"
-#import "FLObjectDescriber.h"
-#import "FLXmlElement.h"
-#import "FLDataEncoding.h"
-#import "FLObjectDescriber.h"
-#import "FLXmlComment.h"
 #import "FLDocumentBuilder.h"
 
 // xml
@@ -22,12 +15,13 @@
 #define FMXmlEncodingUtf16                      @"UTF-16"
 
 @class FLXmlElement;
+@class FLStringToObjectConversionManager;
 
 @interface FLXmlDocumentBuilder : FLDocumentBuilder {
 @private
-    id<FLDataEncoding> _dataEncoder;
+    FLStringToObjectConversionManager* _dataEncoder;
 }
-@property (readwrite, strong, nonatomic) id<FLDataEncoding> dataEncoder;
+@property (readwrite, strong, nonatomic) FLStringToObjectConversionManager* dataEncoder;
 
 @property (readonly, strong, nonatomic) id openedElement;
 

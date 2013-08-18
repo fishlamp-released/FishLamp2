@@ -8,14 +8,14 @@
 //
 
 #import "FLXmlDocumentBuilder.h"
-#import "FLStringEncoder.h"
+#import "FLStringToObjectConverting.h"
 #import "FLModelObject.h"
 
-@interface FLStringEncoder (FLXmlSerialization)
-- (void) addToXmlElement:(FLXmlElement*) xmlElement
-                typeDesc:(FLObjectDescriber*) description
-                   value:(id) value;
-@end
+//@interface FLStringToObjectConverter (FLXmlSerialization)
+//- (void) addToXmlElement:(FLXmlElement*) xmlElement
+//                typeDesc:(FLObjectDescriber*) description
+//                   value:(id) value;
+//@end
 
 @interface NSArray (FLXmlSerialization)
 @end

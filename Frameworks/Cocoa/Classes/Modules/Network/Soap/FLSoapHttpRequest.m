@@ -8,15 +8,15 @@
 //
 
 #import "FLSoapHttpRequest.h"
-#import "FLSoapObjectBuilder.h"
+#import "FLXmlObjectBuilder.h"
 #import "FLSoapError.h"
 #import "FLSoapFault11.h"
 #import "FLSoapStringBuilder.h"
-#import "FLSoapDataEncoder.h"
+#import "FLXmlDataEncoder.h"
 #import "FLSoapParser.h"
 #import "FLObjectDescriber.h"
 #import "FLSoapFault11.h"
-#import "FLStringEncoder.h"
+#import "FLStringToObjectConverting.h"
 #import "FLParsedXmlElement.h"
 #import "FLHttpResponse.h"
 #import "FLHttpRequestBody.h"
@@ -82,7 +82,7 @@
             FLParsedXmlElement* soap = [[[FLSoapParser soapParser] parseData:data fileNameForErrors:self.soapAction] childElementWithName:@"Fault" maxSearchDepth:5];
             FLAssertNotNil(soap);
 
-            FLSoapFault11* soapFault = [[FLSoapObjectBuilder instance] buildObjectOfClass:[FLSoapFault11 class] withXML:soap];
+            FLSoapFault11* soapFault = [[FLXmlObjectBuilder xmlObjectBuilder] buildObjectOfClass:[FLSoapFault11 class] withXML:soap];
 
 //            [FLSoapFault11 objectWithXmlElement:soap
 //                                                               elementName:@"Fault"
@@ -178,7 +178,7 @@
         FLParsedXmlElement* elementForObject = [self findResponseElementInSoapResponse:parsedSoap];
         FLAssertNotNil(elementForObject);
 
-        id soapResponse = [[FLSoapObjectBuilder instance] buildObjectOfType:[self typeNameForSoapResponse] withXML:elementForObject];
+        id soapResponse = [[FLXmlObjectBuilder xmlObjectBuilder] buildObjectOfType:[self typeNameForSoapResponse] withXML:elementForObject];
         FLAssertNotNil(soapResponse);
 
         return soapResponse;

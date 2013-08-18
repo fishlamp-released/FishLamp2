@@ -7,8 +7,8 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLDataEncoder.h"
+#import "FLStringToObjectConversionManager.h"
 
-@interface FLXmlDataEncoder : FLDataEncoder
+@interface FLXmlDataEncoder : FLDefaultStringToObjectConversionManager
 FLSingletonProperty(FLXmlDataEncoder);
 @end

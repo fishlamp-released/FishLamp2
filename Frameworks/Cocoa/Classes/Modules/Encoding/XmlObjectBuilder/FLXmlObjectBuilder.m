@@ -9,19 +9,23 @@
 
 #import "FLXmlObjectBuilder.h"
 #import "FLBase64Encoding.h"
-#import "FLDataEncoder.h"
+#import "FLStringToObjectConversionManager.h"
 #import "FLObjectDescriber.h"
 #import "FLObjectDescriber+FLXmlObjectBuilder.h"
+#import "FLParsedXmlElement.h"
+#import "FLModelObject.h"
+#import "NSObject+FLXmlObjectBuilder.h"
+#import "FLXmlDataEncoder.h"
 
 @implementation FLXmlObjectBuilder
 @synthesize decoder = _decoder;
 @synthesize strict = _strict;
 
 - (id) init {
-    return [self initWithDataDecoder:[FLDataEncoder dataEncoder]];
+    return [self initWithDataDecoder:[FLXmlDataEncoder instance]];
 }
 
-- (id) initWithDataDecoder:(id<FLDataDecoding>) decoder {
+- (id) initWithDataDecoder:(FLStringToObjectConversionManager*) decoder {
     self = [super init];
     if(self) {
         _decoder = FLRetain(decoder);
@@ -36,7 +40,7 @@
 }
 #endif
 
-+ (id) xmlObjectBuilder:(id<FLDataDecoding>) decoder {
++ (id) xmlObjectBuilder:(FLStringToObjectConversionManager*) decoder {
     return FLAutorelease([[[self class] alloc] initWithDataDecoder:decoder]);
 }
 
@@ -58,7 +62,7 @@
     }
     else {
         outObject = [self.decoder objectFromString:element.elementValue
-                                       encodingKey:type];
+                                       forTypeName:type];
     }
 
     FLAssertNotNil(outObject);

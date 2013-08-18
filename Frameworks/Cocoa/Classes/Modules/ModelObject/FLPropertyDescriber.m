@@ -320,7 +320,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 }
 
 - (NSString*) stringEncodingKeyForRepresentedData {
-    return [[self representedObjectClass] stringEncodingKey];
+    return [[self representedObjectClass] typeNameForStringToObjectConverting];
 }
 
 @end
@@ -376,7 +376,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 @implementation FLNumberPropertyDescriber 
 
 - (NSString*) stringEncodingKeyForRepresentedData {
-    return [NSNumber stringEncodingKey];
+    return [NSNumber typeNameForStringToObjectConverting];
 }
 
 @end
@@ -385,7 +385,7 @@ LazySelectorGetter(selector, _selector, _attributes.selector)
 
 
 - (NSString*) stringEncodingKeyForRepresentedData {
-    return [FLBoolStringEncoder stringEncodingKey];
+    return [FLBoolStringToNSNumberObjectConverter typeNameForStringToObjectConverting];
 }
 
 @end

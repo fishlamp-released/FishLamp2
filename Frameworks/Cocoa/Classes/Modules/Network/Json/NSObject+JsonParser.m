@@ -12,7 +12,7 @@
 #import "NSObject+JsonParser.h"
 #import "FLDateMgr.h"
 #import "FLObjectDescriber.h"
-#import "FLStringEncoder.h"
+#import "FLStringToObjectConverting.h"
 
 @implementation NSObject (FLJsonParser)
 

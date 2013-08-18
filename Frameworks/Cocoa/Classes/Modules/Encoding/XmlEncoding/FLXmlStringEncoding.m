@@ -40,5 +40,4 @@
     return [super objectFromString:[string xmlDecode]];
 }
 
-
 @end

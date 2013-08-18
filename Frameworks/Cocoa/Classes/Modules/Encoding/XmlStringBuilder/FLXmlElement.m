@@ -9,6 +9,8 @@
 
 #import "FLXmlElement.h"
 #import "FLXmlDocumentBuilder.h"
+#import "FLStringToObjectConversionManager.h"
+#import "FLXmlComment.h"
 
 @interface FLXmlElement ()
 @property (readwrite, strong, nonatomic) NSString* xmlElementTag;
@@ -57,7 +59,7 @@
 }
 #endif
 
-- (id<FLDataEncoding>) dataEncoder {
+- (FLStringToObjectConversionManager*) dataEncoder {
     if(!_dataEncoder) {
         id walker = self.parent;
         while(walker) {

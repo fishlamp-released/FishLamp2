@@ -12,6 +12,7 @@
 #import "FLParsedXmlElement.h"
 #import "FLModelObject.h"
 #import "FLPropertyDescriber+XmlObjectBuilder.h"
+#import "FLStringToObjectConversionManager.h"
 
 @implementation FLObjectDescriber (FLXmlObjectBuilder)
 
@@ -21,11 +22,11 @@
 //    NSString* encodingKey = typeDesc.stringEncodingKeyForRepresentedData;
 //    if(encodingKey) {
 //        FLAssertNotNil(builder.decoder);
-//        return [builder.decoder objectFromString:self encodingKey:encodingKey];
+//        return [builder.decoder objectFromString:self forTypeName:forTypeName];
 
-    NSString* encodingKey = [[self objectClass] stringEncodingKey];
+    NSString* forTypeName = [[self objectClass] typeNameForStringToObjectConverting];
   
-    id object = [builder.decoder objectFromString:[element elementValue] encodingKey:encodingKey];
+    id object = [builder.decoder objectFromString:[element elementValue] forTypeName:forTypeName];
     FLAssertNotNil(object);
 
     return object;

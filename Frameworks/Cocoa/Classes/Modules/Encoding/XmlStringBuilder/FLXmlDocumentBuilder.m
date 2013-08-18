@@ -9,7 +9,9 @@
 
 #import "FLXmlDocumentBuilder.h"
 #import "FLStringUtils.h"
-#import "FLDataEncoder.h"
+#import "FLStringToObjectConversionManager.h"
+#import "FLXmlElement.h"
+#import "FLObjectDescriber.h"
 #import "FLXmlElement.h"
 
 #define EOL @"\r\n"
@@ -22,7 +24,7 @@
 
 @synthesize dataEncoder = _dataEncoder;
 
-FLSynthesizeLazyGetter(dateEncoder, id<FLDataEncoding>, _dataEncoder, FLDataEncoder);
+FLSynthesizeLazyGetter(dateEncoder, FLStringToObjectConversionManager*, _dataEncoder, FLStringToObjectConversionManager);
 
 - (id) init {
     self = [super init];

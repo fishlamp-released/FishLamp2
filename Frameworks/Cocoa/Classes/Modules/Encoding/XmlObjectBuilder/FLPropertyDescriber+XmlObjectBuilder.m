@@ -12,7 +12,7 @@
 #import "FLParsedXmlElement.h"
 #import "FLModelObject.h"
 #import "NSArray+FLXmlObjectBuilder.h"
-#import "FLDataEncoder.h"
+#import "FLStringToObjectConversionManager.h"
 #import "FLObjectDescriber+FLXmlObjectBuilder.h"
 
 @implementation FLPropertyDescriber (XmlObjectBuilder)
@@ -21,11 +21,11 @@ inflateObjectWithElement:(FLParsedXmlElement*) element {
     
     if(FLStringIsNotEmpty([element elementValue])) {
     
-        NSString* encodingKey = self.stringEncodingKeyForRepresentedData;
-        FLAssertNotNilWithComment(encodingKey, @"no encoder found for property: %@", self.propertyName);
+        NSString* forTypeName = self.stringEncodingKeyForRepresentedData;
+        FLAssertNotNilWithComment(forTypeName, @"no encoder found for property: %@", self.propertyName);
 
-        if(encodingKey) {
-            id object = [builder.decoder objectFromString:[element elementValue] encodingKey:encodingKey];
+        if(forTypeName) {
+            id object = [builder.decoder objectFromString:[element elementValue] forTypeName:forTypeName];
             
             FLAssertNotNilWithComment(object,
                     @"object not expanded for %@:%@", [element elementName], [element elementValue]);

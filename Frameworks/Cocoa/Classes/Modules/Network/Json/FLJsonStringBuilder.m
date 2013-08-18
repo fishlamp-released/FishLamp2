@@ -8,6 +8,7 @@
 //
 
 #import "FLJsonStringBuilder.h"
+#import "FLStringToObjectConversionManager.h"
 
 @implementation FLJsonStringBuilder
 
