@@ -11,7 +11,7 @@
 
 @interface NSString (MiscUtils)
 
-+ (NSString*) localizedStringForByteSize:(long long) size;
++ (NSString*) localizedStringForByteSize:(UInt64) size;
 
 + (NSString*) localizedStringForTime:(NSTimeInterval) seconds;
 

@@ -9,25 +9,33 @@
 
 #import "NSString+MiscUtils.h"
 
-#define KILO 1024 
-#define MEGA 1048576 
-#define GIGA 1073741824
+#define KILO    1024.0
+#define MEGA    (KILO * KILO)
+#define GIGA    (MEGA * KILO)
+#define TB      (GIGA * KILO)
 
 @implementation NSString (MiscUtils)
 
-+ (NSString*) localizedStringForByteSize:(long long) size {
-	if ( size < KILO ) {
-		return [NSString stringWithFormat:@"%lld bytes", size];
++ (NSString*) localizedStringForByteSize:(UInt64) size {
+	
+    NSString* outString = nil;
+    if ( size < KILO ) {
+		outString = [NSString stringWithFormat:@"%lld bytes", size];
 	} 
     else if ( size < MEGA ) {
-		return [NSString stringWithFormat:@"%.2f KB", size /(float)KILO];
+		outString = [NSString stringWithFormat:@"%.2f KB", (double)size /(double)KILO];
 	} 
     else if ( size < GIGA ) {
-		return [NSString stringWithFormat:@"%.2f MB", size /(float)MEGA];
-	} 
-    else {
-		return [NSString stringWithFormat:@"%.2f GB", size /(float)GIGA];
+		outString = [NSString stringWithFormat:@"%.2f MB", (double)size /(double)MEGA];
 	}
+    else if ( size < TB ) {
+		outString = [NSString stringWithFormat:@"%.2f GB", (double)size /(double)GIGA];
+	}
+    else {
+		outString = [NSString stringWithFormat:@"%.2f TB", (double)size /(double)TB];
+	}
+    
+    return outString;
 }
 
 + (NSString*) localizedStringForTime:(NSTimeInterval) secs {
