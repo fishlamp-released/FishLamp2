@@ -23,4 +23,6 @@ extern FLVersion FLGetOSVersion();
     #define OSXVersionIsAtLeast10_6() FLVersionGreaterThanEqualToVersion(FLGetOSVersion(), FLVersionMake(10,6,0,0))
     #define OSXVersionIsAtLeast10_7() FLVersionGreaterThanEqualToVersion(FLGetOSVersion(), FLVersionMake(10,7,0,0))
     #define OSXVersionIsAtLeast10_8() FLVersionGreaterThanEqualToVersion(FLGetOSVersion(), FLVersionMake(10,8,0,0))
+
+    #define OSXVersionIs10_6() FLVersionLessThanVersion(FLGetOSVersion(), FLVersionMake(10,7,0,0))
 #endif

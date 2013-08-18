@@ -34,7 +34,7 @@
 + (id) urlStringEncoder;
 @end
 
-@interface FLNumberStringEncoder : NSNumberFormatter<FLStringEncoding> 
+@interface FLNumberStringEncoder : NSObject<FLStringEncoding> 
 + (id) numberStringEncoder;
 @end
 

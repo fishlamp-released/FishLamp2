@@ -46,6 +46,10 @@
     
     for(FLParsedXmlElement* element in [parentElement.childElements objectEnumerator]) {
         
+        if(FLStringsAreEqual(element.elementName, @"Id")) {
+            FLLog(@"wtf");
+        }   
+        
         FLPropertyDescriber* propertyDescriber = [self propertyForName:element.elementName];
 
         NSString* propertyName = propertyDescriber.propertyName;
@@ -56,15 +60,6 @@
 
             id object = [propertyDescriber xmlObjectBuilder:builder  
                                      inflateElementContents:element];
-            
-//if ([propertyName isEqualToString:@"id"]) {
-//    FLLog(@"id");
-//    
-//            long value = [object longValue];
-//            long long value2 = [object longLongValue];
-//    
-//}
-//
 
             if(object) {
                 if([outObject valueForKey:propertyName]) {

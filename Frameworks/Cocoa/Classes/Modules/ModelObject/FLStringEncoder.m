@@ -124,20 +124,60 @@
 
 @implementation FLNumberStringEncoder
 
+static NSNumberFormatter* s_formatter = nil;
+
++ (void) initialize {
+    if(!s_formatter) {
+        s_formatter = [[NSNumberFormatter alloc] init];
+        [s_formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [s_formatter setGeneratesDecimalNumbers:NO];
+        [s_formatter setUsesGroupingSeparator:NO];
+    }
+}
+
 + (id) numberStringEncoder {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (NSString*) stringFromObject:(id) object {
-    return [self stringFromNumber:object];
+    NSString* string = [s_formatter stringFromNumber:object];
+    
+#if DEBUG
+    NSNumber* test = [self objectFromString:string];
+    FLAssertWithComment([test isEqual:object], @"round trip failed for number formatter: %@ should be %@", test, object);
+#endif
+
+    return string;
 }
 
 - (id) objectFromString:(NSString*) string {
-    return [self numberFromString:string];
+    NSNumber* number = nil;
+    
+    if(OSXVersionIs10_6() && string.length > 9) {
+        NSScanner *theScanner = FLAutorelease([[NSScanner alloc] initWithString:string]);
+        unsigned long long longLong = 0;
+        [theScanner scanLongLong:(long long *)&longLong];
+        
+        number = [NSNumber numberWithLongLong:longLong];
+    }
+    else {
+        number = [s_formatter numberFromString:string];
+    }
+    
+    
+#if DEBUG
+//    NSString* test = [s_formatter stringFromNumber:number];
+//    FLAssertWithComment(FLStringsAreEqual(test, string), @"round trip failed for number formatter: %@ should be %@", test, string);
+#endif
+
+    return number;
 }
 
 - (NSArray*) encodingKeys {
-    return [NSArray arrayWithObjects:   @"char",
+    return [NSArray arrayWithObjects:   @"SInt16", @"UInt16",
+                                        @"SInt32", @"UInt32",
+                                        @"SInt64", @"UInt64",
+                                        @"char",
                                         @"unsigned char",
                                         @"int",
                                         @"integer",
