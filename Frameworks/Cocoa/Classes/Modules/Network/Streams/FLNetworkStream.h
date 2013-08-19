@@ -79,14 +79,17 @@ typedef enum {
 
 @protocol FLNetworkStreamEventHandler <NSObject>
 
+// treat this like a delegate - set it to nil in dealloc
+@property (readwrite, assign) FLNetworkStream* stream;
+
 + (id) networkStreamEventHandler;
 
 - (void) handleStreamEvent:(CFStreamEventType) eventType;
 - (void) queueSelector:(SEL) selector;
 - (void) queueSelector:(SEL) selector withObject:(id) object;
 
-- (void) streamWillOpen:(FLNetworkStream*) stream completion:(void (^)()) completion;
-- (void) streamDidClose:(FLNetworkStream*) stream;
+- (void) streamWillOpen:(void (^)()) completion;
+- (void) streamDidClose;
 
 - (NSRunLoop*) runLoop;
 - (NSString*) runLoopMode;

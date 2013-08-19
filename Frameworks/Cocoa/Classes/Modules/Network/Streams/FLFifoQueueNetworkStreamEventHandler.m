@@ -12,7 +12,6 @@
 
 @interface FLFifoQueueNetworkStreamEventHandler ()
 @property (readwrite, strong, nonatomic) FLFifoAsyncQueue* asyncQueue;
-@property (readwrite, strong) FLNetworkStream* stream;
 @end
 
 @implementation FLFifoQueueNetworkStreamEventHandler
@@ -20,7 +19,7 @@
 @synthesize asyncQueue = _asyncQueue;
 @synthesize stream = _stream;
 
-- (id) init{	
+- (id) init {
 	self = [super init];
 	if(self) {
         self.asyncQueue = [FLFifoAsyncQueue fifoAsyncQueue];
@@ -31,7 +30,6 @@
 - (void) dealloc {
     [_asyncQueue releaseToPool];
 #if FL_MRC
-    [_stream release];
     [_asyncQueue release];
 	[super dealloc];
 #endif
@@ -56,8 +54,7 @@
 
 - (void) queueSelector:(SEL) selector {
     [self queueBlock:^{
-    
-        @try { 
+        @try {
             [self.stream performSelector:selector];
         }
         @catch(NSException* ex) {
@@ -105,15 +102,11 @@
     }
 }
 
-- (void) streamWillOpen:(FLNetworkStream*) stream  completion:(void (^)()) completion {
-    self.stream = stream;
+- (void) streamWillOpen:(void (^)()) completion {
     if(completion) completion();
 }
 
-- (void) streamDidClose:(FLNetworkStream*) stream {
-    if(self.stream == stream) {
-        self.stream = nil;
-    }
+- (void) streamDidClose {
 }
 
 - (NSRunLoop*) runLoop {

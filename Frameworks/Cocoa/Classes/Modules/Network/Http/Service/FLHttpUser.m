@@ -15,6 +15,7 @@
 @synthesize userLogin = _userLogin;
 @synthesize lastAuthenticationTimestamp = _lastAuthenticationTimestamp;
 @synthesize timeoutInterval = _timeoutInterval;
+@synthesize authenticatedData = _authenticatedData;
 
 - (id) init {
     return [self initWithUserLogin:nil];
@@ -36,14 +37,11 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_authenticatedData release];
     [_userLogin release];
     [super dealloc];
 }
 #endif
-
-- (NSString*) userName {
-    return self.userLogin.userName;
-}
 
 - (BOOL) isLoginAuthenticated {
     return _userLogin.isAuthenticated;
@@ -55,6 +53,7 @@
     _userLogin.authTokenLastUpdateTime = 0;
     _userLogin.password = @"";
     [self resetAuthenticationTimestamp];
+    self.authenticatedData = nil;
 }
 
 - (void) touchAuthenticationTimestamp {
@@ -74,7 +73,7 @@
 }
 
 - (NSString*) userFolderPath {
-    return [NSString stringWithFormat:@"%@/%@", [FLAppInfo bundleIdentifier], self.userName];
+    return [NSString stringWithFormat:@"%@/%@", [FLAppInfo bundleIdentifier], self.userLogin.userName];
 }
 
 - (NSString*) cacheFolderPath {

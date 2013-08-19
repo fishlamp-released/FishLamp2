@@ -16,12 +16,11 @@
     FLUserLogin* _userLogin;
     NSTimeInterval _lastAuthenticationTimestamp;
     NSTimeInterval _timeoutInterval;
+
+    id _authenticatedData;
 }
 
-@property (readonly, strong) NSString* userName;
-
-- (id) initWithUserLogin:(FLUserLogin*) userLogin;
-+ (id) httpUser:(FLUserLogin*) userLogin;
+@property (readwrite, strong, nonatomic) id authenticatedData;
 
 @property (readwrite, copy, nonatomic) FLUserLogin* userLogin;
 
@@ -32,9 +31,11 @@
 @property (readonly, assign, nonatomic) NSTimeInterval lastAuthenticationTimestamp;
 @property (readonly, assign, nonatomic) BOOL authenticationHasExpired;
 
+- (id) initWithUserLogin:(FLUserLogin*) userLogin;
++ (id) httpUser:(FLUserLogin*) userLogin;
+
 - (void) resetAuthenticationTimestamp;
 - (void) touchAuthenticationTimestamp;
-
 
 // TODO: abstract this better.
 - (NSString*) cacheFolderPath;

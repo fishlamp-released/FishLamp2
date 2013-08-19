@@ -12,7 +12,6 @@
 
 @interface FLRunLoopNetworkStreamEventHandler ()
 @property (readwrite, assign) NSRunLoop* runLoop;
-@property (readwrite, assign) FLNetworkStream* stream;
 @property (readwrite, assign) NSThread* thread;
 @end
 
@@ -119,11 +118,8 @@
     }
 }
 
-- (void) streamWillOpen:(FLNetworkStream*) stream 
-             completion:(void (^)()) completion{
+- (void) streamWillOpen:(void (^)()) completion{
              
-    _stream = stream;
-    
     completion = FLCopyWithAutorelease(completion);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -150,8 +146,7 @@
     
 }
 
-- (void) streamDidClose:(FLNetworkStream*) stream {
-    self.stream = nil;
+- (void) streamDidClose {
 }
 
 - (NSString*) runLoopMode {

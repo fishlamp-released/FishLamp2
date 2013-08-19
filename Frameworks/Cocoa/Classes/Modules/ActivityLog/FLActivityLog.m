@@ -101,36 +101,6 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
     [_log stringFormatter:myFormatter appendSelfToStringFormatter:anotherStringFormatter];
 }
 
-
-//- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-//            appendString:(NSString*) string
-//  appendAttributedString:(NSAttributedString*) attributedString
-//              lineUpdate:(FLStringFormatterLineUpdate) lineUpdate {
-//                
-//    if(lineUpdate.openLine && _log.indentLevel == 0) {
-//        NSString* timeStamp = [NSString stringWithFormat:@"[%@]: ", [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:kCFDateFormatterLongStyle]];
-//
-//        if(string) {
-//            string = [NSString stringWithFormat:@"%@%@", timeStamp, string];
-//        }
-//        else if(attributedString) {
-//            NSMutableAttributedString* newAttrString = [NSMutableAttributedString mutableAttributedString:timeStamp];
-//            [newAttrString appendAttributedString:attributedString];
-//            attributedString = newAttrString;
-//        }
-//    }
-//
-//    [_log stringFormatter:stringFormatter appendString:string appendAttributedString:attributedString lineUpdate:lineUpdate];
-//}   
-
-//- (void) indent {
-//    [_log indent];
-//}
-//
-//- (void) outdent {
-//    [_log outdent];
-//}
-
 - (NSString*) string {
     return [_log string];
 }
@@ -186,22 +156,6 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 }
 
 - (void) appendLineWithURL:(NSURL*) url string:(NSString*) string {
-
-
-//        NSMutableAttributedString* urlString = [NSMutableAttributedString mutableAttributedString:[self.rootGroup relativePathForElement:photoSet]
-//                                                                                              url:[NSURL URLWithString:[photoSet PageUrl]] 
-//                                                                                            color:[NSColor blackColor] 
-//                                                                                        underline:YES];
-        
-
-
-
-
-//
-//    NSMutableAttributedString* urlString = [NSMutableAttributedString mutableAttributedString:string 
-//                                                                                          url:url 
-//                                                                                        color:[NSColor blackColor] 
-//                                                                                    underline:YES];
     [self appendURL:url string:string];
     [self closeLine];
 }

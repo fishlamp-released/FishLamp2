@@ -22,7 +22,6 @@
 @synthesize nextPromise = _nextPromise;
 @synthesize result = _result;
 @synthesize finished = _finished;
-@synthesize finishOnMainThread = _finishOnMainThread;
 @synthesize completion = _completion;
 
 - (id) initWithCompletion:(fl_completion_block_t) completion {
@@ -100,40 +99,34 @@
     return self.result;
 }
 
-- (void) notifyFinished {
+- (void) setFinishedWithResult:(FLPromisedResult) result {
+    
+    FLAssertIsNilWithComment(self.result, @"already finished");
+
+    if(result == nil) {
+       result = [NSError failedResultError];
+    }
+
+    self.result = result;
+
     if(_completion) {
         _completion(self.result);
+        FLReleaseBlockWithNil(_completion);
     }
+
     FLPerformSelector1(_target, _action, self.result);
+    _target = nil;
+    _action = nil;
 
     self.finished = YES;
 
     if(_semaphore) {
     //       FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
         dispatch_semaphore_signal(_semaphore);
+        dispatch_release(_semaphore);
+        _semaphore = nil;
     }
 }
-
-- (void) setFinishedWithResult:(FLPromisedResult) result {
-    
-    FLAssertIsNilWithComment(self.result, @"already finished");
-
-    self.result = result;
-
-    if(self.result == nil) {
-        self.result = [NSError failedResultError];
-    }
-
-    if(!self.finishOnMainThread || 
-        [NSThread currentThread] == [NSThread mainThread] ) {
-        [self notifyFinished];
-    }
-    else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self notifyFinished];
-        });
-    }
-}      
 
 
 

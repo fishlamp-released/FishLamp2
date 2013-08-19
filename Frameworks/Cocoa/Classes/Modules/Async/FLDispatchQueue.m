@@ -182,7 +182,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
     __block NSError* error = nil;
     
-    block = FLCopyWithAutorelease(block);
+    FLPrepareBlockForFutureUse(block);
     
     dispatch_sync(self.dispatch_queue_t, ^{
         @try {
@@ -197,11 +197,14 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }
 
 - (FLPromisedResult) runFinisherBlockSynchronously:(fl_finisher_block_t) block {
+
+    __block FLPromisedResult outResult = nil;
+
+    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(FLPromisedResult result) {
+        outResult = FLRetain(result);
+    }];
     
-    FLFinisher* finisher = [FLFinisher finisher];
-    FLPromise* promise = [finisher addPromise];
-    
-    block = FLCopyWithAutorelease(block);
+    FLPrepareBlockForFutureUse(block);
     
     dispatch_sync(self.dispatch_queue_t, ^{
         @try {
@@ -212,7 +215,7 @@ static void * const s_queue_key = (void*)&s_queue_key;
         }
     });
     
-    return promise.result;
+    return FLAutorelease(outResult);
 }
 
 - (FLPromise*) queueBlock:(fl_block_t) block {

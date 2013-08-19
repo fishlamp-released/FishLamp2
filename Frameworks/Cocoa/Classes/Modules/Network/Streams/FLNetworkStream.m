@@ -59,8 +59,11 @@ static Class s_eventHandlerClass = nil;
         if(!eventHandler) {
             eventHandler = [s_eventHandlerClass networkStreamEventHandler];
         }
+
+        FLAssertNotNil(eventHandler);
         
         self.eventHandler = eventHandler;
+        self.eventHandler.stream = self;
     }
     return self;
 }
@@ -71,6 +74,7 @@ static Class s_eventHandlerClass = nil;
 
 - (void) dealloc {
     _timer.delegate = nil;
+    _eventHandler.stream = nil;
 #if FL_MRC
     [_eventHandler release];
     [_timer release];
@@ -109,7 +113,7 @@ static Class s_eventHandlerClass = nil;
     [self.timer stopTimer];
     
     self.delegate = nil;
-    [self.eventHandler streamDidClose:self];
+    [self.eventHandler streamDidClose];
 }
 
 - (void) encounteredBytesAvailable {
@@ -156,7 +160,7 @@ static Class s_eventHandlerClass = nil;
     FLAssertNotNil(self.eventHandler);
 
     self.delegate = delegate;
-    [self.eventHandler streamWillOpen:self completion:^{
+    [self.eventHandler streamWillOpen:^{
         [self.eventHandler queueSelector:@selector(willOpen)];
         [self.eventHandler queueSelector:@selector(openStream)];
         [self.eventHandler queueSelector:@selector(startTimeoutTimer)];
