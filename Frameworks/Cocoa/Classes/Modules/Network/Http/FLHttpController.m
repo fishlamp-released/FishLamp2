@@ -12,6 +12,7 @@
 #import "FLDatabaseObjectStorageService.h"
 #import "FLAppInfo.h"
 #import "FLSynchronousOperation.h"
+#import "FLOperationContext.h"
 
 NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDidLogoutUserNotification";
 
@@ -20,6 +21,7 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 @property (readwrite, strong) id<FLStorageService> storageService;
 @property (readwrite, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
 @property (readwrite, strong) FLService* authenticatedServices;
+@property (readwrite, strong) FLOperationContext* operationContext;
 @property (readwrite, strong) id httpUser;
 @end
 
@@ -27,11 +29,11 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 @synthesize userService = _userService;
 @synthesize storageService = _storageService;
 @synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
-@synthesize delegate = _delegate;
-@synthesize authenticatedServices = _authenticatedServices;
 @synthesize streamSecurity = _streamSecurity;
 @synthesize httpUser = _httpUser;
 @synthesize serviceFactory = _serviceFactory;
+@synthesize authenticatedServices = _authenticatedServices;
+@synthesize operationContext = _operationContext;
 
 - (id) init {
     return [self initWithServiceFactory:nil];
@@ -41,27 +43,31 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 
     self = [super init];
     if(self) {
+        _authenticatedServices = [[FLService alloc] init];
+
         _serviceFactory = FLRetain(factory);
         FLAssertNotNil(_serviceFactory);
 
-        self.authenticatedServices = [FLService service];
-                         
+        self.operationContext = [FLOperationContext operationContext];
+        [self.operationContext addObserver:self];
+        
         self.userService = [self.serviceFactory httpControllerCreateUserService:self];
     
         FLAssertNotNil(self.userService);
-        [self.userService.observers addObserver:[FLNonretainedObject nonretainedObject:self]];
+        [self.userService.observers addObserver:[self nonretained_fl]];
 
         self.httpRequestAuthenticator = [self.serviceFactory httpControllerCreateHttpRequestAuthenticationService:self];
         FLAssertNotNil(self.httpRequestAuthenticator);
         self.httpRequestAuthenticator.delegate = self;
-        [self.userService addSubService:self.httpRequestAuthenticator];    
+
+        [_authenticatedServices addSubService:self.httpRequestAuthenticator];
     
         self.storageService = [self.serviceFactory httpControllerCreateStorageService:self];
         if(self.storageService) {
-            [self.authenticatedServices addSubService:self.storageService];
+            [_authenticatedServices addSubService:self.storageService];
         }
      
-        [self.userService openService:self];
+        [self.userService openService];
     }
     return self;
 }
@@ -75,13 +81,19 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 }
 
 - (void) userServiceDidOpen:(id<FLUserService>) service {
+
+
     self.httpUser = [self.serviceFactory httpController:self
                            createHttpUserForCredentials:service.credentials];
+
+    [_authenticatedServices openService];
 }
 
 - (void) userServiceDidClose:(id<FLUserService>) service {
     [[NSNotificationCenter defaultCenter] postNotificationName:FLHttpControllerDidLogoutUserNotification object:self];
     self.httpUser = nil;
+
+    [_authenticatedServices closeService];
 }
 
 - (BOOL) isAuthenticated {
@@ -90,6 +102,8 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 
 #if FL_MRC
 - (void) dealloc {
+    [_authenticatedServices release];
+    [_operationContext release];
     [_serviceFactory release];
     [_httpUser release];
     [_httpRequestAuthenticator release];
@@ -99,18 +113,23 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 }
 #endif
 
-- (void) didAddOperation:(FLOperation*) operation {
-    [super didAddOperation:operation];
+- (void) openUserService {
+    if(!self.userService.isServiceOpen) {
+        [self.userService openService];
+    }
+}
+
+
+- (void) operationContext:(FLOperationContext*) operationContext
+          didAddOperation:(FLOperation*) operation {
+
     [self openUserService];
-    
+
+    [self.authenticatedServices startProcessingObject:operation];
+
     id object = operation; // for casting
     
 // TODO: abstract this better.    
-    if([object respondsToSelector:@selector(setStorageService:)]) {
-        if([object storageService] == nil) {
-            [object setStorageService:[self storageService]];
-        }
-    }
 
     if(_streamSecurity != FLNetworkStreamSecurityNone) {
         if([object respondsToSelector:@selector(setStreamSecurity:)]) {
@@ -121,11 +140,18 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
     }
 }
 
+- (void) operationContext:(FLOperationContext*) operationContext
+          didRemoveOperation:(FLOperation*) operation {
+
+    [self.authenticatedServices stopProcessingObject:operation];
+}
+
+
 - (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
                       didAuthenticateUser:(FLHttpUser*) userLogin {
     
-    [self.authenticatedServices openService:self];
-    [self.delegate httpController:self didAuthenticateUser:userLogin];
+    [self.authenticatedServices openService];
+    [self.observers.notify httpController:self didAuthenticateUser:userLogin];
 }
 
 - (void) logoutUser {
@@ -134,25 +160,16 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
     FLCredentialsEditor* editor = [self.userService credentialEditor];
     editor.password = nil;
     [editor stopEditing];
+
+    [self.userService closeService];
     
-    [self.delegate httpController:self didLogoutUser:self.httpUser];
+    [self.observers.notify httpController:self didLogoutUser:self.httpUser];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:FLHttpControllerDidLogoutUserNotification object:self];
 }
 
-- (void) openUserService {
-    if(!self.userService.isServiceOpen) {
-        [self.userService openService:self];
-    }
-}
-
-- (void) httpRequestAuthenticationService:(FLHttpRequestAuthenticationService*) service 
-                         operationContext:(FLOperationContext**) outOperationContext {
-    *outOperationContext = FLRetain(self);
-}                         
-
-- (FLOperationContext*) httpRequestAuthenticationServiceGetWorkerContext:(FLHttpRequestAuthenticationService*) service {
-    return self;
+- (FLOperationContext*) httpRequestAuthenticationServiceGetOperationContext:(FLHttpRequestAuthenticationService*) service {
+    return self.operationContext;
 }
 
 - (FLHttpUser*) httpRequestAuthenticationServiceGetUser:(FLHttpRequestAuthenticationService*) service {

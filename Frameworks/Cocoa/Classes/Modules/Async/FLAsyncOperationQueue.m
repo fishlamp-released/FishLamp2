@@ -9,7 +9,8 @@
 
 #import "FLAsyncOperationQueue.h"
 #import "FLAsyncOperationQueueElement.h"
-#import "FishLampAsync.h"
+#import "FLDispatchQueue.h"
+#import "FLLog.h"
 
 @interface FLAsyncOperationQueue ()
 @property (readwrite, strong) FLFifoAsyncQueue* fifoQueue; 

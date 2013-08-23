@@ -45,7 +45,7 @@
 
 @protocol FLHttpRequestAuthenticationServiceDelegate <NSObject>
 
-- (FLOperationContext*) httpRequestAuthenticationServiceGetWorkerContext:(FLHttpRequestAuthenticationService*) service;
+- (FLOperationContext*) httpRequestAuthenticationServiceGetOperationContext:(FLHttpRequestAuthenticationService*) service;
 
 - (FLHttpUser*) httpRequestAuthenticationServiceGetUser:(FLHttpRequestAuthenticationService*) service;
 

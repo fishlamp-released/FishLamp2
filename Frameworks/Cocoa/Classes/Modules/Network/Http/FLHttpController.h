@@ -7,7 +7,11 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLNetworkOperationContext.h"
+#import "FLService.h"
+
+@class FLOperationContext;
+@protocol FLHttpControllerServiceFactory;
+@protocol FLUserService;
 
 #import "FLStorageService.h"
 #import "FLUserService.h"
@@ -18,41 +22,40 @@
 // TODO (MWF): removing this coupling
 #import "FLDatabaseObjectStorageService.h"
 
-@protocol FLHttpControllerServiceFactory;
-
-@protocol FLUserService;
 
 extern NSString* const FLHttpControllerDidLogoutUserNotification;
 
-@interface FLHttpController : FLNetworkOperationContext<
-    FLHttpRequestAuthenticationServiceDelegate, FLUserServiceDelegate,  FLHttpRequestContext,
+@interface FLHttpController : FLObservable <
+    FLHttpRequestAuthenticationServiceDelegate,
+    FLHttpRequestContext,
     FLDatabaseObjectStorageServiceDelegate> {
 @private
     id _httpUser;
     id<FLUserService> _userService;
 
     id<FLStorageService> _storageService;
+    FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
+
+    FLNetworkStreamSecurity _streamSecurity;
 
     FLService* _authenticatedServices;
-    FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
-    FLNetworkStreamSecurity _streamSecurity;
 
     id<FLHttpControllerServiceFactory> _serviceFactory;
 
-    __unsafe_unretained id _delegate;
+    FLOperationContext* _operationContext;
 }
 
 - (id) initWithServiceFactory:(id<FLHttpControllerServiceFactory>) factory;
 
 + (id) httpController:(id<FLHttpControllerServiceFactory>) factory;
 
+@property (readonly, strong) FLOperationContext* operationContext;
+
 @property (readonly, strong) id<FLHttpControllerServiceFactory> serviceFactory;
 
 @property (readwrite, assign, nonatomic) FLNetworkStreamSecurity streamSecurity;
-@property (readwrite, assign, nonatomic) id delegate;
 
 @property (readonly, assign, nonatomic) BOOL isAuthenticated;
-@property (readonly, strong) FLService* authenticatedServices;
 
 @property (readonly, strong) id<FLUserService> userService;
 
@@ -64,10 +67,9 @@ extern NSString* const FLHttpControllerDidLogoutUserNotification;
 
 - (void) logoutUser;
 
-- (void) openUserService;
 @end
 
-@protocol FLHttpControllerDelegate <NSObject>
+@protocol FLHttpControllerObserverMessages <NSObject>
 @optional
 
 - (void) httpController:(FLHttpController*) controller

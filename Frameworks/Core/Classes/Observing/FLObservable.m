@@ -21,11 +21,11 @@ FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
 }
 #endif
 
-- (BOOL) hasObserver:(id) listener {
-    return [self.observers hasObserver:listener];
+- (BOOL) hasListener:(id) listener {
+    return [self.observers hasListener:listener];
 }
 
-- (void) addObserver:(id<FLObjectRef>) observer {
+- (void) addObserver:(id<FLObjectProxy>) observer {
     [self.observers addObserver:observer];
 }
 
@@ -35,9 +35,8 @@ FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
 
 
 @end
-
+/*
 #if REFACTOR
-#import "FishLampCore.h"
 
 @interface NSObject (FLObservationSending)
 
@@ -221,3 +220,4 @@ FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
 @end
 
 #endif
+*/

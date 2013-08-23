@@ -46,11 +46,11 @@
 }
 
 - (void) didOpenService {
-    [self.observers notify:@selector(userServiceDidOpen:) withObject:self];
+    [self.observers.notify userServiceDidOpen:self];
 }
 
 - (void) didCloseService {
-    [self.observers notify:@selector(userServiceDidClose:) withObject:self];
+    [self.observers.notify userServiceDidClose:self];
 }
 
 - (FLCredentialsEditor*) credentialEditor {
@@ -62,7 +62,7 @@
 - (void) credentialsEditor:(FLCredentialsEditor*) editor
 willStartEditingCredentials:(id<FLCredentials>) credentials {
 
-   [self closeService:self];
+   [self closeService];
 }
 
 - (void) credentialsEditor:(FLCredentialsEditor*) editor
@@ -77,12 +77,8 @@ didFinishEditingCredentials:(id<FLCredentials>) credentials {
     if(self.credentialStorage) {
         [self.credentialStorage writeCredentials:self.credentials];
     }
-    [self openService:self];
+
+    [self openService];
 }
-
-
-
-
-
 
 @end

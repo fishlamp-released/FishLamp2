@@ -8,7 +8,7 @@
 //
 
 #import "FLConfirmations.h"
-#import "FishLampCore.h"
+#import "FLAssertions.h"
 
 /*
 #define InitArguments(__OBJ__, __FIRST__) \

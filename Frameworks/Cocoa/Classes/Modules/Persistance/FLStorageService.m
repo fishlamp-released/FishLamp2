@@ -53,6 +53,13 @@
     [self.objectStorage writeObjectsInArray:array];
 }
 
+- (void) willStartProcessingObject:(id)object {
+    if([object respondsToSelector:@selector(setStorageService:)]) {
+        if([object storageService] == nil) {
+            [object setStorageService:self];
+        }
+    }
+}
 
 @end
 

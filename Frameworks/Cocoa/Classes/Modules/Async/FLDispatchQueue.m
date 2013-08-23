@@ -9,7 +9,10 @@
 
 #import "FLDispatchQueue.h"
 #import "FLSelectorPerforming.h"
-#import "FishLampAsync.h"
+#import "FLFinisher.h"
+#import "FLPromisedResult.h"
+#import "FLPromise.h"
+#import "FLDispatchable.h"
 
 static void * const s_queue_key = (void*)&s_queue_key;
 

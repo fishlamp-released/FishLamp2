@@ -52,13 +52,13 @@
 
     // helpers
     id<FLInputSink> _inputSink;
-    id<FLHttpRequestAuthenticator> _authenticator;
+    id<FLHttpRequestAuthenticator> _httpRequestAuthenticator;
     BOOL _disableAuthenticator;
 }
 
 @property (readwrite, nonatomic, strong) id<FLRetryHandler> retryHandler;
 @property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
-@property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> authenticator;
+@property (readwrite, strong, nonatomic) id<FLHttpRequestAuthenticator> httpRequestAuthenticator;
 
 // timeouts
 @property (readwrite, assign, nonatomic) NSTimeInterval timeoutInterval;

@@ -8,8 +8,10 @@
 //
 
 #import "FLCancelError.h"
-#import "FishLampCore.h"
 #import "FLErrorException.h"
+#import "FLStringUtils.h"
+#import "FLErrorCodes.h"
+#import "FLAssertions.h"
 
 NSString* const FLCancelExceptionName = @"cancel";
 

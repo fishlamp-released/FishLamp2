@@ -22,8 +22,8 @@
 
     FLParsedXmlElement* _rootElement;
     
-    NSMutableDictionary* _prefixDictionary;
-    NSMutableArray* _prefixStack;
+//    NSMutableDictionary* _prefixDictionary;
+//    NSMutableArray* _prefixStack;
 }
 
 + (id) xmlParser;

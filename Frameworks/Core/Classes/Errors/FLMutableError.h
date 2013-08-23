@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
+#if REFACTOR
 
 #import "FLCoreRequired.h"
 //#import "NSError+FLExtras.h"
@@ -47,3 +48,5 @@ extern NSString* const FLErrorStackTraceKey;
 + (id) mutableErrorWithError:(NSError*) error stackTrace:(FLStackTrace*) stackTrace;
 
 @end
+
+#endif

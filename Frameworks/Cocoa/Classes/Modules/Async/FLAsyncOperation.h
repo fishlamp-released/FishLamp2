@@ -9,6 +9,10 @@
 
 #import "FLOperation.h"
 
+/**
+A subclass of FLOperation specifically for Async operations.
+*/
+//__attribute__((deprecated))
 @interface FLAsyncOperation : FLOperation {
 @private
 }

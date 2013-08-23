@@ -9,6 +9,10 @@
 
 #import "FLService.h"
 
+NSString* const FLServiceDidCloseNotificationKey = @"FLServiceDidCloseNotificationKey";
+NSString* const FLServiceDidOpenNotificationKey = @"FLServiceDidOpenNotificationKey";;
+
+
 @interface FLService ()
 @property (readwrite, assign, getter=isServiceOpen) BOOL serviceOpen;
 @property (readwrite, assign) id superService;
@@ -56,17 +60,17 @@
 
 
 - (void) setOpen { 
-    [self openService];
+    [self openSelf];
     self.serviceOpen = YES;
 }
-- (void) openService {
+- (void) openSelf {
 }
 
 - (void) setClosed {
-    [self closeService];
+    [self closeSelf];
     self.serviceOpen = NO;
 }
-- (void) closeService {
+- (void) closeSelf {
 }
 
 - (void) willOpenService {
@@ -80,36 +84,68 @@
 
 - (void) didCloseService {
 }
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
-- (void) performSelectorOnAllServices:(SEL) selector {
-    [self performSelector:selector];
+- (void) willOpenServiceAndSubservices {
+    [self willOpenService];
     for(FLService* service in _subServices) {
-        [service performSelectorOnAllServices:selector];
+        [service willOpenServiceAndSubservices];
     }
 }
 
-#pragma GCC diagnostic pop
+- (void) openServiceAndSubservices {
+    [self setOpen];
+    for(FLService* service in _subServices) {
+        [service openServiceAndSubservices];
+    }
+}
 
-- (void) openService:(id) opener {
+- (void) didOpenServiceAndSubservices {
+    [self didOpenService];
+    for(FLService* service in _subServices) {
+        [service didOpenServiceAndSubservices];
+    }
+    FLTrace(@"opened %@", NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLServiceDidOpenNotificationKey object:self];
+}
+
+
+- (void) willCloseServiceAndSubservices {
+    [self willCloseService];
+    for(FLService* service in _subServices) {
+        [service willCloseServiceAndSubservices];
+    }
+}
+
+- (void) closeServiceAndSubservices {
+    [self setClosed];
+    for(FLService* service in _subServices) {
+        [service closeServiceAndSubservices];
+    }
+}
+
+- (void) didCloseServiceAndSubservices {
+    [self didCloseService];
+    for(FLService* service in _subServices) {
+        [service didCloseServiceAndSubservices];
+    }
+    FLTrace(@"opened %@", NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLServiceDidOpenNotificationKey object:self];
+}
+
+- (void) openService {
     if(!self.isServiceOpen) {
-        [self performSelectorOnAllServices:@selector(willOpenService)];
-        [self performSelectorOnAllServices:@selector(setOpen)];
-        [self performSelectorOnAllServices:@selector(didOpenService)];
-
-//        FLPerformSelector1(self.delegate, _didOpenDelegateMethod, self);
-        FLTrace(@"opened %@", NSStringFromClass([self class]));
+        [self willOpenServiceAndSubservices];
+        [self openServiceAndSubservices];
+        [self didOpenServiceAndSubservices];
     }
 }
 
-- (void) closeService:(id) opener {
+
+- (void) closeService {
     if(self.isServiceOpen) {
-        [self performSelectorOnAllServices:@selector(willCloseService)];
-        [self performSelectorOnAllServices:@selector(setClosed)];
-        [self performSelectorOnAllServices:@selector(didCloseService)];
-//        FLPerformSelector1(self.delegate, _didCloseDelegateMethod, self);
-        FLTrace(@"close %@", NSStringFromClass([self class]));
+        [self willCloseServiceAndSubservices];
+        [self closeServiceAndSubservices];
+        [self didCloseServiceAndSubservices];
     }
 }
 
@@ -139,18 +175,45 @@
     return superService == nil ? self : [superService rootService];
 }
 
-- (void) visitSubServices:(void (^)(id service, BOOL* stop)) visitor stop:(BOOL*) stop {
+- (void) visitSubServicesWithStop:(void (^)(id service, BOOL* stop)) visitor stop:(BOOL*) stop {
     for(id service in _subServices) {
-        if(*stop) break;
+        if(*stop) {
+            break;
+        }
+
         visitor(service, stop);
+
+        [service visitSubServicesWithStop:visitor stop:stop];
+        if(*stop) {
+            break;
+        }
     }
 }
 
 - (void) visitSubServices:(void (^)(id service, BOOL* stop)) visitor {
     BOOL stop = NO;
-    [self visitSubServices:visitor stop:&stop];
+    [self visitSubServicesWithStop:visitor stop:&stop];
 }
 
+- (void) willStartProcessingObject:(id) object {
+}
+
+- (void) willStopProcessingObject:(id) object {
+}
+
+- (void) startProcessingObject:(id) object {
+    [self willStartProcessingObject:object];
+    for(id<FLService> service in _subServices) {
+        [service startProcessingObject:object];
+    }
+}
+
+- (void) stopProcessingObject:(id) object {
+    [self willStopProcessingObject:object];
+    for(id<FLService> service in _subServices) {
+        [service stopProcessingObject:object];
+    }
+}
 
 @end
 

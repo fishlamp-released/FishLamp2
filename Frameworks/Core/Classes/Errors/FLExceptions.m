@@ -8,7 +8,7 @@
 //
 
 #import "FLErrorException.h"
-#import "FishLampCore.h"
+#import "FLExceptions.h"
 
 NSException* FLDefaultWillThrowExceptionHandler(NSException *exception) {
     return exception;

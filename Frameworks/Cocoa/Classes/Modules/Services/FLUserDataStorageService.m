@@ -164,7 +164,7 @@ FLAssertFailedWithComment(@"refactor this");
 	FLReleaseWithNil(_documentsDatabase);
 } 
  
-- (void) closeService
+- (void) closeSelf
 {
 	FLReleaseWithNil(_upgradeTaskList);
 	
@@ -178,7 +178,7 @@ FLAssertFailedWithComment(@"refactor this");
 //    }
 
 //    [self.backgroundTasks beginClosingService:^(FLFinisher* backgroundTaskMgr) {
-//        [self closeService];
+//        [self closeSelf];
 //        [progress hideProgress];
 //        [asyncTask setFinished];
 //    }];
@@ -366,9 +366,9 @@ FLAssertFailedWithComment(@"TODO refactor this");
     return nil;
 }
 
-- (void) openService {
+- (void) openSelf {
 
-    [super openService];
+    [super openSelf];
     FLAssertWithComment(FLStringIsNotEmpty([self userLogin].userName), @"invalid userLogin");
     _willOpen = YES;
     _isOpening = NO;

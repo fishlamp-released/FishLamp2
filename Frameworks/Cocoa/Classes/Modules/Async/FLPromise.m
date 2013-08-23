@@ -8,7 +8,7 @@
 //
 
 #import "FLPromise.h"
-#import "FishLampAsync.h"
+#import "NSError+FLFailedResult.h"
 
 @interface FLPromise ()
 @property (readwrite, strong) FLPromisedResult result;

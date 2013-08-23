@@ -12,8 +12,20 @@
 
 @class FLFinisher;
 
+/**
+@brief block the receives promised result
+*/
 typedef void (^fl_result_block_t)(FLPromisedResult result);
+
+/**
+@brief block that recieves a finisher
+@param finisher a finisher that you need to call setFinished on when your async work is completed
+*/
 typedef void (^fl_finisher_block_t)(FLFinisher* finisher);
+
+/**
+@brief completion block is an alias for fl_result_block_t
+*/
 typedef fl_result_block_t fl_completion_block_t;
 
 

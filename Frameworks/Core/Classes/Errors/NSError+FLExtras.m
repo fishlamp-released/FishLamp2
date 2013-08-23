@@ -8,7 +8,9 @@
 //
 
 #import "NSError+FLExtras.h"
-#import "FishLampCore.h"
+#import "FLStringUtils.h"
+#import "FLExceptions.h"
+#import "FLErrorException.h"
 
 NSString* const FLErrorCommentKey = @"com.fishlamp.error.comment";;
 //NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";

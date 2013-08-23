@@ -28,3 +28,8 @@
 @interface FLNoStorageService : FLService<FLStorageService>
 + (id) noStorageService;
 @end
+
+@interface FLStorageServiceAware <NSObject>
+- (void) setStorageService:(id<FLStorageService>) service;
+- (id<FLStorageService>) storageService;
+@end

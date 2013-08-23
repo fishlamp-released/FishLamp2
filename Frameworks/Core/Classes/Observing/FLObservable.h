@@ -12,7 +12,7 @@
 @protocol FLObservable <NSObject>
 - (FLBroadcaster*) observers;
 
-- (BOOL) hasObserver:(id) listener;
+- (BOOL) hasListener:(id) listener;
 
 - (void) addObserver:(id) observer;
 

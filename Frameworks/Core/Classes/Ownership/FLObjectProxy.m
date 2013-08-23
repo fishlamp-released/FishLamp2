@@ -1,16 +1,17 @@
 //
-//  FLObjectRef.m
+//  FLObjectProxy.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 6/24/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjectRef.h"
+#import "FLObjectProxy.h"
+//#import "FLLog.h"
+//#import "FLTrace.h"
+#import "FLAssertions.h"
 
-#import "FLTrace.h"
-
-@implementation NSObject (FLObjectRef)
+@implementation NSObject (FLObjectProxy)
 
 - (id) representedObjectForObjectReference {
     return self;
@@ -22,7 +23,7 @@
 
 @end
 
-@implementation FLObjectRef
+@implementation FLObjectProxy
 
 - (id) representedObjectForObjectReference {
     FLAssertNotNil(_unretainedRepresentedObject);
@@ -74,7 +75,7 @@
         [anInvocation invokeWithTarget:object];
     }
     else {
-        FLTrace(@"not responding to %@", NSStringFromSelector([anInvocation selector]));
+//        FLTrace(@"not responding to %@", NSStringFromSelector([anInvocation selector]));
     }
 }
 
@@ -83,7 +84,7 @@
     NSMethodSignature* sig = [[self representedObject] methodSignatureForSelector:selector];
     if(!sig) {
         sig = [NSMethodSignature signatureWithObjCTypes:"@^v^c"];
-        FLTrace(@"returning fake method signature for selector %@", NSStringFromSelector(selector));
+//        FLTrace(@"returning fake method signature for selector %@", NSStringFromSelector(selector));
     }
     return sig;
 }

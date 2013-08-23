@@ -13,13 +13,16 @@
 @interface FLPromise : NSObject {
 @private
     dispatch_semaphore_t _semaphore;
+    FLPromisedResult _result;
+
     fl_completion_block_t _completion;
     BOOL _finished;
     FLPromise* _nextPromise;
     __unsafe_unretained id _target;
-    id _result;
     SEL _action;
 }
+@property (readonly, strong) FLPromisedResult result;
+
 @property (readonly, assign, getter=isFinished) BOOL finished;
 
 - (id) initWithCompletion:(fl_completion_block_t) completion;

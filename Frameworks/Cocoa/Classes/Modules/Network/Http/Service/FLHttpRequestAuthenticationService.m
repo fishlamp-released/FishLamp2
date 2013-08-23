@@ -83,14 +83,14 @@
 	return NO;
 }
 
-- (void) openService {
-    [super openService];
+- (void) openSelf {
+    [super openSelf];
     self.asyncQueue = [FLFifoAsyncQueue fifoAsyncQueue];
-    self.operationContext = [self.delegate httpRequestAuthenticationServiceGetWorkerContext:self];
+    self.operationContext = [self.delegate httpRequestAuthenticationServiceGetOperationContext:self];
 }
 
-- (void) closeService {
-    [super closeService];
+- (void) closeSelf {
+    [super closeSelf];
     
     self.operationContext = nil;
     FLFifoAsyncQueue* queue = FLRetainWithAutorelease(self.asyncQueue);
@@ -132,7 +132,12 @@
         [self.delegate httpRequestAuthenticationService:self didAuthenticateUser:user];
     } 
     completion:completion];
+}
 
+- (void) willStartProcessingObject:(id)object {
+    if([object respondsToSelector:@selector(setHttpRequestAuthenticator:)]) {
+        [object setHttpRequestAuthenticator:self];
+    }
 }
 
 @end

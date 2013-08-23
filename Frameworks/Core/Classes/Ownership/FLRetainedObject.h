@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjectRef.h"
+#import "FLObjectProxy.h"
 
-@interface FLRetainedObject : FLObjectRef {
+@interface FLRetainedObject : FLObjectProxy {
 @private
     id _retainedObject;
 }

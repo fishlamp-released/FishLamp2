@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-
+#if REFACTOR
 #import "FLMutableError.h"
-#import "FishLampCore.h"
 
 @interface FLMutableError ()
 @end
@@ -100,3 +99,4 @@ FLSynthesizeDictionaryProperty(filePath, setFilePath, NSString*, NSFilePathError
 @end
 
 
+#endif

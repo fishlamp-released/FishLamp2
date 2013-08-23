@@ -38,7 +38,7 @@
     return [self.delegate databaseObjectStorageServiceGetDatabasePath:self];
 }
 
-- (void) openService {
+- (void) openSelf {
     NSString* databasePath = [self databaseFilePath];
     FLAssertStringIsNotEmpty(databasePath);
     
@@ -54,7 +54,7 @@
     }];
  }
 
-- (void) closeService {
+- (void) closeSelf {
     [self.databaseController dispatchAsync:^(FLObjectDatabase* database) {
         [database openDatabase];
     }

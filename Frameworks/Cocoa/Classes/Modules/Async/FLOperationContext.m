@@ -109,10 +109,12 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
     });
 }
 
-- (void) didAddOperation:(FLOperation*) object {
+- (void) didAddOperation:(FLOperation*) operation {
+    [self.observers.notify operationContext:self didAddOperation:operation];
 }
 
-- (void) didRemoveOperation:(FLOperation*) object {
+- (void) didRemoveOperation:(FLOperation*) operation {
+    [self.observers.notify operationContext:self didRemoveOperation:operation];
 }
 
 - (void) didStartWorking {
@@ -120,6 +122,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 #if TRACE
     FLLog(@"Context started working %@", [self description]);
 #endif
+    [self.observers.notify operationContextDidStartWorking:self];
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextStarting object:self];
@@ -127,6 +130,9 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 }
 
 - (void) didStopWorking {
+
+    [self.observers.notify operationContextDidStopWorking:self];
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextFinished object:self];
     });
@@ -157,7 +163,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
             [operation.context removeOperation:operation];
         }
         [operation wasAddedToContext:self];
-        [operation.observers addObserver:[FLNonretainedObject nonretainedObject:self]];
+        [operation.observers addObserver:self.nonretained_fl];
     }
 
     [self didAddOperation:operation];

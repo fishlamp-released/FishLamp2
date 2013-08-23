@@ -8,7 +8,7 @@
 //
 
 #import "FLAsyncQueue.h"
-#import "FLObjectPool.h"
+//#import "FLObjectPool.h"
 #import <dispatch/dispatch.h>
 
 @class FLFifoAsyncQueue;

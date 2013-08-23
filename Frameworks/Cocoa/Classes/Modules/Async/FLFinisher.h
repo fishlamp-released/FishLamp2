@@ -18,6 +18,10 @@
 @private
     FLPromise* _firstPromise;
     __unsafe_unretained id<FLFinisherDelegate> _delegate;
+
+#if DEBUG
+    NSTimeInterval _birth;
+#endif
 }
 
 @property (readwrite, assign) id<FLFinisherDelegate> delegate;

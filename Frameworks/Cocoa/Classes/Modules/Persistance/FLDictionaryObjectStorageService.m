@@ -71,13 +71,13 @@
     return [self.objectStorage objectForKey:[inputObject objectStorageKey_fl]] != nil;
 }
 
-- (void) openService {
-    [super openService];
+- (void) openSelf {
+    [super openSelf];
 	self.objectStorage = [NSMutableDictionary dictionary];
 }
 
-- (void) closeService {
-    [super closeService];
+- (void) closeSelf {
+    [super closeSelf];
     self.objectStorage = nil;
 }
 

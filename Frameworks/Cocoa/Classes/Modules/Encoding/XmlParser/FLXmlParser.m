@@ -42,6 +42,8 @@
     [_parser release];
     [_stack release];
     [_error release];
+//    [_prefixStack release];
+//    [_]
     [super dealloc];
 #endif
 }
@@ -104,13 +106,13 @@ didStartElement:(NSString *)elementName
 
 - (void)parser:(NSXMLParser *)parser didStartMappingPrefix:(NSString *)prefix toURI:(NSString *)namespaceURI {
 
-    if(!_prefixStack) {
-        _prefixStack = [[NSMutableArray alloc] init];
-        _prefixDictionary = [[NSMutableDictionary alloc] init];
-    }
-
-    [_prefixStack addObject:prefix];
-    [_prefixDictionary setObject:namespaceURI forKey:prefix];
+//    if(!_prefixStack) {
+//        _prefixStack = [[NSMutableArray alloc] init];
+//        _prefixDictionary = [[NSMutableDictionary alloc] init];
+//    }
+//
+//    [_prefixStack addObject:prefix];
+//    [_prefixDictionary setObject:namespaceURI forKey:prefix];
 }
 
 - (void)parser:(NSXMLParser *)parser didEndMappingPrefix:(NSString *)prefix {

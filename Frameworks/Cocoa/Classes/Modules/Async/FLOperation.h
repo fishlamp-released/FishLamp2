@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#import "FishLamp.h"
+#import "FishLampCore.h"
 #import "FLAsyncBlockTypes.h"
 #import "FLFinisher.h"
 #import "FLDispatchable.h"
-#import "FLObservable.h"
 #import "FLPromisedResult.h"
+#import "FLObservable.h"
 
 @class FLOperationContext;
 @class FLFinisher;

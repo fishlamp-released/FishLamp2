@@ -1,21 +1,22 @@
 //
-//  FLObjectRef.h
+//  FLObjectProxy.h
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 6/24/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FishLampCore.h"
+#import "FLCoreRequired.h"
 
-@protocol FLObjectRef <NSObject>
+@protocol FLObjectProxy <NSObject>
 - (id) representedObject;
 @end
 
-@interface FLObjectRef : NSProxy<FLObjectRef> {
+@interface FLObjectProxy : NSProxy<FLObjectProxy> {
 @private
     __unsafe_unretained id _unretainedRepresentedObject;
 }
+- (id) representedObject;
 - (id) initWithRepresentedObject:(id) object;
 
 @end

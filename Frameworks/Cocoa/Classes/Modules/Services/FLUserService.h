@@ -22,10 +22,6 @@
 - (FLCredentialsEditor*) credentialEditor;
 @end
 
-@protocol FLUserServiceDelegate <NSObject>
-- (void) userServiceDidOpen:(id<FLUserService>) service;
-- (void) userServiceDidClose:(id<FLUserService>) service;
-@end
 
 @interface FLUserService : FLService<FLUserService> {
 @private
@@ -40,5 +36,10 @@
 + (id) userService:(id<FLCredentials>) credentials;
 
 - (id) initWithCredentials:(id<FLCredentials>) credentials;
+@end
 
+
+@protocol FLUserServiceObserverMessages <NSObject>
+- (void) userServiceDidOpen:(id<FLUserService>) service;
+- (void) userServiceDidClose:(id<FLUserService>) service;
 @end

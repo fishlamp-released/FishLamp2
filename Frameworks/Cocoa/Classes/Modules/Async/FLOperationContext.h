@@ -43,11 +43,14 @@ extern NSString* const FLWorkerContextOpened;
 
 - (void) visitOperations:(FLOperationVisitor) visitor;
 
-// optional overrides
-- (void) didStartWorking;
-- (void) didStopWorking;
-- (void) didAddOperation:(FLOperation*) object;
-- (void) didRemoveOperation:(FLOperation*) object;
-
 @end
 
+@protocol FLOperationContextObserverMessages <NSObject>
+
+- (void) operationContextDidStartWorking:(FLOperationContext*) operationContext;
+- (void) operationContextDidStopWorking:(FLOperationContext*) operationContext;
+
+- (void) operationContext:(FLOperationContext*) operationContext didAddOperation:(FLOperation*) object;
+- (void) operationContext:(FLOperationContext*) operationContext didRemoveOperation:(FLOperation*) object;
+
+@end

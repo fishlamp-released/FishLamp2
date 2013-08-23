@@ -8,7 +8,9 @@
 //
 
 #import "FLFinisher.h"
-#import "FishLampAsync.h"
+#import "FLPromise.h"
+#import "NSError+FLFailedResult.h"
+#import "FLSuccessfulResult.h"
 
 @interface FLPromise ()
 - (void) setFinishedWithResult:(FLPromisedResult) result;
@@ -32,6 +34,10 @@
 	self = [super init];
 	if(self) {
         self.firstPromise = promise;
+
+//#if DEBUG
+//        _birth = [NSDate timeIntervalSinceReferenceDate];
+//#endif
 	}
 	return self;
 }
@@ -78,6 +84,9 @@
 
 #if FL_MRC
 - (void) dealloc {
+//#if DEBUG
+//    FLLog(@"finisher lifespan: %0.2f", [NSDate timeIntervalSinceReferenceDate] - _birth);
+//#endif
     [_firstPromise release];
 	[super dealloc];
 }

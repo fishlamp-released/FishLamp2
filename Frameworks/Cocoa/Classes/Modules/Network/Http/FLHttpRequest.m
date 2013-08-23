@@ -42,7 +42,7 @@
 
 @synthesize requestBody = _requestBody;
 @synthesize requestHeaders = _requestHeaders;
-@synthesize authenticator = _authenticator;
+@synthesize httpRequestAuthenticator = _httpRequestAuthenticator;
 @synthesize disableAuthenticator = _disableAuthenticator;
 @synthesize inputSink = _inputSink;
 @synthesize httpStream = _httpStream;
@@ -104,7 +104,7 @@ static int s_counter = 0;
     [_previousResponse release];
     [_httpStream release];
     [_inputSink release];
-    [_authenticator release];
+    [_httpRequestAuthenticator release];
     [_requestHeaders release];
     [_requestBody release];
     [_retryHandler release];
@@ -195,15 +195,15 @@ static int s_counter = 0;
 - (void) openAuthenticatedStreamWithURL:(NSURL*) url {
 
     id context = self.context;
-    if(!self.authenticator && (context && [context respondsToSelector:@selector(httpRequestAuthenticator)])) {
-        self.authenticator = [context httpRequestAuthenticator];
+    if(!self.httpRequestAuthenticator && (context && [context respondsToSelector:@selector(httpRequestAuthenticator)])) {
+        self.httpRequestAuthenticator = [context httpRequestAuthenticator];
     }
 
-    if(self.authenticator && !self.disableAuthenticator) {
+    if(self.httpRequestAuthenticator && !self.disableAuthenticator) {
         [self willAuthenticate];
         [self.observers notify:@selector(httpRequestWillAuthenticate:) withObject:self];
 
-        [self.authenticator authenticateHttpRequest:self];
+        [self.httpRequestAuthenticator authenticateHttpRequest:self];
 
         [self didAuthenticate];
         [self.observers notify:@selector(httpRequestDidAuthenticate:) withObject:self];
