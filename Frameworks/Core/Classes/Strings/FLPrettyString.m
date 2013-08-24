@@ -8,7 +8,9 @@
 //
 
 #import "FLPrettyString.h"
-#import "FishLampCore.h"
+#import "FLAssertions.h"
+#import "FLWhitespace.h"
+#import "FLSelectorPerforming.h"
 
 @interface FLPrettyString ()
 @property (readwrite, strong, nonatomic) id storage;

@@ -10,7 +10,7 @@
 #import "NSObject+FLPerformSelector.h"
 #import "FLObjcRuntime.h"
 #import "FLSelectorPerforming.h"
-#import "FishLampCore.h"
+#import "FLAssertions.h"
 
 @implementation NSObject (FLPerformSelector)
 

@@ -12,7 +12,7 @@
 #import <stdlib.h>
 #import <string.h>
 #import <stdio.h>
-#import "FishLampCore.h"
+#import "FLAssertions.h"
 
 // experimental
 

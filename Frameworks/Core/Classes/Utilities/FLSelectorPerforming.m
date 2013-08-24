@@ -9,7 +9,7 @@
 
 #import "FLSelectorPerforming.h"
 #import "FLObjcRuntime.h"
-#import "FishLampCore.h"
+#import "FLAssertions.h"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"

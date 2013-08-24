@@ -9,7 +9,6 @@
 
 #import "FLAtomicProperties.h"
 #import "FLAtomic.h"
-#import "FishLampCore.h"
 
 
 // this code is based on: http://www.opensource.apple.com/source/objc4/objc4-371.2/runtime/Accessors.subproj/objc-accessors.m
