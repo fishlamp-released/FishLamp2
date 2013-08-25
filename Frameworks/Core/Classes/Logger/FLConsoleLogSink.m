@@ -9,11 +9,11 @@
 
 #import "FLConsoleLogSink.h"
 #import "FLPrintf.h"
-//#import "FLStringUtils.h"
+#import "FLStringUtils.h"
 #import "FLLogEntry.h"
-//#import "FLStackTrace.h"
-//#import "FLWhitespace.h"
-//#import "NSError+FLExtras.h"
+#import "FLStackTrace.h"
+#import "FLWhitespace.h"
+ck#import "NSError+FLExtras.h"
 
 @implementation FLConsoleLogSink
 
