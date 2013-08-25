@@ -20,7 +20,7 @@
 }
 
 + (NSString*) stringWithCharString:(FLCharString) charString {
-    return FLAutorelease([[NSString alloc] initWithCharString:charString]);
+    return FLAutorelease([[[self class] alloc] initWithCharString:charString]);
 
 }
 @end

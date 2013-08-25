@@ -13,7 +13,7 @@
 #import "FLLogEntry.h"
 #import "FLStackTrace.h"
 #import "FLWhitespace.h"
-ck#import "NSError+FLExtras.h"
+#import "NSError+FLExtras.h"
 
 @implementation FLConsoleLogSink
 

@@ -11,7 +11,7 @@
 @interface FLResponderChainState : NSObject {
 @private
     NSWindow* _window;
-    NSInteger _tryCount;
+//    NSInteger _tryCount;
     id _responder;
     NSTimeInterval _timeout;
     NSTimeInterval _start;
