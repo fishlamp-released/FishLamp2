@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLCocoaRequired.h"
+#import "FLCoreRequired.h"
 
 #define FLUnitTestPriorityLow           0
 #define FLUnitTestPriorityNormal        1000
@@ -18,13 +18,21 @@
 @interface FLUnitTestGroup : NSObject<NSCopying> {
 @private
     NSString* _groupName;
-    int32_t _groupPriority;
+    SInt32 _groupPriority;
 }
 
 @property (readonly, strong) NSString* groupName;
-@property (readonly, assign) int32_t groupPriority;
+@property (readonly, assign) SInt32 groupPriority;
 
-+ (id) unitTestGroup:(NSString*) name priority:(int32_t) priority;
-- (id) initWithGroupName:(NSString*) name priority:(int32_t) priority;
++ (id) unitTestGroup:(NSString*) name priority:(SInt32) priority;
+
+- (id) initWithGroupName:(NSString*) name priority:(SInt32) priority;
+
+// default groups
++ (FLUnitTestGroup*) sanityCheckTestGroup;
++ (FLUnitTestGroup*) frameworkTestGroup;
++ (FLUnitTestGroup*) importantTestGroup;
++ (FLUnitTestGroup*) defaultTestGroup;
++ (FLUnitTestGroup*) lastTestGroup;
 
 @end

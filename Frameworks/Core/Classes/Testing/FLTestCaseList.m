@@ -7,12 +7,7 @@
 //
 
 #import "FLTestCaseList.h"
-#import "FLTestCaseResult.h"
-#import "FLObjcRuntime.h"
-#import "FLUnitTest.h"
 #import "FLTestCase.h"
-#import "FLTestResultCollection.h"
-
 
 @implementation FLTestCaseList
 
@@ -20,7 +15,6 @@
 	self = [super init];
 	if(self) {
         _testCases = [[NSMutableArray alloc] init];
-
 	}
 	return self;
 }

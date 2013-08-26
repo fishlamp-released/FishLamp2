@@ -8,9 +8,6 @@
 
 #import "FLTestCase.h"
 #import "FLStringUtils.h"
-#import "FLUnitTest.h"
-#import "FLObjcRuntime.h"
-#import "FLTestCaseResult.h"
 
 //#define FLTestCaseFlagBrokenString              @"_broken"
 //#define FLTestCaseFlagVerboseString             @"_debug"
@@ -146,48 +143,6 @@ FLTestCaseFlagPair s_flagPairs[] = {
     FLSuperDealloc();
 }
 #endif
-
-- (FLPromisedResult) performSynchronously {
-
-    FLTestCaseResult* result = [FLTestCaseResult testCaseResult:self];
-    [[FLUnitTest logger] pushLoggerSink:result];
-        
-    @try {
-        if(!self.isDisabled) {
-            if(!FLPerformSelector0(_testCaseTarget, _testCaseSelector)) {
-                if(_testCaseBlock) {
-                    _testCaseBlock();
-                }
-            }
-        }
-
-        [result setPassed];
-    }
-    @catch(NSException* ex) {
-//                 [[results testResultForKey:testCase.testCaseName] setError:ex.error];
-    }
-    @finally {
-        [[FLUnitTest logger] removeLoggerSink:result];
-    }
-    
-    if(result.passed) {
-        if(self.isDisabled) {
-            [[FLUnitTest outputLog] appendLineWithFormat:@"DISABLED: %@", self.testCaseName];
-        }
-        else {
-            [[FLUnitTest outputLog] appendLineWithFormat:@"Passed: %@", self.testCaseName];
-        }
-    }
-    else {
-        [[FLUnitTest outputLog] appendLineWithFormat:@"FAILED: %@", self.testCaseName ];
-        [[FLUnitTest outputLog] indent:^{
-            [[FLUnitTest logger] logEntries:result.logEntries];
-        }];
-    }
-
-    return result;
-}
-
 
 + (void) runTestWithExpectedFailure:(void (^)()) test
                        checkResults:(void (^)(NSException* ex, BOOL* pass)) checkResults {

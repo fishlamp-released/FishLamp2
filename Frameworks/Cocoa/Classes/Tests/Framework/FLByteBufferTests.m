@@ -18,7 +18,7 @@ FLSynthesizeFixedSizedBuffer(2)
 @implementation FLByteBufferTests
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
+    return [FLUnitTestGroup frameworkTestGroup];
 }
 
 - (void) testSimpleCopy {

@@ -12,7 +12,7 @@
 @implementation FLObjcUnitTests
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
+    return [FLUnitTestGroup frameworkTestGroup];
 }
 
 @end

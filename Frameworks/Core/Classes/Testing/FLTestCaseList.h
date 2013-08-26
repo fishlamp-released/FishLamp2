@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FishLamp.h"
+#import "FLCoreRequired.h"
 
 @class FLTestCase;
 

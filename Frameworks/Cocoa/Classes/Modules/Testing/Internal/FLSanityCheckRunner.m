@@ -13,6 +13,8 @@
 #import "FLAsyncQueue.h"
 #import "FLTestCase.h"
 #import "FishLampAsync.h"
+#import "FLUnitTestOperation.h"
+#import "FLTestCaseOperation.h"
 
 @implementation FLSanityCheckRunner
 
@@ -42,7 +44,7 @@
     [tests sortedArrayUsingSelector:@selector(compare:)];
     
     for(FLTestCase* test in tests) {
-        FLThrowIfError([self runChildSynchronously:test]);
+        FLThrowIfError([self runChildSynchronously:[FLTestCaseOperation testCaseOperation:test]]);
     }
     
     return [FLSuccessfulResult successfulResult];

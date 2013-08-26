@@ -9,6 +9,7 @@
 
 #import "FLOperationUnitTest.h"
 #import "FLOperation.h"
+#import "FLSynchronousOperation.h"
 
 @implementation FLOperation (Tests)
 
@@ -46,7 +47,7 @@
 @implementation FLOperationUnitTest
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTest frameworkTestGroup];
+    return [FLUnitTestGroup frameworkTestGroup];
 }
 
 - (void) testSimpleCase {

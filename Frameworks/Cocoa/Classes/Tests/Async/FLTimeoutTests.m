@@ -13,7 +13,7 @@
 @implementation FLTimeoutTests
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [self sanityCheckTestGroup];
+    return [FLUnitTestGroup sanityCheckTestGroup];
 }
 
 - (void) timerDidTimeout:(FLTimer *)timer {

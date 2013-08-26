@@ -11,7 +11,7 @@
 
 @interface FLUnitTestGroup ()
 @property (readwrite, strong) NSString* groupName;
-@property (readwrite, assign) int32_t groupPriority;
+@property (readwrite, assign) SInt32 groupPriority;
 @end
 
 @implementation FLUnitTestGroup
@@ -19,7 +19,7 @@
 @synthesize groupName = _groupName;
 @synthesize groupPriority = _groupPriority;
 
-- (id) initWithGroupName:(NSString*) name priority:(int32_t) priority {
+- (id) initWithGroupName:(NSString*) name priority:(SInt32) priority {
     self = [super init];
     if(self) {
         self.groupName = name;
@@ -28,7 +28,7 @@
     return self;
 }
 
-+ (id) unitTestGroup:(NSString*) name priority:(int32_t) priority {
++ (id) unitTestGroup:(NSString*) name priority:(SInt32) priority {
     return FLAutorelease([[[self class] alloc] initWithGroupName:name priority:priority]);
 }
 
@@ -55,5 +55,26 @@
 - (NSString*) description {
     return [NSString stringWithFormat:@"%@ { name=%@, priority=%d }", [super description], self.groupName, [self groupPriority]];
 }
+
++ (FLUnitTestGroup*) sanityCheckTestGroup {
+    FLReturnStaticObject([[FLUnitTestGroup alloc] initWithGroupName:@"Sanity Checks" priority:FLUnitTestPrioritySanityCheck]);
+}
+
++ (FLUnitTestGroup*) frameworkTestGroup {
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Framework Tests" priority:FLUnitTestPriorityFramework]);
+}
+
++ (FLUnitTestGroup*) defaultTestGroup {
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Normal Tests" priority:FLUnitTestPriorityNormal]);
+}
+
++ (FLUnitTestGroup*) importantTestGroup {
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Important Tests" priority:FLUnitTestPriorityHigh]);
+}
+
++ (FLUnitTestGroup*) lastTestGroup {
+    FLReturnStaticObject( [[FLUnitTestGroup alloc] initWithGroupName:@"Last Tests" priority:FLUnitTestPriorityLow]);
+}
+
 
 @end

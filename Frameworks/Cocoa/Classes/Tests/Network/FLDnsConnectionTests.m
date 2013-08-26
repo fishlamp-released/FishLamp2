@@ -15,7 +15,7 @@
 @implementation FLDnsConnectionTests
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
+    return [FLUnitTestGroup frameworkTestGroup];
 }
 
 - (void) testCreateHostByName {

@@ -16,7 +16,7 @@
 @implementation FLAsyncTests
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
+    return [FLUnitTestGroup frameworkTestGroup];
 }
 
 + (NSArray*) unitTestDependencies {

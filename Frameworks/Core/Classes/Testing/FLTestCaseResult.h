@@ -12,7 +12,7 @@
 #import "FLLogSink.h"
 #import "FLTestCase.h"
 
-@interface FLTestCaseResult : FLTestResult<FLLogSink> {
+@interface FLTestCaseResult : FLTestResult {
 @private
     FLTestCase* _testCase;
     NSMutableArray* _logEntries;

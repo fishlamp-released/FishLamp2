@@ -12,7 +12,7 @@
 @implementation FLObservableTests
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
+    return [FLUnitTestGroup frameworkTestGroup];
 }
 
 @end

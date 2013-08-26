@@ -7,9 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLCocoaRequired.h"
-
-#import "FLSynchronousOperation.h"
+#import "FLCoreRequired.h"
 
 #define FLTestCaseFlagOffString                 @"_off"
 
@@ -20,7 +18,7 @@ typedef void (^FLTestBlock)();
 
 #define FLTestCaseOrderDefault  NSIntegerMax
 
-@interface FLTestCase : FLSynchronousOperation {
+@interface FLTestCase : NSObject {
 @private
     long _runOrder;
     NSString* _testCaseName;
@@ -31,7 +29,6 @@ typedef void (^FLTestBlock)();
     BOOL _disabled;
 }
 
-- (void) setDisabledWithReason:(NSString*) reason;
 
 @property (readwrite, assign, nonatomic) long runOrder;
 
@@ -50,8 +47,11 @@ typedef void (^FLTestBlock)();
 - (id) initWithName:(NSString*) name testBlock:(FLTestBlock) block;
 + (id) testCase:(NSString*) name testBlock:(FLTestBlock) block;
 
+- (void) setDisabledWithReason:(NSString*) reason;
+
 @end
 
+// DEPRECATED
 @interface FLTestCase (TestHelpers)
 
 + (void) runTestWithExpectedFailure:(void (^)()) test

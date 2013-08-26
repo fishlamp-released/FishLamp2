@@ -13,7 +13,7 @@
 @implementation FLUnitTestSanityCheck
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [self sanityCheckTestGroup];
+    return [FLUnitTestGroup sanityCheckTestGroup];
 }
 
 - (void) firstTest {

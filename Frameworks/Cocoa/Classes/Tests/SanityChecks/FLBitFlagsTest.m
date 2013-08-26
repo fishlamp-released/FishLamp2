@@ -12,7 +12,7 @@
 @implementation FLBitFlagTests
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
+    return [FLUnitTestGroup frameworkTestGroup];
 }
 
 - (void) testBitFlags1 {

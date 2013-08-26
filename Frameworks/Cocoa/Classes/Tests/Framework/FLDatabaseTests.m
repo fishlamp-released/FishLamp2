@@ -26,7 +26,7 @@
 #endif
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
+    return [FLUnitTestGroup frameworkTestGroup];
 }
 
 - (id) createDatabase:(NSString*) filePath {
