@@ -10,7 +10,7 @@
 
 @interface FLRetainedObject : FLObjectProxy {
 @private
-    id _retainedObject;
+    id _representedObject;
 }
 
 + (id) retainedObject:(id) object;

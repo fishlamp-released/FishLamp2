@@ -14,8 +14,8 @@
 @class FLFinisher;
 
 @protocol FLDispatchable <NSObject>
-- (FLFinisher*) asyncQueueWillBeginAsync:(id<FLAsyncQueue>) asyncQueue;
-- (void) asyncQueue:(id<FLAsyncQueue>) asyncQueue beginAsyncWithFinisher:(FLFinisher*) finisher;
+- (FLFinisher*) willStartInQueue:(id<FLAsyncQueue>) queue;
+- (void) startInQueue:(id<FLAsyncQueue>) queue;
 
-- (id<FLPromisedResult>) asyncQueueRunSynchronously:(id<FLAsyncQueue>) asyncQueue;
+- (id<FLPromisedResult>) runSynchronouslyInQueue:(id<FLAsyncQueue>) asyncQueue;
 @end

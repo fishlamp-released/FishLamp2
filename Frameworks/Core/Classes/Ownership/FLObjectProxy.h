@@ -12,11 +12,5 @@
 - (id) representedObject;
 @end
 
-@interface FLObjectProxy : NSProxy<FLObjectProxy> {
-@private
-    __unsafe_unretained id _unretainedRepresentedObject;
-}
-- (id) representedObject;
-- (id) initWithRepresentedObject:(id) object;
-
+@interface FLObjectProxy : NSProxy<FLObjectProxy>
 @end

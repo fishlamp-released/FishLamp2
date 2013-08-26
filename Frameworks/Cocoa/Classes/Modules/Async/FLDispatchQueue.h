@@ -7,13 +7,13 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLAsyncQueue.h"
-//#import "FLObjectPool.h"
 #import <dispatch/dispatch.h>
+
+#import "FLAsyncQueue.h"
 
 @class FLFifoAsyncQueue;
 
-@interface FLDispatchQueue : NSObject<FLAsyncQueue> {
+@interface FLDispatchQueue : FLAsyncQueue {
 @private
     dispatch_queue_t _dispatch_queue;
     NSString* _label;
@@ -48,8 +48,18 @@
                                        attr:(dispatch_queue_attr_t) attr;
 
 // 
-// Shared Queues
+// Utils
 //
+
++ (FLDispatchQueue*) currentQueue;
+
+#if __MAC_10_8
++ (void) sleepForTimeInterval:(NSTimeInterval) milliseconds;
+#endif
+
+@end
+
+@interface FLDispatchQueue (DefaultQueues)
 
 + (FLDispatchQueue*) veryLowPriorityQueue;
 
@@ -62,27 +72,15 @@
 + (FLDispatchQueue*) mainThreadQueue; // note this is a fifo queue.
 
 + (FLFifoAsyncQueue*) fifoQueue;
-
-// 
-// Utils
-//
-
-+ (FLDispatchQueue*) currentQueue;
-
-#if __MAC_10_8
-+ (void) sleepForTimeInterval:(NSTimeInterval) milliseconds;
-#endif
 @end
 
 @interface FLFifoAsyncQueue : FLDispatchQueue
 + (id) fifoAsyncQueue;
-
-//+ (FLObjectPool*) pool;
-
-- (void) releaseToPool;
 @end
+
 
 
 #define FLForegroundQueue       [FLDispatchQueue mainThreadQueue]
 #define FLBackgroundQueue       [FLDispatchQueue defaultQueue]
 #define FLBackgroundFifoQueue   [FLDispatchQueue fifoQueue]
+#define FLCurrentQueue          [FLDispatchQueue currentQueue]

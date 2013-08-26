@@ -10,7 +10,11 @@
 #import "FLCoreRequired.h"
 #import "FLObjectProxy.h"
 
-@interface FLNonretained : FLObjectProxy
+@interface FLNonretained : FLObjectProxy {
+@private
+    __unsafe_unretained id _representedObject;
+}
+
 + (id) nonretained:(id) object;
 @end
 

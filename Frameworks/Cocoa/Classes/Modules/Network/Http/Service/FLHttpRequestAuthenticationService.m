@@ -36,14 +36,12 @@
     return self;
 }
 
-- (void) dealloc {
-    [_asyncQueue releaseToPool];
-    
 #if FL_MRC
+- (void) dealloc {
     [_asyncQueue release];
     [super dealloc];
-#endif
 }
+#endif
 
 - (FLHttpUser*) user {
     return [self.delegate httpRequestAuthenticationServiceGetUser:self];
@@ -91,11 +89,8 @@
 
 - (void) closeSelf {
     [super closeSelf];
-    
     self.operationContext = nil;
-    FLFifoAsyncQueue* queue = FLRetainWithAutorelease(self.asyncQueue);
     self.asyncQueue = nil;
-    [queue releaseToPool];
 }
 
 - (void) authenticateHttpRequest:(FLHttpRequest*) request {

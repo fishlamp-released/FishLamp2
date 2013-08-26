@@ -81,6 +81,38 @@
 
 @end
 
+@implementation FLBlockOperation
+
+- (id) initWithBlock:(fl_block_t) block {
+	self = [super init];
+	if(self) {
+		_block = [block copy];
+	}
+	return self;
+}
+
+#if FL_MRC
+- (void)dealloc {
+	[_block release];
+	[super dealloc];
+}
+#endif
+
++ (id) blockOperation:(fl_block_t) block {
+   return FLAutorelease([[[self class] alloc] initWithBlock:block]);
+}
+
+- (FLPromisedResult) performSynchronously {
+    if(_block) {
+        _block();
+    }
+
+    return FLSuccess;
+}
+
+@end
+
+
 //@implementation FLOperationObserver
 //
 //@synthesize willRunBlock = _willRunBlock;

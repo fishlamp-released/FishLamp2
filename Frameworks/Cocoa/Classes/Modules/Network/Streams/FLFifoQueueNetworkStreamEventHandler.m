@@ -27,13 +27,12 @@
 	return self;
 }
 
-- (void) dealloc {
-    [_asyncQueue releaseToPool];
 #if FL_MRC
+- (void) dealloc {
     [_asyncQueue release];
 	[super dealloc];
-#endif
 }
+#endif
 
 + (id) networkStreamEventHandler {
     return FLAutorelease([[[self class] alloc] init]);

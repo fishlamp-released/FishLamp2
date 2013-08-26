@@ -84,21 +84,15 @@ static int s_counter = 0;
     return self;
 }
 
-//- (id) initWithRequestURL:(NSURL*) url  {
-//    return [self initWithRequestURL:url httpMethod:nil];
-//}
-
 - (void) releaseResponseData {
     self.previousResponse = nil;
     self.httpStream.delegate = nil;
     self.httpStream = nil;
 }
 
+#if FL_MRC
 - (void) dealloc {
     FLTrace(@"%d dealloc http request: %@", --s_counter, self.requestHeaders.requestURL);
-
-    [_asyncQueueForStream releaseToPool];
-#if FL_MRC
     [_byteCount release];
     [_asyncQueueForStream release];
     [_previousResponse release];
@@ -109,24 +103,12 @@ static int s_counter = 0;
     [_requestBody release];
     [_retryHandler release];
     [super dealloc];
-#endif
 }
-
-//+ (id) httpGetRequest:(NSURL*) url {
-//    return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"GET"]);
-//}
-
-//+ (id) httpRequestWithURL:(NSURL*) url {
-//    return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"GET"]);
-//}
+#endif
 
 + (id) httpRequestWithURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
     return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:httpMethod]);
 }
-
-//+ (id) httpPostRequest:(NSURL*) url {
-//    return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"POST"]);
-//}
 
 - (NSString*) description {
     return [NSString stringWithFormat:@"%@ { %@ }", [super description], self.requestHeaders.requestURL];
@@ -194,10 +176,10 @@ static int s_counter = 0;
 
 - (void) openAuthenticatedStreamWithURL:(NSURL*) url {
 
-    id context = self.context;
-    if(!self.httpRequestAuthenticator && (context && [context respondsToSelector:@selector(httpRequestAuthenticator)])) {
-        self.httpRequestAuthenticator = [context httpRequestAuthenticator];
-    }
+//    id context = self.context;
+//    if(!self.httpRequestAuthenticator && (context && [context respondsToSelector:@selector(httpRequestAuthenticator)])) {
+//        self.httpRequestAuthenticator = [context httpRequestAuthenticator];
+//    }
 
     if(self.httpRequestAuthenticator && !self.disableAuthenticator) {
         [self willAuthenticate];

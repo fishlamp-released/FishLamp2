@@ -9,46 +9,81 @@
 
 #import "FLAsyncBlockTypes.h"
 #import "FLPromisedResult.h"
+#import "FLAsyncEvent.h"
+
+@protocol FLAsyncQueue;
+@protocol FLAsyncObject <NSObject>
+- (FLAsyncEvent*) asyncEventForQueue:(id<FLAsyncQueue>) queue withDelay:(NSTimeInterval) delay;
+@end
 
 @class FLPromise;
-@protocol FLDispatchable;
+@class FLAsyncEvent;
 
 @protocol FLAsyncQueue <NSObject>
 
-// async
+- (FLPromise*) queueAsyncEvent:(FLAsyncEvent*) event
+                    completion:(fl_completion_block_t) completion;
+
+- (FLPromisedResult) queueSynchronousEvent:(FLAsyncEvent*) event;
 
 - (FLPromise*) queueBlockWithDelay:(NSTimeInterval) delay
                              block:(fl_block_t) block
-                    completion:(fl_completion_block_t) completionOrNil;
+                        completion:(fl_completion_block_t) completionOrNil;
 
 - (FLPromise*) queueBlockWithDelay:(NSTimeInterval) delay
                              block:(fl_block_t) block;
 
 - (FLPromise*) queueBlock:(fl_block_t) block
-           completion:(fl_completion_block_t) completionOrNil;
+               completion:(fl_completion_block_t) completionOrNil;
 
 - (FLPromise*) queueBlock:(fl_block_t) block;
 
 - (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block
-                     completion:(fl_completion_block_t) completionOrNil;
+                         completion:(fl_completion_block_t) completionOrNil;
 
 - (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block;
 
-- (FLPromise*) queueOperation:(id<FLDispatchable>) operation
-               completion:(fl_completion_block_t) completionOrNil;
+- (FLPromise*) queueObject:(id<FLAsyncObject>) operation
+                 withDelay:(NSTimeInterval) delay
+                completion:(fl_completion_block_t) completionOrNil;
 
-- (FLPromise*) queueOperation:(id<FLDispatchable>) operation;
+- (FLPromise*) queueObject:(id<FLAsyncObject>) operation
+                completion:(fl_completion_block_t) completionOrNil;
 
-// synchronous
+- (FLPromise*) queueObject:(id<FLAsyncObject>) operation;
 
-- (void) runBlockSynchronously:(fl_block_t) block;
+- (FLPromise*) queueTarget:(id) target
+                 action:(SEL) action;
+
+- (FLPromise*) queueTarget:(id) target
+                 action:(SEL) action
+                withObject:(id) object;
+
+- (FLPromise*) queueTarget:(id) target
+                 action:(SEL) action
+                withObject:(id) object1
+                withObject:(id) object2;
+
+- (FLPromise*) queueTarget:(id) target
+                 action:(SEL) action
+                withObject:(id) object1
+                withObject:(id) object2
+                withObject:(id) object3;
+
+- (FLPromise*) queueTarget:(id) target
+                 action:(SEL) action
+                withObject:(id) object1
+                withObject:(id) object2
+                withObject:(id) object3
+                withObject:(id) object4;
+
+- (FLPromisedResult) runBlockSynchronously:(fl_block_t) block;
 
 - (FLPromisedResult) runFinisherBlockSynchronously:(fl_finisher_block_t) block;
 
-- (FLPromisedResult) runOperationSynchronously:(id<FLDispatchable>) operation;
+- (FLPromisedResult) runSynchronously:(id) asyncObject;
 
-@end                    
+@end
 
-
-
- 
+@interface FLAsyncQueue : NSObject<FLAsyncQueue>
+@end

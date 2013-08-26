@@ -8,6 +8,187 @@
 //
 
 #import "FLAsyncQueue.h"
+
+@implementation FLAsyncQueue
+
+- (FLPromise*) queueAsyncEvent:(FLAsyncEvent*) event completion:(fl_completion_block_t) completion {
+    return nil;
+}
+
+- (FLPromisedResult) queueSynchronousEvent:(FLAsyncEvent*) event {
+    return nil;
+}
+
+- (FLPromise*) queueBlockWithDelay:(NSTimeInterval) delay
+                             block:(fl_block_t) block
+                        completion:(fl_completion_block_t) completion {
+
+    return [self queueAsyncEvent:[FLBlockEvent blockEventWithDelay:delay block:block] completion:completion];
+}
+
+- (FLPromise*) queueBlockWithDelay:(NSTimeInterval) delay
+                             block:(fl_block_t) block {
+    return [self queueAsyncEvent:[FLBlockEvent blockEventWithDelay:delay block:block] completion:nil];
+}
+
+- (FLPromise*) queueBlock:(fl_block_t) block {
+    return [self queueAsyncEvent:[FLBlockEvent blockEvent:block] completion:nil];
+}
+
+- (FLPromise*) queueBlock:(fl_block_t) block
+               completion:(fl_completion_block_t) completionOrNil {
+    return [self queueAsyncEvent:[FLBlockEvent blockEvent:block] completion:completionOrNil];
+}
+
+- (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block
+                         completion:(fl_completion_block_t) completionOrNil {
+    return [self queueAsyncEvent:[FLFinisherBlockEvent finisherBlockEvent:block] completion:completionOrNil];
+}
+
+- (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block {
+    return [self queueAsyncEvent:[FLFinisherBlockEvent finisherBlockEvent:block] completion:nil];
+}
+
+- (FLPromise*) queueObject:(id<FLAsyncObject>) object
+                 withDelay:(NSTimeInterval) delay
+                completion:(fl_completion_block_t) completionOrNil {
+
+    return [self queueAsyncEvent:[object asyncEventForQueue:self withDelay:delay] completion:completionOrNil];
+}
+
+- (FLPromise*) queueObject:(id<FLAsyncObject>) object
+                completion:(fl_completion_block_t) completionOrNil {
+    return [self queueAsyncEvent:[object asyncEventForQueue:self withDelay:0] completion:completionOrNil];
+}
+
+- (FLPromise*) queueObject:(id<FLAsyncObject>) object {
+    return [self queueAsyncEvent:[object asyncEventForQueue:self withDelay:0] completion:nil];
+}
+
+- (FLPromise*) queueTarget:(id) target
+                 action:(SEL) action {
+    return [self queueBlock:^{
+        [target performSelector:action];
+    }];
+}
+
+- (FLPromise*) queueTarget:(id) target
+                 action:(SEL) action
+                withObject:(id) object {
+    return [self queueBlock:^{
+        [target performSelector:action withObject:object];
+    }];
+}
+
+- (FLPromise*) queueTarget:(id) target
+                 action:(SEL) action
+                withObject:(id) object1
+                withObject:(id) object2 {
+
+    return [self queueBlock:^{
+        [target performSelector:action withObject:object1 withObject:object2];
+    }];
+}
+
+- (FLPromise*) queueTarget:(id) target
+                 action:(SEL) action
+                withObject:(id) object1
+                withObject:(id) object2
+                withObject:(id) object3 {
+    return [self queueBlock:^{
+        [target performSelector_fl:action withObject:object1 withObject:object2 withObject:object3];
+    }];
+
+}
+
+- (FLPromise*) queueTarget:(id) target
+                 action:(SEL) action
+                withObject:(id) object1
+                withObject:(id) object2
+                withObject:(id) object3
+                withObject:(id) object4 {
+    return [self queueBlock:^{
+        [target performSelector_fl:action withObject:object1 withObject:object2 withObject:object3 withObject:object4];
+    }];
+}
+
+- (FLPromisedResult) runBlockSynchronously:(fl_block_t) block {
+    return [self queueSynchronousEvent:[FLBlockEvent blockEvent:block]];
+}
+
+- (FLPromisedResult) runFinisherBlockSynchronously:(fl_finisher_block_t) block {
+    return [self queueSynchronousEvent:[FLFinisherBlockEvent finisherBlockEvent:block]];
+}
+
+- (FLPromisedResult) runSynchronously:(id) object {
+    return [self queueSynchronousEvent:[object asyncEventForQueue:self withDelay:0]];
+}
+
+/*
+
+- (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block
+                          completion:(fl_completion_block_t) completion {
+
+
+    FLFinisher* finisher = [FLFinisher finisher];
+    FLPromise* promise = [finisher addPromiseWithBlock:completion];
+    
+    FLAssertNotNil(block);
+    FLAssertNotNil(finisher);
+    [self queueFinishableBlock:block withFinisher:finisher];
+    return promise;
+}
+
+- (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block {
+    return [self queueFinishableBlock:block completion:nil];
+}
+
+- (FLPromise*) queueOperation:(id<FLDispatchable>) operation {
+    return [self queueOperation:operation completion:nil];
+}
+
+
+- (void) queueBlock:(fl_block_t) block
+        withDelay:(NSTimeInterval) delay
+     withFinisher:(FLFinisher*) finisher {
+    FLAssertFailedWithComment(@"override this");
+}
+
+- (void) queueBlock:(fl_block_t) block
+     withFinisher:(FLFinisher*) finisher {
+    FLAssertFailedWithComment(@"override this");
+}
+
+- (void) queueFinishableBlock:(fl_finisher_block_t) block
+               withFinisher:(FLFinisher*) finisher {
+    FLAssertFailedWithComment(@"override this");
+}
+
+- (FLPromise*) queueBlock:(fl_block_t) block
+               completion:(fl_completion_block_t) completionOrNil {
+    FLAssertFailedWithComment(@"override this");
+    return nil;
+}
+
+- (FLPromise*) queueOperation:(id<FLDispatchable>) operation
+                   completion:(fl_completion_block_t) completionOrNil {
+    FLAssertFailedWithComment(@"override this");
+    return nil;
+}
+
+- (FLPromise*) queueOperation:(id<FLDispatchable>) operation
+                    withDelay:(NSTimeInterval) delay
+                   completion:(fl_completion_block_t) completionOrNil {
+    return nil;
+}
+
+*/
+@end
+
+
+
+#if REFACTOR 
+
 #import "FLFinisher.h"
 
 #import "FLSelectorPerforming.h"
@@ -250,3 +431,4 @@ BOOL FLDispatchSelectorSync3(id<FLAsyncQueue> queue,
     return NO;
 }
 #pragma GCC diagnostic pop
+#endif

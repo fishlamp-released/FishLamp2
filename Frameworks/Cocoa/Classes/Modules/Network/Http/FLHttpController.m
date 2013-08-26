@@ -119,7 +119,6 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
     }
 }
 
-
 - (void) operationContext:(FLOperationContext*) operationContext
           didAddOperation:(FLOperation*) operation {
 

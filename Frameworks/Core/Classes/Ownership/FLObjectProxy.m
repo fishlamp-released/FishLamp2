@@ -13,64 +13,56 @@
 
 @implementation NSObject (FLObjectProxy)
 
-- (id) representedObjectForObjectReference {
-    return self;
-}
-
-- (id) representedObject {
-    return self;
+- (id) nextRepresentedObject {
+    return nil;
 }
 
 @end
 
 @implementation FLObjectProxy
 
-- (id) representedObjectForObjectReference {
-    FLAssertNotNil(_unretainedRepresentedObject);
-    id object = [_unretainedRepresentedObject representedObjectForObjectReference];
-    FLAssertNotNil(object);
-    return object;
+- (id) nextRepresentedObject {
+    return self.representedObject;
 }
 
 - (id) representedObject {
-
-// NOTE: for some reason this returns nil if we call NSObject's version of representedObject
-// some quirk in the objc runtime??
-
-    FLAssertNotNil(_unretainedRepresentedObject);
-    id object = [_unretainedRepresentedObject representedObjectForObjectReference];
-    FLAssertNotNil(object);
-    return object;
+    return nil;
 }
 
-- (id) init {	
-	return [self initWithRepresentedObject:nil];
-}
-
-- (id) initWithRepresentedObject:(id) representedObject {
-    FLAssertNotNil(representedObject);
-
-    _unretainedRepresentedObject = representedObject;
-	return self;
+- (id) findRepresentedObject {
+    id walker = [self nextRepresentedObject];
+    while(walker) {
+        id next = [walker nextRepresentedObject];
+        if(next) {
+            walker = next;
+        }
+        else {
+            break;
+        }
+    }
+    return walker;
 }
 
 - (NSString*) description {
+
+    id object = [self findRepresentedObject];
+
 	return [NSString stringWithFormat:@"%@ holding a %@:\n%@",
         NSStringFromClass([self class]),
-        NSStringFromClass([_unretainedRepresentedObject class]),
-        [_unretainedRepresentedObject description]];
+        NSStringFromClass([object class]),
+        [object description]];
 }
 
 - (BOOL)isEqual:(id)representedObject {
-	return [[self representedObject] isEqual:representedObject];
+	return [[self findRepresentedObject] isEqual:representedObject];
 }
 
 - (NSUInteger)hash {
-	return [[self representedObject] hash];
+	return [[self findRepresentedObject] hash];
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
-    id object = [self representedObject];
+    id object = [self findRepresentedObject];
     if([object respondsToSelector:[anInvocation selector]]) {
         [anInvocation invokeWithTarget:object];
     }
@@ -81,7 +73,7 @@
 
 - (NSMethodSignature*)methodSignatureForSelector:(SEL)selector {
 
-    NSMethodSignature* sig = [[self representedObject] methodSignatureForSelector:selector];
+    NSMethodSignature* sig = [[self findRepresentedObject] methodSignatureForSelector:selector];
     if(!sig) {
         sig = [NSMethodSignature signatureWithObjCTypes:"@^v^c"];
 //        FLTrace(@"returning fake method signature for selector %@", NSStringFromSelector(selector));
@@ -90,7 +82,7 @@
 }
 
 - (BOOL) respondsToSelector:(SEL)aSelector {
-    return [[self representedObject] respondsToSelector:aSelector];
+    return [[self findRepresentedObject] respondsToSelector:aSelector];
 }
 
 

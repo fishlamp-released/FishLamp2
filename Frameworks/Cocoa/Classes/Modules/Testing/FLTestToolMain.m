@@ -16,6 +16,8 @@
 #import "FLUnitTest.h"
 #import "FLAppInfo.h"
 
+#import "FLDispatchQueue.h"
+
 int FLTestToolMain(int argc, const char *argv[], NSString* bundleIdentifier, NSString* appName, NSString* version) {
     @autoreleasepool {
         @try {
@@ -28,7 +30,7 @@ int FLTestToolMain(int argc, const char *argv[], NSString* bundleIdentifier, NSS
             [FLUnitTest setOutputLog:logger];
         
             FLUnitTestRunner* runner = [FLUnitTestRunner unitTestRunner];
-            FLPromisedResult result = [runner runSynchronously];
+            FLPromisedResult result = [FLCurrentQueue runSynchronously:runner];
 
             if([result isError]) {
                 return 1;

@@ -14,12 +14,11 @@
 @interface FLOperation ()
 @property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
 @property (readwrite, strong) FLFinisher* finisher; 
+@property (readwrite, assign) id<FLAsyncQueue> asyncQueue;
 @end
 
 @implementation FLOperation
 
-@synthesize context = _context;
-@synthesize contextID = _contextID;
 @synthesize asyncQueue = _asyncQueue;
 @synthesize identifier = _identifier;
 @synthesize storageService = _storageService;
@@ -29,7 +28,6 @@
 - (id) init {
     self = [super init];
     if(self) {
-        self.asyncQueue = [FLDispatchQueue defaultQueue];
   		static int32_t s_counter = 0;
         self.identifier = [NSNumber numberWithInt:FLAtomicIncrement32(s_counter)];
         self.finisher = [FLFinisher finisher];
@@ -39,35 +37,30 @@
 }
 
 - (void) dealloc {
-    if(_context) {
-        FLOperationContext* context = _context;
-        _context = nil;
-        [context removeOperation:self];
-        
-        FLLog(@"Operation last ditch removal from context: %@", [self description]);
-    }
     _finisher.delegate = nil;
     
 #if FL_MRC
     [_identifier release];
-    [_asyncQueue release];
     [_storageService release];
 	[_finisher release];
 	[super dealloc];
 #endif
 }
 
-- (FLFinisher*) asyncQueueWillBeginAsync:(id<FLAsyncQueue>) asyncQueue {
+- (FLFinisher*) willStartInQueue:(id<FLAsyncQueue>) asyncQueue {
     return self.finisher;
 }
 
-- (void) asyncQueue:(id<FLAsyncQueue>) asyncQueue beginAsyncWithFinisher:(FLFinisher*) finisher {
+- (void) startInQueue:(id<FLAsyncQueue>) queue {
+    self.asyncQueue = self.asyncQueue;
     [self startOperation];
     [self.observers notify:@selector(operationWillBegin:) withObject:self];
 }
 
-- (id<FLPromisedResult>) asyncQueueRunSynchronously:(id<FLAsyncQueue>) asyncQueue {
-    return [self runSynchronously];
+- (id<FLPromisedResult>) runSynchronouslyInQueue:(id<FLAsyncQueue>) asyncQueue {
+    FLPromise* promise = [self.finisher addPromise];
+    [self startInQueue:asyncQueue];
+    return [promise waitUntilFinished];
 }
 
 - (void) startOperation {
@@ -77,88 +70,39 @@
 
 - (void) requestCancel {
     self.cancelled = YES;
-}
+    NSArray* children = nil;
 
-- (void) setContext:(FLOperationContext*) context {
-    if(context) {
-        [context queueOperation:self];
+    @synchronized(self) {
+        children = FLCopyWithAutorelease(_children);
     }
-    else {
-        [self.context removeOperation:self];
-    }
-}
 
-- (void) wasAddedToContext:(FLOperationContext*) context {
-    if(_context != context) {
-        _context = context;
-        _contextID = [context contextID];
+    for(FLOperation* operation in children) {
+        [operation requestCancel];
     }
 }
 
-- (void) contextDidClose {
-    [self requestCancel];
-    self.context = nil;
-}
-
-- (void) contextDidOpen {
-
-}
-
-- (void) contextDidCancel {
-    [self requestCancel];
-    self.context = nil;
-}
-
-- (void) wasRemovedFromContext:(FLOperationContext*) context {
-    if(_context == context) {
-        _context = nil;
-        _contextID = 0;
-    }
-}
-
-- (FLPromisedResult) runSynchronously {
-    return [[self.asyncQueue queueOperation:self] waitUntilFinished];
-}
-
-- (FLPromisedResult) runSynchronouslyInContext:(FLOperationContext*) context {
-    self.context = context;
-    return [self runSynchronously];
-}
-
-- (FLPromise*) runAsynchronously:(fl_completion_block_t) completion {
-    return [self.asyncQueue queueOperation:self completion:completion];
-}
-
-- (FLPromise*) runAsynchronously {
-    return [self runAsynchronously:nil];
-}
-
-- (FLPromise*) runAsynchronouslyInContext:(FLOperationContext*) context 
-                               completion:(fl_completion_block_t) completionOrNil {
-    self.context = context;
-    return [self runAsynchronously:completionOrNil];
+- (FLAsyncEvent*) asyncEventForQueue:(id<FLAsyncQueue>) queue withDelay:(NSTimeInterval) delay {
+    return [FLOperationEvent operationEventWithDelay:delay operation:self];
 }
 
 - (void) willRunChildOperation:(FLOperation*) operation {
 
-//    [operation.observers addObserver:[self.observers broadcasterReference]];
-    [operation.observers addObserver:self];
+    @synchronized(self) {
+        if(!_children) {
+            _children = [[NSMutableArray alloc] init];
+        }
 
-    if([operation context] == nil) {
-        [operation setContext:self.context];
-    }
-    if([operation asyncQueue] == nil) {
-        [operation setAsyncQueue:self.asyncQueue];
+        [_children addObject:operation];
+        [operation.observers addObserver:self];
     }
 
-//    if([operation observer] == nil) {
-//        [operation setObserver:self.observer];
-//    }
 }
 
 - (void) didRunChildOperation:(FLOperation*) operation {
-//    [operation.observers removeObserver:self.observers];
-    [operation.observers removeObserver:self];
+    @synchronized(self) {
+        [operation.observers removeObserver:self];
+        [_children removeObject:operation];
+    }
 }
 
 - (FLPromisedResult) runChildSynchronously:(FLOperation*) operation {
@@ -169,7 +113,7 @@
     
     FLPromisedResult result = nil;
     @try {
-        result = [operation runSynchronously];
+        result = [self.asyncQueue runSynchronously:operation];
     }
     @catch(NSException* ex) {
         result = ex.error;
@@ -186,12 +130,12 @@
                            completion:(fl_completion_block_t) completionOrNil {
 
     [self willRunChildOperation:operation];
-    
-    if(completionOrNil) {
-        completionOrNil = FLCopyWithAutorelease(completionOrNil);
-    }
-    
-    return [operation runAsynchronously:^(FLPromisedResult result) {
+
+    FLPrepareBlockForFutureUse(completionOrNil);
+
+    return [self.asyncQueue queueObject:operation
+                             completion:^(FLPromisedResult result) {
+
         [self didRunChildOperation:operation];
         
         if(completionOrNil) {
@@ -210,13 +154,12 @@
     }
 }
 
-
 - (void) finisherDidFinish:(FLFinisher*) finisher
                 withResult:(FLPromisedResult) result {
             
     [self didFinishWithResult:result];
     [self.observers notify:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
-    self.context = nil;
+    self.asyncQueue = nil;
     self.cancelled = NO;
 }
 
@@ -231,7 +174,5 @@
     [self.finisher setFinishedWithResult:result];
 }
 
-
-
-
 @end
+

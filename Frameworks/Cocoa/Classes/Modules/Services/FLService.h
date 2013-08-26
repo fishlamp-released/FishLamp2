@@ -8,12 +8,12 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FLObservable.h"
+#import "FLNotifier.h"
 
 extern NSString* const FLServiceDidCloseNotificationKey;
 extern NSString* const FLServiceDidOpenNotificationKey;
 
-@protocol FLService <NSObject, FLObservable>
+@protocol FLService <NSObject, FLNotifier>
 @property (readonly, assign) id superService;
 @property (readonly, assign) id rootService;
 
@@ -31,7 +31,7 @@ extern NSString* const FLServiceDidOpenNotificationKey;
 
 @end
 
-@interface FLService : FLObservable<FLService> {
+@interface FLService : FLNotifier<FLService> {
 @private
     NSMutableArray* _subServices;
     BOOL _serviceOpen;

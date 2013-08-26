@@ -8,7 +8,7 @@
 //
 
 #import "FishLampCore.h"
-#import "FLAsyncOperation.h"
+#import "FLOperation.h"
 #import "FLHttpStream.h"
 
 #define FLHttpRequestDefaultTimeoutInterval 120.0f
@@ -36,7 +36,7 @@
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;
 @end
 
-@interface FLHttpRequest : FLAsyncOperation<FLHttpStreamDelegate> {
+@interface FLHttpRequest : FLOperation<FLHttpStreamDelegate> {
 @private
     FLHttpRequestHeaders* _requestHeaders;
     FLHttpRequestBody* _requestBody;

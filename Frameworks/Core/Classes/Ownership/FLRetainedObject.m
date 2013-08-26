@@ -11,10 +11,7 @@
 @implementation FLRetainedObject
 
 - (id) initWithRepresentedObject:(id) object {
-	self = [super initWithRepresentedObject:object];
-	if(self) {
-        _retainedObject = FLRetain(object);
-	}
+    _representedObject = FLRetain(object);
 	return self;
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "FLAsyncOperationQueueElement.h"
-#import "FLAsyncOperationQueue.h"
+#import "FLOperationQueue.h"
 
 @interface FLAsyncOperationQueueElement ()
 @property (readwrite, strong, nonatomic) id input;
@@ -45,12 +45,12 @@
     return FLAutorelease([[[self class] alloc] initWithInput:input operation:operation]);
 }
 
-- (void) beginOperationInQueue:(FLAsyncOperationQueue*) queue
+- (void) beginOperationInQueue:(FLOperationQueue*) queue
                     completion:(dispatch_block_t) completion {
 
     completion = FLCopyWithAutorelease(completion);
 
-    [queue runChildAsynchronously:self.operation completion:^(FLPromisedResult result) {
+    [queue queueObject:self.operation completion:^(FLPromisedResult result) {
         self.operationResult = result;
         completion();
     }];

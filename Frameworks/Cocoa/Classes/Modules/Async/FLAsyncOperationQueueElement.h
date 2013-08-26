@@ -8,7 +8,7 @@
 
 #import "FLPromisedResult.h"
 
-@class FLAsyncOperationQueue;
+@class FLOperationQueue;
 
 @interface FLAsyncOperationQueueElement : NSObject {
 @private
@@ -23,7 +23,7 @@
 
 + (id) asyncOperationQueueElement:(id) input operation:(id) operation;
 
-- (void) beginOperationInQueue:(FLAsyncOperationQueue*) queue
+- (void) beginOperationInQueue:(FLOperationQueue*) queue
                     completion:(dispatch_block_t) completion;
 
 

@@ -1,5 +1,5 @@
 //
-//  FLObservable.m
+//  FLNotifier.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 3/15/13.
@@ -7,12 +7,12 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLObservable.h"
+#import "FLNotifier.h"
 #import "FLBroadcaster.h"
 
-@implementation FLObservable 
+@implementation FLNotifier 
 
-FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
+FLSynthesizeObservableProperties(_observers);
 
 #if FL_MRC
 - (void)dealloc {
@@ -20,19 +20,6 @@ FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
 	[super dealloc];
 }
 #endif
-
-- (BOOL) hasListener:(id) listener {
-    return [self.observers hasListener:listener];
-}
-
-- (void) addObserver:(id<FLObjectProxy>) observer {
-    [self.observers addObserver:observer];
-}
-
-- (void) removeObserver:(id) listener {
-    [self.observers removeObserver:listener];
-}
-
 
 @end
 /*
@@ -94,7 +81,7 @@ FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
 
 @end
 
-@protocol FLObservable <NSObject>
+@protocol FLNotifier <NSObject>
 @property (readwrite, assign, nonatomic) id observer;
 
 - (BOOL) sendObservation:(SEL) messageSelector;
@@ -106,7 +93,7 @@ FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
 - (BOOL) sendObservation:(SEL) messageSelector withObject:(id) object1 withObject:(id) object2 withObject:(id) object3;
 @end
 
-@interface FLObservable : NSObject<FLObservable> {
+@interface FLNotifier : NSObject<FLNotifier> {
 @private
     __unsafe_unretained id _observer;
 }
@@ -118,7 +105,7 @@ FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
 
 #if REFACTOR
 
-#import "FLObservable.h"
+#import "FLNotifier.h"
 #import "FLSelectorPerforming.h"
 
 @implementation NSObject (FLObservationSending)
@@ -191,7 +178,7 @@ FLSynthesizeLazyGetter(observers, FLBroadcaster*, _observers, FLBroadcaster)
 
 @end
 
-@implementation FLObservable 
+@implementation FLNotifier 
 
 @synthesize observer = _observer;
 

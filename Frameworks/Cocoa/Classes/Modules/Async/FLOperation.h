@@ -11,39 +11,36 @@
 #import "FLFinisher.h"
 #import "FLDispatchable.h"
 #import "FLPromisedResult.h"
-#import "FLObservable.h"
+#import "FLNotifier.h"
+#import "FLAsyncEvent.h"
+#import "FLAsyncQueue.h"
 
 @class FLOperationContext;
 @class FLFinisher;
 @class FLPromise;
 @protocol FLAsyncQueue;
-@protocol FLOperationDelegate;
+@protocol FLOperationEvents;
 
-@interface FLOperation : FLObservable<FLFinisherDelegate, FLDispatchable> {
+@interface FLOperation : FLNotifier<FLFinisherDelegate, FLDispatchable, FLAsyncObject> {
 @private
 	id _identifier;
-    id<FLAsyncQueue> _asyncQueue;
+    __unsafe_unretained id<FLAsyncQueue> _asyncQueue;
     id _storageService;
     FLFinisher* _finisher;
     NSUInteger _contextID;
     BOOL _cancelled;
-    __unsafe_unretained FLOperationContext* _context;
+
+    NSMutableArray* _children;
 }
 
 // object storage - this can be anything as appropriate for subclass
+
+// THIS IS DEPRECATED
 @property (readwrite, strong, nonatomic) id storageService;
 
 // unique id. by default an incrementing integer number
 @property (readwrite, strong) id identifier;
-
-// id of context. 
-@property (readonly, assign) NSUInteger contextID;
-
-// if you want control over your executing operation, run it in a context.
-@property (readwrite, assign, nonatomic) FLOperationContext* context;
-
-// note that if you start an operation directly in a queue (e.g. you don't call start or run) the asyncQueue is ignored 
-@property (readwrite, strong, nonatomic) id<FLAsyncQueue> asyncQueue;
+@property (readonly, assign) id<FLAsyncQueue> asyncQueue;
 
 // cancel yourself, and be quick about it.
 @property (readonly, assign, getter=wasCancelled) BOOL cancelled;
@@ -67,23 +64,23 @@
 - (void) abortIfCancelled; // throws cancelError
 @end
 
-@interface FLOperation (Synchronous)
-// run synchronously
-- (FLPromisedResult) runSynchronously;
-
-- (FLPromisedResult) runSynchronouslyInContext:(FLOperationContext*) context;
-@end
-
-@interface FLOperation (Async)
-// start async. will run in asyncQueue. 
-- (FLPromise*) runAsynchronously;
-
-- (FLPromise*) runAsynchronously:(fl_completion_block_t) completionOrNil;
-
-- (FLPromise*) runAsynchronouslyInContext:(FLOperationContext*) context
-                               completion:(fl_completion_block_t) completionOrNil;
-
-@end
+//@interface FLOperation (Synchronous)
+//// run synchronously
+//- (FLPromisedResult) runSynchronously;
+//
+//- (FLPromisedResult) runSynchronouslyInContext:(FLOperationContext*) context;
+//@end
+//
+//@interface FLOperation (Async)
+//// start async. will run in asyncQueue. 
+//- (FLPromise*) runAsynchronously;
+//
+//- (FLPromise*) runAsynchronously:(fl_completion_block_t) completionOrNil;
+//
+//- (FLPromise*) runAsynchronouslyInContext:(FLOperationContext*) context
+//                               completion:(fl_completion_block_t) completionOrNil;
+//
+//@end
 
 @interface FLOperation (ChildOperations)
 // these call willRunInParent on the child before operation
@@ -96,18 +93,29 @@
                             completion:(fl_completion_block_t) completionOrNil;
 @end
 
-@interface FLOperation (OperationContext)
-- (void) wasAddedToContext:(FLOperationContext*) context;
-- (void) wasRemovedFromContext:(FLOperationContext*) context;
-- (void) contextDidClose;
-- (void) contextDidOpen;
-- (void) contextDidCancel;
-@end
+//@interface FLOperation (OperationContext)
+//- (void) wasAddedToContext:(FLOperationContext*) context;
+//- (void) wasRemovedFromContext:(FLOperationContext*) context;
+//- (void) contextDidClose;
+//- (void) contextDidOpen;
+//- (void) contextDidCancel;
+//@end
 
-@protocol FLOperationDelegate <NSObject>
+@protocol FLOperationEvents <NSObject>
 @optional
 - (void) operationWillBegin:(id) operation;
 - (void) operationDidFinish:(id) operation withResult:(FLPromisedResult) result;
 @end
 
+@interface FLFinisherBlockOperation : FLOperation {
+@private
+    fl_finisher_block_t _finisherBlock;
+}
++ (id) finisherBlockOperation:(fl_finisher_block_t) block;
+@end
 
+@interface FLOperationEvent : FLAsyncEvent
+- (FLOperation*) operation;
+
++ (id) operationEventWithDelay:(NSTimeInterval) timeInterval operation:(FLOperation*) operation;
+@end

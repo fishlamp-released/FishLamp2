@@ -39,3 +39,10 @@
 //- (void) sendIterationObservation:(FLPromisedResult) result;
 
 @end
+
+@interface FLBlockOperation : FLSynchronousOperation {
+@private
+    fl_block_t _block;
+}
++ (id) blockOperation:(fl_block_t) block;
+@end

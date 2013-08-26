@@ -51,7 +51,7 @@
 
 - (void) testSimpleCase {
     FLOperation* op = FLAutorelease([[FLSynchronousOperation alloc] init]);
-    FLThrowIfError([op runSynchronously]);
+    FLThrowIfError([FLCurrentQueue runSynchronously:op]);
 }
 
 - (void) testInQueue {

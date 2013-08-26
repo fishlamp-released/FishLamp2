@@ -11,6 +11,18 @@
 
 @implementation FLNonretained
 
+- (id) init {	
+	return [self initWithRepresentedObject:nil];
+}
+
+- (id) initWithRepresentedObject:(id) representedObject {
+    FLAssertNotNil(representedObject);
+
+    // assigned, not retained!
+    _representedObject = representedObject;
+	return self;
+}
+
 + (id) nonretained:(id) object {
 	return FLAutorelease([[FLNonretained alloc] initWithRepresentedObject:object]);
 }
@@ -22,3 +34,4 @@
     return [FLNonretained nonretained:self];
 }
 @end
+

@@ -13,6 +13,7 @@
 #import "FLPromisedResult.h"
 #import "FLPromise.h"
 #import "FLDispatchable.h"
+#import "FLAsyncEvent+FLDispatchQueue.h"
 
 static void * const s_queue_key = (void*)&s_queue_key;
 
@@ -112,54 +113,18 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return [NSString stringWithFormat:@"%@ %@", [super description], self.label];
 }
 
-- (void) queueBlock:(fl_block_t) block
-        withDelay:(NSTimeInterval) delay
-     withFinisher:(FLFinisher*) finisher {
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (delay * NSEC_PER_SEC)), _dispatch_queue, ^{
-        @try {
-            
-            if(block) {
-                block();
-            }
-            [finisher setFinished];
-        }
-        @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
-        }
-    });
-}                                 
-
-- (void) queueBlock:(fl_block_t) block
-     withFinisher:(FLFinisher*) finisher {
-
-    dispatch_async(_dispatch_queue, ^{
-        @try {
-            if(block) {
-                block();
-            }
-            [finisher setFinished];
-        }
-        @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
-        }
-    });
+- (FLPromise*) queueAsyncEvent:(FLAsyncEvent*) event
+                    completion:(fl_completion_block_t) completion {
+    return [event dispatchAsyncInQueue:self completion:completion];
 }
 
-- (void) queueFinishableBlock:(fl_finisher_block_t) block
-               withFinisher:(FLFinisher*) finisher {
-    
-    dispatch_async(_dispatch_queue, ^{
-        @try {
-            if(block) {
-                block(finisher);
-            }
-        }
-        @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
-        }
-    });
+- (FLPromisedResult) queueSynchronousEvent:(FLAsyncEvent*) event {
+    return [event dispatchSyncInQueue:self];
 }
+
+
+
+
 
 #if __MAC_10_8
 
@@ -181,137 +146,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 #endif
 
-- (void) runBlockSynchronously:(dispatch_block_t) block {
+@end
 
-    __block NSError* error = nil;
-    
-    FLPrepareBlockForFutureUse(block);
-    
-    dispatch_sync(self.dispatch_queue_t, ^{
-        @try {
-            block();
-        }
-        @catch(NSException* ex) {
-            error = ex.error;
-        }
-    });
-    
-    FLThrowIfError(error);
-}
-
-- (FLPromisedResult) runFinisherBlockSynchronously:(fl_finisher_block_t) block {
-
-    __block FLPromisedResult outResult = nil;
-
-    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(FLPromisedResult result) {
-        outResult = FLRetain(result);
-    }];
-    
-    FLPrepareBlockForFutureUse(block);
-    
-    dispatch_sync(self.dispatch_queue_t, ^{
-        @try {
-            block(finisher);
-        }
-        @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
-        }
-    });
-    
-    return FLAutorelease(outResult);
-}
-
-- (FLPromise*) queueBlock:(fl_block_t) block {
-    return [self queueBlock:block completion:nil];
-}
-
-- (FLPromise*) queueBlock:(fl_block_t) block
-                completion:(fl_completion_block_t) completion {
-
-    FLFinisher* finisher = [FLFinisher finisher];
-    FLPromise* promise = [finisher addPromiseWithBlock:completion];
-
-    FLAssertNotNil(block);
-    FLAssertNotNil(finisher);
-
-    [self queueBlock:block withFinisher:finisher];
-
-    return promise;    
-}
-
-//- (FLFinisher*) queueFinishableBlock:(fl_finisher_block_t) block {
-//    return [self queueFinishableBlock:block completion:nil];
-//}
-
-- (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block
-                          completion:(fl_completion_block_t) completion {
-
-
-    FLFinisher* finisher = [FLFinisher finisher];
-    FLPromise* promise = [finisher addPromiseWithBlock:completion];
-    
-    FLAssertNotNil(block);
-    FLAssertNotNil(finisher);
-    [self queueFinishableBlock:block withFinisher:finisher];
-    return promise;
-}
-
-- (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block {
-    return [self queueFinishableBlock:block completion:nil];
-}
-
-- (FLPromise*) queueBlockWithDelay:(NSTimeInterval) delay
-                             block:(fl_block_t) block
-                        completion:(fl_completion_block_t) completion {
-
-    FLFinisher* finisher = [FLFinisher finisher];
-    FLPromise* promise = [finisher addPromiseWithBlock:completion];
-    
-    [self queueBlock:block withDelay:delay withFinisher:finisher];
-    return promise;
-}
-
-
-- (FLPromise*) queueBlockWithDelay:(NSTimeInterval) delay
-                             block:(fl_block_t) block {
-    return [self queueBlockWithDelay:delay block:block completion:nil];
-}
-
-- (FLPromise*) queueOperation:(id<FLDispatchable>) operation
-             completion:(fl_result_block_t) completion {
-
-    FLAssertNotNil(operation);
-    
-    FLFinisher* finisher = [operation asyncQueueWillBeginAsync:self];
-
-    FLPromise* promise = [finisher addPromiseWithBlock:completion];
-
-    dispatch_async(_dispatch_queue, ^{
-        @try {
-            [operation asyncQueue:self beginAsyncWithFinisher:finisher];
-        }
-        @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
-        }
-    });
-    
-    return promise;
-}                  
-
-- (FLPromise*) queueOperation:(id<FLDispatchable>) operation {
-    return [self queueOperation:operation completion:nil];
-}
-
-- (FLPromisedResult) runOperationSynchronously:(id<FLDispatchable>) operation {
-    
-    __block FLPromisedResult result = nil;
-        
-    dispatch_sync(self.dispatch_queue_t, ^{
-        result = [operation asyncQueueRunSynchronously:self];
-    });
-    
-    return result;
-}
+@implementation FLDispatchQueue (DefaultQueues)
 
 + (FLDispatchQueue*) lowPriorityQueue {
     FLReturnStaticObject( [FLDispatchQueue dispatchQueue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)]);
@@ -367,5 +204,166 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 
 
+/*
+- (void) queueBlock:(fl_block_t) block
+          withDelay:(NSTimeInterval) delay
+       withFinisher:(FLFinisher*) finisher {
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (delay * NSEC_PER_SEC)), _dispatch_queue, ^{
+        @try {
+            
+            if(block) {
+                block();
+            }
+            [finisher setFinished];
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+        }
+    });
+}                                 
+
+- (void) queueBlock:(fl_block_t) block
+       withFinisher:(FLFinisher*) finisher {
+
+    dispatch_async(_dispatch_queue, ^{
+        @try {
+            if(block) {
+                block();
+            }
+            [finisher setFinished];
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+        }
+    });
+}
+
+
+- (void) queueFinishableBlock:(fl_finisher_block_t) block
+                 withFinisher:(FLFinisher*) finisher {
+    
+    dispatch_async(_dispatch_queue, ^{
+        @try {
+            if(block) {
+                block(finisher);
+            }
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+        }
+    });
+}
+
+- (FLPromise*) queueBlock:(fl_block_t) block
+                completion:(fl_completion_block_t) completion {
+
+    FLFinisher* finisher = [FLFinisher finisher];
+    FLPromise* promise = [finisher addPromiseWithBlock:completion];
+
+    FLAssertNotNil(block);
+    FLAssertNotNil(finisher);
+
+    [self queueBlock:block withFinisher:finisher];
+
+    return promise;    
+}
+
+- (FLPromise*) queueOperation:(id<FLDispatchable>) operation
+                   completion:(fl_result_block_t) completion {
+
+    FLAssertNotNil(operation);
+    
+    FLFinisher* finisher = [operation willStartInQueue:self];
+
+    FLPromise* promise = [finisher addPromiseWithBlock:completion];
+
+    dispatch_async(_dispatch_queue, ^{
+        @try {
+            [operation startInQueue:self];
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+        }
+    });
+    
+    return promise;
+}                  
+
+
+- (FLPromise*) queueOperation:(id<FLDispatchable>) operation
+                    withDelay:(NSTimeInterval) delay
+                   completion:(fl_completion_block_t) completionOrNil {
+
+    FLAssertNotNil(operation);
+    
+    FLFinisher* finisher = [operation willStartInQueue:self];
+
+    FLPromise* promise = [finisher addPromiseWithBlock:completion];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (delay * NSEC_PER_SEC)), _dispatch_queue, ^{
+        @try {
+            [operation startInQueue:self];
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+        }
+    });
+    
+    return promise;
+}
+- (void) runBlockSynchronously:(dispatch_block_t) block {
+
+    __block NSError* error = nil;
+    
+    FLPrepareBlockForFutureUse(block);
+    
+    dispatch_sync(self.dispatch_queue_t, ^{
+        @try {
+            block();
+        }
+        @catch(NSException* ex) {
+            error = ex.error;
+        }
+    });
+    
+    FLThrowIfError(error);
+}
+
+- (FLPromisedResult) runFinisherBlockSynchronously:(fl_finisher_block_t) block {
+
+    __block FLPromisedResult outResult = nil;
+
+    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(FLPromisedResult result) {
+        outResult = FLRetain(result);
+    }];
+    
+    FLPrepareBlockForFutureUse(block);
+    
+    dispatch_sync(self.dispatch_queue_t, ^{
+        @try {
+            block(finisher);
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+        }
+    });
+    
+    return FLAutorelease(outResult);
+}
+
+
+- (FLPromisedResult) runOperationSynchronously:(id<FLDispatchable>) operation {
+    
+    __block FLPromisedResult result = nil;
+        
+    dispatch_sync(self.dispatch_queue_t, ^{
+        result = [operation runSynchronouslyInQueue:self];
+    });
+    
+    return result;
+}
+
+*/
 
 

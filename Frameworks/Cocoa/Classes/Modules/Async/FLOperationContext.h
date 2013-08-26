@@ -9,9 +9,10 @@
 
 #import "FLService.h"
 #import "FLFinisher.h"
-#import "FLObservable.h"
+#import "FLNotifier.h"
 
 @class FLOperation;
+@class FLOperationQueue;
 @class FLFifoAsyncQueue;
 
 typedef void (^FLOperationVisitor)(id operation, BOOL* stop);
@@ -21,14 +22,15 @@ extern NSString* const FLWorkerContextFinished;
 extern NSString* const FLWorkerContextClosed;
 extern NSString* const FLWorkerContextOpened;
 
-@interface FLOperationContext : FLObservable {
+@interface FLOperationContext : FLNotifier {
 @private
-    NSMutableSet* _operations;
+    FLOperationQueue* _operationQueue;
     NSUInteger _contextID;
     BOOL _contextOpen;
+    FLBroadcaster* _broadcaster;
 }
-@property (readonly, assign, getter=isContextOpen) BOOL contextOpen; 
 
+@property (readonly, assign, getter=isContextOpen) BOOL contextOpen;
 @property (readonly, assign) NSUInteger contextID;
 
 + (id) operationContext;
@@ -37,20 +39,19 @@ extern NSString* const FLWorkerContextOpened;
 - (void) closeContext;
 
 - (void) requestCancel;          
+//- (void) visitOperations:(FLOperationVisitor) visitor;
 
 - (void) queueOperation:(FLOperation*) operation;
-- (void) removeOperation:(FLOperation*) operation;
-
-- (void) visitOperations:(FLOperationVisitor) visitor;
 
 @end
 
+//@interface FLOperationContext (OptionalOverrides)
+//- (void) removeOperation:(FLOperation*) operation;
+//@end
+
 @protocol FLOperationContextObserverMessages <NSObject>
-
-- (void) operationContextDidStartWorking:(FLOperationContext*) operationContext;
-- (void) operationContextDidStopWorking:(FLOperationContext*) operationContext;
-
+//- (void) operationContextDidStartWorking:(FLOperationContext*) operationContext;
+//- (void) operationContextDidStopWorking:(FLOperationContext*) operationContext;
 - (void) operationContext:(FLOperationContext*) operationContext didAddOperation:(FLOperation*) object;
 - (void) operationContext:(FLOperationContext*) operationContext didRemoveOperation:(FLOperation*) object;
-
 @end

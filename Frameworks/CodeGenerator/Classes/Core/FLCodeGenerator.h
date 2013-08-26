@@ -7,12 +7,12 @@
 //
 
 #import "FishLamp.h"
-#import "FLObservable.h"
+#import "FLNotifier.h"
 
 @class FLCodeProject;
 @protocol FLCodeGeneratorFile;
 
-@protocol FLCodeGenerator <FLObservable, NSObject>
+@protocol FLCodeGenerator <FLNotifier, NSObject>
 - (void) generateCodeForProject:(FLCodeProject*) project;
 @end
 
