@@ -7,21 +7,17 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLCocoaRequired.h"
 #import "FLTestResult.h"
-#import "FLLogSink.h"
-#import "FLTestCase.h"
+
+@class FLTestCase;
 
 @interface FLTestCaseResult : FLTestResult {
 @private
     FLTestCase* _testCase;
-    NSMutableArray* _logEntries;
 }
-
-+ (FLTestCaseResult*) testCaseResult:(FLTestCase*) forTest;
++ (id) testCaseResult:(FLTestCase*) forTest;
 
 @property (readonly, strong) FLTestCase* testCase;
-@property (readonly, strong) NSArray* logEntries;
 
 @end
 

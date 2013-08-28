@@ -9,10 +9,11 @@
 
 #import "FLCoreRequired.h"
 
-#define FLTestCaseFlagOffString                 @"_off"
+#define FLTestCaseFlagOffString                 @"[off]"
 
 @class FLTestCase;
 @class FLUnitTest;
+@protocol FLTestCaseRunner;
 
 typedef void (^FLTestBlock)();
 
@@ -27,31 +28,34 @@ typedef void (^FLTestBlock)();
     __unsafe_unretained id _testCaseTarget;
     NSString* _disabledReason;
     BOOL _disabled;
+
+    __unsafe_unretained FLUnitTest* _unitTest;
 }
 
-
-@property (readwrite, assign, nonatomic) long runOrder;
-
+@property (readonly, assign) FLUnitTest* unitTest;
 @property (readonly, strong, nonatomic) NSString* disabledReason;
 @property (readonly, strong, nonatomic) NSString* testCaseName;
 @property (readonly, assign, nonatomic) SEL testCaseSelector;
 @property (readonly, assign, nonatomic) id testCaseTarget;
 @property (readonly, copy, nonatomic) FLTestBlock testCaseBlock;
+
+@property (readwrite, assign, nonatomic) long runOrder;
 @property (readwrite, assign, nonatomic, getter=isDisabled) BOOL disabled;
-
-// construction
-- (id) initWithName:(NSString*) name target:(id) target selector:(SEL) selector;
-+ (id) testCase:(NSString*) name target:(id) target selector:(SEL) selector;
-
-// run by block
-- (id) initWithName:(NSString*) name testBlock:(FLTestBlock) block;
-+ (id) testCase:(NSString*) name testBlock:(FLTestBlock) block;
 
 - (void) setDisabledWithReason:(NSString*) reason;
 
+- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest;
+- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest testBlock:(FLTestBlock) block;
+- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest target:(id) target selector:(SEL) selector;
+
++ (FLTestCase*) testCase:(NSString*) name unitTest:(FLUnitTest*) unitTest target:(id) target selector:(SEL) selector;
++ (FLTestCase*) testCase:(NSString*) name unitTest:(FLUnitTest*) unitTest testBlock:(FLTestBlock) block;
+
+- (id<FLTestCaseRunner>) testCaseRunner;
+
 @end
 
-// DEPRECATED
+#if DEPRECATED
 @interface FLTestCase (TestHelpers)
 
 + (void) runTestWithExpectedFailure:(void (^)()) test
@@ -60,3 +64,4 @@ typedef void (^FLTestBlock)();
 + (void) runTestWithExpectedFailure:(void (^)()) test;
 
 @end
+#endif

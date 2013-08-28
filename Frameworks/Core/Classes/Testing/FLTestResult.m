@@ -8,6 +8,7 @@
 //
 
 #import "FLTestResult.h"
+#import "FLStringFormatter.h"
 
 @interface FLTestResult ()
 @property (readwrite, strong, nonatomic) NSError* error;
@@ -21,6 +22,7 @@
 @synthesize expectedCount = _expectedCount;
 @synthesize count = _count;
 @synthesize testName = _testName;
+@synthesize loggerOutput = _loggerOutput;
 
 + (id) testResult {
     return FLAutorelease([[[self class] alloc] init]);
@@ -36,18 +38,19 @@
 
 #if FL_MRC
 - (void) dealloc {
+    [_loggerOutput release];
     [_testName release];
     [_error release];
     [super dealloc];
 }
 #endif
 
-
 - (id) initWithExpectedCount:(NSUInteger) count {
     self = [super init];
     if(self) {
         _expectedCount = count;
         self.testName = NSStringFromClass([self class]);
+        self.loggerOutput = [FLPrettyString prettyString];
     }
     return self;
 }

@@ -8,6 +8,8 @@
 //
 
 #import "FLTestCaseResult.h"
+#import "FLPrettyString.h"
+#import "FLTestCase.h"
 
 @interface FLTestCaseResult ()
 @property (readwrite, strong) FLTestCase* testCase;
@@ -16,26 +18,22 @@
 @implementation FLTestCaseResult
 
 @synthesize testCase = _testCase;
-@synthesize logEntries = _logEntries;
 
 - (id) initWithTestCase:(FLTestCase*) testCase {
     self = [super init];
     if(self) {
         self.testCase = testCase;
-        _logEntries = [[NSMutableArray alloc] init];
     }
 
     return self;
 }
 
-
-+ (FLTestCaseResult*) testCaseResult:(FLTestCase*) test {
++ (id) testCaseResult:(FLTestCase*) test {
     return FLAutorelease([[[self class] alloc] initWithTestCase:test]);
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_logEntries release];
     [_testCase release];
     [super dealloc];
 }
@@ -43,17 +41,6 @@
 
 - (NSString*) testName {
     return self.testCase.testCaseName;
-}
-
-- (FLLogSinkOutputFlags) sinkOutputFlags {
-    return FLLogOutputWithLocation | FLLogOutputWithStackTrace;
-}
-
-- (void) logEntry:(FLLogEntry*) entry stopPropagating:(BOOL*) stop {
-
-    [_logEntries addObject:FLCopyWithAutorelease(entry)];
-    
-    *stop = YES;
 }
 
 @end

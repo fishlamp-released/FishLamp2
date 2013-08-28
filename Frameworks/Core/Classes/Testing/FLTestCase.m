@@ -8,6 +8,8 @@
 
 #import "FLTestCase.h"
 #import "FLStringUtils.h"
+#import "FLUnitTest.h"
+#import "FLTestCaseRunner.h"
 
 //#define FLTestCaseFlagBrokenString              @"_broken"
 //#define FLTestCaseFlagVerboseString             @"_debug"
@@ -57,13 +59,13 @@ FLTestCaseFlagPair s_flagPairs[] = {
     self.disabledReason = reason;
 }
 
-- (void) setTestCaseName:(NSString*) string {
+- (void) setNameAndFlagsWithFormattedName:(NSString*) string {
     
     // quickly look to see if there's a _ in the method name, search backward
     
     BOOL lookForFlags = NO;
     for(int i = string.length - 1; i >= 0; i--) {
-        if([string characterAtIndex:i] == '_') {
+        if([string characterAtIndex:i] == '[') {
             lookForFlags = YES;
             break;
         }
@@ -78,72 +80,94 @@ FLTestCaseFlagPair s_flagPairs[] = {
             // set the flag and remove the setting from the test case name
             NSRange range = [newString rangeOfString:s_flagPairs[i].name];
             if(range.length) {
+                BOOL deleteChars = YES;
                 switch(s_flagPairs[i].flag) {
-                
+
+                    default:
                     case FLTestCaseFlagNone:
+                        deleteChars = NO;
                         break;
                 
                     case FLTestCaseFlagDisabled:
-                        self.disabledReason = @"\"_off\" found in test case name";
-                        self.disabled = YES;
+                        [self setDisabledWithReason: @"\"[off]\" found in test case name"];
                         break;
-                        
-                        
                 }
-                
-//                [newString deleteCharactersInRange:range];
+
+                if(deleteChars) {
+                    [newString deleteCharactersInRange:range];
+                }
             }
         }
         
         theString = newString;
     }
 
-
-    FLSetObjectWithRetain(_testCaseName, theString);
+    self.testCaseName = theString;
 }
 
-- (id) initWithName:(NSString*) name testBlock:(FLTestBlock) block {
+- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest {
     self = [super init];
     if(self) {
-        self.testCaseBlock = block;
-        self.testCaseName = name;
+        [self setNameAndFlagsWithFormattedName:name];
+        _unitTest = unitTest;
         _runOrder = FLTestCaseOrderDefault;
+    }
+
+    return self;
+}
+
+
+- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest testBlock:(FLTestBlock) block  {
+    self = [self initWithName:name unitTest:unitTest];
+    if(self) {
+        _testCaseBlock = [block copy]
     }
     return self;
 }
 
 
-- (id) initWithName:(NSString*) name target:(id) target selector:(SEL) selector {
-    self = [super init];
+- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest target:(id) target selector:(SEL) selector {
+    self = [self initWithName:name unitTest:unitTest];
     if(self) {
-        self.testCaseTarget = target;
-        self.testCaseSelector = selector;
-        self.testCaseName = name;
-        _runOrder = FLTestCaseOrderDefault;
+        _testCaseTarget = target;
+        _testCaseSelector = selector;
     }
     return self;
 }
 
-+ (FLTestCase*) testCase:(NSString*) name target:(id) target selector:(SEL) selector {
-    return FLAutorelease([[FLTestCase alloc] initWithName:name target:target selector:selector]);
++ (FLTestCase*) testCase:(NSString*) name unitTest:(FLUnitTest*) unitTest target:(id) target selector:(SEL) selector {
+    return FLAutorelease([[FLTestCase alloc] initWithName:name unitTest:unitTest target:target selector:selector]);
 }
 
-+ (FLTestCase*) testCase:(NSString*) name testBlock:(FLTestBlock) block {
++ (FLTestCase*) testCase:(NSString*) name unitTest:(FLUnitTest*) unitTest testBlock:(FLTestBlock) block {
     return FLAutorelease([[FLTestCase alloc] initWithName:name testBlock:block]);
+}
+
+- (void) performTest {
+    if(!self.isDisabled) {
+        if(_testCaseTarget && _testCaseSelector) {
+            FLPerformSelector0(_testCaseTarget, _testCaseSelector)
+        }
+        if(_testCaseBlock) {
+            _testCaseBlock();
+        }
+    }
+}
+
+- (id<FLTestCaseRunner>) testCaseRunner {
+    return [FLTestCaseRunner testCaseRunner];
 }
 
 #if FL_MRC
 - (void) dealloc {
- 
-    FLRelease(_disabledReason);
- 
-//    FLRelease(_testCompletionBlock);
-    FLRelease(_testCaseName);
-    FLRelease(_testCaseBlock);
-    FLSuperDealloc();
+    [_disabledReason release];
+    [_testCaseName release];
+    [_testCaseBlock release];
+    [super dealloc];
 }
 #endif
 
+#if DEPRECATED
 + (void) runTestWithExpectedFailure:(void (^)()) test
                        checkResults:(void (^)(NSException* ex, BOOL* pass)) checkResults {
  
@@ -191,6 +215,6 @@ FLTestCaseFlagPair s_flagPairs[] = {
 
 @end
 
-
+#endif
 
 

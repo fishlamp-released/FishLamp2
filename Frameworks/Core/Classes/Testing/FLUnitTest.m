@@ -10,6 +10,13 @@
 
 @implementation FLUnitTest
 
+- (id) init {
+	self = [super init];
+	if(self) {
+	}
+	return self;
+}
+
 + (FLUnitTest*) unitTest {
     return FLAutorelease([[[self class] alloc] init]);
 }
@@ -23,10 +30,6 @@
     [super dealloc];
 }
 #endif
-
-- (FLUnitTestResult*) unitTestResult {
-    return [FLUnitTestResult unitTestResult:self];
-}
 
 - (NSString*) unitTestName {
     return NSStringFromClass([self class]);
@@ -79,5 +82,7 @@
 + (NSInteger) unitTestRunCount {
     return 1;
 }
+
+
 
 @end

@@ -9,6 +9,7 @@
 #import "FLTestCaseOperation.h"
 #import "FLTestCaseResult.h"
 #import "FLUnitTest.h"
+#import "FLTestCaseRunner.h"
 
 //#import "FLUnitTest.h"
 //#import "FLObjcRuntime.h"
@@ -38,44 +39,8 @@
 #endif
 
 - (FLPromisedResult) performSynchronously {
-
-    FLTestCaseResult* result = [FLTestCaseResult testCaseResult:self.testCase];
-    [[FLUnitTest logger] pushLoggerSink:result];
-        
-    @try {
-        if(!self.testCase.isDisabled) {
-            if(!FLPerformSelector0(_testCaseTarget, _testCaseSelector)) {
-                if(_testCaseBlock) {
-                    _testCaseBlock();
-                }
-            }
-        }
-
-        [result setPassed];
-    }
-    @catch(NSException* ex) {
-//                 [[results testResultForKey:testCase.testCaseName] setError:ex.error];
-    }
-    @finally {
-        [[FLUnitTest logger] removeLoggerSink:result];
-    }
-    
-    if(result.passed) {
-        if(self.testCase.isDisabled) {
-            [[FLUnitTest outputLog] appendLineWithFormat:@"DISABLED: %@", self.testCase.testCaseName];
-        }
-        else {
-            [[FLUnitTest outputLog] appendLineWithFormat:@"Passed: %@", self..testCase.testCaseName];
-        }
-    }
-    else {
-        [[FLUnitTest outputLog] appendLineWithFormat:@"FAILED: %@", self..testCase.testCaseName ];
-        [[FLUnitTest outputLog] indent:^{
-            [[FLUnitTest logger] logEntries:result.logEntries];
-        }];
-    }
-
-    return result;
+    FLTestCaseRunner* runner = [self.testCase testRunner];
+    return [runner performTestCase:self.testCase];
 }
 
 

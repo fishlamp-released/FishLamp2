@@ -7,7 +7,9 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FishLamp.h"
+#import "FishLampRequired.h"
+
+@protocol FLStringFormatter;
 
 @protocol FLTestResult <NSObject>
 - (BOOL) passed;
@@ -30,7 +32,11 @@
     NSUInteger _count;
     NSError* _error;
     NSString* _testName;
+    id<FLStringFormatter> _loggerOutput;
 }
+
+@property (readonly, strong) id<FLStringFormatter> loggerOutput;
+
 
 + (id) testResult;
 

@@ -10,15 +10,8 @@
 #import "FLUnitTestGroup.h"
 #import "FLTestCaseList.h"
 #import "FLTestResultCollection.h"
-
-#ifndef FLTestLog
-#define FLTestLog NSLog
-#endif
-
-/*
-#define FLTestLog(__FORMAT__, ...)   \
-        FLLogToLogger([FLUnitTest logger], FLLogTypeTest, __FORMAT__, ##__VA_ARGS__)
-*/
+#import "FLTestCase.h"
+#import "FLTestCaseResult.h"
 
 @interface FLUnitTest : NSObject
 
@@ -51,3 +44,4 @@
 + (NSInteger) unitTestRunCount;
 
 @end
+

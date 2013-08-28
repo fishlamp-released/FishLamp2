@@ -101,7 +101,10 @@ static FLLogger* s_outputLogger = nil;
 
         NSString* testName = [NSString stringWithFormat:@"-[%@ %@]", myName, selectorName];
 
-        FLTestCase* testCase = [FLTestCase testCase:testName target:self.unitTest selector:NSSelectorFromString(selectorName)];
+        FLTestCase* testCase = [FLTestCase testCase:testName
+                                           unitTest:self.unitTest
+                                             target:self.unitTest
+                                           selector:NSSelectorFromString(selectorName)];
         [list addTestCase:testCase];
 
 //        if([selector argumentCount] != 0) {
