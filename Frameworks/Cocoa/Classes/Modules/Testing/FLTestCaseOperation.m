@@ -39,7 +39,7 @@
 #endif
 
 - (FLPromisedResult) performSynchronously {
-    FLTestCaseRunner* runner = [self.testCase testRunner];
+    FLTestCaseRunner* runner = [self.testCase testCaseRunner];
     return [runner performTestCase:self.testCase];
 }
 

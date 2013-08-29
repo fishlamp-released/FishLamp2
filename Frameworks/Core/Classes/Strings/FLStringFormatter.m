@@ -7,6 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
+
 #import "FLStringFormatter.h"
 #import "FLAssertions.h"
 #import "NSArray+FLExtras.h"
@@ -17,7 +18,6 @@
 @interface FLStringFormatter ()
 - (void) openLine;
 @end
-
 
 @implementation FLStringFormatter
 
@@ -127,8 +127,6 @@
     [self closeLine];
 }
 
-#define openLineInfo() MakeInfo(_editingLine, NO, YES, NO)
-
 - (void) openLineWithString:(NSString*) string {
     FLAssertNotNil(string);
     FLAssertNotNil(_output);
@@ -137,7 +135,6 @@
     [self openLine];
     [self processAndAppendString:string];
 }
-
 
 - (void) openLineWithAttributedString:(NSAttributedString*) string {
     FLAssertNotNil(string);
@@ -148,8 +145,6 @@
     [self processAndAppendAttributedString:string];
 }
 
-#define appendLineInfo() MakeInfo(NO, NO, !_editingLine, YES)
-
 - (void) appendLineWithAttributedString:(NSAttributedString*) string {
     FLAssertNotNil(string);
     FLAssertNotNil(_output);
@@ -158,7 +153,6 @@
     [self processAndAppendAttributedString:string];
     [self closeLine];
 }
-
 
 - (void) appendLine:(NSString*) string {
     FLAssertNotNil(string);
@@ -178,100 +172,6 @@
     [_output stringFormatterAppendBlankLine:self];
 }
 
-- (void) appendLines:(NSString**) lines 
-               count:(NSInteger) count{
-    FLAssertNotNil(lines);
-        if(lines) {for(int i = 0; i < count; i++) {
-            [self appendLine:lines[i]];
-        }
-    }
-}
-
-- (void) appendLines:(NSString**) lines {
-    FLAssertNotNil(lines);
-    [self appendLines:lines count:FLArrayLength(lines, NSString*)];
-}
-
-- (void) appendLinesWithArray:(NSArray*) lines {
-    FLAssertNotNil(lines);
-    for(NSString* line in lines) {
-        [self appendLine:line];
-    }
-}
-
-- (void) appendFormat:(NSString*) format, ... {
-    FLAssertNotNil(format);
-	va_list va;
-	va_start(va, format);
-	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-	va_end(va);
-    [self appendString:string];
-}
-
-- (void) appendFormat:(NSString*) format 
-            arguments:(va_list)argList {
-	[self appendString:FLAutorelease([[NSString alloc] initWithFormat:format arguments:argList])];
-}
-
-
-- (void) appendLineWithFormat:(NSString*) format, ... {
-    FLAssertNotNil(format);
-	va_list va;
-	va_start(va, format);
-	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-	va_end(va);
-	[self appendLine:string];
-}
-
-- (void) appendLineWithFormat:(NSString*) format arguments:(va_list)argList {
-	[self appendLine:FLAutorelease([[NSString alloc] initWithFormat:format arguments:argList])];
-}
-
-- (void) openLineWithFormat:(NSString*) format, ... {
-    FLAssertNotNil(format);
-	va_list va;
-	va_start(va, format);
-	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-	va_end(va);
-	[self openLineWithString:string];
-}
-
-- (void) closeLineWithFormat:(NSString*) format, ... {
-    FLAssertNotNil(format);
-	va_list va;
-	va_start(va, format);
-	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-	va_end(va);
-	[self closeLineWithString:string];
-}
-
-- (NSString*) _preprocessLines:(NSString*) lines {
-	NSString* string = [lines stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
-	string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	return string;
-}
-
-- (void) appendStringContainingMultipleLines:(NSString*) inLines 
-                              trimWhitespace:(BOOL) trimWhitespace {
-    FLAssertNotNil(inLines);
-
-	NSString* string = trimWhitespace ? [self _preprocessLines:inLines] : inLines;
-	if(FLStringIsNotEmpty(string)) {
-		NSArray* lines = [string componentsSeparatedByString:@"\n"];
-		for(NSString* line in lines) {
-			NSString* newline = trimWhitespace ? [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] : line;
-		
-			if(FLStringIsNotEmpty(newline)) {
-				[self appendLine:newline];
-            }
-		}
-	}
-}
-
-- (void) appendStringContainingMultipleLines:(NSString*) inLines {
-    [self appendStringContainingMultipleLines:inLines trimWhitespace:YES];
-}
-
 - (void) indent {
     [_output stringFormatterIndent:self];
 }
@@ -289,11 +189,6 @@
     [_output stringFormatterOutdent:self];
 }
 
-- (void) appendInScope:(NSString*) openScope closeScope:(NSString*) closeScope withBlock:(FLStringFormatterBlock) block {
-    [self appendLine:openScope];
-    [self indent:block];
-    [self appendLine:closeScope];
-}
 
 - (void) setParent:(id) parent {
     _parent = parent;
@@ -317,6 +212,12 @@
 
 - (BOOL) isEmpty {
     return self.length == 0;
+}
+
+- (void) appendInScope:(NSString*) openScope closeScope:(NSString*) closeScope withBlock:(FLStringFormatterBlock) block {
+    [self appendLine:openScope];
+    [self indent:block];
+    [self appendLine:closeScope];
 }
 
 @end

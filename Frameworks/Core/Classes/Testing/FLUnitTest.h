@@ -7,11 +7,13 @@
 //
 
 #import "FLCoreRequired.h"
+#import "FLUnitTestDefines.h"
 #import "FLUnitTestGroup.h"
 #import "FLTestCaseList.h"
 #import "FLTestResultCollection.h"
 #import "FLTestCase.h"
 #import "FLTestCaseResult.h"
+#import "FLUnitTestLoggingManager.h"
 
 @interface FLUnitTest : NSObject
 

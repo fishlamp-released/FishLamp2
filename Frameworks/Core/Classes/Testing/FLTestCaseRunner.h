@@ -15,6 +15,6 @@
 - (FLTestCaseResult*) performTestCase:(FLTestCase*) testCase;
 @end
 
-@interface FLTestCaseRunner : NSObject
+@interface FLTestCaseRunner : NSObject<FLTestCaseRunner>
 + (id) testCaseRunner;
 @end

@@ -13,6 +13,9 @@
     id _representedObject;
 }
 
+@property (readonly, strong) id representedObject;
+
+- (id) initWithRetainedObject:(id) object;
 + (id) retainedObject:(id) object;
 
 @end

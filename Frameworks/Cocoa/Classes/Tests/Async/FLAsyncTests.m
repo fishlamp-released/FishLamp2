@@ -23,9 +23,8 @@
     return [NSArray arrayWithObject:[FLTimeoutTests class]];
 }
 
-- (void) _didExecuteOperation:(FLPerformSelectorOperation*) operation
-{
-	FLTestLog(@"did execute");
+- (void) _didExecuteOperation:(FLPerformSelectorOperation*) operation {
+	[FLTestLog appendLine:@"did execute"];
 }
 
 - (void) _asyncDone:(FLPerformSelectorOperation*) operation

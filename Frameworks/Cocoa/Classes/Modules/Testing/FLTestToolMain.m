@@ -18,6 +18,9 @@
 
 #import "FLDispatchQueue.h"
 
+
+#import "FLUnitTestLoggingManager.h"
+
 int FLTestToolMain(int argc, const char *argv[], NSString* bundleIdentifier, NSString* appName, NSString* version) {
     @autoreleasepool {
         @try {
@@ -27,7 +30,7 @@ int FLTestToolMain(int argc, const char *argv[], NSString* bundleIdentifier, NSS
         
             FLLogger* logger = [FLLogger logger];
             [logger addLoggerSink:[FLConsoleLogSink consoleLogSink:FLLogOutputSimple]];
-            [FLUnitTest setDefaultLogger:logger];
+            [[FLUnitTestLoggingManager instance] addLogger:logger forLogLevel:FLUnitTestLogLevelMinimal];
         
             FLUnitTestRunner* runner = [FLUnitTestRunner unitTestRunner];
             FLPromisedResult result = [FLCurrentQueue runSynchronously:runner];

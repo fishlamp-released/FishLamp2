@@ -8,7 +8,7 @@
 
 #import "FLTestCaseRunner.h"
 #import "FLTestCase.h"
-#import "FLUnitTestLogger.h"
+#import "FLUnitTestLoggingManager.h"
 #import "FLTestCaseResult.h"
 
 @implementation FLTestCaseRunner
@@ -16,9 +16,9 @@
 - (FLTestCaseResult*) performTestCase:(FLTestCase*) testCase {
 
 
-    FLTestCaseResult* result = [FLTestCaseResult testCaseResult:self.testCase];
+    FLTestCaseResult* result = [FLTestCaseResult testCaseResult:testCase];
 
-    [[FLUnitTestLogger instance] pushLogger:result.loggerOutput propagate:NO];
+    [[FLUnitTestLoggingManager instance] pushLogger:result.loggerOutput];
 
     @try {
         [testCase performTest];
@@ -34,17 +34,17 @@
 
     if(result.passed) {
         if(self.testCase.isDisabled) {
-            [[FLUnitTestLogger instance] appendLineWithFormat:@"DISABLED: %@", self.testCase.testCaseName];
+            [[FLUnitTestLoggingManager instance] appendLineWithFormat:@"DISABLED: %@", self.testCase.testCaseName];
         }
         else {
-            [[FLUnitTestLogger instance] appendLineWithFormat:@"Passed: %@", self..testCase.testCaseName];
+            [[FLUnitTestLoggingManager instance] appendLineWithFormat:@"Passed: %@", self..testCase.testCaseName];
         }
     }
     else {
-        [[FLUnitTestLogger instance] appendLineWithFormat:@"FAILED: %@", self..testCase.testCaseName ];
+        [[FLUnitTestLoggingManager instance] appendLineWithFormat:@"FAILED: %@", self..testCase.testCaseName ];
 
-        [[FLUnitTestLogger instance] indent:^{
-            [[FLUnitTestLogger instance] appendStringFormatter:result.loggerOutput];
+        [[FLUnitTestLoggingManager instance] indent:^{
+            [[FLUnitTestLoggingManager instance] appendStringFormatter:result.loggerOutput];
         }];
     }
 }

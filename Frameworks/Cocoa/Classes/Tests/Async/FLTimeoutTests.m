@@ -9,6 +9,7 @@
 
 #import "FLTimeoutTests.h"
 #import "FLTimer.h"
+#import "FLDispatchQueue.h"
 
 @implementation FLTimeoutTests
 

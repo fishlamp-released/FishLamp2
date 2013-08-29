@@ -10,6 +10,7 @@
 #import "FLOperationUnitTest.h"
 #import "FLOperation.h"
 #import "FLSynchronousOperation.h"
+#import "FLDispatchQueue.h"
 
 @implementation FLOperation (Tests)
 

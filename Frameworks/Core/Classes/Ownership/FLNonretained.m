@@ -8,6 +8,7 @@
 //
 
 #import "FLNonretained.h"
+#import "FLAssertions.h"
 
 @implementation FLNonretained
 

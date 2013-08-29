@@ -9,6 +9,7 @@
 
 #import "FLTestResult.h"
 #import "FLStringFormatter.h"
+#import "FLPrettyString.h"
 
 @interface FLTestResult ()
 @property (readwrite, strong, nonatomic) NSError* error;

@@ -12,6 +12,7 @@
 #import "FLUnitTest.h"
 #import "FLUnitTestGroup.h"
 #import "FLUnitTestOperation.h"
+#import "FLUnitTestLoggingManager.h"
 
 @implementation FLUnitTestSubclassRunner
 
@@ -124,13 +125,13 @@
 
     NSArray* groupList = [self sortedGroupListWithGroupDictionary:groups];
 
-    [[FLUnitTest defaultLogger] appendLineWithFormat:@"Found %d unit test classes in %d groups", allClassesList.count, groupList.count];
+    [FLTestLog appendLineWithFormat:@"Found %d unit test classes in %d groups", allClassesList.count, groupList.count];
     
     NSMutableArray* resultArray = [NSMutableArray array];
     
     for(FLUnitTestGroup* group in groupList) {
     
-        [[FLUnitTest defaultLogger] appendLineWithFormat:@"UnitTest Group: %@ (priority: %d)", group.groupName, group.groupPriority];
+        [FLTestLog appendLineWithFormat:@"UnitTest Group: %@ (priority: %d)", group.groupName, group.groupPriority];
         
         NSMutableArray* classList = [groups objectForKey:group];
         [self sortClassList:classList];
@@ -142,7 +143,7 @@
             for(NSInteger i = 0; i < runCount; i++) {
                 FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
 
-                [[FLUnitTest defaultLogger] indent:^{
+                [FLTestLog indent:^{
                     id results = [self runChildSynchronously:[FLUnitTestOperation unitTestOperation:test]];
                     FLThrowIfError(results);
                     
