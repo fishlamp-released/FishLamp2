@@ -65,7 +65,6 @@
     self = [super init];
     if(self) {
         _lines = [[NSMutableArray alloc] init];
-        self.stringFormatterOutput = self;
     }    
     return self;
 }
@@ -107,11 +106,9 @@
     _needsLine = YES;
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-            appendString:(NSString*) string {
+- (void) willAppendString:(NSString*) string {
 
     FLAssertNotNil(_lines);
-    FLAssertNotNil(stringFormatter);
     FLAssertNotNil(string);
 
     if(_needsLine) {
@@ -122,24 +119,21 @@
         FLAssert([self.lastLine isKindOfClass:[NSMutableString class]]);
         [self.lastLine appendString:string];
     }
-
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter 
-  appendAttributedString:(NSAttributedString*) attributedString {
-  
-      [self stringFormatter:stringFormatter appendString:attributedString.string];
+- (void) appendAttributedString:(NSAttributedString*) attributedString {
+    [self appendString:attributedString.string];
 }
 
-- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+- (void) indent {
     FLAssertNotNil(_lines);
-    FLAssertNotNil(stringFormatter);
+    [super indent];
     [_lines addObject:[FLDocumentSectionIndent documentSectionIndent]];
 }
 
-- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+- (void) outdent {
     FLAssertNotNil(_lines);
-    FLAssertNotNil(stringFormatter);
+    [super outdent];
     [_lines addObject:[FLDocumentSectionOutdent documentSectionOutdent]];
 }
 
@@ -181,16 +175,15 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
     [stringBuilder setParent:self];
 }
 
-- (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) stringFormatter {
-    FLAssertNotNil(_lines);
-    FLAssertNotNil(stringFormatter);
+//- (void) stringFormatterDeleteAllCharacters:(FLStringFormatter*) stringFormatter {
+//    FLAssertNotNil(_lines);
+//    FLAssertNotNil(stringFormatter);
+//
+//    [_lines removeAllObjects];
+//}
 
-    [_lines removeAllObjects];
-}
-
-- (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter {
+- (NSUInteger) length {
     FLAssertNotNil(_lines);
-    FLAssertNotNil(stringFormatter);
 
     NSUInteger length = 0;
     for(id<FLStringFormatter> line in _lines) {

@@ -43,9 +43,9 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 @implementation FLOperationContext
 @synthesize contextOpen = _contextOpen;
 @synthesize contextID = _contextID;
-@synthesize operationQueue = _fifoQueue;
+@synthesize operationQueue = _operationQueue;
 
-FLSynthesizeObservableProperties(_broadcaster);
+FLSynthesizeNotifierProperties(_broadcaster);
 
 - (id) init {
     self = [super init];
@@ -61,7 +61,7 @@ FLSynthesizeObservableProperties(_broadcaster);
 
 #if FL_MRC
 - (void) dealloc {
-    [_fifoQueue release];
+    [_operationQueue release];
     [_broadcaster release];
     [_operationQueue release];
     [super dealloc];
@@ -124,11 +124,11 @@ FLSynthesizeObservableProperties(_broadcaster);
 }
 
 - (void) didAddOperation:(FLOperation*) operation {
-    [self.observers.notify operationContext:self didAddOperation:operation];
+    [self.notifier.notify operationContext:self didAddOperation:operation];
 }
 
 - (void) didRemoveOperation:(FLOperation*) operation {
-    [self.observers.notify operationContext:self didRemoveOperation:operation];
+    [self.notifier.notify operationContext:self didRemoveOperation:operation];
 }
 
 - (void) didStartWorking {
@@ -186,7 +186,7 @@ FLSynthesizeObservableProperties(_broadcaster);
 //            [operation.context removeOperation:operation];
 //        }
 //        [operation wasAddedToContext:self];
-//        [operation.observers addObserver:self.nonretained_fl];
+//        [operation.notifier addListener:self.nonretained_fl];
 //    }
 //
 //    [self didAddOperation:operation];
@@ -213,7 +213,7 @@ FLSynthesizeObservableProperties(_broadcaster);
 //        [_operations removeObject:[NSValue valueWithNonretainedObject:operation]];
 //        if(operation.context == self) {
 //            [operation wasRemovedFromContext:self];
-//            [operation.observers removeObserver:self];
+//            [operation.notifier removeListener:self];
 //        }
 //
 //        didStop = _operations.count == 0;

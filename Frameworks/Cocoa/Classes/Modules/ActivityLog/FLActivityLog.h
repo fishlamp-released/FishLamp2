@@ -10,14 +10,12 @@
 #import "FishLampCore.h"
 #import "FLStringFormatter.h"
 #import "FLCompatibility.h"
+#import "FLPrettyAttributedString.h"
 
 extern NSString* const FLActivityLogUpdated;
 extern NSString* const FLActivityLogStringKey;
 
 @protocol FLActivityLog <FLStringFormatter>
-
-@property (readonly, strong, nonatomic) NSString* string;
-@property (readonly, strong, nonatomic) NSAttributedString* attributedString;
 
 - (void) appendURL:(NSURL*) url string:(NSString*) text;
 - (void) appendLineWithURL:(NSURL*) url string:(NSString*) text;
@@ -34,9 +32,8 @@ extern NSString* const FLActivityLogStringKey;
 
 @end
 
-@interface FLActivityLog : FLStringFormatter<FLActivityLog, FLPrettyStringDelegate, FLStringFormatterOutput> {
+@interface FLActivityLog : FLPrettyAttributedString<FLActivityLog> {
 @private 
-    FLPrettyAttributedString* _log;
     SDKFont* _textFont;
     NSColor* _textColor;
 }

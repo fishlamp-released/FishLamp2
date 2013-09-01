@@ -11,6 +11,7 @@
 #import "FLStringUtils.h"
 #import "NSString+Lists.h"
 #import "FLAppInfo.h"
+#import "FLDispatchQueue.h"
 
 @interface FLCommandLineTool ()
 @property (readwrite, strong, nonatomic) NSURL* toolPath;
@@ -142,7 +143,7 @@ static id s_instance;
 }
 
 - (void) runTool:(FLCommandLineTask*) task {
-    FLThrowIfError([task runSynchronously]);
+    FLThrowIfError([FLBackgroundQueue runSynchronously:task]);
 }
 
 - (int) runWithArguments:(NSArray*) arguments {

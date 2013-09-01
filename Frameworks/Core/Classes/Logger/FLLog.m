@@ -74,17 +74,8 @@ void FLLoggerUncaughtExceptionHandler(NSException* ex);
 NSUncaughtExceptionHandler* s_previousUncaughtExceptionHandler = nil;
 
 NSException* FLWillThrowExceptionHandlerForLogger(NSException *exception) {
-
-    [[FLLogLogger instance] logException:exception];
-
-//    FLStackTrace* stackTrace = exception.error.stackTrace;
-//
-//    [[FLLogLogger instance] logString:[NSString stringWithFormat:@"%@: %@", exception.name, exception.reason]
-//                           logType:FLLogTypeException 
-//                        stackTrace:stackTrace];
-
+    [[FLLogLogger instance] logObject:exception];
     return exception;
-
 }
 
 
@@ -117,16 +108,16 @@ FLSynthesizeSingleton(FLLogLogger);
 
 @end
 
-void FLLoggerUncaughtExceptionHandler(NSException *exception) {
-    @try {
-        [[FLLogLogger instance] logException:exception withComment:@"Uncaught Exception (app will crash)"];
-    }
-    @catch(NSException* ex) {
-        NSLog(@"logger threw exception in uncaught exception handler (app will now crash).\nException name: %@, reason: %@", ex.name, ex.reason);
-    }
-    
-    if(s_previousUncaughtExceptionHandler) {
-        s_previousUncaughtExceptionHandler(exception);
-    }
-}
+//void FLLoggerUncaughtExceptionHandler(NSException *exception) {
+//    @try {
+//        [[FLLogLogger instance] logException:exception withComment:@"Uncaught Exception (app will crash)"];
+//    }
+//    @catch(NSException* ex) {
+//        NSLog(@"logger threw exception in uncaught exception handler (app will now crash).\nException name: %@, reason: %@", ex.name, ex.reason);
+//    }
+//    
+//    if(s_previousUncaughtExceptionHandler) {
+//        s_previousUncaughtExceptionHandler(exception);
+//    }
+//}
 

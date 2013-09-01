@@ -125,13 +125,13 @@
 
     NSArray* groupList = [self sortedGroupListWithGroupDictionary:groups];
 
-    [FLTestLog appendLineWithFormat:@"Found %d unit test classes in %d groups", allClassesList.count, groupList.count];
+    [FLTestOutput appendLineWithFormat:@"Found %d unit test classes in %d groups", allClassesList.count, groupList.count];
     
     NSMutableArray* resultArray = [NSMutableArray array];
     
     for(FLUnitTestGroup* group in groupList) {
     
-        [FLTestLog appendLineWithFormat:@"UnitTest Group: %@ (priority: %d)", group.groupName, group.groupPriority];
+        [FLTestOutput appendLineWithFormat:@"UnitTest Group: %@ (priority: %d)", group.groupName, group.groupPriority];
         
         NSMutableArray* classList = [groups objectForKey:group];
         [self sortClassList:classList];
@@ -143,7 +143,7 @@
             for(NSInteger i = 0; i < runCount; i++) {
                 FLUnitTest* test = FLAutorelease([[[aClass class] alloc] init]);
 
-                [FLTestLog indent:^{
+                [FLTestOutput indent:^{
                     id results = [self runChildSynchronously:[FLUnitTestOperation unitTestOperation:test]];
                     FLThrowIfError(results);
                     
@@ -154,10 +154,10 @@
 //            if(results.testResults.count) {
 //                NSArray* failedResults = [results failedResults];
 //                if(failedResults && failedResults.count) {
-//                    FLTestLog(@"%@: %d test cases failed", test.unitTestName, failedResults.count);
+//                    FLTestOutput(@"%@: %d test cases failed", test.unitTestName, failedResults.count);
 //                }
 //                else {
-//                    FLTestLog(@"%@: %d test cases passed", test.unitTestName, results.testResults.count);
+//                    FLTestOutput(@"%@: %d test cases passed", test.unitTestName, results.testResults.count);
 //                }
 //            }
         }
@@ -172,16 +172,16 @@
 //    
 //    for(FLUnitTest* test in tests) {
 //
-//        FLTestLog(@"%Running @ Test Cases:", test.unitTestName);
+//        FLTestOutput(@"%Running @ Test Cases:", test.unitTestName);
 //
 //        [[FLUnitTest logger] indent:^{
 //            FLTestResultCollection* results = [self runChildSynchronously:test];
 //            NSArray* failedResults = [results failedResults];
 //            if(result && results.count) {
-//                FLTestLog(@"%@ test cases failed", failedResults.count);
+//                FLTestOutput(@"%@ test cases failed", failedResults.count);
 //            }
 //            else {
-//                FLTestLog(@"%@ test cases passed", results.count);
+//                FLTestOutput(@"%@ test cases passed", results.count);
 //            }
 //            
 //            [allResults addObject:results];

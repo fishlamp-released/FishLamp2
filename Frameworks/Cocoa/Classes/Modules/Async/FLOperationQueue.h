@@ -13,11 +13,13 @@
 
 @class FLFifoAsyncQueue;
 @class FLOperation;
+
 @protocol FLOperationQueueOperationFactory;
+@protocol FLOperationQueueErrorStrategy;
 
 @interface FLOperationQueue : NSObject<FLNotifier> {
 @private
-    FLFifoAsyncQueue* _fifoQueue;
+    FLFifoAsyncQueue* _schedulingQueue;
     NSMutableArray* _objectQueue;
     NSMutableArray* _activeQueue;
     NSMutableArray* _operationFactories;
@@ -27,17 +29,21 @@
     NSInteger _finishedCount;
     NSInteger _totalCount;
     BOOL _processing;
-    NSError* _error;
-    NSString* _name;
+    NSString* _queueName;
+
+    id<FLOperationQueueErrorStrategy> _errorStrategy;
 }
 
 // concurrent operations, defaults to 1
 @property (readwrite, assign) UInt32 maxConcurrentOperations;
 
 - (id) initWithName:(NSString*) name;
+- (id) initWithName:(NSString*) name
+      errorStrategy:(id<FLOperationQueueErrorStrategy>) errorStrategy;
 
 - (id) operationQueue;
-- (id) operationQueueWithName:(NSString*) name;
+- (id) operationQueueWithName:(NSString*) name
+                errorStrategy:(id<FLOperationQueueErrorStrategy>) errorStrategy;
 
 // info
 @property (readonly, strong) NSString* queueName;
@@ -86,6 +92,21 @@
 
 @end
 
+@protocol FLOperationQueueErrorStrategy <NSObject>
+- (void) setCancelled;
+- (void) handleError:(NSError*) error forQueuedObject:(id) object;
+- (void) operationQueueDidBeginProcessing:(FLOperationQueue*) operationQueue;
+- (BOOL) operationQueueWillHalt:(FLOperationQueue*) operationQueue;
+- (NSError*) errorResult;
+@end
+
+@interface FLSingleErrorOperationQueueStrategy : NSObject {
+@private
+    NSError* _error;
+}
+
+@end
+
 @protocol FLQueuedObject <NSObject>
 @optional
 - (FLOperation*) createOperationForOperationQueue:(FLOperationQueue*) operationQueue;
@@ -103,12 +124,12 @@
     didFinishWithResult:(FLPromisedResult) result;
 
 - (void) operationQueue:(FLOperationQueue*) operationQueue
-      didStartOperation:(id) operation
-              forObject:(id) object;
+      didStartOperation:(FLOperation*) operation
+        forQueuedObject:(id) object;
 
 - (void) operationQueue:(FLOperationQueue*) operationQueue
-     didFinishOperation:(id) operation
-              forObject:(id) object
+     didFinishOperation:(FLOperation*) operation
+        forQueuedObject:(id) object
              withResult:(FLPromisedResult) result;
 @end
 

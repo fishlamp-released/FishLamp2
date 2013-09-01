@@ -20,13 +20,11 @@
 @class FLLogEntry;
 @class FLStackTrace;
 
-@interface FLLogger : FLStringFormatter<FLStringFormatterOutput> {
+@interface FLLogger : FLStringFormatter {
 @private
     NSMutableArray* _sinks;
     dispatch_queue_t _fifoQueue;
-    NSInteger _indentLevel;
     NSMutableString* _line;
-    NSUInteger _length;
 }
 
 + (id) logger;
@@ -35,26 +33,21 @@
 - (void) addLoggerSink:(id<FLLogSink>) sink;
 - (void) removeLoggerSink:(id<FLLogSink>) sink;
 
+- (void) logEntry:(FLLogEntry*) entry;
+- (void) logObject:(id) object;
+- (void) logArrayOfLogEntries:(NSArray*) entryArray;
+
 @end
 
-@interface FLLogger (GrossImplementationMethods)
+@interface FLLogger (UglyImplementationMethods)
 // for subclasses.
-- (void) dispatchBlock:(dispatch_block_t) block;
+//- (void) dispatchBlock:(dispatch_block_t) block;
+
 - (void) logString:(NSString*) string
            logType:(NSString*) logType
         stackTrace:(FLStackTrace*) stackTrace;
-- (void) logEntry:(FLLogEntry*) entry;
-- (void) logEntries:(NSArray*) entryArray;
-- (void) logError:(NSError*) error;
-- (void) logException:(NSException*) exception;
-- (void) logException:(NSException*) exception withComment:(NSString*) comment;
+
 @end
-
-
-@interface NSException (FLLogger) 
-- (void) logExceptionToLogger:(FLLogger*) logger;
-@end
-
 
 #define FLLogToLogger(__LOGGER_, __TYPE__, __FORMAT__, ...) \
             [__LOGGER_ logString:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) logType:__TYPE__ stackTrace:FLCreateStackTrace(NO)];

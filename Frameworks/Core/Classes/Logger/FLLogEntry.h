@@ -19,16 +19,12 @@
     uint32_t _logCount;
     NSTimeInterval _timestamp;
     FLStackTrace* _stackTrace;
-    NSError* _error;
-    NSException* _exception;
-    NSUInteger _indentLevel;
-} 
+    id _object;
+}
 
 + (id) logEntry;
 
-@property (readwrite, assign, nonatomic) NSUInteger indentLevel;
-@property (readwrite, strong, nonatomic) NSError* error;
-@property (readwrite, strong, nonatomic) NSException* exception;
+@property (readwrite, strong, nonatomic) id object;
 @property (readwrite, strong, nonatomic) NSString* logString;
 @property (readwrite, strong, nonatomic) NSString* logType;
 @property (readonly, strong, nonatomic) NSString* logName;
@@ -38,4 +34,12 @@
 
 - (void) releaseToCache;
 
+@end
+
+@interface NSError (FLLogging)
+- (FLLogEntry*) logEntryForSelf;
+@end
+
+@interface NSException (FLLogging)
+- (FLLogEntry*) logEntryForSelf;
 @end

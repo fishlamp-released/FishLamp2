@@ -124,7 +124,7 @@ static int s_counter = 0;
     });
     
     [self willOpen];
-    [self.observers notify:@selector(httpRequestWillOpen:) withObject:self];
+    [self.notifier notify:@selector(httpRequestWillOpen:) withObject:self];
 
     if(!self.inputSink) {
         self.inputSink = [FLDataSink dataSink];
@@ -183,12 +183,12 @@ static int s_counter = 0;
 
     if(self.httpRequestAuthenticator && !self.disableAuthenticator) {
         [self willAuthenticate];
-        [self.observers notify:@selector(httpRequestWillAuthenticate:) withObject:self];
+        [self.notifier notify:@selector(httpRequestWillAuthenticate:) withObject:self];
 
         [self.httpRequestAuthenticator authenticateHttpRequest:self];
 
         [self didAuthenticate];
-        [self.observers notify:@selector(httpRequestDidAuthenticate:) withObject:self];
+        [self.notifier notify:@selector(httpRequestDidAuthenticate:) withObject:self];
     }
 
     [self openStreamWithURL:url];
@@ -201,7 +201,7 @@ static int s_counter = 0;
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
-    [self.observers notify:@selector(httpRequestDidOpen:) withObject:self];
+    [self.notifier notify:@selector(httpRequestDidOpen:) withObject:self];
     [self.byteCount setStartTime];
 }
 
@@ -211,7 +211,7 @@ static int s_counter = 0;
     [self.byteCount incrementByteCount:amountRead];
     [self didReadBytes:amountRead];
 
-    [self.observers notify:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
+    [self.notifier notify:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
 }
 
 - (void) finishRequestWithResult:(FLPromisedResult) result {
@@ -220,7 +220,7 @@ static int s_counter = 0;
     [self releaseResponseData];
                 
     [self setFinishedWithResult:result];
-    [self.observers notify:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
+    [self.notifier notify:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
     
     [self.retryHandler resetRetryCount];
 

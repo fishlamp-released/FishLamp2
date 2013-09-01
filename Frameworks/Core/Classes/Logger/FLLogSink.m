@@ -31,6 +31,12 @@
 - (void) logEntry:(FLLogEntry*) entry stopPropagating:(BOOL*) stop {
 }
 
+- (void) indent {
+}
+
+- (void) outdent {
+}
+
 @end
 
 

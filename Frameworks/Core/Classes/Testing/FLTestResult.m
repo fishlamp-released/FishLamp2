@@ -51,7 +51,7 @@
     if(self) {
         _expectedCount = count;
         self.testName = NSStringFromClass([self class]);
-        self.loggerOutput = [FLPrettyString prettyString];
+        _loggerOutput = [[FLPrettyString alloc] init];
     }
     return self;
 }

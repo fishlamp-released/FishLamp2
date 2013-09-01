@@ -30,7 +30,7 @@ int FLTestToolMain(int argc, const char *argv[], NSString* bundleIdentifier, NSS
         
             FLLogger* logger = [FLLogger logger];
             [logger addLoggerSink:[FLConsoleLogSink consoleLogSink:FLLogOutputSimple]];
-            [[FLUnitTestLoggingManager instance] addLogger:logger forLogLevel:FLUnitTestLogLevelMinimal];
+            [[FLUnitTestLoggingManager instance] addLogger:logger];
         
             FLUnitTestRunner* runner = [FLUnitTestRunner unitTestRunner];
             FLPromisedResult result = [FLCurrentQueue runSynchronously:runner];

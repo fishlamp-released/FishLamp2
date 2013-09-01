@@ -10,6 +10,7 @@
 #import "FLStringUtils.h"
 #import "FLUnitTest.h"
 #import "FLTestCaseRunner.h"
+#import "FLSelectorPerforming.h"
 
 //#define FLTestCaseFlagBrokenString              @"_broken"
 //#define FLTestCaseFlagVerboseString             @"_debug"
@@ -53,6 +54,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 @synthesize testCaseTarget = _testCaseTarget;
 @synthesize testCaseName = _testCaseName;
 @synthesize runOrder =_runOrder;
+@synthesize unitTest = _unitTest;
 
 - (void) setDisabledWithReason:(NSString*) reason {
     self.disabled = YES;
@@ -120,7 +122,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 - (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest testBlock:(FLTestBlock) block  {
     self = [self initWithName:name unitTest:unitTest];
     if(self) {
-        _testCaseBlock = [block copy]
+        _testCaseBlock = [block copy];
     }
     return self;
 }
@@ -140,13 +142,13 @@ FLTestCaseFlagPair s_flagPairs[] = {
 }
 
 + (FLTestCase*) testCase:(NSString*) name unitTest:(FLUnitTest*) unitTest testBlock:(FLTestBlock) block {
-    return FLAutorelease([[FLTestCase alloc] initWithName:name testBlock:block]);
+    return FLAutorelease([[FLTestCase alloc] initWithName:name unitTest:unitTest testBlock:block]);
 }
 
 - (void) performTest {
     if(!self.isDisabled) {
         if(_testCaseTarget && _testCaseSelector) {
-            FLPerformSelector0(_testCaseTarget, _testCaseSelector)
+            FLPerformSelector0(_testCaseTarget, _testCaseSelector);
         }
         if(_testCaseBlock) {
             _testCaseBlock();
@@ -212,9 +214,9 @@ FLTestCaseFlagPair s_flagPairs[] = {
     
 //    FLAssertAreEqualWithComment(failed, failureType, nil);
 }
+#endif
 
 @end
 
-#endif
 
 

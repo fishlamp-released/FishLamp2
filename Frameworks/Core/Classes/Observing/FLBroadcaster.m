@@ -31,14 +31,14 @@
     return self;
 }
 
-- (void) addObserver:(id) object {
+- (void) addListener:(id) listener {
     if(!_listeners) {
         _listeners = [[NSMutableArray alloc] init];
     }
-    [_listeners addObject:object];
+    [_listeners addObject:listener];
 }
 
-- (void) removeObserver:(id) listener {
+- (void) removeListener:(id) listener {
     for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
         id object = [_listeners objectAtIndex:i];
         if([object representedObject] == listener) {

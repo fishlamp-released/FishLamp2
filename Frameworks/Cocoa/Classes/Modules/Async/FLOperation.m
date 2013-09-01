@@ -51,10 +51,10 @@
     return self.finisher;
 }
 
-- (void) startInQueue:(id<FLAsyncQueue>) queue {
-    self.asyncQueue = self.asyncQueue;
+- (void) startInQueue:(id<FLAsyncQueue>) asyncQueue {
+    self.asyncQueue = asyncQueue;
     [self startOperation];
-    [self.observers notify:@selector(operationWillBegin:) withObject:self];
+    [self.notifier notify:@selector(operationWillBegin:) withObject:self];
 }
 
 - (id<FLPromisedResult>) runSynchronouslyInQueue:(id<FLAsyncQueue>) asyncQueue {
@@ -93,14 +93,14 @@
         }
 
         [_children addObject:operation];
-        [operation.observers addObserver:self];
+        [operation.notifier addListener:self];
     }
 
 }
 
 - (void) didRunChildOperation:(FLOperation*) operation {
     @synchronized(self) {
-        [operation.observers removeObserver:self];
+        [operation.notifier removeListener:self];
         [_children removeObject:operation];
     }
 }
@@ -158,7 +158,7 @@
                 withResult:(FLPromisedResult) result {
             
     [self didFinishWithResult:result];
-    [self.observers notify:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
+    [self.notifier notify:@selector(operationDidFinish:withResult:) withObject:self withObject:result];
     self.asyncQueue = nil;
     self.cancelled = NO;
 }

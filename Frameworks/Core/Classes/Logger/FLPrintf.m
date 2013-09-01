@@ -11,54 +11,19 @@
 #import "FLWhitespace.h"
 #import "FishLampCore.h"
 
-static NSUInteger s_indent = 0;
+@implementation FLPrintfStringFormatter
 
-void FLPrintStringWithIndent(NSUInteger indent, NSString* string) {
-    if(indent) {
-        FLPrintString([NSString stringWithFormat:@"%@%@", [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:indent], string]);
-    }
-    else {
-        FLPrintString(string);
-    }
-}
+FLSynthesizeSingleton(FLPrintfStringFormatter);
 
-void FLPrintString(NSString* string) {
+- (void) willAppendString:(NSString*) string {
     const char* c_str = [string cStringUsingEncoding:NSUTF8StringEncoding];
     if(c_str) {
         printf("%s", c_str);
     }
 }
 
-void FLPrintFormat(NSString* format, ...) {
-
-    if(FLStringIsEmpty(format)) {
-        return;
-    }
-     
-    va_list va;
-    va_start(va, format);
-    NSString* string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-    va_end(va);
-    
-    FLPrintStringWithIndent(s_indent, string);
+- (void) willAppendAttributedString:(NSAttributedString*) string {
+    [self willAppendString:[string string]];
 }
 
-void FLPrintFormatWithIndent(NSUInteger indent, NSString* format, ...) {
-
-    if(FLStringIsEmpty(format)) {
-        return;
-    }
-     
-    va_list va;
-    va_start(va, format);
-    NSString* string = FLAutorelease([[NSMutableString alloc] initWithFormat:format arguments:va]);
-    va_end(va);
-    
-    FLPrintStringWithIndent(indent, string);
-}
-
-extern void FLIndentString(void (^block)()) {
-    ++s_indent;
-    if(block) block();
-    --s_indent;
-}
+@end

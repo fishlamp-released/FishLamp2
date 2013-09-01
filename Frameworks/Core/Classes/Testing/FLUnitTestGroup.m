@@ -53,7 +53,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"%@ { name=%@, priority=%d }", [super description], self.groupName, [self groupPriority]];
+    return [NSString stringWithFormat:@"%@ { name=%@, priority=%d }", [super description], self.groupName, (int) [self groupPriority]];
 }
 
 + (FLUnitTestGroup*) sanityCheckTestGroup {

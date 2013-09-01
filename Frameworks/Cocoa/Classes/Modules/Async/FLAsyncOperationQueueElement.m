@@ -45,16 +45,16 @@
     return FLAutorelease([[[self class] alloc] initWithInput:input operation:operation]);
 }
 
-- (void) beginOperationInQueue:(FLOperationQueue*) queue
-                    completion:(dispatch_block_t) completion {
-
-    completion = FLCopyWithAutorelease(completion);
-
-    [queue queueObject:self.operation completion:^(FLPromisedResult result) {
-        self.operationResult = result;
-        completion();
-    }];
-}
+//- (void) beginOperationInQueue:(FLOperationQueue*) queue
+//                    completion:(dispatch_block_t) completion {
+//
+//    completion = FLCopyWithAutorelease(completion);
+//
+//    [queue queueObject:self.operation completion:^(FLPromisedResult result) {
+//        self.operationResult = result;
+//        completion();
+//    }];
+//}
 
 - (void) requestCancel {
     [self.operation requestCancel];

@@ -600,19 +600,24 @@
 		2769E5C517CF9AED00F5D868 /* FLUnitTestDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E5C217CF9AED00F5D868 /* FLUnitTestDefines.h */; };
 		2769E5C617CF9AED00F5D868 /* FLUnitTestDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E5C217CF9AED00F5D868 /* FLUnitTestDefines.h */; };
 		2769E5C717CF9AED00F5D868 /* FLUnitTestDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E5C217CF9AED00F5D868 /* FLUnitTestDefines.h */; };
-		2769E5DA17CFA3B500F5D868 /* FLAbstractStringAppender.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E5D817CFA3B500F5D868 /* FLAbstractStringAppender.h */; };
-		2769E5DB17CFA3B500F5D868 /* FLAbstractStringAppender.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E5D817CFA3B500F5D868 /* FLAbstractStringAppender.h */; };
-		2769E5DC17CFA3B500F5D868 /* FLAbstractStringAppender.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E5D817CFA3B500F5D868 /* FLAbstractStringAppender.h */; };
-		2769E5DD17CFA3B500F5D868 /* FLAbstractStringAppender.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E5D817CFA3B500F5D868 /* FLAbstractStringAppender.h */; };
-		2769E5DE17CFA3B500F5D868 /* FLAbstractStringAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E5D917CFA3B500F5D868 /* FLAbstractStringAppender.m */; };
-		2769E5DF17CFA3B500F5D868 /* FLAbstractStringAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E5D917CFA3B500F5D868 /* FLAbstractStringAppender.m */; };
-		2769E5E017CFA3B500F5D868 /* FLAbstractStringAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E5D917CFA3B500F5D868 /* FLAbstractStringAppender.m */; };
-		2769E5E117CFA3B500F5D868 /* FLAbstractStringAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E5D917CFA3B500F5D868 /* FLAbstractStringAppender.m */; };
-		2769E5E217CFA3B500F5D868 /* FLAbstractStringAppender.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E5D917CFA3B500F5D868 /* FLAbstractStringAppender.m */; };
-		2769E5F017CFA7E800F5D868 /* FLStringFormatterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E5EE17CFA7E800F5D868 /* FLStringFormatterProtocol.h */; };
-		2769E5F117CFA7E800F5D868 /* FLStringFormatterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E5EE17CFA7E800F5D868 /* FLStringFormatterProtocol.h */; };
-		2769E5F217CFA7E800F5D868 /* FLStringFormatterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E5EE17CFA7E800F5D868 /* FLStringFormatterProtocol.h */; };
-		2769E5F317CFA7E800F5D868 /* FLStringFormatterProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E5EE17CFA7E800F5D868 /* FLStringFormatterProtocol.h */; };
+		2769E63717D279EC00F5D868 /* FLPrettyAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E63517D279EC00F5D868 /* FLPrettyAttributedString.h */; };
+		2769E63817D279EC00F5D868 /* FLPrettyAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E63517D279EC00F5D868 /* FLPrettyAttributedString.h */; };
+		2769E63917D279EC00F5D868 /* FLPrettyAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E63517D279EC00F5D868 /* FLPrettyAttributedString.h */; };
+		2769E63A17D279EC00F5D868 /* FLPrettyAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E63517D279EC00F5D868 /* FLPrettyAttributedString.h */; };
+		2769E63B17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E63617D279EC00F5D868 /* FLPrettyAttributedString.m */; };
+		2769E63C17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E63617D279EC00F5D868 /* FLPrettyAttributedString.m */; };
+		2769E63D17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E63617D279EC00F5D868 /* FLPrettyAttributedString.m */; };
+		2769E63E17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E63617D279EC00F5D868 /* FLPrettyAttributedString.m */; };
+		2769E63F17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E63617D279EC00F5D868 /* FLPrettyAttributedString.m */; };
+		2769E65D17D2907900F5D868 /* FLWhitespaceStringFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E65B17D2907900F5D868 /* FLWhitespaceStringFormatter.h */; };
+		2769E65E17D2907900F5D868 /* FLWhitespaceStringFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E65B17D2907900F5D868 /* FLWhitespaceStringFormatter.h */; };
+		2769E65F17D2907900F5D868 /* FLWhitespaceStringFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E65B17D2907900F5D868 /* FLWhitespaceStringFormatter.h */; };
+		2769E66017D2907900F5D868 /* FLWhitespaceStringFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2769E65B17D2907900F5D868 /* FLWhitespaceStringFormatter.h */; };
+		2769E66117D2907900F5D868 /* FLWhitespaceStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E65C17D2907900F5D868 /* FLWhitespaceStringFormatter.m */; };
+		2769E66217D2907900F5D868 /* FLWhitespaceStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E65C17D2907900F5D868 /* FLWhitespaceStringFormatter.m */; };
+		2769E66317D2907900F5D868 /* FLWhitespaceStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E65C17D2907900F5D868 /* FLWhitespaceStringFormatter.m */; };
+		2769E66417D2907900F5D868 /* FLWhitespaceStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E65C17D2907900F5D868 /* FLWhitespaceStringFormatter.m */; };
+		2769E66517D2907900F5D868 /* FLWhitespaceStringFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2769E65C17D2907900F5D868 /* FLWhitespaceStringFormatter.m */; };
 		2781F2B1179C4CBC008DCAFB /* FLAssertionFailedError.h in Headers */ = {isa = PBXBuildFile; fileRef = 2781F2A9179C4CBC008DCAFB /* FLAssertionFailedError.h */; };
 		2781F2B2179C4CBC008DCAFB /* FLAssertionFailedError.h in Headers */ = {isa = PBXBuildFile; fileRef = 2781F2A9179C4CBC008DCAFB /* FLAssertionFailedError.h */; };
 		2781F2B3179C4CBC008DCAFB /* FLAssertionFailedError.h in Headers */ = {isa = PBXBuildFile; fileRef = 2781F2A9179C4CBC008DCAFB /* FLAssertionFailedError.h */; };
@@ -838,9 +843,10 @@
 		2769E5AC17CF978200F5D868 /* FLUnitTestLogOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUnitTestLogOutput.h; sourceTree = "<group>"; };
 		2769E5AD17CF978200F5D868 /* FLUnitTestLogOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLUnitTestLogOutput.m; sourceTree = "<group>"; };
 		2769E5C217CF9AED00F5D868 /* FLUnitTestDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLUnitTestDefines.h; sourceTree = "<group>"; };
-		2769E5D817CFA3B500F5D868 /* FLAbstractStringAppender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAbstractStringAppender.h; sourceTree = "<group>"; };
-		2769E5D917CFA3B500F5D868 /* FLAbstractStringAppender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAbstractStringAppender.m; sourceTree = "<group>"; };
-		2769E5EE17CFA7E800F5D868 /* FLStringFormatterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStringFormatterProtocol.h; sourceTree = "<group>"; };
+		2769E63517D279EC00F5D868 /* FLPrettyAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLPrettyAttributedString.h; sourceTree = "<group>"; };
+		2769E63617D279EC00F5D868 /* FLPrettyAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLPrettyAttributedString.m; sourceTree = "<group>"; };
+		2769E65B17D2907900F5D868 /* FLWhitespaceStringFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWhitespaceStringFormatter.h; sourceTree = "<group>"; };
+		2769E65C17D2907900F5D868 /* FLWhitespaceStringFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWhitespaceStringFormatter.m; sourceTree = "<group>"; };
 		2781F2A9179C4CBC008DCAFB /* FLAssertionFailedError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAssertionFailedError.h; sourceTree = "<group>"; };
 		2781F2AA179C4CBC008DCAFB /* FLAssertionFailedError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAssertionFailedError.m; sourceTree = "<group>"; };
 		2781F2AB179C4CBC008DCAFB /* FLAssertionFailureErrorDomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAssertionFailureErrorDomain.h; sourceTree = "<group>"; };
@@ -1068,19 +1074,20 @@
 			isa = PBXGroup;
 			children = (
 				27680722175D370700B1D643 /* FLCharString.h */,
-				2733799C1781FF7D00F56276 /* FLStringUtils_Inlines.h */,
 				27680723175D370700B1D643 /* FLCharString.m */,
+				2769E63517D279EC00F5D868 /* FLPrettyAttributedString.h */,
+				2769E63617D279EC00F5D868 /* FLPrettyAttributedString.m */,
 				27680724175D370700B1D643 /* FLPrettyString.h */,
 				27680725175D370700B1D643 /* FLPrettyString.m */,
 				27680726175D370700B1D643 /* FLStringFormatter.h */,
 				27680727175D370700B1D643 /* FLStringFormatter.m */,
 				27680728175D370700B1D643 /* FLStringUtils.h */,
 				27680729175D370700B1D643 /* FLStringUtils.m */,
+				2733799C1781FF7D00F56276 /* FLStringUtils_Inlines.h */,
 				2768072A175D370700B1D643 /* FLWhitespace.h */,
 				2768072B175D370700B1D643 /* FLWhitespace.m */,
-				2769E5D817CFA3B500F5D868 /* FLAbstractStringAppender.h */,
-				2769E5D917CFA3B500F5D868 /* FLAbstractStringAppender.m */,
-				2769E5EE17CFA7E800F5D868 /* FLStringFormatterProtocol.h */,
+				2769E65B17D2907900F5D868 /* FLWhitespaceStringFormatter.h */,
+				2769E65C17D2907900F5D868 /* FLWhitespaceStringFormatter.m */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -1240,7 +1247,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2769E5DA17CFA3B500F5D868 /* FLAbstractStringAppender.h in Headers */,
 				2768074A175D370700B1D643 /* FLDebug.h in Headers */,
 				2768076E175D370700B1D643 /* FLCancelError.h in Headers */,
 				2781F2C3179C4CBC008DCAFB /* FLAssertions.h in Headers */,
@@ -1271,7 +1277,6 @@
 				27680825175D370700B1D643 /* FLBitFlagsProperty.h in Headers */,
 				27680829175D370700B1D643 /* FLDefaultProperty.h in Headers */,
 				2769E58417CBA7BE00F5D868 /* FLUnitTestResult_Internal.h in Headers */,
-				2769E5F017CFA7E800F5D868 /* FLStringFormatterProtocol.h in Headers */,
 				2768082D175D370700B1D643 /* FLProperties.h in Headers */,
 				27680831175D370700B1D643 /* FLSingletonProperty.h in Headers */,
 				2702148617C3CF9F001A8A77 /* FLArrayProxy.h in Headers */,
@@ -1280,8 +1285,10 @@
 				27680835175D370700B1D643 /* FLStaticMemberProperty.h in Headers */,
 				27680839175D370700B1D643 /* FLStructFlagsProperty.h in Headers */,
 				2768083D175D370700B1D643 /* FLCompilerWarnings.h in Headers */,
+				2769E65D17D2907900F5D868 /* FLWhitespaceStringFormatter.h in Headers */,
 				27680841175D370700B1D643 /* FLCoreFlags.h in Headers */,
 				27680845175D370700B1D643 /* FLMath.h in Headers */,
+				2769E63717D279EC00F5D868 /* FLPrettyAttributedString.h in Headers */,
 				27680849175D370700B1D643 /* FLObjc.h in Headers */,
 				2768084D175D370700B1D643 /* FLObjcARC.h in Headers */,
 				2769E51C17CAF7C600F5D868 /* FLEventForwarder.h in Headers */,
@@ -1329,7 +1336,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2769E5DC17CFA3B500F5D868 /* FLAbstractStringAppender.h in Headers */,
 				2768074C175D370700B1D643 /* FLDebug.h in Headers */,
 				27680770175D370700B1D643 /* FLCancelError.h in Headers */,
 				2781F2C5179C4CBC008DCAFB /* FLAssertions.h in Headers */,
@@ -1360,7 +1366,6 @@
 				27680827175D370700B1D643 /* FLBitFlagsProperty.h in Headers */,
 				2768082B175D370700B1D643 /* FLDefaultProperty.h in Headers */,
 				2769E58617CBA7BE00F5D868 /* FLUnitTestResult_Internal.h in Headers */,
-				2769E5F217CFA7E800F5D868 /* FLStringFormatterProtocol.h in Headers */,
 				2768082F175D370700B1D643 /* FLProperties.h in Headers */,
 				27680833175D370700B1D643 /* FLSingletonProperty.h in Headers */,
 				2702148817C3CF9F001A8A77 /* FLArrayProxy.h in Headers */,
@@ -1369,8 +1374,10 @@
 				27680837175D370700B1D643 /* FLStaticMemberProperty.h in Headers */,
 				2768083B175D370700B1D643 /* FLStructFlagsProperty.h in Headers */,
 				2768083F175D370700B1D643 /* FLCompilerWarnings.h in Headers */,
+				2769E65F17D2907900F5D868 /* FLWhitespaceStringFormatter.h in Headers */,
 				27680843175D370700B1D643 /* FLCoreFlags.h in Headers */,
 				27680847175D370700B1D643 /* FLMath.h in Headers */,
+				2769E63917D279EC00F5D868 /* FLPrettyAttributedString.h in Headers */,
 				2768084B175D370700B1D643 /* FLObjc.h in Headers */,
 				2768084F175D370700B1D643 /* FLObjcARC.h in Headers */,
 				2769E51E17CAF7C600F5D868 /* FLEventForwarder.h in Headers */,
@@ -1418,7 +1425,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2769E5DB17CFA3B500F5D868 /* FLAbstractStringAppender.h in Headers */,
 				2768074B175D370700B1D643 /* FLDebug.h in Headers */,
 				2768076F175D370700B1D643 /* FLCancelError.h in Headers */,
 				2781F2C4179C4CBC008DCAFB /* FLAssertions.h in Headers */,
@@ -1449,7 +1455,6 @@
 				27680826175D370700B1D643 /* FLBitFlagsProperty.h in Headers */,
 				2768082A175D370700B1D643 /* FLDefaultProperty.h in Headers */,
 				2769E58517CBA7BE00F5D868 /* FLUnitTestResult_Internal.h in Headers */,
-				2769E5F117CFA7E800F5D868 /* FLStringFormatterProtocol.h in Headers */,
 				2768082E175D370700B1D643 /* FLProperties.h in Headers */,
 				27680832175D370700B1D643 /* FLSingletonProperty.h in Headers */,
 				2702148717C3CF9F001A8A77 /* FLArrayProxy.h in Headers */,
@@ -1458,8 +1463,10 @@
 				27680836175D370700B1D643 /* FLStaticMemberProperty.h in Headers */,
 				2768083A175D370700B1D643 /* FLStructFlagsProperty.h in Headers */,
 				2768083E175D370700B1D643 /* FLCompilerWarnings.h in Headers */,
+				2769E65E17D2907900F5D868 /* FLWhitespaceStringFormatter.h in Headers */,
 				27680842175D370700B1D643 /* FLCoreFlags.h in Headers */,
 				27680846175D370700B1D643 /* FLMath.h in Headers */,
+				2769E63817D279EC00F5D868 /* FLPrettyAttributedString.h in Headers */,
 				2768084A175D370700B1D643 /* FLObjc.h in Headers */,
 				2768084E175D370700B1D643 /* FLObjcARC.h in Headers */,
 				2769E51D17CAF7C600F5D868 /* FLEventForwarder.h in Headers */,
@@ -1507,7 +1514,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2769E5DD17CFA3B500F5D868 /* FLAbstractStringAppender.h in Headers */,
 				2768074D175D370700B1D643 /* FLDebug.h in Headers */,
 				27680771175D370700B1D643 /* FLCancelError.h in Headers */,
 				2781F2C6179C4CBC008DCAFB /* FLAssertions.h in Headers */,
@@ -1538,7 +1544,6 @@
 				27680828175D370700B1D643 /* FLBitFlagsProperty.h in Headers */,
 				2768082C175D370700B1D643 /* FLDefaultProperty.h in Headers */,
 				2769E58717CBA7BE00F5D868 /* FLUnitTestResult_Internal.h in Headers */,
-				2769E5F317CFA7E800F5D868 /* FLStringFormatterProtocol.h in Headers */,
 				27680830175D370700B1D643 /* FLProperties.h in Headers */,
 				27680834175D370700B1D643 /* FLSingletonProperty.h in Headers */,
 				2702148917C3CF9F001A8A77 /* FLArrayProxy.h in Headers */,
@@ -1547,8 +1552,10 @@
 				27680838175D370700B1D643 /* FLStaticMemberProperty.h in Headers */,
 				2768083C175D370700B1D643 /* FLStructFlagsProperty.h in Headers */,
 				27680840175D370700B1D643 /* FLCompilerWarnings.h in Headers */,
+				2769E66017D2907900F5D868 /* FLWhitespaceStringFormatter.h in Headers */,
 				27680844175D370700B1D643 /* FLCoreFlags.h in Headers */,
 				27680848175D370700B1D643 /* FLMath.h in Headers */,
+				2769E63A17D279EC00F5D868 /* FLPrettyAttributedString.h in Headers */,
 				2768084C175D370700B1D643 /* FLObjc.h in Headers */,
 				27680850175D370700B1D643 /* FLObjcARC.h in Headers */,
 				2769E51F17CAF7C600F5D868 /* FLEventForwarder.h in Headers */,
@@ -1733,6 +1740,7 @@
 				276807A9175D370700B1D643 /* FLExceptions.m in Sources */,
 				270214A617C3CF9F001A8A77 /* FLObjectProxy.m in Sources */,
 				276807B6175D370700B1D643 /* FLMutableError.m in Sources */,
+				2769E63C17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */,
 				2769E53217CBA2EC00F5D868 /* FLUnitTest.m in Sources */,
 				276807BF175D370700B1D643 /* FLStackTrace.m in Sources */,
 				276807C8175D370700B1D643 /* NSError+FLExtras.m in Sources */,
@@ -1756,7 +1764,6 @@
 				27680821175D370700B1D643 /* FLAtomicProperties.m in Sources */,
 				2768085E175D370700B1D643 /* FLObjcRuntime.m in Sources */,
 				27680867175D370700B1D643 /* FLPropertyAttributes.m in Sources */,
-				2769E5DF17CFA3B500F5D868 /* FLAbstractStringAppender.m in Sources */,
 				27680870175D370700B1D643 /* FLRuntimeInfo.m in Sources */,
 				27680879175D370700B1D643 /* FLSelector.m in Sources */,
 				2769E59117CE60D700F5D868 /* FLUnitTestLoggingManager.m in Sources */,
@@ -1766,6 +1773,7 @@
 				2768089D175D370700B1D643 /* FLStringUtils.m in Sources */,
 				276808A6175D370700B1D643 /* FLWhitespace.m in Sources */,
 				276808B7175D370700B1D643 /* FLBitFlags.m in Sources */,
+				2769E66217D2907900F5D868 /* FLWhitespaceStringFormatter.m in Sources */,
 				276808C9175D370700B1D643 /* FLOSVersion.m in Sources */,
 				276808D2175D370700B1D643 /* FLSelectorPerforming.m in Sources */,
 				2769E57417CBA79100F5D868 /* FLTestResult.m in Sources */,
@@ -1800,6 +1808,7 @@
 				276807AB175D370700B1D643 /* FLExceptions.m in Sources */,
 				270214A817C3CF9F001A8A77 /* FLObjectProxy.m in Sources */,
 				276807B8175D370700B1D643 /* FLMutableError.m in Sources */,
+				2769E63E17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */,
 				2769E53417CBA2EC00F5D868 /* FLUnitTest.m in Sources */,
 				276807C1175D370700B1D643 /* FLStackTrace.m in Sources */,
 				276807CA175D370700B1D643 /* NSError+FLExtras.m in Sources */,
@@ -1823,7 +1832,6 @@
 				27680823175D370700B1D643 /* FLAtomicProperties.m in Sources */,
 				27680860175D370700B1D643 /* FLObjcRuntime.m in Sources */,
 				27680869175D370700B1D643 /* FLPropertyAttributes.m in Sources */,
-				2769E5E117CFA3B500F5D868 /* FLAbstractStringAppender.m in Sources */,
 				27680872175D370700B1D643 /* FLRuntimeInfo.m in Sources */,
 				2768087B175D370700B1D643 /* FLSelector.m in Sources */,
 				2769E59317CE60D700F5D868 /* FLUnitTestLoggingManager.m in Sources */,
@@ -1833,6 +1841,7 @@
 				2768089F175D370700B1D643 /* FLStringUtils.m in Sources */,
 				276808A8175D370700B1D643 /* FLWhitespace.m in Sources */,
 				276808B9175D370700B1D643 /* FLBitFlags.m in Sources */,
+				2769E66417D2907900F5D868 /* FLWhitespaceStringFormatter.m in Sources */,
 				276808CB175D370700B1D643 /* FLOSVersion.m in Sources */,
 				276808D4175D370700B1D643 /* FLSelectorPerforming.m in Sources */,
 				2769E57617CBA79100F5D868 /* FLTestResult.m in Sources */,
@@ -1867,6 +1876,7 @@
 				276807A8175D370700B1D643 /* FLExceptions.m in Sources */,
 				270214A517C3CF9F001A8A77 /* FLObjectProxy.m in Sources */,
 				276807B5175D370700B1D643 /* FLMutableError.m in Sources */,
+				2769E63B17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */,
 				2769E53117CBA2EC00F5D868 /* FLUnitTest.m in Sources */,
 				276807BE175D370700B1D643 /* FLStackTrace.m in Sources */,
 				276807C7175D370700B1D643 /* NSError+FLExtras.m in Sources */,
@@ -1890,7 +1900,6 @@
 				27680820175D370700B1D643 /* FLAtomicProperties.m in Sources */,
 				2768085D175D370700B1D643 /* FLObjcRuntime.m in Sources */,
 				27680866175D370700B1D643 /* FLPropertyAttributes.m in Sources */,
-				2769E5DE17CFA3B500F5D868 /* FLAbstractStringAppender.m in Sources */,
 				2768086F175D370700B1D643 /* FLRuntimeInfo.m in Sources */,
 				27680878175D370700B1D643 /* FLSelector.m in Sources */,
 				2769E59017CE60D700F5D868 /* FLUnitTestLoggingManager.m in Sources */,
@@ -1900,6 +1909,7 @@
 				2768089C175D370700B1D643 /* FLStringUtils.m in Sources */,
 				276808A5175D370700B1D643 /* FLWhitespace.m in Sources */,
 				276808B6175D370700B1D643 /* FLBitFlags.m in Sources */,
+				2769E66117D2907900F5D868 /* FLWhitespaceStringFormatter.m in Sources */,
 				276808C8175D370700B1D643 /* FLOSVersion.m in Sources */,
 				276808D1175D370700B1D643 /* FLSelectorPerforming.m in Sources */,
 				2769E57317CBA79100F5D868 /* FLTestResult.m in Sources */,
@@ -1934,6 +1944,7 @@
 				276807AA175D370700B1D643 /* FLExceptions.m in Sources */,
 				270214A717C3CF9F001A8A77 /* FLObjectProxy.m in Sources */,
 				276807B7175D370700B1D643 /* FLMutableError.m in Sources */,
+				2769E63D17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */,
 				2769E53317CBA2EC00F5D868 /* FLUnitTest.m in Sources */,
 				276807C0175D370700B1D643 /* FLStackTrace.m in Sources */,
 				276807C9175D370700B1D643 /* NSError+FLExtras.m in Sources */,
@@ -1957,7 +1968,6 @@
 				27680822175D370700B1D643 /* FLAtomicProperties.m in Sources */,
 				2768085F175D370700B1D643 /* FLObjcRuntime.m in Sources */,
 				27680868175D370700B1D643 /* FLPropertyAttributes.m in Sources */,
-				2769E5E017CFA3B500F5D868 /* FLAbstractStringAppender.m in Sources */,
 				27680871175D370700B1D643 /* FLRuntimeInfo.m in Sources */,
 				2768087A175D370700B1D643 /* FLSelector.m in Sources */,
 				2769E59217CE60D700F5D868 /* FLUnitTestLoggingManager.m in Sources */,
@@ -1967,6 +1977,7 @@
 				2768089E175D370700B1D643 /* FLStringUtils.m in Sources */,
 				276808A7175D370700B1D643 /* FLWhitespace.m in Sources */,
 				276808B8175D370700B1D643 /* FLBitFlags.m in Sources */,
+				2769E66317D2907900F5D868 /* FLWhitespaceStringFormatter.m in Sources */,
 				276808CA175D370700B1D643 /* FLOSVersion.m in Sources */,
 				276808D3175D370700B1D643 /* FLSelectorPerforming.m in Sources */,
 				2769E57517CBA79100F5D868 /* FLTestResult.m in Sources */,
@@ -2001,6 +2012,7 @@
 				276807AC175D370700B1D643 /* FLExceptions.m in Sources */,
 				270214A917C3CF9F001A8A77 /* FLObjectProxy.m in Sources */,
 				276807B9175D370700B1D643 /* FLMutableError.m in Sources */,
+				2769E63F17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */,
 				2769E53517CBA2EC00F5D868 /* FLUnitTest.m in Sources */,
 				276807C2175D370700B1D643 /* FLStackTrace.m in Sources */,
 				276807CB175D370700B1D643 /* NSError+FLExtras.m in Sources */,
@@ -2024,7 +2036,6 @@
 				27680824175D370700B1D643 /* FLAtomicProperties.m in Sources */,
 				27680861175D370700B1D643 /* FLObjcRuntime.m in Sources */,
 				2768086A175D370700B1D643 /* FLPropertyAttributes.m in Sources */,
-				2769E5E217CFA3B500F5D868 /* FLAbstractStringAppender.m in Sources */,
 				27680873175D370700B1D643 /* FLRuntimeInfo.m in Sources */,
 				2768087C175D370700B1D643 /* FLSelector.m in Sources */,
 				2769E59417CE60D700F5D868 /* FLUnitTestLoggingManager.m in Sources */,
@@ -2034,6 +2045,7 @@
 				276808A0175D370700B1D643 /* FLStringUtils.m in Sources */,
 				276808A9175D370700B1D643 /* FLWhitespace.m in Sources */,
 				276808BA175D370700B1D643 /* FLBitFlags.m in Sources */,
+				2769E66517D2907900F5D868 /* FLWhitespaceStringFormatter.m in Sources */,
 				276808CC175D370700B1D643 /* FLOSVersion.m in Sources */,
 				276808D5175D370700B1D643 /* FLSelectorPerforming.m in Sources */,
 				2769E57717CBA79100F5D868 /* FLTestResult.m in Sources */,

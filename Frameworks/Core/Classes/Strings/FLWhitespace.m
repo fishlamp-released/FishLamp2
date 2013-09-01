@@ -89,6 +89,11 @@
     );
 }
 
++ (FLWhitespace*) defaultWhitespace {
+    return [FLWhitespace tabbedWithSpacesWhitespace];
+}
+
+
 //- (void) appendEol:(NSMutableString*) toString {
 //    if(FLStringIsNotEmpty(_eolString)) {
 //        [toString appendString:_eolString];

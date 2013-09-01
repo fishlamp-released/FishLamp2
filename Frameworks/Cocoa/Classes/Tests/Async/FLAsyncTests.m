@@ -24,7 +24,7 @@
 }
 
 - (void) _didExecuteOperation:(FLPerformSelectorOperation*) operation {
-	[FLTestLog appendLine:@"did execute"];
+	[FLTestOutput appendLine:@"did execute"];
 }
 
 - (void) _asyncDone:(FLPerformSelectorOperation*) operation

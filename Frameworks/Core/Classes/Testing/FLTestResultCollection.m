@@ -9,6 +9,7 @@
 
 #import "FLTestResultCollection.h"
 #import "FLUnitTest.h"
+#import "FLAssertions.h"
 
 @implementation FLTestResultCollection
 

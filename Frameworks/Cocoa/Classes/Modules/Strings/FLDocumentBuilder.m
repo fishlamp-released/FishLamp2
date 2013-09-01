@@ -8,6 +8,8 @@
 //
 
 #import "FLDocumentBuilder.h"
+#import "FLPrettyString.h"
+#import "FLPrettyAttributedString.h"
 
 @implementation FLDocumentBuilder 
 
@@ -18,8 +20,6 @@
     if(self) {
         _document = [[FLStringDocument alloc] init];
         _document.rootStringBuilder.parent = self;
-        self.stringFormatterOutput = self;
-
     }
     return self;
 }
@@ -47,8 +47,7 @@
     return [_document openedStringBuilder];
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter
-appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
+- (void) appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
     [anotherStringFormatter appendStringFormatter:_document.rootStringBuilder];
 }
 
@@ -72,50 +71,20 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
     [self.document closeAllStringBuilders];
 }
 
-- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
-    [[self openedSection] stringFormatterAppendBlankLine:stringFormatter];
-}
-
-- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
-    [[self openedSection] stringFormatterOpenLine:stringFormatter];
-}
-
-- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
-    [[self openedSection] stringFormatterCloseLine:stringFormatter];
-}
-
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
-    [[self openedSection] stringFormatter:stringFormatter appendString:string];
-}
-
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString {
-    [[self openedSection] stringFormatter:stringFormatter appendAttributedString:attributedString];
-}
-
-- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
-    [[self openedSection] stringFormatterIndent:stringFormatter];
-}
-
-- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
-    [[self openedSection] stringFormatterOutdent:stringFormatter];
-}
-
-- (NSString*) description {
-    FLPrettyString* string = [FLPrettyString prettyString];
-    [string appendStringFormatter:self];
-    return string.string;
-}
-
-- (id) parent {
-    return nil;
-}
-
-//- (void) appendDocument:(FLDocumentBuilder*) document {
-//    [self appendStringFormatter:document];
+//- (void) willAppendString:(NSString*) string {
+//    [[self.document] willAppendString:string];
+//}
+//
+//- (void) willAppendAttributedString:(NSAttributedString*) string {
+//    [[self.document] willAppendAttributedString:string];
 //}
 
+- (NSString*) exportString {
+    return [self buildString];
+}
+
 - (NSString*) buildString {
-    return [self buildStringWithWhitespace:[FLPrettyString defaultWhitespace]];
+    return [self buildStringWithWhitespace:[FLWhitespace defaultWhitespace]];
 }
 
 - (NSString*) buildStringWithWhitespace:(FLWhitespace*) whitespace {
@@ -128,9 +97,57 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
     return [self buildStringWithWhitespace:nil];
 }
 
-- (NSUInteger) stringFormatterGetLength:(id<FLStringFormatter>) formatter {
+- (NSAttributedString*) exportAttributedString {
+    FLPrettyAttributedString* prettyString = [FLPrettyAttributedString prettyAttributedString];
+    [prettyString appendStringFormatter:self];
+    return [prettyString exportAttributedString];
+}
+
+- (void) appendBlankLine {
+    [[self openedSection] appendBlankLine];
+}
+
+- (void) openLine {
+    [[self openedSection] openLine];
+}
+
+- (void) closeLine {
+    [[self openedSection] closeLine];
+}
+
+- (void) appendString:(NSString*) string {
+    [[self openedSection] appendString:string];
+}
+
+- (void) appendAttributedString:(NSAttributedString*) attributedString {
+    [[self openedSection] appendAttributedString:attributedString];
+}
+
+- (void) indent {
+    [[self openedSection] indent];
+}
+
+- (void) outdent {
+    [[self openedSection] outdent];
+}
+
+- (NSUInteger) length {
     return [_document length];
 }
+
+- (NSString*) description {
+    return [self exportString];
+}
+
+- (id) parent {
+    return nil;
+}
+
+//- (void) appendDocument:(FLDocumentBuilder*) document {
+//    [self appendStringFormatter:document];
+//}
+
+
 
 
 @end

@@ -8,11 +8,14 @@
 //
 
 #import "FLCoreRequired.h"
+#import "FLWhitespaceStringFormatter.h"
 
-extern void FLPrintFormatWithIndent(NSUInteger indent, NSString* format, ...);
-extern void FLPrintFormat(NSString* format, ...);
-extern void FLPrintString(NSString* format);
-extern void FLPrintStringWithIndent(NSUInteger indent, NSString* string);
+@interface FLPrintfStringFormatter : FLWhitespaceStringFormatter 
 
+FLSingletonProperty(FLPrintfStringFormatter);
 
-extern void FLIndentString(void (^block)());
+@end
+
+//#define FLPrintf(__FORMAT__, ...) [[FLPrintfStringFormatter instance] appendLineWithFormat:__FORMAT__, ##__VA_ARGS__]
+
+#define FLPrintf [FLPrintfStringFormatter instance]

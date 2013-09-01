@@ -45,8 +45,8 @@
 
 - (BOOL) hasListener:(id) listener;
 
-- (void) addObserver:(id) observer;
+- (void) addListener:(id) observer;
 
-- (void) removeObserver:(id) listener;
+- (void) removeListener:(id) listener;
 
 @end

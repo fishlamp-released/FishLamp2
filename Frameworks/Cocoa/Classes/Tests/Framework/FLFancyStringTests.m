@@ -28,7 +28,7 @@
 //    [builder outdent];
 //    [builder appendLine:@"Farkle"];
 //    
-//    FLTestLog([builder description]);
+//    FLTestOutput([builder description]);
     
 }
 

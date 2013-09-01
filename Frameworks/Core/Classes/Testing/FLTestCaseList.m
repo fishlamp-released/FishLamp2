@@ -8,6 +8,8 @@
 
 #import "FLTestCaseList.h"
 #import "FLTestCase.h"
+#import "FLObjcRuntime.h"
+#import "FLAssertions.h"
 
 @implementation FLTestCaseList
 

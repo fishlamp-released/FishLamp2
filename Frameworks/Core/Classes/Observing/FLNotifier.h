@@ -8,40 +8,54 @@
 //
 
 #import "FLBroadcaster.h"
+#import "FLCoreRequired.h"
 
 @protocol FLNotifier <NSObject>
-- (FLBroadcaster*) observers;
-
+@property (readonly, strong) FLBroadcaster* notifier;
 - (BOOL) hasListener:(id) listener;
-
-- (void) addObserver:(id) observer;
-
-- (void) removeObserver:(id) listener;
-
+- (void) addListener:(id) observer;
+- (void) removeListener:(id) listener;
 @end
+
+#define FLSynthesizeDeprecatedObservableProperties() \
+            - (void) addObserver:(id) observer { \
+                [self addListener:observer]; \
+            } \
+            - (void) removeObserver:(id) listener { \
+                [self removeListener:listener]; \
+            } \
+            - (FLBroadcaster*) observers { \
+                return self.notifier; \
+            }
+
+//#define FLDeclareNotifierProperties() \
+//            - (BOOL) hasListener:(id) listener;
+//            - (void) addListener:(id) observer;
+//
+//            - (void) removeListener:(id) listener;
+//            /* deprecated*/ \
+//            @property (readonly, strong) FLBroadcaster* observers
+
+#define FLSynthesizeNotifierProperties(__IVAR_NAME__) \
+            FLSynthesizeLazyGetter(notifier, FLBroadcaster*, __IVAR_NAME__, FLBroadcaster); \
+            \
+            - (BOOL) hasListener:(id) listener { \
+                return [self.notifier hasListener:listener]; \
+            } \
+            - (void) addListener:(id) observer { \
+                [self.notifier addListener:observer]; \
+            } \
+            \
+            - (void) removeListener:(id) listener { \
+                [self.notifier removeListener:listener]; \
+            } \
+            FLSynthesizeDeprecatedObservableProperties()
+
+
 
 @interface FLNotifier : NSObject<FLNotifier> {
 @private
-    FLBroadcaster* _observers;
+    FLBroadcaster* _notifier;
 }
-
-@property (readonly, nonatomic, strong) FLBroadcaster* observers;
-
 @end
-
-#define FLSynthesizeObservableProperties(__IVAR_NAME__) \
-            FLSynthesizeLazyGetter(observers, FLBroadcaster*, __IVAR_NAME__, FLBroadcaster) \
-            \
-            - (BOOL) hasListener:(id) listener { \
-                return [self.observers hasListener:listener]; \
-            } \
-            \
-            - (void) addObserver:(id<FLObjectProxy>) observer { \
-                [self.observers addObserver:observer]; \
-            } \
-            \
-            - (void) removeObserver:(id) listener { \
-                [self.observers removeObserver:listener]; \
-            }
-
 

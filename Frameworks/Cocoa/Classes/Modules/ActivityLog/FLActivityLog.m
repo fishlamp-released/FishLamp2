@@ -19,39 +19,25 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
 @synthesize activityLogTextFont = _textFont;
 @synthesize activityLogTextColor = _textColor;
 
-- (id) init {
-    self = [super init];
-    if(self) {
-        self.stringFormatterOutput = self;
-    
-        _log = [[FLPrettyAttributedString alloc] init];
-        _log.delegate = self;
-    }
-    return self;
-}
-
-- (void) dealloc {
-    _log.delegate = nil;
 #if FL_MRC
+- (void) dealloc {
     [_textFont release];
     [_textColor release];
-    [_log release];
     [super dealloc];
-#endif
 }
+#endif
 
 + (id) activityLog {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
-    [_log stringFormatterAppendBlankLine:stringFormatter];
-}
+//- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
+//    [_log stringFormatterAppendBlankLine:stringFormatter];
+//}
 
-- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
+- (void) willOpenLine {
 
-    [_log stringFormatterOpenLine:stringFormatter];
-    if(_log.indentLevel == 0) {
+    if(self.indentLevel == 0) {
 
         NSString* timeStamp = [NSString stringWithFormat:@"[%@]: ", 
             [NSDateFormatter localizedStringFromDate:[NSDate date] 
@@ -66,52 +52,50 @@ NSString* const FLActivityLogStringKey = @"FLActivityLogStringKey";
         NSMutableAttributedString* string = 
             FLAutorelease([[NSMutableAttributedString alloc] initWithString:timeStamp attributes:attributes]);
 
-
-        [_log stringFormatter:stringFormatter appendAttributedString:string];
-
+        [self appendAttributedString:string];
     }
 }
 
-- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
-    [_log stringFormatterCloseLine:stringFormatter];
-}
-
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
-    [_log stringFormatter:stringFormatter appendString:string];
-}
-
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString {
-    [_log stringFormatter:stringFormatter appendAttributedString:attributedString];
-}
-
-- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
-    [_log stringFormatterIndent:stringFormatter];
-}
-
-- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
-    [_log stringFormatterOutdent:stringFormatter];
-}
-
-- (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter {
-    return [_log length];
-}
-
-- (void) stringFormatter:(FLStringFormatter*) myFormatter
-appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
-    [_log stringFormatter:myFormatter appendSelfToStringFormatter:anotherStringFormatter];
-}
-
-- (NSString*) string {
-    return [_log string];
-}
-
-- (NSAttributedString*) attributedString {
-    return [_log attributedString];
-}
-
-- (NSString*) description {
-    return [_log description];
-}
+//- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
+//    [_log stringFormatterCloseLine:stringFormatter];
+//}
+//
+//- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
+//    [_log stringFormatter:stringFormatter appendString:string];
+//}
+//
+//- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString {
+//    [_log stringFormatter:stringFormatter appendAttributedString:attributedString];
+//}
+//
+//- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+//    [_log stringFormatterIndent:stringFormatter];
+//}
+//
+//- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+//    [_log stringFormatterOutdent:stringFormatter];
+//}
+//
+//- (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter {
+//    return [_log length];
+//}
+//
+//- (void) stringFormatter:(FLStringFormatter*) myFormatter
+//appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
+//    [_log stringFormatter:myFormatter appendSelfToStringFormatter:anotherStringFormatter];
+//}
+//
+//- (NSString*) string {
+//    return [_log string];
+//}
+//
+//- (NSAttributedString*) attributedString {
+//    return [_log attributedString];
+//}
+//
+//- (NSString*) description {
+//    return [_log description];
+//}
 
 - (NSError*) exportToPath:(NSURL*) url {
     NSString* log = [self string];
@@ -122,7 +106,9 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 
 #define kActivityLog @"ActivityLog"
 
-- (NSAttributedString*) prettyString:(FLPrettyString*) prettyString willAppendAttributedString:(NSAttributedString*) string {
+- (void) willAppendAttributedString:(NSAttributedString*) string {
+
+    NSAttributedString* theString = string;
     if(_textFont || _textColor) {
     
         NSRange range = string.entireRange;
@@ -136,14 +122,14 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
             [attr setObject:[NSColor gray15Color] forKey:NSForegroundColorAttributeName];
         }
 
-        return FLAutorelease([[NSAttributedString alloc] initWithString:string.string attributes:attr]);
+        theString = FLAutorelease([[NSAttributedString alloc] initWithString:string.string attributes:attr]);
     }
     
-    return string;
-}
+    [super willAppendAttributedString:theString];
 
-- (void) prettyString:(FLPrettyString*) prettyString didAppendAttributedString:(NSAttributedString*) string {
-    [[NSNotificationCenter defaultCenter] postNotificationName:FLActivityLogUpdated object:self userInfo:[NSDictionary dictionaryWithObject:string forKey:FLActivityLogStringKey]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:FLActivityLogUpdated
+                                                        object:self
+                                                        userInfo:[NSDictionary dictionaryWithObject:string forKey:FLActivityLogStringKey]];
 }
 
 - (void) appendURL:(NSURL*) url string:(NSString*) string {
@@ -161,7 +147,7 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 }
 
 - (void) clear {
-    [_log deleteAllCharacters];
+    [self deleteAllCharacters];
 }
 
 - (void) appendErrorLine:(NSString*) errorLine {

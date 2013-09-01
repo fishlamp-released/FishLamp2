@@ -17,6 +17,10 @@
     return nil;
 }
 
+- (id) representedObject {
+    return self;
+}
+
 @end
 
 @implementation FLObjectProxy

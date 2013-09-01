@@ -41,16 +41,16 @@
     @try {
         project = [self.projectProvider readProjectForCodeGenerator:self.codeGenerator];
 
-        [self.observers notify:@selector(codeGenerator:generationWillBeginForProject:) withObject:self.codeGenerator withObject:project];
+        [self.notifier notify:@selector(codeGenerator:generationWillBeginForProject:) withObject:self.codeGenerator withObject:project];
 
         [self.codeGenerator generateCodeForProject:project];
 
-        [self.observers notify:@selector(codeGenerator:generationDidFinishForProject:) withObject:self.codeGenerator withObject:project];
+        [self.notifier notify:@selector(codeGenerator:generationDidFinishForProject:) withObject:self.codeGenerator withObject:project];
 
         return project;
     }
     @catch(NSException* ex) {
-        [self.observers notify:@selector(codeGenerator:generationDidFailForProject:withError:) withObject:self.codeGenerator withObject:project withObject:ex.error];
+        [self.notifier notify:@selector(codeGenerator:generationDidFailForProject:withError:) withObject:self.codeGenerator withObject:project withObject:ex.error];
         @throw;
     }
 

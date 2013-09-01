@@ -8,28 +8,19 @@
 
 #import "FLCoreRequired.h"
 #import "FLUnitTestDefines.h"
-
 #import "FLStringFormatter.h"
+#import "FLLogger.h"
 
-
-@interface FLUnitTestLoggingManager: NSObject {
+@interface FLUnitTestLoggingManager: FLLogger {
 @private
     NSMutableArray* _loggers;
-    NSMutableArray* _stateStack;
 }
 
 FLSingletonProperty(FLUnitTestLoggingManager);
 
-- (void) addLogger:(id<FLStringFormatter>) formatter forLogLevel:(FLUnitTestLogLevel) logLevel;
-- (void) pushLogger:(id<FLStringFormatter>) formatter forLogLevel:(FLUnitTestLogLevel) logLevel;
+- (void) addLogger:(id<FLStringFormatter>) formatter;
+- (void) pushLogger:(id<FLStringFormatter>) formatter;
 - (void) popLogger;
-
-- (void) pushLogLevel:(FLUnitTestLogLevel) level;
-- (void) popLogLevel;
-
-- (void) logInLevelBlock:(FLUnitTestLogLevel) level block:(void (^)()) block;
-
-- (id<FLStringBuilder>) logger;
 
 @end
 
@@ -39,12 +30,15 @@ FLSingletonProperty(FLUnitTestLoggingManager);
 //
 //@end
 
-//#ifndef FLTestLog
-//#define FLTestLog NSLog
+//#ifndef FLTestOutput
+//#define FLTestOutput NSLog
 //#endif
 
-//#ifndef FLTestLog
-//#define FLTestLog(__FORMAT__, ...) [self.logger appendLine:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__)]
+//#ifndef FLTestOutput
+//#define FLTestOutput(__FORMAT__, ...) [self.logger appendLine:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__)]
 //#endif
 
-#define FLTestLog [[FLUnitTestLoggingManager instance] logger]
+//#define FLTestOutput(__FORMAT__, ...) \
+//            [[FLUnitTestLoggingManager instance] appendLineWithFormat:__FORMAT__, ##__VA_ARGS__]
+
+#define FLTestOutput [FLUnitTestLoggingManager instance]

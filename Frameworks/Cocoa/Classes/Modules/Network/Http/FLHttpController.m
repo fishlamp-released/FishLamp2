@@ -49,12 +49,12 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
         FLAssertNotNil(_serviceFactory);
 
         self.operationContext = [FLOperationContext operationContext];
-        [self.operationContext addObserver:self];
+        [self.operationContext.notifier addListener:self];
         
         self.userService = [self.serviceFactory httpControllerCreateUserService:self];
     
         FLAssertNotNil(self.userService);
-        [self.userService.observers addObserver:[self nonretained_fl]];
+        [self.userService.notifier addListener:[self nonretained_fl]];
 
         self.httpRequestAuthenticator = [self.serviceFactory httpControllerCreateHttpRequestAuthenticationService:self];
         FLAssertNotNil(self.httpRequestAuthenticator);
@@ -150,7 +150,7 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
                       didAuthenticateUser:(FLHttpUser*) userLogin {
     
     [self.authenticatedServices openService];
-    [self.observers.notify httpController:self didAuthenticateUser:userLogin];
+    [self.notifier.notify httpController:self didAuthenticateUser:userLogin];
 }
 
 - (void) logoutUser {
@@ -162,7 +162,7 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 
     [self.userService closeService];
     
-    [self.observers.notify httpController:self didLogoutUser:self.httpUser];
+    [self.notifier.notify httpController:self didLogoutUser:self.httpUser];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:FLHttpControllerDidLogoutUserNotification object:self];
 }

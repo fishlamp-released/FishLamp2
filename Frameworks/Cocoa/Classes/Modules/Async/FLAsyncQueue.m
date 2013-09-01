@@ -65,6 +65,9 @@
     return [self queueAsyncEvent:[object asyncEventForQueue:self withDelay:0] completion:nil];
 }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+
 - (FLPromise*) queueTarget:(id) target
                  action:(SEL) action {
     return [self queueBlock:^{
@@ -89,6 +92,8 @@
         [target performSelector:action withObject:object1 withObject:object2];
     }];
 }
+
+#pragma GCC diagnostic pop
 
 - (FLPromise*) queueTarget:(id) target
                  action:(SEL) action

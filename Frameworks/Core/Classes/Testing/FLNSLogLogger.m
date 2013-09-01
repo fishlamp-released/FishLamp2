@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLNSLogUnitTestLogger.h"
+#import "FLNSLogLogger.h"
 
-@implementation FLNSLogUnitTestLogger
+@implementation FLNSLogLogger
+
+FLSynthesizeSingleton(FLNSLogLogger);
 
 @end

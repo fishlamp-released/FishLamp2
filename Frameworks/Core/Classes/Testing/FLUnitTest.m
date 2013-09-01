@@ -7,6 +7,7 @@
 //
 
 #import "FLUnitTest.h"
+#import "FLAssertions.h"
 
 @implementation FLUnitTest
 
@@ -36,7 +37,7 @@
 }
 
 + (FLUnitTestGroup*) unitTestGroup {
-    return [self defaultTestGroup];
+    return [FLUnitTestGroup defaultTestGroup];
 }
 
 - (NSString*) description {

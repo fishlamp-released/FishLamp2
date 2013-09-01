@@ -12,6 +12,7 @@
 #import "FLAsyncEvent.h"
 
 @protocol FLAsyncQueue;
+
 @protocol FLAsyncObject <NSObject>
 - (FLAsyncEvent*) asyncEventForQueue:(id<FLAsyncQueue>) queue withDelay:(NSTimeInterval) delay;
 @end

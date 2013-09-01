@@ -23,8 +23,8 @@
 
 + (id) asyncOperationQueueElement:(id) input operation:(id) operation;
 
-- (void) beginOperationInQueue:(FLOperationQueue*) queue
-                    completion:(dispatch_block_t) completion;
+//- (void) beginOperationInQueue:(FLOperationQueue*) queue
+//                    completion:(dispatch_block_t) completion;
 
 
 

@@ -53,6 +53,8 @@ typedef void (^FLTestBlock)();
 
 - (id<FLTestCaseRunner>) testCaseRunner;
 
+- (void) performTest;
+
 @end
 
 #if DEPRECATED

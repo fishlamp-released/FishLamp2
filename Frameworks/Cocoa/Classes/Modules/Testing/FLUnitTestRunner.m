@@ -66,12 +66,12 @@
     }
     
     if(errorCount) {
-        [FLTestLog appendLine:@"Unit Tests Failed"];
+        [FLTestOutput appendLine:@"Unit Tests Failed"];
     
         return [NSError errorWithDomain:FLErrorDomain code:FLErrorResultFailed localizedDescription:@"Unit Tests Failed"];
     }
 
-    [FLTestLog appendLine:@"Unit Tests Passed"];
+    [FLTestOutput appendLine:@"Unit Tests Passed"];
 
     return array;
 }

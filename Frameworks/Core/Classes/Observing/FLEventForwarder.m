@@ -15,6 +15,7 @@
 
 - (id) initWithTargetObject:(id) targetObject {
     _targetObject = FLRetain(targetObject);
+    return self;
 }
 
 #if FL_MRC
@@ -24,13 +25,19 @@
 }
 #endif
 
+- (id) notifyForTargetObject {
+    return [[_targetObject notifier] notify];
+}
+
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     id object = [self targetObject];
     if([object respondsToSelector:[anInvocation selector]]) {
+    // first object itself
         [anInvocation invokeWithTarget:object];
     }
     else {
-        [anInvocation invokeWithTarget:object.observers.notify]
+    // then notifiers
+        [anInvocation invokeWithTarget:[self notifyForTargetObject]];
     }
 }
 
@@ -40,9 +47,11 @@
 
     NSMethodSignature* sig = [object methodSignatureForSelector:selector];
     if(!sig) {
-        sig = [object.observers methodSignatureForSelector:selector];
+    // first object itself
+        sig = [[self notifyForTargetObject] methodSignatureForSelector:selector];
     }
     if(!sig) {
+    // then notifiers
         sig = [NSMethodSignature signatureWithObjCTypes:"@^v^c"];
     }
     return sig;

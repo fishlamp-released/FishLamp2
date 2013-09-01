@@ -7,15 +7,13 @@
 //
 
 #import "FishLamp.h"
-#import "FLStringFormatter.h"
+#import "FLWhitespaceStringFormatter.h"
 
-@interface FLTextViewLogger : FLStringFormatter<FLStringFormatterOutput> {
+@interface FLTextViewLogger : FLWhitespaceStringFormatter {
 @private
     NSTextView* _textView;
     NSMutableAttributedString* _buffer;
     NSTimeInterval _lastUpdate;
-
-    NSInteger _indentLevel;
 }
 
 @property (readwrite, strong, nonatomic) NSTextView* textView;
