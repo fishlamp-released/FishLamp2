@@ -8,12 +8,12 @@
 //
 
 #import "FLFancyStringTests.h"
-#import "FLUnitTest.h"
+#import "FLTestable.h"
 
 @implementation FLFancyStringTest
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
 - (void) testBasicStuff {

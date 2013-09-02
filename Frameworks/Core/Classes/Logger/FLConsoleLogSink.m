@@ -62,29 +62,40 @@
 //        whitespace = [[FLWhitespace tabbedWithSpacesWhitespace] tabStringForScope:entry.indentLevel + 1];                      
 //    }
 //    
-    NSUInteger lastIndex = 0;
-    for(NSUInteger i = 0; i < logString.length; i++) {
-        
-        unichar c = [logString characterAtIndex:i];
-        if(c == '\n') {
-        
-            if(i > lastIndex) {
-                NSRange  range = NSMakeRange(lastIndex, i - lastIndex); 
-                [self printLine:entry logString:logString range:range];
-            }
-            else {
-                [FLPrintf appendBlankLine];
-            }
-        
-            lastIndex = i + 1;
-        }
+//    NSUInteger lastIndex = 0;
+//    for(NSUInteger i = 0; i < logString.length; i++) {
+//        
+//        unichar c = [logString characterAtIndex:i];
+//        if(c == '\n') {
+//        
+//            if(i > lastIndex) {
+//                NSRange  range = NSMakeRange(lastIndex, i - lastIndex); 
+//                [self printLine:entry logString:logString range:range];
+//            }
+//            else {
+//                [FLPrintf appendBlankLine];
+//            }
+//        
+//            lastIndex = i + 1;
+//        }
+//    }
+//    
+//    if(lastIndex < (logString.length - 1)) {
+//        NSRange  range = NSMakeRange(lastIndex, logString.length - lastIndex); 
+//        [self printLine:entry logString:logString range:range];
+//    }
+
+    if(FLTestAnyBit(self.outputFlags, FLLogOutputWithLocation | FLLogOutputWithStackTrace)) { 
+        [FLPrintf appendLineWithFormat:@"%@    (%s:%d)",
+                 [logString stringWithPadding_fl:80],
+                 entry.stackTrace.fileName,
+                 entry.stackTrace.lineNumber];
+    } 
+    else { 
+        [FLPrintf appendLineWithFormat:@"%@", [logString stringWithPadding_fl:80]];
     }
-    
-    if(lastIndex < (logString.length - 1)) {
-        NSRange  range = NSMakeRange(lastIndex, logString.length - lastIndex); 
-        [self printLine:entry logString:logString range:range];
-    }
-    
+
+
     if(FLTestBits(self.outputFlags, FLLogOutputWithStackTrace)) {
 
         [[FLPrintfStringFormatter instance] indent:^{

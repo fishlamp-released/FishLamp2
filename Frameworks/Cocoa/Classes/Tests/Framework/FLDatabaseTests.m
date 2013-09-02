@@ -11,7 +11,7 @@
 #import "FLTempFolder.h"
 #import "FLDatabase.h"
 
-#import "FLUnitTest.h"
+#import "FLTestable.h"
 #import "FLModelObject.h"
 
 
@@ -25,8 +25,8 @@
 }
 #endif
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
 - (id) createDatabase:(NSString*) filePath {
@@ -52,7 +52,7 @@
 }
 
 - (void) testIsOpen {
-    FLAssertIsNotNilWithComment(_database, nil);
+    FLAssertIsNotNil(_database);
     FLAssertWithComment([_database isOpen], @"database is not open");
 }
 

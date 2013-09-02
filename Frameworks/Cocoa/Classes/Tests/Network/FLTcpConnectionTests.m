@@ -28,8 +28,8 @@
 //    }
 }
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
 @end

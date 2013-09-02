@@ -10,7 +10,7 @@
 // Copyright (c) 2013 GreenTongue Software LLC. All Rights Reserved.
 //
 
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 #import "FLColorRange+Gradients.h"
 #import "FLColorRange.h"
 #import "FLColorRangeColorValues.h"

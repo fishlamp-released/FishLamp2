@@ -8,8 +8,7 @@
 
 #import "FLTestCase.h"
 #import "FLStringUtils.h"
-#import "FLUnitTest.h"
-#import "FLTestCaseRunner.h"
+#import "FLTestable.h"
 #import "FLSelectorPerforming.h"
 
 //#define FLTestCaseFlagBrokenString              @"_broken"
@@ -107,7 +106,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
     self.testCaseName = theString;
 }
 
-- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest {
+- (id) initWithName:(NSString*) name unitTest:(FLTestable*) unitTest {
     self = [super init];
     if(self) {
         [self setNameAndFlagsWithFormattedName:name];
@@ -119,7 +118,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 }
 
 
-- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest testBlock:(FLTestBlock) block  {
+- (id) initWithName:(NSString*) name unitTest:(FLTestable*) unitTest testBlock:(FLTestBlock) block  {
     self = [self initWithName:name unitTest:unitTest];
     if(self) {
         _testCaseBlock = [block copy];
@@ -128,7 +127,7 @@ FLTestCaseFlagPair s_flagPairs[] = {
 }
 
 
-- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest target:(id) target selector:(SEL) selector {
+- (id) initWithName:(NSString*) name unitTest:(FLTestable*) unitTest target:(id) target selector:(SEL) selector {
     self = [self initWithName:name unitTest:unitTest];
     if(self) {
         _testCaseTarget = target;
@@ -137,11 +136,11 @@ FLTestCaseFlagPair s_flagPairs[] = {
     return self;
 }
 
-+ (FLTestCase*) testCase:(NSString*) name unitTest:(FLUnitTest*) unitTest target:(id) target selector:(SEL) selector {
++ (FLTestCase*) testCase:(NSString*) name unitTest:(FLTestable*) unitTest target:(id) target selector:(SEL) selector {
     return FLAutorelease([[FLTestCase alloc] initWithName:name unitTest:unitTest target:target selector:selector]);
 }
 
-+ (FLTestCase*) testCase:(NSString*) name unitTest:(FLUnitTest*) unitTest testBlock:(FLTestBlock) block {
++ (FLTestCase*) testCase:(NSString*) name unitTest:(FLTestable*) unitTest testBlock:(FLTestBlock) block {
     return FLAutorelease([[FLTestCase alloc] initWithName:name unitTest:unitTest testBlock:block]);
 }
 
@@ -156,9 +155,9 @@ FLTestCaseFlagPair s_flagPairs[] = {
     }
 }
 
-- (id<FLTestCaseRunner>) testCaseRunner {
-    return [FLTestCaseRunner testCaseRunner];
-}
+//- (id<FLTestCaseRunner>) testCaseRunner {
+//    return [FLTestCaseRunner testCaseRunner];
+//}
 
 #if FL_MRC
 - (void) dealloc {

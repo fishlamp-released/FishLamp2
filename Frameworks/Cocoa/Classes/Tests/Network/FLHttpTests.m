@@ -17,8 +17,8 @@
 
 @implementation FLHttpTests
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
 - (void) testConnectionToGoogle {

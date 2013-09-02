@@ -45,15 +45,34 @@
 
 @end
 
+@interface FLSimpleTestOperation : FLSynchronousOperation {
+@private
+    BOOL _passed;
+}
+@property (readonly, assign, nonatomic) BOOL passed;
+@end
+
+@implementation FLSimpleTestOperation
+@synthesize passed = _passed;
+
+- (FLPromisedResult) performSynchronously {
+
+    FLTestLog(@"hello world");
+    _passed = YES;
+
+    return FLSuccessfulResult;
+}
+@end
 @implementation FLOperationUnitTest
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
 - (void) testSimpleCase {
-    FLOperation* op = FLAutorelease([[FLSynchronousOperation alloc] init]);
-    FLThrowIfError([FLCurrentQueue runSynchronously:op]);
+    FLSimpleTestOperation* op = FLAutorelease([[FLSimpleTestOperation alloc] init]);
+    FLThrowIfError([FLBackgroundQueue runSynchronously:op]);
+    FLAssert(op.passed);
 }
 
 - (void) testInQueue {

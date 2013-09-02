@@ -8,7 +8,7 @@
 //
 
 #import "FLTestResultCollection.h"
-#import "FLUnitTest.h"
+#import "FLTestable.h"
 #import "FLAssertions.h"
 
 @implementation FLTestResultCollection

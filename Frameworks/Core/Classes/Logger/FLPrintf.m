@@ -9,7 +9,7 @@
 
 #import "FLPrintf.h"
 #import "FLWhitespace.h"
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 
 @implementation FLPrintfStringFormatter
 

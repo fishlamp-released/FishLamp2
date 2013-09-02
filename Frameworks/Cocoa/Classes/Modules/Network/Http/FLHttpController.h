@@ -25,7 +25,7 @@
 
 extern NSString* const FLHttpControllerDidLogoutUserNotification;
 
-@interface FLHttpController : FLNotifier <
+@interface FLHttpController : FLAsyncMessageBroadcaster <
     FLHttpRequestAuthenticationServiceDelegate,
     FLHttpRequestContext,
     FLDatabaseObjectStorageServiceDelegate> {

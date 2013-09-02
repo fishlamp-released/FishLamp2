@@ -7,10 +7,10 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLUnitTest.h"
+#import "FLTestable.h"
 #import "FLTimer.h"
 
-@interface FLTimeoutTests : FLUnitTest<FLTimerDelegate> {
+@interface FLTimeoutTests : FLTestable<FLTimerDelegate> {
 @private
     BOOL _didTimeout;
 }

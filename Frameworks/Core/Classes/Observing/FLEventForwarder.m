@@ -7,7 +7,7 @@
 //
 
 #import "FLEventForwarder.h"
-#import "FLNotifier.h"
+#import "FLAsyncMessageBroadcaster.h"
 
 @implementation FLEventForwarder
 
@@ -26,7 +26,7 @@
 #endif
 
 - (id) notifyForTargetObject {
-    return [[_targetObject notifier] notify];
+    return [[_targetObject listeners] all];
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {

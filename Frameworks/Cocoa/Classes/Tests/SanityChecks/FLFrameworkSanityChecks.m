@@ -11,8 +11,8 @@
 
 @implementation FLFrameworkSanityChecks
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup sanityCheckTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup sanityCheckTestGroup];
 }
 
 

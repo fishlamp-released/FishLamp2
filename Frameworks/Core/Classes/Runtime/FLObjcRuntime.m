@@ -492,6 +492,43 @@ NSArray* FLRuntimeSubclassesForClass(Class theClass) {
     return theClassNames;
 }
 
+extern BOOL FLClassConformsToProtocol(Class aClass, Protocol* aProtocol) {
+
+    if(!aClass || !aProtocol) {
+        return NO;
+    }
+
+    if(class_isMetaClass(aClass)) {
+        return NO;
+    }
+
+    if(class_getSuperclass(aClass) == nil) {
+        return NO;
+    }
+
+    return [aClass conformsToProtocol:aProtocol];
+
+//    if(![aClass isKindOfClass:[NSObject class]]) {
+//        NSLog(@"no");
+//    }
+
+return NO;
+
+    Class walker = aClass;
+    while(walker) {
+
+
+
+        if(walker == [NSObject class]) {
+            return [walker conformsToProtocol:aProtocol];
+        }
+        walker = class_getSuperclass(walker);
+    }
+
+    return NO;
+}
+
+
 extern BOOL FLRuntimeClassHasSubclass(Class aSuperclass, Class aClass) {
     if(!aSuperclass || !aClass || aSuperclass == aClass) {
         return NO;

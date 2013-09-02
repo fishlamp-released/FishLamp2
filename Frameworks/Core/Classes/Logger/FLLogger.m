@@ -8,7 +8,7 @@
 //
 
 #import "FLLogger.h"
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 #import <objc/runtime.h>
 
 @interface FLLogger()
@@ -52,7 +52,11 @@
 }
 
 - (void) dispatchBlock:(dispatch_block_t) block {
-    dispatch_sync(_fifoQueue, block); 
+//    dispatch_sync(_fifoQueue, block);
+
+    @synchronized(self) {
+        block();
+    }
 }
 
 - (void) pushLoggerSink:(id<FLLogSink>) sink {

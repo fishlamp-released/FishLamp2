@@ -46,11 +46,11 @@
 }
 
 - (void) didOpenService {
-    [self.notifier.notify userServiceDidOpen:self];
+    [self.listeners.all userServiceDidOpen:self];
 }
 
 - (void) didCloseService {
-    [self.notifier.notify userServiceDidClose:self];
+    [self.listeners.all userServiceDidClose:self];
 }
 
 - (FLCredentialsEditor*) credentialEditor {

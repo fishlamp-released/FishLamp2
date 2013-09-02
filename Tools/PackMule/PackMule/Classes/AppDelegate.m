@@ -10,7 +10,7 @@
 
 #import "NSFileManager+FLExtras.h"
 #import "FLStringUtils.h"
-#import "FLUnitTest.h"
+#import "FLTestable.h"
 
 #import "FLWsdlDocument.h"
 
@@ -82,8 +82,8 @@ static AppDelegate* s_instance;
 
 - (IBAction) runUnitTests:(id) sender {
 #if TEST
-//	  [[FLUnitTestManager instance] discoverTests];
-//	  [[FLUnitTestManager instance] executeTests];
+//	  [[FLTestManager instance] discoverTests];
+//	  [[FLTestManager instance] executeTests];
 #endif
 }
 

@@ -9,10 +9,10 @@
 
 #import "FLCoreRequired.h"
 
-#define FLTestCaseFlagOffString                 @"[off]"
+#define FLTestCaseFlagOffString                 @"__off"
 
 @class FLTestCase;
-@class FLUnitTest;
+@class FLTestable;
 @protocol FLTestCaseRunner;
 
 typedef void (^FLTestBlock)();
@@ -29,10 +29,10 @@ typedef void (^FLTestBlock)();
     NSString* _disabledReason;
     BOOL _disabled;
 
-    __unsafe_unretained FLUnitTest* _unitTest;
+    __unsafe_unretained FLTestable* _unitTest;
 }
 
-@property (readonly, assign) FLUnitTest* unitTest;
+@property (readonly, assign) FLTestable* unitTest;
 @property (readonly, strong, nonatomic) NSString* disabledReason;
 @property (readonly, strong, nonatomic) NSString* testCaseName;
 @property (readonly, assign, nonatomic) SEL testCaseSelector;
@@ -44,14 +44,12 @@ typedef void (^FLTestBlock)();
 
 - (void) setDisabledWithReason:(NSString*) reason;
 
-- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest;
-- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest testBlock:(FLTestBlock) block;
-- (id) initWithName:(NSString*) name unitTest:(FLUnitTest*) unitTest target:(id) target selector:(SEL) selector;
+- (id) initWithName:(NSString*) name unitTest:(FLTestable*) unitTest;
+- (id) initWithName:(NSString*) name unitTest:(FLTestable*) unitTest testBlock:(FLTestBlock) block;
+- (id) initWithName:(NSString*) name unitTest:(FLTestable*) unitTest target:(id) target selector:(SEL) selector;
 
-+ (FLTestCase*) testCase:(NSString*) name unitTest:(FLUnitTest*) unitTest target:(id) target selector:(SEL) selector;
-+ (FLTestCase*) testCase:(NSString*) name unitTest:(FLUnitTest*) unitTest testBlock:(FLTestBlock) block;
-
-- (id<FLTestCaseRunner>) testCaseRunner;
++ (FLTestCase*) testCase:(NSString*) name unitTest:(FLTestable*) unitTest target:(id) target selector:(SEL) selector;
++ (FLTestCase*) testCase:(NSString*) name unitTest:(FLTestable*) unitTest testBlock:(FLTestBlock) block;
 
 - (void) performTest;
 

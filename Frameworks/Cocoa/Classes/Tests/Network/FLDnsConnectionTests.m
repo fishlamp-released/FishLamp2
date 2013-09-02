@@ -14,8 +14,8 @@
 
 @implementation FLDnsConnectionTests
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
 - (void) testCreateHostByName {
@@ -25,7 +25,7 @@
     FLAssertIsFalse(host.isResolved);
     FLAssertObjectsAreEqual(host.hostName, @"google.com");
     
-    FLLog(host.hostName);
+    FLTestLog(host.hostName);
 }
 
 

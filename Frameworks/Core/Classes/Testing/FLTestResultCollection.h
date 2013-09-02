@@ -34,3 +34,8 @@
 - (BOOL) hasTestResultForSelector:(SEL) selector;
 
 @end
+
+
+// outcome?
+
+#define FLExpectedTestResult FLTestResultCollection

@@ -38,8 +38,8 @@
 - (void) closeLine {
 
     if(_editingLine) {
-        _editingLine = NO;
         [self willCloseLine];
+        _editingLine = NO;
     }
 }
 
@@ -53,6 +53,7 @@
     }
 }
 - (void) willCloseLine {
+    [self appendEOL];
 }
 
 - (void) willOpenLine {

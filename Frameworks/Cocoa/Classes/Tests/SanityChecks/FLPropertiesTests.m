@@ -23,13 +23,13 @@
 //
 //CFRelease(ptr);
 
-+ (void) addTestCasesToSanityChecks:(NSMutableArray*) array {
-//    [array addObject:autorelease([FLCriticalWeakRefTest new])];
-}
+//+ (void) addTestCasesToSanityChecks:(NSMutableArray*) array {
+////    [array addObject:autorelease([FLCriticalWeakRefTest new])];
+//}
 
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
 @end

@@ -14,8 +14,8 @@
 
 @implementation FLAssertionTests
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [FLUnitTestGroup frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
 //- (void) testNotImplemented_broken_debug_verbose:(FLTestCase*) test {

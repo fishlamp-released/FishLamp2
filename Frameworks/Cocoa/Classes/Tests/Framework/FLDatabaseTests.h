@@ -8,10 +8,10 @@
 //
 
 #import "FLDatabase.h"
-#import "FishLampCore.h"
-#import "FLUnitTest.h"
+#import "FishLampMinimum.h"
+#import "FLTestable.h"
 
-@interface FLDatabaseTests : FLUnitTest {
+@interface FLDatabaseTests : FLTestable {
 @private
     id _database;
 }

@@ -10,7 +10,7 @@
 // Copyright (c) 2013 GreenTongue Software LLC. All Rights Reserved.
 //
 #if OSX
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 #import <Cocoa/Cocoa.h>
 
 #if __MAC_10_8
@@ -19,7 +19,7 @@
 
 #import <AppKit/AppKit.h>
 
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 #import "FLCompatibleGeometry+OSX.h"
 
 #import "NSValue+FLCompatibility.h"

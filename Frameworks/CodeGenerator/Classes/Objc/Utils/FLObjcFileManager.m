@@ -116,25 +116,25 @@
 
         switch(writeResult) {
             case FLCodeGeneratorFileWriteResultUnchanged:
-                [codeGenerator.notifier notify:@selector(codeGenerator:didSkipFile:) withObject:codeGenerator withObject:file];
+                [codeGenerator.listeners performSelector:@selector(codeGenerator:didSkipFile:) withObject:codeGenerator withObject:file];
 
 //                [result addUnchangedFile:file];
             break;
 
             case FLCodeGeneratorFileWriteResultUpdated:
-                [codeGenerator.notifier notify:@selector(codeGenerator:didUpdateFile:) withObject:codeGenerator withObject:file];
+                [codeGenerator.listeners performSelector:@selector(codeGenerator:didUpdateFile:) withObject:codeGenerator withObject:file];
 
 //                [result addChangedFile:file];
             break;
 
             case FLCodeGeneratorFileWriteResultNew:
-                [codeGenerator.notifier notify:@selector(codeGenerator:didWriteNewFile:) withObject:codeGenerator withObject:file];
+                [codeGenerator.listeners performSelector:@selector(codeGenerator:didWriteNewFile:) withObject:codeGenerator withObject:file];
 
 //                [result addNewFile:file];
             break;
 
             case FLCodeGeneratorFileWriteResultRemoved:
-                [codeGenerator.notifier notify:@selector(codeGenerator:didRemoveFile:) withObject:codeGenerator withObject:file];
+                [codeGenerator.listeners performSelector:@selector(codeGenerator:didRemoveFile:) withObject:codeGenerator withObject:file];
 
 //                [result addRemovedFile:file];
             break;

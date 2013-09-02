@@ -46,6 +46,8 @@ extern BOOL FLRuntimeClassHasSubclass(Class aSuperclass, Class aSubclass);
 
 extern BOOL FLRuntimeClassRespondsToSelector(Class aClass, SEL aSelector);
 
+extern BOOL FLClassConformsToProtocol(Class aClass, Protocol* aProtocol);
+
 #if DEBUG
 void FLRuntimeLogMethodsForClass(Class aClass);
 #endif

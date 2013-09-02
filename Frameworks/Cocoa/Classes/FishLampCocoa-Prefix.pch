@@ -8,7 +8,7 @@
 
 #ifdef __OBJC__
     #import "FishLampCore-Prefix.pch"
-    #import "FishLampCore.h"
+    #import "FishLampMinimum.h"
 
     #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
         #import <UIKit/UIKit.h>

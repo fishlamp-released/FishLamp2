@@ -27,8 +27,12 @@
     return [_listeners containsObject:listener];
 }
 
-- (id) notify {
+- (id) all {
     return self;
+}
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained [])buffer count:(NSUInteger)len {
+    return [_listeners countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 - (void) addListener:(id) listener {
@@ -47,7 +51,7 @@
     }
 }
 
-- (void) notify:(SEL) messageSelector {
+- (void) performSelector:(SEL) messageSelector {
     for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
         @try {
             [[_listeners objectAtIndex:i] performOptionalSelector_fl:messageSelector];
@@ -57,7 +61,7 @@
     }
 }
 
-- (void) notify:(SEL) messageSelector  
+- (void) performSelector:(SEL) messageSelector  
                      withObject:(id) object {
     for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
         @try {
@@ -69,7 +73,7 @@
     }
 }
 
-- (void) notify:(SEL) messageSelector 
+- (void) performSelector:(SEL) messageSelector 
                      withObject:(id) object1
                      withObject:(id) object2 {
 
@@ -84,7 +88,7 @@
     }
 }
 
-- (void) notify:(SEL) messageSelector 
+- (void) performSelector:(SEL) messageSelector 
                      withObject:(id) object1
                      withObject:(id) object2
                      withObject:(id) object3 {
@@ -100,7 +104,7 @@
     }
 }
 
-- (void) notify:(SEL) messageSelector 
+- (void) performSelector:(SEL) messageSelector 
                      withObject:(id) object1
                      withObject:(id) object2
                      withObject:(id) object3

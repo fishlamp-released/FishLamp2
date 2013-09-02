@@ -1,5 +1,5 @@
 //
-//  FishLampCore.h
+//  FishLampMinimum.h
 //  FishLamp
 //
 //  Created by Mike Fullerton on 11/27/12.

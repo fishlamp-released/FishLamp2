@@ -38,7 +38,9 @@
 }
 
 - (void) processString:(NSString*) string {
-    [[FLStringFormatterLineProprocessor instance] processAndAppendString:string toStringFormatter:self];
+
+    [self willAppendString:string];
+//    [[FLStringFormatterLineProprocessor instance] processAndAppendString:string toStringFormatter:self];
 }
 
 - (void) willAppendString:(NSString*) string {
@@ -266,7 +268,7 @@ FLSynthesizeSingleton(FLStringFormatterLineProprocessor);
 
 - (void) processAndAppendString:(NSString*) string toStringFormatter:(FLStringFormatter*) formatter {
 
-    NSRange range = { 0, 0 };
+    NSRange range = { 0, 1 };
     
     for(NSUInteger i = 0; i < string.length; i++) {
         unichar c = [string characterAtIndex:i];

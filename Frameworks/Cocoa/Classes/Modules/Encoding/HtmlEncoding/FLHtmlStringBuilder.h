@@ -8,7 +8,7 @@
 //
 
 #import "FLCocoaRequired.h"
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 
 #import "FLXmlDocumentBuilder.h"
 #import "FLXmlElement.h"
