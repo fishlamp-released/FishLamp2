@@ -78,7 +78,9 @@ NSString* const FLReachabilityChangedNotification = @"FLReachabilityChangedNotif
 - (void) monitoredFlagsDidChange:(SCNetworkReachabilityFlags) oldFlags 
                 toMonitoredFlags:(SCNetworkReachabilityFlags) newFlags {
 
-    FLDebugLog(@"%@ reachability status changed to $@", [self description], self.isReachable ? @"reachable" : @"unreachable");
+    FLLog(@"%@ reachability status changed to %@",
+                    [self description],
+                    self.isReachable ? @"reachable" : @"unreachable");
 
     [[NSNotificationCenter defaultCenter] postNotification:
         [NSNotification notificationWithName:FLReachabilityChangedNotification object:self userInfo:nil]];
@@ -150,7 +152,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 	/*
 		if(!flags)
 		{
-			FLDebugLog(@"Warning SCNetworkReachabilityGetFlags returned 0 for host: %@ (check url for illegal prefix like http://)", self.hostName ? self.hostName : @"unknown");
+			FLLog(@"Warning SCNetworkReachabilityGetFlags returned 0 for host: %@ (check url for illegal prefix like http://)", self.hostName ? self.hostName : @"unknown");
 		}
 	 */
 	 
@@ -166,7 +168,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 		}
 	*/
 	} else {
-		FLDebugLog(@"Warning SCNetworkReachabilityGetFlags returned false!");
+		FLLog(@"Warning SCNetworkReachabilityGetFlags returned false!");
 	}
 	
 	
@@ -195,7 +197,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
         FLSetObjectWithRetain(_hostName, hostName);
 
 //#if DEBUG		   
-//		  FLDebugLog(FLDebugReachability, @"Set reachability for host: %@", hostName);
+//		  FLLog(FLDebugReachability, @"Set reachability for host: %@", hostName);
 //#endif		
 //		  
 		self.reachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, [hostName UTF8String]);

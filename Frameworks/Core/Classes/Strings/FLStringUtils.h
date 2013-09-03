@@ -17,7 +17,7 @@
 
 // FL version isn't to happy with nil.
 // this returns @"" if formatOrNil is nil.
-+ (NSString*) stringWithFormatOrNil_fl:(NSString*) formatOrNil, ...;
++ (NSString*) stringWithFormatOrNil_fl:(NSString*) formatOrNil, ... NS_FORMAT_FUNCTION(1,2);
 
 - (NSString*) trimmedStringWithNoLFCR_fl;
 
@@ -52,12 +52,17 @@
 @end
 
 @interface NSMutableString (FLStringUtilities)
-- (BOOL) insertString_fl:(NSString*) substring beforeString:(NSString*) beforeString withBackwardsSearch:(BOOL) searchBackwards;
-- (BOOL) insertString_fl:(NSString*) substring afterString:(NSString*) afterString withBackwardsSearch:(BOOL) searchBackwards;
+- (BOOL) insertString_fl:(NSString*) substring
+            beforeString:(NSString*) beforeString
+     withBackwardsSearch:(BOOL) searchBackwards;
+
+- (BOOL) insertString_fl:(NSString*) substring
+             afterString:(NSString*) afterString
+     withBackwardsSearch:(BOOL) searchBackwards;
 @end
 
 // this also accepts a nil formatString (which is why it exists)
-extern NSString* FLStringWithFormatOrNil(NSString* formatOrNil, ...);
+extern NSString* FLStringWithFormatOrNil(NSString* formatOrNil, ...) NS_FORMAT_FUNCTION(1,2);
 
 
 #if DEBUG

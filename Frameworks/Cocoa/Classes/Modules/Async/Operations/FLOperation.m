@@ -167,6 +167,8 @@
 
 - (FLPromisedResult) runChildSynchronously:(FLOperation*) operation {
 
+    FLAssertNotNilWithComment(self.asyncQueue, @"parent (%@) should be run in an async queue", [self description]);
+
     FLAssertNotNilWithComment(operation, @"child operation is nil");
 
     [self willRunChildOperation:operation];
@@ -188,6 +190,8 @@
 
 - (FLPromise*) runChildAsynchronously:(FLOperation*) operation 
                            completion:(fl_completion_block_t) completionOrNil {
+
+    FLAssertNotNilWithComment(self.asyncQueue, @"parent (%@) should be run in an async queue", [self description]);
 
     [self willRunChildOperation:operation];
 

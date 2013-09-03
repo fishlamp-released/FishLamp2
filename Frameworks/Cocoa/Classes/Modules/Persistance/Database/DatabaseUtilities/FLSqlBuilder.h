@@ -64,7 +64,7 @@ typedef enum {
 - (void) closeParen;
 
 - (void) appendString:(NSString*) string;
-- (void) appendFormat:(NSString*) format, ...;
+- (void) appendFormat:(NSString*) format, ... NS_FORMAT_FUNCTION(1,2);
 
 - (void) appendString:(NSString*) string andString:(NSString*) andString;
 

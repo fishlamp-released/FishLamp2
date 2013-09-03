@@ -17,7 +17,7 @@
     self = [super init];
     if(self) {
 		_operationQueue = [[FLBatchOperationQueue alloc] init];
-        [_operationQueue.listeners addListener:self.nonretained_fl];
+        [_operationQueue.listeners addListener:self];
 ///        [_operationQueue.listeners addListener:self.observers.nonretained_fl];
 
         if(objects) {

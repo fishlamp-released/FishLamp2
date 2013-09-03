@@ -24,19 +24,10 @@
 @property (readonly, strong) FLFifoAsyncQueue* schedulingQueue;
 
 @property (readonly, strong) id<FLOperationQueueErrorStrategy> errorStrategy;
-// optional overrides
-
-- (void) willStartOperation:(FLOperation*) operation
-            forQueuedObject:(id) object;
-
-- (void) didFinishOperation:(FLOperation*) operation
-            forQueuedObject:(id) object
-                 withResult:(FLPromisedResult) result;
 
 @end
 
 @interface FLOperationQueue (SchedulingQueue)
-- (FLOperation*) createOperationForQueuedInputObject:(id) object;
 - (void) respondToProcessQueueEvent;
 - (void) respondToCancelEvent;
 - (void) respondToAddObjectArrayEvent:(NSArray*) array;
@@ -92,15 +83,15 @@ FLSynthesizeLazyGetter(operationFactories, NSMutableArray*, _operationFactories,
     return [self initWithName:nil];
 }
 
-- (id) operationQueue {
++ (id) operationQueue {
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-- (id) operationQueueWithName:(NSString*) name {
++ (id) operationQueueWithName:(NSString*) name {
     return FLAutorelease([[[self class] alloc] initWithName:name]);
 }
 
-- (id) operationQueueWithName:(NSString*) name
++ (id) operationQueueWithName:(NSString*) name
                 errorStrategy:(id<FLOperationQueueErrorStrategy>) errorStrategy {
     return FLAutorelease([[[self class] alloc] initWithName:name errorStrategy:errorStrategy]);
 }
@@ -183,10 +174,6 @@ FLSynthesizeLazyGetter(operationFactories, NSMutableArray*, _operationFactories,
 }
 #endif
 
-@end
-
-@implementation FLOperationQueue (SchedulingQueue)
-
 - (void) sendCancelRequests {
     for(FLOperation* operation in self.activeQueue) {
         FLTrace(@"cancelled: %@", [operation description]);
@@ -234,7 +221,7 @@ FLSynthesizeLazyGetter(operationFactories, NSMutableArray*, _operationFactories,
     [self respondToProcessQueueEvent];
 }
 
-- (FLOperation*) createOperationForQueuedInputObject:(id) object {
+- (FLOperation*) createOperationForQueuedObject:(id) object {
 
     FLOperation* operation = [object createOperationForOperationQueue:self];
 
@@ -254,7 +241,7 @@ FLSynthesizeLazyGetter(operationFactories, NSMutableArray*, _operationFactories,
 }
 
 - (void) startOperationForObject:(id) object {
-    FLOperation* operation = [self createOperationForQueuedInputObject:object];
+    FLOperation* operation = [self createOperationForQueuedObject:object];
 
     [_activeQueue addObject:operation];
 

@@ -155,15 +155,6 @@
 		276807AA175D370700B1D643 /* FLExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 276806EC175D370700B1D643 /* FLExceptions.m */; };
 		276807AB175D370700B1D643 /* FLExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 276806EC175D370700B1D643 /* FLExceptions.m */; };
 		276807AC175D370700B1D643 /* FLExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 276806EC175D370700B1D643 /* FLExceptions.m */; };
-		276807B1175D370700B1D643 /* FLMutableError.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806EE175D370700B1D643 /* FLMutableError.h */; };
-		276807B2175D370700B1D643 /* FLMutableError.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806EE175D370700B1D643 /* FLMutableError.h */; };
-		276807B3175D370700B1D643 /* FLMutableError.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806EE175D370700B1D643 /* FLMutableError.h */; };
-		276807B4175D370700B1D643 /* FLMutableError.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806EE175D370700B1D643 /* FLMutableError.h */; };
-		276807B5175D370700B1D643 /* FLMutableError.m in Sources */ = {isa = PBXBuildFile; fileRef = 276806EF175D370700B1D643 /* FLMutableError.m */; };
-		276807B6175D370700B1D643 /* FLMutableError.m in Sources */ = {isa = PBXBuildFile; fileRef = 276806EF175D370700B1D643 /* FLMutableError.m */; };
-		276807B7175D370700B1D643 /* FLMutableError.m in Sources */ = {isa = PBXBuildFile; fileRef = 276806EF175D370700B1D643 /* FLMutableError.m */; };
-		276807B8175D370700B1D643 /* FLMutableError.m in Sources */ = {isa = PBXBuildFile; fileRef = 276806EF175D370700B1D643 /* FLMutableError.m */; };
-		276807B9175D370700B1D643 /* FLMutableError.m in Sources */ = {isa = PBXBuildFile; fileRef = 276806EF175D370700B1D643 /* FLMutableError.m */; };
 		276807BA175D370700B1D643 /* FLStackTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F0175D370700B1D643 /* FLStackTrace.h */; };
 		276807BB175D370700B1D643 /* FLStackTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F0175D370700B1D643 /* FLStackTrace.h */; };
 		276807BC175D370700B1D643 /* FLStackTrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 276806F0175D370700B1D643 /* FLStackTrace.h */; };
@@ -703,8 +694,6 @@
 		276806E8175D370700B1D643 /* FLErrorException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLErrorException.m; sourceTree = "<group>"; };
 		276806EB175D370700B1D643 /* FLExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLExceptions.h; sourceTree = "<group>"; };
 		276806EC175D370700B1D643 /* FLExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLExceptions.m; sourceTree = "<group>"; };
-		276806EE175D370700B1D643 /* FLMutableError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMutableError.h; sourceTree = "<group>"; };
-		276806EF175D370700B1D643 /* FLMutableError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMutableError.m; sourceTree = "<group>"; };
 		276806F0175D370700B1D643 /* FLStackTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLStackTrace.h; sourceTree = "<group>"; };
 		276806F1175D370700B1D643 /* FLStackTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLStackTrace.m; sourceTree = "<group>"; };
 		276806F2175D370700B1D643 /* NSError+FLExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+FLExtras.h"; sourceTree = "<group>"; };
@@ -944,8 +933,6 @@
 				276806E8175D370700B1D643 /* FLErrorException.m */,
 				276806EB175D370700B1D643 /* FLExceptions.h */,
 				276806EC175D370700B1D643 /* FLExceptions.m */,
-				276806EE175D370700B1D643 /* FLMutableError.h */,
-				276806EF175D370700B1D643 /* FLMutableError.m */,
 				276806F0175D370700B1D643 /* FLStackTrace.h */,
 				276806F1175D370700B1D643 /* FLStackTrace.m */,
 				276806F2175D370700B1D643 /* NSError+FLExtras.h */,
@@ -1197,7 +1184,6 @@
 				27680789175D370700B1D643 /* FLErrorDomainInfo.h in Headers */,
 				27680792175D370700B1D643 /* FLErrorException.h in Headers */,
 				276807A4175D370700B1D643 /* FLExceptions.h in Headers */,
-				276807B1175D370700B1D643 /* FLMutableError.h in Headers */,
 				276807BA175D370700B1D643 /* FLStackTrace.h in Headers */,
 				276807C3175D370700B1D643 /* NSError+FLExtras.h in Headers */,
 				273379EC178223FA00F56276 /* FishLampCore-Prefix.pch in Headers */,
@@ -1280,7 +1266,6 @@
 				2768078B175D370700B1D643 /* FLErrorDomainInfo.h in Headers */,
 				27680794175D370700B1D643 /* FLErrorException.h in Headers */,
 				276807A6175D370700B1D643 /* FLExceptions.h in Headers */,
-				276807B3175D370700B1D643 /* FLMutableError.h in Headers */,
 				276807BC175D370700B1D643 /* FLStackTrace.h in Headers */,
 				276807C5175D370700B1D643 /* NSError+FLExtras.h in Headers */,
 				273379EE178223FA00F56276 /* FishLampCore-Prefix.pch in Headers */,
@@ -1363,7 +1348,6 @@
 				2768078A175D370700B1D643 /* FLErrorDomainInfo.h in Headers */,
 				27680793175D370700B1D643 /* FLErrorException.h in Headers */,
 				276807A5175D370700B1D643 /* FLExceptions.h in Headers */,
-				276807B2175D370700B1D643 /* FLMutableError.h in Headers */,
 				276807BB175D370700B1D643 /* FLStackTrace.h in Headers */,
 				276807C4175D370700B1D643 /* NSError+FLExtras.h in Headers */,
 				273379ED178223FA00F56276 /* FishLampCore-Prefix.pch in Headers */,
@@ -1446,7 +1430,6 @@
 				2768078C175D370700B1D643 /* FLErrorDomainInfo.h in Headers */,
 				27680795175D370700B1D643 /* FLErrorException.h in Headers */,
 				276807A7175D370700B1D643 /* FLExceptions.h in Headers */,
-				276807B4175D370700B1D643 /* FLMutableError.h in Headers */,
 				276807BD175D370700B1D643 /* FLStackTrace.h in Headers */,
 				276807C6175D370700B1D643 /* NSError+FLExtras.h in Headers */,
 				273379EF178223FA00F56276 /* FishLampCore-Prefix.pch in Headers */,
@@ -1657,7 +1640,6 @@
 				2729CB06177777E700D59B4F /* FLObjc.m in Sources */,
 				276807A9175D370700B1D643 /* FLExceptions.m in Sources */,
 				270214A617C3CF9F001A8A77 /* FLObjectProxy.m in Sources */,
-				276807B6175D370700B1D643 /* FLMutableError.m in Sources */,
 				2769E63C17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */,
 				2769E53217CBA2EC00F5D868 /* FLTestable.m in Sources */,
 				276807BF175D370700B1D643 /* FLStackTrace.m in Sources */,
@@ -1722,7 +1704,6 @@
 				2729CB08177777E700D59B4F /* FLObjc.m in Sources */,
 				276807AB175D370700B1D643 /* FLExceptions.m in Sources */,
 				270214A817C3CF9F001A8A77 /* FLObjectProxy.m in Sources */,
-				276807B8175D370700B1D643 /* FLMutableError.m in Sources */,
 				2769E63E17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */,
 				2769E53417CBA2EC00F5D868 /* FLTestable.m in Sources */,
 				276807C1175D370700B1D643 /* FLStackTrace.m in Sources */,
@@ -1787,7 +1768,6 @@
 				2729CB05177777E700D59B4F /* FLObjc.m in Sources */,
 				276807A8175D370700B1D643 /* FLExceptions.m in Sources */,
 				270214A517C3CF9F001A8A77 /* FLObjectProxy.m in Sources */,
-				276807B5175D370700B1D643 /* FLMutableError.m in Sources */,
 				2769E63B17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */,
 				2769E53117CBA2EC00F5D868 /* FLTestable.m in Sources */,
 				276807BE175D370700B1D643 /* FLStackTrace.m in Sources */,
@@ -1852,7 +1832,6 @@
 				2729CB07177777E700D59B4F /* FLObjc.m in Sources */,
 				276807AA175D370700B1D643 /* FLExceptions.m in Sources */,
 				270214A717C3CF9F001A8A77 /* FLObjectProxy.m in Sources */,
-				276807B7175D370700B1D643 /* FLMutableError.m in Sources */,
 				2769E63D17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */,
 				2769E53317CBA2EC00F5D868 /* FLTestable.m in Sources */,
 				276807C0175D370700B1D643 /* FLStackTrace.m in Sources */,
@@ -1917,7 +1896,6 @@
 				2729CB09177777E700D59B4F /* FLObjc.m in Sources */,
 				276807AC175D370700B1D643 /* FLExceptions.m in Sources */,
 				270214A917C3CF9F001A8A77 /* FLObjectProxy.m in Sources */,
-				276807B9175D370700B1D643 /* FLMutableError.m in Sources */,
 				2769E63F17D279EC00F5D868 /* FLPrettyAttributedString.m in Sources */,
 				2769E53517CBA2EC00F5D868 /* FLTestable.m in Sources */,
 				276807C2175D370700B1D643 /* FLStackTrace.m in Sources */,

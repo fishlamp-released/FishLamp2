@@ -30,14 +30,14 @@
 #import "FishLampVersion.h"
 // TODO: push these out to the frameworks?
 #if IOS
-    #import <UIKit/UIKit.h>
-    #import <CoreGraphics/CoreGraphics.h>
-    #import <MobileCoreServices/MobileCoreServices.h>
-    #import <ImageIO/ImageIO.h>
+//    #import <UIKit/UIKit.h>
+//    #import <CoreGraphics/CoreGraphics.h>
+//    #import <MobileCoreServices/MobileCoreServices.h>
+//    #import <ImageIO/ImageIO.h>
 #else
-    #import <Cocoa/Cocoa.h>
-    #import <AppKit/AppKit.h>
-    #import <CoreServices/CoreServices.h>
+//    #import <Cocoa/Cocoa.h>
+//    #import <AppKit/AppKit.h>
+//    #import <CoreServices/CoreServices.h>
 #endif
 
 // Errors
@@ -50,7 +50,6 @@
 #import "FLConfirmations.h"
 #import "FLErrorException.h"
 #import "FLErrorCodes.h"
-#import "FLMutableError.h"
 #import "FLStackTrace.h"
 #import "NSError+FLExtras.h"
 
@@ -88,6 +87,9 @@
 #import "NSDictionary+FLAdditions.h"
 #import "NSObject+Blocks.h"
 #import "FLMath.h"
+
+// Testing
+#import "FLTestable.h"
 
 /*
     // Runtime

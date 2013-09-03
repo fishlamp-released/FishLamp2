@@ -140,11 +140,16 @@ didStartElement:(NSString *)elementName
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
 
     FLPrettyString* prettyString = [FLPrettyString prettyString];
-    [prettyString appendFormat:@"XMLParsing Error: %@ (%d) at line: %d, column: %d in %@", FLXmlParserErrorCodeStringFromEnum(parseError.code), parseError.code, parser.lineNumber, parser.columnNumber, self.fileNameForErrors];
+    [prettyString appendFormat: @"XMLParsing Error: %@ (%ld) at line: %ld, column: %ld in %@",
+                                FLXmlParserErrorCodeStringFromEnum(parseError.code),
+                                (unsigned long) parseError.code,
+                                (unsigned long) parser.lineNumber,
+                                (unsigned long) parser.columnNumber,
+                                self.fileNameForErrors];
 
     for(FLParsedXmlElement* element in _stack) {
         if(FLStringIsNotEmpty(element.elementName)) {
-            [prettyString appendFormat:@" <%@>"];
+            [prettyString appendFormat:@" <%@>", [element elementName]];
         }
     }
 

@@ -133,5 +133,17 @@
     [self setFinishedWithResult:[NSError cancelError]];
 }
 
+@end
+
+@implementation FLForegroundFinisher
+
+- (void) setFinishedWithResult:(FLPromisedResult) result {
+    if([NSThread isMainThread]) {
+        [super setFinishedWithResult:result];
+    }
+    else {
+        [self performSelectorOnMainThread:@selector(setFinishedWithResult:) withObject:result waitUntilDone:NO];
+    }
+}
 
 @end

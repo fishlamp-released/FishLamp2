@@ -48,3 +48,6 @@
 - (void) finisherDidFinish:(FLFinisher*) finisher
                 withResult:(FLPromisedResult) resultOrNil;
 @end
+
+@interface FLForegroundFinisher : FLFinisher
+@end

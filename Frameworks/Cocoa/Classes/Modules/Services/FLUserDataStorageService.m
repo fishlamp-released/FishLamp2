@@ -88,7 +88,7 @@
 }
 
 - (void) _appWillBecomeActive:(id) sender {
-	if(!self.isServiceOpen && _willOpen) {
+	if(!self.isOpen && _willOpen) {
 // REFACTOR
 FLAssertFailedWithComment(@"refactor this");    
 //        [self _beginOpeningService];
@@ -183,7 +183,7 @@ FLAssertFailedWithComment(@"refactor this");
 //        [asyncTask setFinished];
 //    }];
     
-	if(self.isServiceOpen) {
+	if(self.isOpen) {
 		[[FLLowMemoryHandler defaultHandler] broadcastReleaseMessage];
 	}
 	 

@@ -41,7 +41,7 @@
 
  - (void)document:(NSDocument *)document didSave:(BOOL)didSaveSuccessfully contextInfo:(void *)contextInfo {
     
-    FLLog(@"%@ did save document");
+    FLLog(@"did save document");
  }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

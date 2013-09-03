@@ -32,7 +32,7 @@ extern CGRect FLRectOptimizedForViewSize(CGRect r);
 extern CGRect FLRectOptimizedForViewLocation(CGRect r);
 
 
-#define FLWarnIfRectIsNotOptimizedForView(r) if(!FLRectIsOptimizedForView(r)) FLDebugLog(@"%s is not optimized for view", #r)
+#define FLWarnIfRectIsNotOptimizedForView(r) if(!FLRectIsOptimizedForView(r)) FLLog(@"%s is not optimized for view", #r)
 #define FLAssertRectOptimizedForViewWithComment(r) FLAssertWithComment(FLRectIsOptimizedForView(r), @"%s is not optimized for view", #r) 
 
 #else

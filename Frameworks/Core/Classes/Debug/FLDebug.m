@@ -35,7 +35,7 @@
 //
 //void add_msg_to_state(NSString* msg, FLDebugTrackerState* state)
 //{
-//    FLDebugLog(msg);
+//    FLLog(msg);
 //    [state->history addObject:[NSString stringWithFormat:@"%@: %@", msg, FLStackTrace_t()]];
 //}
 //
@@ -81,10 +81,10 @@
 //        [history appendString:stack];
 //    }
 //    
-//    FLDebugLog(history);
+//    FLLog(history);
 //}
 //
-//@implementation NSObject (FLDebugLog)
+//@implementation NSObject (FLLog)
 //
 //#if ALLOCATION_HOOKS
 //

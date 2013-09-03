@@ -46,7 +46,8 @@
 // overide points
 - (void) startOperation;
 
-@property (readwrite, strong, nonatomic) id storageService __attribute__((deprecated));
+// this will be deprecated soon
+@property (readwrite, strong, nonatomic) id storageService /*__attribute__((deprecated))*/;
 @end
 
 @interface FLOperation (Finishing)

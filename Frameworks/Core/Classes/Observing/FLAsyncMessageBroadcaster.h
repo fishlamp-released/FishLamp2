@@ -12,9 +12,9 @@
 
 @protocol FLAsyncMessageBroadcaster <NSObject>
 @property (readonly, strong) FLBroadcaster* listeners;
-- (BOOL) hasListener:(id) listener;
-- (void) addListener:(id) listener;
-- (void) removeListener:(id) listener;
+//- (BOOL) hasListener:(id) listener;
+//- (void) addListener:(id) listener;
+//- (void) removeListener:(id) listener;
 @end
 
 #define FLSynthesizeDeprecatedObservableProperties() \
@@ -37,19 +37,20 @@
 //            @property (readonly, strong) FLBroadcaster* observers
 
 #define FLSynthesizeAsyncMessageBroadcasterProperties(__IVAR_NAME__) \
-            FLSynthesizeLazyGetter(listeners, FLBroadcaster*, __IVAR_NAME__, FLBroadcaster); \
-            \
-            - (BOOL) hasListener:(id) listener { \
-                return [self.listeners hasListener:listener]; \
-            } \
-            - (void) addListener:(id) observer { \
-                [self.listeners addListener:observer]; \
-            } \
-            \
-            - (void) removeListener:(id) listener { \
-                [self.listeners removeListener:listener]; \
-            } \
-            FLSynthesizeDeprecatedObservableProperties()
+            FLSynthesizeLazyGetter(listeners, FLBroadcaster*, __IVAR_NAME__, FLBroadcaster)
+
+//            FLSynthesizeDeprecatedObservableProperties()
+
+//            - (BOOL) hasListener:(id) listener { \
+//                return [self.listeners hasListener:listener]; \
+//            } \
+//            - (void) addListener:(id) observer { \
+//                [self.listeners addListener:observer]; \
+//            } \
+//            \
+//            - (void) removeListener:(id) listener { \
+//                [self.listeners removeListener:listener]; \
+//            } 
 
 
 

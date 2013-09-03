@@ -82,7 +82,7 @@ static FLReachability* s_default = nil;
 		}
 
 //#if DEBUG		   
-//		  FLDebugLog(FLDebugReachability, @"Set reachability for host: %@", hostName);
+//		  FLLog(FLDebugReachability, @"Set reachability for host: %@", hostName);
 //#endif		
 //		  
 		_reachabilityRef = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, [hostName UTF8String]);
@@ -262,7 +262,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 	/*
 		if(!flags)
 		{
-			FLDebugLog(@"Warning SCNetworkReachabilityGetFlags returned 0 for host: %@ (check url for illegal prefix like http://)", self.hostName ? self.hostName : @"unknown");
+			FLLog(@"Warning SCNetworkReachabilityGetFlags returned 0 for host: %@ (check url for illegal prefix like http://)", self.hostName ? self.hostName : @"unknown");
 		}
 	 */
 	 
@@ -280,7 +280,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 	}
 	else
 	{
-		FLDebugLog(@"Warning SCNetworkReachabilityGetFlags returned false!");
+		FLLog(@"Warning SCNetworkReachabilityGetFlags returned false!");
 	}
 	
 	
@@ -336,7 +336,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 #if DEBUG
 	if(FLTestBoolEnvironmentVariable(FLNetworkNotReachable))
 	{
-		FLDebugLog(@"Warning fake not reachable is enabled");
+		FLLog(@"Warning fake not reachable is enabled");
 		return gtNetworkNotReachable;
 	}
 #endif

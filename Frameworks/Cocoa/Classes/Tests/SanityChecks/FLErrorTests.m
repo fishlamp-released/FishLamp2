@@ -9,8 +9,6 @@
 
 #import "FLErrorTests.h"
 #import "NSError+FLExtras.h"
-#import "FLMutableError.h"
-
 
 @implementation FLErrorTests
 
@@ -18,14 +16,9 @@
     return [FLTestGroup frameworkTestGroup];
 }
 
-- (void) testMutableErrorCopy {
-    
+- (void) testCancelError {
     NSError* error  = [NSError cancelError];
     FLAssertIsTrue(error.isCancelError);
-    
-//    FLMutableError* mutableError = [FLMutableError mutableErrorWithError:error];
-//    
-//    FLAssertObjectsAreEqual(mutableError, error);
 }
 
 @end

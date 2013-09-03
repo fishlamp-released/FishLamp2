@@ -365,7 +365,7 @@ willCloseWithResponseHeaders:(FLHttpMessage*) responseHeaders
 //            self.totalBytesSent = bytesSent;
 //
 //#if TRACE
-//            FLDebugLog(@"bytes this time: %qu, total bytes sent: %qu, expected to send: %qu",  
+//            FLLog(@"bytes this time: %qu, total bytes sent: %qu, expected to send: %qu",  
 //                self.lastBytesSent,
 //                self.totalBytesSent, 
 //                [[_requestQueue lastObject] postLength]);

@@ -24,19 +24,19 @@ typedef void (^FLStringFormatterBlock)();
 /// ends currently open line, opens a new one.
 - (void) openLine;
 - (void) openLineWithString:(NSString*) string;
-- (void) openLineWithFormat:(NSString*) format, ...;
+- (void) openLineWithFormat:(NSString*) format, ... NS_FORMAT_FUNCTION(1,2);
 - (void) openLineWithAttributedString:(NSAttributedString*) string;
 
 /// append to open line. Opens a news line if no line is open.
 - (void) appendString:(NSString*) string; 
-- (void) appendFormat:(NSString*) format, ...;
+- (void) appendFormat:(NSString*) format, ... NS_FORMAT_FUNCTION(1,2);
 - (void) appendAttributedString:(NSAttributedString*) string; 
 - (void) appendFormat:(NSString*) format arguments:(va_list)argList;
 
 // end current line with EOF (only if it hasn't already been ended)
 - (void) closeLine; 
 - (void) closeLineWithString:(NSString*) string;
-- (void) closeLineWithFormat:(NSString*) format, ...;
+- (void) closeLineWithFormat:(NSString*) format, ... NS_FORMAT_FUNCTION(1,2);
 - (void) closeLineWithAttributedString:(NSAttributedString*) format;
 
 /// Ends currently open line, then adds a blank line. Leaves no open line.
@@ -44,7 +44,7 @@ typedef void (^FLStringFormatterBlock)();
 
 /// AppendLine: Append a string, then a EOL. Ends currently open line first.
 - (void) appendLine:(NSString*) line;  
-- (void) appendLineWithFormat:(NSString*) format, ...;
+- (void) appendLineWithFormat:(NSString*) format, ... NS_FORMAT_FUNCTION(1,2);
 - (void) appendLineWithAttributedString:(NSAttributedString*) line;  
 - (void) appendLineWithFormat:(NSString*) format arguments:(va_list)argList;
 

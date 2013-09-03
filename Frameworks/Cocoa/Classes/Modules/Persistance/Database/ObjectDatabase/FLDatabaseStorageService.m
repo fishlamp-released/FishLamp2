@@ -7,20 +7,19 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLDatabaseObjectStorageService.h"
+#import "FLDatabaseStorageService.h"
 
-@interface FLDatabaseObjectStorageService ()
+@interface FLDatabaseStorageService ()
 @property (readwrite, strong, nonatomic) FLObjectDatabaseController* databaseController;
 @end
 
-@implementation FLDatabaseObjectStorageService
-@synthesize databaseController = _databaseController;
-@synthesize delegate = _delegate;
+@implementation FLDatabaseStorageService
 
-+ (id) databaseObjectStorageService:(id<FLDatabaseObjectStorageServiceDelegate>) delegate {
-    FLDatabaseObjectStorageService* service = FLAutorelease([[[self class] alloc] init]);
-    service.delegate = delegate;
-    return service;
+@synthesize databaseController = _databaseController;
+@synthesize databaseFilePath = _databaseFilePath;
+
++ (id) databaseStorageService {
+    return FLAutorelease([[[self class] alloc] init]);
 }
 
 - (id<FLObjectStorage>) objectStorage {
@@ -34,18 +33,19 @@
 }
 #endif
 
-- (NSString*) databaseFilePath {
-    return [self.delegate databaseObjectStorageServiceGetDatabasePath:self];
-}
-
 - (void) openSelf {
+
+    [self.listeners.all databaseStorageServiceWillOpen:self];
+
     NSString* databasePath = [self databaseFilePath];
-    FLAssertStringIsNotEmpty(databasePath);
+    FLConfirmStringIsNotEmpty(databasePath);
     
     self.databaseController = [FLObjectDatabaseController  objectDatabaseController:databasePath];
     
     [self.databaseController dispatchAsync:^(FLObjectDatabase* database) {
         [database openDatabase];
+
+        [self.listeners.all databaseStorageServiceDidOpen:self];
     }
     completion:^(FLPromisedResult result) {
         if([result isError]) {
@@ -55,14 +55,18 @@
  }
 
 - (void) closeSelf {
+    [self.listeners.all databaseStorageServiceWillClose:self];
+
     [self.databaseController dispatchAsync:^(FLObjectDatabase* database) {
-        [database openDatabase];
+        [database closeDatabase];
+        [self.listeners.all databaseStorageServiceDidClose:self];
     }
     completion:^(FLPromisedResult result) {
         if([result isError]) {
             FLLog(@"database error: %@", result)
         }
     }];
+
 }
 
 

@@ -45,12 +45,19 @@
     return [self.credentials canAuthenticate];
 }
 
-- (void) didOpenService {
+- (void) openSelf:(FLFinisher*) finisher {
     [self.listeners.all userServiceDidOpen:self];
+    [finisher setFinished];
 }
 
-- (void) didCloseService {
+- (void) closeSelf:(FLFinisher*) finisher {
+
+    FLCredentialsEditor* editor = [self credentialEditor];
+    editor.password = nil;
+    [editor stopEditing];
+
     [self.listeners.all userServiceDidClose:self];
+    [finisher setFinished];
 }
 
 - (FLCredentialsEditor*) credentialEditor {
@@ -62,7 +69,7 @@
 - (void) credentialsEditor:(FLCredentialsEditor*) editor
 willStartEditingCredentials:(id<FLCredentials>) credentials {
 
-   [self closeService];
+   [self closeService:nil];
 }
 
 - (void) credentialsEditor:(FLCredentialsEditor*) editor
@@ -78,7 +85,7 @@ didFinishEditingCredentials:(id<FLCredentials>) credentials {
         [self.credentialStorage writeCredentials:self.credentials];
     }
 
-    [self openService];
+    [self openService:nil];
 }
 
 @end

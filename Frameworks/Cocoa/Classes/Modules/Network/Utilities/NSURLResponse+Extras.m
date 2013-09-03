@@ -37,7 +37,7 @@
 
 	NSDictionary* headers = [self allHeaderFields];
 	
-	[prettyString appendFormat:@"HTTP response: %d (%@)", self.statusCode, [NSHTTPURLResponse localizedStringForStatusCode:self.statusCode]];
+	[prettyString appendFormat:@"HTTP response: %ld (%@)", (long) self.statusCode, [NSHTTPURLResponse localizedStringForStatusCode:self.statusCode]];
     [prettyString closeLine];
 
 	[prettyString appendString:@"headers:"];

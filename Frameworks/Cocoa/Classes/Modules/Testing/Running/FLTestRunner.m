@@ -37,9 +37,9 @@
     
     NSArray* sortedGroupList = [organizer sortedGroupList];
 
-    [FLTestOutput appendLineWithFormat:@"Found %d unit test classes in %d groups",
-        allClassesList.count,
-        sortedGroupList.count];
+    [FLTestOutput appendLineWithFormat:@"Found %ld unit test classes in %ld groups",
+        (unsigned long) allClassesList.count,
+        (unsigned long) sortedGroupList.count];
     
     NSMutableArray* resultArray = [NSMutableArray array];
 

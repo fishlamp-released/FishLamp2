@@ -15,6 +15,8 @@
 #import "FLOperation.h"
 #import "FLOperationQueue.h"
 
+#import "FLCancellableAsyncQueue.h"
+
 //#define TRACE 1
 
 NSString* const FLWorkerContextStarting = @"FLWorkerContextStarting";
@@ -26,34 +28,24 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 @interface FLOperationContext ()
 @property (readwrite, assign, getter=isContextOpen) BOOL contextOpen; 
 @property (readwrite, assign) NSUInteger contextID;
-@property (readonly, strong) FLOperationQueue* operationQueue;
+@property (readonly, strong) FLCancellableAsyncQueue* cancelQueue;
 @end
 
-//@implementation FLAsyncEvent (FLOperationContext)
-//- (void) wasAddedToOperationContext:(FLOperationContext*) context {
-//}
-//@end
-//
-//@implementation FLOperationEvent (FLOperationContext)
-//- (void) wasAddedToOperationContext:(FLOperationContext*) context {
-//    [context addOperation:self.operation];
-//}
-//@end
 
 @implementation FLOperationContext
 @synthesize contextOpen = _contextOpen;
 @synthesize contextID = _contextID;
-@synthesize operationQueue = _operationQueue;
-
-FLSynthesizeAsyncMessageBroadcasterProperties(_broadcaster);
+@synthesize cancelQueue = _cancelQueue;
 
 - (id) init {
     self = [super init];
     if(self) {
         static NSInteger s_last = 0;
         _contextID = ++s_last;
-        _operationQueue = [[FLOperationQueue alloc] initWithName:[NSString stringWithFormat:@"Operation Context: %ld", _contextID]];
         [self openContext];
+
+        _cancelQueue = [[FLCancellableAsyncQueue alloc] init];
+        [self addDecorator:_cancelQueue];
     }
     
     return self;
@@ -61,9 +53,7 @@ FLSynthesizeAsyncMessageBroadcasterProperties(_broadcaster);
 
 #if FL_MRC
 - (void) dealloc {
-    [_operationQueue release];
-    [_broadcaster release];
-    [_operationQueue release];
+    [_cancelQueue release];
     [super dealloc];
 }
 #endif
@@ -72,87 +62,60 @@ FLSynthesizeAsyncMessageBroadcasterProperties(_broadcaster);
     return FLAutorelease([[[self class] alloc] init]);
 }
 
-//- (void) visitOperations:(FLOperationVisitor) visitor {
-//
-//    @synchronized(self) {
-//        BOOL stop = NO;
-//        for(id operation in _operations) {
-//            visitor([operation nonretainedObjectValue], &stop);
-//            
-//            if(stop) {
-//                break;
-//            }
-//        }
-//    }
-//}
-
 - (void) requestCancel {
-    [self.operationQueue requestCancel];
-
-//    @synchronized(self) {
-//    
-//        NSSet* copy = FLCopyWithAutorelease(_operations);
-//        for(id operation in copy) {
-//#if TRACE
-//            FLLog(@"cancelled %@", [operation description]);
-//#endif
-//        
-//            FLPerformSelector0([operation nonretainedObjectValue], @selector(requestCancel));
-//        }
-//    }
+    [self.cancelQueue requestCancel];
 }
 
 - (void) openContext {
-    [self.operationQueue startProcessing];
+
+    self.contextOpen = YES;
+
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextOpened object:self];
     });
 }
 
-
 - (void) closeContext {
 
-    [self.operationQueue requestCancel];
-    
-//    [self visitOperations:^(id operation, BOOL *stop) {
-//        [operation contextDidClose];
-//    }];
+    self.contextOpen = NO;
+
+    [self requestCancel];
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextClosed object:self];
     });
 }
 
-- (void) didAddOperation:(FLOperation*) operation {
-    [self.listeners.all operationContext:self didAddOperation:operation];
-}
+//- (void) didAddOperation:(FLOperation*) operation {
+//    [self.listeners.all operationContext:self didAddOperation:operation];
+//}
+//
+//- (void) didRemoveOperation:(FLOperation*) operation {
+//    [self.listeners.all operationContext:self didRemoveOperation:operation];
+//}
 
-- (void) didRemoveOperation:(FLOperation*) operation {
-    [self.listeners.all operationContext:self didRemoveOperation:operation];
-}
-
-- (void) didStartWorking {
-
-#if TRACE
-    FLLog(@"Context started working %@", [self description]);
-#endif
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextStarting object:self];
-    });
-}
-
-- (void) didStopWorking {
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextFinished object:self];
-    });
-
-#if TRACE
-    FLLog(@"Context stopped working %@", [self description]);
-#endif
-
-}
+//- (void) didStartWorking {
+//
+//#if TRACE
+//    FLLog(@"Context started working %@", [self description]);
+//#endif
+//
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextStarting object:self];
+//    });
+//}
+//
+//- (void) didStopWorking {
+//
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextFinished object:self];
+//    });
+//
+//#if TRACE
+//    FLLog(@"Context stopped working %@", [self description]);
+//#endif
+//
+//}
 
 //- (FLPromise*) queueAsyncEvent:(FLAsyncEvent*) event
 //                    completion:(fl_completion_block_t) completion {
@@ -164,41 +127,41 @@ FLSynthesizeAsyncMessageBroadcasterProperties(_broadcaster);
 //    [self.fifoQueue queueSynchronousInitiator:event];
 //}
 
-- (void) queueOperation:(FLOperation*) operation  {
-
-    [self.operationQueue queueOperation:operation];
-
-//    BOOL wasIdle = YES;
-//    
-//    @synchronized(self) {
-//    
-//#if TRACE
-//        FLLog(@"Operation added to context: %@", [operation description]);
-//#endif
+//- (void) queueOperation:(FLOperation*) operation  {
 //
-//       
-//        wasIdle = _operations.count == 0;
-//       
-//        [_operations addObject:[NSValue valueWithNonretainedObject:operation]];
-//         
-//        FLOperationContext* oldContext = operation.context;
-//        if(oldContext && oldContext != self) {
-//            [operation.context removeOperation:operation];
-//        }
-//        [operation wasAddedToContext:self];
-//        [operation.listeners addListener:self.nonretained_fl];
-//    }
+//    [self.operationQueue queueOperation:operation];
 //
-//    [self didAddOperation:operation];
-//
-//    if(wasIdle) {
-//        [self didStartWorking];
-//    }
-//
-//    if(!self.isContextOpen) {
-//        [operation requestCancel];
-//    }
-}
+////    BOOL wasIdle = YES;
+////    
+////    @synchronized(self) {
+////    
+////#if TRACE
+////        FLLog(@"Operation added to context: %@", [operation description]);
+////#endif
+////
+////       
+////        wasIdle = _operations.count == 0;
+////       
+////        [_operations addObject:[NSValue valueWithNonretainedObject:operation]];
+////         
+////        FLOperationContext* oldContext = operation.context;
+////        if(oldContext && oldContext != self) {
+////            [operation.context removeOperation:operation];
+////        }
+////        [operation wasAddedToContext:self];
+////        [operation.listeners addListener:self.nonretained_fl];
+////    }
+////
+////    [self didAddOperation:operation];
+////
+////    if(wasIdle) {
+////        [self didStartWorking];
+////    }
+////
+////    if(!self.isContextOpen) {
+////        [operation requestCancel];
+////    }
+//}
 
 //- (void) removeOperation:(FLOperation*) operation {
 //
@@ -227,6 +190,7 @@ FLSynthesizeAsyncMessageBroadcasterProperties(_broadcaster);
 //}
 
 @end
+
 
 
 

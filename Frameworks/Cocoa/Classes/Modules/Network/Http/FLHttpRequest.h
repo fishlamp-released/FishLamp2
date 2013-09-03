@@ -10,6 +10,7 @@
 #import "FishLampMinimum.h"
 #import "FLOperation.h"
 #import "FLHttpStream.h"
+#import "FLHttpRequestAuthenticator.h"
 
 #define FLHttpRequestDefaultTimeoutInterval 120.0f
 
@@ -27,10 +28,7 @@
 
 @protocol FLRetryHandler;
 
-@protocol FLHttpRequestAuthenticator <NSObject>
-//// this needs to be synchronous for scheduling reasons amoung concurrent requests.
-- (void) authenticateHttpRequest:(FLHttpRequest*) request;
-@end
+
 
 @protocol FLHttpRequestContext <NSObject>
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;

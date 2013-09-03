@@ -39,7 +39,13 @@
     if(!_listeners) {
         _listeners = [[NSMutableArray alloc] init];
     }
-    [_listeners addObject:listener];
+
+    if([listener conformsToProtocol:@protocol(FLObjectProxy)]) {
+        [_listeners addObject:listener];
+    }
+    else {
+        [_listeners addObject:[listener nonretained_fl]];
+    }
 }
 
 - (void) removeListener:(id) listener {

@@ -25,7 +25,7 @@
 //- (id) allocationHookRelease:(id) object;
 //@end
 //	
-//@interface NSObject (FLDebugLog)
+//@interface NSObject (FLLog)
 //+ (id<FLAllocationHookProtocol>) setAllocHook:(id<FLAllocationHookProtocol>) hook;
 //+ (id<FLAllocationHookProtocol>) allocationHook;
 //@end

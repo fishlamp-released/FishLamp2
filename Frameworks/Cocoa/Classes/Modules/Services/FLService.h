@@ -7,53 +7,30 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLCocoaRequired.h"
+#import "FishLampMinimum.h"
 #import "FLAsyncMessageBroadcaster.h"
+#import "FishLampAsync.h"
 
 extern NSString* const FLServiceDidCloseNotificationKey;
 extern NSString* const FLServiceDidOpenNotificationKey;
 
 @protocol FLService <NSObject, FLAsyncMessageBroadcaster>
-@property (readonly, assign) id superService;
-@property (readonly, assign) id rootService;
-
-@property (readonly, assign, getter=isServiceOpen) BOOL serviceOpen;
-- (void) openService;
-- (void) closeService;
-
-@property (readonly, strong) NSArray* subServices; 
-- (void) addSubService:(id<FLService>) service;
-- (void) removeSubService:(id<FLService>) service;
-- (void) visitSubServices:(void (^)(id service, BOOL* stop)) visitor;
-
-- (void) startProcessingObject:(id) object;
-- (void) stopProcessingObject:(id) object;
-
+@property (readonly, assign) BOOL isOpen;
+- (FLPromise*) openService:(fl_result_block_t) completion;
+- (FLPromise*) closeService:(fl_result_block_t) completion;
 @end
 
 @interface FLService : FLAsyncMessageBroadcaster<FLService> {
 @private
-    NSMutableArray* _subServices;
-    BOOL _serviceOpen;
-    __unsafe_unretained id _superService;
+    BOOL _isOpen;
+    NSError* _error;
 }
 
-+ (id) service;
+@property (readonly, strong) NSError* error;
+
+// override these
+- (void) openSelf:(FLFinisher*) finisher;
+- (void) closeSelf:(FLFinisher*) finisher;
 @end
 
-@interface FLService (OptionalOverrides)
-// optional overrides
-- (void) didMoveToSuperService:(id) superService;
-
-- (void) willOpenService;
-- (void) openSelf;
-- (void) didOpenService;
-
-- (void) willCloseService;
-- (void) closeSelf;
-- (void) didCloseService;
-
-- (void) willStartProcessingObject:(id) object;
-- (void) willStopProcessingObject:(id) object;
-@end
 
