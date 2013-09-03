@@ -6,7 +6,11 @@
 //	Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#import "FLCoreRequired.h"
+#import "FLCoreFlags.h"
+#import "FLCompilerWarnings.h"
+#import "FLObjc.h"
+#import "FLDebug.h"
+
 #import "FLSingletonProperty.h"
 #import "FLAssociatedProperty.h"
 #import "FLAtomicProperties.h"
@@ -14,7 +18,6 @@
 #import "FLStaticMemberProperty.h"
 #import "FLDefaultProperty.h"
 #import "FLBitFlagsProperty.h"
-
 
 #define FLSynthesizeDictionaryGetterProperty(__GETTER__, __TYPE__, __KEY__, __DICTIONARY__) \
     - (__TYPE__) __GETTER__ { \

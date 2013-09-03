@@ -7,12 +7,11 @@
 //
 
 #import "FLCoreRequired.h"
-#import "FLTestGroup.h"
-#import "FLTestCaseList.h"
-#import "FLTestResultCollection.h"
-#import "FLTestCase.h"
-#import "FLTestCaseResult.h"
-#import "FLTestLoggingManager.h"
+
+@class FLTestGroup;
+@class FLTestCaseList;
+@class FLExpectedTestResult;
+@class FLTestResultCollection;
 
 @protocol FLTestable <NSObject>
 @optional
@@ -49,8 +48,6 @@
 
 @end
 
-
-
-#ifndef TESTABLE
-#define TESTABLE 1
+#ifndef TESTS
+#define TESTS 1
 #endif

@@ -8,6 +8,7 @@
 
 #import "FLTestable.h"
 #import "FLAssertions.h"
+#import "FLTestGroup.h"
 
 @implementation FLTestable
 

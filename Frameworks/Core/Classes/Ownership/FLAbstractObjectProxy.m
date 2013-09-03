@@ -1,42 +1,42 @@
 //
-//  FLObjectProxy.m
+//  FLAbstractObjectProxy.m
 //  FishLampCocoa
 //
 //  Created by Mike Fullerton on 6/24/13.
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjectProxy.h"
+#import "FLAbstractObjectProxy.h"
 //#import "FLLog.h"
 //#import "FLTrace.h"
 #import "FLAssertions.h"
 
-@implementation NSObject (FLObjectProxy)
+@implementation NSObject (FLAbstractObjectProxy)
 
-- (id) nextRepresentedObject {
+- (id) nextContainedObject {
     return nil;
 }
 
-- (id) representedObject {
+- (id) containedObject {
     return self;
 }
 
 @end
 
-@implementation FLObjectProxy
+@implementation FLAbstractObjectProxy
 
-- (id) nextRepresentedObject {
-    return self.representedObject;
+- (id) nextContainedObject {
+    return self.containedObject;
 }
 
-- (id) representedObject {
+- (id) containedObject {
     return nil;
 }
 
-- (id) findRepresentedObject {
-    id walker = [self nextRepresentedObject];
+- (id) representedObject {
+    id walker = [self nextContainedObject];
     while(walker) {
-        id next = [walker nextRepresentedObject];
+        id next = [walker nextContainedObject];
         if(next) {
             walker = next;
         }
@@ -49,7 +49,7 @@
 
 - (NSString*) description {
 
-    id object = [self findRepresentedObject];
+    id object = [self representedObject];
 
 	return [NSString stringWithFormat:@"%@ holding a %@:\n%@",
         NSStringFromClass([self class]),
@@ -58,15 +58,15 @@
 }
 
 - (BOOL)isEqual:(id)representedObject {
-	return [[self findRepresentedObject] isEqual:representedObject];
+	return [[self representedObject] isEqual:representedObject];
 }
 
 - (NSUInteger)hash {
-	return [[self findRepresentedObject] hash];
+	return [[self representedObject] hash];
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
-    id object = [self findRepresentedObject];
+    id object = [self representedObject];
     if([object respondsToSelector:[anInvocation selector]]) {
         [anInvocation invokeWithTarget:object];
     }
@@ -77,7 +77,7 @@
 
 - (NSMethodSignature*)methodSignatureForSelector:(SEL)selector {
 
-    NSMethodSignature* sig = [[self findRepresentedObject] methodSignatureForSelector:selector];
+    NSMethodSignature* sig = [[self representedObject] methodSignatureForSelector:selector];
     if(!sig) {
         sig = [NSMethodSignature signatureWithObjCTypes:"@^v^c"];
 //        FLTrace(@"returning fake method signature for selector %@", NSStringFromSelector(selector));
@@ -86,7 +86,7 @@
 }
 
 - (BOOL) respondsToSelector:(SEL)aSelector {
-    return [[self findRepresentedObject] respondsToSelector:aSelector];
+    return [[self representedObject] respondsToSelector:aSelector];
 }
 
 

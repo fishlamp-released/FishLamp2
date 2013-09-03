@@ -101,7 +101,7 @@ NSString* const FLHttpControllerDidLogoutUserNotification = @"FLHttpControllerDi
 - (void) userServiceDidClose:(id<FLUserService>) service {
     [self closeService:^(FLPromisedResult result) {
         if(self.httpUser) {
-            [self.listeners.all httpController:self didLogoutUser:self.httpUser];
+            [self.listeners.notify httpController:self didLogoutUser:self.httpUser];
             [[NSNotificationCenter defaultCenter] postNotificationName:FLHttpControllerDidLogoutUserNotification object:self];
             self.httpUser = nil;
         }

@@ -10,16 +10,16 @@
 
 @implementation FLRetainedObject
 
-@synthesize representedObject = _representedObject;
+@synthesize containedObject = _containedObject;
 
 - (id) initWithRetainedObject:(id) object {
-    _representedObject = FLRetain(object);
+    _containedObject = FLRetain(object);
 	return self;
 }
 
 #if FL_MRC
 - (void)dealloc {
-	[_representedObject release];
+	[_containedObject release];
 	[super dealloc];
 }
 #endif
@@ -27,6 +27,5 @@
 + (id) retainedObject:(id) object {
     return FLAutorelease([[[self class] alloc] initWithRetainedObject:object]);
 }
-
 
 @end

@@ -87,11 +87,11 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 }
 
 //- (void) didAddOperation:(FLOperation*) operation {
-//    [self.listeners.all operationContext:self didAddOperation:operation];
+//    [self.listeners.notify operationContext:self didAddOperation:operation];
 //}
 //
 //- (void) didRemoveOperation:(FLOperation*) operation {
-//    [self.listeners.all operationContext:self didRemoveOperation:operation];
+//    [self.listeners.notify operationContext:self didRemoveOperation:operation];
 //}
 
 //- (void) didStartWorking {

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FLObjectProxy.h"
+#import "FLAbstractObjectProxy.h"
 
 @interface FLAbstractArrayProxy : NSProxy
 - (NSArray*) array;

@@ -11,9 +11,9 @@
 #import "FLArrayProxy.h"
 
 // these are here as a convenience
-#import "FLObjectProxy.h"
+#import "FLAbstractObjectProxy.h"
 #import "FLRetainedObject.h"
-#import "FLNonretained.h"
+#import "FLNonretainedObjectProxy.h"
 #import "FLMainThreadObject.h"
 
 @interface FLBroadcaster : FLAbstractArrayProxy<NSFastEnumeration> {
@@ -21,23 +21,23 @@
     NSMutableArray* _listeners;
 }
 
-- (id) all;
+- (id) notify;
 
-- (void) performSelector:(SEL) messageSelector;
+- (void) notify:(SEL) messageSelector;
 
-- (void) performSelector:(SEL) messageSelector
+- (void) notify:(SEL) messageSelector
               withObject:(id) object;
 
-- (void) performSelector:(SEL) messageSelector
+- (void) notify:(SEL) messageSelector
               withObject:(id) object1
               withObject:(id) object2;
 
-- (void) performSelector:(SEL) messageSelector
+- (void) notify:(SEL) messageSelector
               withObject:(id) object1
               withObject:(id) object2
               withObject:(id) object3;
 
-- (void) performSelector:(SEL) messageSelector
+- (void) notify:(SEL) messageSelector
               withObject:(id) object1
               withObject:(id) object2
               withObject:(id) object3

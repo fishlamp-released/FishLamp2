@@ -106,7 +106,7 @@ FLSynthesizeLazyGetter(operationFactories, NSMutableArray*, _operationFactories,
             forQueuedObject:(id) object {
 
     [FLBackgroundQueue queueBlock:^{
-        [self.listeners.all operationQueue:self
+        [self.listeners.notify operationQueue:self
                            didStartOperation:operation
                              forQueuedObject:object];
         }];
@@ -117,7 +117,7 @@ FLSynthesizeLazyGetter(operationFactories, NSMutableArray*, _operationFactories,
                  withResult:(FLPromisedResult) result {
 
     [FLBackgroundQueue queueBlock:^{
-        [self.listeners.all operationQueue:self
+        [self.listeners.notify operationQueue:self
                            didFinishOperation:operation
                              forQueuedObject:object
                                    withResult:result];
@@ -126,7 +126,7 @@ FLSynthesizeLazyGetter(operationFactories, NSMutableArray*, _operationFactories,
 
 - (void) setFinishedWithResult:(FLPromisedResult) result {
     self.processing = NO;
-    [self.listeners.all operationQueue:self
+    [self.listeners.notify operationQueue:self
                       didFinishWithResult:result];
 }
 

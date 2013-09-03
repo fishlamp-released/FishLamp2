@@ -7,6 +7,7 @@
 //
 
 #import "FLCoreRequired.h"
+#import "FLObjcPropertyHelpers.h"
 
 typedef void (^FLStringFormatterBlock)();
 

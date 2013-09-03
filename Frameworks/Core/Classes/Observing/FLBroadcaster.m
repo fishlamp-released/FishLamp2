@@ -27,7 +27,7 @@
     return [_listeners containsObject:listener];
 }
 
-- (id) all {
+- (id) notify {
     return self;
 }
 
@@ -44,7 +44,7 @@
         [_listeners addObject:listener];
     }
     else {
-        [_listeners addObject:[listener nonretained_fl]];
+        [_listeners addObject:[FLNonretainedObjectProxy nonretainedObjectProxy:listener]];
     }
 }
 
@@ -57,7 +57,7 @@
     }
 }
 
-- (void) performSelector:(SEL) messageSelector {
+- (void) notify:(SEL) messageSelector {
     for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
         @try {
             [[_listeners objectAtIndex:i] performOptionalSelector_fl:messageSelector];
@@ -67,7 +67,7 @@
     }
 }
 
-- (void) performSelector:(SEL) messageSelector  
+- (void) notify:(SEL) messageSelector  
                      withObject:(id) object {
     for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
         @try {
@@ -79,7 +79,7 @@
     }
 }
 
-- (void) performSelector:(SEL) messageSelector 
+- (void) notify:(SEL) messageSelector 
                      withObject:(id) object1
                      withObject:(id) object2 {
 
@@ -94,7 +94,7 @@
     }
 }
 
-- (void) performSelector:(SEL) messageSelector 
+- (void) notify:(SEL) messageSelector 
                      withObject:(id) object1
                      withObject:(id) object2
                      withObject:(id) object3 {
@@ -110,7 +110,7 @@
     }
 }
 
-- (void) performSelector:(SEL) messageSelector 
+- (void) notify:(SEL) messageSelector 
                      withObject:(id) object1
                      withObject:(id) object2
                      withObject:(id) object3

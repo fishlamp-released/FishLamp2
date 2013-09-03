@@ -6,8 +6,11 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 // this is meant to be included by FLAssertions.h
+
+#import "FLCoreRequired.h"
 #import "FLAssertionFailedError.h"
-#import "FLStackTrace.h"
+
+//#import "FLStackTrace.h"
 
 #define FLThrowConfirmationFailure(__CODE__, __REASON__, __COMMENT__) \
             FLThrowError([FLAssertionFailedError assertionFailedError:__CODE__ reason:__REASON__ comment:__COMMENT__ stackTrace:FLCreateStackTrace(YES)])
@@ -24,7 +27,6 @@
 
 
 NS_INLINE BOOL __FLConfirmationDidFail() { return NO; }
-
 
 
 /// @brief: This will throw an diction failure exception

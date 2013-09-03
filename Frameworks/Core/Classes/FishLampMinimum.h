@@ -41,55 +41,32 @@
 #endif
 
 // Errors
-#import "FLExceptions.h"
+#import "FLErrors.h"
 
-#import "FLAssertionFailedError.h"
-#import "FLAssertionFailureErrorDomain.h"
+// Assertions
 #import "FLAssertions.h"
-#import "FLCancelError.h"
-#import "FLConfirmations.h"
-#import "FLErrorException.h"
-#import "FLErrorCodes.h"
-#import "FLStackTrace.h"
-#import "NSError+FLExtras.h"
 
-// Logger
-#import "FLLog.h"
-#import "FLLogSink.h"
-#import "FLLogEntry.h"
-
-#import "FLConsoleLogSink.h"
-#import "FLLogger.h"
-#import "FLPrintf.h"
 
 // Properties
-#import "FLAssociatedProperty.h"
-#import "FLAtomicProperties.h"
-#import "FLBitFlagsProperty.h"
-#import "FLDefaultProperty.h"
-#import "FLProperties.h"
-#import "FLSingletonProperty.h"
-#import "FLStaticMemberProperty.h"
-#import "FLStructFlagsProperty.h"
+#import "FLObjcPropertyHelpers.h"
 
-#import "FLPrettyString.h"
-#import "FLStringFormatter.h"
-#import "FLStringUtils.h"
-#import "FLWhitespace.h"
+// String Utils
+#import "FLStrings.h"
 
 // Utilities
-#import "FLAtomic.h"
-#import "FLBitFlags.h"
-#import "FLOSVersion.h"
-#import "FLSelectorPerforming.h"
-#import "FLVersion.h"
-#import "NSArray+FLExtras.h"
-#import "NSDictionary+FLAdditions.h"
-#import "NSObject+Blocks.h"
-#import "FLMath.h"
+#import "FLUtilities.h"
+
+// Proxy objects (Owner objects)
+#import "FLObjectProxies.h"
+
+// Event broadcasting and object communication
+#import "FLEventBroadcasting.h"
+
+// Logger
+#import "FLSimpleLogger.h"
 
 // Testing
-#import "FLTestable.h"
+#import "FLTesting.h"
 
 /*
     // Runtime

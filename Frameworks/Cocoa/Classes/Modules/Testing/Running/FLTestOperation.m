@@ -21,6 +21,7 @@
 #import "FLAssembledTest.h"
 
 #import "FLTestCaseRunner.h"
+#import "FLTestResultCollection.h"
 
 @implementation FLTestOperation
 
@@ -46,7 +47,7 @@
 
 - (FLPromisedResult) performSynchronously {
 
-    FLTestResultCollection* testCaseResults = [FLTestResultCollection testResultCollection];
+    FLExpectedTestResult* testCaseResults = [FLExpectedTestResult testResultCollection];
 
     FLTestCaseList* testCases = _unitTest.testCaseList;
     [_unitTest willRunTestCases:testCases withExpectedResult:testCaseResults];

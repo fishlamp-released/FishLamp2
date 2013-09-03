@@ -38,4 +38,5 @@
 
 // outcome?
 
-#define FLExpectedTestResult FLTestResultCollection
+@interface FLExpectedTestResult : FLTestResultCollection
+@end

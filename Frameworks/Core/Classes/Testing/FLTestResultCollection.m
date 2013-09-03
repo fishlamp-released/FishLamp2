@@ -121,4 +121,5 @@
 @end
 
 
-
+@implementation FLExpectedTestResult
+@end

@@ -26,7 +26,7 @@
 #endif
 
 - (id) notifyForTargetObject {
-    return [[_targetObject listeners] all];
+    return [[_targetObject listeners] notify];
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {

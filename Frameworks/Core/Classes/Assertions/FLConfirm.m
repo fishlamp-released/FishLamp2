@@ -7,8 +7,8 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLConfirmations.h"
-#import "FLAssertions.h"
+#import "FLConfirm.h"
+#import "FLAssert.h"
 
 /*
 #define InitArguments(__OBJ__, __FIRST__) \
@@ -29,7 +29,7 @@
 }
 */
 
-#if EXPERIMENTAL
+#if VA_ARG_EXPERIMENTAL
 
 #define callVardicMethodSafely(values...) ({ values *v = { values }; _actualFunction(values, sizeof(v) / sizeof(*v)); })
 

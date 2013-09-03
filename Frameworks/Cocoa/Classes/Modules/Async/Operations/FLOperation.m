@@ -111,7 +111,7 @@
 - (void) startInQueue:(id<FLAsyncQueue>) asyncQueue {
     self.asyncQueue = asyncQueue;
     [self startOperation];
-    [self.listeners performSelector:@selector(operationWillBegin:) withObject:self];
+    [self.listeners notify:@selector(operationWillBegin:) withObject:self];
 }
 
 - (FLPromisedResult) runSynchronouslyInQueue:(id<FLAsyncQueue>) asyncQueue {
@@ -232,7 +232,7 @@
 - (void) finisherDidFinish:(FLOperationFinisher*) finisher
                 withResult:(FLPromisedResult) result {
             
-    [self.listeners.all operationDidFinish:self withResult:result];
+    [self.listeners.notify operationDidFinish:self withResult:result];
     self.asyncQueue = nil;
     self.cancelled = NO;
 }

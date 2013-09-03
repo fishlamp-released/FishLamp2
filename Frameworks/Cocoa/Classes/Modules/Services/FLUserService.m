@@ -46,7 +46,7 @@
 }
 
 - (void) openSelf:(FLFinisher*) finisher {
-    [self.listeners.all userServiceDidOpen:self];
+    [self.listeners.notify userServiceDidOpen:self];
     [finisher setFinished];
 }
 
@@ -56,7 +56,7 @@
     editor.password = nil;
     [editor stopEditing];
 
-    [self.listeners.all userServiceDidClose:self];
+    [self.listeners.notify userServiceDidClose:self];
     [finisher setFinished];
 }
 
