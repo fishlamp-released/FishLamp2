@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'ZenfolioTestTool-64-MRC' target in the 'ZenfolioTestTool-64-MRC' project
-//
-
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-#endif
