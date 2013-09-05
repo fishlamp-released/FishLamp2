@@ -4,7 +4,6 @@ git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Core merge/FishL
 git submodule add https://www.github.com/FishLamp/FishLamp-Objc-UnifiedAsync merge/FishLamp-Objc-UnifiedAsync
 git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Services merge/FishLamp-Objc-Services
 git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Containers merge/FishLamp-Objc-Containers
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Logger merge/FishLamp-Objc-Logger
 git submodule add https://www.github.com/FishLamp/FishLamp-Objc-CodeGenerator merge/FishLamp-Objc-CodeGenerator
 git submodule add https://www.github.com/FishLamp/FishLamp-Objc-UnitTestRunner merge/FishLamp-Objc-UnitTestRunner
 git submodule add https://www.github.com/FishLamp/FishLamp-Objc-ModelObject merge/FishLamp-Objc-ModelObject
