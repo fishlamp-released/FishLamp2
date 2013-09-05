@@ -1,0 +1,132 @@
+[submodule "Pieces/FishLamp-Objc-Core"]
+	path = Pieces/FishLamp-Objc-Core
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Core
+[submodule "Pieces/FishLamp-Objc-UnifiedAsync"]
+	path = Pieces/FishLamp-Objc-UnifiedAsync
+	url = https://www.github.com/fishlamp/FishLamp-Objc-UnifiedAsync
+[submodule "Pieces/FishLamp-Objc-Services"]
+	path = Pieces/FishLamp-Objc-Services
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Services
+[submodule "Pieces/FishLamp-Objc-Containers"]
+	path = Pieces/FishLamp-Objc-Containers
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Containers
+[submodule "Pieces/FishLamp-Objc-CodeGenerator"]
+	path = Pieces/FishLamp-Objc-CodeGenerator
+	url = https://www.github.com/fishlamp/FishLamp-Objc-CodeGenerator
+[submodule "Pieces/FishLamp-Objc-UnitTestRunner"]
+	path = Pieces/FishLamp-Objc-UnitTestRunner
+	url = https://www.github.com/fishlamp/FishLamp-Objc-UnitTestRunner
+[submodule "Pieces/FishLamp-Objc-ModelObject"]
+	path = Pieces/FishLamp-Objc-ModelObject
+	url = https://www.github.com/fishlamp/FishLamp-Objc-ModelObject
+[submodule "Pieces/FishLamp-Objc-Networking"]
+	path = Pieces/FishLamp-Objc-Networking
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Networking
+[submodule "Pieces/FishLamp-Objc-Encoding"]
+	path = Pieces/FishLamp-Objc-Encoding
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Encoding
+[submodule "Pieces/FishLamp-Objc-Storage"]
+	path = Pieces/FishLamp-Objc-Storage
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Storage
+[submodule "Pieces/FishLamp-Objc-CommandLineProcessor"]
+	path = Pieces/FishLamp-Objc-CommandLineProcessor
+	url = https://www.github.com/fishlamp/FishLamp-Objc-CommandLineProcessor
+[submodule "Pieces/FishLamp-Objc-ActivityLog"]
+	path = Pieces/FishLamp-Objc-ActivityLog
+	url = https://www.github.com/fishlamp/FishLamp-Objc-ActivityLog
+[submodule "Pieces/FishLamp-Objc-Authentication"]
+	path = Pieces/FishLamp-Objc-Authentication
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Authentication
+[submodule "Pieces/FishLamp-Objc-CodeBuilder"]
+	path = Pieces/FishLamp-Objc-CodeBuilder
+	url = https://www.github.com/fishlamp/FishLamp-Objc-CodeBuilder
+[submodule "Pieces/FishLamp-Objc-ColorUtils"]
+	path = Pieces/FishLamp-Objc-ColorUtils
+	url = https://www.github.com/fishlamp/FishLamp-Objc-ColorUtils
+[submodule "Pieces/FishLamp-Objc-GeometryUtils"]
+	path = Pieces/FishLamp-Objc-GeometryUtils
+	url = https://www.github.com/fishlamp/FishLamp-Objc-GeometryUtils
+[submodule "Pieces/FishLamp-Objc-BundleUtils"]
+	path = Pieces/FishLamp-Objc-BundleUtils
+	url = https://www.github.com/fishlamp/FishLamp-Objc-BundleUtils
+[submodule "Pieces/FishLamp-Objc-UnitTests"]
+	path = Pieces/FishLamp-Objc-UnitTests
+	url = https://www.github.com/fishlamp/FishLamp-Objc-UnitTests
+[submodule "Pieces/FishLamp-Objc-Timer"]
+	path = Pieces/FishLamp-Objc-Timer
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Timer
+[submodule "Pieces/FishLamp-Objc-Strings"]
+	path = Pieces/FishLamp-Objc-Strings
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Strings
+[submodule "Pieces/FishLamp-Objc-Utils"]
+	path = Pieces/FishLamp-Objc-Utils
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Utils
+[submodule "Pieces/FishLamp-Objc-Compatibility"]
+	path = Pieces/FishLamp-Objc-Compatibility
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Compatibility
+[submodule "Pieces/FishLamp-Objc-Experimental"]
+	path = Pieces/FishLamp-Objc-Experimental
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Experimental
+[submodule "Pieces/FishLamp-External"]
+	path = Pieces/FishLamp-External
+	url = https://www.github.com/fishlamp/FishLamp-External
+[submodule "Pieces/FishLamp-Objc-Files"]
+	path = Pieces/FishLamp-Objc-Files
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Files
+[submodule "Pieces/FishLamp-Images"]
+	path = Pieces/FishLamp-Images
+	url = https://www.github.com/fishlamp/FishLamp-Images
+[submodule "Pieces/FishLamp-Objc-Notifications"]
+	path = Pieces/FishLamp-Objc-Notifications
+	url = https://www.github.com/fishlamp/FishLamp-Objc-Notifications
+[submodule "Pieces/FishLamp-OSX-ActivityLogViewController"]
+	path = Pieces/FishLamp-OSX-ActivityLogViewController
+	url = https://www.github.com/fishlamp/FishLamp-OSX-ActivityLogViewController
+[submodule "Pieces/FishLamp-OSX-BreadcrumbBarView"]
+	path = Pieces/FishLamp-OSX-BreadcrumbBarView
+	url = https://www.github.com/fishlamp/FishLamp-OSX-BreadcrumbBarView
+[submodule "Pieces/FishLamp-OSX-Documents"]
+	path = Pieces/FishLamp-OSX-Documents
+	url = https://www.github.com/fishlamp/FishLamp-OSX-Documents
+[submodule "Pieces/FishLamp-OSX-ErrorViewController"]
+	path = Pieces/FishLamp-OSX-ErrorViewController
+	url = https://www.github.com/fishlamp/FishLamp-OSX-ErrorViewController
+[submodule "Pieces/FishLamp-OSX-FileDropTableViewController"]
+	path = Pieces/FishLamp-OSX-FileDropTableViewController
+	url = https://www.github.com/fishlamp/FishLamp-OSX-FileDropTableViewController
+[submodule "Pieces/FishLamp-OSX-HttpController"]
+	path = Pieces/FishLamp-OSX-HttpController
+	url = https://www.github.com/fishlamp/FishLamp-OSX-HttpController
+[submodule "Pieces/FishLamp-OSX-TextViewController"]
+	path = Pieces/FishLamp-OSX-TextViewController
+	url = https://www.github.com/fishlamp/FishLamp-OSX-TextViewController
+[submodule "Pieces/FishLamp-OSX-TextViewLogger"]
+	path = Pieces/FishLamp-OSX-TextViewLogger
+	url = https://www.github.com/fishlamp/FishLamp-OSX-TextViewLogger
+[submodule "Pieces/FishLamp-OSX-Utils"]
+	path = Pieces/FishLamp-OSX-Utils
+	url = https://www.github.com/fishlamp/FishLamp-OSX-Utils
+[submodule "Pieces/FishLamp-OSX-ViewController"]
+	path = Pieces/FishLamp-OSX-ViewController
+	url = https://www.github.com/fishlamp/FishLamp-OSX-ViewController
+[submodule "Pieces/FishLamp-OSX-Views"]
+	path = Pieces/FishLamp-OSX-Views
+	url = https://www.github.com/fishlamp/FishLamp-OSX-Views
+[submodule "Pieces/FishLamp-OSX-WizardViewController"]
+	path = Pieces/FishLamp-OSX-WizardViewController
+	url = https://www.github.com/fishlamp/FishLamp-OSX-WizardViewController
+[submodule "Pieces/FishLamp-UI-Animations"]
+	path = Pieces/FishLamp-UI-Animations
+	url = https://www.github.com/fishlamp/FishLamp-UI-Animations
+[submodule "Pieces/FishLamp-UI-BoxArranger"]
+	path = Pieces/FishLamp-UI-BoxArranger
+	url = https://www.github.com/fishlamp/FishLamp-UI-BoxArranger
+[submodule "Pieces/FishLamp-UI-Drawable"]
+	path = Pieces/FishLamp-UI-Drawable
+	url = https://www.github.com/fishlamp/FishLamp-UI-Drawable
+[submodule "Pieces/FishLamp-UI-View"]
+	path = Pieces/FishLamp-UI-View
+	url = https://www.github.com/fishlamp/FishLamp-UI-View
+[submodule "Pieces/FishLamp-UI-ViewController"]
+	path = Pieces/FishLamp-UI-ViewController
+	url = https://www.github.com/fishlamp/FishLamp-UI-ViewController

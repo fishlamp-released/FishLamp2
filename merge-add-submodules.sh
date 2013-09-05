@@ -1,46 +1,9 @@
 #!/bin/bash
 
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Core Pieces/FishLamp-Objc-Core
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-UnifiedAsync Pieces/FishLamp-Objc-UnifiedAsync
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Services Pieces/FishLamp-Objc-Services
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Containers Pieces/FishLamp-Objc-Containers
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-CodeGenerator Pieces/FishLamp-Objc-CodeGenerator
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-UnitTestRunner Pieces/FishLamp-Objc-UnitTestRunner
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-ModelObject Pieces/FishLamp-Objc-ModelObject
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Networking Pieces/FishLamp-Objc-Networking
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Encoding Pieces/FishLamp-Objc-Encoding
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Storage Pieces/FishLamp-Objc-Storage
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-CommandLineProcessor Pieces/FishLamp-Objc-CommandLineProcessor
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-ActivityLog Pieces/FishLamp-Objc-ActivityLog
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Authentication Pieces/FishLamp-Objc-Authentication
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-CodeBuilder Pieces/FishLamp-Objc-CodeBuilder
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-ColorUtils Pieces/FishLamp-Objc-ColorUtils
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-GeometryUtils Pieces/FishLamp-Objc-GeometryUtils
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-BundleUtils Pieces/FishLamp-Objc-BundleUtils
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-UnitTests Pieces/FishLamp-Objc-UnitTests
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Timer Pieces/FishLamp-Objc-Timer
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Strings Pieces/FishLamp-Objc-Strings
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Utils Pieces/FishLamp-Objc-Utils
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Compatibility Pieces/FishLamp-Objc-Compatibility
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Experimental Pieces/FishLamp-Objc-Experimental
-git submodule add https://www.github.com/FishLamp/FishLamp-External Pieces/FishLamp-External
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Files Pieces/FishLamp-Objc-Files
-git submodule add https://www.github.com/FishLamp/FishLamp-Images Pieces/FishLamp-Images
-git submodule add https://www.github.com/FishLamp/FishLamp-Objc-Notifications Pieces/FishLamp-Objc-Notifications
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-ActivityLogViewController Pieces/FishLamp-OSX-ActivityLogViewController
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-BreadcrumbBarView Pieces/FishLamp-OSX-BreadcrumbBarView
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-Documents Pieces/FishLamp-OSX-Documents
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-ErrorViewController Pieces/FishLamp-OSX-ErrorViewController
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-FileDropTableViewController Pieces/FishLamp-OSX-FileDropTableViewController
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-HttpController Pieces/FishLamp-OSX-HttpController
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-TextViewController Pieces/FishLamp-OSX-TextViewController
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-TextViewLogger Pieces/FishLamp-OSX-TextViewLogger
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-Utils Pieces/FishLamp-OSX-Utils
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-ViewController Pieces/FishLamp-OSX-ViewController
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-Views Pieces/FishLamp-OSX-Views
-git submodule add https://www.github.com/FishLamp/FishLamp-OSX-WizardViewController Pieces/FishLamp-OSX-WizardViewController
-git submodule add https://www.github.com/FishLamp/FishLamp-UI-Animations Pieces/FishLamp-UI-Animations
-git submodule add https://www.github.com/FishLamp/FishLamp-UI-BoxArranger Pieces/FishLamp-UI-BoxArranger
-git submodule add https://www.github.com/FishLamp/FishLamp-UI-Drawable Pieces/FishLamp-UI-Drawable
-git submodule add https://www.github.com/FishLamp/FishLamp-UI-View Pieces/FishLamp-UI-View
-git submodule add https://www.github.com/FishLamp/FishLamp-UI-ViewController Pieces/FishLamp-UI-ViewController
+file="module-list.txt"
+
+while IFS= read line ; do
+    if [ ! -d "Pieces/$line" ]; then
+        git submodule add https://www.github.com/fishlamp/$line Pieces/$line || { exit 1; }
+    fi
+done <"$file"

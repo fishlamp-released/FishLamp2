@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd merge
+cd Pieces
 files=`find . -depth 1 -name "FishLamp-*"`
 
 for file in $files; do
