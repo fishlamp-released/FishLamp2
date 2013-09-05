@@ -9,7 +9,8 @@
 #import "FLTestable.h"
 
 #if TESTS
-@interface FLOwnershipTests : FLTestable
 
+@interface FLOwnershipTests : FLTestable
 @end
+
 #endif

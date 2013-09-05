@@ -7,7 +7,7 @@
 //
 
 #import "FLCoreRequired.h"
-#import "FLConfirm.h"
+#import "FL_ASSERT.h"
 
 #if !defined(ASSERTIONS) && (defined(DEBUG) || defined(TEST))
 #define ASSERTIONS 1
@@ -15,66 +15,56 @@
 
 
 #if ASSERTIONS
-    #define FLAssert                       FLConfirm
-    #define FLAssertWithComment                      FLConfirmWithComment
-    #define FLAssertFailed                 FLConfirmationFailure
-    #define FLAssertFailedWithComment                FLConfirmationFailureWithComment
-    #define FLAssertIsNil                  FLConfirmIsNil
-    #define FLAssertIsNilWithComment                 FLConfirmIsNilWithComment
-    #define FLAssertIsNotNil               FLConfirmIsNotNil
-    #define FLAssertIsNotNilWithComment              FLConfirmIsNotNilWithComment
-    #define FLAssertStringIsNotEmpty       FLConfirmStringIsNotEmpty
-    #define FLAssertStringIsNotEmptyWithComment      FLConfirmStringIsNotEmptyWithComment
-    #define FLAssertStringIsEmpty          FLConfirmStringIsEmpty
-    #define FLAssertStringIsEmptyWithComment         FLConfirmStringIsEmptyWithComment
-    #define FLAssertIsTrue                 FLConfirmIsTrue
-    #define FLAssertIsTrueWithComment                FLConfirmIsTrueWithComment
-    #define FLAssertIsFalse                FLConfirmIsFalse
-    #define FLAssertIsFalseWithComment               FLConfirmIsFalseWithComment
-    #define FLAssertIsYes                  FLConfirmIsYes
-    #define FLAssertIsYesWithComment                 FLConfirmIsYesWithComment
-    #define FLAssertIsNo                   FLConfirmIsNo
-    #define FLAssertIsNoWithComment                  FLConfirmIsNoWithComment
-    #define FLAssertAreEqual               FLConfirmAreEqual
-    #define FLAssertAreEqualWithComment              FLConfirmAreEqualWithComment
-    #define FLAssertAreNotEqual            FLConfirmAreNotEqual
-    #define FLAssertAreNotEqualWithComment           FLConfirmAreNotEqualWithComment
-    #define FLAssertObjectsAreEqual        FLConfirmObjectsAreEqual
-    #define FLAssertObjectsAreEqualWithComment       FLConfirmObjectsAreEqualWithComment
-    #define FLAssertObjectsAreNotEqual     FLConfirmObjectsAreNotEqual
-    #define FLAssertObjectsAreNotEqualWithComment    FLConfirmObjectsAreNotEqualWithComment
-    #define FLAssertIsKindOfClass          FLConfirmIsKindOfClass
-    #define FLAssertIsKindOfClassWithComment         FLConfirmIsKindOfClassWithComment
-    #define FLAssertIsImplemented          FLConfirmIsImplemented
-    #define FLAssertIsImplementedWithComment         FLConfirmIsImplementedWithComment
-    #define FLAssertIsFixed                FLConfirmIsFixed
-    #define FLAssertIsFixedWithComment               FLConfirmIsFixedWithComment
-    #define FLAssertIsBug                  FLConfirmIsBug
-    #define FLAssertIsBugWithComment                 FLConfirmIsBugWithComment
-    #define FLAssertIsOverridden           FLConfirmIsOverridden 
-    #define FLAssertIsOverriddenWithComment          FLConfirmIsOverriddenWithComment
+    #define FL_ASSERT_THROWER(__CODE__, __REASON__, __COMMENT__) \
+                FLThrowError([FLAssertionFailedError assertionFailedError:__CODE__ reason:__REASON__ comment:__COMMENT__ stackTrace:FLCreateStackTrace(YES)])
 
-    extern id _FLAssertIsClass(id object, Class class);
-    extern id _FLAssertConformsToProtocol(id object, Protocol* proto);
+    #define FLAssertFailed() \
+                FL_ASSERT_FAILED(FL_ASSERT_THROWER)
 
-    #define FLAssertIsClass(__OBJ__, __CLASS__) \
-        _FLAssertIsClass(__OBJ__, __CLASS__)
+    #define FLAssertFailedWithComment(__FORMAT__, ...) \
+                FL_ASSERT_FAILED__WITH_COMMENT(FL_ASSERT_THROWER, __FORMAT__, ##__VA_ARGS__)
 
-    #define FLAssertConformsToProtocol(__OBJ__, __PROTOCOL__) \
-        _FLAssertConformsToProtocol(__OBJ__, NSProtocolFromString(@#__PROTOCOL__))
+    #define FLAssert(__CONDITION__) \
+                FL_ASSERT(FL_ASSERT_THROWER, __CONDITION__)
 
+    #define FLAssertWithComment(__CONDITION__, __FORMAT__, ...) \
+                FL_ASSERT_WITH_COMMENT(FL_ASSERT_THROWER, __CONDITION__, __FORMAT__, ##__VA_ARGS__)
 
-    #define FLAssertDefaultInitNotCalledWithComment(__FORMAT__, ...) \
-                - (id) init { \
-                    FLAssertFailedWithComment(@"unsupported call to default init: %@", FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__)); \
-                    return self; \
-                }
+    #define FLAssertIsNil(__PTR__) \
+                FL_ASSERT_IS_NIL(FL_ASSERT_THROWER, __PTR__)
 
-    #define FLAssertDefaultInitNotCalled() \
-                - (id) init { \
-                    FLAssertFailedWithComment(@"unsupported call to default init"); \
-                    return self; \
-                }
+    #define FLAssertIsNilWithComment(__PTR__, __FORMAT__, ...) \
+                FL_ASSERT_IS_NIL_WITH_COMMENT(FL_ASSERT_THROWER, __PTR__, __FORMAT__, ##__VA_ARGS__)
+
+    #define FLAssertIsNotNil(__PTR__) \
+                FL_ASSERT_IS_NOT_NIL(FL_ASSERT_THROWER, __PTR__)
+
+    #define FLAssertIsNotNilWithComment(__PTR__, __FORMAT__, ...) \
+                FL_ASSERT_IS_NOT_NIL_WITH_COMMENT(FL_ASSERT_THROWER, __PTR__, __FORMAT__, ##__VA_ARGS__)
+
+    #define FLAssertStringIsNotEmpty(__STRING__) \
+                FL_ASSERT_STRING_IS_NOT_EMPTY(FL_ASSERT_THROWER, __STRING__)
+
+    #define FLAssertStringIsNotEmptyWithComment(__STRING__, __FORMAT__, ...) \
+                FL_ASSERT_STRING_IS_NOT_EMPTY_WITH_COMMENT(FL_ASSERT_THROWER, __STRING__, __FORMAT__, ##__VA_ARGS__)
+
+    #define FLAssertStringIsEmpty(__STRING__) \
+                FL_ASSERT_STRING_IS_EMPTY(FL_ASSERT_THROWER, __STRING__)
+
+    #define FLAssertStringIsEmptyWithComment(__STRING__, __FORMAT__, ...) \
+                FL_ASSERT_STRING_IS_EMPTY_WITH_COMMENT(FL_ASSERT_THROWER, __STRING__, __FORMAT__, ##__VA_ARGS__)
+
+    #define FLAssertStringsAreEqual(a,b) \
+                FLAssert(FLStringsAreEqual(a,b));
+
+    #define FLAssertStringsNotEqual(a,b) \
+                FLAssert(!FLStringsAreEqual(a,b));
+
+    #define FLAssertIsKindOfClass(__OBJ__, __CLASS__) \
+                FLAssert([__OBJ__ isKindOfClass:[__CLASS__ class]])
+
+    #define FLAssertConformsToProcol(__OBJ__, __PROTOCOL__) \
+                FLAssert([__OBJ__ conformsToProtocol:@protocol(__PROTOCOL__)])
 
 
 #else
@@ -90,48 +80,24 @@
     #define FLAssertStringIsNotEmptyWithComment(...) 
     #define FLAssertStringIsEmpty(...) 
     #define FLAssertStringIsEmptyWithComment(...) 
-    #define FLAssertIsTrue(...) 
-    #define FLAssertIsTrueWithComment(...) 
-    #define FLAssertIsFalse(...) 
-    #define FLAssertIsFalseWithComment(...) 
-    #define FLAssertIsYes(...) 
-    #define FLAssertIsYesWithComment(...) 
-    #define FLAssertIsNo(...) 
-    #define FLAssertIsNoWithComment(...) 
-    #define FLAssertAreEqual(...) 
-    #define FLAssertAreEqualWithComment(...) 
-    #define FLAssertAreNotEqual(...) 
-    #define FLAssertAreNotEqualWithComment(...) 
-    #define FLAssertObjectsAreEqual(...) 
-    #define FLAssertObjectsAreEqualWithComment(...) 
-    #define FLAssertObjectsAreNotEqual(...) 
-    #define FLAssertObjectsAreNotEqualWithComment(...) 
     #define FLAssertIsKindOfClass(...) 
     #define FLAssertIsKindOfClassWithComment(...) 
-    #define FLAssertIsImplemented() 
-    #define FLAssertIsImplementedWithComment(...) 
-    #define FLAssertIsFixed() 
-    #define FLAssertIsFixedWithComment(...) 
-    #define FLAssertIsBug() 
-    #define FLAssertIsBugWithComment(...) 
-    #define FLAssertIsOverridden() 
-    #define FLAssertIsOverriddenWithComment(...) 
-
-    #define FLAssertDefaultInitNotCalledWithComment(__FORMAT__, ...)
-    #define FLAssertDefaultInitNotCalled()
-
-    #define FLFixMe_ FLAssertIsFixed
-    #define FLFixMeWithComment FLAssertIsFixedWithComment
-
-    #define FLAssertObjectIsType(__OBJ__, __TYPE__) __OBJ__
-    #define FLAssertConformsToProtocol(__OBJ__, __PROTOCOL__) __OBJ__
-
 #endif
 
-#define FLAssertNotNil         FLAssertIsNotNil
-#define FLAssertNotNilWithComment        FLAssertIsNotNilWithComment
-#define FLAssertNil            FLAssertIsNil
-#define FLAssertNilWithComment           FLAssertIsNilWithComment
+#define FLAssertNotNil \
+            FLAssertIsNotNil
 
-#define FLAssertionFailedWithComment FLAssertFailedWithComment
-#define FLAssertionFailed FLAssertFailed
+#define FLAssertNotNilWithComment  \
+            FLAssertIsNotNilWithComment
+
+#define FLAssertNil \
+            FLAssertIsNil
+
+#define FLAssertNilWithComment \
+            FLAssertIsNilWithComment
+
+#define FLAssertionFailedWithComment \
+            FLAssertFailedWithComment
+
+#define FLAssertionFailed \
+            FLAssertFailed

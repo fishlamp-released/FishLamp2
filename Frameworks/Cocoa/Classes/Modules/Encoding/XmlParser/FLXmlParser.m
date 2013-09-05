@@ -127,8 +127,8 @@ didStartElement:(NSString *)elementName
 	qualifiedName:(NSString *)qName {
     
     FLParsedXmlElement* lastElement = FLRetainWithAutorelease([self.stack lastObject]);
-    FLAssertObjectsAreEqual(elementName, lastElement.elementName);
-    
+    FLAssertStringsAreEqual(elementName, lastElement.elementName);
+
     if(FLStringIsNotEmpty(lastElement.elementValue)) {
         lastElement.elementValue = [lastElement.elementValue trimmedString_fl];
     }

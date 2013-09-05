@@ -18,7 +18,7 @@
 
 - (void) testCancelError {
     NSError* error  = [NSError cancelError];
-    FLAssertIsTrue(error.isCancelError);
+    FLAssert(error.isCancelError);
 }
 
 @end

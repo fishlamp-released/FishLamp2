@@ -12,6 +12,7 @@
 @protocol FLStringFormatter;
 
 @protocol FLTestResult <NSObject>
+@property (readonly, strong) id<FLStringFormatter> loggerOutput;
 - (BOOL) passed;
 - (NSError*) error;
 - (NSString*) testName;
@@ -28,21 +29,21 @@
 
 @interface FLTestResult : NSObject<FLMutableTestResult> {
 @private 
-    NSUInteger _expectedCount;
-    NSUInteger _count;
     NSError* _error;
     NSString* _testName;
     id<FLStringFormatter> _loggerOutput;
+    BOOL _passed;
 }
-
-@property (readonly, strong) id<FLStringFormatter> loggerOutput;
-
 
 + (id) testResult;
 
 @end
 
-@interface FLCountedTestResult : FLTestResult
+@interface FLCountedTestResult : FLTestResult {
+@private
+    NSUInteger _expectedCount;
+    NSUInteger _count;
+}
 
 @property (readonly, assign) NSUInteger expectedCount;
 @property (readonly, assign) NSUInteger count;

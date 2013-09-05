@@ -15,7 +15,7 @@
 
 NS_INLINE
 sqlite3_stmt* FLStatmentFailed(	sqlite3_stmt* stmt) {
-    FLConfirmationFailureWithComment(@"sqlite statement is nil");
+    FLConfirmationFailedWithComment(@"sqlite statement is nil");
     return stmt;
 }
 

@@ -39,6 +39,8 @@ FLSingletonProperty(FLTestLoggingManager);
  */
 - (void) popLogger;
 
+
+- (id<FLStringFormatter>) logger;
 @end
 
 /**

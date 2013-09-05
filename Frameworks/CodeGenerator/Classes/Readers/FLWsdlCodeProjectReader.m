@@ -227,7 +227,7 @@
 //		}
 //	}
 //	
-//	FLConfirmationFailureWithComment(@"Didn't find expected message object %@ (object referenced but not defined)", name);
+//	FLConfirmationFailedWithComment(@"Didn't find expected message object %@ (object referenced but not defined)", name);
 //	
 //	return nil;
 //}  

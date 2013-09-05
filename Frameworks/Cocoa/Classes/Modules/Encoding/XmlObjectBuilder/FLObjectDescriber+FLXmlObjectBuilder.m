@@ -62,7 +62,7 @@
             FLTrace(@"object not inflated for %@.%@", NSStringFromClass([outObject class]), element.fullPath);
 
             if(builder.strict) {
-                FLConfirmationFailureWithComment(@"object not inflated for \"%@\" (%@)", element.fullPath, element.elementValue);
+                FLConfirmationFailedWithComment(@"object not inflated for \"%@\" (%@)", element.fullPath, element.elementValue);
             }
         }
     }
@@ -97,7 +97,7 @@
                     walker.fullPath);
 
                 if(builder.strict) {
-                    FLConfirmationFailureWithComment(@"Array object not inflated: %@:%@",
+                    FLConfirmationFailedWithComment(@"Array object not inflated: %@:%@",
                                                      NSStringFromClass([self class]),
                                                      walker.fullPath);
                 }
@@ -112,7 +112,7 @@
                 element.fullPath);
 
         if(builder.strict) {
-            FLConfirmationFailureWithComment(@"Unknown property: %@", element.fullPath);
+            FLConfirmationFailedWithComment(@"Unknown property: %@", element.fullPath);
         }
 
     }

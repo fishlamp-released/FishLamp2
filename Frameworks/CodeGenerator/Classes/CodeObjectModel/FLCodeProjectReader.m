@@ -66,7 +66,7 @@
         }
     }
 
-    FLConfirmationFailureWithComment(@"import not loaded for location: %@", location.URL);
+    FLConfirmationFailedWithComment(@"import not loaded for location: %@", location.URL);
 
     return nil;
 }

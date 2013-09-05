@@ -26,3 +26,5 @@
 
 // output
 #import "FLTestLoggingManager.h"
+
+#import "FLTestAssertions.h"

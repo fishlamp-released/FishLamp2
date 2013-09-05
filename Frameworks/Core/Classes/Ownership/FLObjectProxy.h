@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  A protocol that represents an object that represents another object.
+ *  A object proxy the protocol for defining objects that represents represents another object.
  */
 @protocol FLObjectProxy <NSObject>
 

@@ -28,11 +28,11 @@
         FLSetBitsAtomic(mask2, flag);
         FLAssertWithComment(mask1 == mask2, @"masks are not the same");
         
-        FLAssertIsTrueWithComment(FLTestBits(mask1, flag), @"should be set");
-        FLAssertIsTrueWithComment(FLTestBitsAtomic(mask2, flag), @"should be set");
+        FLAssertWithComment(FLTestBits(mask1, flag), @"should be set");
+        FLAssertWithComment(FLTestBitsAtomic(mask2, flag), @"should be set");
         
-        FLAssertIsTrueWithComment(FLTestBits(mask1, flag), @"should be true");
-        FLAssertIsTrueWithComment(FLTestBitsAtomic(mask2, flag), @"should be true");
+        FLAssertWithComment(FLTestBits(mask1, flag), @"should be true");
+        FLAssertWithComment(FLTestBitsAtomic(mask2, flag), @"should be true");
         
     }
     
@@ -45,11 +45,11 @@
         
         FLAssertWithComment(mask1 == mask2, @"masks are not the same");
 
-        FLAssertIsFalseWithComment(FLTestBits(mask1, flag), @"should be set");
-        FLAssertIsFalseWithComment(FLTestBitsAtomic(mask2, flag), @"should be set");
+        FLAssertWithComment(!FLTestBits(mask1, flag), @"should be set");
+        FLAssertWithComment(!FLTestBitsAtomic(mask2, flag), @"should be set");
         
-        FLAssertIsFalseWithComment(FLTestBits(mask1, flag), @"should be false");
-        FLAssertIsFalseWithComment(FLTestBitsAtomic(mask2, flag), @"should should be false");
+        FLAssertWithComment(!FLTestBits(mask1, flag), @"should be false");
+        FLAssertWithComment(!FLTestBitsAtomic(mask2, flag), @"should should be false");
 
     }
 
@@ -72,13 +72,13 @@
         
         FLSetOrClearBits(mask1, flag, YES);
         FLSetOrClearBitsAtomic(mask2, flag, YES);
-        FLAssertWithComment(mask1 == mask2, @"masks are not the same");
+        FLAssert(mask1 == mask2);
         
-        FLAssertIsTrueWithComment(FLTestBits(mask1, flag), @"should be set");
-        FLAssertIsTrueWithComment(FLTestBitsAtomic(mask2, flag), @"should be set");
+        FLAssert(FLTestBits(mask1, flag));
+        FLAssert(FLTestBitsAtomic(mask2, flag));
         
-        FLAssertIsTrueWithComment(FLTestAnyBit(mask1, flag), @"should be true");
-        FLAssertIsTrueWithComment(FLTestAnyBitAtomic(mask2, flag), @"should be true");
+        FLAssert(FLTestAnyBit(mask1, flag));
+        FLAssert(FLTestAnyBitAtomic(mask2, flag));
         
     }
     
@@ -91,11 +91,11 @@
 
         FLAssertWithComment(mask1 == mask2, @"masks are not the same");
 
-        FLAssertIsFalseWithComment(FLTestBits(mask1, flag), @"should be set");
-        FLAssertIsFalseWithComment(FLTestBitsAtomic(mask2, flag), @"should be set");
+        FLAssert(!FLTestBits(mask1, flag));
+        FLAssert(!FLTestBitsAtomic(mask2, flag));
         
-        FLAssertIsFalseWithComment(FLTestAnyBit(mask1, flag), @"should be false");
-        FLAssertIsFalseWithComment(FLGetBitsAtomic(mask2, flag), @"should should be false");
+        FLAssert(!FLTestAnyBit(mask1, flag));
+        FLAssert(!FLGetBitsAtomic(mask2, flag));
 
     }
 

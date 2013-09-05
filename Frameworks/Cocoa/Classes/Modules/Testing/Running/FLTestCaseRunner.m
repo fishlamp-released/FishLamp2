@@ -12,6 +12,8 @@
 #import "FLTestCaseResult.h"
 #import "FLTestable.h"
 
+#import "FLTrace.h"
+
 @implementation FLTestCaseRunner
 
 + (id) testCaseRunner {
@@ -31,6 +33,8 @@
         [result setPassed];
     }
     @catch(NSException* ex) {
+//        FLTrace(@"got test exception: %@", ex);
+
 //                 [[results testResultForKey:testCase.testCaseName] setError:ex.error];
     }
     @finally {

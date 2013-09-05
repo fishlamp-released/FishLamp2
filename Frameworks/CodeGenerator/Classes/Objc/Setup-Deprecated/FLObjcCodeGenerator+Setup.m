@@ -516,7 +516,7 @@
 ////		case FLDataTypeString:
 ////		case FLDataTypeDate:
 ////		case FLDataTypeData:
-////			FLConfirmationFailureWithComment(@"trying to generate object as value property");
+////			FLConfirmationFailedWithComment(@"trying to generate object as value property");
 ////			break;
 ////	
 ////		case FLDataTypeBool:
@@ -610,11 +610,11 @@
 ////			break;
 ////
 ////        case FLDataTypeValue:
-////			FLConfirmationFailureWithComment(@"not sure how to generate a NSValue for value property");
+////			FLConfirmationFailedWithComment(@"not sure how to generate a NSValue for value property");
 ////			break;			  
 ////	
 ////		case FLDataTypeUnknown:
-////			FLConfirmationFailureWithComment(@"unknown type");
+////			FLConfirmationFailedWithComment(@"unknown type");
 ////			break;
 ////
 ////	}

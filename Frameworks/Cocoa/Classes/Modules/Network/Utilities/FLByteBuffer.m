@@ -94,11 +94,15 @@
 
 @implementation FLAllocatedByteBuffer
 
-FLAssertDefaultInitNotCalled();
+- (id) init {
+    return [self initWithCapacity:0];
+}
 
 - (id) initWithCapacity:(NSUInteger) capacity {
     self = [super init];
     if(self) {
+        FLAssert(capacity > 0);
+
         _capacity = capacity + FLByteBufferDeadBeafSize;
         _buffer = malloc(capacity);
     }

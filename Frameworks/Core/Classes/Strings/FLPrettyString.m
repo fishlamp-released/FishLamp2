@@ -16,6 +16,14 @@
 
 @synthesize delegate = _delegate;
 
+- (id) initWithWhitespace:(FLWhitespace*) whitespace {
+    self = [super initWithWhitespace:whitespace];
+    if(self) {
+        _string = [[NSMutableString alloc] init];
+    }
+    return self;
+}
+
 - (NSString*) string {
     return _string;
 }

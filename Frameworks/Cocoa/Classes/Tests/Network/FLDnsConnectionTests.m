@@ -22,8 +22,8 @@
 
     FLNetworkHost* host = [FLNetworkHost networkHostWithName:@"google.com"];
     
-    FLAssertIsFalse(host.isResolved);
-    FLAssertObjectsAreEqual(host.hostName, @"google.com");
+    FLAssert(!host.isResolved);
+    FLAssertStringsAreEqual(host.hostName, @"google.com");
     
     FLTestLog(host.hostName);
 }

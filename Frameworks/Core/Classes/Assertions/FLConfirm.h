@@ -7,8 +7,73 @@
 //
 // this is meant to be included by FLAssertions.h
 
-#import "FLCoreRequired.h"
-#import "FLAssertionFailedError.h"
+#import "FL_ASSERT.h"
+
+#define FL_CONFIRM_THROWER(__CODE__, __REASON__, __COMMENT__) \
+            FLThrowError([FLAssertionFailedError assertionFailedError:__CODE__ reason:__REASON__ comment:__COMMENT__ stackTrace:FLCreateStackTrace(YES)])
+
+#define FLConfirmationFailed() \
+            FL_ASSERT_FAILED(FL_CONFIRM_THROWER)
+
+#define FLConfirmationFailedWithComment(__FORMAT__, ...) \
+            FL_ASSERT_FAILED__WITH_COMMENT(FL_CONFIRM_THROWER, __FORMAT__, ##__VA_ARGS__)
+
+#define FLConfirm(__CONDITION__) \
+            FL_ASSERT(FL_CONFIRM_THROWER, __CONDITION__)
+
+#define FLConfirmWithComment(__CONDITION__, __FORMAT__, ...) \
+            FL_ASSERT_WITH_COMMENT(FL_CONFIRM_THROWER, __CONDITION__, __FORMAT__, ##__VA_ARGS__)
+
+#define FLConfirmIsNil(__PTR__) \
+            FL_ASSERT_IS_NIL(FL_CONFIRM_THROWER, __PTR__)
+
+#define FLConfirmIsNilWithComment(__PTR__, __FORMAT__, ...) \
+            FL_ASSERT_IS_NIL_WITH_COMMENT(FL_CONFIRM_THROWER, __PTR__, __FORMAT__, ##__VA_ARGS__)
+
+#define FLConfirmIsNotNil(__PTR__) \
+            FL_ASSERT_IS_NOT_NIL(FL_CONFIRM_THROWER, __PTR__)
+
+#define FLConfirmIsNotNilWithComment(__PTR__, __FORMAT__, ...) \
+            FL_ASSERT_IS_NOT_NIL_WITH_COMMENT(FL_CONFIRM_THROWER, __PTR__, __FORMAT__, ##__VA_ARGS__)
+
+#define FLConfirmStringIsNotEmpty(__STRING__) \
+            FL_ASSERT_STRING_IS_NOT_EMPTY(FL_CONFIRM_THROWER, __STRING__)
+
+#define FLConfirmStringIsNotEmptyWithComment(__STRING__, __FORMAT__, ...) \
+            FL_ASSERT_STRING_IS_NOT_EMPTY_WITH_COMMENT(FL_CONFIRM_THROWER, __STRING__, __FORMAT__, ##__VA_ARGS__)
+
+#define FLConfirmStringIsEmpty(__STRING__) \
+            FL_ASSERT_STRING_IS_EMPTY(FL_CONFIRM_THROWER, __STRING__)
+
+#define FLConfirmStringIsEmptyWithComment(__STRING__, __FORMAT__, ...) \
+            FL_ASSERT_STRING_IS_EMPTY_WITH_COMMENT(FL_CONFIRM_THROWER, __STRING__, __FORMAT__, ##__VA_ARGS__)
+
+#define FLConfirmStringsAreEqual(a,b) \
+            FLConfirm(FLStringsAreEqual(a,b));
+
+#define FLConfirmStringsNotEqual(a,b) \
+            FLConfirm(!FLStringsAreEqual(a,b));
+
+#define FLConfirmIsKindOfClass(__OBJ__, __CLASS__) \
+            FLConfirm([__OBJ__ isKindOfClass:[__CLASS__ class]])
+
+#define FLConfirmConformsToProcol(__OBJ__, __PROTOCOL__) \
+            FLConfirm([__OBJ__ conformsToProtocol:@protocol(__PROTOCOL__)])
+
+#define FLConfirmNotNil \
+            FLConfirmIsNotNil
+
+#define FLConfirmNotNilWithComment \
+            FLConfirmIsNotNilWithComment
+
+#define FLConfirmNil \
+            FLConfirmIsNil
+
+#define FLConfirmNilWithComment \
+            FLConfirmIsNilWithComment
+
+
+/*
 
 //#import "FLStackTrace.h"
 
@@ -34,7 +99,7 @@ NS_INLINE BOOL __FLConfirmationDidFail() { return NO; }
             FLConfirm(__FLConfirmationDidFail())       
 
 /// @brief: This will throw an diction failure exception
-#define FLConfirmationFailureWithComment(__COMMENT__, ...) \
+#define FLConfirmationFailedWithComment(__COMMENT__, ...) \
             FLConfirmWithComment(__FLConfirmationDidFail(), __COMMENT__, ##__VA_ARGS__)
                                          
 
@@ -92,53 +157,6 @@ NS_INLINE BOOL __FLConfirmationDidFail() { return NO; }
     if((FLStringIsNotEmpty(__STRING__)) \
         FLThrowConfirmationFailure(FLAssertionFailureIsNotEmpty, FLStringWithFormatOrNil(@"String unexpectedly not empty: %s", #__STRING__),  FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
 
-/// @brief: Assert a BOOL is true
-/// the is the same as AssertYes
-#define FLConfirmIsTrue(__BOOL__) \
-    if((__BOOL__) == NO) \
-        FLThrowConfirmationFailure(FLAssertionFailureIsFalse, FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__BOOL__), nil) 
-
-/// @brief: Assert a BOOL is true
-/// the is the same as AssertYes
-#define FLConfirmIsTrueWithComment(__BOOL__, __COMMENT__, ...) \
-    if((__BOOL__) == NO) \
-        FLThrowConfirmationFailure(FLAssertionFailureIsFalse, FLStringWithFormatOrNil(@"Condition unexpectedly false: %s", #__BOOL__),  FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
-            
-/// @brief: Assert a BOOL is false
-/// this is the same as AssertNo
-#define FLConfirmIsFalse(__BOOL__) \
-    if((__BOOL__) == YES) \
-        FLThrowConfirmationFailure(FLAssertionFailureIsTrue, FLStringWithFormatOrNil(@"Condition unexpectedly true: %s", #__BOOL__), nil) 
-
-/// @brief: Assert a BOOL is false
-/// this is the same as AssertNo
-#define FLConfirmIsFalseWithComment(__BOOL__, __COMMENT__, ...) \
-    if((__BOOL__) == YES) \
-        FLThrowConfirmationFailure(FLAssertionFailureIsTrue, FLStringWithFormatOrNil(@"Condition unexpectedly true: %s", #__BOOL__),  FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
-
-/// @brief: Assert a BOOL is YES
-/// this is the same as AssertTrue
-#define FLConfirmIsYes(__BOOL__) \
-    if((__BOOL__) == NO) \
-        FLThrowConfirmationFailure(FLAssertionFailureIsFalse, FLStringWithFormatOrNil(@"Condition unexpectedly NO: %s", #__BOOL__), nil) 
-
-/// @brief: Assert a BOOL is YES
-/// this is the same as AssertTrue
-#define FLConfirmIsYesWithComment(__BOOL__, __COMMENT__, ...) \
-    if((__BOOL__) == NO) \
-        FLThrowConfirmationFailure(FLAssertionFailureIsFalse, FLStringWithFormatOrNil(@"Condition unexpectedly NO: %s", #__BOOL__),  FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
-
-/// @brief: Assert a BOOL is NO
-/// this is the same as AssertNO
-#define FLConfirmIsNo(__BOOL__) \
-    if((__BOOL__) == YES) \
-        FLThrowConfirmationFailure(FLAssertionFailureIsTrue, FLStringWithFormatOrNil(@"Condition unexpectedly YES: %s", #__BOOL__), nil) 
-
-/// @brief: Assert a BOOL is NO
-/// this is the same as AssertNO
-#define FLConfirmIsNoWithComment(__BOOL__, __COMMENT__, ...) \
-    if((__BOOL__) == YES) \
-        FLThrowConfirmationFailure(FLAssertionFailureIsTrue, FLStringWithFormatOrNil(@"Condition unexpectedly YES: %s", #__BOOL__),  FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
 
 /// @brief: Assert values are equal
 /// a value is anything that can be compared with ==
@@ -170,7 +188,6 @@ NS_INLINE BOOL __FLConfirmationDidFail() { return NO; }
     if([(__LHS__) isEqual:(__RHS__)] == NO) \
         FLThrowConfirmationFailure(FLAssertionFailureAreNotEqual, FLStringWithFormatOrNil(@"%sis unexpectedly not equal to %s", #__LHS__, #__RHS__), nil) 
 
-
 /// @brief: Assert objects are equal
 /// this uses [NSObject isEqual] for the comparison
 #define FLConfirmObjectsAreEqualWithComment(__LHS__, __RHS__, __COMMENT__, ...) \
@@ -199,39 +216,5 @@ NS_INLINE BOOL __FLConfirmationDidFail() { return NO; }
     if([__LHS__ isKindOfClass:NSClassFromString(@#__RHS__)] == NO) \
         FLThrowConfirmationFailure(FLAssertionFailureAreEqual, FLStringWithFormatOrNil(@"%sis unexpectedly not kind of class %s", #__LHS__, #__RHS__),  FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
 
-/// @brief: Assert code is implemented
-#define FLConfirmIsImplemented() \
-        FLThrowConfirmationFailure(FLAssertionFailureNotImplemented, nil, nil) 
 
-/// @brief: Assert code is implemented
-#define FLConfirmIsImplementedWithComment(__COMMENT__, ...) \
-        FLThrowConfirmationFailure(FLAssertionFailureNotImplemented, nil,  FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
-
-/// @brief: Assert if the code isn't fixed
-#define FLConfirmIsFixed() \
-        FLThrowConfirmationFailure(FLAssertionFailureFixMe, nil, nil) 
-
-/// @brief: Assert if the code isn't fixed
-#define FLConfirmIsFixedWithComment(__COMMENT__, ...) \
-        FLThrowConfirmationFailure(FLAssertionFailureFixMe, nil,  FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
-
-/// @brief: Assertion fails because there's known bug here
-#define FLConfirmIsBug() \
-        FLThrowConfirmationFailure(FLAssertionFailureBug, nil, nil) 
-
-/// @brief: Assertion fails because there's known bug here
-#define FLConfirmIsBugWithComment(__COMMENT__, ...) \
-        FLThrowConfirmationFailure(FLAssertionFailureBug, nil,  FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
-
-/// @brief: clients of this code must override this
-#define FLConfirmIsOverridden() \
-        FLThrowConfirmationFailure(FLAssertionFailureRequiredOverride, nil, nil) 
-
-/// @brief: clients of this code must override this
-#define FLConfirmIsOverriddenWithComment(__COMMENT__, ...) \
-        FLThrowConfirmationFailure(FLAssertionFailureRequiredOverride, nil,  FLStringWithFormatOrNil(__COMMENT__, ##__VA_ARGS__)) 
-
-#define FLConfirmNotNil         FLConfirmIsNotNil
-#define FLConfirmNotNilWithComment        FLConfirmIsNotNilWithComment
-#define FLConfirmNil            FLConfirmIsNil
-#define FLConfirmNilWithComment           FLConfirmIsNilWithComment
+*/
