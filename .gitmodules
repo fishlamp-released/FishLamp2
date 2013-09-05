@@ -130,3 +130,48 @@
 [submodule "Pieces/FishLamp-UI-ViewController"]
 	path = Pieces/FishLamp-UI-ViewController
 	url = https://www.github.com/fishlamp/FishLamp-UI-ViewController
+[submodule "Pieces/FishLamp-Connect-Experimental"]
+	path = Pieces/FishLamp-Connect-Experimental
+	url = https://www.github.com/fishlamp/FishLamp-Connect-Experimental
+[submodule "Pieces/FishLamp-Connect-Facebook"]
+	path = Pieces/FishLamp-Connect-Facebook
+	url = https://www.github.com/fishlamp/FishLamp-Connect-Facebook
+[submodule "Pieces/FishLamp-Connect-Parse"]
+	path = Pieces/FishLamp-Connect-Parse
+	url = https://www.github.com/fishlamp/FishLamp-Connect-Parse
+[submodule "Pieces/FishLamp-Connect-Twitter"]
+	path = Pieces/FishLamp-Connect-Twitter
+	url = https://www.github.com/fishlamp/FishLamp-Connect-Twitter
+[submodule "Pieces/FishLamp-OSX-CommandLineTool"]
+	path = Pieces/FishLamp-OSX-CommandLineTool
+	url = https://www.github.com/fishlamp/FishLamp-OSX-CommandLineTool
+[submodule "Pieces/FishLamp-OSX-XcodePlugin"]
+	path = Pieces/FishLamp-OSX-XcodePlugin
+	url = https://www.github.com/fishlamp/FishLamp-OSX-XcodePlugin
+[submodule "Pieces/FishLamp-UI-GradientView"]
+	path = Pieces/FishLamp-UI-GradientView
+	url = https://www.github.com/fishlamp/FishLamp-UI-GradientView
+[submodule "Pieces/FishLamp-UI-Progress"]
+	path = Pieces/FishLamp-UI-Progress
+	url = https://www.github.com/fishlamp/FishLamp-UI-Progress
+[submodule "Pieces/FishLamp-UI-Slideshow"]
+	path = Pieces/FishLamp-UI-Slideshow
+	url = https://www.github.com/fishlamp/FishLamp-UI-Slideshow
+[submodule "Pieces/FishLamp-UI-StatusBarView"]
+	path = Pieces/FishLamp-UI-StatusBarView
+	url = https://www.github.com/fishlamp/FishLamp-UI-StatusBarView
+[submodule "Pieces/FishLamp-UI-Theme"]
+	path = Pieces/FishLamp-UI-Theme
+	url = https://www.github.com/fishlamp/FishLamp-UI-Theme
+[submodule "Pieces/FishLamp-UI-TilingImageView"]
+	path = Pieces/FishLamp-UI-TilingImageView
+	url = https://www.github.com/fishlamp/FishLamp-UI-TilingImageView
+[submodule "Pieces/FishLamp-UI-ToolbarView"]
+	path = Pieces/FishLamp-UI-ToolbarView
+	url = https://www.github.com/fishlamp/FishLamp-UI-ToolbarView
+[submodule "Pieces/FishLamp-UI-ViewControllerStack"]
+	path = Pieces/FishLamp-UI-ViewControllerStack
+	url = https://www.github.com/fishlamp/FishLamp-UI-ViewControllerStack
+[submodule "Pieces/FishLamp-UI-Widget"]
+	path = Pieces/FishLamp-UI-Widget
+	url = https://www.github.com/fishlamp/FishLamp-UI-Widget
