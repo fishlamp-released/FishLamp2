@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project projectName="FishLamp Connect">
+    <organization name="GreenTongue Software, LLC"/>
+    <generatorOptions>
+        <disabled>NO</disabled>
+        <generateAllIncludesFile>YES</generateAllIncludesFile>
+        <objectsFolderName>GeneratedObjects</objectsFolderName>
+        <typePrefix>FL</typePrefix>
+    </generatorOptions>
+    <typeDefinitions>
+        <typeDefinition typeName="FLFacebookHttpRequest" dataType="Object"/>
+        <typeDefinition typeName="NSURL" dataType="Object"/>
+    </typeDefinitions>
+    <enumTypes>
+        <enumType typeName="FLFacebookUserReadPermission">
+            <enums>
+                <enum name="AboutMe" stringValue="user_about_me"/>
+                <enum name="Activities" stringValue="user_activities"/>
+                <enum name="Birthday" stringValue="user_birthday"/>
+                <enum name="Checkins" stringValue="user_checkins"/>
+                <enum name="EducationHistory" stringValue="user_education_history"/>
+                <enum name="Events" stringValue="user_events"/>
+                <enum name="Groups" stringValue="user_groups"/>
+                <enum name="Hometown" stringValue="user_hometown"/>
+                <enum name="Interests" stringValue="user_interests"/>
+                <enum name="Likes" stringValue="user_likes"/>
+                <enum name="Location" stringValue="user_location"/>
+                <enum name="Notes" stringValue="user_notes"/>
+                <enum name="OnlinePresence" stringValue="user_online_presence"/>
+                <enum name="PhotoVideoTags" stringValue="user_photo_video_tags"/>
+                <enum name="Photos" stringValue="user_photos"/>
+                <enum name="Relationships" stringValue="user_relationships"/>
+                <enum name="RelationshipDetails" stringValue="user_relationship_details"/>
+                <enum name="ReligionPolitics" stringValue="user_religion_politics"/>
+                <enum name="Status" stringValue="user_status"/>
+                <enum name="Videos" stringValue="user_videos"/>
+                <enum name="Website" stringValue="user_website"/>
+                <enum name="WorkHistory" stringValue="user_work_history"/>
+                <enum name="Email" stringValue="email"/>
+                <enum name="FriendLists" stringValue="read_friendlists"/>
+                <enum name="Insights" stringValue="read_insights"/>
+                <enum name="Mailbox" stringValue="read_mailbox"/>
+                <enum name="Requests" stringValue="read_requests"/>
+                <enum name="Stream" stringValue="read_stream"/>
+                <enum name="XmppLogin" stringValue="xmpp_login"/>
+                <enum name="AdsManagement" stringValue="ads_management"/>
+            </enums>
+        </enumType>
+        <enumType typeName="FLFacebookUserWritePermission">
+            <enums>
+                <enum name="PublishStream" stringValue="publish_stream"/>
+                <enum name="CreateEvent" stringValue="create_event"/>
+                <enum name="RsvpEvent" stringValue="rsvp_event"/>
+                <enum name="Sms" stringValue="sms"/>
+                <enum name="OfflineAccess" stringValue="offline_access"/>
+                <enum name="PublishCheckins" stringValue="publish_checkins"/>
+                <enum name="ManageFriedLists" stringValue="manage_friendlists"/>
+            </enums>
+        </enumType>
+        <enumType typeName="FLFacebookPictureSize">
+            <enums>
+                <enum name="FLFacebookPictureSizeNormal" stringValue="normal"/>
+                <enum name="FLFacebookPictureSizeLarge" stringValue="large"/>
+                <enum name="FLFacebookPictureSizeSquare" stringValue="square"/>
+                <enum name="FLFacebookPictureSizeSmall" stringValue="small"/>
+            </enums>
+        </enumType>
+    </enumTypes>
+    <objects>
+        <object className="FLFacebookObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="id">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookNamedObject" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="name"/>
+            </properties>
+        </object>
+        <object className="FLFacebookDataList"/>
+        <object className="FLFacebookPlace" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="location"/>
+            </properties>
+        </object>
+        <object className="FLFacebookEmailObject" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="email"/>
+            </properties>
+        </object>
+        <object className="FLFacebookAlbum" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="description"/>
+                <property type="FLFacebookNamedObject" name="from"/>
+                <property type="string" name="location"/>
+                <property type="string" name="link"/>
+                <property type="string" name="cover_photo"/>
+                <property type="string" name="privacy"/>
+                <property type="string" name="count"/>
+                <property type="string" name="type"/>
+                <property type="date" name="created_time"/>
+                <property type="date" name="updated_time"/>
+            </properties>
+        </object>
+        <object className="FLFacebookApplication" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="category"/>
+                <property type="string" name="link"/>
+                <property type="string" name="description"/>
+            </properties>
+        </object>
+        <object className="FLFacebookCheckin" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="FLFacebookObject" name="from"/>
+                <property type="FLFacebookDataList" name="tags"/>
+                <property type="FLFacebookPlace" name="place"/>
+                <property type="string" name="message"/>
+                <property type="FLFacebookNamedObject" name="application"/>
+                <property type="date" name="created_time"/>
+            </properties>
+        </object>
+        <object className="FLFacebookComment" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="date" name="created_time"/>
+                <property type="string" name="message"/>
+                <property type="FLFacebookNamedObject" name="from"/>
+                <property type="integer" name="likes"/>
+            </properties>
+        </object>
+        <object className="FLFacebookDomain" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties/>
+        </object>
+        <object className="FLFacebookEvent" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="owner"/>
+                <property type="string" name="description"/>
+                <property type="date" name="start_time"/>
+                <property type="date" name="end_time"/>
+                <property type="string" name="location"/>
+                <property type="string" name="venue"/>
+                <property type="string" name="privacy"/>
+                <property type="date" name="updated_time"/>
+            </properties>
+        </object>
+        <object className="FLFacebookFriendList" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="array" name="friends">
+                    <arrayTypes>
+                        <arrayType name="friend" typeName="FLFacebookNamedObject"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookGroup" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="owner"/>
+                <property type="string" name="icon"/>
+                <property type="string" name="description"/>
+                <property type="string" name="link"/>
+                <property type="string" name="privacy"/>
+                <property type="date" name="updated_time"/>
+            </properties>
+        </object>
+        <object className="FLFacebookInsight">
+            <properties>
+                <property type="int" name="value"/>
+                <property type="date" name="end_time"/>
+            </properties>
+        </object>
+        <object className="FLFacebookInsights" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="period"/>
+                <property type="array" name="values">
+                    <arrayTypes>
+                        <arrayType name="insights" typeName="FLFacebookInsight"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookLink" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="FLFacebookObject" name="from"/>
+                <property type="string" name="link"/>
+                <property type="string" name="caption"/>
+                <property type="string" name="description"/>
+                <property type="string" name="icon"/>
+                <property type="string" name="picture"/>
+                <property type="string" name="message"/>
+                <property type="date" name="created_time"/>
+            </properties>
+        </object>
+        <object className="FLFacebookMessage" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="FLFacebookEmailObject" name="from"/>
+                <property type="FLFacebookEmailObject" name="to"/>
+                <property type="string" name="message"/>
+                <property type="date" name="created_time"/>
+            </properties>
+        </object>
+        <object className="FLFacebookNote" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="FLFacebookNamedObject" name="from"/>
+                <property type="string" name="subject"/>
+                <property type="string" name="message"/>
+                <property type="string" name="icon"/>
+                <property type="date" name="updated_time"/>
+                <property type="date" name="created_time"/>
+            </properties>
+        </object>
+        <object className="FLFacebookPage" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="category"/>
+                <property type="int" name="likes"/>
+            </properties>
+        </object>
+        <object className="FLFacebookTag">
+            <properties>
+                <property type="FLFacebookNamedObject" name="user"/>
+                <property type="int" name="x"/>
+                <property type="int" name="y"/>
+            </properties>
+        </object>
+        <object className="FLFacebookPhoto" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="FLFacebookNamedObject" name="from"/>
+                <property type="date" name="updated_time"/>
+                <property type="date" name="created_time"/>
+                <property type="string" name="link"/>
+                <property type="string" name="icon"/>
+                <property type="string" name="source"/>
+                <property type="int" name="height"/>
+                <property type="int" name="width"/>
+                <property type="array" name="tags">
+                    <arrayTypes>
+                        <arrayType name="tag" typeName="FLFacebookTag"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookAction" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="link"/>
+                <property type="string" name="name"/>
+            </properties>
+        </object>
+        <object className="FLFacebookProperty" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="text"/>
+                <property type="string" name="name"/>
+                <property type="string" name="href"/>
+            </properties>
+        </object>
+        <object className="FLFacebookPrivacy" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="value"/>
+                <property type="string" name="friends"/>
+                <property type="string" name="networks"/>
+                <property type="string" name="deny"/>
+                <property type="string" name="description"/>
+            </properties>
+        </object>
+        <object className="FLFacebookPost" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="object_id"/>
+                <property type="FLFacebookNamedObject" name="from"/>
+                <property type="FLFacebookNamedObjectList" name="to"/>
+                <property type="string" name="message"/>
+                <property type="string" name="picture"/>
+                <property type="string" name="link"/>
+                <property type="string" name="caption"/>
+                <property type="string" name="description"/>
+                <property type="string" name="source"/>
+                <property type="string" name="icon"/>
+                <property type="array" name="properties">
+                    <arrayTypes>
+                        <arrayType name="property" typeName="FLFacebookProperty"/>
+                    </arrayTypes>
+                </property>
+                <property type="FLFacebookNamedObject" name="application"/>
+                <property type="FLFacebookPrivacy" name="privacy"/>
+                <property type="FLFacebookCommentList" name="comments"/>
+                <property type="FLFacebookNamedObjectList" name="likes"/>
+                <property type="array" name="actions">
+                    <arrayTypes>
+                        <arrayType name="action" typeName="FLFacebookAction"/>
+                    </arrayTypes>
+                </property>
+                <property type="string" name="type">
+                    <storageOptions isIndexed="YES"/>
+                </property>
+                <property type="date" name="updated_time">
+                    <storageOptions isIndexed="YES"/>
+                </property>
+                <property type="date" name="created_time">
+                    <storageOptions isIndexed="YES"/>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookStatusMessage" superclass="FLFacebookObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="FLFacebookNamedObject" name="from"/>
+                <property type="string" name="message"/>
+                <property type="date" name="updated_time"/>
+            </properties>
+        </object>
+        <object className="FLFacebookEmployer" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="employer"/>
+                <property type="string" name="location"/>
+                <property type="string" name="position"/>
+                <property type="date" name="start_date"/>
+                <property type="date" name="end_date"/>
+            </properties>
+        </object>
+        <object className="FLFacebookWorkHistory" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="FLFacebookNamedObject" name="employer"/>
+                <property type="FLFacebookNamedObject" name="location"/>
+                <property type="FLFacebookNamedObject" name="position"/>
+                <property type="date" name="start_date"/>
+                <property type="date" name="end_date"/>
+            </properties>
+        </object>
+        <object className="FLFacebookUser" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="first_name"/>
+                <property type="string" name="last_name"/>
+                <property type="string" name="gender"/>
+                <property type="string" name="locale"/>
+                <property type="string" name="link"/>
+                <property type="string" name="username"/>
+                <property type="string" name="third_party_id"/>
+                <property type="int" name="timezone"/>
+                <property type="date" name="updated_time"/>
+                <property type="bool" name="verified"/>
+                <property type="string" name="about"/>
+                <property type="string" name="bio"/>
+                <property type="string" name="birthday"/>
+                <property type="string" name="education"/>
+                <property type="FLFacebookNamedObject" name="hometown"/>
+                <property type="string" name="interested_in"/>
+                <property type="FLFacebookNamedObject" name="location"/>
+                <property type="string" name="political"/>
+                <property type="string" name="quotes"/>
+                <property type="string" name="relationship_status"/>
+                <property type="string" name="religion"/>
+                <property type="FLFacebookNamedObject" name="significant_other"/>
+                <property type="string" name="website"/>
+                <property type="array" name="work">
+                    <arrayTypes>
+                        <arrayType name="work_history" typeName="FLFacebookWorkHistory"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookVideo" superclass="FLFacebookNamedObject" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="FLFacebookNamedObject" name="from"/>
+                <property type="date" name="updated_time"/>
+                <property type="date" name="created_time"/>
+                <property type="string" name="embed_html"/>
+                <property type="string" name="icon"/>
+                <property type="string" name="source"/>
+                <property type="array" name="tags">
+                    <arrayTypes>
+                        <arrayType name="tag" typeName="FLFacebookTag"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <!-- Network operations -->
+        <object className="FLFacebookNetworkSession" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="userId">
+                    <storageOptions isIndexed="YES"/>
+                </property>
+                <property type="string" name="appId">
+                    <storageOptions isPrimaryKey="YES"/>
+                </property>
+                <property type="string" name="access_token"/>
+                <property type="date" name="expiration_date"/>
+                <property type="array" name="permissions">
+                    <arrayTypes>
+                        <arrayType name="permission" typeName="string"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookError" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="error_reason"/>
+                <property type="string" name="error"/>
+                <property type="string" name="error_description"/>
+                <property type="string" name="externalUrl"/>
+            </properties>
+        </object>
+        <object className="FLFacebookAuthenticationResponse" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="FLFacebookNetworkSession" name="session"/>
+                <property type="NSURL" name="redirectURL"/>
+            </properties>
+        </object>
+        <object className="FLFacebookPagingResponse" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="previous"/>
+                <property type="string" name="next"/>
+            </properties>
+        </object>
+        <object className="FLFacebookFetchStatusListResponse" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="FLFacebookPagingResponse" name="paging"/>
+                <property type="array" name="data">
+                    <arrayTypes>
+                        <arrayType name="post" typeName="FLFacebookPost"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookCommentList" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="int" name="count"/>
+                <property type="array" name="data">
+                    <arrayTypes>
+                        <arrayType name="comment" typeName="FLFacebookComment"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookLikeList" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="int" name="count"/>
+                <property type="array" name="data">
+                    <arrayTypes>
+                        <arrayType name="like" typeName="FLFacebookNamedObject"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookActionList" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="int" name="count"/>
+                <property type="array" name="data">
+                    <arrayTypes>
+                        <arrayType name="like" typeName="FLFacebookAction"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookNamedObjectList" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="int" name="count"/>
+                <property type="array" name="data">
+                    <arrayTypes>
+                        <arrayType name="like" typeName="FLFacebookNamedObject"/>
+                    </arrayTypes>
+                </property>
+            </properties>
+        </object>
+        <object className="FLFacebookUpdateStatusOperation" superclass="FLFacebookHttpRequest">
+            <properties>
+                <property type="FLFacebookStatusMessage" name="input"/>
+                <property type="string" name="output"/>
+            </properties>
+        </object>
+        <object className="FLFacebookLoadUserPictureOperationInput" protocols="NSCopying, NSCoding">
+            <properties>
+                <property type="string" name="type"/>
+                <property type="string" name="pictureSize"/>
+            </properties>
+        </object>
+    </objects>
+</project>
+<!-- 
+                <property type="array" name="feed"/>
+                <property type="array" name="posts"/>
+                <property type="array" name="picture"/>
+                <property type="array" name="tagged"/>
+                <property type="array" name="links"/>
+                <property type="array" name="photos"/>
+                <property type="array" name="albums"/>
+                <property type="array" name="statuses"/>
+                <property type="array" name="videos"/>
+                <property type="array" name="notes"/>
+                <property type="array" name="events"/>
+                <property type="array" name="subscriptions"/>
+                <property type="array" name="insights"/>
+                <property type="array" name="accounts"/>
+                <property type="array" name="reviews"/>
+-->
