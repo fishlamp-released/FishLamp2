@@ -5,7 +5,7 @@ function diff() {
     old="OldPieces/Old-$1"
     echo "# diffing $old into $new"
 
-    ksdiff --wait "$old" "$new"
+    ksdiff --wait "$old/Classes" "$new/Classes"  || { exit 1; }
 }
 
 # diff FishLamp-Core
