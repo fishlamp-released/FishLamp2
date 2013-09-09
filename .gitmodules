@@ -175,3 +175,6 @@
 [submodule "Pieces/FishLamp-UI-Widget"]
 	path = Pieces/FishLamp-UI-Widget
 	url = https://www.github.com/fishlamp/FishLamp-UI-Widget
+[submodule "FishLamp-Objc/Xcode-Project/Piecemeal-XcodeConfigs"]
+	path = FishLamp-Objc/Xcode-Project/Piecemeal-XcodeConfigs
+	url = https://github.com/piecemeal/Piecemeal-XcodeConfigs
