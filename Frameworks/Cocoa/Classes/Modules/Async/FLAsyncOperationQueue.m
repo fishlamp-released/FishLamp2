@@ -12,6 +12,8 @@
 #import "FLDispatchQueue.h"
 #import "FLLog.h"
 
+#import "FLTrace.h"
+
 @interface FLAsyncOperationQueue ()
 @property (readwrite, strong) FLFifoAsyncQueue* fifoQueue; 
 @property (readwrite, assign) NSInteger processedObjectCount;
@@ -104,8 +106,6 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
         [operation requestCancel];
     }
     FLTrace(@"cancelled %d queued operations", _objectQueue.count);
-
-    [_objectQueue removeAllObjects];
 }
 
 - (void) requestCancel {
@@ -163,7 +163,7 @@ static NSInteger s_threadCount = FLAsyncOperationQueueOperationDefaultMaxConcurr
 
             [self willStartOperation:element];
             
-            FLTrace(@"starting operation: %@", operation);
+            FLTrace(@"starting operation: %@", element.operation);
 
             [element beginOperationInQueue:self completion:^{
                 [self didFinishProcessingQueueElement:element];
