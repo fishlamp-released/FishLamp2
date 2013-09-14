@@ -1858,7 +1858,7 @@
 		27A43A7315CDCC1B001CB13E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Mike Fullerton";
 			};
 			buildConfigurationList = 27A43A7615CDCC1B001CB13E /* Build configuration list for PBXProject "FishLampCocoaUI" */;
@@ -2423,6 +2423,7 @@
 			baseConfigurationReference = 27E9584E170BB51C00587A8F /* FishLampProjectSettingsDebug.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};
