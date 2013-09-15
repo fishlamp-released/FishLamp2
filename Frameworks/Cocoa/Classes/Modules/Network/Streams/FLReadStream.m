@@ -10,6 +10,7 @@
 #import "FLReadStream.h"
 #import "FLCoreFoundation.h"
 #import "FLNetworkStream_Internal.h"
+#import "FishLampAsync.h"
 
 @interface FLReadStream ()
 @property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
@@ -121,44 +122,56 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     CFReadStreamScheduleWithRunLoop(_streamRef, [[self.eventHandler runLoop] getCFRunLoop], FLBridge(CFStringRef,self.eventHandler.runLoopMode));
 }
 
-- (void) willCloseWithResponseData:(id<FLInputSink>) responseData {
-    FLPerformSelector2(self.delegate, @selector(readStream:willCloseWithResponseData:), self, responseData);
+
+- (FLPromisedResult) createSuccessfulResult:(id<FLInputSink>) sink {
+    return sink;
 }
+
 
 - (void) closeStream {
 
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
 
     if(_streamRef) {
+        FLPromisedResult result = nil;
         @try {
-        
-            if(self.wasTerminated) {
+
+            if(self.hasError) {
                 [self.inputSink closeSinkWithCommit:NO];
+                result = [NSError errorWithDomain:FLNetworkStreamErrorDomain
+                                             code:FLNetworkStreamError
+                                         userInfo:[NSDictionary dictionaryWithObject:self.errors forKey:FLNetworkStreamErrorArrayKey]];
             }
             else {
-                [self willCloseWithResponseData:self.inputSink];
+                result = [self createSuccessfulResult:self.inputSink];
             }
         }
         @finally {
+
+            if( !result ) {
+                result = FLFailedResult;
+            }
+
+            [self killStream];
+            [self didCloseWithResult:result];
+
             if(self.inputSink.isOpen) {
                 [self.inputSink closeSinkWithCommit:NO];
             }
 
-            [self killStream];
-            [self didClose];
         }
     }
 }
 
 - (BOOL) hasBytesAvailable {
     if(_streamRef) {
-        return CFReadStreamHasBytesAvailable(_streamRef) && !self.wasTerminated;
+        return CFReadStreamHasBytesAvailable(_streamRef) && !self.hasError;
     }
     return NO;
 }
 
 - (void) encounteredBytesAvailable {
-    while(self.hasBytesAvailable && !self.wasTerminated) {
+    while(self.hasBytesAvailable && !self.hasError) {
         NSUInteger bytesRead = [self readBytes:_buffer maxLength:FLReadStreamBufferSize];
         if(bytesRead) {
             [self.inputSink appendBytes:_buffer length:bytesRead];

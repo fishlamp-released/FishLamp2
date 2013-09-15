@@ -12,4 +12,6 @@
 + (id) failedResultError;
 @end
 
+#define FLFailedResult [NSError failedResultError]
+
 

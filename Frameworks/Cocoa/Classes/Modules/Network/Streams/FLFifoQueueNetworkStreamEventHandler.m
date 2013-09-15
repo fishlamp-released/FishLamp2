@@ -58,7 +58,7 @@
             [self.stream performSelector:selector];
         }
         @catch(NSException* ex) {
-            self.stream.wasTerminated = YES;
+            [self.stream addError:ex.error];
             FLLog(@"stream encountered secondary error: %@", [ex.error localizedDescription]);
         }
     }];
@@ -80,7 +80,6 @@
         break;
 
         case kCFStreamEventErrorOccurred:  
-            self.stream.wasTerminated = YES;
             [self queueSelector:@selector(encounteredError:) withObject:[self.stream streamError]];
         break;
         
@@ -106,7 +105,7 @@
     if(completion) completion();
 }
 
-- (void) streamDidClose {
+- (void) streamDidCloseWithResult:(FLPromisedResult) result {
 }
 
 - (NSRunLoop*) runLoop {

@@ -22,6 +22,10 @@ NSString* const FLWorkerContextFinished = @"FLWorkerContextFinished";
 NSString* const FLWorkerContextClosed = @"FLWorkerContextClosed";
 NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened"; 
 
+#define OperationInQueue(op) op
+
+// [operation nonretainedObjectValue]
+
 @interface FLOperationContext ()
 @property (readwrite, assign, getter=isContextOpen) BOOL contextOpen; 
 @property (readwrite, assign) NSUInteger contextID;
@@ -60,7 +64,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
     @synchronized(self) {
         BOOL stop = NO;
         for(id operation in _operations) {
-            visitor([operation nonretainedObjectValue], &stop);
+            visitor(OperationInQueue(operation), &stop);
             
             if(stop) {
                 break;
@@ -80,7 +84,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
             FLLog(@"cancelled %@", [operation description]);
 #endif
         
-            FLPerformSelector0([operation nonretainedObjectValue], @selector(requestCancel));
+            FLPerformSelector0(OperationInQueue(operation), @selector(requestCancel));
         }
     }
 }
@@ -156,7 +160,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
        
         wasIdle = _operations.count == 0;
        
-        [_operations addObject:[NSValue valueWithNonretainedObject:operation]];
+        [_operations addObject:operation];
          
         FLOperationContext* oldContext = operation.context;
         if(oldContext && oldContext != self) {
@@ -187,7 +191,9 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
         FLLog(@"Operation removed from context: %@", [operation description]);
 #endif
 
-        [_operations removeObject:[NSValue valueWithNonretainedObject:operation]];
+        FLRetainWithAutorelease(operation);
+
+        [_operations removeObject:operation];
         if(operation.context == self) {
             [operation wasRemovedFromContext:self];
             [operation.observers removeObserver:self];

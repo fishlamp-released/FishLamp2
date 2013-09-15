@@ -36,9 +36,12 @@
 
 - (CFReadStreamRef) allocReadStreamRef;
 
+- (FLPromisedResult) createSuccessfulResult:(id<FLInputSink>) sink;
+
 @end
 
-@protocol FLReadStreamDelegate <FLNetworkStreamDelegate>
-@optional
-- (void) readStream:(FLReadStream*) stream willCloseWithResponseData:(id<FLInputSink>) sink;
-@end
+//@protocol FLReadStreamDelegate <FLNetworkStreamDelegate>
+//@optional
+//- (void) readStream:(FLReadStream*) stream willCloseWithResponseData:(id<FLInputSink>) sink;
+//@end
+

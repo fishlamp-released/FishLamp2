@@ -96,7 +96,6 @@
         break;
 
         case kCFStreamEventErrorOccurred:  
-            _stream.wasTerminated = YES;
             [self queueSelector:@selector(encounteredError:) withObject:[_stream streamError]];
         break;
         
@@ -146,7 +145,7 @@
     
 }
 
-- (void) streamDidClose {
+- (void) streamDidCloseWithResult:(FLPromisedResult) result {
 }
 
 - (NSString*) runLoopMode {

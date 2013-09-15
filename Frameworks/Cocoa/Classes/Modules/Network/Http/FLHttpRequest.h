@@ -36,7 +36,7 @@
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;
 @end
 
-@interface FLHttpRequest : FLAsyncOperation<FLHttpStreamDelegate> {
+@interface FLHttpRequest : FLAsyncOperation<FLNetworkStreamDelegate> {
 @private
     FLHttpRequestHeaders* _requestHeaders;
     FLHttpRequestBody* _requestBody;
