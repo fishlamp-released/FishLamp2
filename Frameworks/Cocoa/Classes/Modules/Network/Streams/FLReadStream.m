@@ -14,15 +14,16 @@
 
 @interface FLReadStream ()
 @property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
+
 @end
 
-#if DEBUG
-CFIndex _FLReadStreamRead(CFReadStreamRef stream, UInt8 *buffer, CFIndex bufferLength) {
-    memset(buffer, bufferLength, 0); 
-    return CFReadStreamRead(stream, buffer, bufferLength); 
-}
-#define CFReadStreamRead _FLReadStreamRead
-#endif
+//#if DEBUG
+//CFIndex _FLReadStreamRead(CFReadStreamRef stream, UInt8 *buffer, CFIndex bufferLength) {
+//    memset(buffer, bufferLength, 0); 
+//    return CFReadStreamRead(stream, buffer, bufferLength); 
+//}
+//#define CFReadStreamRead _FLReadStreamRead
+//#endif
 
 static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventType eventType, void *clientCallBackInfo) {
 
@@ -34,13 +35,15 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 @synthesize streamRef = _streamRef;
 @synthesize inputSink = _inputSink;
+@synthesize byteReader = _byteReader;
 
 - (id) initWithStreamSecurity:(FLNetworkStreamSecurity) security 
                     inputSink:(id<FLInputSink>) inputSink {
                     
 	self = [super initWithStreamSecurity:security];
 	if(self) {
-        self.inputSink = inputSink;
+        _byteReader = [[FLDefaultReadStreamByteReader alloc] init];
+        _inputSink = FLRetain(inputSink);
 	}
 	return self;
 }
@@ -63,7 +66,8 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     
     [self killStream];
     
-#if FL_MRC  
+#if FL_MRC 
+    [_byteReader release];
     [_inputSink release];
     [super dealloc];
 #endif
@@ -138,9 +142,7 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
             if(self.hasError) {
                 [self.inputSink closeSinkWithCommit:NO];
-                result = [NSError errorWithDomain:FLNetworkStreamErrorDomain
-                                             code:FLNetworkStreamError
-                                         userInfo:[NSDictionary dictionaryWithObject:self.errors forKey:FLNetworkStreamErrorArrayKey]];
+                result = FLRetainWithAutorelease(self.error);
             }
             else {
                 result = [self createSuccessfulResult:self.inputSink];
@@ -171,12 +173,11 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 }
 
 - (void) encounteredBytesAvailable {
-    while(self.hasBytesAvailable && !self.hasError) {
-        NSUInteger bytesRead = [self readBytes:_buffer maxLength:FLReadStreamBufferSize];
-        if(bytesRead) {
-            [self.inputSink appendBytes:_buffer length:bytesRead];
-        }
-    }
+    [self.byteReader readAvailableBytesForStream:self
+                                       withBlock:^(UInt8 *bytes, CFIndex amount) {
+        [self.inputSink appendBytes:bytes length:amount];
+        FLPerformSelector2(self.delegate, @selector(networkStream:didReadBytes:), self, [NSNumber numberWithUnsignedInteger:amount]);
+    }];
 }
 
 - (BOOL) readResultIsError:(NSInteger) bytesRead {
@@ -207,9 +208,9 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     return NO;
 }
 
-- (NSUInteger) readBytes:(uint8_t*) bytes 
-               maxLength:(NSUInteger) maxLength {
-   
+- (NSUInteger) readAvailableBytesIntoBuffer:(uint8_t*) buffer
+                        bufferSize:(NSUInteger) bufferSize {
+
     FLAssert([NSThread currentThread] != [NSThread mainThread]);
       
     FLAssertNotNil(_streamRef);
@@ -218,28 +219,24 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
     }
 
 #if DEBUG   
-    uint8_t* lastBytePtr = bytes + maxLength;
+    uint8_t* lastBytePtr = buffer + bufferSize;
 #endif
-    uint8_t* readPtr = bytes;
+    uint8_t* readPtr = buffer;
     NSUInteger readTotal = 0;
-    while(maxLength > 0 && [self hasBytesAvailable]) {
+    while(bufferSize > 0 && [self hasBytesAvailable]) {
 
 #if DEBUG
-        FLAssertWithComment(readPtr + maxLength <= lastBytePtr, @"buffer overrun!!!! Warning warning warning!!!!");
+        FLAssertWithComment(readPtr + bufferSize <= lastBytePtr, @"buffer overrun!!!! Warning warning warning!!!!");
 #endif
-        NSInteger bytesRead = CFReadStreamRead(_streamRef, readPtr, maxLength);
+        NSInteger bytesRead = CFReadStreamRead(_streamRef, readPtr, bufferSize);
         if([self readResultIsError:bytesRead]) {
             return 0;
             break;
         }
        
         readPtr += bytesRead;
-        maxLength -= bytesRead;
+        bufferSize -= bytesRead;
         readTotal += bytesRead;
-    }
-
-    if(readTotal > 0) {
-        FLPerformSelector2(self.delegate, @selector(networkStream:didReadBytes:), self, [NSNumber numberWithUnsignedInteger:readTotal]);
     }
 
     return readTotal;
@@ -257,85 +254,74 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 @end
 
-// EXPERIMENT(MF)
+@implementation FLReadStreamByteReader
 
-//- (NSData*) readBytes:(NSUInteger) maxLength {
-//
-//// TODO: not sure this even makes sense
-//
-//    NSMutableData* data = [NSMutableData dataWithLength:2048];
-//
-////    NSInteger amount = 0;
-////    while(maxLength > 0 && CFReadStreamHasBytesAvailable(_streamRef))
-////    {   
-////        CFIndex result = CFReadStreamRead(_streamRef, data.bytes + amount, maxLength);
-////        if(result <= 0) 
-////        {   
-////            FLThrowErrorCodeWithComment((NSString*) kCFErrorDomainCFNetwork, kCFURLErrorBadServerResponse, NSLocalizedString(@"Read networkbytes failed: %d", result));
-////        }
-////        
-////        maxLength -= amount;
-////        amount += result;
-////    }
-////
-////    [self touchTimestamp];
-////
-////
-////
-////    uint8_t bytes[512];
-////    
-////    NSUInteger amount = 0;
-////    
-////    NSInteger amount = [self readBytes:bytes maxLength:maxLength];
-////    
-//    return data;
-//}
+- (BOOL) shouldReadBytesFromStream:(FLReadStream*) readStream {
+    return readStream.hasBytesAvailable && !readStream.hasError;
+}
 
-//- (NSData*) readAllAvailableBytes {
-//// TODO: not sure this even makes sense
-//
-//    return nil;
-//}
+- (void) readAvailableBytesForStream:(FLReadStream*) readStream
+                           withBlock:(FLReadStreamByteReaderBlock) block {
 
-//    CFDataRef handle = CFReadStreamCopyProperty(_streamRef, kCFStreamPropertySocketNativeHandle);
-////	if(nativeProp == NULL)
-////	{
-////		if (errPtr) *errPtr = [self getStreamError];
-////		return NO;
-////	}
-//
-//
-//    if(handle) {
-//        dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, (uintptr_t) handle, 0, self.dispatchQueue.dispatch_queue_t);
-//        CFRelease(handle);
-//    
-//        dispatch_source_set_event_handler(source, ^{
-//            FLLog(@"event handler");
-//    
-////				NSAutoreleasePool *eventPool = [[NSAutoreleasePool alloc] init];
-////				
-////				LogVerbose(@"event4Block");
-////				
-////				unsigned long i = 0;
-////				unsigned long numPendingConnections = dispatch_source_get_data(acceptSource);
-////				
-////				LogVerbose(@"numPendingConnections: %lu", numPendingConnections);
-////				
-////				while ([self doAccept:socketFD] && (++i < numPendingConnections));
-////				
-////				[eventPool drain];
-//			});
-//			
-//        dispatch_source_set_cancel_handler(source, ^{
-//            FLLog(@"cancel handler");
-//            
-//    //        LogVerbose(@"dispatch_release(accept4Source)");
-//    //        dispatch_release(acceptSource);
-//    //        
-//    //        LogVerbose(@"close(socket4FD)");
-//    //        close(socketFD);
-//        });
-//			
-////			LogVerbose(@"dispatch_resume(accept4Source)");
-//        dispatch_resume(source);   
-//    }
+    uint8_t* buffer = self.buffer;
+    NSUInteger bufferSize = self.bufferSize;
+
+    while([self shouldReadBytesFromStream:readStream]) {
+        NSUInteger bytesRead = [readStream readAvailableBytesIntoBuffer:buffer bufferSize:bufferSize];
+        if(bytesRead) {
+            block(buffer, bytesRead);
+        }
+    }
+}
+
+- (uint8_t*) buffer {
+    return nil;
+}
+
+- (NSUInteger) bufferSize {
+    return 0;
+}
+
+@end
+
+#define TEST_TIMEOUT 10
+
+#if TEST_TIMEOUT
+static long counter = 0;
+#endif
+
+@implementation FLDefaultReadStreamByteReader
+
+#if TEST_TIMEOUT
+
+- (id) init {	
+	self = [super init];
+	if(self) {
+		counter++;
+	}
+	return self;
+}
+
+
+- (BOOL) shouldReadBytesFromStream:(FLReadStream*) readStream {
+
+    if(counter % TEST_TIMEOUT == 0) {
+        NSLog(@"Faking timeout: %ld", counter);
+        readStream.timer.timeoutInterval = 2.0f;
+        return NO;
+    }
+    else {
+        return [super shouldReadBytesFromStream:readStream];
+    }
+}
+#endif
+
+- (uint8_t*) buffer {
+    return _buffer;
+}
+
+- (NSUInteger) bufferSize {
+    return FLReadStreamBufferSize;
+}
+
+@end

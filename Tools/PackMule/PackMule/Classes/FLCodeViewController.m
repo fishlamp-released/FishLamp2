@@ -14,6 +14,8 @@
 #import "FLJsonDocumentFormatter.h"
 
 #import "FLCodeObject.h"
+#import "FLXmlElement.h"
+#import "FLObjectDescriber.h"
 
 @interface FLCodeViewController ()
 @property (readwrite, strong, nonatomic) FLDocumentFormatter* documentFormatter;
@@ -52,6 +54,8 @@
             break;
         }
     }
+
+    FLAssertNotNilWithComment(self.documentFormatter, @"no formatter found");
 }
 
 #if FL_MRC
@@ -71,6 +75,9 @@
 }
 
 - (IBAction) prettyPrintText:(id) sender {
+
+    FLAssertNotNil(self.documentFormatter);
+
     self.textView.string = [self.documentFormatter prettyPrintString:self.textView.string];
 }
 
@@ -98,9 +105,8 @@
 }
 
 - (void) insertCode:(NSString*) code {
-//   NSRange insertion = [self.textView selectedRange];
-
    [self.textView insertText:code];
+   [self updateFormatterForString:self.textView.textStorage.string];
 }
 
 - (void) insertObjectOfClass:(Class) class name:(NSString*) name {

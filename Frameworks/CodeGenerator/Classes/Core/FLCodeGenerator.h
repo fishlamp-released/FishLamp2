@@ -11,9 +11,10 @@
 
 @class FLCodeProject;
 @protocol FLCodeGeneratorFile;
+@protocol FLCodeGeneratorProjectProvider;
 
 @protocol FLCodeGenerator <FLObservable, NSObject>
-- (void) generateCodeForProject:(FLCodeProject*) project;
+- (void) generateCode;
 @end
 
 @protocol FLCodeGeneratorObserver <NSObject>

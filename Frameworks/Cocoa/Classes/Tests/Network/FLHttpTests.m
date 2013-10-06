@@ -14,6 +14,19 @@
 #import "FLHttpResponse.h"
 #import "FLHttpRequestBody.h"
 
+
+@interface FLTimeoutReadStreamByteReader : FLDefaultReadStreamByteReader
+
+@end
+
+@implementation FLTimeoutReadStreamByteReader
+
+- (BOOL) shouldReadBytesFromStream:(FLReadStream*) stream {
+    return NO;
+}
+
+@end
+
 @implementation FLHttpTests
 
 + (FLUnitTestGroup*) unitTestGroup {
@@ -32,5 +45,19 @@
     FLAssert([response isKindOfClass:[FLHttpResponse class]]);
     FLAssert(response.responseStatusCode == 200);
 }
+
+- (void) testTimeout {
+
+    FLHttpRequest *request = [FLHttpRequest httpRequestWithURL:[NSURL URLWithString:@"http://www.google.com"] httpMethod:@"GET"];
+
+    request.timeoutInterval = 1.0f;
+    request.readStreamByteReader = FLAutorelease([[FLTimeoutReadStreamByteReader alloc] init]);
+
+    id result = [request runSynchronously];
+
+    FLConfirm([result isKindOfClass:[NSError class]]);
+    FLConfirm([result isTimeoutError]);
+}
+
 
 @end

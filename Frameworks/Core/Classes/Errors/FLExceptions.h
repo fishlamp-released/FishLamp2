@@ -47,9 +47,9 @@ extern FLWillThrowExceptionHandler* FLGetWillThrowExceptionHandler();
 #define FLThrowErrorCodeWithComment(__DOMAIN__, __CODE__, __FORMAT__, ...) \
             FLThrowError([NSError errorWithDomain:__DOMAIN__ \
                             code:__CODE__ \
-                            localizedDescription: nil \
+                            localizedDescription: FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) \
                             userInfo:nil \
-                            comment:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) \
+                            comment:nil \
                             stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)])
 
 #define FLThrowErrorCode(__DOMAIN__, __CODE__) \

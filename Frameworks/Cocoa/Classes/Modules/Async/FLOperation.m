@@ -133,6 +133,15 @@
     return [self runAsynchronously:nil];
 }
 
+- (FLPromise*) runAsynchronouslyWithObserver:(id) observer {
+    [self.observers addObserver:observer];
+    return [self runAsynchronously:^(FLPromisedResult result) {
+        [FLForegroundQueue queueBlock:^{
+            [self removeObserver:observer];
+        }];
+    }];
+}
+
 - (FLPromise*) runAsynchronouslyInContext:(FLOperationContext*) context 
                                completion:(fl_completion_block_t) completionOrNil {
     self.context = context;

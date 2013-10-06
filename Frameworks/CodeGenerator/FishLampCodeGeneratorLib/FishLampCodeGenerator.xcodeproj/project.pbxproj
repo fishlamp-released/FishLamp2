@@ -197,8 +197,6 @@
 		27E0E1F01741D322005CB744 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2787B47117415BBF0010C2C6 /* main.m */; };
 		27F01EF7176F776900DEE29A /* FLCodeGeneratorError.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01EF5176F776800DEE29A /* FLCodeGeneratorError.h */; };
 		27F01EF8176F776900DEE29A /* FLCodeGeneratorError.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01EF6176F776800DEE29A /* FLCodeGeneratorError.m */; };
-		27F01F03176F938900DEE29A /* FLCodeGeneratorOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01F01176F938800DEE29A /* FLCodeGeneratorOperation.h */; };
-		27F01F04176F938900DEE29A /* FLCodeGeneratorOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01F02176F938900DEE29A /* FLCodeGeneratorOperation.m */; };
 		27F01F0B176F984000DEE29A /* FLCodeGeneratorProjectProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F01F09176F983F00DEE29A /* FLCodeGeneratorProjectProvider.h */; };
 		27F01F0C176F984000DEE29A /* FLCodeGeneratorProjectProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F01F0A176F983F00DEE29A /* FLCodeGeneratorProjectProvider.m */; };
 		781D193E175C2406008CCDC9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783D3319175C239D0072A61C /* ImageIO.framework */; };
@@ -215,9 +213,7 @@
 		781D1949175C2406008CCDC9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783D3324175C239D0072A61C /* CoreServices.framework */; };
 		781D194A175C2406008CCDC9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783D3325175C239D0072A61C /* Security.framework */; };
 		781D194B175C2406008CCDC9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783D3326175C239D0072A61C /* SystemConfiguration.framework */; };
-		781D194C175C2406008CCDC9 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783D3327175C239D0072A61C /* AppKit.framework */; };
 		781D194D175C2406008CCDC9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783D3328175C239D0072A61C /* CoreData.framework */; };
-		781D194E175C2406008CCDC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783D3329175C239D0072A61C /* Foundation.framework */; };
 		78A54482177D0DFC00FD9F09 /* FLCodeArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 78A543F0177D0DFC00FD9F09 /* FLCodeArray.h */; };
 		78A54483177D0DFC00FD9F09 /* FLCodeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A543F1177D0DFC00FD9F09 /* FLCodeArray.m */; };
 		78A54484177D0DFC00FD9F09 /* FLCodeArrayBaseClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 78A543F2177D0DFC00FD9F09 /* FLCodeArrayBaseClass.h */; };
@@ -731,8 +727,6 @@
 		27DB05CC1788773A00AECA12 /* CodeGeneratorObjects.flproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CodeGeneratorObjects.flproj; sourceTree = "<group>"; };
 		27F01EF5176F776800DEE29A /* FLCodeGeneratorError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeGeneratorError.h; sourceTree = "<group>"; };
 		27F01EF6176F776800DEE29A /* FLCodeGeneratorError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeGeneratorError.m; sourceTree = "<group>"; };
-		27F01F01176F938800DEE29A /* FLCodeGeneratorOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeGeneratorOperation.h; sourceTree = "<group>"; };
-		27F01F02176F938900DEE29A /* FLCodeGeneratorOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeGeneratorOperation.m; sourceTree = "<group>"; };
 		27F01F09176F983F00DEE29A /* FLCodeGeneratorProjectProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeGeneratorProjectProvider.h; sourceTree = "<group>"; };
 		27F01F0A176F983F00DEE29A /* FLCodeGeneratorProjectProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeGeneratorProjectProvider.m; sourceTree = "<group>"; };
 		783D3319175C239D0072A61C /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
@@ -1007,9 +1001,7 @@
 				781D1949175C2406008CCDC9 /* CoreServices.framework in Frameworks */,
 				781D194A175C2406008CCDC9 /* Security.framework in Frameworks */,
 				781D194B175C2406008CCDC9 /* SystemConfiguration.framework in Frameworks */,
-				781D194C175C2406008CCDC9 /* AppKit.framework in Frameworks */,
 				781D194D175C2406008CCDC9 /* CoreData.framework in Frameworks */,
-				781D194E175C2406008CCDC9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1289,8 +1281,6 @@
 				27B35F81175D4FC3002A4A3E /* FLCodeGeneratorResult.m */,
 				27F01EF5176F776800DEE29A /* FLCodeGeneratorError.h */,
 				27F01EF6176F776800DEE29A /* FLCodeGeneratorError.m */,
-				27F01F01176F938800DEE29A /* FLCodeGeneratorOperation.h */,
-				27F01F02176F938900DEE29A /* FLCodeGeneratorOperation.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1891,7 +1881,6 @@
 				27795DDC1763A96100B314EA /* FLObjcClassConstructor.h in Headers */,
 				27F01EF7176F776900DEE29A /* FLCodeGeneratorError.h in Headers */,
 				78A544AC177D0DFC00FD9F09 /* FLCodeElementBaseClass.h in Headers */,
-				27F01F03176F938900DEE29A /* FLCodeGeneratorOperation.h in Headers */,
 				27F01F0B176F984000DEE29A /* FLCodeGeneratorProjectProvider.h in Headers */,
 				2712071A177257A20014206E /* FLObjcGeneratedBaseClassName.h in Headers */,
 				78A5448C177D0DFC00FD9F09 /* FLCodeClassNameBaseClass.h in Headers */,
@@ -2029,7 +2018,7 @@
 		278876831603E98600C8B7B6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Mike Fullerton";
 			};
 			buildConfigurationList = 278876861603E98600C8B7B6 /* Build configuration list for PBXProject "FishLampCodeGenerator" */;
@@ -2220,7 +2209,6 @@
 				27795D9C1763A5E800B314EA /* FLCodeProjectReader.m in Sources */,
 				27795DDD1763A96100B314EA /* FLObjcClassConstructor.m in Sources */,
 				27F01EF8176F776900DEE29A /* FLCodeGeneratorError.m in Sources */,
-				27F01F04176F938900DEE29A /* FLCodeGeneratorOperation.m in Sources */,
 				27F01F0C176F984000DEE29A /* FLCodeGeneratorProjectProvider.m in Sources */,
 				78A544BD177D0DFC00FD9F09 /* FLCodeGetPropertyValueBaseClass.m in Sources */,
 				2712071B177257A20014206E /* FLObjcGeneratedBaseClassName.m in Sources */,
@@ -2351,6 +2339,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2787B65F17415F060010C2C6 /* FishLampProjectSettingsDebug.xcconfig */;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};

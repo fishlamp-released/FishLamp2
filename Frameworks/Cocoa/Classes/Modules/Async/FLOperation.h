@@ -83,6 +83,8 @@
 - (FLPromise*) runAsynchronouslyInContext:(FLOperationContext*) context
                                completion:(fl_completion_block_t) completionOrNil;
 
+- (FLPromise*) runAsynchronouslyWithObserver:(id) observer;
+
 @end
 
 @interface FLOperation (ChildOperations)

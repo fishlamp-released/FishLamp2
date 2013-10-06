@@ -10,6 +10,8 @@
 #import "FLActivityLogViewController.h"
 #import "FLTextViewLogger.h"
 
+#define kInterval 0.5
+
 @implementation FLActivityLogViewController
 
 @synthesize activityLog = _activityLog;
@@ -18,17 +20,48 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
 #if FL_MRC
+    [_queue release];
     [_activityLog release];
     [super dealloc];
 #endif
 }
 
-- (void) logWasUpdated:(NSNotification*) note {
-    NSAttributedString* string = [[note userInfo] objectForKey:FLActivityLogStringKey];
-    if(string) {
-        [self.logger appendAttributedString:string];
+- (void) update {
+
+    NSTimeInterval now = [NSDate timeIntervalSinceReferenceDate];
+    if(_nextUpdate < now) {
+        for(NSAttributedString* string in _queue) {
+            [self.logger appendAttributedString:string];
+        }
+        [_queue removeAllObjects];
+        [self.textView scrollRangeToVisible:NSMakeRange([[self.textView string] length], 0)];
+
+        _nextUpdate = [NSDate timeIntervalSinceReferenceDate] + kInterval;
+    }
+    else {
+        [FLForegroundQueue queueBlockWithDelay:((_nextUpdate - now) + 0.05)  block:^{
+            [self update];
+        }];
     }
 }
+
+
+- (void) logWasUpdated:(NSNotification*) note {
+    NSAttributedString* string = [[note userInfo] objectForKey:FLActivityLogStringKey];
+
+    if(string) {
+        [FLForegroundQueue queueBlock:^{
+
+            if(!_queue) {
+                _queue = [[NSMutableArray alloc] init];
+            }
+
+            [_queue addObject:string];
+            [self update];
+        }];
+    }
+}
+
 
 - (void) setActivityLog:(FLActivityLog*) log {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

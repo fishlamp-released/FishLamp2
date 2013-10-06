@@ -14,7 +14,6 @@
 #import "FLCodeProject.h"
 #import "FLSoapParser.h"
 #import "FLXmlObjectBuilder.h"
-#import "FLSoapObjectBuilder.h"
 #import "FLCodeTypeDefinition.h"
 #import "FLCodeBuilder.h"
 #import "FLCodeGeneratorErrors.h"
@@ -426,8 +425,8 @@
         return nil;
     }
 
-    FLWsdlDefinitions* definitions = [[FLSoapObjectBuilder instance] buildObjectOfClass:[FLWsdlDefinitions class]
-                                                                                withXML:parsedSoap];
+    FLWsdlDefinitions* definitions = [[FLXmlObjectBuilder xmlObjectBuilder] buildObjectOfClass:[FLWsdlDefinitions class]
+                                                                                       withXML:parsedSoap];
 
     FLAssertNotNil(definitions);
 

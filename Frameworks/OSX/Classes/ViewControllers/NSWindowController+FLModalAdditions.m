@@ -39,8 +39,10 @@
 }
 
 - (FLSheetHandler*) showModalWindow:(NSWindowController*) modalWindow 
-            withDefaultButton:(NSButton*) button {
-    
+                  withDefaultButton:(NSButton*) button {
+
+    FLAssertNotNil(modalWindow);
+
     FLSheetHandler* handler = [FLSheetHandler sheetHandler];
     handler.modalWindowController = modalWindow;
     handler.defaultButton = button;

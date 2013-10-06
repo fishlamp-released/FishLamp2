@@ -128,7 +128,7 @@
 	 interpolationQuality:(CGInterpolationQuality)quality {
 	
 #if IOS
-    CGRect newRect = FLRectIntegral(FLRectMake(0, 0, newSize.width, newSize.height));
+    CGRect newRect = FLRectMakeIntegral(FLRectMake(0, 0, newSize.width, newSize.height));
 	CGRect transposedRect = FLRectMake(0, 0, newRect.size.height, newRect.size.width);
 	CGImageRef imageRef = self.CGImage;
 	

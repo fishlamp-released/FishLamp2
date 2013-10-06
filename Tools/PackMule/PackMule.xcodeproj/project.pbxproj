@@ -64,7 +64,6 @@
 		27B87C9D175FC9FD004A41B3 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4AE2161268AA0069944E /* CoreServices.framework */; };
 		27B87C9E175FC9FD004A41B3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4AE4161268AA0069944E /* Security.framework */; };
 		27B87C9F175FC9FD004A41B3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4AE6161268AA0069944E /* SystemConfiguration.framework */; };
-		27B87CA0175FC9FD004A41B3 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4AE9161268AB0069944E /* AppKit.framework */; };
 		27B87CA1175FC9FD004A41B3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 274A4AEA161268AB0069944E /* CoreData.framework */; };
 		27B87CA4175FCA17004A41B3 /* libFishLampCodeGenerator-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 274D0BDD175D5CFC00B99DB6 /* libFishLampCodeGenerator-64-MRC.a */; };
 		27B87CA7175FCA49004A41B3 /* FishLampOSXAppLib-64-MRC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B87C8B175FC9D5004A41B3 /* FishLampOSXAppLib-64-MRC.a */; };
@@ -174,10 +173,10 @@
 		273121D4175504C100F4DC0B /* FLCodeGeneratorDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeGeneratorDocument.m; sourceTree = "<group>"; };
 		273121D5175504C100F4DC0B /* FLInputWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLInputWindowController.h; sourceTree = "<group>"; };
 		273121D6175504C100F4DC0B /* FLInputWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLInputWindowController.m; sourceTree = "<group>"; };
-		273121D7175504C100F4DC0B /* FLInputWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLInputWindowController.xib; sourceTree = "<group>"; };
+		273121D7175504C100F4DC0B /* FLInputWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FLInputWindowController.xib; path = Classes/FLInputWindowController.xib; sourceTree = "<group>"; };
 		273121D8175504C100F4DC0B /* FLResultsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLResultsWindowController.h; sourceTree = "<group>"; };
 		273121D9175504C100F4DC0B /* FLResultsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLResultsWindowController.m; sourceTree = "<group>"; };
-		273121DA175504C100F4DC0B /* FLResultsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLResultsWindowController.xib; sourceTree = "<group>"; };
+		273121DA175504C100F4DC0B /* FLResultsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FLResultsWindowController.xib; path = Classes/FLResultsWindowController.xib; sourceTree = "<group>"; };
 		273121DB175504C100F4DC0B /* FLWsdlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWsdlDocument.h; sourceTree = "<group>"; };
 		273121DC175504C100F4DC0B /* FLWsdlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLWsdlDocument.m; sourceTree = "<group>"; };
 		273121DD175504C100F4DC0B /* FLXmlDocumentFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLXmlDocumentFormatter.h; sourceTree = "<group>"; };
@@ -202,7 +201,7 @@
 		2787B694174162DE0010C2C6 /* PackMuleTargetSettings-64-MRC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "PackMuleTargetSettings-64-MRC.xcconfig"; sourceTree = "<group>"; };
 		279128D6175D5C8D00977957 /* attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attention.png; sourceTree = "<group>"; };
 		279128D7175D5C8D00977957 /* attention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attention@2x.png"; sourceTree = "<group>"; };
-		279128D8175D5C8D00977957 /* FLErrorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLErrorWindowController.xib; sourceTree = "<group>"; };
+		279128D8175D5C8D00977957 /* FLErrorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FLErrorWindowController.xib; path = Resources/FLErrorWindowController.xib; sourceTree = "<group>"; };
 		279FE7C0176E2BCB0047B077 /* FLCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLCodeViewController.h; sourceTree = "<group>"; };
 		279FE7C1176E2BCB0047B077 /* FLCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLCodeViewController.m; sourceTree = "<group>"; };
 		27B4D22B1755316E008540B8 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
@@ -256,7 +255,6 @@
 				27B87C9D175FC9FD004A41B3 /* CoreServices.framework in Frameworks */,
 				27B87C9E175FC9FD004A41B3 /* Security.framework in Frameworks */,
 				27B87C9F175FC9FD004A41B3 /* SystemConfiguration.framework in Frameworks */,
-				27B87CA0175FC9FD004A41B3 /* AppKit.framework in Frameworks */,
 				27B87CA1175FC9FD004A41B3 /* CoreData.framework in Frameworks */,
 				273121B11755043E00F4DC0B /* Foundation.framework in Frameworks */,
 			);
@@ -430,10 +428,8 @@
 			children = (
 				273121D3175504C100F4DC0B /* FLCodeGeneratorDocument.h */,
 				273121D4175504C100F4DC0B /* FLCodeGeneratorDocument.m */,
-				27B4D22D1755316E008540B8 /* FLCodeGeneratorDocument.xib */,
 				273121DB175504C100F4DC0B /* FLWsdlDocument.h */,
 				273121DC175504C100F4DC0B /* FLWsdlDocument.m */,
-				27B4D22F1755316E008540B8 /* FLWsdlDocument.xib */,
 			);
 			name = Documents;
 			sourceTree = "<group>";
@@ -441,7 +437,6 @@
 		279FE771176E1C800047B077 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				27B4D2311755316E008540B8 /* MainMenu.xib */,
 				273121DF175504C100F4DC0B /* main.m */,
 				273121CF175504C100F4DC0B /* AppDelegate.h */,
 				273121D0175504C100F4DC0B /* AppDelegate.m */,
@@ -454,10 +449,8 @@
 			children = (
 				273121D5175504C100F4DC0B /* FLInputWindowController.h */,
 				273121D6175504C100F4DC0B /* FLInputWindowController.m */,
-				273121D7175504C100F4DC0B /* FLInputWindowController.xib */,
 				273121D8175504C100F4DC0B /* FLResultsWindowController.h */,
 				273121D9175504C100F4DC0B /* FLResultsWindowController.m */,
-				273121DA175504C100F4DC0B /* FLResultsWindowController.xib */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -491,13 +484,10 @@
 		27B4D22A1755316E008540B8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				279128D6175D5C8D00977957 /* attention.png */,
-				279128D7175D5C8D00977957 /* attention@2x.png */,
-				279128D8175D5C8D00977957 /* FLErrorWindowController.xib */,
+				27C2FB041801D2D900480ED8 /* Images */,
+				27C2FB031801D2C800480ED8 /* Xib */,
 				27B4D22B1755316E008540B8 /* Credits.rtf */,
 				27B4D22C1755316E008540B8 /* DefaultXmlFile.xml */,
-				27B4D2331755316E008540B8 /* folder.png */,
-				27B4D2341755316E008540B8 /* folder@2x.png */,
 				27B4D2351755316E008540B8 /* InfoPlist.strings */,
 				27B4D2361755316E008540B8 /* mule.icns */,
 				27B4D2371755316E008540B8 /* muledoc.icns */,
@@ -515,6 +505,31 @@
 				27B87C8F175FC9D5004A41B3 /* FishLampOSXAppLib-32-MRC.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		27C2FB031801D2C800480ED8 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				273121D7175504C100F4DC0B /* FLInputWindowController.xib */,
+				273121DA175504C100F4DC0B /* FLResultsWindowController.xib */,
+				27B4D2311755316E008540B8 /* MainMenu.xib */,
+				279128D8175D5C8D00977957 /* FLErrorWindowController.xib */,
+				27B4D22D1755316E008540B8 /* FLCodeGeneratorDocument.xib */,
+				27B4D22F1755316E008540B8 /* FLWsdlDocument.xib */,
+			);
+			name = Xib;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		27C2FB041801D2D900480ED8 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				27B4D2331755316E008540B8 /* folder.png */,
+				27B4D2341755316E008540B8 /* folder@2x.png */,
+				279128D6175D5C8D00977957 /* attention.png */,
+				279128D7175D5C8D00977957 /* attention@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -565,7 +580,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PM;
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Mike Fullerton";
 			};
 			buildConfigurationList = 274A4AD0161268AA0069944E /* Build configuration list for PBXProject "PackMule" */;
@@ -728,7 +743,7 @@
 				27B4D22E1755316E008540B8 /* en */,
 			);
 			name = FLCodeGeneratorDocument.xib;
-			path = ../Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		27B4D22F1755316E008540B8 /* FLWsdlDocument.xib */ = {
@@ -737,7 +752,7 @@
 				27B4D2301755316E008540B8 /* en */,
 			);
 			name = FLWsdlDocument.xib;
-			path = ../Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		27B4D2311755316E008540B8 /* MainMenu.xib */ = {
@@ -746,7 +761,7 @@
 				27B4D2321755316E008540B8 /* en */,
 			);
 			name = MainMenu.xib;
-			path = ../Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -768,15 +783,16 @@
 		};
 		274A4B0C161268AB0069944E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2787B68E174161CC0010C2C6 /* FishLampProjectSettingsDebug.xcconfig */;
+			baseConfigurationReference = 2787B68F174161CC0010C2C6 /* FishLampProjectSettingsRelease.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
 		};
 		274A4B0D161268AB0069944E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2787B68F174161CC0010C2C6 /* FishLampProjectSettingsRelease.xcconfig */;
+			baseConfigurationReference = 2787B68E174161CC0010C2C6 /* FishLampProjectSettingsDebug.xcconfig */;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};

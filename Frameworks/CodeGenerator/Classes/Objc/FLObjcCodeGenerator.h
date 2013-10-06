@@ -6,14 +6,16 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
+#import "FLSynchronousOperation.h"
 #import "FLCodeGenerator.h"
-#import "FLObservable.h"
 
-@interface FLObjcCodeGenerator : FLObservable<FLCodeGenerator> {
+@interface FLObjcCodeGenerator : FLSynchronousOperation<FLCodeGenerator> {
 @private
+    id<FLCodeGeneratorProjectProvider> _projectProvider;
 }
 
-+ (id) objcCodeGenerator;
++ (id) objcCodeGenerator:(id<FLCodeGeneratorProjectProvider>) projectProvider;
+
 @end
 
 

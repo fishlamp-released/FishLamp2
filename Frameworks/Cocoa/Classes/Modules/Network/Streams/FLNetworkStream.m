@@ -22,7 +22,7 @@ NSString* const FLNetworkStreamErrorArrayKey = @"FLNetworkStreamErrorArrayKey";
 @property (readwrite, assign) NSTimeInterval idleDuration;
 @property (readwrite, assign) BOOL hasError;
 @property (readwrite, assign) BOOL wasCancelled;
-@property (readwrite, strong) NSArray* errors;
+@property (readwrite, strong) NSError* error;
 @end
 
 @implementation FLNetworkStream
@@ -32,7 +32,7 @@ NSString* const FLNetworkStreamErrorArrayKey = @"FLNetworkStreamErrorArrayKey";
 @synthesize timer = _timer;
 @synthesize streamSecurity = _streamSecurity;
 @synthesize idleDuration = _idleDuration;
-@synthesize errors = _errors;
+@synthesize error = _error;
 @synthesize hasError = _hasError;
 @synthesize wasCancelled = _wasCancelled;
 
@@ -85,7 +85,7 @@ static Class s_eventHandlerClass = nil;
     _timer.delegate = nil;
     _eventHandler.stream = nil;
 #if FL_MRC
-    [_errors release];
+    [_error release];
     [_eventHandler release];
     [_timer release];
     [super dealloc];
@@ -104,7 +104,7 @@ static Class s_eventHandlerClass = nil;
     self.open = NO;
     self.wasCancelled = NO;
     self.hasError = NO;
-    self.errors = nil;
+    self.error = nil;
 }
 
 - (void) willOpen {
@@ -215,12 +215,21 @@ static Class s_eventHandlerClass = nil;
 
 - (void) addError:(NSError*) error {
     @synchronized(self) {
-        if(!_errors) {
-            _errors = [[NSMutableArray alloc] init];
+        if(!self.error) {
+            self.error = error;
+            FLPerformSelector2(self.delegate, @selector(networkStream:encounteredError:), self, error);
         }
+        else if(error != self.error) {
+            NSMutableDictionary* userInfo = FLMutableCopyWithAutorelease(error.userInfo);
+            if(!userInfo) {
+                userInfo = [NSMutableDictionary dictionary];
+            }
+            [userInfo setObject:self.error forKey:NSUnderlyingErrorKey];
 
-        if([_errors indexOfObject:error] == NSNotFound) {
-            [_errors addObject:error];
+            self.error = [NSError errorWithDomain:error.domain code:error.code userInfo:userInfo];
+
+            FLLog(@"set additional error");
+
             FLPerformSelector2(self.delegate, @selector(networkStream:encounteredError:), self, error);
         }
 

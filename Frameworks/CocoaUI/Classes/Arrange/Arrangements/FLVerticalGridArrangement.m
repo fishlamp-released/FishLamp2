@@ -82,7 +82,7 @@
                 continue;
             }
 
-            CGRect frame = FLRectIntegral(FLRectMake(origin.x, origin.y, cellWidth, _cellHeight));
+            CGRect frame = FLRectMakeIntegral(FLRectMake(origin.x, origin.y, cellWidth, _cellHeight));
             
             frame = [self setFrame:frame forObject:object];
         

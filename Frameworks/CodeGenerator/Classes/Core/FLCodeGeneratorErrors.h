@@ -11,7 +11,7 @@
 
 extern NSString* const FLCodeGeneratorErrorDomain;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, FLCodeGeneratorErrorCode) {
     FLCodeGeneratorErrorCodeUnknownError                = 1,
     FLCodeGeneratorErrorCodeItemExists                  = 2,
     FLCodeGeneratorErrorCodeDuplicateItem               = 3, 
@@ -19,8 +19,9 @@ typedef enum {
     FLCodeGeneratorErrorCodeUnknownType                 = 5, 
     FLCodeGeneratorErrorCodeTranslatorFailed            = 6, 
     FLCodeGeneratorErrorCodeProjectNotFound             = 7, 
-    FLCodeGeneratorErrorCodeMissingName                 = 8 
-} FLCodeGeneratorErrorCode;
+    FLCodeGeneratorErrorCodeMissingName                 = 8,
+    FLCodeGeneratorErrorImportNotLoaded                 = 9
+};
 
 #define FLThrowCodeGeneratorError(__CODE__, __FORMAT__, ...) \
             FLThrowError([NSError errorWithDomain:FLCodeGeneratorErrorDomain \

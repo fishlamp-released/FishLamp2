@@ -11,9 +11,9 @@
 #import "FLTimer.h"
 #import "FLPromisedResult.h"
 
-extern NSString* const FLNetworkStreamErrorDomain;
-extern NSString* const FLNetworkStreamErrorArrayKey;
-#define FLNetworkStreamError 1
+//extern NSString* const FLNetworkStreamErrorDomain;
+//extern NSString* const FLNetworkStreamErrorArrayKey;
+//#define FLNetworkStreamError 1
 
 @protocol FLNetworkStreamDelegate;
 @protocol FLNetworkStreamEventHandler;
@@ -27,7 +27,7 @@ typedef enum {
 
 @interface FLNetworkStream : NSObject<FLTimerDelegate> {
 @private
-    NSMutableArray* _errors;
+    NSError* _error;
     BOOL _hasError;
     BOOL _wasCancelled;
     BOOL _open;
@@ -52,7 +52,7 @@ typedef enum {
 - (void) openStreamWithDelegate:(id<FLNetworkStreamDelegate>) delegate;
 
 // errors
-@property (readonly, strong) NSArray* errors;
+@property (readonly, strong) NSError* error;
 @property (readonly, assign) BOOL hasError;
 @property (readonly, assign) BOOL wasCancelled;
 - (void) requestCancel;

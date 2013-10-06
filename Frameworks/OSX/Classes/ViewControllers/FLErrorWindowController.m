@@ -138,6 +138,7 @@
         }
         
         FLErrorWindowController* controller = [FLErrorWindowController errorWindowController:title explanation:caption];
+        FLAssertNotNil(controller);
                        
         [self.window showModalWindow:controller withDefaultButton:controller.okButton];
     }

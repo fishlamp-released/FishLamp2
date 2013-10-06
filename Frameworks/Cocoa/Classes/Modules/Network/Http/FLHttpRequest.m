@@ -51,6 +51,7 @@
 @synthesize streamSecurity = _streamSecurity;
 @synthesize byteCount = _byteCount;
 @synthesize retryHandler = _retryHandler;
+@synthesize readStreamByteReader = _readStreamByteReader;
 
 #if TRACE
 static int s_counter = 0;
@@ -59,6 +60,7 @@ static int s_counter = 0;
 - (id) init {
     return [self initWithRequestURL:nil httpMethod:nil];
 }
+
 -(id) initWithRequestURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
 
     FLAssertNotNil(url);
@@ -99,6 +101,7 @@ static int s_counter = 0;
 
     [_asyncQueueForStream releaseToPool];
 #if FL_MRC
+    [_readStreamByteReader release];
     [_byteCount release];
     [_asyncQueueForStream release];
     [_previousResponse release];
@@ -112,27 +115,12 @@ static int s_counter = 0;
 #endif
 }
 
-//+ (id) httpGetRequest:(NSURL*) url {
-//    return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"GET"]);
-//}
-
-//+ (id) httpRequestWithURL:(NSURL*) url {
-//    return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"GET"]);
-//}
-
 + (id) httpRequestWithURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
     return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:httpMethod]);
 }
 
-//+ (id) httpPostRequest:(NSURL*) url {
-//    return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:@"POST"]);
-//}
-
 - (NSString*) description {
     return [NSString stringWithFormat:@"%@ { %@ }", [super description], self.requestHeaders.requestURL];
-//    [desc appendString:[self.requestHeaders description]];
-//    [desc appendString:[self.requestBody description]];
-//    return desc;
 }
 
 - (void) openStreamWithURL:(NSURL*) url {
@@ -188,7 +176,11 @@ static int s_counter = 0;
                                  withBodyStream:self.requestBody.bodyStream 
                                  streamSecurity:_streamSecurity
                                       inputSink:self.inputSink];
-    
+
+    if(self.readStreamByteReader) {
+        self.httpStream.byteReader = self.readStreamByteReader;
+    }
+
     [self.httpStream openStreamWithDelegate:self];
 }
 

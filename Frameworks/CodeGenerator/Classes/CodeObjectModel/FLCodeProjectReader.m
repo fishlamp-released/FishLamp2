@@ -16,6 +16,7 @@
 #import "FLCodeGeneratorOptions.h"
 #import "FLCodeObject.h"
 #import "FLCodeProperty.h"
+#import "FLCodeGeneratorErrors.h"
 
 @interface FLCodeProjectReader ()
 @property (readwrite, strong) NSArray* fileReaders;
@@ -66,7 +67,7 @@
         }
     }
 
-    FLConfirmationFailureWithComment(@"import not loaded for location: %@", location.URL);
+    FLThrowCodeGeneratorError(FLCodeGeneratorErrorImportNotLoaded, @"import not loaded for location: %@", location.URL);
 
     return nil;
 }

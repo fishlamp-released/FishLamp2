@@ -11,7 +11,6 @@
 // code generator
 #import "FLObjCCodeGenerator.h"
 #import "FLCodeGeneratorProjectProvider.h"
-#import "FLCodeGeneratorOperation.h"
 #import "FLCodeGeneratorFile.h"
 
 // view controllers
@@ -22,6 +21,8 @@
 // misc
 #import "NSWindowController+FLModalAdditions.h"
 
+#import "FLCodeProject.h"
+#import "FLCodeProjectLocation.h"
 
 @implementation FLCodeGeneratorDocument
 
@@ -45,20 +46,28 @@
 }
 
 - (IBAction) prettyPrintText:(id) sender {
+
+    FLAssertNotNil(_codeViewController);
+
     @try {
         [_codeViewController prettyPrintText:sender];
     }
     @catch(NSException* ex) {
-        [self.windowController showErrorAlert:@"Pretty print, Pretty Schmint." caption:nil error:ex.error];
+        [self.windowController showErrorAlert:@"Malformed Document." caption:nil error:ex.error];
     }
 }
 
 - (void) setDefaultCode {
+    FLAssertNotNil(_codeViewController);
+
     [_codeViewController setDefaultCode];
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController {
+
 	[super windowControllerDidLoadNib:aController];
+
+    FLAssertNotNil(_codeViewController);
 
     if(FLStringIsNotEmpty(_stringLoadedFromFile)) {
         [_codeViewController setCode:_stringLoadedFromFile];
@@ -141,6 +150,10 @@
     [_resultsViewController.logger appendLineWithFormat:@"Removed: %@", file.relativePathToProject];
 }
 
+- (void) codeGenerator:(id) codeGenerator generationWillBeginForProject:(FLCodeProject*) project {
+    [_resultsViewController.logger appendLineWithFormat:@"Starting: %@", project.projectLocation.URL];
+}
+
 - (void) codeGenerator:(id) codeGenerator
 generationDidFailForProject:(FLCodeProject*) project
              withError:(NSError*) error {
@@ -152,17 +165,22 @@ generationDidFailForProject:(FLCodeProject*) project
     [_resultsViewController.logger appendLine:@"generated ok"];
 }
 
+- (void) generatorFinished:(FLPromisedResult) result {
+    if([result isError]) {
+
+    }
+    else {
+    }
+
+}
+
 - (void) generateNow {
 
     [_resultsViewController.logger clearContents];
 
-    FLCodeGeneratorProjectProvider* provider = [FLCodeGeneratorProjectProvider codeGeneratorProjectProvider:[self fileURL]];
-    FLObjcCodeGenerator* generator = [FLObjcCodeGenerator  objcCodeGenerator];
+    FLObjcCodeGenerator* generator = [FLObjcCodeGenerator  objcCodeGenerator:[FLCodeGeneratorProjectProvider codeGeneratorProjectProvider:[self fileURL]]];
 
-    [generator.observers addObserver:[FLMainThreadObject mainThreadObject:[FLNonretainedObject nonretainedObject:self]]];
-
-    FLCodeGeneratorOperation* operation = [FLCodeGeneratorOperation codeGeneratorOperation:generator projectProvider:provider];
-    [operation runAsynchronously];
+    [generator runAsynchronouslyWithObserver:[FLMainThreadObject mainThreadObject:self.nonretained_fl]];
 
 
 //    @try {

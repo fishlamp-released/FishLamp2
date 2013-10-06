@@ -21,18 +21,11 @@
 
 - (FLCodeProject *) parseProjectFromData:(NSData*) data fromURL:(NSURL*) url{
 
-    FLParsedXmlElement* parsedXml = nil;
-    @try {
-        parsedXml = [[FLXmlParser xmlParser] parseData:data fileNameForErrors:url.absoluteString];
-    }
-    @catch(NSException* ex) {
-        
-        return nil;
-    }
-    
+    FLParsedXmlElement* parsedXml = [[FLXmlParser xmlParser] parseData:data fileNameForErrors:url.absoluteString];
+
     if(FLStringsAreEqual(@"fishlamp", parsedXml.elementName)) {
     
-        FLXmlObjectBuilder* builder = [FLXmlObjectBuilder xmlObjectBuilder:[FLDataEncoder dataEncoder]];
+        FLXmlObjectBuilder* builder = [FLXmlObjectBuilder xmlObjectBuilder];
         builder.strict = YES;
         
         FLCodeProject* project = [builder buildObjectOfClass:[FLCodeProject class] withXML:parsedXml];
