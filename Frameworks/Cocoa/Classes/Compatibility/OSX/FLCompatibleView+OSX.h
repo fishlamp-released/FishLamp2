@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#if OSX
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
+#import "FishLamp.h"
 
 #import "NSColor+FLCompatibility.h"
 #import "NSView+FLCompatibility.h"
@@ -49,12 +49,4 @@ typedef NSUInteger UIViewAnimationOptions;
 - (void) layoutIfNeeded;
 @end
 
-
-
-//@interface UIView ()
-//@property (readwrite, assign, nonatomic) UIViewController* viewController;
-//@end
-
-
-#endif
 

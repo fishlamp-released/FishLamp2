@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#if OSX
 #import "FLLoginPanel.h"
 #import "NSObject+Blocks.h"
 #import "FLViewController.h"
@@ -14,8 +13,6 @@
 #import "FLProgressPanel.h"
 #import "NSViewController+FLErrorSheet.h"
 #import "NSBundle+FLCurrentBundle.h"
-
-
 
 @interface FLLoginPanel ()
 - (void) updateNextButton;
@@ -315,4 +312,3 @@
 
 @end
 
-#endif

@@ -19,8 +19,6 @@
 
 @implementation FLUserPreferences
 
-@synthesize userDefaults = _userDefaults;
-
 - (id) init {	
 	self = [super init];
 	if(self) {

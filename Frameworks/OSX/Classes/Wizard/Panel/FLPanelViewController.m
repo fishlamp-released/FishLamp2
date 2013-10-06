@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton.. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#if OSX
 #import "FLPanelViewController.h"
 #import "FLWizardViewController.h"
 
@@ -153,4 +152,3 @@
 }
 
 @end
-#endif

@@ -8,6 +8,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "FishLamp.h"
 
 @interface NSViewController (FLErrorSheet)
 - (void) showErrorAlert:(NSString*) title caption:(NSString*) caption error:(NSError*) error;
