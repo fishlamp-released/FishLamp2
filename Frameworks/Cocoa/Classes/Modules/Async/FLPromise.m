@@ -39,7 +39,7 @@ static NSInteger s_max = 0;
         _semaphore = dispatch_semaphore_create(0);
 
 #if CHECK_COUNT
-        NSUInteger c = s_promiseCount++;
+        NSInteger c = s_promiseCount++;
         if(s_promiseCount > s_max) {
             s_max = s_promiseCount;
         }
@@ -73,7 +73,7 @@ static NSInteger s_max = 0;
 
 - (void) dealloc {
 #if CHECK_COUNT
-    NSUInteger c = --s_promiseCount;
+    NSInteger c = --s_promiseCount;
     if(c % 10 == 0 || s_promiseCount == 0) {
        FLLog(@"-- promise count: %ld, max: %ld", c, s_max);
     }
