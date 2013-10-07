@@ -67,19 +67,19 @@
 }
 @end
 
-@implementation FLBatchSynchronousOperation
-//- (void) sendIterationObservation:(FLPromisedResult) result {
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        FLPerformSelector1(_batchObserver, _batchAction, result);
-//    });
+//@implementation FLBatchSynchronousOperation
+////- (void) sendIterationObservation:(FLPromisedResult) result {
+////    dispatch_async(dispatch_get_main_queue(), ^{
+////        FLPerformSelector1(_batchObserver, _batchAction, result);
+////    });
+////}
+//
+//- (void) setBatchObserver:(id) observer action:(SEL) action {
+//    _batchObserver = observer;
+//    _batchAction = action;
 //}
-
-- (void) setBatchObserver:(id) observer action:(SEL) action {
-    _batchObserver = observer;
-    _batchAction = action;
-}
-
-@end
+//
+//@end
 
 //@implementation FLOperationObserver
 //

@@ -26,16 +26,17 @@
 @end
 
 
-@interface FLBatchSynchronousOperation : FLSynchronousOperation {
-@private
-    SEL _batchAction;
-    __unsafe_unretained id _batchObserver;
-}
-- (void) setBatchObserver:(id) observer action:(SEL) action;
-
-
-// for subclassses
+//@interface FLBatchSynchronousOperation : FLSynchronousOperation {
+//@private
+//    SEL _batchAction;
+//    __unsafe_unretained id _batchObserver;
+//}
+//- (void) setBatchObserver:(id) observer action:(SEL) action;
 //
-//- (void) sendIterationObservation:(FLPromisedResult) result;
+//
+//// for subclassses
+////
+////- (void) sendIterationObservation:(FLPromisedResult) result;
+//
+//@end
 
-@end

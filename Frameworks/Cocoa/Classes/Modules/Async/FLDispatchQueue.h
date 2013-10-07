@@ -47,6 +47,19 @@
 + (FLDispatchQueue*) dispatchQueueWithLabel:(NSString*) label 
                                        attr:(dispatch_queue_attr_t) attr;
 
+// same as GCD functions, just here for convienience so you don't have to get the dispatch_block_t
+// for those send and forget
+
+- (void) dispatch_async:(dispatch_block_t) block;
+
+- (void) dispatch_sync:(dispatch_block_t) block;
+
+- (void) dispatch_after:(NSTimeInterval) seconds block:(dispatch_block_t) block;
+
+- (void) dispatch_target:(id) target action:(SEL) action;
+
+- (void) dispatch_target:(id) target action:(SEL) action withObject:(id) object;
+
 // 
 // Shared Queues
 //

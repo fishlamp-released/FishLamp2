@@ -66,7 +66,7 @@
     [self.observers notify:@selector(operationWillBegin:) withObject:self];
 }
 
-- (id<FLPromisedResult>) asyncQueueRunSynchronously:(id<FLAsyncQueue>) asyncQueue {
+- (FLPromisedResult) runSynchronouslyInAsyncQueue:(id<FLAsyncQueue>) asyncQueue {
     return [self runSynchronously];
 }
 

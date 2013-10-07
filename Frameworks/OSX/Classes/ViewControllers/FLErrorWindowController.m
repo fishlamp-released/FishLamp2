@@ -37,11 +37,12 @@
     if([chars length] == 1) {
         unichar c = [chars characterAtIndex:0];
         if(c == NSCarriageReturnCharacter || c == NSEnterCharacter) {
-            id button = _button;
+            __block id button = FLRetain(_button);
             _button = nil;
             if(button) {
                 dispatch_async(dispatch_get_main_queue(), ^(void){
                     [button performClick:nil];
+                    FLReleaseWithNil(button);
                 });
             }
         }
