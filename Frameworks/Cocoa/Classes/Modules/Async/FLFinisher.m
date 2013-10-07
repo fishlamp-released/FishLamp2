@@ -65,10 +65,6 @@
 }
 #endif
 
-//- (BOOL) willFinish {
-//    return self.firstPromise != nil;
-//}
-
 - (void) setFinishedWithResult:(FLPromisedResult) result {
 
     FLRetainWithAutorelease(self);

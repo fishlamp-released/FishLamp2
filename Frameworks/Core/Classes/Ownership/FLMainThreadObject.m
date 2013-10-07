@@ -17,7 +17,7 @@
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {
     
-    id object = [self representedObject];
+    __block id object = [self representedObject];
     FLAssertNotNil(object);
     
     if(![NSThread isMainThread] &&
@@ -25,10 +25,10 @@
 
         __block NSInvocation* theInvocation = FLRetainWithAutorelease(anInvocation);
 
-
         FLRetain(theInvocation); // for the block in
         [theInvocation retainArguments];
 
+        FLRetain(object);
         dispatch_async(dispatch_get_main_queue(), ^{
             @try {
                 [theInvocation invokeWithTarget:object];
@@ -38,6 +38,7 @@
             }
 
             FLReleaseWithNil(theInvocation);
+            FLReleaseWithNil(object);
         });
     }
     else {

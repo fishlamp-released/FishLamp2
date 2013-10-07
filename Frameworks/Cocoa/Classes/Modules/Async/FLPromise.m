@@ -47,7 +47,7 @@ static NSInteger s_max = 0;
             FLLog(@"++ promise count: %ld, max: %ld", c, s_max);
         }
         if(c > 2000) {
-            int i = 0;
+//            int i = 0;
         }
 #endif
     }

@@ -11,7 +11,7 @@
 
 typedef FLOperation* (^FLOperationFactory)(id object);
 
-#define FLAsyncOperationQueueOperationDefaultMaxConcurrentOperations 3
+#define FLAsyncOperationQueueOperationDefaultMaxConcurrentOperations 2
 
 @class FLFifoAsyncQueue;
 @class FLAsyncOperationQueueElement;

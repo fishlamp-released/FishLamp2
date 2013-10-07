@@ -23,21 +23,18 @@
 #endif
 }
 
+// TODO (MWF): get rid of this.
 @property (readwrite, assign) id<FLFinisherDelegate> delegate;
-//@property (readonly, assign) BOOL willFinish;
 
 + (id) finisher;
 + (id) finisherWithBlock:(fl_completion_block_t) completion;
 + (id) finisherWithTarget:(id) target action:(SEL) action;
-//+ (id) finisherWithPromise:(FLPromise*) promise;
 
-
-// notify finish with one of these
+// notify finished
+- (void) setFinishedWithResult:(FLPromisedResult) result;
 
 // convienience methods - these call setFinishedWithResult:error
 - (void) setFinished;
-- (void) setFinishedWithResult:(FLPromisedResult) result;
-
 - (void) setFinishedWithCancel;
 
 @end
