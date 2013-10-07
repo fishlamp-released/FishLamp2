@@ -27,6 +27,17 @@
 			name = FishLampCocoaTest;
 			productName = FishLampCocoaTest;
 		};
+		27C854AA18032F5800964861 /* FishLampCocoa-OCLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 27C854AF18032F5800964861 /* Build configuration list for PBXAggregateTarget "FishLampCocoa-OCLint" */;
+			buildPhases = (
+				27C854B018032F7500964861 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "FishLampCocoa-OCLint";
+			productName = "FishLampCocoa - OCLint";
+		};
 		27E9CFA2175E4A5500BD6205 /* FishLampCocoa */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 27E9CFAA175E4A5500BD6205 /* Build configuration list for PBXAggregateTarget "FishLampCocoa" */;
@@ -6516,6 +6527,7 @@
 				27337AF417832C3400F56276 /* FishLampCocoaTestTool-iOS-ARC */,
 				27E9CFA2175E4A5500BD6205 /* FishLampCocoa */,
 				27337ACB1783293400F56276 /* FishLampCocoaTest */,
+				27C854AA18032F5800964861 /* FishLampCocoa-OCLint */,
 			);
 		};
 /* End PBXProject section */
@@ -6571,6 +6583,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "$HOME/Library/Developer/FishLamp/Scripts/fishlamp run-tests\n\n\n# $HOME/Library/Developer/FishLamp/Tests/FishLampCocoaTestTool-64-ARC || { echo \"FishLampCocoaTestTool-64-ARC:0: error: unit tests failed\"; exit 1; }\n";
+			showEnvVarsInLog = 0;
+		};
+		27C854B018032F7500964861 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "source ~/.bash_profile\n\nhash /usr/local/bin/oclint &> /dev/null\nif [ $? -eq 1 ]; then\necho >&2 \"oclint not found, analyzing stopped\"\nexit 1\nfi\n \ncd ${TARGET_TEMP_DIR}\n \nif [ ! -f compile_commands.json ]; then\n    echo \"[*] compile_commands.json not found, possibly clean was performed\"\n    echo \"[*] starting xcodebuild to rebuild the project..\"\n    # clean previous output\n    if [ -f xcodebuild.log ]; then\n    rm xcodebuild.log\n    fi\n \n    cd ${SRCROOT}\n \n    xcodebuild clean\n \n    #build xcodebuild.log\n    xcodebuild | tee ${TARGET_TEMP_DIR}/xcodebuild.log\n    #xcodebuild <options>| tee ${TARGET_TEMP_DIR}/xcodebuild.log\n \n    echo \"[*] transforming xcodebuild.log into compile_commands.json...\"\n    cd ${TARGET_TEMP_DIR}\n    #transform it into compile_commands.json\n    /usr/local/bin/oclint-xcodebuild\n \n    echo \"[*] copy compile_commands.json to the project root...\"\n    cp ${TARGET_TEMP_DIR}/compile_commands.json ${SRCROOT}/compile_commands.json\n \nfi\n \necho \"[*] starting analyzing\"\ncd ${TARGET_TEMP_DIR}\n/usr/local/bin/oclint-json-compilation-database -- -rc LONG_LINE=300 | sed 's/\\(.*\\.\\m\\{1,2\\}:[0-9]*:[0-9]*:\\)/\\1 warning:/'";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -8347,6 +8373,20 @@
 			};
 			name = Release;
 		};
+		27C854AB18032F5800964861 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		27C854AC18032F5800964861 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		27CBC1F216768BA600753D0A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27C62DBC170B4BD80093F260 /* CocoaTargetSettings-OSX-Universal-MRC.xcconfig */;
@@ -8476,6 +8516,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		27C854AF18032F5800964861 /* Build configuration list for PBXAggregateTarget "FishLampCocoa-OCLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27C854AB18032F5800964861 /* Debug */,
+				27C854AC18032F5800964861 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		27CBC1F116768BA600753D0A /* Build configuration list for PBXNativeTarget "FishLampCocoa-OSX-Universal-MRC" */ = {
 			isa = XCConfigurationList;

@@ -38,9 +38,9 @@
     NSRange range = { 0, 0 };
     
     for(NSUInteger i = 0; i < string.length; i++) {
-        unichar c = [string characterAtIndex:i];
+        unichar theChar = [string characterAtIndex:i];
         
-        if(c == '\n') {
+        if(theChar == '\n') {
             if(range.length > 0) {
                 [self openLine];
                 [_output stringFormatter:self appendString:[string substringWithRange:range]];
@@ -201,10 +201,10 @@
 
 - (void) appendFormat:(NSString*) format, ... {
     FLAssertNotNil(format);
-	va_list va;
-	va_start(va, format);
-	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-	va_end(va);
+	va_list va_args;
+	va_start(va_args, format);
+	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va_args]);
+	va_end(va_args);
     [self appendString:string];
 }
 
@@ -216,10 +216,10 @@
 
 - (void) appendLineWithFormat:(NSString*) format, ... {
     FLAssertNotNil(format);
-	va_list va;
-	va_start(va, format);
-	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-	va_end(va);
+	va_list va_args;
+	va_start(va_args, format);
+	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va_args]);
+	va_end(va_args);
 	[self appendLine:string];
 }
 
@@ -229,19 +229,19 @@
 
 - (void) openLineWithFormat:(NSString*) format, ... {
     FLAssertNotNil(format);
-	va_list va;
-	va_start(va, format);
-	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-	va_end(va);
+	va_list va_args;
+	va_start(va_args, format);
+	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va_args]);
+	va_end(va_args);
 	[self openLineWithString:string];
 }
 
 - (void) closeLineWithFormat:(NSString*) format, ... {
     FLAssertNotNil(format);
-	va_list va;
-	va_start(va, format);
-	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-	va_end(va);
+	va_list va_args;
+	va_start(va_args, format);
+	NSString *string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va_args]);
+	va_end(va_args);
 	[self closeLineWithString:string];
 }
 

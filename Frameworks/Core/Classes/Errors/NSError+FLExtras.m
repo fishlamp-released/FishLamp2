@@ -47,15 +47,11 @@ FLSynthesizeDictionaryGetterProperty(stackTrace, FLStackTrace*, FLStackTraceKey,
 	return FLStringsAreEqual(domain, self.domain);
 }
 
-- (id) initWithDomain:(NSString*) domain
-                 code:(NSInteger) code
- localizedDescription:(NSString*) localizedDescription
-             userInfo:(NSDictionary *) userInfo
-              comment:(NSString*) comment
-           stackTrace:(FLStackTrace*) stackTrace {
 
 
-#if 0
+/*
+// TODO: Clean this up
+
     NSString* errorCodeString = nil; // [[FLErrorDomainInfo instance] stringFromErrorCode:code withDomain:domain];
     NSString* commentAddOn = nil;
     if(errorCodeString) {
@@ -79,18 +75,24 @@ FLSynthesizeDictionaryGetterProperty(stackTrace, FLStackTrace*, FLStackTraceKey,
     else {
         comment = commentAddOn;
     }
-#endif    
-
-
 //    if(comment) {
 //        localizedDescription = [NSString stringWithFormat:@"%@ (%@)", localizedDescription, comment];
 //    }
 
-    NSMutableDictionary* newUserInfo = userInfo != nil ?
+*/
+
+
+- (id) initWithDomain:(NSString*) domain
+                 code:(NSInteger) code
+ localizedDescription:(NSString*) localizedDescription
+             userInfo:(NSDictionary *) userInfo
+              comment:(NSString*) comment
+           stackTrace:(FLStackTrace*) stackTrace {
+
+
+    NSMutableDictionary* newUserInfo = nil != userInfo ?
                                             FLMutableCopyWithAutorelease(userInfo) :
                                             [NSMutableDictionary dictionaryWithCapacity:5];
-
-//        [userInfo setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
 
     if(FLStringIsNotEmpty(comment)) {
         [newUserInfo setObject:comment forKey:FLErrorCommentKey];
@@ -135,9 +137,8 @@ FLSynthesizeDictionaryGetterProperty(stackTrace, FLStackTrace*, FLStackTraceKey,
 
         return FLAutorelease([[[error class] alloc] initWithDomain:error.domain code:error.code userInfo:userInfo]);
     }
-    else {
-        return FLRetainWithAutorelease(error);
-    }
+
+    return FLRetainWithAutorelease(error);
 }
 
 - (NSException*) createContainingException {

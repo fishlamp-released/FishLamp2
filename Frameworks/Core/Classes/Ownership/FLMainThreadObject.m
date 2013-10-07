@@ -30,13 +30,7 @@
 
         FLRetain(object);
         dispatch_async(dispatch_get_main_queue(), ^{
-            @try {
-                [theInvocation invokeWithTarget:object];
-            }
-            @catch(NSException* ex) {
-//                FLLog([ex description]);
-            }
-
+            [theInvocation invokeWithTarget:object];
             FLReleaseWithNil(theInvocation);
             FLReleaseWithNil(object);
         });

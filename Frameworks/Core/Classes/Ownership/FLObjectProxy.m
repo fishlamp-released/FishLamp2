@@ -74,9 +74,11 @@
     if([object respondsToSelector:[anInvocation selector]]) {
         [anInvocation invokeWithTarget:object];
     }
+#if TRACE
     else {
-//        FLTrace(@"not responding to %@", NSStringFromSelector([anInvocation selector]));
+        FLTrace(@"not responding to %@", NSStringFromSelector([anInvocation selector]));
     }
+#endif
 }
 
 - (NSMethodSignature*)methodSignatureForSelector:(SEL)selector {

@@ -51,9 +51,9 @@ void FLAtomicPropertySet(id* addr, id newValue, dispatch_block_t setter) {
     [oldValue release];
 }
 
-void FLAtomicPropertyCopy(id* addr, id newValue, dispatch_block_t setter) {
+void FLAtomicPropertyCopy(id* addr, id inValue, dispatch_block_t setter) {
 
-    newValue = [newValue copyWithZone:NULL];
+    id newValue = [inValue copyWithZone:NULL];
 
     OSSpinLock *slotlock = &FLPropertyLocks[GOODHASH(addr)];
     OSSpinLockLock(slotlock);

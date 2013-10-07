@@ -68,8 +68,8 @@
     NSUInteger lastIndex = 0;
     for(NSUInteger i = 0; i < logString.length; i++) {
         
-        unichar c = [logString characterAtIndex:i];
-        if(c == '\n') {
+        unichar theChar = [logString characterAtIndex:i];
+        if(theChar == '\n') {
         
             if(i > lastIndex) {
                 NSRange  range = NSMakeRange(lastIndex, i - lastIndex); 

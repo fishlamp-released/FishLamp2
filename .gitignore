@@ -11,3 +11,6 @@ builds
 *.xcuserstate
 
 .idea
+
+compile_commands.json
+-

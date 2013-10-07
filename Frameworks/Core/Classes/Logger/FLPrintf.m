@@ -35,10 +35,10 @@ void FLPrintFormat(NSString* format, ...) {
         return;
     }
      
-    va_list va;
-    va_start(va, format);
-    NSString* string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va]);
-    va_end(va);
+    va_list va_args;
+    va_start(va_args, format);
+    NSString* string = FLAutorelease([[NSString alloc] initWithFormat:format arguments:va_args]);
+    va_end(va_args);
     
     FLPrintStringWithIndent(s_indent, string);
 }
@@ -49,10 +49,10 @@ void FLPrintFormatWithIndent(NSUInteger indent, NSString* format, ...) {
         return;
     }
      
-    va_list va;
-    va_start(va, format);
-    NSString* string = FLAutorelease([[NSMutableString alloc] initWithFormat:format arguments:va]);
-    va_end(va);
+    va_list va_args;
+    va_start(va_args, format);
+    NSString* string = FLAutorelease([[NSMutableString alloc] initWithFormat:format arguments:va_args]);
+    va_end(va_args);
     
     FLPrintStringWithIndent(indent, string);
 }
