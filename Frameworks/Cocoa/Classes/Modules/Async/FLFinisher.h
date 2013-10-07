@@ -10,13 +10,12 @@
 #import "FishLampCore.h"
 #import "FLAsyncBlockTypes.h"
 #import "FLPromisedResult.h"
+#import "FLPromise.h"
 
 @protocol FLFinisherDelegate;
-@class FLPromise;
 
-@interface FLFinisher : NSObject {
+@interface FLFinisher : FLPromise {
 @private
-    FLPromise* _firstPromise;
     __unsafe_unretained id<FLFinisherDelegate> _delegate;
 
 #if DEBUG
@@ -25,19 +24,13 @@
 }
 
 @property (readwrite, assign) id<FLFinisherDelegate> delegate;
-@property (readonly, assign) BOOL willFinish;
-@property (readonly, strong) FLPromise* firstPromise;
+//@property (readonly, assign) BOOL willFinish;
 
 + (id) finisher;
 + (id) finisherWithBlock:(fl_completion_block_t) completion;
 + (id) finisherWithTarget:(id) target action:(SEL) action;
-+ (id) finisherWithPromise:(FLPromise*) promise;
+//+ (id) finisherWithPromise:(FLPromise*) promise;
 
-- (FLPromise*) addPromise;
-- (FLPromise*) addPromiseWithBlock:(fl_completion_block_t) completion;
-- (FLPromise*) addPromiseWithTarget:(id) target action:(SEL) action;
-
-- (void) addPromise:(FLPromise*) promise;
 
 // notify finish with one of these
 

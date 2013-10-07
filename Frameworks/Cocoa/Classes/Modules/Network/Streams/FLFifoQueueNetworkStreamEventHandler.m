@@ -42,25 +42,31 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
 
-- (void) queueBlock:(dispatch_block_t) block {
-    [self.asyncQueue queueBlock:block];
-}
-
 - (void) queueSelector:(SEL) selector withObject:(id) object {
-    [self queueBlock:^{
-        [self.stream performSelector:selector withObject:object];
+    __block FLNetworkStream* theStream = FLRetain(self.stream);
+    __block id theObject = FLRetain(object);
+
+    [self.asyncQueue dispatch_async:^{
+        [self.stream performSelector:selector withObject:theObject];
+
+        FLReleaseWithNil(theStream);
+        FLReleaseWithNil(theObject);
     }];
 }
 
 - (void) queueSelector:(SEL) selector {
-    [self queueBlock:^{
+    __block FLNetworkStream* theStream = FLRetain(self.stream);
+
+    [self.asyncQueue dispatch_async:^{
         @try {
-            [self.stream performSelector:selector];
+            [theStream performSelector:selector];
         }
         @catch(NSException* ex) {
-            [self.stream addError:ex.error];
+            [theStream addError:ex.error];
             FLLog(@"stream encountered secondary error: %@", [ex.error localizedDescription]);
         }
+
+        FLReleaseWithNil(theStream);
     }];
 }
 

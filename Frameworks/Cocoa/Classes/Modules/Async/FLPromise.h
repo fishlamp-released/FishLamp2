@@ -22,7 +22,6 @@
     SEL _action;
 }
 @property (readonly, strong) FLPromisedResult result;
-
 @property (readonly, assign, getter=isFinished) BOOL finished;
 
 - (id) initWithCompletion:(fl_completion_block_t) completion;
@@ -34,6 +33,13 @@
 
 // blocks in current thread. 
 - (FLPromisedResult) waitUntilFinished;
+
+- (void) addPromise:(FLPromise*) promise;
+
+- (FLPromise*) addPromise;
+- (FLPromise*) addPromiseWithBlock:(fl_completion_block_t) completion;
+- (FLPromise*) addPromiseWithTarget:(id) target action:(SEL) action;
+
 @end
 
 

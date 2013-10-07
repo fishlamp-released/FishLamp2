@@ -195,7 +195,7 @@
     [self.credentialDataSource  loginPanel:self 
  beginAuthenticatingWithCredentials:self.credentialsEditor 
                          completion:^(FLPromisedResult result) {
-        
+
         dispatch_async(dispatch_get_main_queue(), ^{
             if([result isError]) {
                 [self showEntryFields:YES completion:^{

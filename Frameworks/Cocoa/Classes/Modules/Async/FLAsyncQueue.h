@@ -19,23 +19,23 @@
 
 - (FLPromise*) queueBlockWithDelay:(NSTimeInterval) delay
                              block:(fl_block_t) block
-                    completion:(fl_completion_block_t) completionOrNil;
+                        completion:(fl_completion_block_t) completionOrNil;
 
 - (FLPromise*) queueBlockWithDelay:(NSTimeInterval) delay
                              block:(fl_block_t) block;
 
 - (FLPromise*) queueBlock:(fl_block_t) block
-           completion:(fl_completion_block_t) completionOrNil;
+               completion:(fl_completion_block_t) completionOrNil;
 
 - (FLPromise*) queueBlock:(fl_block_t) block;
 
 - (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block
-                     completion:(fl_completion_block_t) completionOrNil;
+                         completion:(fl_completion_block_t) completionOrNil;
 
 - (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block;
 
 - (FLPromise*) queueOperation:(id<FLDispatchable>) operation
-               completion:(fl_completion_block_t) completionOrNil;
+                   completion:(fl_completion_block_t) completionOrNil;
 
 - (FLPromise*) queueOperation:(id<FLDispatchable>) operation;
 

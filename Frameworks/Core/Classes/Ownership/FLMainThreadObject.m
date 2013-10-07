@@ -23,14 +23,21 @@
     if(![NSThread isMainThread] &&
         [object respondsToSelector:[anInvocation selector]]) {
 
-        [anInvocation retainArguments];
+        __block NSInvocation* theInvocation = FLRetainWithAutorelease(anInvocation);
+
+
+        FLRetain(theInvocation); // for the block in
+        [theInvocation retainArguments];
+
         dispatch_async(dispatch_get_main_queue(), ^{
             @try {
-                [anInvocation invokeWithTarget:object];
+                [theInvocation invokeWithTarget:object];
             }
             @catch(NSException* ex) {
 //                FLLog([ex description]);
             }
+
+            FLReleaseWithNil(theInvocation);
         });
     }
     else {

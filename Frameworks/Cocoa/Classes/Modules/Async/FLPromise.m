@@ -17,6 +17,13 @@
 @property (readwrite, copy) fl_completion_block_t completion;
 @end
 
+#define CHECK_COUNT 1
+
+#if CHECK_COUNT
+static NSInteger s_promiseCount = 0;
+static NSInteger s_max = 0;
+#endif
+
 @implementation FLPromise
 
 @synthesize nextPromise = _nextPromise;
@@ -30,6 +37,19 @@
     if(self) {
         self.completion = completion;
         _semaphore = dispatch_semaphore_create(0);
+
+#if CHECK_COUNT
+        NSUInteger c = s_promiseCount++;
+        if(s_promiseCount > s_max) {
+            s_max = s_promiseCount;
+        }
+        if(c % 10 == 0) {
+            FLLog(@"++ promise count: %ld, max: %ld", c, s_max);
+        }
+        if(c > 2000) {
+            int i = 0;
+        }
+#endif
     }
     return self;
 }
@@ -52,6 +72,13 @@
 }
 
 - (void) dealloc {
+#if CHECK_COUNT
+    NSUInteger c = --s_promiseCount;
+    if(c % 10 == 0 || s_promiseCount == 0) {
+       FLLog(@"-- promise count: %ld, max: %ld", c, s_max);
+    }
+#endif
+
     if(_semaphore) {
         dispatch_release(_semaphore);
     }
@@ -99,7 +126,7 @@
     return self.result;
 }
 
-- (void) setFinishedWithResult:(FLPromisedResult) result {
+- (void) fufillPromiseWithResult:(FLPromisedResult) result {
     
     FLAssertIsNilWithComment(self.result, @"already finished");
 
@@ -126,6 +153,32 @@
         dispatch_release(_semaphore);
         _semaphore = nil;
     }
+}
+
+- (void) addPromise:(FLPromise*) promise {
+    FLPromise* walker = self;
+    while(walker.nextPromise) {
+        walker = walker.nextPromise;
+    }
+    walker.nextPromise = promise;
+}
+
+- (FLPromise*) addPromise {
+    FLPromise* promise = [FLPromise promise];
+    [self addPromise:promise];
+    return promise;
+}
+
+- (FLPromise*) addPromiseWithBlock:(fl_completion_block_t) completion {
+    FLPromise* promise = [FLPromise promise:completion];
+    [self addPromise:promise];
+    return promise;
+}
+
+- (FLPromise*) addPromiseWithTarget:(id) target action:(SEL) action {
+    FLPromise* promise = [FLPromise promise:target action:action];
+    [self addPromise:promise];
+    return promise;
 }
 
 

@@ -7,9 +7,9 @@
 //
 
 #import "FishLampCore.h"
+#import "FLPromisedResult.h"
 
 @protocol FLAsyncQueue;
-@protocol FLPromisedResult;
 
 @class FLFinisher;
 
@@ -17,5 +17,5 @@
 - (FLFinisher*) asyncQueueWillBeginAsync:(id<FLAsyncQueue>) asyncQueue;
 - (void) asyncQueue:(id<FLAsyncQueue>) asyncQueue beginAsyncWithFinisher:(FLFinisher*) finisher;
 
-- (id<FLPromisedResult>) asyncQueueRunSynchronously:(id<FLAsyncQueue>) asyncQueue;
+- (FLPromisedResult) runSynchronouslyInAsyncQueue:(id<FLAsyncQueue>) asyncQueue;
 @end

@@ -112,55 +112,6 @@ static void * const s_queue_key = (void*)&s_queue_key;
     return [NSString stringWithFormat:@"%@ %@", [super description], self.label];
 }
 
-- (void) queueBlock:(fl_block_t) block
-        withDelay:(NSTimeInterval) delay
-     withFinisher:(FLFinisher*) finisher {
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (delay * NSEC_PER_SEC)), _dispatch_queue, ^{
-        @try {
-            
-            if(block) {
-                block();
-            }
-            [finisher setFinished];
-        }
-        @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
-        }
-    });
-}                                 
-
-- (void) queueBlock:(fl_block_t) block
-     withFinisher:(FLFinisher*) finisher {
-
-    dispatch_async(_dispatch_queue, ^{
-        @try {
-            if(block) {
-                block();
-            }
-            [finisher setFinished];
-        }
-        @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
-        }
-    });
-}
-
-- (void) queueFinishableBlock:(fl_finisher_block_t) block
-               withFinisher:(FLFinisher*) finisher {
-    
-    dispatch_async(_dispatch_queue, ^{
-        @try {
-            if(block) {
-                block(finisher);
-            }
-        }
-        @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
-        }
-    });
-}
-
 #if __MAC_10_8
 
 + (void) sleepForTimeInterval:(NSTimeInterval)milliseconds {
@@ -202,13 +153,14 @@ static void * const s_queue_key = (void*)&s_queue_key;
 - (FLPromisedResult) runFinisherBlockSynchronously:(fl_finisher_block_t) block {
 
     __block FLPromisedResult outResult = nil;
-
-    FLFinisher* finisher = [FLFinisher finisherWithBlock:^(FLPromisedResult result) {
+    __block FLFinisher* finisher = [FLFinisher finisherWithBlock:^(FLPromisedResult result) {
         outResult = FLRetain(result);
     }];
-    
+    FLAssertNotNil(finisher);
+
     FLPrepareBlockForFutureUse(block);
-    
+
+    FLRetain(finisher);
     dispatch_sync(self.dispatch_queue_t, ^{
         @try {
             block(finisher);
@@ -216,9 +168,42 @@ static void * const s_queue_key = (void*)&s_queue_key;
         @catch(NSException* ex) {
             [finisher setFinishedWithResult:ex.error];
         }
+
+        FLReleaseWithNil(finisher);
     });
     
     return FLAutorelease(outResult);
+}
+
+- (void) dispatch_async:(dispatch_block_t) block {
+    dispatch_async(self.dispatch_queue_t, block);
+}
+
+- (void) dispatch_sync:(dispatch_block_t) block {
+    dispatch_sync(self.dispatch_queue_t, block);
+}
+
+- (void) dispatch_after:(NSTimeInterval) seconds block:(dispatch_block_t) block {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (seconds * NSEC_PER_SEC)), self.dispatch_queue_t, block);
+}
+
+- (void) dispatch_target:(id) target action:(SEL) action {
+    __block id theTarget = FLRetain(target);
+    [self dispatch_async:^{
+        [theTarget performSelector:action];
+        FLReleaseWithNil(theTarget);
+    }];
+}
+
+- (void) dispatch_target:(id) target action:(SEL) action withObject:(id) object {
+    __block id theTarget = FLRetain(target);
+    __block id theObject = FLRetain(object);
+
+    [self dispatch_async:^{
+        [theTarget performSelector:action withObject:theObject];
+        FLReleaseWithNil(theTarget);
+        FLReleaseWithNil(theObject);
+    }];
 }
 
 - (FLPromise*) queueBlock:(fl_block_t) block {
@@ -228,32 +213,53 @@ static void * const s_queue_key = (void*)&s_queue_key;
 - (FLPromise*) queueBlock:(fl_block_t) block
                 completion:(fl_completion_block_t) completion {
 
-    FLFinisher* finisher = [FLFinisher finisher];
-    FLPromise* promise = [finisher addPromiseWithBlock:completion];
-
-    FLAssertNotNil(block);
+    __block FLFinisher* finisher = [FLFinisher finisherWithBlock:completion];
     FLAssertNotNil(finisher);
 
-    [self queueBlock:block withFinisher:finisher];
+    FLPrepareBlockForFutureUse(block);
 
-    return promise;    
+    FLRetain(finisher);
+    dispatch_async(_dispatch_queue, ^{
+        @try {
+            if(block) {
+                block();
+            }
+            [finisher setFinished];
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+        }
+
+        FLReleaseWithNil(finisher);
+    });
+
+
+    return finisher;
 }
-
-//- (FLFinisher*) queueFinishableBlock:(fl_finisher_block_t) block {
-//    return [self queueFinishableBlock:block completion:nil];
-//}
 
 - (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block
                           completion:(fl_completion_block_t) completion {
 
+    __block FLFinisher* theFinisher = [FLFinisher finisherWithBlock:completion];
+    FLAssertNotNil(theFinisher);
 
-    FLFinisher* finisher = [FLFinisher finisher];
-    FLPromise* promise = [finisher addPromiseWithBlock:completion];
-    
-    FLAssertNotNil(block);
-    FLAssertNotNil(finisher);
-    [self queueFinishableBlock:block withFinisher:finisher];
-    return promise;
+    FLPrepareBlockForFutureUse(block);
+
+    FLRetain(theFinisher);
+    [self dispatch_async:^{
+        @try {
+            if(block) {
+                block(theFinisher);
+            }
+        }
+        @catch(NSException* ex) {
+            [theFinisher setFinishedWithResult:ex.error];
+        }
+
+        FLReleaseWithNil(theFinisher);
+    }];
+
+    return theFinisher;
 }
 
 - (FLPromise*) queueFinishableBlock:(fl_finisher_block_t) block {
@@ -264,11 +270,26 @@ static void * const s_queue_key = (void*)&s_queue_key;
                              block:(fl_block_t) block
                         completion:(fl_completion_block_t) completion {
 
-    FLFinisher* finisher = [FLFinisher finisher];
-    FLPromise* promise = [finisher addPromiseWithBlock:completion];
-    
-    [self queueBlock:block withDelay:delay withFinisher:finisher];
-    return promise;
+    __block FLFinisher* finisher = [FLFinisher finisherWithBlock:completion];
+    FLAssertNotNil(finisher);
+
+    FLRetain(finisher);
+    [self dispatch_after:delay block:^{
+        @try {
+            
+            if(block) {
+                block();
+            }
+            [finisher setFinished];
+        }
+        @catch(NSException* ex) {
+            [finisher setFinishedWithResult:ex.error];
+        }
+
+        FLReleaseWithNil(finisher);
+    }];
+
+    return finisher;
 }
 
 
@@ -278,22 +299,26 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }
 
 - (FLPromise*) queueOperation:(id<FLDispatchable>) operation
-             completion:(fl_result_block_t) completion {
+                   completion:(fl_result_block_t) completion {
 
     FLAssertNotNil(operation);
     
-    FLFinisher* finisher = [operation asyncQueueWillBeginAsync:self];
+    __block FLFinisher* theFinisher = FLRetain([operation asyncQueueWillBeginAsync:self]);
+    __block id<FLDispatchable> theOperation = FLRetain(operation);
 
-    FLPromise* promise = [finisher addPromiseWithBlock:completion];
+    FLPromise* promise = [theFinisher addPromiseWithBlock:completion];
 
-    dispatch_async(_dispatch_queue, ^{
+    [self dispatch_async:^{
         @try {
-            [operation asyncQueue:self beginAsyncWithFinisher:finisher];
+            [theOperation asyncQueue:self beginAsyncWithFinisher:theFinisher];
         }
         @catch(NSException* ex) {
-            [finisher setFinishedWithResult:ex.error];
+            [theFinisher setFinishedWithResult:ex.error];
         }
-    });
+
+        FLReleaseWithNil(theFinisher);
+        FLReleaseWithNil(theOperation);
+    }];
     
     return promise;
 }                  
@@ -304,13 +329,17 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 - (FLPromisedResult) runOperationSynchronously:(id<FLDispatchable>) operation {
     
-    __block FLPromisedResult result = nil;
-        
-    dispatch_sync(self.dispatch_queue_t, ^{
-        result = [operation asyncQueueRunSynchronously:self];
-    });
+    __block FLPromisedResult theResult = nil;
+    __block id<FLDispatchable> theOperation = FLRetainWithAutorelease(operation);
+
+    FLRetain(theOperation);
+    [self dispatch_sync:^{
+        theResult = FLRetain([theOperation runSynchronouslyInAsyncQueue:self]);
+
+        FLReleaseWithNil(theOperation);
+    }];
     
-    return result;
+    return FLAutorelease(theResult);
 }
 
 + (FLDispatchQueue*) lowPriorityQueue {
