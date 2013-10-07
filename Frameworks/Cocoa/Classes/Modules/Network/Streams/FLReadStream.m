@@ -284,7 +284,9 @@ static void ReadStreamClientCallBack(CFReadStreamRef streamRef, CFStreamEventTyp
 
 @end
 
+#if 0
 #define TEST_TIMEOUT 10
+#endif
 
 #if TEST_TIMEOUT
 static long counter = 0;

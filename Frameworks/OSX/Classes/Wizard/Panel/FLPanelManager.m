@@ -305,7 +305,7 @@
                  animated:(BOOL) animated
                completion:(FLPanelViewControllerBlock) completion {
     
-    NSUInteger currentIdx = [self currentPanelIndex];
+//    NSUInteger currentIdx = [self currentPanelIndex];
     
     FLPanelViewController* toShow = [_panels objectAtIndex:idx];
     FLAssertNotNil(toShow);
