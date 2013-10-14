@@ -3,7 +3,8 @@
 // Free for personal or commercial use, with or without modification.
 // No warranty is expressed or implied.
 
-#import "FLCocoaRequired.h"
+#import "FishLampMinimum.h"
+#import "FLCompatibility.h"
 
 // Helper methods for adding an alpha layer to an image
 @interface SDKImage (Alpha)

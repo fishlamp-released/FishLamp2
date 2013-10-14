@@ -6,32 +6,31 @@
 //  Copyright (c) 2013 GreenTongue Software LLC, Mike Fullerton. 
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 #import "FLAsyncBlockTypes.h"
-#import "FLFinisher.h"
-#import "FLDispatchable.h"
 #import "FLPromisedResult.h"
-#import "FLObservable.h"
+#import "FLAsyncMessageBroadcaster.h"
+#import "FLQueueableAsyncOperation.h"
+#import "FLSuccessfulResult.h"
+#import "NSError+FLFailedResult.h"
 
 @class FLOperationContext;
 @class FLFinisher;
 @class FLPromise;
-@protocol FLAsyncQueue;
-@protocol FLOperationDelegate;
+@class FLOperationFinisher;
 
-@interface FLOperation : FLObservable<FLFinisherDelegate, FLDispatchable> {
+@protocol FLAsyncQueue;
+@protocol FLOperationEvents;
+
+@interface FLOperation : FLAsyncMessageBroadcaster<FLQueueableAsyncOperation> {
 @private
 	id _identifier;
     id<FLAsyncQueue> _asyncQueue;
-    id _storageService;
-    FLFinisher* _finisher;
+    FLOperationFinisher* _finisher;
     NSUInteger _contextID;
     BOOL _cancelled;
     __unsafe_unretained FLOperationContext* _context;
 }
-
-// object storage - this can be anything as appropriate for subclass
-@property (readwrite, strong, nonatomic) id storageService;
 
 // unique id. by default an incrementing integer number
 @property (readwrite, strong) id identifier;
@@ -49,12 +48,12 @@
 @property (readonly, assign, getter=wasCancelled) BOOL cancelled;
 - (void) requestCancel;
 
-// overide point
+// overide points
 - (void) startOperation;
 
-// optional override
+// optional overrides
 - (void) didFinishWithResult:(FLPromisedResult) result;
-
+- (void) willStartOperation;
 @end
 
 @interface FLOperation (Finishing)
@@ -65,37 +64,10 @@
 - (void) setFinishedWithResult:(id) result;
 
 - (void) abortIfCancelled; // throws cancelError
-@end
 
-@interface FLOperation (Synchronous)
-// run synchronously
-- (FLPromisedResult) runSynchronously;
+// optional override
+- (void) didFinishWithResult:(FLPromisedResult) result;
 
-- (FLPromisedResult) runSynchronouslyInContext:(FLOperationContext*) context;
-@end
-
-@interface FLOperation (Async)
-// start async. will run in asyncQueue. 
-- (FLPromise*) runAsynchronously;
-
-- (FLPromise*) runAsynchronously:(fl_completion_block_t) completionOrNil;
-
-- (FLPromise*) runAsynchronouslyInContext:(FLOperationContext*) context
-                               completion:(fl_completion_block_t) completionOrNil;
-
-- (FLPromise*) runAsynchronouslyWithObserver:(id) observer;
-
-@end
-
-@interface FLOperation (ChildOperations)
-// these call willRunInParent on the child before operation
-// is run or started.
-- (FLPromisedResult) runChildSynchronously:(FLOperation*) operation;
-
-- (FLPromise*) runChildAsynchronously:(FLOperation*) operation;
-
-- (FLPromise*) runChildAsynchronously:(FLOperation*) operation 
-                            completion:(fl_completion_block_t) completionOrNil;
 @end
 
 @interface FLOperation (OperationContext)
@@ -106,7 +78,7 @@
 - (void) contextDidCancel;
 @end
 
-@protocol FLOperationDelegate <NSObject>
+@protocol FLOperationEvents <NSObject>
 @optional
 - (void) operationWillBegin:(id) operation;
 - (void) operationDidFinish:(id) operation withResult:(FLPromisedResult) result;

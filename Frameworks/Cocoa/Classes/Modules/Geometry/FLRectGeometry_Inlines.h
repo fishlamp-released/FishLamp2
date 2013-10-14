@@ -1,5 +1,3 @@
-
-
 #ifdef __INLINES__
 
     #define FLRectMake                  CGRectMake
@@ -325,25 +323,6 @@ FL_SHIP_ONLY_INLINE
 CGRect FLRectMakeWithWidthAndHeight(CGFloat width, CGFloat height) {	
 	return FLRectMake(0,0,width, height);
 }
-
-FL_SHIP_ONLY_INLINE 
-CGRect FLRectMakeIntegral(CGRect r) {
-    r.origin.x = floor(r.origin.x);
-    r.origin.y = floor(r.origin.y);
-    r.size.width = ceil(r.size.width);
-    r.size.height = ceil(r.size.height);
-    return r;
-}
-
-
-FL_SHIP_ONLY_INLINE 
-BOOL FLRectIsIntegral(CGRect r) {
-	return	FLIsIntegralValue(r.origin.x) && 
-			FLIsIntegralValue(r.origin.y) && 
-			FLIsIntegralValue(r.size.width) &&
-			FLIsIntegralValue(r.size.height);
-}
-
 
 #endif
 

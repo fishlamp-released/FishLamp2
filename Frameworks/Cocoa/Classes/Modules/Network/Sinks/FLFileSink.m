@@ -105,7 +105,7 @@
 
 - (NSData*) data {
     
-    FLConfirmationFailureWithComment(@"Can't get data from a fileSink");
+    FLConfirmationFailedWithComment(@"Can't get data from a fileSink");
     
 //    FLConfirmWithComment(_outputStream == nil, @"can't get data from an open receiver");
 //    

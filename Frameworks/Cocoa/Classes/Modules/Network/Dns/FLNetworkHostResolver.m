@@ -53,8 +53,8 @@
     
     [self touchTimeoutTimestamp];
     
-    FLAssertAreEqualWithComment(self.networkHost.hostRef, theHost, nil);
-    FLAssertAreEqualWithComment(self.networkHost.hostInfoType, typeInfo, nil);
+    FLAssert(self.networkHost.hostRef == theHost);
+    FLAssert(self.networkHost.hostInfoType == typeInfo);
     
     if(error && error->domain != 0 && error->error != 0) {
         [self closeWithResult:FLCreateErrorFromStreamError(error)];
@@ -68,7 +68,8 @@
 
 static void HostResolutionCallback(CFHostRef theHost, CFHostInfoType typeInfo, const CFStreamError *error, void *info) {
     FLNetworkHostResolver* resolver = FLBridge(id, info);
-    FLAssertIsKindOfClassWithComment(resolver, FLNetworkHostResolver, nil);
+
+    FLAssertIsKindOfClass(resolver, FLNetworkHostResolver);
     [resolver resolutionCallback:theHost typeInfo:typeInfo error:error];
 }
 

@@ -8,12 +8,12 @@
 //
 
 #import "FLFancyStringTests.h"
-#import "FLUnitTest.h"
+#import "FLTestable.h"
 
 @implementation FLFancyStringTest
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
 - (void) testBasicStuff {
@@ -28,7 +28,7 @@
 //    [builder outdent];
 //    [builder appendLine:@"Farkle"];
 //    
-//    FLTestLog([builder description]);
+//    FLTestOutput([builder description]);
     
 }
 

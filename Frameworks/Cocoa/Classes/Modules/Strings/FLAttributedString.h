@@ -7,10 +7,9 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FishLampCore.h"
-#import "FLCocoaRequired.h"
-
+#import "FishLampMinimum.h"
 #import "FLModelObject.h"
+#import "FLCompatibility.h"
 
 @class SDKFont;
 @class SDKColor;

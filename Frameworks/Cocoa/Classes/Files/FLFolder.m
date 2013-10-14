@@ -10,6 +10,12 @@
 #import "FLFolder.h"
 #import "NSFileManager+FLExtras.h"
 
+#if OSX
+#import <CoreServices/CoreServices.h>
+#else
+#import <MobileCoreServices/MobileCoreServices.h>
+#endif
+
 @interface FLFolder ()
 @property (readwrite, strong) NSString* folderPath;
 @end
@@ -144,7 +150,7 @@
         
 #if DEBUG
     NSArray* everything2 = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[self folderPath] error:&err];
-    FLDebugLog(@"After delete, %d items left", everything2.count);    
+    FLLog(@"After delete, %ld items left", (unsigned long) everything2.count);
 #endif         
 	}
 }

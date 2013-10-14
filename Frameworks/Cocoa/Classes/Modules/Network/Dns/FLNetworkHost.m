@@ -136,9 +136,9 @@
             for (NSData * address in addresses) {
                 int         err;
                 char        addrStr[NI_MAXHOST];
-                
-                FLAssertIsKindOfClassWithComment(address, NSData, nil);
-                               
+
+                FLAssertIsKindOfClass(address, NSData);
+
                 err = getnameinfo((const struct sockaddr *) [address bytes], (socklen_t) [address length], addrStr, sizeof(addrStr), NULL, 0, NI_NUMERICHOST);
                 if (err == 0) {
                     [result addObject:[NSString stringWithUTF8String:addrStr]];

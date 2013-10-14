@@ -24,12 +24,23 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 
 #define OperationInQueue(op) op
 
-// [operation nonretainedObjectValue]
+typedef void (^FLOperationVisitor)(id operation, BOOL* stop);
 
 @interface FLOperationContext ()
 @property (readwrite, assign, getter=isContextOpen) BOOL contextOpen; 
 @property (readwrite, assign) NSUInteger contextID;
+
+- (void) queueOperation:(FLOperation*) operation;
+- (void) removeOperation:(FLOperation*) operation;
+- (void) visitOperations:(FLOperationVisitor) visitor;
+
 @end
+
+@interface FLOperation (Protected)
+- (FLPromisedResult) runSynchronously;
+- (FLPromise*) runAsynchronously:(fl_completion_block_t) completionOrNil;
+@end
+
 
 @implementation FLOperationContext
 @synthesize contextOpen = _contextOpen;
@@ -39,7 +50,6 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
     self = [super init];
     if(self) {
         _operations = [[NSMutableSet alloc] init];
-///        _asyncQueue = [[FLFifoAsyncQueue alloc] init];
         _contextOpen = YES;
     }
     
@@ -47,9 +57,7 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 }
 
 - (void) dealloc {
-//    [_asyncQueue releaseToPool];
 #if FL_MRC
-//    [_asyncQueue release];
     [_operations release];
     [super dealloc];
 #endif
@@ -102,7 +110,6 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
     });
 }
 
-
 - (void) closeContext {
     [self visitOperations:^(id operation, BOOL *stop) {
         [operation contextDidClose];
@@ -114,42 +121,12 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 }
 
 - (void) didAddOperation:(FLOperation*) operation {
-    [self.observers.notify operationContext:self didAddOperation:operation];
 }
 
 - (void) didRemoveOperation:(FLOperation*) operation {
-    [self.observers.notify operationContext:self didRemoveOperation:operation];
-}
-
-- (void) didStartWorking {
-
-#if TRACE
-    FLLog(@"Context started working %@", [self description]);
-#endif
-    [self.observers.notify operationContextDidStartWorking:self];
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextStarting object:self];
-    });
-}
-
-- (void) didStopWorking {
-
-    [self.observers.notify operationContextDidStopWorking:self];
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:FLWorkerContextFinished object:self];
-    });
-
-#if TRACE
-    FLLog(@"Context stopped working %@", [self description]);
-#endif
-
 }
 
 - (void) queueOperation:(FLOperation*) operation  {
-    
-    BOOL wasIdle = YES;
     
     @synchronized(self) {
     
@@ -158,8 +135,6 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
 #endif
 
        
-        wasIdle = _operations.count == 0;
-       
         [_operations addObject:operation];
          
         FLOperationContext* oldContext = operation.context;
@@ -167,14 +142,9 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
             [operation.context removeOperation:operation];
         }
         [operation wasAddedToContext:self];
-        [operation.observers addObserver:self.nonretained_fl];
     }
 
     [self didAddOperation:operation];
-
-    if(wasIdle) {
-        [self didStartWorking];
-    }
 
     if(!self.isContextOpen) {
         [operation requestCancel];
@@ -196,18 +166,24 @@ NSString* const FLWorkerContextOpened = @"FLWorkerContextOpened";
         [_operations removeObject:operation];
         if(operation.context == self) {
             [operation wasRemovedFromContext:self];
-            [operation.observers removeObserver:self];
         }
-
-        didStop = _operations.count == 0;
     }
     
     [self didRemoveOperation:operation];
-    
-    if(didStop) {
-        [self didStopWorking];
-    }
 }
+
+- (FLPromise*) beginOperation:(FLOperation*) operation
+                   completion:(fl_completion_block_t) completion {
+
+    operation.context = self;
+    return [operation runAsynchronously:completion];
+}
+
+- (FLPromisedResult) runOperation:(FLOperation*) operation {
+    operation.context = self;
+    return [operation runSynchronously];
+}
+
    
 @end
 

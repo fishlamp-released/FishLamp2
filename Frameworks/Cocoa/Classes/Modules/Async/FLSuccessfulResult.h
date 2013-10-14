@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 
-@interface FLSuccessfulResult : NSObject
+@interface FLSuccessfulResultObject : NSObject
 + (id) successfulResult;
 @end
 
-#define FLSuccess [FLSuccessfulResult successfulResult]
+#define FLSuccessfulResult [FLSuccessfulResultObject successfulResult]

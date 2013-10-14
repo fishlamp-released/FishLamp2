@@ -1,3 +1,4 @@
+
 //
 //  FLSynchronousOperation.m
 //  FishLamp
@@ -23,7 +24,8 @@
 }
 
 - (FLPromisedResult) performSynchronously {
-    return [FLSuccessfulResult successfulResult];
+    FLAssertionFailedWithComment(@"override this");
+    return FLSuccessfulResult;
 }
 
 - (void) abortIfNeeded {
@@ -65,68 +67,31 @@
 
     return result;
 }
+
+- (FLPromise*) runChildAsynchronously:(FLOperation*) operation 
+                           completion:(fl_completion_block_t) completionOrNil {
+
+    FLAssertionFailedWithComment(@"use runChildSynchronously only in synchronous operation");
+
+    return nil;
+}
+
 @end
 
-//@implementation FLBatchSynchronousOperation
-////- (void) sendIterationObservation:(FLPromisedResult) result {
-////    dispatch_async(dispatch_get_main_queue(), ^{
-////        FLPerformSelector1(_batchObserver, _batchAction, result);
-////    });
-////}
-//
-//- (void) setBatchObserver:(id) observer action:(SEL) action {
-//    _batchObserver = observer;
-//    _batchAction = action;
+#if EXPERIMENTAL
+@implementation FLBatchSynchronousOperation
+//- (void) sendIterationObservation:(FLPromisedResult) result {
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        FLPerformSelector1(_batchObserver, _batchAction, result);
+//    });
 //}
-//
-//@end
 
-//@implementation FLOperationObserver
-//
-//@synthesize willRunBlock = _willRunBlock;
-//@synthesize didFinishBlock = _didFinishBlock;
-//
-//+ (id) operationObserver {
-//    return FLAutorelease([[[self class] alloc] init]);
-//}
-//
-//#if FL_MRC
-//- (void) dealloc {
-//    [_willRunBlock release];
-//    [_didFinishBlock release];
-//    [super dealloc];
-//}
-//#endif
-//
-//- (void) operationWillRun:(FLSynchronousOperation*) operation {
-//    if(_willRunBlock) {
-//        _willRunBlock();
-//    }
-//}
-//
-//- (void) operationDidFinish:(FLSynchronousOperation*) operation 
-//                 withResult:(FLPromisedResult) withResult {
-//    if(_didFinishBlock) {
-//        _didFinishBlock(withResult);
-//    }
-//}                 
-//
-//@end
-//
-//@implementation FLOperationWillStartObserver
-//- (void) operationWillRun:(FLSynchronousOperation*) operation {
-//    [self invokeBlockWithOperation:operation];
-//}
-//@end
-//
-//@implementation FLOperationDidFinishObserver
-//- (void) operationDidFinish:(FLSynchronousOperation*) operation {
-//    [self invokeBlockWithOperation:operation];
-//}
-//@end
+- (void) setBatchObserver:(id) observer action:(SEL) action {
+    _batchObserver = observer;
+    _batchAction = action;
+}
 
-//
-//@implementation FLSynchronousOperation (Deprecated)
-//
-//
-//@end
+@end
+
+
+#endif

@@ -4,7 +4,8 @@
 // No warranty is expressed or implied.
 
 // Extends the SDKImage class to support resizing/cropping
-#import "FLCocoaRequired.h"
+#import "FishLampMinimum.h"
+#import "FLCompatibility.h"
 
 @interface SDKImage (Resize)
 

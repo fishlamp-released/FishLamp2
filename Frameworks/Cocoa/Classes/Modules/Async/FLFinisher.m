@@ -65,9 +65,17 @@
 }
 #endif
 
+- (void) willFinishWithResult:(FLPromisedResult) result {
+}
+
+- (void) didFinishWithResult:(FLPromisedResult) result {
+}
+
 - (void) setFinishedWithResult:(FLPromisedResult) result {
 
     FLRetainWithAutorelease(self);
+
+    [self willFinishWithResult:result];
 
     FLPromise* promise = self;
     while(promise) {
@@ -77,7 +85,7 @@
 
     self.nextPromise = nil;
 
-    [self.delegate finisherDidFinish:self withResult:result];
+    [self didFinishWithResult:result];
 }
 
 - (void) setFinished {
@@ -88,5 +96,17 @@
     [self setFinishedWithResult:[NSError cancelError]];
 }
 
+@end
+
+@implementation FLForegroundFinisher
+
+- (void) setFinishedWithResult:(FLPromisedResult) result {
+    if([NSThread isMainThread]) {
+        [super setFinishedWithResult:result];
+    }
+    else {
+        [self performSelectorOnMainThread:@selector(setFinishedWithResult:) withObject:result waitUntilDone:NO];
+    }
+}
 
 @end

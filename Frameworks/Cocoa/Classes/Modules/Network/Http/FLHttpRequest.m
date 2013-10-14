@@ -86,22 +86,15 @@ static int s_counter = 0;
     return self;
 }
 
-//- (id) initWithRequestURL:(NSURL*) url  {
-//    return [self initWithRequestURL:url httpMethod:nil];
-//}
-
 - (void) releaseResponseData {
     self.previousResponse = nil;
     self.httpStream.delegate = nil;
     self.httpStream = nil;
 }
 
+#if FL_MRC
 - (void) dealloc {
     FLTrace(@"%d dealloc http request: %@", --s_counter, self.requestHeaders.requestURL);
-
-    [_asyncQueueForStream releaseToPool];
-#if FL_MRC
-    [_readStreamByteReader release];
     [_byteCount release];
     [_asyncQueueForStream release];
     [_previousResponse release];
@@ -112,8 +105,8 @@ static int s_counter = 0;
     [_requestBody release];
     [_retryHandler release];
     [super dealloc];
-#endif
 }
+#endif
 
 + (id) httpRequestWithURL:(NSURL*) url httpMethod:(NSString*) httpMethod {
     return FLAutorelease([[[self class] alloc] initWithRequestURL:url httpMethod:httpMethod]);
@@ -121,6 +114,9 @@ static int s_counter = 0;
 
 - (NSString*) description {
     return [NSString stringWithFormat:@"%@ { %@ }", [super description], self.requestHeaders.requestURL];
+//    [desc appendString:[self.requestHeaders description]];
+//    [desc appendString:[self.requestBody description]];
+//    return desc;
 }
 
 - (void) openStreamWithURL:(NSURL*) url {
@@ -130,7 +126,7 @@ static int s_counter = 0;
     });
     
     [self willOpen];
-    [self.observers notify:@selector(httpRequestWillOpen:) withObject:self];
+    [self.listeners notify:@selector(httpRequestWillOpen:) withObject:self];
 
     if(!self.inputSink) {
         self.inputSink = [FLDataSink dataSink];
@@ -186,19 +182,19 @@ static int s_counter = 0;
 
 - (void) openAuthenticatedStreamWithURL:(NSURL*) url {
 
-    id context = self.context;
-    if(!self.httpRequestAuthenticator && (context && [context respondsToSelector:@selector(httpRequestAuthenticator)])) {
-        self.httpRequestAuthenticator = [context httpRequestAuthenticator];
-    }
+//    id context = self.context;
+//    if(!self.httpRequestAuthenticator && (context && [context respondsToSelector:@selector(httpRequestAuthenticator)])) {
+//        self.httpRequestAuthenticator = [context httpRequestAuthenticator];
+//    }
 
     if(self.httpRequestAuthenticator && !self.disableAuthenticator) {
         [self willAuthenticate];
-        [self.observers notify:@selector(httpRequestWillAuthenticate:) withObject:self];
+        [self.listeners notify:@selector(httpRequestWillAuthenticate:) withObject:self];
 
         [self.httpRequestAuthenticator authenticateHttpRequest:self];
 
         [self didAuthenticate];
-        [self.observers notify:@selector(httpRequestDidAuthenticate:) withObject:self];
+        [self.listeners notify:@selector(httpRequestDidAuthenticate:) withObject:self];
     }
 
     [self openStreamWithURL:url];
@@ -211,7 +207,7 @@ static int s_counter = 0;
 }
 
 - (void) networkStreamDidOpen:(FLHttpStream*) networkStream {
-    [self.observers notify:@selector(httpRequestDidOpen:) withObject:self];
+    [self.listeners notify:@selector(httpRequestDidOpen:) withObject:self];
     [self.byteCount setStartTime];
 }
 
@@ -221,7 +217,7 @@ static int s_counter = 0;
     [self.byteCount incrementByteCount:amountRead];
     [self didReadBytes:amountRead];
 
-    [self.observers notify:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
+    [self.listeners notify:@selector(httpRequest:didReadBytes:) withObject:self withObject:self.byteCount];
 }
 
 - (void) finishRequestWithResult:(FLPromisedResult) result {
@@ -230,7 +226,7 @@ static int s_counter = 0;
     [self releaseResponseData];
                 
     [self setFinishedWithResult:result];
-    [self.observers notify:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
+    [self.listeners notify:@selector(httpRequest:didCloseWithResult:) withObject:self withObject:result];
     
     [self.retryHandler resetRetryCount];
 
@@ -380,7 +376,7 @@ static int s_counter = 0;
 //            self.totalBytesSent = bytesSent;
 //
 //#if TRACE
-//            FLDebugLog(@"bytes this time: %qu, total bytes sent: %qu, expected to send: %qu",  
+//            FLLog(@"bytes this time: %qu, total bytes sent: %qu, expected to send: %qu",  
 //                self.lastBytesSent,
 //                self.totalBytesSent, 
 //                [[_requestQueue lastObject] postLength]);

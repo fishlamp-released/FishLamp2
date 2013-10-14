@@ -59,7 +59,7 @@ NSString* FLStringWithFormatOrNil(NSString* format, ...) {
 - (NSString*) trimmedStringWithNoLFCR_fl
 {
 	NSString* str = [self trimmedString_fl];
-	str = [str stringByReplacingOccurrencesOfString:@"\range" withString:@""];
+	str = [str stringByReplacingOccurrencesOfString:@"\r" withString:@""];
 	return [str stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 }
 // TODO: is there a better way to do this?

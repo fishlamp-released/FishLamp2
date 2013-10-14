@@ -7,9 +7,10 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FishLampCore.h"
-#import "FLAsyncOperation.h"
+#import "FishLampMinimum.h"
+#import "FLOperation.h"
 #import "FLHttpStream.h"
+#import "FLHttpRequestAuthenticator.h"
 
 #define FLHttpRequestDefaultTimeoutInterval 120.0f
 
@@ -24,19 +25,13 @@
 @class FLHttpStream;
 @class FLInputSink;
 @class FLHttpResponse;
-
 @protocol FLRetryHandler;
-
-@protocol FLHttpRequestAuthenticator <NSObject>
-//// this needs to be synchronous for scheduling reasons amoung concurrent requests.
-- (void) authenticateHttpRequest:(FLHttpRequest*) request;
-@end
 
 @protocol FLHttpRequestContext <NSObject>
 - (id<FLHttpRequestAuthenticator>) httpRequestAuthenticator;
 @end
 
-@interface FLHttpRequest : FLAsyncOperation<FLNetworkStreamDelegate> {
+@interface FLHttpRequest : FLOperation<FLNetworkStreamDelegate> {
 @private
     FLHttpRequestHeaders* _requestHeaders;
     FLHttpRequestBody* _requestBody;

@@ -12,45 +12,20 @@
 #import "FLWhitespace.h"
 #import "FLSelectorPerforming.h"
 
-@interface FLPrettyString ()
-@property (readwrite, strong, nonatomic) id storage;
-@property (readwrite, strong, nonatomic) id eolString;
-@property (readwrite, strong, nonatomic) FLWhitespace* whitespace;
-@end
-
 @implementation FLPrettyString
 
-@synthesize storage = _storage;
-@synthesize whitespace = _whitespace;
-@synthesize eolString = _eolString;
-@synthesize indentLevel = _indentLevel;
 @synthesize delegate = _delegate;
 
-+ (FLWhitespace*) defaultWhitespace {
-    return [FLWhitespace tabbedWithSpacesWhitespace];
-}
-
-- (NSString*) string {
-    return _storage;
-}
-
-- (id) initWithWhitespace:(FLWhitespace*) whitespace withStorage:(id) storage {
-    self = [super init];
+- (id) initWithWhitespace:(FLWhitespace*) whitespace {
+    self = [super initWithWhitespace:whitespace];
     if(self) {
-        self.stringFormatterOutput = self;
-        self.whitespace = whitespace;
-        self.eolString = _whitespace ? _whitespace.eolString : @"";
-        self.storage = storage;
+        _string = [[NSMutableString alloc] init];
     }
     return self;
 }
 
-- (id) initWithWhitespace:(FLWhitespace*) whitespace {
-    return [self initWithWhitespace:whitespace withStorage:[NSMutableString string]];
-}
-
-- (id) init {
-    return [self initWithWhitespace:[FLPrettyString defaultWhitespace]];
+- (NSString*) string {
+    return _string;
 }
 
 + (id) prettyString:(FLWhitespace*) whitespace {
@@ -68,85 +43,40 @@
 }
 
 - (NSUInteger) length {
-    return [_storage length];
+    return [_string length];
 }
 
 #if FL_MRC
 - (void) dealloc {
-    [_eolString release];
-    [_whitespace release];
-    [_storage release];
+    [_string release];
     [super dealloc];
 }
 #endif
 
-- (void) appendStringToStorage:(NSString*) string {
-    [_storage appendString:string];
-    FLPerformSelector2(self, @selector(prettyString:didAppendString:), self, string); 
-}
-
-- (void) appendAttributedStringToStorage:(NSAttributedString*) string {
-    [self appendStringToStorage:[string string]];
-}
-
-- (void) appendPrettyString:(FLPrettyString*) string {
-    [self appendStringContainingMultipleLines:string.string];
-}
+//- (void) appendPrettyString:(FLPrettyString*) string {
+//    [self appendStringContainingMultipleLines:string.string];
+//}
 
 - (void) deleteAllCharacters {
-    [_storage deleteCharactersInRange:NSMakeRange(0, [_storage length])];
-}
-
-- (void) appendEOL {
-    if(_eolString) { 
-        [self appendStringToStorage:_eolString];
-    } 
+    [_string deleteCharactersInRange:NSMakeRange(0, [_string length])];
 }
 
 - (NSString*) description {
     return [self string];
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter
-appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
+- (void) appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
     [anotherStringFormatter appendString:self.string];
 }
 
-- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
-    if(_whitespace) { 
-        [self appendStringToStorage:[_whitespace tabStringForScope:self.indentLevel]];
-    } 
-}
-- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
-    [self appendEOL];
+- (void) willAppendString:(NSString*) string {
+    [_string appendString:string];
+    FLPerformSelector2(self, @selector(prettyString:didAppendString:), self, string); 
 }
 
-- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
-    [self appendEOL];
+- (void) willAppendAttributedString:(NSAttributedString*) attributedString {
+    [self willAppendString:[attributedString string]];
 }
-
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
-    [self appendStringToStorage:string];
-}
-
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString {
-    [self appendAttributedStringToStorage:attributedString];
-}
-
-- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
-    ++_indentLevel;
-}
-
-- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
-    --_indentLevel;
-}
-
-- (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter {
-    return [_storage length];
-}
-
-
-
 
 @end
 
@@ -175,63 +105,6 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 - (void) describeSelf:(FLPrettyString*) string {
     [string appendLine:[self description]];
 }
-
-@end
-
-
-@interface FLPrettyAttributedString ()
-@end
-
-@implementation FLPrettyAttributedString
-
-- (id) initWithWhitespace:(FLWhitespace*) whitespace withStorage:(id) storage {
-    self = [super initWithWhitespace:whitespace withStorage:storage];
-    if(self) {
-        if(self.eolString) {
-            self.eolString = FLAutorelease([[NSAttributedString alloc] initWithString:self.eolString]);
-        }
-    }
-    return self;
-}
-
-- (id) initWithWhitespace:(FLWhitespace*) whitespace {
-    return [self initWithWhitespace:whitespace withStorage:FLAutorelease([[NSMutableAttributedString alloc] init])];
-}
-
-- (NSString*) string {
-    return [[self storage] string];
-}
-
-- (NSAttributedString*) attributedString {
-    return [self storage];
-}
-
-- (void) appendEOL {
-    if(self.eolString) { 
-        [self appendAttributedStringToStorage:self.eolString];
-    } 
-}
-
-- (void) appendStringToStorage:(NSString*) string {
-    [self appendAttributedStringToStorage:FLAutorelease([[NSAttributedString alloc] initWithString:string])];
-}
-
-- (void) appendAttributedStringToStorage:(NSAttributedString*) string {
-
-    NSAttributedString* stringToAppend = FLRetainWithAutorelease(string);
-
-    if([self.delegate respondsToSelector:@selector(prettyString:willAppendAttributedString:)]) {
-        stringToAppend = [((id)self.delegate) prettyString:self willAppendAttributedString:string];
-    }
-
-    [[self storage] appendAttributedString:stringToAppend];
-    
-    FLPerformSelector2(self.delegate, @selector(prettyString:didAppendAttributedString:), self, stringToAppend); 
-}
-           
-//- (void) appendPrettyString:(FLPrettyString*) string {
-//    [self appendStringContainingMultipleLines:string.string];
-//}
 
 @end
 

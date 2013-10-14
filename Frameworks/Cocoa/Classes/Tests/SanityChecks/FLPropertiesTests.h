@@ -7,8 +7,8 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLUnitTest.h"
+#import "FLTestable.h"
 
-@interface FLPropertiesTests : FLUnitTest
+@interface FLPropertiesTests : FLTestable
 
 @end

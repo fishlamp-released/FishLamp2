@@ -21,19 +21,32 @@ extern void FLSetWillThrowExceptionHandler(FLWillThrowExceptionHandler* handler)
 
 extern FLWillThrowExceptionHandler* FLGetWillThrowExceptionHandler();
 
-#define FLThrowException(__EX__) \
-            @throw FLGetWillThrowExceptionHandler()(__EX__)
-
-#define FLThrowError(__ERROR__) \
+#define FL_THROW_ERROR(__ERROR__, __THROWER__) \
             do {  \
                 NSError* __error = __ERROR__; \
                 if(!__error.stackTrace) { \
                     __error = [NSError errorWithError:__error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]; \
                 } \
                 \
-                FLThrowException([__error createContainingException]); \
+                __THROWER__([__error createContainingException]); \
             } \
             while(0)
+
+#define FLThrowException(__EX__) \
+            @throw FLGetWillThrowExceptionHandler()(__EX__)
+
+#define FLThrowError(__ERROR__) \
+            FL_THROW_ERROR(__ERROR__, FLThrowException)
+
+//            do {  \
+//                NSError* __error = __ERROR__; \
+//                if(!__error.stackTrace) { \
+//                    __error = [NSError errorWithError:__error stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)]; \
+//                } \
+//                \
+//                FLThrowException([__error createContainingException]); \
+//            } \
+//            while(0)
 
 
 #define FLThrowIfError(__OBJECT__) \
@@ -47,9 +60,9 @@ extern FLWillThrowExceptionHandler* FLGetWillThrowExceptionHandler();
 #define FLThrowErrorCodeWithComment(__DOMAIN__, __CODE__, __FORMAT__, ...) \
             FLThrowError([NSError errorWithDomain:__DOMAIN__ \
                             code:__CODE__ \
-                            localizedDescription: FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) \
+                            localizedDescription: nil \
                             userInfo:nil \
-                            comment:nil \
+                            comment:FLStringWithFormatOrNil(__FORMAT__, ##__VA_ARGS__) \
                             stackTrace:FLCreateStackTrace(__INCLUDE_STACK_TRACE__)])
 
 #define FLThrowErrorCode(__DOMAIN__, __CODE__) \

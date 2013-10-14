@@ -8,7 +8,7 @@
 //
 
 #import "FLLogger.h"
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 #import <objc/runtime.h>
 
 @interface FLLogger()
@@ -18,7 +18,6 @@
 @implementation FLLogger
 
 @synthesize line = _line;
-
 
 - (id) init {
     self = [super init];
@@ -33,7 +32,6 @@
 
 #endif        
         _sinks = [[NSMutableArray alloc] init];
-        self.stringFormatterOutput = self;
     }
     
     return self;
@@ -45,7 +43,9 @@
 }
 
 - (void) dealloc {
+#if !OS_OBJECT_USE_OBJC
     dispatch_release(_fifoQueue);
+#endif
 #if FL_MRC
     [_line release];
     [_sinks release];
@@ -53,12 +53,12 @@
 #endif
 }
 
-- (void) logger:(FLLogger*) logger dispatchBlock:(dispatch_block_t) block {
-    dispatch_async(_fifoQueue, block); 
-}
-
 - (void) dispatchBlock:(dispatch_block_t) block {
-    dispatch_sync(_fifoQueue, block); 
+//    dispatch_sync(_fifoQueue, block);
+
+    @synchronized(self) {
+        block();
+    }
 }
 
 - (void) pushLoggerSink:(id<FLLogSink>) sink {
@@ -81,7 +81,6 @@
 
 - (void) sendEntryToSinks:(FLLogEntry*) entry {
     BOOL stop = NO;
-    entry.indentLevel = _indentLevel;
     for(id<FLLogSink> sink in _sinks) {
         [sink logEntry:entry stopPropagating:&stop];
         if(stop) {
@@ -89,7 +88,6 @@
         }
     } 
     [entry releaseToCache];
-    _length ++ ;
 }
 
 - (void) logEntry:(FLLogEntry*) entry {
@@ -98,7 +96,7 @@
     }];
 }
 
-- (void) logEntries:(NSArray*) entryArray {
+- (void) logArrayOfLogEntries:(NSArray*) entryArray {
     [self dispatchBlock: ^{
         for(FLLogEntry* entry in entryArray) {
             [self sendEntryToSinks:entry];
@@ -111,7 +109,6 @@
         FLLogEntry* entry = [FLLogEntry logEntry];
         entry.logString = self.line;
         entry.logType = FLLogTypeLog;
-        entry.indentLevel = _indentLevel;
         [self sendEntryToSinks:entry];
         self.line = nil;
     }
@@ -120,7 +117,6 @@
 - (void) logString:(NSString*) string
            logType:(NSString*) logType
         stackTrace:(FLStackTrace*) stackTrace {
- 
 
     if(FLStringIsEmpty(string)) {
         return;
@@ -136,7 +132,6 @@
         [self closeCurrentLine];
     
         FLLogEntry* entry = [FLLogEntry logEntry];
-        entry.indentLevel = _indentLevel;
         entry.logString = string;
         entry.logType = logType;
         entry.stackTrace = stackTrace;
@@ -144,26 +139,26 @@
     }];
 }
 
-- (void) stringFormatterAppendBlankLine:(FLStringFormatter*) stringFormatter {
+- (void) appendBlankLine {
     [self dispatchBlock: ^{
         FLLogEntry* entry = [FLLogEntry logEntry];
         entry.logString = @"";
         entry.logType = FLLogTypeLog;
-        entry.indentLevel = _indentLevel;
         [self sendEntryToSinks:entry];
     }];
 }
 
-- (void) stringFormatterOpenLine:(FLStringFormatter*) stringFormatter {
+- (void) openLine {
+    [self closeLine];
 }
 
-- (void) stringFormatterCloseLine:(FLStringFormatter*) stringFormatter {
+- (void) closeLine {
     [self dispatchBlock: ^{
         [self closeCurrentLine];
     }];
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendString:(NSString*) string {
+- (void) willAppendString:(NSString*) string {
     [self dispatchBlock: ^{
         if(self.line) {
             [self.line appendString:string];
@@ -174,53 +169,37 @@
     }];
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter appendAttributedString:(NSAttributedString*) attributedString {
-    [self stringFormatter:stringFormatter appendString:attributedString.string];
+- (void) willAppendAttributedString:(NSAttributedString*) attributedString {
+    [self appendString:attributedString.string];
 }
 
-- (void) stringFormatter:(FLStringFormatter*) stringFormatter
-appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
-
-}
-
-
-- (void) stringFormatterIndent:(FLStringFormatter*) stringFormatter {
+- (void) indent {
     [self dispatchBlock: ^{
-        ++_indentLevel; 
+        for(id<FLLogSink> sink in _sinks) {
+            [sink indent];
+        }
     }];
 }
 
-- (void) stringFormatterOutdent:(FLStringFormatter*) stringFormatter {
+- (void) outdent {
     [self dispatchBlock: ^{
-        --_indentLevel; 
+        for(id<FLLogSink> sink in _sinks) {
+            [sink outdent];
+        }
     }];
 }
 
-- (void) logError:(NSError*) error {
+- (void) logObject:(id) object {
     [self dispatchBlock: ^{
-        FLLogEntry* entry = [FLLogEntry logEntry];
-        entry.logType = FLLogTypeError;
-        entry.indentLevel = _indentLevel;
-        entry.error = error;
-        entry.stackTrace = error.stackTrace;
-        [self sendEntryToSinks:entry];
+        FLLogEntry* entry = [object logEntryForSelf];
+        if(entry) {
+            [self sendEntryToSinks:entry];
+        }
     }];
 }
 
-- (void) logException:(NSException*) exception withComment:(NSString*) comment {
-    [self dispatchBlock: ^{
-        FLLogEntry* entry = [FLLogEntry logEntry];
-        entry.logString = comment;
-        entry.logType = FLLogTypeException;
-        entry.indentLevel = _indentLevel;
-        entry.exception = exception;
-        entry.stackTrace = exception.error.stackTrace;
-        [self sendEntryToSinks:entry];
-    }];
-}
-
-- (NSUInteger) stringFormatterGetLength:(FLStringFormatter*) stringFormatter {
-    return _length;
+- (NSUInteger) length {
+    return 0;
 }
 
 //- (void) logException:(NSException*) exception withComment:(NSString*) comment {
@@ -255,30 +234,30 @@ appendSelfToStringFormatter:(id<FLStringFormatter>) anotherStringFormatter {
 ////    [self sendEntryToSinks:entry];
 //}
 
-- (void) logException:(NSException*) exception {
-    [self logException:exception withComment:nil];
-}
+//- (void) logException:(NSException*) exception {
+//    [self logException:exception withComment:nil];
+//}
 
 @end
 
-@implementation NSException (FLLogger)
-- (void) logExceptionToLogger:(FLLogger*) logger {
-    [logger logException:self];
-}
-@end
-
-
-@implementation FLErrorException (FLLogger)
-
-- (void) logExceptionToLogger:(FLLogger*) logger {
-    
-    NSError* error = self.error;
-    if(error) {
-        [logger logError:error];
-    }
-    else {
-        [super logExceptionToLogger:logger]; // really [super raiseAndLog]
-    }
-}
-
-@end
+//@implementation NSException (FLLogger)
+//- (void) logExceptionToLogger:(FLLogger*) logger {
+//    [logger logException:self];
+//}
+//@end
+//
+//
+//@implementation FLErrorException (FLLogger)
+//
+//- (void) logExceptionToLogger:(FLLogger*) logger {
+//    
+//    NSError* error = self.error;
+//    if(error) {
+//        [logger logError:error];
+//    }
+//    else {
+//        [super logExceptionToLogger:logger]; // really [super raiseAndLog]
+//    }
+//}
+//
+//@end

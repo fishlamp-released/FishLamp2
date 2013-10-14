@@ -17,8 +17,8 @@ FLSynthesizeFixedSizedBuffer(2)
 
 @implementation FLByteBufferTests
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
 - (void) testSimpleCopy {
@@ -29,7 +29,7 @@ FLSynthesizeFixedSizedBuffer(2)
 
     [buffer appendBytes:str length:strlen(str)];
     
-    FLAssertAreEqual(buffer.length, strlen(str));
+    FLAssert(buffer.length == strlen(str));
     
     FLAssertWithComment(strncmp(str, (char*)buffer.content, strlen(str)) == 0, @"buffer write failed");
     
@@ -42,7 +42,7 @@ FLSynthesizeFixedSizedBuffer(2)
     const char* str = "hello world";
 
     [buffer appendBytes:str length:strlen(str)];
-    FLAssertAreEqual(buffer.length, 2);
+    FLAssert(buffer.length == 2);
     
     FLAssertWithComment(strncmp(str, (char*)buffer.content, 2) == 0,@"buffer write failed");
     

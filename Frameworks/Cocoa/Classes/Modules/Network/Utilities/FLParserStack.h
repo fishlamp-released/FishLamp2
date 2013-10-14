@@ -8,8 +8,7 @@
  *
  */
 /*
-#import "FLCocoaRequired.h"
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 
 #define FLParserStackMaxDepth 128
 

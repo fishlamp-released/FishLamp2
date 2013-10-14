@@ -7,10 +7,10 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 #if REFACTOR
-#import "FLAsyncOperation.h"
+#import "FLOperation.h"
 #import "FLHttpRequest.h"
 
-@interface FLHttpOperation : FLAsyncOperation {
+@interface FLHttpOperation : FLOperation {
 @private
     FLHttpRequest* _httpRequest;
 }

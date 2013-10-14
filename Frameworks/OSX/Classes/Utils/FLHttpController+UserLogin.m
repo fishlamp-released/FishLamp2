@@ -23,7 +23,7 @@ beginAuthenticatingWithCredentials:(FLCredentialsEditor*) editor
 }
 
 - (void) loginPanelDidCancelAuthentication:(FLLoginPanel*) panel {
-    [self.operationContext requestCancel];
+    [self requestCancel];
 }
 
 - (BOOL) loginPanel:(FLLoginPanel*) panel 

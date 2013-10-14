@@ -12,9 +12,11 @@
 #import "FLFinisher.h"
 #import "FLPromisedResult.h"
 #import "FLPromise.h"
-#import "FLDispatchable.h"
+#import "FLAsyncInitiator+FLDispatchQueue.h"
 
+#if DEPRECATED
 static void * const s_queue_key = (void*)&s_queue_key;
+#endif
 
 @implementation FLDispatchQueue
 
@@ -29,11 +31,15 @@ static void * const s_queue_key = (void*)&s_queue_key;
     self = [super init];
     if(self) {
         _dispatch_queue = queue;
+#if !OS_OBJECT_USE_OBJC
         dispatch_retain(_dispatch_queue);
+#endif
+#if DEPRECATED
 #if __MAC_10_8
         if(OSXVersionIsAtLeast10_7()) {        
             dispatch_queue_set_specific(_dispatch_queue, s_queue_key, FLBridge(void*, self), nil);
         }
+#endif
 #endif
         _label = [[NSString alloc] initWithCString:dispatch_queue_get_label(_dispatch_queue) encoding:NSASCIIStringEncoding];
     }
@@ -51,7 +57,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
         self = [self initWithDispatchQueue:queue];
     }
     @finally {
+#if !OS_OBJECT_USE_OBJC
         dispatch_release(queue);
+#endif
     }
 
     return self;
@@ -84,12 +92,16 @@ static void * const s_queue_key = (void*)&s_queue_key;
 
 - (void) dealloc {
     if(_dispatch_queue) {
+#if DEPRECATED
 #if __MAC_10_8
         if(OSXVersionIsAtLeast10_7()) {        
             dispatch_queue_set_specific(_dispatch_queue, s_queue_key, nil, nil);
         }
 #endif        
+#endif
+#if !OS_OBJECT_USE_OBJC
         dispatch_release(_dispatch_queue);
+#endif
     }
     
 #if FL_MRC
@@ -98,18 +110,43 @@ static void * const s_queue_key = (void*)&s_queue_key;
 #endif
 }
 
+#if DEPRECATED
 + (FLDispatchQueue*) currentQueue {
+
+    FLDispatchQueue* currentQueue = nil;
 
 #if __MAC_10_8
     if(OSXVersionIsAtLeast10_7()) {        
-        return FLBridge(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
+        currentQueue = FLBridge(FLDispatchQueue*, dispatch_queue_get_specific(dispatch_get_current_queue(), s_queue_key));
     }
 #endif    
-    return nil;
+
+    if(!currentQueue) {
+        if([NSThread isMainThread]) {
+            currentQueue = [FLDispatchQueue mainThreadQueue];
+        }
+        else {
+            currentQueue = [FLDispatchQueue defaultQueue];
+        }
+    }
+
+    FLAssertNotNil(currentQueue);
+
+    return currentQueue;
 }
+#endif
 
 - (NSString*) description {
     return [NSString stringWithFormat:@"%@ %@", [super description], self.label];
+}
+
+- (FLPromise*) queueAsyncInitiator:(FLAsyncInitiator*) event
+                    completion:(fl_completion_block_t) completion {
+    return [event dispatchAsyncInQueue:self completion:completion];
+}
+
+- (FLPromisedResult) queueSynchronousInitiator:(FLAsyncInitiator*) event {
+    return [event dispatchSyncInQueue:self];
 }
 
 #if __MAC_10_8
@@ -126,7 +163,9 @@ static void * const s_queue_key = (void*)&s_queue_key;
         dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         dispatch_semaphore_wait(semaphore, 
                                 dispatch_time(DISPATCH_TIME_NOW, (milliseconds * NSEC_PER_MSEC)));
+#if !OS_OBJECT_USE_OBJC
         dispatch_release(semaphore);
+#endif
     } 
 }    
 
@@ -392,9 +431,6 @@ static void * const s_queue_key = (void*)&s_queue_key;
 }
 
 @end
-
-
-
 
 
 

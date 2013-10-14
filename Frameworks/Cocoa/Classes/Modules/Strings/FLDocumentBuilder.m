@@ -8,6 +8,8 @@
 //
 
 #import "FLDocumentBuilder.h"
+#import "FLPrettyString.h"
+#import "FLPrettyAttributedString.h"
 
 @implementation FLDocumentBuilder 
 

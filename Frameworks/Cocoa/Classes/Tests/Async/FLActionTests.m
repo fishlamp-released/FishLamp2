@@ -14,8 +14,8 @@
 
 @implementation FLActionTests
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
 - (void) firstTest {

@@ -9,11 +9,12 @@
 
 #import "FLTimeoutTests.h"
 #import "FLTimer.h"
+#import "FLDispatchQueue.h"
 
 @implementation FLTimeoutTests
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [self sanityCheckTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup sanityCheckTestGroup];
 }
 
 - (void) timerDidTimeout:(FLTimer *)timer {

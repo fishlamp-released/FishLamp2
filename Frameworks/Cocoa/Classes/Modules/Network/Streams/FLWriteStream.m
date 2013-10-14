@@ -9,7 +9,6 @@
 
 #import "FLWriteStream.h"
 #import "FLNetworkStream_Internal.h"
-#import "FishLampAsync.h"
 
 @interface FLWriteStream ()
 @property (readwrite, assign, nonatomic) CFWriteStreamRef streamRef;

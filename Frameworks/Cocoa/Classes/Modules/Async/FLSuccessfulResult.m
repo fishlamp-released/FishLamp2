@@ -8,14 +8,13 @@
 
 #import "FLSuccessfulResult.h"
 
-
-@implementation FLSuccessfulResult
+@implementation FLSuccessfulResultObject
 
 + (id) successfulResult {
     static dispatch_once_t s_predicate = 0;
-    static FLSuccessfulResult* s_instance = nil;
+    static FLSuccessfulResultObject* s_instance = nil;
     dispatch_once(&s_predicate, ^{
-        s_instance = [[FLSuccessfulResult alloc] init];
+        s_instance = [[FLSuccessfulResultObject alloc] init];
     });
     return s_instance;
 }

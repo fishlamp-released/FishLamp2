@@ -7,69 +7,59 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLService.h"
+#import "FLServiceList.h"
+
+@protocol FLUserService;
+@protocol FLStorageService;
+@protocol FLCredentials;
 
 @class FLOperationContext;
-@protocol FLHttpControllerServiceFactory;
-@protocol FLUserService;
-
-#import "FLStorageService.h"
-#import "FLUserService.h"
-#import "FLHttpRequest.h"
-#import "FLHttpUser.h"
-#import "FLHttpRequestAuthenticationService.h"
-
-// TODO (MWF): removing this coupling
-#import "FLDatabaseObjectStorageService.h"
-
+@class FLHttpRequest;
+@class FLHttpUser;
+@class FLHttpRequestAuthenticator;
+@class FLServiceList;
 
 extern NSString* const FLHttpControllerDidLogoutUserNotification;
 
-@interface FLHttpController : FLObservable <
-    FLHttpRequestAuthenticationServiceDelegate,
-    FLHttpRequestContext,
-    FLDatabaseObjectStorageServiceDelegate> {
+@interface FLHttpController : FLOperationContext {
 @private
-    id _httpUser;
+    FLHttpUser* _httpUser;
     id<FLUserService> _userService;
-
     id<FLStorageService> _storageService;
-    FLHttpRequestAuthenticationService* _httpRequestAuthenticator;
+    FLHttpRequestAuthenticator* _httpRequestAuthenticator;
+    FLServiceList* _serviceList;
 
-    FLNetworkStreamSecurity _streamSecurity;
-
-    FLService* _authenticatedServices;
-
-    id<FLHttpControllerServiceFactory> _serviceFactory;
-
-    FLOperationContext* _operationContext;
+//    FLNetworkStreamSecurity _streamSecurity;
 }
 
-- (id) initWithServiceFactory:(id<FLHttpControllerServiceFactory>) factory;
+// settable properties
+//@property (readwrite, assign, nonatomic) FLNetworkStreamSecurity streamSecurity;
 
-+ (id) httpController:(id<FLHttpControllerServiceFactory>) factory;
-
+// getters
 @property (readonly, strong) FLOperationContext* operationContext;
-
-@property (readonly, strong) id<FLHttpControllerServiceFactory> serviceFactory;
-
-@property (readwrite, assign, nonatomic) FLNetworkStreamSecurity streamSecurity;
-
 @property (readonly, assign, nonatomic) BOOL isAuthenticated;
-
 @property (readonly, strong) id<FLUserService> userService;
-
 @property (readonly, strong) id<FLStorageService> storageService;
+@property (readonly, strong) FLHttpRequestAuthenticator* httpRequestAuthenticator;
+@property (readonly, strong) FLHttpUser* httpUser;
 
-@property (readonly, strong) FLHttpRequestAuthenticationService* httpRequestAuthenticator;
+// Optional overrides
 
-@property (readonly, strong) id httpUser;
+/// @return FLHttpUser by default.
+- (FLHttpUser*) createHttpUserForCredentials:(id<FLCredentials>) credentials;
 
-- (void) logoutUser;
+/// @return FLUserService by default.
+- (id<FLUserService>) createUserService;
+
+/// @return FLDatabaseStorageService by default
+- (id<FLStorageService>) createStorageService;
+
+/// @return nil by default
+- (FLHttpRequestAuthenticator*) createHttpRequestAuthenticator;
 
 @end
 
-@protocol FLHttpControllerObserverMessages <NSObject>
+@protocol FLHttpControllerMessages <NSObject>
 @optional
 
 - (void) httpController:(FLHttpController*) controller
@@ -82,18 +72,3 @@ extern NSString* const FLHttpControllerDidLogoutUserNotification;
 - (void) httpControllerDidOpen:(FLHttpController*) controller;
 @end
 
-@protocol FLHttpControllerServiceFactory <NSObject>
-- (FLHttpUser*) httpController:(FLHttpController*) controller
-  createHttpUserForCredentials:(id<FLCredentials>) credentials;
-
-- (id<FLUserService>) httpControllerCreateUserService:(FLHttpController*) controller;
-
-- (id<FLStorageService>) httpControllerCreateStorageService:(FLHttpController*) controller;
-
-- (FLHttpRequestAuthenticationService*) httpControllerCreateHttpRequestAuthenticationService:(FLHttpController*) controller;
-
-@end
-
-@interface FLHttpControllerServiceFactory : NSObject<FLHttpControllerServiceFactory>
-+ (id<FLHttpControllerServiceFactory>) httpControllerServiceFactory;
-@end

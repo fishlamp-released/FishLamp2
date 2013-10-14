@@ -21,6 +21,10 @@ typedef enum {
 
 @protocol FLLogSink <NSObject>
 - (void) logEntry:(FLLogEntry*) entry stopPropagating:(BOOL*) stop;
+
+- (void) indent;
+- (void) outdent;
+
 @end
 
 @interface FLLogSink : NSObject<FLLogSink> {

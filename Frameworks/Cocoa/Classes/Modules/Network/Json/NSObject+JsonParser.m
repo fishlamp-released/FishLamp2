@@ -51,7 +51,7 @@
 //		}
 //	}
 //
-//	FLDebugLog(@"Warning: unable to open object: %@.%@.%@", NSStringFromClass([parentObject class]), parentKey, key);
+//	FLLog(@"Warning: unable to open object: %@.%@.%@", NSStringFromClass([parentObject class]), parentKey, key);
 //	if(outObject)
 //	{
 //		*outObject = FLRetain([NSNull null]);
@@ -85,7 +85,7 @@
 //		return YES;
 //	}
 //
-//	FLDebugLog(@"Warning: data not set for key:%@.%@. Data: %@", NSStringFromClass([self class]), key, [data description]);
+//	FLLog(@"Warning: data not set for key:%@.%@. Data: %@", NSStringFromClass([self class]), key, [data description]);
 	return NO;
 }
 
@@ -144,7 +144,7 @@
 		}
 	}
 	
-	FLDebugLog(@"Warning: unable to open array object: %@.%@.%@", NSStringFromClass([parentObject class]), parentPropertyKey, arrayItemKey);
+	FLLog(@"Warning: unable to open array object: %@.%@.%@", NSStringFromClass([parentObject class]), parentPropertyKey, arrayItemKey);
 	
 	if(outObject)
 	{
@@ -176,7 +176,7 @@
 		*outObject = FLRetain(self);
 	}
 	
-	FLDebugLog(@"opening data for NSNull failed by design");
+	FLLog(@"opening data for NSNull failed by design");
 	
 	return YES;
 }

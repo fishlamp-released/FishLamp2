@@ -18,7 +18,7 @@ FLVersion FLVersionFromString(NSString* versionString) {
     }
 
 	FLVersion version = FLVersionZero;
-
+	
     NSArray* split = [versionString componentsSeparatedByString:@"."];
 	
     if(split.count >= 4) {

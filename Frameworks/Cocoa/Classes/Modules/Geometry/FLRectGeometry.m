@@ -11,8 +11,8 @@
 
 #if DEBUG
 #define __INLINES__
-#import "FLRectGeometry_Inlines.h"
-#import "FLRectOptimize_Inlines.h"
+#include "FLRectGeometry_Inlines.h"
+#include "FLRectOptimize_Inlines.h"
 #undef __INLINES__
 #endif
 

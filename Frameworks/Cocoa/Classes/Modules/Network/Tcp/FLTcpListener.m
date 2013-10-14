@@ -272,7 +272,7 @@ void FLTcpServerAcceptCallBack(
             [self blockUntilFinished];
         }
         @catch(NSException* ex) {
-            FLDebugLog(@"Error in network thread: %@", [ex description]);
+            FLLog(@"Error in network thread: %@", [ex description]);
         }
     });
 }  

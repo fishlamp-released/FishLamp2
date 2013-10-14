@@ -7,9 +7,9 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 #import "FLTimer.h"
-#import "FLPromisedResult.h"
+#import "FishLampAsync.h"
 
 //extern NSString* const FLNetworkStreamErrorDomain;
 //extern NSString* const FLNetworkStreamErrorArrayKey;

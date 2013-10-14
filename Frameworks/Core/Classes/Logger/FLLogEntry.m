@@ -8,7 +8,7 @@
 //
 
 #import "FLLogEntry.h"
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 
 @interface FLLogEntry () 
 @property (readwrite, strong, nonatomic) NSString* logName;
@@ -25,9 +25,7 @@
 @synthesize stackTrace = _stackTrace;
 @synthesize logCount = _logCount;
 @synthesize timestamp = _timestamp;
-@synthesize error = _error;
-@synthesize exception = _exception;
-@synthesize indentLevel = _indentLevel;
+@synthesize object = _object;
 
 static NSMutableArray* s_cache = nil;
 
@@ -43,8 +41,7 @@ static NSMutableArray* s_cache = nil;
     [_logType release];
     [_logName release];
     [_stackTrace release];
-    [_error release];
-    [_exception release];
+    [_object release];
     [super dealloc];
 }
 #endif
@@ -59,7 +56,14 @@ static NSMutableArray* s_cache = nil;
 
 + (id) logEntry {
 
-    id entry = [s_cache lastObject];
+    id entry = nil;
+    @synchronized(self) {
+        if(s_cache.count) {
+            entry = FLRetainWithAutorelease([s_cache lastObject]);
+            [s_cache removeLastObject];
+        }
+    }
+
     if(entry) {
         [entry updateTimestamp];
         return entry;
@@ -79,11 +83,12 @@ static NSMutableArray* s_cache = nil;
     self.logType = nil;
     self.logName = nil;
     self.stackTrace = nil;
-    self.error = nil;
-    self.exception = nil;
+    self.object = nil;
     _timestamp = 0;
 
-    [s_cache addObject:self];
+    @synchronized(self) {
+        [s_cache addObject:self];
+    }
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -94,9 +99,7 @@ static NSMutableArray* s_cache = nil;
     entry.stackTrace = self.stackTrace;
     entry.logCount = self.logCount;
     entry.timestamp = self.timestamp;
-    entry.error = FLCopyWithAutorelease(self.error);
-    entry.exception = FLCopyWithAutorelease(self.exception);
-    entry.indentLevel = self.indentLevel;
+    entry.object = FLCopyOrRetainObject(self.object);
     return entry;
 }
 
@@ -104,17 +107,26 @@ static NSMutableArray* s_cache = nil;
     return _logString ? _logString : @"";
 }
 
-- (NSError*) error {
-    if(_error) {
-        return _error;
-    }
-    
-    if(_exception.error) {
-        return _exception.error;
-    }
-    
-    return nil;
-}
-
 @end
 
+@implementation NSError (FLLogging)
+- (FLLogEntry*) logEntryForSelf {
+    FLLogEntry* entry = [FLLogEntry logEntry];
+    entry.logType = FLLogTypeError;
+    entry.logString = [self localizedDescription];
+    entry.object = self;
+    entry.stackTrace = self.stackTrace;
+    return entry;
+}
+@end
+
+@implementation NSException (FLLogging)
+- (FLLogEntry*) logEntryForSelf {
+    FLLogEntry* entry = [FLLogEntry logEntry];
+    entry.logString = [NSString stringWithFormat:@"%@: %@", self.name, self.reason];
+    entry.logType = FLLogTypeException;
+    entry.object = self;
+    entry.stackTrace = self.error.stackTrace;
+    return entry;
+}
+@end

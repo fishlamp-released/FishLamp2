@@ -7,6 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
+#import "FishLampMinimum.h"
 #import "FLOperation.h"
 
 @interface FLSynchronousOperation : FLOperation {
@@ -25,18 +26,21 @@
 
 @end
 
+#if EXPERIMENTAL
 
-//@interface FLBatchSynchronousOperation : FLSynchronousOperation {
-//@private
-//    SEL _batchAction;
-//    __unsafe_unretained id _batchObserver;
-//}
-//- (void) setBatchObserver:(id) observer action:(SEL) action;
-//
-//
-//// for subclassses
-////
-////- (void) sendIterationObservation:(FLPromisedResult) result;
-//
-//@end
+@interface FLBatchSynchronousOperation : FLSynchronousOperation {
+@private
+    SEL _batchAction;
+    __unsafe_unretained id _batchObserver;
+}
+- (void) setBatchObserver:(id) observer action:(SEL) action;
 
+
+// for subclassses
+//
+//- (void) sendIterationObservation:(FLPromisedResult) result;
+
+@end
+
+
+#endif

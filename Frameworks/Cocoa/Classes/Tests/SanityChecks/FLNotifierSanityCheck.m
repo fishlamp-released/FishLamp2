@@ -13,11 +13,11 @@
 
 @implementation FLNotifierSanityCheck
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
-+ (NSArray*) unitTestDependencies {
++ (NSArray*) testDependencies {
     return [NSArray arrayWithObject:[FLTimeoutTests class]];
 }
 
@@ -38,7 +38,7 @@
     FLAssert(fired == YES);
 }
 
-- (void) testDoubleCount_off {
+- (void) testDoubleCount__off {
     
     __block BOOL fired = NO;
     
@@ -67,14 +67,14 @@
 
 - (void) testBasicAsyncTest {
 
-    FLLog(@"async self test");
+    FLTestLog(@"async self test");
     
     FLFinisher* finisher = [FLFinisher finisher];
     FLPromise* promise = [finisher addPromise];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [NSThread sleepForTimeInterval:0.25];
-        FLLog(@"done in thread");
+        FLTestLog(@"done in thread");
         [finisher setFinished];
         });
     

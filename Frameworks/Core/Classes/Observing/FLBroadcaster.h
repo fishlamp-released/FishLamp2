@@ -10,13 +10,13 @@
 #import "FLCoreRequired.h"
 #import "FLArrayProxy.h"
 
-// these are here as a convieneince
-#import "FLObjectProxy.h"
+// these are here as a convenience
+#import "FLAbstractObjectProxy.h"
 #import "FLRetainedObject.h"
-#import "FLNonretained.h"
+#import "FLNonretainedObjectProxy.h"
 #import "FLMainThreadObject.h"
 
-@interface FLBroadcaster : FLAbstractArrayProxy {
+@interface FLBroadcaster : FLAbstractArrayProxy<NSFastEnumeration> {
 @private
     NSMutableArray* _listeners;
 }
@@ -26,27 +26,27 @@
 - (void) notify:(SEL) messageSelector;
 
 - (void) notify:(SEL) messageSelector
-     withObject:(id) object;
+              withObject:(id) object;
 
 - (void) notify:(SEL) messageSelector
-     withObject:(id) object1
-     withObject:(id) object2;
+              withObject:(id) object1
+              withObject:(id) object2;
 
 - (void) notify:(SEL) messageSelector
-     withObject:(id) object1
-     withObject:(id) object2
-     withObject:(id) object3;
+              withObject:(id) object1
+              withObject:(id) object2
+              withObject:(id) object3;
 
 - (void) notify:(SEL) messageSelector
-     withObject:(id) object1
-     withObject:(id) object2
-     withObject:(id) object3
-     withObject:(id) object4;
+              withObject:(id) object1
+              withObject:(id) object2
+              withObject:(id) object3
+              withObject:(id) object4;
 
 - (BOOL) hasListener:(id) listener;
 
-- (void) addObserver:(id) observer;
+- (void) addListener:(id) observer;
 
-- (void) removeObserver:(id) listener;
+- (void) removeListener:(id) listener;
 
 @end

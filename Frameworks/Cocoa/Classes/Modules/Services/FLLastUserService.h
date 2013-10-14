@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Mike Fullerton. All rights reserved.
 //
 
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 #import "FLUserService.h"
 
 @interface FLLastUserService : FLUserService {

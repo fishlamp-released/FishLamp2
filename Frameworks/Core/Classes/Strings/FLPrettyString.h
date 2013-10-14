@@ -7,39 +7,26 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 #import "FLCoreRequired.h"
-#import "FLStringFormatter.h"
+#import "FLWhitespaceStringFormatter.h"
 
 @class FLWhitespace;
 @protocol FLPrettyStringDelegate;
 
-@interface FLPrettyString : FLStringFormatter<FLStringFormatterOutput> {
+@interface FLPrettyString : FLWhitespaceStringFormatter {
 @private
-    id _storage;
-    id _eolString;
-    FLWhitespace* _whitespace;
-    NSInteger _indentLevel;
+    NSMutableString* _string;
     __unsafe_unretained id<FLPrettyStringDelegate> _delegate;
 }
 @property (readwrite, assign, nonatomic) id<FLPrettyStringDelegate> delegate;
 
-@property (readonly, assign, nonatomic) NSInteger indentLevel;
-@property (readonly, assign, nonatomic) NSUInteger length;
-@property (readonly, strong, nonatomic) FLWhitespace* whitespace;
 @property (readonly, strong, nonatomic) NSString* string;
 
-- (id) initWithWhitespace:(FLWhitespace*) whitespace;
 + (id) prettyString:(FLWhitespace*) whiteSpace;
-
 + (id) prettyString; // uses default whitespace
 
 + (id) prettyStringWithString:(NSString*) string;
 
 - (void) deleteAllCharacters;
-
-// for subclasses
-- (void) appendStringToStorage:(NSString*) string;
-- (void) appendAttributedStringToStorage:(NSAttributedString*) string;
-- (void) appendEOL;
 
 @end
 
@@ -48,10 +35,6 @@
 - (void) prettyString:(FLPrettyString*) prettyString didAppendString:(NSString*) string;
 @end
 
-
-@interface FLPrettyString (Whitespace)
-+ (FLWhitespace*) defaultWhitespace;
-@end
 
 @interface NSObject (FLStringFormatter)
 // override this one
@@ -64,17 +47,5 @@
 @end
 
 
-@interface FLPrettyAttributedString : FLPrettyString {
-@private
-}
-
-@property (readonly, strong, nonatomic) NSAttributedString* attributedString;
-@end
-
-@protocol FLPrettyAttributedStringDelegate <NSObject>
-@optional
-- (NSAttributedString*) prettyString:(FLPrettyString*) prettyString willAppendAttributedString:(NSAttributedString*) string;
-- (void) prettyString:(FLPrettyString*) prettyString didAppendAttributedString:(NSAttributedString*) string;
-@end
 
 

@@ -10,22 +10,21 @@
 #import "FLAsyncTests.h"
 #import "FLPerformSelectorOperation.h"
 
-#import "FLUnitTest.h"
+#import "FLTestable.h"
 #import "FLTimeoutTests.h"
 
 @implementation FLAsyncTests
 
-+ (FLUnitTestGroup*) unitTestGroup {
-    return [self frameworkTestGroup];
++ (FLTestGroup*) testGroup {
+    return [FLTestGroup frameworkTestGroup];
 }
 
-+ (NSArray*) unitTestDependencies {
++ (NSArray*) testDependencies {
     return [NSArray arrayWithObject:[FLTimeoutTests class]];
 }
 
-- (void) _didExecuteOperation:(FLPerformSelectorOperation*) operation
-{
-	FLTestLog(@"did execute");
+- (void) _didExecuteOperation:(FLPerformSelectorOperation*) operation {
+	[FLTestOutput appendLine:@"did execute"];
 }
 
 - (void) _asyncDone:(FLPerformSelectorOperation*) operation

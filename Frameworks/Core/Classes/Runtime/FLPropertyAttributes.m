@@ -329,7 +329,7 @@ FLPropertyAttributes_t FLPropertyAttributesParse(objc_property_t property) {
         
         walker = FLParseTrailingAttributes(&attributes, walker, end);
         
-        FLAssertWithComment(walker >= end, @"didn't parse all of %c", encoded);
+        FLAssertWithComment(walker >= end, @"didn't parse all of %s", encoded);
     }
     
     return attributes;

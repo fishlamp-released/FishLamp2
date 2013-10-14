@@ -126,7 +126,7 @@ static NSInteger s_max = 0;
     return self.result;
 }
 
-- (void) fufillPromiseWithResult:(FLPromisedResult) result {
+- (void) setFinishedWithResult:(FLPromisedResult) result {
     
     FLAssertIsNilWithComment(self.result, @"already finished");
 
@@ -150,7 +150,9 @@ static NSInteger s_max = 0;
     if(_semaphore) {
     //       FLLog(@"releasing semaphor for %X, ont thread %@", (void*) _semaphore, [NSThread currentThread]);
         dispatch_semaphore_signal(_semaphore);
+#if !OS_OBJECT_USE_OBJC
         dispatch_release(_semaphore);
+#endif
         _semaphore = nil;
     }
 }

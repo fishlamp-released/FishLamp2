@@ -12,6 +12,8 @@
 #import "FLSelectorPerforming.h"
 #import "FLAssertions.h"
 
+// TODO: see objc/message.h
+
 @implementation NSObject (FLPerformSelector)
 
 #pragma GCC diagnostic push

@@ -11,6 +11,8 @@
 #import "FLStringUtils.h"
 #import "FLExceptions.h"
 #import "FLErrorException.h"
+#import "FLStackTrace.h"
+
 
 NSString* const FLErrorCommentKey = @"com.fishlamp.error.comment";;
 //NSString* const FLErrorDomainKey = @"com.fishlamp.error.domain";
@@ -47,11 +49,15 @@ FLSynthesizeDictionaryGetterProperty(stackTrace, FLStackTrace*, FLStackTraceKey,
 	return FLStringsAreEqual(domain, self.domain);
 }
 
+- (id) initWithDomain:(NSString*) domain
+                 code:(NSInteger) code
+ localizedDescription:(NSString*) localizedDescription
+             userInfo:(NSDictionary *) userInfo
+              comment:(NSString*) comment
+           stackTrace:(FLStackTrace*) stackTrace {
 
 
-/*
-// TODO: Clean this up
-
+#if 0
     NSString* errorCodeString = nil; // [[FLErrorDomainInfo instance] stringFromErrorCode:code withDomain:domain];
     NSString* commentAddOn = nil;
     if(errorCodeString) {
@@ -75,24 +81,18 @@ FLSynthesizeDictionaryGetterProperty(stackTrace, FLStackTrace*, FLStackTraceKey,
     else {
         comment = commentAddOn;
     }
+#endif    
+
+
 //    if(comment) {
 //        localizedDescription = [NSString stringWithFormat:@"%@ (%@)", localizedDescription, comment];
 //    }
 
-*/
-
-
-- (id) initWithDomain:(NSString*) domain
-                 code:(NSInteger) code
- localizedDescription:(NSString*) localizedDescription
-             userInfo:(NSDictionary *) userInfo
-              comment:(NSString*) comment
-           stackTrace:(FLStackTrace*) stackTrace {
-
-
-    NSMutableDictionary* newUserInfo = nil != userInfo ?
+    NSMutableDictionary* newUserInfo = userInfo != nil ?
                                             FLMutableCopyWithAutorelease(userInfo) :
                                             [NSMutableDictionary dictionaryWithCapacity:5];
+
+//        [userInfo setObject:reason forKey:NSLocalizedFailureReasonErrorKey];
 
     if(FLStringIsNotEmpty(comment)) {
         [newUserInfo setObject:comment forKey:FLErrorCommentKey];

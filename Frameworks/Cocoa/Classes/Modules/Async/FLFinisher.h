@@ -7,7 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FishLampCore.h"
+#import "FishLampMinimum.h"
 #import "FLAsyncBlockTypes.h"
 #import "FLPromisedResult.h"
 #import "FLPromise.h"
@@ -16,8 +16,6 @@
 
 @interface FLFinisher : FLPromise {
 @private
-    __unsafe_unretained id<FLFinisherDelegate> _delegate;
-
 #if DEBUG
     NSTimeInterval _birth;
 #endif
@@ -37,9 +35,10 @@
 - (void) setFinished;
 - (void) setFinishedWithCancel;
 
+// oprtional overrides
+- (void) willFinishWithResult:(FLPromisedResult) result;
+- (void) didFinishWithResult:(FLPromisedResult) result;
 @end
 
-@protocol FLFinisherDelegate <NSObject>
-- (void) finisherDidFinish:(FLFinisher*) finisher
-                withResult:(FLPromisedResult) resultOrNil;
+@interface FLForegroundFinisher : FLFinisher
 @end

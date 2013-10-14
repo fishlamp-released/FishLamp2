@@ -7,21 +7,14 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLService.h"
-#import "FLFinisher.h"
-#import "FLObservable.h"
+#import "FishLampMinimum.h"
+#import "FLAsyncBlockTypes.h"
+#import "FLPromisedResult.h"
 
 @class FLOperation;
-@class FLFifoAsyncQueue;
+@class FLPromise;
 
-typedef void (^FLOperationVisitor)(id operation, BOOL* stop);
-
-extern NSString* const FLWorkerContextStarting;
-extern NSString* const FLWorkerContextFinished;
-extern NSString* const FLWorkerContextClosed;
-extern NSString* const FLWorkerContextOpened;
-
-@interface FLOperationContext : FLObservable {
+@interface FLOperationContext : NSObject {
 @private
     NSMutableSet* _operations;
     NSUInteger _contextID;
@@ -33,24 +26,45 @@ extern NSString* const FLWorkerContextOpened;
 
 + (id) operationContext;
 
+/**
+ *  Open the context. Context's are open by default.
+ */
 - (void) openContext;
+
+/**
+ *  Close the context. This cancels and removes all the operations. Further operations are cancelled and discarded until the context is opened again.
+ */
 - (void) closeContext;
 
+/**
+ *  Cancel and remove all the current operations.
+ */
 - (void) requestCancel;          
 
-- (void) queueOperation:(FLOperation*) operation;
-- (void) removeOperation:(FLOperation*) operation;
+/**
+ *  Begin an Operation.
+ *  
+ *  @param operation  the operation to run
+ *  @param completion the completion block or nil
+ *  
+ *  @return The promise representing the running operation scope.
+ */
+- (FLPromise*) beginOperation:(FLOperation*) operation
+                   completion:(fl_completion_block_t) completion;
 
-- (void) visitOperations:(FLOperationVisitor) visitor;
+/**
+ *  Execute an operation synchronously.
+ *  
+ *  @param operation the Operation
+ *  
+ *  @return the Promise result
+ */
+- (FLPromisedResult) runOperation:(FLOperation*) operation;
 
 @end
 
-@protocol FLOperationContextObserverMessages <NSObject>
-
-- (void) operationContextDidStartWorking:(FLOperationContext*) operationContext;
-- (void) operationContextDidStopWorking:(FLOperationContext*) operationContext;
-
-- (void) operationContext:(FLOperationContext*) operationContext didAddOperation:(FLOperation*) object;
-- (void) operationContext:(FLOperationContext*) operationContext didRemoveOperation:(FLOperation*) object;
-
+@interface FLOperationContext (OptionalOverrides)
+- (void) didAddOperation:(FLOperation*) operation;
+- (void) didRemoveOperation:(FLOperation*) operation;
 @end
+

@@ -16,5 +16,6 @@
 #import "FLCoreFlags.h"
 #import "FLCompilerWarnings.h"
 #import "FLObjc.h"
-#import "FLProperties.h"
 #import "FLDebug.h"
+
+#import "FLObjcPropertyHelpers.h"

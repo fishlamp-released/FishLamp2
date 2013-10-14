@@ -7,13 +7,14 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
-#import "FLAsyncQueue.h"
-//#import "FLObjectPool.h"
 #import <dispatch/dispatch.h>
+
+#import "FishLampMinimum.h"
+#import "FLAsyncQueue.h"
 
 @class FLFifoAsyncQueue;
 
-@interface FLDispatchQueue : NSObject<FLAsyncQueue> {
+@interface FLDispatchQueue : FLAbstractAsyncQueue {
 @private
     dispatch_queue_t _dispatch_queue;
     NSString* _label;
@@ -22,8 +23,12 @@
 // 
 // Info
 //
-
+//__attribute__((NSObject))
+#if OS_OBJECT_USE_OBJC
+@property (readonly, strong) dispatch_queue_t dispatch_queue_t;
+#else
 @property (readonly, assign) dispatch_queue_t dispatch_queue_t;
+#endif
 
 @property (readonly, strong) NSString* label;
 
@@ -89,13 +94,10 @@
 
 @interface FLFifoAsyncQueue : FLDispatchQueue
 + (id) fifoAsyncQueue;
-
-//+ (FLObjectPool*) pool;
-
-- (void) releaseToPool;
 @end
 
 
 #define FLForegroundQueue       [FLDispatchQueue mainThreadQueue]
 #define FLBackgroundQueue       [FLDispatchQueue defaultQueue]
 #define FLBackgroundFifoQueue   [FLDispatchQueue fifoQueue]
+#define FLDefaultQueue          [FLDispatchQueue defaultQueue]

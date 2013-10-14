@@ -7,7 +7,6 @@
 #define __FLRectCheckHeight(r) \
             (FLFloatMod(r.origin.y + r.size.height, 2.0f) == 0.0f)
 
-#import "FLRectGeometry_Inlines.h"
 
 FL_SHIP_ONLY_INLINE
 BOOL FLRectWidthIsOptimizedForView(CGRect r) {
@@ -64,5 +63,3 @@ CGSize FLSizeOptimizeForView(CGSize aSize) {
 }
 
 #endif
-
-

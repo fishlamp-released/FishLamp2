@@ -10,11 +10,9 @@
 #import "FLReadStream.h"
 #import "FLCoreFoundation.h"
 #import "FLNetworkStream_Internal.h"
-#import "FishLampAsync.h"
 
 @interface FLReadStream ()
 @property (readwrite, strong, nonatomic) id<FLInputSink> inputSink;
-
 @end
 
 //#if DEBUG

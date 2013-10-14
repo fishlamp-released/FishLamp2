@@ -142,7 +142,7 @@ static id s_instance;
 }
 
 - (void) runTool:(FLCommandLineTask*) task {
-    FLThrowIfError([task runSynchronously]);
+    FLThrowIfError([[FLOperationContext operationContext] runOperation:task]);
 }
 
 - (int) runWithArguments:(NSArray*) arguments {

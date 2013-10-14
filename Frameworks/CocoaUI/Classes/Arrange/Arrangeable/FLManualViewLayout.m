@@ -8,7 +8,7 @@
 //
 
 #import "FLManualViewLayout.h"
-#import "FLCocoaRequired.h"
+#import "FishLampMinimum.h"
 
 @implementation FLManualViewLayout
 

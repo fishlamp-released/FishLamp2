@@ -17,7 +17,4 @@
 }
 
 @property (readonly, strong, nonatomic) FLFifoAsyncQueue* asyncQueue;
-
-
-
 @end

@@ -66,5 +66,8 @@
 + (id) compressedWhitespace;
 
 + (id) untabbedWhitespace;
+
++ (id) defaultWhitespace;
+
 @end
 

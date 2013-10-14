@@ -12,7 +12,7 @@
 @implementation FLMainThreadObject
 
 + (id) mainThreadObject:(id) object {
-    return FLAutorelease([[[self class] alloc] initWithRepresentedObject:object]);
+    return FLAutorelease([[[self class] alloc] initWithRetainedObject:object]);
 }
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation {

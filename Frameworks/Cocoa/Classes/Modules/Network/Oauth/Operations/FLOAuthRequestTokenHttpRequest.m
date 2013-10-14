@@ -67,7 +67,7 @@
     
 #if DEBUG
     NSString* responseStr = FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    FLDebugLog(@"FL OAuthRequestToken response: %@", responseStr);
+    FLLog(@"FL OAuthRequestToken response: %@", responseStr);
 #endif	
 
     FLOAuthAuthencationData* response = [FLOAuthAuthencationData oAuthAuthencationData];
@@ -91,7 +91,7 @@
 //    
 //#if DEBUG
 //    NSString* responseStr = FLAutorelease([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-//    FLDebugLog(@"FL OAuthRequestToken response: %@", responseStr);
+//    FLLog(@"FL OAuthRequestToken response: %@", responseStr);
 //#endif	
 //
 //    FLOAuthAuthencationData* response = [FLOAuthAuthencationData oAuthAuthencationData];

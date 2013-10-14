@@ -31,14 +31,24 @@
     return self;
 }
 
-- (void) addObserver:(id) object {
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained [])buffer count:(NSUInteger)len {
+    return [_listeners countByEnumeratingWithState:state objects:buffer count:len];
+}
+
+- (void) addListener:(id) listener {
     if(!_listeners) {
         _listeners = [[NSMutableArray alloc] init];
     }
-    [_listeners addObject:object];
+
+    if([listener conformsToProtocol:@protocol(FLObjectProxy)]) {
+        [_listeners addObject:listener];
+    }
+    else {
+        [_listeners addObject:[FLNonretainedObjectProxy nonretainedObjectProxy:listener]];
+    }
 }
 
-- (void) removeObserver:(id) listener {
+- (void) removeListener:(id) listener {
     for(NSInteger i = _listeners.count - 1; i >= 0; i--) {
         id object = [_listeners objectAtIndex:i];
         if([object representedObject] == listener) {
