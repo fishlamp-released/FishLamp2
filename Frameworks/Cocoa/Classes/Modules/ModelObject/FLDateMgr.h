@@ -8,7 +8,6 @@
 //
 
 #import "FishLampMinimum.h"
-#import "FishLampMinimum.h"
 
 #import "ISO8601DateFormatter.h"
 

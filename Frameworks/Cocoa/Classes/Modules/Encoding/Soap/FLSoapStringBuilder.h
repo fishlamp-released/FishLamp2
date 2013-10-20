@@ -8,7 +8,6 @@
 //
 
 #import "FishLampMinimum.h"
-#import "FishLampMinimum.h"
 
 #import "FLXmlDocumentBuilder.h"
 #import "FLObjectXmlElement.h"

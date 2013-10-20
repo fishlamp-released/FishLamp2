@@ -10,6 +10,7 @@
 #import "FLAsyncBlockTypes.h"
 #import "FLPromisedResult.h"
 #import "FLAsyncMessageBroadcaster.h"
+#import "FLFinishable.h"
 #import "FLQueueableAsyncOperation.h"
 #import "FLSuccessfulResult.h"
 #import "NSError+FLFailedResult.h"
@@ -22,7 +23,7 @@
 @protocol FLAsyncQueue;
 @protocol FLOperationEvents;
 
-@interface FLOperation : FLAsyncMessageBroadcaster<FLQueueableAsyncOperation> {
+@interface FLOperation : FLAsyncMessageBroadcaster<FLFinishable, FLQueueableAsyncOperation> {
 @private
 	id _identifier;
     id<FLAsyncQueue> _asyncQueue;

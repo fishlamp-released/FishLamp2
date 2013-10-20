@@ -21,6 +21,10 @@
 
 extern NSString* const FLHttpControllerDidLogoutUserNotification;
 
+//    FLHttpRequestContext,
+//    FLDatabaseObjectStorageServiceDelegate,
+//    FLHttpRequestAuthenticatorDelegate {
+
 @interface FLHttpController : FLOperationContext {
 @private
     FLHttpUser* _httpUser;

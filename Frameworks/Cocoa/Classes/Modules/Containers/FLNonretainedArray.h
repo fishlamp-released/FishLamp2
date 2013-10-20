@@ -19,13 +19,13 @@
 + (id)array;
 + (id)arrayWithObject:(id)anObject;
 + (id)arrayWithObjects:(const id [])objects count:(NSUInteger)cnt;
-+ (id)arrayWithObjects:(id)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
++ (id)arrayWithObjects:(id)firstObj, ... NS_FORMAT_FUNCTION(1,2);
 + (id)arrayWithArray:(FLNonretainedArray *)array;
 
 - (id)init;	/* designated initializer */
 - (id)initWithObjects:(const id [])objects count:(NSUInteger)cnt;	/* designated initializer */
 
-- (id)initWithObjects:(id)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
+- (id)initWithObjects:(id)firstObj, ... NS_FORMAT_FUNCTION(1,2);
 - (id)initWithArray:(FLNonretainedArray *)array;
 
 - (NSUInteger)count;

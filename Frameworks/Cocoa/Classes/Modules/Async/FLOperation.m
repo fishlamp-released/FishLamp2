@@ -10,7 +10,10 @@
 #import "FLOperation.h"
 #import "FLAsyncInitiator.h"
 #import "FLAsyncQueue.h"
+
 #import "FLFinisher.h"
+#import "NSError+FLFailedResult.h"
+#import "FLSuccessfulResult.h"
 #import "FLOperationContext.h"
 #import "FLDispatchQueue.h"
 
@@ -59,6 +62,31 @@
 
 @end
 
+@interface FLOperationAsyncInitiator : FLAsyncInitiator {
+@private
+    FLOperation* _operation;
+}
+
+@property (readonly, strong) FLOperation* operation;
+
++ (id) operationEventWithDelay:(NSTimeInterval) timeInterval operation:(FLOperation*) operation;
+@end
+
+@interface FLOperation ()
+@property (readwrite, assign) NSInteger childCount;
+@property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
+@property (readwrite, strong) FLFinisher* finisher; 
+@property (readwrite, assign) id<FLAsyncQueue> asyncQueue;
+
+- (void) finisherWillFinish:(FLOperationFinisher*) finisher
+                withResult:(FLPromisedResult) result;
+
+- (void) finisherDidFinish:(FLOperationFinisher*) finisher
+                withResult:(FLPromisedResult) result;
+
+@end
+
+
 @implementation FLOperationFinisher
 
 @synthesize operation = _operation;
@@ -79,6 +107,7 @@
     [_operation finisherDidFinish:self withResult:result];
 }
 
+
 @end
 
 
@@ -93,6 +122,13 @@
 @end
 
 
+@interface FLOperation ()
+@property (readwrite, assign, getter=wasCancelled) BOOL cancelled;
+@property (readwrite, strong) FLFinisher* finisher; 
+
+- (FLPromise*) runAsynchronously:(fl_completion_block_t) completionOrNil;
+
+@end
 
 
 @implementation FLOperation

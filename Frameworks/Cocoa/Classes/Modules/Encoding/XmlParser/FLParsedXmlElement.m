@@ -158,7 +158,7 @@
 
     [stringFormatter appendLineWithFormat:@"</%@>", self.elementName];
 
-    [stringFormatter appendLineWithFormat:@"<!-- %d siblings -->", self.countSiblingElements];
+    [stringFormatter appendLineWithFormat:@"<!-- %ld siblings -->", (unsigned long) self.countSiblingElements];
 }
 
 - (BOOL) isQualified {

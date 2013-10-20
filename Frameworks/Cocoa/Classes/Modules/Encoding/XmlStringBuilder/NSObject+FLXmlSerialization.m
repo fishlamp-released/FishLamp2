@@ -118,7 +118,7 @@
 	}
 #if DEBUG
 	else if(!propertyDescriber) {
-		FLDebugLog(@"Warning not streaming object of type: %@", NSStringFromClass([self class]));
+		FLLog(@"Warning not streaming object of type: %@", NSStringFromClass([self class]));
 	}
 #endif	
 }

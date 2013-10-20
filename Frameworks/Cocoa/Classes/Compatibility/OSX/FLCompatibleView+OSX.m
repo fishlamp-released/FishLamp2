@@ -7,6 +7,7 @@
 //  The FishLamp Framework is released under the MIT License: http://fishlamp.com/license 
 //
 
+#if OSX
 #import "FLCompatibleView+OSX.h"
 #import "FLCompatibleViewController+OSX.h"
 
@@ -126,4 +127,7 @@
 //@implementation FLCompatibleView 
 //
 //@end
+
+#endif
+
 

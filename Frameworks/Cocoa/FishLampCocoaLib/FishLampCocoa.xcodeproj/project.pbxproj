@@ -2565,33 +2565,6 @@
 		27DF7B8D1777A355004A954C /* FLTcpConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71AC1777A354004A954C /* FLTcpConnectionTests.m */; };
 		27DF7B8E1777A355004A954C /* FLTcpConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71AC1777A354004A954C /* FLTcpConnectionTests.m */; };
 		27DF7B8F1777A355004A954C /* FLTcpConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71AC1777A354004A954C /* FLTcpConnectionTests.m */; };
-		27DF7B901777A355004A954C /* FLAssertionTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71AE1777A354004A954C /* FLAssertionTests.h */; };
-		27DF7B911777A355004A954C /* FLAssertionTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71AE1777A354004A954C /* FLAssertionTests.h */; };
-		27DF7B921777A355004A954C /* FLAssertionTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71AE1777A354004A954C /* FLAssertionTests.h */; };
-		27DF7B931777A355004A954C /* FLAssertionTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71AE1777A354004A954C /* FLAssertionTests.h */; };
-		27DF7B941777A355004A954C /* FLAssertionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71AF1777A354004A954C /* FLAssertionTests.m */; };
-		27DF7B951777A355004A954C /* FLAssertionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71AF1777A354004A954C /* FLAssertionTests.m */; };
-		27DF7B961777A355004A954C /* FLAssertionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71AF1777A354004A954C /* FLAssertionTests.m */; };
-		27DF7B971777A355004A954C /* FLAssertionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71AF1777A354004A954C /* FLAssertionTests.m */; };
-		27DF7B981777A355004A954C /* FLAssertionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71AF1777A354004A954C /* FLAssertionTests.m */; };
-		27DF7B991777A355004A954C /* FLBitFlagsTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71B01777A354004A954C /* FLBitFlagsTest.h */; };
-		27DF7B9A1777A355004A954C /* FLBitFlagsTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71B01777A354004A954C /* FLBitFlagsTest.h */; };
-		27DF7B9B1777A355004A954C /* FLBitFlagsTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71B01777A354004A954C /* FLBitFlagsTest.h */; };
-		27DF7B9C1777A355004A954C /* FLBitFlagsTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71B01777A354004A954C /* FLBitFlagsTest.h */; };
-		27DF7B9D1777A355004A954C /* FLBitFlagsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71B11777A354004A954C /* FLBitFlagsTest.m */; };
-		27DF7B9E1777A355004A954C /* FLBitFlagsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71B11777A354004A954C /* FLBitFlagsTest.m */; };
-		27DF7B9F1777A355004A954C /* FLBitFlagsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71B11777A354004A954C /* FLBitFlagsTest.m */; };
-		27DF7BA01777A355004A954C /* FLBitFlagsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71B11777A354004A954C /* FLBitFlagsTest.m */; };
-		27DF7BA11777A355004A954C /* FLBitFlagsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71B11777A354004A954C /* FLBitFlagsTest.m */; };
-		27DF7BAB1777A355004A954C /* FLErrorTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71B41777A354004A954C /* FLErrorTests.h */; };
-		27DF7BAC1777A355004A954C /* FLErrorTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71B41777A354004A954C /* FLErrorTests.h */; };
-		27DF7BAD1777A355004A954C /* FLErrorTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71B41777A354004A954C /* FLErrorTests.h */; };
-		27DF7BAE1777A355004A954C /* FLErrorTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71B41777A354004A954C /* FLErrorTests.h */; };
-		27DF7BAF1777A355004A954C /* FLErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71B51777A354004A954C /* FLErrorTests.m */; };
-		27DF7BB01777A355004A954C /* FLErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71B51777A354004A954C /* FLErrorTests.m */; };
-		27DF7BB11777A355004A954C /* FLErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71B51777A354004A954C /* FLErrorTests.m */; };
-		27DF7BB21777A355004A954C /* FLErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71B51777A354004A954C /* FLErrorTests.m */; };
-		27DF7BB31777A355004A954C /* FLErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DF71B51777A354004A954C /* FLErrorTests.m */; };
 		27DF7BB41777A355004A954C /* FLFrameworkSanityChecks.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71B61777A354004A954C /* FLFrameworkSanityChecks.h */; };
 		27DF7BB51777A355004A954C /* FLFrameworkSanityChecks.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71B61777A354004A954C /* FLFrameworkSanityChecks.h */; };
 		27DF7BB61777A355004A954C /* FLFrameworkSanityChecks.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DF71B61777A354004A954C /* FLFrameworkSanityChecks.h */; };
@@ -3621,12 +3594,6 @@
 		27DF71AA1777A354004A954C /* FLHttpTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLHttpTests.m; sourceTree = "<group>"; };
 		27DF71AB1777A354004A954C /* FLTcpConnectionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLTcpConnectionTests.h; sourceTree = "<group>"; };
 		27DF71AC1777A354004A954C /* FLTcpConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLTcpConnectionTests.m; sourceTree = "<group>"; };
-		27DF71AE1777A354004A954C /* FLAssertionTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAssertionTests.h; sourceTree = "<group>"; };
-		27DF71AF1777A354004A954C /* FLAssertionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAssertionTests.m; sourceTree = "<group>"; };
-		27DF71B01777A354004A954C /* FLBitFlagsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLBitFlagsTest.h; sourceTree = "<group>"; };
-		27DF71B11777A354004A954C /* FLBitFlagsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLBitFlagsTest.m; sourceTree = "<group>"; };
-		27DF71B41777A354004A954C /* FLErrorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLErrorTests.h; sourceTree = "<group>"; };
-		27DF71B51777A354004A954C /* FLErrorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLErrorTests.m; sourceTree = "<group>"; };
 		27DF71B61777A354004A954C /* FLFrameworkSanityChecks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLFrameworkSanityChecks.h; sourceTree = "<group>"; };
 		27DF71B71777A354004A954C /* FLFrameworkSanityChecks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLFrameworkSanityChecks.m; sourceTree = "<group>"; };
 		27DF71B81777A354004A954C /* FLNotifierSanityCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLNotifierSanityCheck.h; sourceTree = "<group>"; };
@@ -4983,12 +4950,6 @@
 		27DF71AD1777A354004A954C /* SanityChecks */ = {
 			isa = PBXGroup;
 			children = (
-				27DF71AE1777A354004A954C /* FLAssertionTests.h */,
-				27DF71AF1777A354004A954C /* FLAssertionTests.m */,
-				27DF71B01777A354004A954C /* FLBitFlagsTest.h */,
-				27DF71B11777A354004A954C /* FLBitFlagsTest.m */,
-				27DF71B41777A354004A954C /* FLErrorTests.h */,
-				27DF71B51777A354004A954C /* FLErrorTests.m */,
 				27DF71B61777A354004A954C /* FLFrameworkSanityChecks.h */,
 				27DF71B71777A354004A954C /* FLFrameworkSanityChecks.m */,
 				27DF71B81777A354004A954C /* FLNotifierSanityCheck.h */,
@@ -5126,7 +5087,6 @@
 				27DF77721777A354004A954C /* FLOAuthErrors.h in Headers */,
 				27DF7BC61777A355004A954C /* FLObjcUnitTests.h in Headers */,
 				2781969F180B80A100BF8D4E /* FLStaticTestMethodRunner.h in Headers */,
-				27DF7B991777A355004A954C /* FLBitFlagsTest.h in Headers */,
 				27DF79431777A354004A954C /* FLDatabaseTable.h in Headers */,
 				27DF77831777A354004A954C /* __FLOAuthAuthencationData.h in Headers */,
 				27DF78201777A354004A954C /* __FLSoapFault11.h in Headers */,
@@ -5209,7 +5169,6 @@
 				27DF7B871777A355004A954C /* FLTcpConnectionTests.h in Headers */,
 				27DF77EA1777A354004A954C /* FLOldReachability.h in Headers */,
 				27DF75AF1777A354004A954C /* NSData+RSHexDump.h in Headers */,
-				27DF7B901777A355004A954C /* FLAssertionTests.h in Headers */,
 				27819618180B7EF400BF8D4E /* FLSuccessfulResult.h in Headers */,
 				27DF742D1777A354004A954C /* FLCommandLineTask.h in Headers */,
 				27DF791B1777A354004A954C /* FLDatabaseErrors.h in Headers */,
@@ -5275,7 +5234,6 @@
 				278195DE180B7EF400BF8D4E /* FLOperationContext.h in Headers */,
 				27B7216D17C1526000093216 /* FLXmlObjectBuilder.h in Headers */,
 				27DF720B1777A354004A954C /* FLCompatibility+OSX.h in Headers */,
-				27DF7BAB1777A355004A954C /* FLErrorTests.h in Headers */,
 				27DF75A21777A354004A954C /* Base64Transcoder.h in Headers */,
 				27DF7B1B1777A355004A954C /* NSNotification+FLExtras.h in Headers */,
 				2781962A180B7EF400BF8D4E /* NSError+FLFailedResult.h in Headers */,
@@ -5439,7 +5397,6 @@
 				27DF77741777A354004A954C /* FLOAuthErrors.h in Headers */,
 				27DF7BC81777A355004A954C /* FLObjcUnitTests.h in Headers */,
 				278196A1180B80A100BF8D4E /* FLStaticTestMethodRunner.h in Headers */,
-				27DF7B9B1777A355004A954C /* FLBitFlagsTest.h in Headers */,
 				27DF79451777A354004A954C /* FLDatabaseTable.h in Headers */,
 				27DF77851777A354004A954C /* __FLOAuthAuthencationData.h in Headers */,
 				27DF78221777A354004A954C /* __FLSoapFault11.h in Headers */,
@@ -5522,7 +5479,6 @@
 				27DF7B891777A355004A954C /* FLTcpConnectionTests.h in Headers */,
 				27DF77EC1777A354004A954C /* FLOldReachability.h in Headers */,
 				27DF75B11777A354004A954C /* NSData+RSHexDump.h in Headers */,
-				27DF7B921777A355004A954C /* FLAssertionTests.h in Headers */,
 				2781961A180B7EF400BF8D4E /* FLSuccessfulResult.h in Headers */,
 				27DF742F1777A354004A954C /* FLCommandLineTask.h in Headers */,
 				27DF791D1777A354004A954C /* FLDatabaseErrors.h in Headers */,
@@ -5588,7 +5544,6 @@
 				278195E0180B7EF400BF8D4E /* FLOperationContext.h in Headers */,
 				27B7216F17C1526000093216 /* FLXmlObjectBuilder.h in Headers */,
 				27DF720D1777A354004A954C /* FLCompatibility+OSX.h in Headers */,
-				27DF7BAD1777A355004A954C /* FLErrorTests.h in Headers */,
 				27DF75A41777A354004A954C /* Base64Transcoder.h in Headers */,
 				27DF7B1D1777A355004A954C /* NSNotification+FLExtras.h in Headers */,
 				2781962C180B7EF400BF8D4E /* NSError+FLFailedResult.h in Headers */,
@@ -5752,7 +5707,6 @@
 				27DF77731777A354004A954C /* FLOAuthErrors.h in Headers */,
 				27DF7BC71777A355004A954C /* FLObjcUnitTests.h in Headers */,
 				278196A0180B80A100BF8D4E /* FLStaticTestMethodRunner.h in Headers */,
-				27DF7B9A1777A355004A954C /* FLBitFlagsTest.h in Headers */,
 				27DF79441777A354004A954C /* FLDatabaseTable.h in Headers */,
 				27DF77841777A354004A954C /* __FLOAuthAuthencationData.h in Headers */,
 				27DF78211777A354004A954C /* __FLSoapFault11.h in Headers */,
@@ -5835,7 +5789,6 @@
 				27DF7B881777A355004A954C /* FLTcpConnectionTests.h in Headers */,
 				27DF77EB1777A354004A954C /* FLOldReachability.h in Headers */,
 				27DF75B01777A354004A954C /* NSData+RSHexDump.h in Headers */,
-				27DF7B911777A355004A954C /* FLAssertionTests.h in Headers */,
 				27819619180B7EF400BF8D4E /* FLSuccessfulResult.h in Headers */,
 				27DF742E1777A354004A954C /* FLCommandLineTask.h in Headers */,
 				27DF791C1777A354004A954C /* FLDatabaseErrors.h in Headers */,
@@ -5901,7 +5854,6 @@
 				278195DF180B7EF400BF8D4E /* FLOperationContext.h in Headers */,
 				27B7216E17C1526000093216 /* FLXmlObjectBuilder.h in Headers */,
 				27DF720C1777A354004A954C /* FLCompatibility+OSX.h in Headers */,
-				27DF7BAC1777A355004A954C /* FLErrorTests.h in Headers */,
 				27DF75A31777A354004A954C /* Base64Transcoder.h in Headers */,
 				27DF7B1C1777A355004A954C /* NSNotification+FLExtras.h in Headers */,
 				2781962B180B7EF400BF8D4E /* NSError+FLFailedResult.h in Headers */,
@@ -6065,7 +6017,6 @@
 				27DF77751777A354004A954C /* FLOAuthErrors.h in Headers */,
 				27DF7BC91777A355004A954C /* FLObjcUnitTests.h in Headers */,
 				278196A2180B80A100BF8D4E /* FLStaticTestMethodRunner.h in Headers */,
-				27DF7B9C1777A355004A954C /* FLBitFlagsTest.h in Headers */,
 				27DF79461777A354004A954C /* FLDatabaseTable.h in Headers */,
 				27DF77861777A354004A954C /* __FLOAuthAuthencationData.h in Headers */,
 				27DF78231777A354004A954C /* __FLSoapFault11.h in Headers */,
@@ -6148,7 +6099,6 @@
 				27DF7B8A1777A355004A954C /* FLTcpConnectionTests.h in Headers */,
 				27DF77ED1777A354004A954C /* FLOldReachability.h in Headers */,
 				27DF75B21777A354004A954C /* NSData+RSHexDump.h in Headers */,
-				27DF7B931777A355004A954C /* FLAssertionTests.h in Headers */,
 				2781961B180B7EF400BF8D4E /* FLSuccessfulResult.h in Headers */,
 				27DF74301777A354004A954C /* FLCommandLineTask.h in Headers */,
 				27DF791E1777A354004A954C /* FLDatabaseErrors.h in Headers */,
@@ -6214,7 +6164,6 @@
 				278195E1180B7EF400BF8D4E /* FLOperationContext.h in Headers */,
 				27B7217017C1526000093216 /* FLXmlObjectBuilder.h in Headers */,
 				27DF720E1777A354004A954C /* FLCompatibility+OSX.h in Headers */,
-				27DF7BAE1777A355004A954C /* FLErrorTests.h in Headers */,
 				27DF75A51777A354004A954C /* Base64Transcoder.h in Headers */,
 				27DF7B1E1777A355004A954C /* NSNotification+FLExtras.h in Headers */,
 				2781962D180B7EF400BF8D4E /* NSError+FLFailedResult.h in Headers */,
@@ -6621,10 +6570,8 @@
 				27DF76A81777A354004A954C /* FLHttpController.m in Sources */,
 				27DF78131777A354004A954C /* FLHiddenFolderFileSink.m in Sources */,
 				27DF790A1777A354004A954C /* FLDatabaseColumnConstraint.m in Sources */,
-				27DF7B951777A355004A954C /* FLAssertionTests.m in Sources */,
 				27DF76721777A354004A954C /* FLTypeSpecificEnumSet.m in Sources */,
 				27DF775C1777A354004A954C /* NSObject+JsonParser.m in Sources */,
-				27DF7B9E1777A355004A954C /* FLBitFlagsTest.m in Sources */,
 				2781961D180B7EF400BF8D4E /* FLSuccessfulResult.m in Sources */,
 				278196B6180B80A100BF8D4E /* FLTestCaseRunner.m in Sources */,
 				278195BF180B7EF400BF8D4E /* FLDeprecatedOperationQueue.m in Sources */,
@@ -6643,7 +6590,6 @@
 				27819610180B7EF400BF8D4E /* FLPromisedResult.m in Sources */,
 				27DF770B1777A354004A954C /* FLHttpRequestByteCount.m in Sources */,
 				27819626180B7EF400BF8D4E /* FLSynchronousOperation.m in Sources */,
-				27DF7BB01777A355004A954C /* FLErrorTests.m in Sources */,
 				27DF749E1777A354004A954C /* FLObjectPool.m in Sources */,
 				27DF760B1777A354004A954C /* FLSizeGeometry.m in Sources */,
 				27DF7B8C1777A355004A954C /* FLTcpConnectionTests.m in Sources */,
@@ -6906,10 +6852,8 @@
 				27DF76AA1777A354004A954C /* FLHttpController.m in Sources */,
 				27DF78151777A354004A954C /* FLHiddenFolderFileSink.m in Sources */,
 				27DF790C1777A354004A954C /* FLDatabaseColumnConstraint.m in Sources */,
-				27DF7B971777A355004A954C /* FLAssertionTests.m in Sources */,
 				27DF76741777A354004A954C /* FLTypeSpecificEnumSet.m in Sources */,
 				27DF775E1777A354004A954C /* NSObject+JsonParser.m in Sources */,
-				27DF7BA01777A355004A954C /* FLBitFlagsTest.m in Sources */,
 				2781961F180B7EF400BF8D4E /* FLSuccessfulResult.m in Sources */,
 				278196B8180B80A100BF8D4E /* FLTestCaseRunner.m in Sources */,
 				278195C1180B7EF400BF8D4E /* FLDeprecatedOperationQueue.m in Sources */,
@@ -6928,7 +6872,6 @@
 				27819612180B7EF400BF8D4E /* FLPromisedResult.m in Sources */,
 				27DF770D1777A354004A954C /* FLHttpRequestByteCount.m in Sources */,
 				27819628180B7EF400BF8D4E /* FLSynchronousOperation.m in Sources */,
-				27DF7BB21777A355004A954C /* FLErrorTests.m in Sources */,
 				27DF74A01777A354004A954C /* FLObjectPool.m in Sources */,
 				27DF760D1777A354004A954C /* FLSizeGeometry.m in Sources */,
 				27DF7B8E1777A355004A954C /* FLTcpConnectionTests.m in Sources */,
@@ -7223,10 +7166,8 @@
 				27DF76A71777A354004A954C /* FLHttpController.m in Sources */,
 				27DF78121777A354004A954C /* FLHiddenFolderFileSink.m in Sources */,
 				27DF79091777A354004A954C /* FLDatabaseColumnConstraint.m in Sources */,
-				27DF7B941777A355004A954C /* FLAssertionTests.m in Sources */,
 				27DF76711777A354004A954C /* FLTypeSpecificEnumSet.m in Sources */,
 				27DF775B1777A354004A954C /* NSObject+JsonParser.m in Sources */,
-				27DF7B9D1777A355004A954C /* FLBitFlagsTest.m in Sources */,
 				2781961C180B7EF400BF8D4E /* FLSuccessfulResult.m in Sources */,
 				278196B5180B80A100BF8D4E /* FLTestCaseRunner.m in Sources */,
 				278195BE180B7EF400BF8D4E /* FLDeprecatedOperationQueue.m in Sources */,
@@ -7245,7 +7186,6 @@
 				2781960F180B7EF400BF8D4E /* FLPromisedResult.m in Sources */,
 				27DF770A1777A354004A954C /* FLHttpRequestByteCount.m in Sources */,
 				27819625180B7EF400BF8D4E /* FLSynchronousOperation.m in Sources */,
-				27DF7BAF1777A355004A954C /* FLErrorTests.m in Sources */,
 				27DF749D1777A354004A954C /* FLObjectPool.m in Sources */,
 				27DF760A1777A354004A954C /* FLSizeGeometry.m in Sources */,
 				27DF7B8B1777A355004A954C /* FLTcpConnectionTests.m in Sources */,
@@ -7508,10 +7448,8 @@
 				27DF76A91777A354004A954C /* FLHttpController.m in Sources */,
 				27DF78141777A354004A954C /* FLHiddenFolderFileSink.m in Sources */,
 				27DF790B1777A354004A954C /* FLDatabaseColumnConstraint.m in Sources */,
-				27DF7B961777A355004A954C /* FLAssertionTests.m in Sources */,
 				27DF76731777A354004A954C /* FLTypeSpecificEnumSet.m in Sources */,
 				27DF775D1777A354004A954C /* NSObject+JsonParser.m in Sources */,
-				27DF7B9F1777A355004A954C /* FLBitFlagsTest.m in Sources */,
 				2781961E180B7EF400BF8D4E /* FLSuccessfulResult.m in Sources */,
 				278196B7180B80A100BF8D4E /* FLTestCaseRunner.m in Sources */,
 				278195C0180B7EF400BF8D4E /* FLDeprecatedOperationQueue.m in Sources */,
@@ -7530,7 +7468,6 @@
 				27819611180B7EF400BF8D4E /* FLPromisedResult.m in Sources */,
 				27DF770C1777A354004A954C /* FLHttpRequestByteCount.m in Sources */,
 				27819627180B7EF400BF8D4E /* FLSynchronousOperation.m in Sources */,
-				27DF7BB11777A355004A954C /* FLErrorTests.m in Sources */,
 				27DF749F1777A354004A954C /* FLObjectPool.m in Sources */,
 				27DF760C1777A354004A954C /* FLSizeGeometry.m in Sources */,
 				27DF7B8D1777A355004A954C /* FLTcpConnectionTests.m in Sources */,
@@ -7801,10 +7738,8 @@
 				27DF76AB1777A354004A954C /* FLHttpController.m in Sources */,
 				27DF78161777A354004A954C /* FLHiddenFolderFileSink.m in Sources */,
 				27DF790D1777A354004A954C /* FLDatabaseColumnConstraint.m in Sources */,
-				27DF7B981777A355004A954C /* FLAssertionTests.m in Sources */,
 				27DF76751777A354004A954C /* FLTypeSpecificEnumSet.m in Sources */,
 				27DF775F1777A354004A954C /* NSObject+JsonParser.m in Sources */,
-				27DF7BA11777A355004A954C /* FLBitFlagsTest.m in Sources */,
 				27819620180B7EF400BF8D4E /* FLSuccessfulResult.m in Sources */,
 				278196B9180B80A100BF8D4E /* FLTestCaseRunner.m in Sources */,
 				278195C2180B7EF400BF8D4E /* FLDeprecatedOperationQueue.m in Sources */,
@@ -7823,7 +7758,6 @@
 				27819613180B7EF400BF8D4E /* FLPromisedResult.m in Sources */,
 				27DF770E1777A354004A954C /* FLHttpRequestByteCount.m in Sources */,
 				27819629180B7EF400BF8D4E /* FLSynchronousOperation.m in Sources */,
-				27DF7BB31777A355004A954C /* FLErrorTests.m in Sources */,
 				27DF74A11777A354004A954C /* FLObjectPool.m in Sources */,
 				27DF760E1777A354004A954C /* FLSizeGeometry.m in Sources */,
 				27DF7B8F1777A355004A954C /* FLTcpConnectionTests.m in Sources */,

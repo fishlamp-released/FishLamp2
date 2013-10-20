@@ -12,7 +12,7 @@
 #import "FLStringFormatter.h"
 #import "FLPrettyString.h"
 
-@interface FLDocumentSection : FLStringFormatter<FLStringFormatterOutput> {
+@interface FLDocumentSection : FLStringFormatter {
 @private
     NSMutableArray* _lines;
     BOOL _needsLine;
